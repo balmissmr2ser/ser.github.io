@@ -239,8 +239,16 @@ table {
             <p>Mostrar configuración de interfaz</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-configuración-dns" class="md-toc-link">
+            <p>Mostrar configuración dns</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#desactivar-y-activar" class="md-toc-link">
             <p>Desactivar y Activar</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cambiar-nombre" class="md-toc-link">
+            <p>Cambiar nombre</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
@@ -253,8 +261,16 @@ table {
             <p>Configurar IP y gateway</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-dns" class="md-toc-link">
+            <p>Configurar DNS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#borrar-ip-y-gateway" class="md-toc-link">
             <p>Borrar IP y gateway</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-dns" class="md-toc-link">
+            <p>Borrar DNS</p>
 
           </a></div>
         </div>
@@ -266,12 +282,12 @@ table {
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configurar-ip-y-gateway-1" class="md-toc-link">
-            <p>Configurar IP y gateway</p>
+          <a href="#configurar-ip-y-gateway-8203" class="md-toc-link">
+            <p>Configurar IP y gateway ​</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configurar-dns" class="md-toc-link">
-            <p>Configurar DNS</p>
+          <a href="#configurar-dns-8203" class="md-toc-link">
+            <p>Configurar DNS ​</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
@@ -280,12 +296,12 @@ table {
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#liberar-la-ip-por-dhcp" class="md-toc-link">
-            <p>Liberar la IP por dhcp</p>
+          <a href="#liberar-la-ip-obtenida-por-dhcp" class="md-toc-link">
+            <p>Liberar la IP obtenida por dhcp</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#renovar-la-ip-por-dhcp" class="md-toc-link">
-            <p>Renovar la IP por dhcp</p>
+          <a href="#renovar-la-ip-obtenida-por-dhcp" class="md-toc-link">
+            <p>Renovar la IP obtenida por dhcp</p>
 
           </a></div>
         </div>
@@ -353,7 +369,7 @@ table {
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="consola">CONSOLA </h2>
-<p>Al igual que en la parte gráfica, podemos configurar las interfaces de red desde la consola de comandos (CLI) o <code>cmd.exe</code>. Para configurar la red a través de la consola de comandos disponemos de una herramienta específica denominada <code>netsh</code> y los comandos <code>ipconfig</code>, <code>route</code> y <code>arp</code>. Se puede acceder a la ayuda los comandos con la opción <code>&lt;comando&gt; /?</code> y a la ayuda online de <a href="https://learn.microsoft.com/es-es/windows-server/networking/technologies/netsh/netsh">netsh</a>.</p>
+<p>Al igual que en la parte gráfica, podemos configurar las interfaces de red desde la consola de comandos (CLI) o <code>cmd.exe</code>. Para configurar la red a través de la consola de comandos disponemos de una herramienta específica denominada <code>netsh</code> y los comandos <code>ipconfig</code>, <code>route</code> y <code>arp</code>. Se puede acceder a la ayuda de los comandos con la opción <code>&lt;comando&gt; /?</code> y a la ayuda online de <a href="https://learn.microsoft.com/es-es/windows-server/networking/technologies/netsh/netsh">netsh</a>.</p>
 <p>La herramienta <code>netsh</code> (<em>net shell</em>) es una consola específica para la configuración de la red en Windows. Esta consola tiene diferentes contextos y subcontextos a través de los que se puede acceder a los parámetros de configuración.<br>
 Se puede ejecutar <code>netsh</code> indicando la instrucción completa o bien indicando el contexto inicial en el que se desea entrar con <code>netsh -c "contexto"</code>. Por ejemplo, para mostrar las interfaces de red de los que dispone el sistema podemos optar por cualquiera de estas dos opciones:</p>
 <ul>
@@ -370,11 +386,11 @@ netsh interface ipv4&gt; show interfaces
 <p>Los contextos <code>netsh</code> en los que se realizan la mayor parte de las configuraciones de redes son <a href="https://learn.microsoft.com/es-es/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770948(v=ws.10)">netsh interface</a> y <a href="https://learn.microsoft.com/es-es/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc731521(v=ws.10)">netsh interface ipv4</a>. En ellos se pueden ejecutar comandos como: <code>show</code> (mostrar), <code>set</code> (modificar), <code>add</code> (añadir) y <code>delete</code> (borrar).</p>
 <h2 id="interfaces-de-red">INTERFACES DE RED </h2>
 <h3 id="mostrar-interfaces-de-red">Mostrar interfaces de red </h3>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 show interfaces
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show interfaces
 </code></pre><div class="admonition example">
 <p class="admonition-title">Mostrar interfaces de red</p>
 <p>Mostrar las interfaces de red del sistema.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 show interfaces
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show interfaces
 Índ    Mét        MTU        Estado              Nombre
 --- ---------- ---------- ------------ ---------------------------
   1         75 4294967295 connected    Loopback Pseudo-Interface 1
@@ -382,157 +398,261 @@ netsh interface ipv4&gt; show interfaces
   7         25       1500 connected    RedVirtualBox
  32       5000       1500 connected    vEthernet (Default Switch)
 </code></pre></div>
-<p>Como datos importantes aparecen el nombre de la interfaz, su número de índice, la MTU (unidad máxima de transmisión en el enlace) y el estado de la interfaz (conectado, desconectado ...)</p>
+<p>Entre los datos mostrados al ejecutar el comando aparecen el nombre de la interfaz, su número de índice, la MTU (unidad máxima de transmisión en el enlace) y el estado de la interfaz (conectado, desconectado ...).</p>
 <h3 id="mostrar-configuración-de-interfaz">Mostrar configuración de interfaz </h3>
 <p>Para mostrar la configuración de una interfaz de red concreta o de todas las interfaces de red del sistema se utiliza el comando <code>show config</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 show config [“&lt;IfaceName&gt;”]
-</code></pre><p>Si no se introduce “<ifacename>” muestra la configuración de todas las interfaces.<br>
-!!! Example Mostrar configuración de interfaz<br>
-Mostrar la configuración de una interfaz de red concreta.<br>
-```cmd<br>
-C:&gt;netsh interface ipv4 show config “MiRed”<br>
-Configuración para la interfaz "MiRed"<br>
-Dirección IP:</ifacename></p>
-<p>C:&gt;netsh interface ipv4 show config [“<ifacename>”]<br>
-Si no se introduce “<ifacename>” muestra la configuración de todas las interfaces.<br>
-Ejemplos<br>
-C:&gt;netsh interface ipv4 show config “MiRed”</ifacename></ifacename></p>
-<p>Se obtiene la configuración para la interfaz “MiRed”. Su configuración actual es dinámica (DHCP habilitado). La dirección IP obtenida es la 192.168.1.132 que pertenece a la red 192.168.1.0 y se ha obtenido como default gateway la dirección 192.168.1.1. Además los servidores DNS también han sido configurados por DHCP con direcciones 100.90.1.1, 100.100.1.1 y 192.168.1.1<br>
-También se puede obtener información similar a través del comando ipconfig<br>
-C:&gt;ipconfig /all</p>
-<h3>Mostrar configuración dns</h3>
-<p>Para mostrar la configuración de los servidores DNS de una interfaz de red concreta o de todas las interfaces de red del sistema se utiliza el comando <code>show dnsservers</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 show dnsservers [“&lt;IfaceName&gt;”]
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show config ["&lt;IfaceName&gt;"]
+</code></pre><p>Si no se introduce "&lt;IfaceName&gt;" muestra la configuración de todas las interfaces.</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración de interfaz</p>
+<p>Mostrar la configuración de una interfaz de red concreta.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show config "MiRed"
+Configuración para la interfaz "MiRed"
+   DHCP habilitado:              Sí
+   Dirección IP:                 192.168.1.132
+   Prefijo de subred:            192.168.1.0/24 (máscara 255.255.255.0)
+   Puerta de enlace predeterminada: 192.168.1.1
+   Métrica de puerta de enlace:  0
+   Métrica de interfaz:          25
+   Servidores DNS configurados a través de DHCP:  100.90.1.1
+                                                  100.100.1.1
+                                                  192.168.1.1
+   Registrar con el sufijo:      Solo el principal
+   Servidores WINS configurados a través de DHCP: ninguno
+</code></pre><p>Se obtiene la configuración para la interfaz <em>MiRed</em>. Su configuración actual es dinámica (DHCP habilitado). La dirección IP obtenida es la <code>192.168.1.132</code> que pertenece a la red <code>192.168.1.0/24</code> y se ha obtenido como <em>default gateway</em> la dirección <code>192.168.1.1</code>. Además los servidores DNS también han sido configurados por DHCP con direcciones <code>100.90.1.1</code>, <code>100.100.1.1</code> y <code>192.168.1.1</code>.</p>
+</div>
+<p>También se puede obtener información similar a través del comando <code>ipconfig</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
 </code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar configuración interfaces</p>
+<p>Mostrar la configuración de todos los interfaces.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+Configuración IP de Windows
+
+   Nombre de host. . . . . . . . . : W10
+   Sufijo DNS principal  . . . . . : 
+   Tipo de nodo. . . . . . . . . . : híbrido
+   Enrutamiento IP habilitado. . . : no
+   Proxy WINS habilitado . . . . . : no
+
+Adaptador de Ethernet MiRed:
+
+   Sufijo DNS específico para la conexión. . : 
+   Descripción . . . . . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Dirección física. . . . . . . . . . . . . : 08-00-27-C7-0D-23
+   DHCP habilitado . . . . . . . . . . . . . : sí
+   Configuración automática habilitada . . . : sí
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4(Preferido) 
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132(Preferido) 
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Concesión obtenida. . . . . . . . . . . . : miércoles, 1 de noviembre de 2023 21:28:30
+   La concesión expira . . . . . . . . . . . : jueves, 2 de noviembre de 2023 3:28:30
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . : 192.168.1.2
+   IAID DHCPv6 . . . . . . . . . . . . . . . : 101187623
+   DUID de cliente DHCPv6. . . . . . . . . . : 00-01-00-01-2C-D1-9A-E1-08-00-27-C7-0D-23
+   Servidores DNS. . . . . . . . . . . . . . : 100.90.1.1
+                                               100.100.1.1
+                                               192.168.1.1
+   NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado
+</code></pre><p>Como podemos ver este comando muestra algo más de información como la ip del servidor DHCP que ha proporcionado la ip dinámicamente (<code>192.168.1.2</code>) y los tiempos de concesión y expiración de la dirección IP.</p>
+</div>
+<h3 id="mostrar-configuración-dns">Mostrar configuración dns </h3>
+<p>Para mostrar la configuración de los servidores DNS de una interfaz de red concreta o de todas las interfaces de red del sistema se utiliza el comando <code>show dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show dnsservers [“&lt;IfaceName&gt;”]
+</code></pre><p>Si no se introduce "&lt;IfaceName&gt;" muestra la configuración de todas las interfaces.</p>
+<div class="admonition example">
 <p class="admonition-title">Mostrar configuración dns</p>
 <p>Mostrar la configuración de los servidores DNS de una interfaz de red concreta.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 show dnsservers “MiRed”
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show dnsservers "MiRed"
 Configuración para la interfaz "MiRed"
-    Servidores DNS configurados a través de DHCP:
+    Servidores DNS configurados a través de DHCP: 10.239.3.7
+                                                  10.239.3.8
+    Registrar con el sufijo:           Solo el principal
 </code></pre></div>
-<p>C:&gt;netsh interface ipv4 show dnsservers [“<ifacename>”]<br>
-Si no se introduce “<ifacename>” muestra la configuración de todas las interfaces.<br>
-Ejemplos<br>
-C:&gt;netsh interface ipv4 show dnsservers “MiRed”<br>
-Configuración para la interfaz "MiRed"<br>
-Servidores DNS configurados a través de DHCP:  10.239.3.7<br>
-10.239.3.8<br>
-Registrar con el sufijo:           Solo el principal</ifacename></ifacename></p>
 <h3 id="desactivar-y-activar">Desactivar y Activar </h3>
 <p>Para desactivar o activar una interfaz de red se utiliza el comando <code>set interface</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface set interface “&lt;IfaceName&gt;” disable
-C:\&gt;netsh interface set interface “&lt;IfaceName&gt;” enable
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" disable
+C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" enable
 </code></pre><div class="admonition example">
 <p class="admonition-title">Desactivar y Activar</p>
-<p>Desactivar y activar una interfaz de red.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface set interface “MiRed” disable
-C:\&gt;netsh interface set interface “MiRed” enable
+<p>Desactivar y activar la interfaz de red <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "MiRed" disable
+C:\&gt; netsh interface set interface "MiRed" enable
 </code></pre></div>
-<p>Ejemplos<br>
-C:&gt;netsh interface set interface “MiRed” disable<br>
-C:&gt;netsh interface set interface “MiRed” enable<br>
-Cambiar nombre<br>
-C:&gt;netsh interface set interface name=”&lt;old_IfaceName&gt;” newname=”&lt;new_IfaceName&gt;<br>
-Ejemplos<br>
-C:&gt;netsh interface set interface name=”Ethernet” newname=”MiRed”</p>
+<h3 id="cambiar-nombre">Cambiar nombre </h3>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface name="&lt;old_IfaceName&gt;" newname="&lt;new_IfaceName&gt;"
+</code></pre><div class="admonition example">
+<p class="admonition-title">Cambiar nombre de interfaz</p>
+<p>Cambia el nombre de la interfaz de red <em>Ethernet</em> por <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface name="Ethernet" newname="MiRed"
+</code></pre></div>
 <h3 id="configuración-estática">Configuración estática </h3>
 <h4 id="configurar-ip-y-gateway">Configurar IP y gateway </h4>
-<p>Para configurar una dirección IP estática y su default gateway se utiliza el comando <code>set address</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set address “&lt;IfaceName&gt;” source=static address=&lt;IP&gt;/&lt;Mascara&gt; gateway=&lt;IP-Gateway&gt; store=persistent
-</code></pre><div class="admonition example">
+<p>Para configurar una dirección IP estática y su ruta por defecto (<em>default gateway</em>) se utiliza el comando <code>set address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "&lt;IfaceName&gt;" source=static address=&lt;IP&gt;/&lt;Mascara&gt; gateway=&lt;IP-Gateway&gt; store=persistent
+</code></pre><p>Hay que tener en cuenta que:</p>
+<ul>
+<li>Si en lugar de usar <code>set</code> se usa <code>add</code>, entonces se añade una nueva IP a la interfaz manteniendo las que ya tuviera con anterioridad.</li>
+<li>Si utilizamos <code>store=active</code> la configuración se convierte en no persistente.</li>
+</ul>
+<div class="admonition example">
 <p class="admonition-title">Configurar IP y gateway</p>
-<p>Configurar una dirección IP estática y su default gateway.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set address “MiRed” source=static address= 
-</code></pre></div>
-<p>C:&gt;netsh interface ipv4 set address “<ifacename>” source=static address=<ip>/<mascara> gateway=<ip-gateway> store=persistent<br>
-*Si en lugar de usar set se usa add, entonces se añade una nueva IP a la interfaz manteniendo las que ya tuviera con anterioridad.<br>
-*Si utilizamos store=active la configuración se convierte en no persistente<br>
-Ejemplos<br>
-C:&gt;netsh interface ipv4 set address “MiRed” source=static address=192.168.1.20/24 gateway=192.168.1.100 store=persistent<br>
-Se configura la interfaz “MiRed” con un direccionamiento tipo estático, se asigna la IP 192.168.1.20 con máscara 24 y se le asigna como default gateway la dirección 192.168.1.100. Al poner el parámetro store=persistent dicha configuración se convierte en persistente.</ip-gateway></mascara></ip></ifacename></p>
-<h4>Configurar DNS</h4>
-<p>Para configurar los servidores DNS de una interfaz de red se utiliza el comando <code>set dnsservers</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set dnsservers “&lt;IfaceName&gt;” source=static address=&lt;IP-DNS&gt; validate=no
-C:\&gt;netsh interface ipv4 add dnsservers “&lt;IfaceName&gt;” address=&lt;IP-DNS&gt; validate=no index=2
-
-
-Ejemplos
-C:\&gt;netsh interface ipv4 set dnsservers “MiRed” source=static address=1.1.1.1 validate=no
-Se configura la interfaz “MiRed” con un servidor dns tipo estático con ip 1.1.1.1. El campo validate=no permite que el comando no intente conectar con el servidor para comprobar que existe.
-C:\&gt;netsh interface ipv4 add dnsservers “MiRed” address=8.8.8.8 validate=no index=2
-Se configura la interfaz “MiRed” para agregar un dns tipo estático con ip 8.8.8.8. El campo index=2 permite configurar dicho servidor como secundario. El campo validate=no permite que el comando no intente conectar con el servidor para comprobar que existe.
-Configuración estática borrar
-
-#### Borrar IP y gateway {#borrar-ip-y-gateway }
-Para borrar una dirección IP estática y su default gateway se utiliza el comando `delete address`:
-
-```cmd
-C:\&gt;netsh interface ipv4 delete address “&lt;IfaceName&gt;” address=&lt;IP&gt; gateway=all store=persistent
-</code></pre><div class="admonition example">
-<p class="admonition-title">Borrar IP y gateway</p>
-<p>Borrar una dirección IP estática y su default gateway.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 delete address “MiRed” address=
-</code></pre></div>
-<p>C:&gt;netsh interface ipv4 delete address “<ifacename>” address=<ip> gateway=all store=persistent<br>
-Ejemplos<br>
-C:&gt;netsh interface ipv4 delete address “MiRed” address=192.168.1.20 gateway=all store=persistent<br>
-Se borra la configuración de la interfaz “MiRed” con un direccionamiento tipo estático, se elimina la IP 192.168.1.20 y su default Gateway (cualquiera que sea su dirección). Al poner el parámetro store=persistent dicho borrado se convierte en persistente.</ip></ifacename></p>
-<h4>Borrar DNS</h4>
-<p>Para borrar los servidores DNS de una interfaz de red se utiliza el comando <code>delete dnsservers</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 delete dnsservers “&lt;IfaceName&gt;” address={&lt;IP-DNS&gt;|all} validate=no
-</code></pre><div class="admonition example">
-<p class="admonition-title">Borrar DNS</p>
-<p>Borrar los servidores DNS de una interfaz de red.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 delete dnsservers “MiRed” address=all validate=no
-
-</code></pre></div>
-<p>C:&gt;netsh interface ipv4 delete dnsservers “<ifacename>”<br>
-address={<ip-dns>|all} validate=no</ip-dns></ifacename></p>
-<p>Ejemplos</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 delete dnsservers “MiRed” address=all validate=no
-</code></pre><p>Se borra toda la configuración dns de la interfaz “MiRed”. El campo validate=no permite que el comando no intente conectar con los servidores para comprobar que existen.</p>
-<h3 id="configuración-dinámica">Configuración dinámica </h3>
-<p>Si se realizó con anterioridad una configuración estática es conveniente borrar la configuración antes de la configuración dinámica.</p>
-<h4 id="configurar-ip-y-gateway-1">Configurar IP y gateway </h4>
-<p>Para configurar una dirección IP dinámica y su default gateway se utiliza el comando <code>set address</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set address “&lt;IfaceName&gt;” source=dhcp
-</code></pre><div class="admonition example">
-<p class="admonition-title">Configurar IP y gateway</p>
-<p>Configurar una dirección IP dinámica y su default gateway.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set address “MiRed” source=dhcp
-</code></pre></div>
-<p>C:&gt;netsh interface ipv4 set address “<ifacename>” source=dhcp<br>
-Ejemplos<br>
-C:&gt;netsh interface ipv4 set address “MiRed” source=dhcp<br>
-Se configura la interfaz “MiRed” para obtener su dirección por dhcp. Esta configuración es persistente mientras dure el tiempo de alquiler (lease time).</ifacename></p>
+<p>Configurar la interfaz <em>MiRed</em> con un direccionamiento de tipo estático y persistente. Se asigna la IP <code>192.168.1.20</code> con máscara <code>24</code> y se le asigna como <em>default gateway</em> la dirección <code>192.168.1.100</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "MiRed" source=static address=192.168.1.20/24 gateway=192.168.1.100 store=persistent
+</code></pre><p>Al poner el parámetro <code>store=persistent</code> dicha configuración se convierte en persistente.</p>
+</div>
 <h4 id="configurar-dns">Configurar DNS </h4>
 <p>Para configurar los servidores DNS de una interfaz de red se utiliza el comando <code>set dnsservers</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set dnsservers “&lt;IfaceName&gt;” source=dhcp
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set dnsservers "&lt;IfaceName&gt;" source=static address=&lt;IP-DNS&gt; validate=no
+</code></pre><p>La opción <code>validate=no</code> permite que el comando no intente conectar con el servidor para comprobar que existe.</p>
+<p>Podemos añadir servidores DNS adicionales a una interfaz de red con el comando <code>add dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add dnsservers "&lt;IfaceName&gt;" address=&lt;IP-DNS&gt; validate=no index=2
+</code></pre><p>La opción <code>index=2</code> permite configurar dicho servidor como secundario.</p>
+<div class="admonition example">
+<p class="admonition-title">Configurar DNS</p>
+<p>Configurar la interfaz <em>MiRed</em> con un servidor dns de tipo estático con ip <code>1.1.1.1</code>. Omitir la validación del servidor DNS.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set dnsservers "MiRed" source=static address=1.1.1.1 validate=no
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Configurar DNS</p>
+<p>Configurar la interfaz <em>MiRed</em> para agregar un dns de tipo estático con ip 8.8.8.8. Omitir la validación del servidor DNS.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add dnsservers "MiRed" source=static address=8.8.8.8 validate=no index=2
+</code></pre></div>
+<h4 id="borrar-ip-y-gateway">Borrar IP y gateway </h4>
+<p>Para borrar una dirección IP estática y su default gateway se utiliza el comando <code>delete address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete address "&lt;IfaceName&gt;" address=&lt;IP&gt; gateway=all store=persistent
+</code></pre><p>Al poner la opción <code>store=persistent</code> dicho borrado se convierte en persistente.</p>
+<div class="admonition example">
+<p class="admonition-title">Borrar IP y gateway</p>
+<p>Borrar la configuración de la interfaz <em>MiRed</em> que tiene un direccionamiento de tipo estático. Se elimina la IP <code>192.168.1.20</code> y su default Gateway (cualquiera que sea su dirección).</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete address "MiRed" address=192.168.1.20 gateway=all store=persistent
+</code></pre></div>
+<h4 id="borrar-dns">Borrar DNS </h4>
+<p>Para borrar los servidores DNS de una interfaz de red se utiliza el comando <code>delete dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete dnsservers "&lt;IfaceName&gt;" address={&lt;IP-DNS&gt;|all} validate=no
+</code></pre><p>La opción <code>validate=no</code> permite que el comando no intente conectar con los servidores para comprobar que existen.</p>
+<div class="admonition example">
+<p class="admonition-title">Borrar DNS</p>
+<p>Borrar toda la configuración dns de la interfaz <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 delete dnsservers "MiRed" address=all validate=no
+</code></pre></div>
+<h3 id="configuración-dinámica">Configuración dinámica </h3>
+<p>Si se realizó con anterioridad una configuración estática es conveniente borrar la configuración antes de la configuración dinámica.</p>
+<h4 id="configurar-ip-y-gateway-8203">Configurar IP y gateway ​ </h4>
+<p>Para configurar una dirección IP dinámica y su <em>default gateway</em> también se utiliza el comando <code>set address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "&lt;IfaceName&gt;" source=dhcp
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configurar IP y gateway</p>
+<p>Configurar la interfaz <em>MiRed</em> para obtener su dirección por dhcp. También se tiene que proporcionar el <em>default gateway</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "MiRed" source=dhcp
+</code></pre></div>
+<p>La configuración es persistente mientras dure el tiempo de alquiler (<em>lease time</em>).</p>
+<h4 id="configurar-dns-8203">Configurar DNS ​ </h4>
+<p>Para configurar los servidores DNS de una interfaz de red se utiliza el comando <code>set dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set dnsservers "&lt;IfaceName&gt;" source=dhcp
 </code></pre><div class="admonition example">
 <p class="admonition-title">Configurar DNS</p>
-<p>Configurar los servidores DNS de una interfaz de red.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set dnsservers “MiRed” source=dhcp
-</code></pre></div>
-<p>Se configura la interfaz “MiRed” para obtener sus servidores DNS por dhcp. Esta configuración es persistente mientras dure el tiempo de alquiler (lease time).</p>
+<p>Configurar la interfaz <em>MiRed</em> para obtener sus servidores DNS por dhcp.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set dnsservers "MiRed" source=dhcp
+</code></pre><p>Esta configuración es persistente mientras dure el tiempo de alquiler (<em>lease time</em>).</p>
+</div>
 <h4 id="liberar-y-renovar-dirección-dinámica">Liberar y Renovar dirección dinámica </h4>
-<h5 id="liberar-la-ip-por-dhcp">Liberar la IP por dhcp </h5>
-<p>Para liberar la dirección IP dinámica obtenida por dhcp se utiliza el comando <code>release</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;ipconfig /release “&lt;IfaceName&gt;”
-</code></pre><div class="admonition example">
-<p class="admonition-title">Liberar la IP por dhcp</p>
-<p>Liberar la dirección IP dinámica obtenida por dhcp.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;ipconfig /release “MiRed”
+<p>Para liberar y renovar una IP que se ha obtenido dinámicamente se utiliza el comando <code>ipconfig</code> con diferentes opciones.</p>
+<p>Cuando se obtiene una concesión (<em>lease</em>) de una dirección del servidor DHCP, incluso cuando se ha hecho un release anterior, la dirección obtenida es la misma debido a las políticas de fidelización de IPs de los servidores. Sin embargo, se puede forzar el cambio de IP si antes cambiamos la dirección MAC de nuestro adaptador de red.</p>
+<h5 id="liberar-la-ip-obtenida-por-dhcp">Liberar la IP obtenida por dhcp </h5>
+<p>Para liberar la dirección IP dinámica obtenida por dhcp se utiliza la opción <code>/release</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /release "&lt;IfaceName&gt;"
+</code></pre><p>Libera la dirección IP asignada dinámicamente a un adaptador de red específico. Si no se indica ningún adaptador, se liberan las direcciones IP de todos los adaptadores de red que hayan recibido una IP de un servidor DHCP.</p>
+<div class="admonition example">
+<p class="admonition-title">Liberar la IP obtenida por dhcp</p>
+<p>Liberar la dirección IP dinámica de la interfaz <em>MiRed</em> obtenida por dhcp.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /release
+Configuración IP de Windows
+
+Adaptador de Ethernet MiRed:
+   Sufijo DNS específico para la conexión. . : 
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4
+   Puerta de enlace predeterminada . . . . . : 
 </code></pre></div>
-<p>Permite liberar el alquiler (lease) de la dirección en el servidor DHCP.</p>
-<h5 id="renovar-la-ip-por-dhcp">Renovar la IP por dhcp </h5>
-<p>Para renovar la dirección IP dinámica obtenida por dhcp se utiliza el comando <code>renew</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;ipconfig /renew “&lt;IfaceName&gt;”
-</code></pre><div class="admonition example">
-<p class="admonition-title">Renovar la IP por dhcp</p>
-<p>Renovar la dirección IP dinámica obtenida por dhcp.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;ipconfig /renew “MiRed”
-</code></pre></div>
-<p>Permite pedir el alquiler (lease) de una dirección en el servidor DHCP. A veces, incluso cuando se ha hecho un release anterior, la dirección obtenida es la misma debido a las políticas de fidelización de IPs de los servidores. Sin embargo, se puede forzar el cambio de IP si antes cambiamos la dirección MAC de nuestro adaptador de red.</p>
+<h5 id="renovar-la-ip-obtenida-por-dhcp">Renovar la IP obtenida por dhcp </h5>
+<p>Para renovar la dirección IP dinámica obtenida por dhcp se utiliza la opción <code>/renew</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /renew "&lt;IfaceName&gt;"
+</code></pre><p>Renueva la dirección IP obtenida dinámicamente para un adaptador de red concreto. Si no se indica ningún adaptador, se renuevan las direcciones IP de todos los adaptadores de red que hayan recibido una IP dinámicamente. Solo se actualiza el tiempo de expiración de la concesión.</p>
+<div class="admonition example">
+<p class="admonition-title">Renovar la IP obtenida por dhcp</p>
+<p>Mostrar la información de la concesión en un equipo con Windows 10. A continuación esperar unos 5 minutos, renovar la concesión y volver a mostrar la información de la concesión.</p>
+<p><em>Información inicial de la concesión</em></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+Configuración IP de Windows
+
+   Nombre de host. . . . . . . . . : W10
+   Sufijo DNS principal  . . . . . : 
+   Tipo de nodo. . . . . . . . . . : híbrido
+   Enrutamiento IP habilitado. . . : no
+   Proxy WINS habilitado . . . . . : no
+
+Adaptador de Ethernet MiRed:
+
+   Sufijo DNS específico para la conexión. . : 
+   Descripción . . . . . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Dirección física. . . . . . . . . . . . . : 08-00-27-C7-0D-23
+   DHCP habilitado . . . . . . . . . . . . . : sí
+   Configuración automática habilitada . . . : sí
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4(Preferido) 
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132(Preferido) 
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Concesión obtenida. . . . . . . . . . . . : miércoles, 1 de noviembre de 2023 21:32:23
+   La concesión expira . . . . . . . . . . . : jueves, 2 de noviembre de 2023 3:32:23
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . : 192.168.1.2
+   IAID DHCPv6 . . . . . . . . . . . . . . . : 101187623
+   DUID de cliente DHCPv6. . . . . . . . . . : 00-01-00-01-2C-D1-9A-E1-08-00-27-C7-0D-23
+   Servidores DNS. . . . . . . . . . . . . . : 100.90.1.1
+                                               100.100.1.1
+                                               192.168.1.1
+   NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado    
+</code></pre><p><em>Renovación de IP tras esperar unos 5 minutos aproximadamente</em></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /renew
+Configuración IP de Windows
+
+   Sufijo DNS específico para la conexión. . : 
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+</code></pre><p><em>Volver a mostrar la información de la concesión</em></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+Configuración IP de Windows
+
+   Nombre de host. . . . . . . . . : W10
+   Sufijo DNS principal  . . . . . : 
+   Tipo de nodo. . . . . . . . . . : híbrido
+   Enrutamiento IP habilitado. . . : no
+   Proxy WINS habilitado . . . . . : no
+
+Adaptador de Ethernet Ethernet:
+
+   Sufijo DNS específico para la conexión. . : 
+   Descripción . . . . . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Dirección física. . . . . . . . . . . . . : 08-00-27-C7-0D-23
+   DHCP habilitado . . . . . . . . . . . . . : sí
+   Configuración automática habilitada . . . : sí
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4(Preferido) 
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132(Preferido) 
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Concesión obtenida. . . . . . . . . . . . : miércoles, 1 de noviembre de 2023 21:32:23
+   La concesión expira . . . . . . . . . . . : jueves, 2 de noviembre de 2023 3:38:00
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . : 192.168.1.2
+   IAID DHCPv6 . . . . . . . . . . . . . . . : 101187623
+   DUID de cliente DHCPv6. . . . . . . . . . : 00-01-00-01-2C-D1-9A-E1-08-00-27-C7-0D-23
+   Servidores DNS. . . . . . . . . . . . . . : 100.90.1.1
+                                               100.100.1.1
+                                               192.168.1.1
+   NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado
+</code></pre><p>Observa que la fecha y hora en que se obtuvo la concesión no cambia tras realizar la renovación. Lo que sí varía es la fecha de expiración de la concesión, que se actualiza y ahora es unos 5 minutos posterior a la fecha de expiración que teníamos antes de renovar la IP.</p>
+</div>
 <h2 id="tabla-de-enrutamiento">TABLA DE ENRUTAMIENTO </h2>
 <p>La tabla de enrutamiento es una tabla que contiene las rutas que se utilizan para enviar paquetes a través de la red. Cada entrada de la tabla de enrutamiento contiene información sobre el destino, la máscara de red, la interfaz de salida y el gateway (puerta de enlace) a utilizar.</p>
 <h3 id="mostrar">Mostrar </h3>
