@@ -1,0 +1,1231 @@
+<!DOCTYPE html><html><head>
+      <title>SER - U01 Linux red no persistente</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  const configureMermaidIconPacks = () => {
+    window["mermaid"].registerIconPacks([
+      {
+        name: "logos",
+        loader: () =>
+          fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+            (res) => res.json()
+          ),
+      },
+    ]);
+  };
+
+  if (document.readyState !== 'loading') {
+    configureMermaidIconPacks();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      configureMermaidIconPacks();
+    });
+  }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<style type="text/css">
+.style-normal {
+    text-indent: 0.5cm;
+    text-align: justify;
+}
+.style-example {
+    text-indent: 0.5cm;
+    text-align: justify;
+    text-size: small    
+}
+.style-title {
+    text-indent: 0cm;
+    text-align: center;    
+}
+table {
+    table-layout: auto !important;
+    width: fit-content !important;
+    max-width: none !important;
+    border-collapse: collapse;
+}
+</style>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<div class="style-title">
+<h1 id="u01-linux-red-no-persistente">U01 Linux red no persistente </h1>
+</div>
+<p>📙<a href="./linux.noPersistente.pdf">Descargar PDF</a></p>
+<h2 id="índice">ÍNDICE </h2>
+<div style="background-color: Lightgrey;">
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#configuración-no-persistente-de-la-red" class="md-toc-link">
+            <p>Configuración no persistente de la red</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#la-librería-net-tools" class="md-toc-link"><p>La librería net-tools</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ifconfig" class="md-toc-link">
+            <p>ifconfig</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#route" class="md-toc-link">
+            <p>route</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#arp" class="md-toc-link">
+            <p>arp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#net-tools" class="md-toc-link">
+            <p>net-tools</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#iproute2" class="md-toc-link">
+            <p>iproute2</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#consola" class="md-toc-link">
+            <p>CONSOLA</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#interfaces-de-red" class="md-toc-link"><p>INTERFACES DE RED</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-interfaces-de-red" class="md-toc-link">
+            <p>Mostrar interfaces de red</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-configuración-de-interfaz" class="md-toc-link">
+            <p>Mostrar configuración de interfaz</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-configuración-dns" class="md-toc-link">
+            <p>Mostrar configuración dns</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#desactivar-y-activar" class="md-toc-link">
+            <p>Desactivar y Activar</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cambiar-nombre" class="md-toc-link">
+            <p>Cambiar nombre</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configuración-estática" class="md-toc-link"><p>Configuración estática</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-ip-y-gateway" class="md-toc-link">
+            <p>Configurar IP y gateway</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-dns" class="md-toc-link">
+            <p>Configurar DNS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-ip-y-gateway" class="md-toc-link">
+            <p>Borrar IP y gateway</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-dns" class="md-toc-link">
+            <p>Borrar DNS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configuración-dinámica" class="md-toc-link"><p>Configuración dinámica</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-ip-y-gateway-8203" class="md-toc-link">
+            <p>Configurar IP y gateway ​</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-dns-8203" class="md-toc-link">
+            <p>Configurar DNS ​</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#liberar-y-renovar-dirección-dinámica" class="md-toc-link"><p>Liberar y Renovar dirección dinámica</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#liberar-la-ip-obtenida-por-dhcp" class="md-toc-link">
+            <p>Liberar la IP obtenida por dhcp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#renovar-la-ip-obtenida-por-dhcp" class="md-toc-link">
+            <p>Renovar la IP obtenida por dhcp</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tabla-de-enrutamiento" class="md-toc-link"><p>TABLA DE ENRUTAMIENTO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar" class="md-toc-link">
+            <p>Mostrar</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#modificar" class="md-toc-link"><p>Modificar</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-entrada" class="md-toc-link">
+            <p>Añadir entrada</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#modificar-entrada" class="md-toc-link">
+            <p>Modificar entrada</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-entrada" class="md-toc-link">
+            <p>Borrar entrada</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tabla-arp" class="md-toc-link"><p>TABLA ARP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-8203" class="md-toc-link">
+            <p>Mostrar ​</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#modificar-8203" class="md-toc-link"><p>Modificar ​</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-entrada-8203" class="md-toc-link">
+            <p>Añadir entrada ​</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-entrada-8203" class="md-toc-link">
+            <p>Borrar entrada ​</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#interfaces-de-red-inálambricas" class="md-toc-link"><p>INTERFACES DE RED INÁLAMBRICAS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#profile-xml" class="md-toc-link">
+            <p>Profile XML</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#detectar-redes-inalámbricas" class="md-toc-link">
+            <p>Detectar redes inalámbricas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-profiles" class="md-toc-link">
+            <p>Mostrar profiles</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-un-profile" class="md-toc-link">
+            <p>Mostrar un profile</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-profile" class="md-toc-link">
+            <p>Añadir profile</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-profile" class="md-toc-link">
+            <p>Borrar profile</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#exportar-profile" class="md-toc-link">
+            <p>Exportar profile</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#conectar-a-una-red-inalámbrica" class="md-toc-link">
+            <p>Conectar a una red inalámbrica</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="configuración-no-persistente-de-la-red">Configuración no persistente de la red </h2>
+<p>La <strong>configuración de bajo nivel</strong> o <strong>no persistente</strong> de red en Linux se refiere a los cambios realizados directamente desde la línea de comandos, que afectan a la configuración de la red de manera inmediata pero <strong>no se mantienen tras reiniciar el sistema</strong>. Este tipo de configuración es útil para pruebas, cambios temporales o en entornos donde no se requiere persistencia.</p>
+<p>Para realizar configuraciones de red no persistentes, se utilizan herramientas como <strong>net-tools</strong> o <strong>iproute2</strong>. Estas herramientas permiten configurar interfaces de red, asignar direcciones IP, establecer rutas y gestionar la conectividad de red sin necesidad de editar archivos de configuración permanentes.</p>
+<p>La librería <strong>net-tools</strong> es la más antigua y tradicional, mientras que <strong>iproute2</strong> es la más moderna y recomendada en las distribuciones actuales de Linux. Aunque net-tools aún está disponible, se considera obsoleta y se recomienda utilizar iproute2 para nuevas configuraciones.</p>
+<h2 id="la-librería-net-tools">La librería net-tools </h2>
+<p>La librería net-tools dispone de las utilidades clásicas para la configuración de red en Linux. Aunque es menos común en las distribuciones modernas, aún se puede utilizar si se instala el paquete <strong>net-tools</strong>. Esta librería incluye herramientas como <strong><code>ifconfig</code></strong>, <strong><code>route</code></strong> y <strong><code>arp</code></strong>, que permiten configurar y gestionar las interfaces de red de forma temporal.</p>
+<h3 id="ifconfig">ifconfig </h3>
+<p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
+<ul>
+<li>
+<p><strong>Mostrar las interfaces de red</strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-a] [&lt;interfaz&gt;]
+</code></pre><p>Entre la información mostrada podemos ver la IP, la MAC, la máscara de red, la dirección de broadcast e información sobre el estado de la interfaz entre otros datos.</p>
+<p>Cuando no se especifica un interfaz muestra información de todas las interfaces de red o solo de las activas si omitimos el flag <code>-a</code>.<br>
+Cuando se especifica una interfaz muestra solamente información de esa interfaz (esté o no activa).</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar interfaces de red</p>
+<p>Mostrar el estado de la interfaz <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0
+eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54  
+          inet addr:192.168.2.16  Bcast:192.168.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fed0:2f54/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:26 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:88 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3553 (3.4 KiB)  TX bytes:5485 (5.3 KiB)
+</code></pre><p>La ejecución del comando nos indica que la interfaz <code>eth0</code> tiene la ip <code>192.168.2.16</code>, la máscara de red es la <code>255.255.255.0</code> y que está activa (<code>UP</code> ... <code>RUNNING</code>) entre otras cosas.</p>
+</div>
+</li>
+<li>
+<p><strong>Mostrar estadisticas de las interfaces de red</strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-s] [&lt;interfaz&gt;]
+</code></pre><p>Muestra estadisticas de todas las interfaces (o una concreta) activas.</p>
+</li>
+<li>
+<p><strong>Activar o desactivar una interfaz de red</strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; [up|down]
+</code></pre><p>Para activar una interfaz de red se utiliza el flag <code>up</code> y para desactivarla el flag <code>down</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Activar una interfaz de red</p>
+<p>Activar la interfaz <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 up
+</code></pre></div>
+</li>
+<li>
+<p><strong>Cambiar la dirección MAC de una interfaz de red</strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; hw ether &lt;mac&gt;
+</code></pre><p>Cambia la dirección MAC de una interfaz de red. Es importante tener en cuenta que al reiniciar el sistema, la interfaz recuperará su dirección MAC original.</p>
+<div class="admonition example">
+<p class="admonition-title">Cambiar dirección MAC</p>
+<p>Cambiar la dirección MAC de la interfaz <code>eth0</code> a <code>00:00:2a:3a:4a:5a</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 hw ether 00:00:2a:3a:4a:5a
+</code></pre></div>
+</li>
+<li>
+<p><strong>Cambiar la dirección IP de una interfaz de red</strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; {&lt;ip/prefix&gt; | &lt;ip&gt; netmask &lt;máscara&gt;}
+</code></pre><p>Cambia la dirección IP de una interfaz de red o le asigna una si no tenía. La configuración de la dirección IP con ifconfig es <strong>estática</strong> (o manual).</p>
+<div class="admonition example">
+<p class="admonition-title">Cambiar dirección IP</p>
+<p>Cambiar la dirección IP de la interfaz <code>eth0</code> a <code>192.168.2.20/27</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20/27
+</code></pre><p>También se obtendría el mismo resultado con el siguiente comando:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20 netmask 255.255.255.224
+</code></pre></div>
+</li>
+</ul>
+<h3 id="route">route </h3>
+<h3 id="arp">arp </h3>
+<p>Para configurar una interfaz de red de forma dinámica, es decir, para que la dirección IP sea asignada automáticamente por un servidor DHCP, es necesario utilizar el cliente DHCP que proporciona la distribución de Linux.<br>
+En Debian y sus derivados, el cliente DHCP es <strong>dhclient</strong>.</p>
+<h3 id="net-tools">net-tools </h3>
+<p>Las utilidades clásicas de <strong>net-tools</strong> permiten configurar la red de forma temporal:</p>
+<ul>
+<li><strong>ifconfig</strong>: Configura y muestra información de las interfaces de red.</li>
+<li><strong>route</strong>: Manipula la tabla de enrutamiento.</li>
+<li><strong>arp</strong>: Gestiona la tabla ARP.</li>
+<li><strong>netstat</strong>: Muestra información sobre conexiones de red, tablas de enrutamiento y estadísticas de interfaces.</li>
+<li><strong>hostname</strong>: Muestra o establece el nombre del host del sistema.</li>
+<li><strong>mii-tool</strong>: Muestra o configura el estado de las interfaces de red Ethernet.</li>
+<li><strong>iwconfig</strong>: Configura parámetros de redes inalámbricas (Wi-Fi).</li>
+<li><strong>ifenslave</strong>: Configura interfaces de red esclavas para bonding (agregación de enlaces).</li>
+<li><strong>ifplugd</strong>: Detecta y gestiona conexiones de red Ethernet de forma automática.</li>
+<li><strong>ifmetric</strong>: Establece la métrica de las interfaces de red para influir en la selección de rutas.</li>
+<li><strong>ifrename</strong>: Cambia el nombre de las interfaces de red.</li>
+<li>
+<h2><strong>ifup</strong> y <strong>ifdown</strong>: Activa o desactiva interfaces de red según la configuración definida en archivos de red.</h2>
+</li>
+</ul>
+<p>Las utilidades clásicas de net-tools permiten configurar la red de forma temporal:</p>
+<ul>
+<li><strong>ifconfig</strong>: Configura y muestra información de las interfaces de red.</li>
+<li><strong>route</strong>: Manipula la tabla de enrutamiento.</li>
+<li><strong>arp</strong>: Gestiona la tabla ARP.</li>
+</ul>
+<h3 id="iproute2">iproute2 </h3>
+<p>Las distribuciones modernas utilizan el paquete <strong>iproute2</strong>, que proporciona la herramienta <code>ip</code> para una gestión avanzada y unificada de la red.</p>
+<p><strong>Ejemplos:</strong></p>
+<ul>
+<li>Asignar una IP y máscara a una interfaz:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">ip</span> addr <span class="token function">add</span> <span class="token number">192.168</span>.1.100/24 dev eth0
+</code></pre></li>
+<li>Activar la interfaz:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> eth0 up
+</code></pre></li>
+<li>Añadir puerta de enlace predeterminada:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">ip</span> route <span class="token function">add</span> default via <span class="token number">192.168</span>.1.1
+</code></pre></li>
+<li>Solicitar IP por DHCP (con dhclient):<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> dhclient eth0
+</code></pre></li>
+</ul>
+<blockquote>
+<p>Al igual que con net-tools, estos cambios son <strong>temporales</strong> y se perderán tras un reinicio.</p>
+</blockquote>
+<hr>
+<p>Configuració de baix nivell o no persistent de la xarxa<br>
+A les distribucions de Linux més antigues la configuració de baix nivell dels diferents aspectes de la xarxa es duien a terme amb les utilitats de la llibreria net-tools.<br>
+En les versions més actuals de Linux la llibreria net-tools s’ha reemplaçat per la llibreria IPRoute2. Malgrat això, encara podem seguir utilitzant les utilitats antigues si instal·lem el paquet net-tools.<br>
+En lloc d'usar una eina separada per a cada aspecte de l'administració de la xarxa, amb IPRoute2, els administradors de sistemes ara tenen una interfície unificada.</p>
+<p>La llibreria net-tools<br>
+Aquesta llibreria icorpora una sèrie d’utilitats on a la següent taula es mostren les més conegudes:<br>
+Utilitat<br>
+Descripció<br>
+arp<br>
+El comando arp manipula o mostra les entrades de la taula arp  on s’emmagatzema la correspondència entre l’adreça física (MAC) i lògica (IP) dels equips de la xarxa. Es pot agregar entrades a la taula, eliminar-ne o mostrar el contingut actual de la taula.<br>
+ARP significa Protocol de resolució d’adreces, que s'utilitza per a trobar  l’adreça MAC d’un equip de la xarxa donada la seua adreça IP.<br>
+ifconfig<br>
+S'utilitza per a configurar les interfícies de xarxa. S'utilitza en el moment de l'arrancada per a configurar interfícies que es necessiten. Després d'això, generalment només s’utilitza per tasques de depuració o quan és necessari ajustar el sistema.<br>
+route<br>
+S’utilitza per a manipular les taules d’encaminament del sistema. Permet definir rutes estàtiques a altres xarxes i consultar les rutes definides en la taula d’encaminament tant si s’han afegit estàticament com dinàmicament a causa d’un protocol d’encaminament.<br>
+netstat<br>
+Visualitza informació de les connexions de xarxa i transport, taules d’encaminament, estadístiques d’interfícies, emmascarament de connexions i pertinença a grups de difusió (multicast).</p>
+<p>El comando arp<br>
+Bàsicament té els tres usos mostrats a la següent taula:<br>
+arp [-a | -v] [<equip>]<br>
+Mostra el contingut de tota la taula arp o només la corresponent a un equip concret. Quan passem l’opció -a mostra la taula amb l’estil BSD. L’opció -v ens aporta més informació (verbose).</equip></p>
+<p>Exemple1: Mostra totes les entrades de la taula arp.<br>
+root@Equip-1:~# arp<br>
+Address	Hwtype		Hwaddress		Flags		Mask	Iface<br>
+192.168.2.3	ether   	08:00:27:3b:72:33	C			eth0<br>
+192.168.2.1	ether		52:54:00:12:35:00	C			eth0</p>
+<p>Exemple2: Mostra l’entrada de la taula arp corresponent a la ip 192.168.2.1.<br>
+rooot@Equip-1:~# arp -v 192.168.2.1<br>
+Address	Hwtype		Hwaddress		Flags		Mask	Iface<br>
+192.168.2.1	ether		52:54:00:12:35:00	C			eth0<br>
+Entries: 2	Skipped: 1		Found: 1</p>
+<p>arp -s <ip-equip> <mac><br>
+Afegeix una entrada manualment a la taula ARP indicant la ip de l’equip i la seua mac.</mac></ip-equip></p>
+<p>Exemple3: Afegir a la taula ARP l’equip d’ip 192.168.2.10 amb mac 08:00:27:aa:bb:cc i a continuació visualitzeu la taula ARP.<br>
+root@Equip-1:~# arp -s 192.168.2.10 08:00:27:aa:bb:cc<br>
+root@Equip-1:~# arp<br>
+Address	Hwtype		Hwaddress		Flags		Mask	Iface<br>
+192.168.2.3	ether   	08:00:27:3b:72:33	C			eth0<br>
+192.168.2.10	ether		08:00:27:aa:bb:cc	CM			eth0<br>
+192.168.2.1	ether		52:54:00:12:35:00	C			eth0<br>
+El valor de Flags a M indica que l’entrada s’ha afegit manualment i no s’ha aprés dinàmicament.<br>
+arp -d <ip-equip><br>
+Elimina l’entrada de la taula ARP corresponent a la ip que es passa com a paràmetre.<br>
+Exemple4: Eliminar l’entrada corresponent a la ip 192.168.2.10  de la taula ARP.<br>
+root@Equip-1:~# arp -d 192.168.2.10</ip-equip></p>
+<p>El comando ifconfig<br>
+S’utilitza per a consultar i configurar les interfícies de xarxa. La següent taula mostra les diferents accions que es poden dur a terme amb aquest comando.<br>
+ifconfig [-a] [&lt;interfície&gt;]<br>
+Mostra la configuració de l’adreçament ip de les interfícies de xarxa. La informació mostrada depén de que es subministren paràmetres i opcions.</p>
+<p>Exemple1: Mostra l’estat de totes les interfícies actives.<br>
+root@Equip-1:~# ifconfig<br>
+A l’exemple no s’ha mostrat la sortida per pantalla.</p>
+<p>Exemple2: Mostra la configuració de totes les interfícies actives i no actives.<br>
+root@Equip-1:~# ifconfig -a<br>
+eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54<br>
+inet addr:192.168.2.16  Bcast:192.168.2.255  Mask:255.255.255.0<br>
+BROADCAST MULTICAST  MTU:1500  Metric:1<br>
+RX packets:47 errors:0 dropped:0 overruns:0 frame:0<br>
+TX packets:110 errors:0 dropped:0 overruns:0 carrier:0<br>
+collisions:0 txqueuelen:1000<br>
+RX bytes:14428 (14.0 KiB)  TX bytes:10106 (9.8 KiB)</p>
+<p>lo        Link encap:Local Loopback<br>
+inet addr:127.0.0.1  Mask:255.0.0.0<br>
+inet6 addr: ::1/128 Scope:Host<br>
+UP LOOPBACK RUNNING  MTU:16436  Metric:1<br>
+RX packets:22 errors:0 dropped:0 overruns:0 frame:0<br>
+TX packets:22 errors:0 dropped:0 overruns:0 carrier:0<br>
+collisions:0 txqueuelen:0<br>
+RX bytes:1937 (1.8 KiB)  TX bytes:1937 (1.8 KiB)<br>
+La interfície eth0 no està activada. Això es pot saber perquè a la línia marcada no apareixen ni els indicadors UP ni RUNNING.</p>
+<p>Exemple3: Mostra l’estat d’una interfície concreta (estiga o no activa).<br>
+root@Equip-1:~# ifconfig eth0<br>
+eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54<br>
+inet addr:192.168.2.16  Bcast:192.168.2.255  Mask:255.255.255.0<br>
+inet6 addr: fe80::a00:27ff:fed0:2f54/64 Scope:Link<br>
+UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1<br>
+RX packets:26 errors:0 dropped:0 overruns:0 frame:0<br>
+TX packets:88 errors:0 dropped:0 overruns:0 carrier:0<br>
+collisions:0 txqueuelen:1000<br>
+RX bytes:3553 (3.4 KiB)  TX bytes:5485 (5.3 KiB)<br>
+A la imatge s’han marcat les parts més rellevants de la informació mostrada. 1 → el nom de la interfície de xarxa, 2 → l’adreça MAC, 3 → l’adreça ipv4, 4 → l’adreça de difusió, 5 → la màscara de xarxa i 6 → Els flags UP i RUNNING apareixen quan la interfície està activada.<br>
+ifconfig [-s] [&lt;interfície&gt;]<br>
+Mostra estadístiques de totes les interfícies (o una concreta) actives.<br>
+ifconfig &lt;interfície&gt; [up|down]<br>
+Amb l’opció up activem la interfície de xarxa i amb l’opció down la desactivem.</p>
+<p>Exemple4: Desactivar la interfície eth0.<br>
+root@Equip-1:~# ifconfig eth0 down<br>
+ifconfig &lt;interfície&gt; [-]promisc<br>
+Activa el mode promiscu (sense -) i l’activa (amb -).</p>
+<p>Exemple5: Activa el mode promiscu a la interfície eth0.<br>
+root@Equip-1:~# ifconfig eth0 -promisc<br>
+ifconfig &lt;interfície&gt; hw ether <mac><br>
+Canvia l’adreça mac d’una interfície de xarxa.</mac></p>
+<p>Exemple6: Canviar la mac de la intefície donada per la mac donada.<br>
+root@Equip-1:~# ifconfig eth0 hw ether 00:00:2a:3a:4a:5a<br>
+Quan es reinicia la màquina es torna a recuperar la mac original de l’adaptador de xarxa.</p>
+<p>ifconfig &lt;interfície&gt; {&lt;ip/prefix&gt; | <ip> netmask &lt;màscara&gt;}<br>
+Canvia la ip d’una interfície de xarxa o l’assigna una si no en tenia.</ip></p>
+<p>Exemple7: Canvia la ip de la interfície a una altra indicant la nova ip i el prefix de xarxa.<br>
+root@Equip-1:~# ifconfig eth0 192.168.2.20/27</p>
+<p>Exemple8: L’exemple anterior però indicant la màscara de xarxa.<br>
+root@Equip-1:~# ifconfig eth0 192.168.2.20 netmask 255.255.255.224</p>
+<p>La configuració de l’adreçament ip amb ifconfig és estàtica (o manual). La configuració de les interfícies de manera dinàmica; és a dir perquè l’adreça ens l’assigne un servidor d’adreces ip (DHCP), depén del client dhcp que porte la distribució linux. Debian linux i derivats vénen amb el client dhclient.<br>
+dhclient [-v] &lt;interfície&gt;<br>
+Fa que la interfície de xarxa especificada demane una adreça ip a un servidor DHCP de la xarxa. Amb l’opció -v ens mostra informació del procés d’obtenció de l’adreça.</p>
+<p>Exemple9: Demanar una ip dinàmicament per a la interfície de xarxa eth0. Mostreu informació addicional relativa a l’obtenció l’adreça.<br>
+Si la interfície ja tenia ip mostra això:<br>
+root@Equip-1:~# dhclient -v eth0<br>
+Internet Systems Consortium DHCP Client 4.2.2<br>
+Copyright 2004-2011 Internet Systems Consortium.<br>
+All rights reserved.<br>
+For info, please visit <a href="https://www.isc.org/software/dhcp/">https://www.isc.org/software/dhcp/</a></p>
+<p>Listening on LPF/eth0/08:00:27:d0:2f:54<br>
+Sending on   LPF/eth0/08:00:27:d0:2f:54<br>
+Sending on   Socket/fallback<br>
+DHCPREQUEST on eth0 to 255.255.255.255 port 67<br>
+DHCPACK from 192.168.2.3<br>
+RTNETLINK answers: File exists<br>
+bound to 192.168.2.16 -- renewal in 238 seconds.</p>
+<p>Si la interfície no tenia ip mostra això altre:<br>
+root@Equip-1:~# dhclient -v eth0<br>
+Internet Systems Consortium DHCP Client 4.2.2<br>
+Copyright 2004-2011 Internet Systems Consortium.<br>
+All rights reserved.<br>
+For info, please visit <a href="https://www.isc.org/software/dhcp/">https://www.isc.org/software/dhcp/</a></p>
+<p>Listening on LPF/eth0/08:00:27:d0:2f:54<br>
+Sending on   LPF/eth0/08:00:27:d0:2f:54<br>
+Sending on   Socket/fallback<br>
+DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 4<br>
+DHCPREQUEST on eth0 to 255.255.255.255 port 67<br>
+DHCPOFFER from 192.168.2.3<br>
+DHCPACK from 192.168.2.3<br>
+bound to 192.168.2.16 -- renewal in 299 seconds.</p>
+<p>Els detalls de la informació ja s’explicaran en un altre tema. L’última línia m’indica que la ip assignada a la interfície eth0 és 192.168.2.16.</p>
+<p>dhclient -r [-v] &lt;interfície&gt;<br>
+Allibera la ip assignada a la interfície de xarxa especificada. La interfície resta administrativament activa però amb cap ip. Amb l’opció -v se’ns mostra informació addicional. Si només tenim una única interfície de xarxa podem ometre el paràmetre <interficie>.<br>
+Exemple10: Alliberar la ip assignada a la interfície enp0s3 (només tenim aquesta interfície).<br>
+Es poden utilitzar qualsevol d’aquestes dues opcions:<br>
+root@Equip-1:~# dhclient -r enp0s3</interficie></p>
+<p>root@Equip-1:~# dhclient -r</p>
+<h2 id="consola">CONSOLA </h2>
+<p>Al igual que en la parte gráfica, podemos configurar las interfaces de red desde la consola de comandos (CLI) o <code>cmd.exe</code>. Para configurar la red a través de la consola de comandos disponemos de una herramienta específica denominada <code>netsh</code> y los comandos <code>ipconfig</code>, <code>route</code> y <code>arp</code>. Se puede acceder a la ayuda de los comandos con la opción <code>&lt;comando&gt; /?</code> y a la ayuda online de <a href="https://learn.microsoft.com/es-es/windows-server/networking/technologies/netsh/netsh">netsh</a>.</p>
+<p>La herramienta <code>netsh</code> (<em>net shell</em>) es una consola específica para la configuración de la red en Windows. Esta consola tiene diferentes contextos y subcontextos a través de los que se puede acceder a los parámetros de configuración.<br>
+Se puede ejecutar <code>netsh</code> indicando la instrucción completa o bien indicando el contexto inicial en el que se desea entrar con <code>netsh -c "contexto"</code>. Por ejemplo, para mostrar las interfaces de red de los que dispone el sistema podemos optar por cualquiera de estas dos opciones:</p>
+<ul>
+<li>
+<p>Ejecutar la instrucción completa incluyendo el contexto</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show interfaces
+</code></pre></li>
+<li>
+<p>Entrar en un contexto de <code>netsh</code> y ejecutar la instrucción corta</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh -c "interface ipv4"
+netsh interface ipv4&gt; show interfaces
+</code></pre></li>
+</ul>
+<p>Los contextos <code>netsh</code> en los que se realizan la mayor parte de las configuraciones de redes son <a href="https://learn.microsoft.com/es-es/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770948(v=ws.10)">netsh interface</a> y <a href="https://learn.microsoft.com/es-es/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc731521(v=ws.10)">netsh interface ipv4</a>. En ellos se pueden ejecutar comandos como: <code>show</code> (mostrar), <code>set</code> (modificar), <code>add</code> (añadir) y <code>delete</code> (borrar).</p>
+<h2 id="interfaces-de-red">INTERFACES DE RED </h2>
+<h3 id="mostrar-interfaces-de-red">Mostrar interfaces de red </h3>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show interfaces
+</code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar interfaces de red</p>
+<p>Mostrar las interfaces de red del sistema.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show interfaces
+Índ    Mét        MTU        Estado              Nombre
+--- ---------- ---------- ------------ ---------------------------
+  1         75 4294967295 connected    Loopback Pseudo-Interface 1
+ 13         25       1500 connected    MiRed
+  7         25       1500 connected    RedVirtualBox
+ 32       5000       1500 connected    vEthernet (Default Switch)
+</code></pre></div>
+<p>Entre los datos mostrados al ejecutar el comando aparecen el nombre de la interfaz, su número de índice, la MTU (unidad máxima de transmisión en el enlace) y el estado de la interfaz (conectado, desconectado ...).</p>
+<h3 id="mostrar-configuración-de-interfaz">Mostrar configuración de interfaz </h3>
+<p>Para mostrar la configuración de una interfaz de red concreta o de todas las interfaces de red del sistema se utiliza el comando <code>show config</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show config ["&lt;IfaceName&gt;"]
+</code></pre><p>Si no se introduce "&lt;IfaceName&gt;" muestra la configuración de todas las interfaces.</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración de interfaz</p>
+<p>Mostrar la configuración de una interfaz de red concreta.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show config "MiRed"
+Configuración para la interfaz "MiRed"
+   DHCP habilitado:              Sí
+   Dirección IP:                 192.168.1.132
+   Prefijo de subred:            192.168.1.0/24 (máscara 255.255.255.0)
+   Puerta de enlace predeterminada: 192.168.1.1
+   Métrica de puerta de enlace:  0
+   Métrica de interfaz:          25
+   Servidores DNS configurados a través de DHCP:  100.90.1.1
+                                                  100.100.1.1
+                                                  192.168.1.1
+   Registrar con el sufijo:      Solo el principal
+   Servidores WINS configurados a través de DHCP: ninguno
+</code></pre><p>Se obtiene la configuración para la interfaz <em>MiRed</em>. Su configuración actual es dinámica (DHCP habilitado). La dirección IP obtenida es la <code>192.168.1.132</code> que pertenece a la red <code>192.168.1.0/24</code> y se ha obtenido como <em>default gateway</em> la dirección <code>192.168.1.1</code>. Además los servidores DNS también han sido configurados por DHCP con direcciones <code>100.90.1.1</code>, <code>100.100.1.1</code> y <code>192.168.1.1</code>.</p>
+</div>
+<p>También se puede obtener información similar a través del comando <code>ipconfig</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+</code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar configuración interfaces</p>
+<p>Mostrar la configuración de todos los interfaces.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+Configuración IP de Windows
+
+   Nombre de host. . . . . . . . . : W10
+   Sufijo DNS principal  . . . . . : 
+   Tipo de nodo. . . . . . . . . . : híbrido
+   Enrutamiento IP habilitado. . . : no
+   Proxy WINS habilitado . . . . . : no
+
+Adaptador de Ethernet MiRed:
+
+   Sufijo DNS específico para la conexión. . : 
+   Descripción . . . . . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Dirección física. . . . . . . . . . . . . : 08-00-27-C7-0D-23
+   DHCP habilitado . . . . . . . . . . . . . : sí
+   Configuración automática habilitada . . . : sí
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4(Preferido) 
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132(Preferido) 
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Concesión obtenida. . . . . . . . . . . . : miércoles, 1 de noviembre de 2023 21:28:30
+   La concesión expira . . . . . . . . . . . : jueves, 2 de noviembre de 2023 3:28:30
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . : 192.168.1.2
+   IAID DHCPv6 . . . . . . . . . . . . . . . : 101187623
+   DUID de cliente DHCPv6. . . . . . . . . . : 00-01-00-01-2C-D1-9A-E1-08-00-27-C7-0D-23
+   Servidores DNS. . . . . . . . . . . . . . : 100.90.1.1
+                                               100.100.1.1
+                                               192.168.1.1
+   NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado
+</code></pre><p>Como podemos ver este comando muestra algo más de información como la ip del servidor DHCP que ha proporcionado la ip dinámicamente (<code>192.168.1.2</code>) y los tiempos de concesión y expiración de la dirección IP.</p>
+</div>
+<h3 id="mostrar-configuración-dns">Mostrar configuración dns </h3>
+<p>Para mostrar la configuración de los servidores DNS de una interfaz de red concreta o de todas las interfaces de red del sistema se utiliza el comando <code>show dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show dnsservers [“&lt;IfaceName&gt;”]
+</code></pre><p>Si no se introduce "&lt;IfaceName&gt;" muestra la configuración de todas las interfaces.</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración dns</p>
+<p>Mostrar la configuración de los servidores DNS de una interfaz de red concreta.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show dnsservers "MiRed"
+Configuración para la interfaz "MiRed"
+    Servidores DNS configurados a través de DHCP: 10.239.3.7
+                                                  10.239.3.8
+    Registrar con el sufijo:           Solo el principal
+</code></pre></div>
+<h3 id="desactivar-y-activar">Desactivar y Activar </h3>
+<p>Para desactivar o activar una interfaz de red se utiliza el comando <code>set interface</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" disable
+C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" enable
+</code></pre><div class="admonition example">
+<p class="admonition-title">Desactivar y Activar</p>
+<p>Desactivar y activar la interfaz de red <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "MiRed" disable
+C:\&gt; netsh interface set interface "MiRed" enable
+</code></pre></div>
+<h3 id="cambiar-nombre">Cambiar nombre </h3>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface name="&lt;old_IfaceName&gt;" newname="&lt;new_IfaceName&gt;"
+</code></pre><div class="admonition example">
+<p class="admonition-title">Cambiar nombre de interfaz</p>
+<p>Cambia el nombre de la interfaz de red <em>Ethernet</em> por <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface name="Ethernet" newname="MiRed"
+</code></pre></div>
+<h3 id="configuración-estática">Configuración estática </h3>
+<h4 id="configurar-ip-y-gateway">Configurar IP y gateway </h4>
+<p>Para configurar una dirección IP estática y su ruta por defecto (<em>default gateway</em>) se utiliza el comando <code>set address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "&lt;IfaceName&gt;" source=static address=&lt;IP&gt;/&lt;Mascara&gt; gateway=&lt;IP-Gateway&gt; store=persistent
+</code></pre><p>Hay que tener en cuenta que:</p>
+<ul>
+<li>Si en lugar de usar <code>set</code> se usa <code>add</code>, entonces se añade una nueva IP a la interfaz manteniendo las que ya tuviera con anterioridad.</li>
+<li>Si utilizamos <code>store=active</code> la configuración se convierte en no persistente.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Configurar IP y gateway</p>
+<p>Configurar la interfaz <em>MiRed</em> con un direccionamiento de tipo estático y persistente. Se asigna la IP <code>192.168.1.20</code> con máscara <code>24</code> y se le asigna como <em>default gateway</em> la dirección <code>192.168.1.100</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "MiRed" source=static address=192.168.1.20/24 gateway=192.168.1.100 store=persistent
+</code></pre><p>Al poner el parámetro <code>store=persistent</code> dicha configuración se convierte en persistente.</p>
+</div>
+<h4 id="configurar-dns">Configurar DNS </h4>
+<p>Para configurar los servidores DNS de una interfaz de red se utiliza el comando <code>set dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set dnsservers "&lt;IfaceName&gt;" source=static address=&lt;IP-DNS&gt; validate=no
+</code></pre><p>La opción <code>validate=no</code> permite que el comando no intente conectar con el servidor para comprobar que existe.</p>
+<p>Podemos añadir servidores DNS adicionales a una interfaz de red con el comando <code>add dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add dnsservers "&lt;IfaceName&gt;" address=&lt;IP-DNS&gt; validate=no index=2
+</code></pre><p>La opción <code>index=2</code> permite configurar dicho servidor como secundario.</p>
+<div class="admonition example">
+<p class="admonition-title">Configurar DNS</p>
+<p>Configurar la interfaz <em>MiRed</em> con un servidor dns de tipo estático con ip <code>1.1.1.1</code>. Omitir la validación del servidor DNS.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set dnsservers "MiRed" source=static address=1.1.1.1 validate=no
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Configurar DNS</p>
+<p>Configurar la interfaz <em>MiRed</em> para agregar un dns de tipo estático con ip 8.8.8.8. Omitir la validación del servidor DNS.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add dnsservers "MiRed" source=static address=8.8.8.8 validate=no index=2
+</code></pre></div>
+<h4 id="borrar-ip-y-gateway">Borrar IP y gateway </h4>
+<p>Para borrar una dirección IP estática y su default gateway se utiliza el comando <code>delete address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete address "&lt;IfaceName&gt;" address=&lt;IP&gt; gateway=all store=persistent
+</code></pre><p>Al poner la opción <code>store=persistent</code> dicho borrado se convierte en persistente.</p>
+<div class="admonition example">
+<p class="admonition-title">Borrar IP y gateway</p>
+<p>Borrar la configuración de la interfaz <em>MiRed</em> que tiene un direccionamiento de tipo estático. Se elimina la IP <code>192.168.1.20</code> y su default Gateway (cualquiera que sea su dirección).</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete address "MiRed" address=192.168.1.20 gateway=all store=persistent
+</code></pre></div>
+<h4 id="borrar-dns">Borrar DNS </h4>
+<p>Para borrar los servidores DNS de una interfaz de red se utiliza el comando <code>delete dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete dnsservers "&lt;IfaceName&gt;" address={&lt;IP-DNS&gt;|all} validate=no
+</code></pre><p>La opción <code>validate=no</code> permite que el comando no intente conectar con los servidores para comprobar que existen.</p>
+<div class="admonition example">
+<p class="admonition-title">Borrar DNS</p>
+<p>Borrar toda la configuración dns de la interfaz <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 delete dnsservers "MiRed" address=all validate=no
+</code></pre></div>
+<h3 id="configuración-dinámica">Configuración dinámica </h3>
+<p>Si se realizó con anterioridad una configuración estática es conveniente borrar la configuración antes de la configuración dinámica.</p>
+<h4 id="configurar-ip-y-gateway-8203">Configurar IP y gateway ​ </h4>
+<p>Para configurar una dirección IP dinámica y su <em>default gateway</em> también se utiliza el comando <code>set address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "&lt;IfaceName&gt;" source=dhcp
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configurar IP y gateway</p>
+<p>Configurar la interfaz <em>MiRed</em> para obtener su dirección por dhcp. También se tiene que proporcionar el <em>default gateway</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set address "MiRed" source=dhcp
+</code></pre></div>
+<p>La configuración es persistente mientras dure el tiempo de alquiler (<em>lease time</em>).</p>
+<h4 id="configurar-dns-8203">Configurar DNS ​ </h4>
+<p>Para configurar los servidores DNS de una interfaz de red se utiliza el comando <code>set dnsservers</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt;netsh interface ipv4 set dnsservers "&lt;IfaceName&gt;" source=dhcp
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configurar DNS</p>
+<p>Configurar la interfaz <em>MiRed</em> para obtener sus servidores DNS por dhcp.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set dnsservers "MiRed" source=dhcp
+</code></pre><p>Esta configuración es persistente mientras dure el tiempo de alquiler (<em>lease time</em>).</p>
+</div>
+<h4 id="liberar-y-renovar-dirección-dinámica">Liberar y Renovar dirección dinámica </h4>
+<p>Para liberar y renovar una IP que se ha obtenido dinámicamente se utiliza el comando <code>ipconfig</code> con diferentes opciones.</p>
+<p>Cuando se obtiene una concesión (<em>lease</em>) de una dirección del servidor DHCP, incluso cuando se ha hecho un release anterior, la dirección obtenida es la misma debido a las políticas de fidelización de IPs de los servidores. Sin embargo, se puede forzar el cambio de IP si antes cambiamos la dirección MAC de nuestro adaptador de red.</p>
+<h5 id="liberar-la-ip-obtenida-por-dhcp">Liberar la IP obtenida por dhcp </h5>
+<p>Para liberar la dirección IP dinámica obtenida por dhcp se utiliza la opción <code>/release</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /release "&lt;IfaceName&gt;"
+</code></pre><p>Libera la dirección IP asignada dinámicamente a un adaptador de red específico. Si no se indica ningún adaptador, se liberan las direcciones IP de todos los adaptadores de red que hayan recibido una IP de un servidor DHCP.</p>
+<div class="admonition example">
+<p class="admonition-title">Liberar la IP obtenida por dhcp</p>
+<p>Liberar la dirección IP dinámica de la interfaz <em>MiRed</em> obtenida por dhcp.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /release
+Configuración IP de Windows
+
+Adaptador de Ethernet MiRed:
+   Sufijo DNS específico para la conexión. . : 
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4
+   Puerta de enlace predeterminada . . . . . : 
+</code></pre></div>
+<h5 id="renovar-la-ip-obtenida-por-dhcp">Renovar la IP obtenida por dhcp </h5>
+<p>Para renovar la dirección IP dinámica obtenida por dhcp se utiliza la opción <code>/renew</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /renew "&lt;IfaceName&gt;"
+</code></pre><p>Renueva la dirección IP obtenida dinámicamente para un adaptador de red concreto. Si no se indica ningún adaptador, se renuevan las direcciones IP de todos los adaptadores de red que hayan recibido una IP dinámicamente. Solo se actualiza el tiempo de expiración de la concesión.</p>
+<div class="admonition example">
+<p class="admonition-title">Renovar la IP obtenida por dhcp</p>
+<p>Mostrar la información de la concesión en un equipo con Windows 10. A continuación esperar unos 5 minutos, renovar la concesión y volver a mostrar la información de la concesión.</p>
+<p><em>Información inicial de la concesión</em></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+Configuración IP de Windows
+
+   Nombre de host. . . . . . . . . : W10
+   Sufijo DNS principal  . . . . . : 
+   Tipo de nodo. . . . . . . . . . : híbrido
+   Enrutamiento IP habilitado. . . : no
+   Proxy WINS habilitado . . . . . : no
+
+Adaptador de Ethernet MiRed:
+
+   Sufijo DNS específico para la conexión. . : 
+   Descripción . . . . . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Dirección física. . . . . . . . . . . . . : 08-00-27-C7-0D-23
+   DHCP habilitado . . . . . . . . . . . . . : sí
+   Configuración automática habilitada . . . : sí
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4(Preferido) 
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132(Preferido) 
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Concesión obtenida. . . . . . . . . . . . : miércoles, 1 de noviembre de 2023 21:32:23
+   La concesión expira . . . . . . . . . . . : jueves, 2 de noviembre de 2023 3:32:23
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . : 192.168.1.2
+   IAID DHCPv6 . . . . . . . . . . . . . . . : 101187623
+   DUID de cliente DHCPv6. . . . . . . . . . : 00-01-00-01-2C-D1-9A-E1-08-00-27-C7-0D-23
+   Servidores DNS. . . . . . . . . . . . . . : 100.90.1.1
+                                               100.100.1.1
+                                               192.168.1.1
+   NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado    
+</code></pre><p><em>Renovación de IP tras esperar unos 5 minutos aproximadamente</em></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /renewa
+Configuración IP de Windows
+
+   Sufijo DNS específico para la conexión. . : 
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+</code></pre><p><em>Volver a mostrar la información de la concesión</em></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
+Configuración IP de Windows
+
+   Nombre de host. . . . . . . . . : W10
+   Sufijo DNS principal  . . . . . : 
+   Tipo de nodo. . . . . . . . . . : híbrido
+   Enrutamiento IP habilitado. . . : no
+   Proxy WINS habilitado . . . . . : no
+
+Adaptador de Ethernet Ethernet:
+
+   Sufijo DNS específico para la conexión. . : 
+   Descripción . . . . . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Dirección física. . . . . . . . . . . . . : 08-00-27-C7-0D-23
+   DHCP habilitado . . . . . . . . . . . . . : sí
+   Configuración automática habilitada . . . : sí
+   Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4(Preferido) 
+   Dirección IPv4. . . . . . . . . . . . . . : 192.168.1.132(Preferido) 
+   Máscara de subred . . . . . . . . . . . . : 255.255.255.0
+   Concesión obtenida. . . . . . . . . . . . : miércoles, 1 de noviembre de 2023 21:32:23
+   La concesión expira . . . . . . . . . . . : jueves, 2 de noviembre de 2023 3:38:00
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . : 192.168.1.2
+   IAID DHCPv6 . . . . . . . . . . . . . . . : 101187623
+   DUID de cliente DHCPv6. . . . . . . . . . : 00-01-00-01-2C-D1-9A-E1-08-00-27-C7-0D-23
+   Servidores DNS. . . . . . . . . . . . . . : 100.90.1.1
+                                               100.100.1.1
+                                               192.168.1.1
+   NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado
+</code></pre><p>Observa que la fecha y hora en que se obtuvo la concesión no cambia tras realizar la renovación. Lo que sí varía es la fecha de expiración de la concesión, que se actualiza y ahora es unos 5 minutos posterior a la fecha de expiración que teníamos antes de renovar la IP.</p>
+</div>
+<h2 id="tabla-de-enrutamiento">TABLA DE ENRUTAMIENTO </h2>
+<p>La tabla de enrutamiento es una tabla que contiene las rutas que se utilizan para enviar paquetes a través de la red. Cada entrada de la tabla de enrutamiento contiene información sobre el destino, la máscara de red, la interfaz de salida y el <em>gateway</em> (puerta de enlace) a utilizar.</p>
+<h3 id="mostrar">Mostrar </h3>
+<p>Para mostrar la tabla de enrutamiento IPv4 se utiliza el comando <code>show route</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show route
+</code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar tabla de enrutamiento</p>
+<p>Mostrar la tabla de enrutamiento IPv4.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show route
+Publicar  Tipo     Mét  Prefijo                Índ  Puerta enl./Nombre int.
+--------  -------  ---  ---------------------  ---  ---------------------------
+No        Manual   0    0.0.0.0/0              4    192.168.1.1
+No        SYSTEM   256  127.0.0.0/8            1    Loopback Pseudo-Interface 1
+No        SYSTEM   256  127.0.0.1/32           1    Loopback Pseudo-Interface 1
+No        SYSTEM   256  127.255.255.255/32     1    Loopback Pseudo-Interface 1
+No        SYSTEM   256  192.168.1.0/24         4    RedUTP
+No        SYSTEM   256  192.168.1.132/32       4    RedUTP
+No        SYSTEM   256  192.168.1.255/32       4    RedUTP
+No        SYSTEM   256  192.168.56.0/24        21   Ethernet 2
+No        SYSTEM   256  192.168.56.1/32        21   Ethernet 2
+No        SYSTEM   256  192.168.56.255/32      21   Ethernet 2
+No        SYSTEM   256  224.0.0.0/4            1    Loopback Pseudo-Interface 1
+No        SYSTEM   256  224.0.0.0/4            21   Ethernet 2
+No        SYSTEM   256  224.0.0.0/4            4    RedUTP
+No        SYSTEM   256  255.255.255.255/32     1    Loopback Pseudo-Interface 1
+No        SYSTEM   256  255.255.255.255/32     21   Ethernet 2
+No        SYSTEM   256  255.255.255.255/32     4    RedUTP
+</code></pre></div>
+<h3 id="modificar">Modificar </h3>
+<h4 id="añadir-entrada">Añadir entrada </h4>
+<p>Para añadir una entrada a la tabla de enrutamiento IPv4 se utiliza el comando <code>add route</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add route prefix=&lt;IP-Destino&gt;/&lt;Mascara&gt; interface="&lt;IfaceName&gt;" nexthop=&lt;IP-Gateway&gt; store=persistent
+</code></pre><div class="admonition example">
+<p class="admonition-title">Añadir entrada a la tabla de enrutamiento</p>
+<p>Añadir una entrada para la ruta por defecto (<em>default gateway</em> o <code>0.0.0.0/0</code>) de forma que el gateway tenga la IP <code>192.168.1.100</code> y tenga salida por la interfaz <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add route prefix=0.0.0.0/0 interface="MiRed" nexthop=192.168.1.100 store=persistent
+</code></pre></div>
+<h4 id="modificar-entrada">Modificar entrada </h4>
+<p>Para modificar una entrada en la tabla de enrutamiento IPv4 se utiliza el comando <code>set route</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set route prefix=&lt;IP-Destino&gt;/&lt;Mascara&gt; interface="&lt;IfaceName&gt;" nexthop=&lt;IP-Gateway&gt; store=persistent
+</code></pre><div class="admonition example">
+<p class="admonition-title">Modificar entrada de la tabla de enrutamiento</p>
+<p>Modificar la entrada correspondiente a la ruta por defecto (<em>default gateway</em> o <code>0.0.0.0/0</code>) de forma que el gateway ahora tenga la IP <code>192.168.1.200</code> y tenga salida por la interfaz <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 set route prefix=0.0.0.0/0 interface="MiRed" nexthop=192.168.1.200 store=persistent
+</code></pre></div>
+<h4 id="borrar-entrada">Borrar entrada </h4>
+<p>Para borrar una entrada en la tabla de enrutamiento IPv4 se utiliza el comando <code>delete route</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete route prefix=&lt;IP-Destino&gt;/&lt;Mascara&gt; interface="&lt;IfaceName&gt;" nexthop=&lt;IP-Gateway&gt; store=persistent
+</code></pre><div class="admonition example">
+<p class="admonition-title">Borrar entrada de la table de enrutamiento</p>
+<p>Borrar la entrada correspondiente a la ruta por defecto (<em>default gateway</em> o <code>0.0.0.0/0</code>) cuyo gateway es <code>192.168.1.200</code> y tiene salida por la interfaz <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete route prefix=0.0.0.0/0 interface="MiRed" nexthop=192.168.1.200 store=persistent
+</code></pre></div>
+<p>Evidentemente para todos estos comandos si en lugar de <code>store=persistent</code>, se escribe <code>store=active</code>, la configuración será no persistente.</p>
+<p>Análogamente se pueden realizar estas acciones mediante el comando <code>route</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>route print [-4]</code></td>
+<td>Muestra la tabla de enrutamiento. La opción <code>-4</code> hace que solo se meuestren direcciones IPv4.</td>
+</tr>
+<tr>
+<td><code>route [-p] add &lt;destination&gt; mask &lt;netmask&gt; &lt;gateway&gt;</code></td>
+<td>Añadir entrada a la tabla de enrutamiento IPv4. La opción <code>-p</code> hace que la ruta sea persistente.</td>
+</tr>
+<tr>
+<td><code>route delete &lt;destination&gt; [mask &lt;netmask&gt; &lt;gateway&gt;]</code></td>
+<td>Eliminar una entrada de la tabla de enrutamiento.</td>
+</tr>
+<tr>
+<td><code>route change &lt;destination&gt; mask &lt;netmask&gt; &lt;new-gateway&gt;</code></td>
+<td>Modifica una entrada de la tabla de enrutamiento.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tabla-arp">TABLA ARP </h2>
+<p>La tabla ARP (<em>Address Resolution Protocol</em>) es una tabla que se utiliza para asociar direcciones IP con direcciones MAC. Esta tabla se utiliza para resolver las direcciones IP en direcciones MAC cuando se envían paquetes a través de la red.</p>
+<h3 id="mostrar-8203">Mostrar ​ </h3>
+<p>Para mostrar la tabla ARP de una interfaz de red concreta o de todas las interfaces de red del sistema se utiliza el comando <code>show neighbors</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show neighbors ["&lt;IfaceName&gt;"]
+</code></pre><p>Si no se indica la interfaz se muestra la tabla ARP de todas las interfaces.</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar tabla ARP</p>
+<p>Mostrar la tabla ARP de la interfaz de nombre <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 show neighbors "MiRed"
+Dirección de Internet     Dirección física
+---------------------     -------------------
+172.18.86.35              00-e0-4c-68-18-fb
+172.18.86.66              00-e0-4c-68-34-c5
+172.18.86.75              00-00-00-00-00-00
+172.18.87.255             ff-ff-ff-ff-ff-ff
+224.0.0.22                01-00-5e-00-00-16
+224.0.0.251               01-00-5e-00-00-fb
+224.0.0.252               01-00-5e-00-00-fc
+239.255.255.250           01-00-5e-7f-ff-fa
+255.255.255.255           ff-ff-ff-ff-ff
+</code></pre></div>
+<h3 id="modificar-8203">Modificar ​ </h3>
+<h4 id="añadir-entrada-8203">Añadir entrada ​ </h4>
+<p>Para añadir una entrada a la tabla ARP de una interfaz de red concreta se utiliza el comando <code>add neighbors</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add neighbors "&lt;IfaceName&gt;" address=&lt;IP&gt; neighbor=&lt;MAC&gt; store=persistent
+</code></pre><div class="admonition example">
+<p class="admonition-title">Añadir entrada ARP</p>
+<p>Añadir una entrada a la tabla ARP para la interfaz de red <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 add neighbors “MiRed” address=192.168.1.100 neighbor=02-00-00-00-00-01 store=persistent
+</code></pre></div>
+<h4 id="borrar-entrada-8203">Borrar entrada ​ </h4>
+<p>Para borrar una entrada de la tabla ARP de una interfaz de red concreta se utiliza el comando <code>delete neighbors</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete neighbors "&lt;IfaceName&gt;" [address=&lt;IP&gt;]
+</code></pre><p>Si no se indica IP se borrarán todas las entradas de la tabla.</p>
+<div class="admonition example">
+<p class="admonition-title">Borrar entrada ARP</p>
+<p>Borrar toda la tabla ARP para la interfaz <em>MiRed</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface ipv4 delete neighbors "MiRed"
+</code></pre></div>
+<p>Las acciones sobre la tabla ARP también se pueden realizar mediante el comando <code>arp</code>. Hay que destacar que en el comando arp la interfaz no se indica por nombre sino por la IP que tiene configurada.</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arp -a [&lt;IP-Interfaz&gt;]</code></td>
+<td>Muestra las MACs asociadas a la IP dada que hay en la tabla ARP. Si no especificamos la IP se muestran las asociaciones para todas las IPs configuradas.</td>
+</tr>
+<tr>
+<td><code>arp -s &lt;IP&gt; &lt;MAC&gt; &lt;IP-Interfaz&gt;</code></td>
+<td>Añadir entrada a la tabla ARP para la &lt;IP-Interfaz&gt; dada.</td>
+</tr>
+<tr>
+<td><code>arp -d &lt;IP|*&gt; &lt;IP-Interfaz&gt;</code></td>
+<td>Eliminar una entrada (o todas) de la tabla ARP para la &lt;IP-Interfaz&gt; dada.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="interfaces-de-red-inálambricas">INTERFACES DE RED INÁLAMBRICAS </h2>
+<p>Las interfaces de red inalámbricas se configuran en el nivel de red igual que las alámbricas. Sin embargo, para conectar una interfaz inalámbrica con un punto de acceso es necesario configurar su nivel de enlace, es decir: el SSID, la clave, el algoritmo de cifrado, etc. La configuración se basa en el contexto <a href="https://learn.microsoft.com/es-es/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd744889(v=ws.10)">netsh wlan</a>.</p>
+<h3 id="profile-xml">Profile XML </h3>
+<p>La configuración se basa en la creación de un perfil (<strong>profile</strong>) XML.</p>
+<div class="admonition example">
+<p class="admonition-title">Perfil XML</p>
+<p>En el siguiente ejemplo se muestra el aspecto que tiene un fichero de perfil de conexión inalámbrica.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>&lt;?xml version="1.0"?&gt;
+&lt;WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1"&gt;
+    &lt;name&gt;MyWiFiNetwork&lt;/name&gt;
+    &lt;SSIDConfig&gt;
+        &lt;SSID&gt;
+            &lt;name&gt;MyWiFiNetwork&lt;/name&gt;
+        &lt;/SSID&gt;
+        &lt;nonBroadcast&gt;false&lt;/nonBroadcast&gt;
+    &lt;/SSIDConfig&gt;
+    &lt;connectionType&gt;ESS&lt;/connectionType&gt;
+    &lt;connectionMode&gt;auto&lt;/connectionMode&gt;
+    &lt;MSM&gt;
+        &lt;security&gt;
+            &lt;authEncryption&gt;
+                &lt;authentication&gt;WPA2PSK&lt;/authentication&gt;
+                &lt;encryption&gt;AES&lt;/encryption&gt;
+                &lt;useOneX&gt;false&lt;/useOneX&gt;
+            &lt;/authEncryption&gt;
+            &lt;sharedKey&gt;
+                &lt;keyType&gt;passPhrase&lt;/keyType&gt;
+                &lt;protected&gt;false&lt;/protected&gt;
+                &lt;keyMaterial&gt;YourWiFiPassword&lt;/keyMaterial&gt;
+            &lt;/sharedKey&gt;
+        &lt;/security&gt;
+    &lt;/MSM&gt;
+&lt;/WLANProfile&gt;
+</code></pre></div>
+<p>Puedes obtener información de los diferentes elementos que forman parte de un fichero XML de configuración wifi en el siguiente enlace <a href="https://learn.microsoft.com/es-es/windows/win32/nativewifi/wlan-profileschema-elements">WLAN_Profile</a>.</p>
+<h3 id="detectar-redes-inalámbricas">Detectar redes inalámbricas </h3>
+<p>Detecta las redes inalámbricas a tu alcance, mostrando información relativa a su BSS como SSID, tipo de encriptación ...</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan show networks
+</code></pre><h3 id="mostrar-profiles">Mostrar profiles </h3>
+<p>Muestra los profiles definidos en el sistema.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan show profiles
+</code></pre><h3 id="mostrar-un-profile">Mostrar un profile </h3>
+<p>Muestra un profile concreto y todos sus datos</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan show profile name="&lt;profilename&gt;" key=clear
+</code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar perfil red inalámbrica</p>
+<p>Mostrar el profile de nombre <em>MiCasa</em> con la contraseña sin cifrar.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan show profile name="MiCasa" key=clear
+</code></pre></div>
+<h3 id="añadir-profile">Añadir profile </h3>
+<p>Añade un profile definido en un fichero XML al sistema.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan add profile filename="&lt;fichero.xml&gt;" interface="&lt;ifacename&gt;"
+</code></pre><div class="admonition example">
+<p class="admonition-title">Añadir perfil red inalámbrica</p>
+<p>Añadir el profile <code>MiCasa.xml</code> a la interfaz de red de nombre <code>Wifi</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan add profile filename="c:\wifiprofiles\MiCasa.xml" interface="Wifi"
+</code></pre></div>
+<h3 id="borrar-profile">Borrar profile </h3>
+<p>Elimina un profile del sistema.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan delete profile name="&lt;profilename&gt;"
+</code></pre><div class="admonition example">
+<p class="admonition-title">Borrar perfil red inalámbrica</p>
+<p>Eliminar el profile <em>MiCasa</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan delete profile name="MiCasa"
+</code></pre></div>
+<h3 id="exportar-profile">Exportar profile </h3>
+<p>Exporta un profile del sistema a un fichero.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan export profile name="&lt;profilename&gt;" folder="&lt;folder&gt;" key=clear
+</code></pre><div class="admonition example">
+<p class="admonition-title">Exportar perfil red inalámbrica</p>
+<p>Exportar el profile de nombre <em>MiCasa</em> a la carpeta <code>c:\wifiprofiles</code> y con la contraseña en claro, es decir, sin cifrar.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan export profile name="MiCasa" folder="C:\wifiprofiles\" key=clear
+</code></pre></div>
+<h3 id="conectar-a-una-red-inalámbrica">Conectar a una red inalámbrica </h3>
+<p>Utiliza un profile del sistema para realizar la conexión inalámbrica.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan connect name="&lt;profilename&gt;"
+</code></pre><div class="admonition example">
+<p class="admonition-title">Conectar a red inalámbrica</p>
+<p>Conectar a la red inálambrica utilizando el profile de nombre <em>MiCasa</em>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan connect name="MiCasa"
+</code></pre></div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
