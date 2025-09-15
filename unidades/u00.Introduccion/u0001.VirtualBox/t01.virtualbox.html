@@ -717,9 +717,9 @@ VirtualBox admite los controladores de red virtIO. Los controladores de red Virt
 </table>
 <div style="page-break-after:always;"></div>
 <p>File-&gt;Preferences-Network<br>
-<img src="./assets/img-vb-natnetwork.def01.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<img src="./assets/img-vb-natnetwork-def01.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 <p>VM-&gt;Setting-&gt;Network-&gt;Name-&gt;Elegir la red NAT definida<br>
-<img src="./assets/img-vb-natnetwork.def02.png" alt="img" style="display: block; margin: auto; width: 40%; align:center; "></p>
+<img src="./assets/img-vb-natnetwork-def02.png" alt="img" style="display: block; margin: auto; width: 40%; align:center; "></p>
 <p>Creación por consola</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; VBoxManage natnetwork add --netname &lt;NET_name&gt; --network "&lt;IP/mask&gt;" --enable
@@ -735,7 +735,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --natnetwork1 NAT-192.22
 <p>Al ser una interfaz NAT, se puede configurar port forwarding para desmilitarizar servicios. Con port forwarding HOST y otros nodos de la red pueden acceder a servicios de la VM. Para los adaptadores en modo NAT-network la configuración de port forwarding no está en las preferencias de la VM sino en la opción donde se ha definido la red NAT.</p>
 <div style="page-break-after:always;"></div>
 <p>File-&gt;Preferences-&gt;Network<br>
-<img src="./assets/img-vb-natnetwork.def03.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<img src="./assets/img-vb-natnetwork-def03.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 </div>
 <h4 id="bridged-adapter">BRIDGED ADAPTER </h4>
 <div class="style-normal">
@@ -751,7 +751,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --bridgeadapter1 &lt;adapter_name&gt
 </code></pre><div class="style-normal">
 <p>Este modo puede utilizarse para ejecutar servidores en máquinas virtuales que deben ser totalmente accesibles desde una red de área local física. También se utiliza junto al modo promiscuo para instalar un software (sniffer) en la VM que nos permita capturar el tráfico de la red. En este modo, la VM puede acceder a la máquina HOST, al resto de nodos de la red física y en Internet si es accesible. La VM puede ser accedida por el HOST y cualquier otra maquina física o virtual conectada a la red. A todos los efectos el adaptador virtual deberá ser configurado con el direccionamiento de red que corresponde a la red física del HOST. Si en la red existe un servidor DHCP y el sistema operativo de VM configura el adaptador como cliente DHCP entonces recibirá una dirección del servidor. Es obvio que el adaptador también puede configurarse, mediante el sistema operativo de la VM, de forma estática.</p>
 <p>Esquema<br>
-<img src="./assets/img-vb-bridge.def01.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
+<img src="./assets/img-vb-bridge-def01.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
 <p>En el esquema ejemplo se puede ver que no hay ningún router entre la máquina virtual y el host. La red es la 10.10.10.0/24, la dirección del HOST es la 10.10.10.72, la dirección del gateway es 10.10.10.1. Cada una de las VM debe tener una configuración similar, en el ejemplo hemos elegido 10.10.10.93 para VM1, 10.10.10.92 para VM2 y 10.10.10.91 para VM3, el gateway es el mismo 10.10.10.1. Estas direcciones se pueden configurar estáticamente o mediante un servidor DHCP de la red.</p>
 </div>
 <h4 id="internal-network">INTERNAL NETWORK </h4>
@@ -810,7 +810,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --intnet1 &lt;intnet_name&gt;
 </tbody>
 </table>
 <p>*VM1 se trata de una maquina Linux con enrutamiento y DHCP.</p>
-<p><img src="./assets/img-vb-redinterna.def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
+<p><img src="./assets/img-vb-redinterna-def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
 </div>
 <h4 id="host-only-adapter">HOST-ONLY ADAPTER </h4>
 <div class="style-normal">
@@ -859,7 +859,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --hostonlyadapter1 &lt;intnet_name&g
 </tbody>
 </table>
 <p>Esquema<br>
-<img src="./assets/img-vb-hostonly.def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
+<img src="./assets/img-vb-hostonly-def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
 <p>El adaptador VirtualBox Host-Only se crea en el sistema operativo de la máquina HOST. Se pueden crear mas adaptadores Host-Only o cambiar la configuración por defecto en las opciones de VirtualBox.</p>
 <p>File-&gt;Host Network Manager<br>
 <img src="./assets/img-vb-netadapter.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
