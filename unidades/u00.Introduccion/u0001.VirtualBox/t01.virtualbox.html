@@ -415,7 +415,7 @@ Algunas características importantes de VB son las siguientes:</p>
 <div class="style-normal">
 <p>A la izquierda, se puede ver un panel que después mostrará una lista con todas las Maquinas Virtuales. Como no se ha creado ninguna, la lista está vacía. La fila de botones de la parte superior permite crear nuevas Maquinas Virtuales y trabajar con las existentes. El panel de la derecha muestra por secciones las propiedades de la Maquina Virtual que estuviera seleccionada y su árbol de instantáneas.<br>
 A continuación se muestra la ventana del administrador de VB con diversas Maquinas Virtuales organizadas en grupos, posibilidad muy interesante.</p>
-<p><img src="./assets/img-vb-adm02.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
+<p><img src="./assets/img-adm02.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
 <p>Cabe decir, VirtualBox también se puede administrar mediante la siguiente herramienta de consola:</p>
 </div>
 <ul>
@@ -442,7 +442,7 @@ A continuación se muestra la ventana del administrador de VB con diversas Maqui
 <h4 id="crear-maquina-virtual">CREAR MAQUINA VIRTUAL </h4>
 <div class="style-normal">
 <p>Ejecutaremos la opción Menú-&gt;Machine-&gt;New</p>
-<p><img src="./assets/img-vb-maquina-crear.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
+<p><img src="./assets/img-maquina-crear.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
 <p>Debemos poner un nombre a la Máquina Virtual y elegir el tipo de Sistema Operativo que instalaron en la máquina, así como la versión del mismo. Estos datos son importantes por la virtualización hardware. Una vez pulsando continuar nos preguntará por el tipo de disco virtual a utilizar. Hay varios tipos, por defecto VDI (VirtualBox Disk Image)</p>
 </div>
 <h4 id="instalar-sop-en-una-maquina-virtual">INSTALAR S.OP. EN UNA MAQUINA VIRTUAL </h4>
@@ -454,10 +454,10 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 <li>Menu-&gt;Machine-&gt;Settings-Storage</li>
 </ul>
 </div>
-<p><img src="./assets/img-vb-maquina-iso01.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
+<p><img src="./assets/img-maquina-iso01.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
 <div style="page-break-after:always;"></div>
 <p>Utilizando la opción del disco óptico y seleccionan la opción disk file. En esta opción podemos buscar el archivo iso que utilizaron para la instalación del sistema operativo cuando la maquina se inicie. Una vez instalado el sistema en la máquina debemos quitar el iso desde la opción Menú-&gt;Machine-&gt;Settings-&gt;Storage. Utilizamos la opción del disco óptico y seleccionamos la opción Remove disk from Virtual Drive.</p>
-<p><img src="./assets/img-vb-maquina-iso02.png" alt="img" style="display: block; margin: auto; width: 60%; align:center; "></p>
+<p><img src="./assets/img-maquina-iso02.png" alt="img" style="display: block; margin: auto; width: 60%; align:center; "></p>
 </div>
 <h4 id="ejecutar-parar-pausar-una-maquina-virtual">EJECUTAR, PARAR, PAUSAR UNA MAQUINA VIRTUAL </h4>
 <div class="style-normal">
@@ -478,7 +478,7 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 <li>Menu-&gt;Machine-&gt;Export ó Menu-&gt;File-&gt;Export Appliance</li>
 </ul>
 </div>
-<p><img src="./assets/img-vb-maquina-exportar.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
+<p><img src="./assets/img-maquina-exportar.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
 <p>Existen diferentes formatos para exportar la máquina virtual, uno de los más utilizados es Open Virtualization Format. Este formato permite tanto los archivos de extensión OVF como OVA. Normalmente utilizaron OVA, ya que genera un único archivo.</p>
 </div>
 <h4 id="importar-una-maquina-virtual">IMPORTAR UNA MAQUINA VIRTUAL </h4>
@@ -489,20 +489,20 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 <li>Menu-&gt;File-&gt;Import Appliance</li>
 </ul>
 </div>
-<p><img src="./assets/img-vb-maquina-importar.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
+<p><img src="./assets/img-maquina-importar.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
 </div>
 <div style="page-break-after:always;"></div>
 <h4 id="instantanea-de-una-maquina-virtual">INSTANTANEA DE UNA MAQUINA VIRTUAL </h4>
 <div class="style-normal">
 <p>Las instantáneas (snapshots) logran congelar el estado actual de una Maquina Virtual para poder volver a ella en cualquier otro momento ya partir de ahí crear otra línea de tiempo de la Maquina Virtual. Un caso típico de uso de instantáneas es cuando pretendemos probar un nuevo software, por eso antes de modificar nada, hacemos una instantánea de la Maquina Virtual y después ya instalamos el software, lo configuramos, lo probamos y si hay problemas o no nos gusta, utilizamos la instantánea para volver al estado en que estábamos antes de empezar la instalación. Para manejar las instantáneas, cada Maquina Virtual tiene su sección. Se accede pulsando el botón superior derecho titulado Instantánea, junto al botón Detalles.</p>
-<p><img src="./assets/img-vb-maquina-snapshot01.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<p><img src="./assets/img-maquina-snapshot01.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 <p>Las instantáneas se pueden crear con la Maquina Virtual apagada, tomando sobre el icono de la máquina fotográfica en el administrador de VirtualBox, o encendido, del mismo modo o pulsando sobre el menú Máquina -&gt; Tomar instantánea. Las instantáneas son siempre del estado actual de la Maquina Virtual, y para cada una se crea un nuevo disco en el que se irán guardando todos los cambios producidos a partir de ese momento. En la carpeta de la Maquina Virtual se pueden ver estos discos. Al crear una instantánea se nos pide un nombre para ella y una descripción, que es aconsejable rellenar, cómo poner un nombre significativo.</p>
-<p><img src="./assets/img-vb-maquina-snapshot02.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<p><img src="./assets/img-maquina-snapshot02.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 </div>
 <h4 id="clonacion-de-una-maquina-virtual">CLONACION DE UNA MAQUINA VIRTUAL </h4>
 <div class="style-normal">
 <p>La clonación de una Maquina Virtual consiste en realizar una nueva Maquina Virtual exactamente igual a la primera pero con identidad diferente, ya que los discos virtuales tendrán números de identificación (uuid) diferentes, de esta manera la Maquina Virtual original y la clonada se podrían ejecutar en el mismo ordenador. Se puede acceder a la clonación desde el menú contextual de la máquina (click derecho) o desde la propia toma de instantáneas, ya que clonación e instantánea están relacionadas.</p>
-<p><img src="./assets/img-vb-maquina-clonacion.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<p><img src="./assets/img-maquina-clonacion.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 <p>Pondremos un nombre en la nueva Maquina Virtual y pueden elegir entre clonación completa o enlazada. La clonación completa genera una maquina totalmente independiente a partir de la maquina base. La enlazada genera una maquina que depende de la maquina base, es decir, no pueden utilizar la maquina enlazada sino tenemos la base. Las máquinas enlazadas ocupan mucho menos espacio en el disco duro, ya que en realidad se basan en el uso de instantáneas.</p>
 <p>Normalmente la política de direccionamiento MAC se marca con la opción de generar nuevas direcciones MAC para los adaptadores IP, sin embargo existen otras opciones. Los campos mantener nombres de disco y UUIDS hardware se desmarcan para la mayoría de las clonaciones.</p>
 </div>
@@ -510,14 +510,14 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 <div class="style-normal">
 <p>VirtualBox permite que las Maquinas Virtuales se organicen en grupos, y a éstos se les pueden aplicar las operaciones típicas que se encuentran en el menú Máquina y afectarían a todas las MMVV del grupo: Iniciar, Pausar, Reiniciar, Cerrar, Guardar estado, Apagado ACPI, Apagar , Muestra el navegador y Crear un acceso directo.</p>
 <p>Podemos crear un nuevo grupo con el menú contextual (click derecho) de las máquinas que desean agrupar. Es conveniente poner un nombre significativo en el grupo que se crea.</p>
-<p><img src="./assets/img-vb-maquina-agrupacion.png" alt="img" style="display: block; margin: auto; width: 60%; align:center; "></p>
+<p><img src="./assets/img-maquina-agrupacion.png" alt="img" style="display: block; margin: auto; width: 60%; align:center; "></p>
 <p>Arrastrando las Maquinas Virtuales se pueden cambiar de grupos o se pueden desagrupar si arrastramos la Maquina Virtual a ningún grupo. Los grupos que se quedan vacíos desaparecen automáticamente. Los grupos también pueden arrastrarse sobre otros grupos, pero hay que soltarlos sobre el título del grupo y no sobre el interior del grupo. Todas las Maquinas Virtuales de un grupo se pueden desagrupar al mismo tiempo haciendo clic sobre la opción Desagrupar del menú contextual del grupo. En ese caso, el grupo al quedar vacío, desaparecerá.</p>
 <p>Pulsando sobre la flecha derecha que aparece en el título de los grupos, junto al número que posee, se consigue que se escondan el resto de los grupos y sólo se vean las Maquinas Virtuales del grupo sobre el que se apretó. Para volver a ver todos los grupos, simplemente pulsaríamos la fecha izquierda, opuesta a la anterior. Pulsando doble clic sobre el título de los grupos, éstos se recogen o despliegan de forma alternativa.</p>
 </div>
 <h4 id="uso-del-usb-en-una-maquina-virtual">USO DEL USB EN UNA MAQUINA VIRTUAL </h4>
 <div class="style-normal">
 <p>En VirtualBox existe la posibilidad de capturar en la máquina virtual (guest) una memoria USB que sea conectada al ordenador host. En la configuración de la máquina virtual, en la opción USB podemos añadir un dispositivo USB de la máquina host para que se pueda acceder desde la máquina virtual.</p>
-<p><img src="./assets/img-vb-maquina-usb.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<p><img src="./assets/img-maquina-usb.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 </div>
 <h4 id="eliminar-una-maquina-virtual">ELIMINAR UNA MAQUINA VIRTUAL </h4>
 <div class="style-normal">
@@ -527,7 +527,7 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 <li>Menu-&gt;Machine-&gt;Remove</li>
 </ul>
 </div>
-<p><img src="./assets/img-vb-maquina-remove.png" alt="img" style="display: block; margin: auto; width: 30%; align:center; "></p>
+<p><img src="./assets/img-maquina-remove.png" alt="img" style="display: block; margin: auto; width: 30%; align:center; "></p>
 </div>
 <h3 id="virtualbox-network-adapters">VIRTUALBOX NETWORK ADAPTERS </h3>
 <div class="style-normal">
@@ -537,7 +537,7 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 <li>VM-&gt;Settings-&gt;Network</li>
 </ul>
 </div>
-<p><img src="./assets/img-vb-maquina-nic.png" alt="" style="display: block; margin: auto; width: 70%; align:center; "></p>
+<p><img src="./assets/img-maquina-nic.png" alt="" style="display: block; margin: auto; width: 70%; align:center; "></p>
 <p>Sólo un adaptador de red virtual está habilitado por defecto después de la creación de una máquina virtual.  Los campos que aparecen en el panel de configuración del adaptador tienen el siguiente significado:</p>
 <div class="style-list">
 <ul>
@@ -595,7 +595,7 @@ VirtualBox admite los controladores de red virtIO. Los controladores de red Virt
 </div>
 <p>Cada adaptador de red virtual puede configurarse por separado para funcionar en un modo de red diferente. Por ejemplo, puede configurar el modo NAT para el adaptador 1 y el modo Host-Only para el adaptador 2.</p>
 <p>VM-&gt;Settings-&gt;Network-&gt;Attached to<br>
-<img src="./assets/img-vb-maquina-nic02.png" alt="" style="display: block; margin: auto; width: 40%; align:center; "></p>
+<img src="./assets/img-maquina-nic02.png" alt="" style="display: block; margin: auto; width: 40%; align:center; "></p>
 </div>
 <h4 id="not-attached">NOT ATTACHED </h4>
 <div class="style-normal">
@@ -640,10 +640,10 @@ VirtualBox admite los controladores de red virtIO. Los controladores de red Virt
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --nic1 nat
 </code></pre><div class="style-normal">
 <p>Esquema</p>
-<p><img src="./assets/img-vb-nat.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
+<p><img src="./assets/img-nat.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
 <p>Al ser una interfaz NAT, se puede configurar port forwarding para desmilitarizar servicios. Con port forwarding HOST y otros nodos de la red pueden acceder a servicios de la VM.</p>
 <p>VM-&gt;Settings-&gt;Network-&gt;Advanced-&gt;Port Forwarding<br>
-<img src="./assets/img-vb-nat-forwarding.png" alt="img" style="display: block; margin: auto; width: 60%; align:center; "></p>
+<img src="./assets/img-nat-forwarding.png" alt="img" style="display: block; margin: auto; width: 60%; align:center; "></p>
 </div>
 <h4 id="nat-network">NAT NETWORK </h4>
 <div class="style-normal">
@@ -683,7 +683,7 @@ VirtualBox admite los controladores de red virtIO. Los controladores de red Virt
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --nic1 natnetwork
 </code></pre><div class="style-normal">
 <p>Esquema<br>
-<img src="./assets/img-vb-natnetwork.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
+<img src="./assets/img-natnetwork.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
 <p>VirtualBox permite definir más de una red de tipo NAT para asignar a distintos VM. Por ejemplo podemos añadir otra red NAT llamada NAT-192.22 con la siguiente configuración:</p>
 <table>
 <thead>
@@ -717,9 +717,9 @@ VirtualBox admite los controladores de red virtIO. Los controladores de red Virt
 </table>
 <div style="page-break-after:always;"></div>
 <p>File-&gt;Preferences-Network<br>
-<img src="./assets/img-vb-natnetwork-def01.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<img src="./assets/img-natnetwork-def01.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 <p>VM-&gt;Setting-&gt;Network-&gt;Name-&gt;Elegir la red NAT definida<br>
-<img src="./assets/img-vb-natnetwork-def02.png" alt="img" style="display: block; margin: auto; width: 40%; align:center; "></p>
+<img src="./assets/img-natnetwork-def02.png" alt="img" style="display: block; margin: auto; width: 40%; align:center; "></p>
 <p>Creación por consola</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; VBoxManage natnetwork add --netname &lt;NET_name&gt; --network "&lt;IP/mask&gt;" --enable
@@ -735,12 +735,12 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --natnetwork1 NAT-192.22
 <p>Al ser una interfaz NAT, se puede configurar port forwarding para desmilitarizar servicios. Con port forwarding HOST y otros nodos de la red pueden acceder a servicios de la VM. Para los adaptadores en modo NAT-network la configuración de port forwarding no está en las preferencias de la VM sino en la opción donde se ha definido la red NAT.</p>
 <div style="page-break-after:always;"></div>
 <p>File-&gt;Preferences-&gt;Network<br>
-<img src="./assets/img-vb-natnetwork-def03.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
+<img src="./assets/img-natnetwork-def03.png" alt="img" style="display: block; margin: auto; width: 50%; align:center; "></p>
 </div>
 <h4 id="bridged-adapter">BRIDGED ADAPTER </h4>
 <div class="style-normal">
 <p>En este modo, el adaptador virtual de la VM utiliza el adaptador físico del HOST para acceder a su red. Los paquetes que envía y recibe el adaptador virtual lo hacen sin encaminamiento alguno.</p>
-<p><img src="./assets/img-vb-bridge.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
+<p><img src="./assets/img-bridge.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
 <div style="text-align: center;">
 <p>En el campo name se muestran los adaptadores del host</p>
 </div>
@@ -751,7 +751,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --bridgeadapter1 &lt;adapter_name&gt
 </code></pre><div class="style-normal">
 <p>Este modo puede utilizarse para ejecutar servidores en máquinas virtuales que deben ser totalmente accesibles desde una red de área local física. También se utiliza junto al modo promiscuo para instalar un software (sniffer) en la VM que nos permita capturar el tráfico de la red. En este modo, la VM puede acceder a la máquina HOST, al resto de nodos de la red física y en Internet si es accesible. La VM puede ser accedida por el HOST y cualquier otra maquina física o virtual conectada a la red. A todos los efectos el adaptador virtual deberá ser configurado con el direccionamiento de red que corresponde a la red física del HOST. Si en la red existe un servidor DHCP y el sistema operativo de VM configura el adaptador como cliente DHCP entonces recibirá una dirección del servidor. Es obvio que el adaptador también puede configurarse, mediante el sistema operativo de la VM, de forma estática.</p>
 <p>Esquema<br>
-<img src="./assets/img-vb-bridge-def01.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
+<img src="./assets/img-bridge-def01.png" alt="img" style="display: block; margin: auto; width: 90%; align:center; "></p>
 <p>En el esquema ejemplo se puede ver que no hay ningún router entre la máquina virtual y el host. La red es la 10.10.10.0/24, la dirección del HOST es la 10.10.10.72, la dirección del gateway es 10.10.10.1. Cada una de las VM debe tener una configuración similar, en el ejemplo hemos elegido 10.10.10.93 para VM1, 10.10.10.92 para VM2 y 10.10.10.91 para VM3, el gateway es el mismo 10.10.10.1. Estas direcciones se pueden configurar estáticamente o mediante un servidor DHCP de la red.</p>
 </div>
 <h4 id="internal-network">INTERNAL NETWORK </h4>
@@ -762,7 +762,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --bridgeadapter1 &lt;adapter_name&gt
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --nic1 intnet
 C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --intnet1 &lt;intnet_name&gt;
 </code></pre><div class="style-normal">
-<p><img src="./assets/img-vb-redinterna.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
+<p><img src="./assets/img-redinterna.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
 <div style="text-align: center;">
 <p>En el campo name se escribe el nombre que identifica la red</p>
 </div>
@@ -810,7 +810,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --intnet1 &lt;intnet_name&gt;
 </tbody>
 </table>
 <p>*VM1 se trata de una maquina Linux con enrutamiento y DHCP.</p>
-<p><img src="./assets/img-vb-redinterna-def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
+<p><img src="./assets/img-redinterna-def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
 </div>
 <h4 id="host-only-adapter">HOST-ONLY ADAPTER </h4>
 <div class="style-normal">
@@ -820,7 +820,7 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --intnet1 &lt;intnet_name&gt;
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --nic1 hostonly
 C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --hostonlyadapter1 &lt;intnet_name&gt;
 </code></pre><div class="style-normal">
-<p><img src="./assets/img-vb-hostonly.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
+<p><img src="./assets/img-hostonly.png" alt="img" style="display: block; margin: auto; width: 70%; align:center; "></p>
 <div style="text-align: center;">
 <p>En el campo name se muestran los adaptadores host-only de virtualbox</p>
 </div>
@@ -859,10 +859,10 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --hostonlyadapter1 &lt;intnet_name&g
 </tbody>
 </table>
 <p>Esquema<br>
-<img src="./assets/img-vb-hostonly-def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
+<img src="./assets/img-hostonly-def01.png" alt="img" style="display: block; margin: auto; width: 80%; align:center; "></p>
 <p>El adaptador VirtualBox Host-Only se crea en el sistema operativo de la máquina HOST. Se pueden crear mas adaptadores Host-Only o cambiar la configuración por defecto en las opciones de VirtualBox.</p>
 <p>File-&gt;Host Network Manager<br>
-<img src="./assets/img-vb-netadapter.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
+<img src="./assets/img-netadapter.png" alt="img" style="display: block; margin: auto; width: 55%; align:center; "></p>
 </div>
 <h4 id="generic-driver">GENERIC DRIVER </h4>
 <div class="style-normal">
