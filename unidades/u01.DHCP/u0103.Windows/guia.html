@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U01 Windows GUI</title>
+      <title>SER - DHCP Windows</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,6 +167,32 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0.5cm;
+  text-align: justify;
+  text-size: small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content {
+  background-color: lightgrey;
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -190,123 +220,58 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;
-    text-size: small    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
 <p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="u01-windows-gui">U01 Windows GUI </h1>
+<h1 id="dhcp-windows">DHCP Windows </h1>
 </div>
-<p>📙<a href="./win.gui.pdf">Descargar PDF</a></p>
+<p>📙<a href="./guia.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
 <div style="background-color: Lightgrey;">
-
-<div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#interfaces-de-red" class="md-toc-link"><p>INTERFACES DE RED</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar" class="md-toc-link">
-            <p>MOSTRAR</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-configuración" class="md-toc-link">
-            <p>Mostrar Configuración</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#desactivar-y-activar" class="md-toc-link"><p>Desactivar y Activar</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#desactivar" class="md-toc-link">
-            <p>Desactivar</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#activar" class="md-toc-link">
-            <p>Activar</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cambiar-nombre" class="md-toc-link">
-            <p>Cambiar Nombre</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configuración-estática" class="md-toc-link">
-            <p>Configuración Estática</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configuración-dinámica" class="md-toc-link">
-            <p>Configuración Dinámica</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#interfaces-de-red-inalámbricas" class="md-toc-link">
-            <p>INTERFACES DE RED INALÁMBRICAS</p>
-
-          </a></div>
+<table>
+<thead>
+<tr>
+<th>Descripción</th>
+<th>Recurso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configuración de interfaces de red con interfaz gráfica</td>
+<td><strong><a href="./t01.win.gui.html">Windows GUI</a></strong></td>
+</tr>
+<tr>
+<td>Configuración de interfaces de red con CMD y netsh</td>
+<td><strong><a href="./t02.win.cmd.html">Windows CMD</a></strong></td>
+</tr>
+<tr>
+<td>Configuración de interfaces de red con PowerShell</td>
+<td><strong><a href="./t03.win.pws.html">Windows PowerShell</a></strong></td>
+</tr>
+<tr>
+<td>Configuración de un servidor DHCP</td>
+<td><strong><a href="./t04.win.dhcp.html">Windows DHCP Server</a></strong></td>
+</tr>
+</tbody>
+</table>
 </div>
+<h3 id="anexos">ANEXOS </h3>
+<div style="background-color: Lightgrey;">
+<table>
+<thead>
+<tr>
+<th>Descripción</th>
+<th>Recurso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Administración del S.O. con PowerShell</td>
+<td><strong><a href="./t03.win.pws.so.html">S.O. PowerShell</a></strong></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="interfaces-de-red">INTERFACES DE RED </h2>
-<h3 id="mostrar">MOSTRAR </h3>
-<p>Para mostrar las interfaces de red debemos acceder a <em><code>Panel de control ➔ Redes e Internet ➔ Conexiones de red</code></em>. También podemos ejecutar la consola <code>ncpa.cpl</code>. Nos aparecerán las interfaces de red físicas (alámbricas e inalámbricas) y virtuales que tengamos instaladas en el nodo.</p>
-<p>La siguiente imagen muestra dos interfaces: una física, <em>MiRed</em>, y otra virtual, <em>VirtualBox</em>.</p>
-<p><img src="./assets/img-adaptadores.png" alt="Interfaces de red" style="display: block; margin: auto; width: 80%; align:center;"></p>
-<h3 id="mostrar-configuración">Mostrar Configuración </h3>
-<p>Hacemos doble clic sobre el adaptador deseado y pulsamos el botón <em><code>Detalles</code></em>.</p>
-<p>En la siguiente imagen se muestra la configuración del adaptador <em>MiRed</em>. Podemos observar que en este caso la dirección IP es la <code>10.100.13.1</code> con máscara <code>255.255.0.0</code> que la puerta de enlace (Gateway) es la dirección <code>10.100.0.2</code> y el servidor DNS el <code>10.100.0.2</code>. La configuración se ha realizado de manera estática ya que nos indica que DHCP no ha sido habilitado.</p>
-<p><img src="./assets/img-mostrarConfAdap.png" alt="Detalles configuración interfaces de red" style="display: block; margin: auto; width: 70%; align:center;"></p>
-<h3 id="desactivar-y-activar">Desactivar y Activar </h3>
-<h4 id="desactivar">Desactivar </h4>
-<p>Hacemos clic derecho (menú contextual) sobre el adaptador deseado y pulsamos la opción <em><code>Desactivar</code></em>.</p>
-<h4 id="activar">Activar </h4>
-<p>Hacemos clic derecho (menú contextual) sobre el adaptador deseado y pulsamos la opción <em><code>Activar</code></em>.</p>
-<p>La siguiente imagen muestra la activación y desactivación de la interfaz <em>MiRed</em>.</p>
-<p><img src="./assets/img-adaptadoresActivar.png" alt="Activar/Desactivar interfaces de red" style="display: block; margin: auto; width: 80%; align:center;"></p>
-<h3 id="cambiar-nombre">Cambiar Nombre </h3>
-<p>Hacemos clic derecho (menú contextual) sobre el adaptador deseado y pulsamos la opción <em><code>Cambiar nombre</code></em>. A veces, es conveniente cambiar el nombre de la interfaz porque después se van a realizar scripts de configuración sobre dicha interfaz.</p>
-<p>En la siguiente se muestra cómo cambiar el nombre de la interfaz <em>MiRed</em>, por ejemplo, por <em>eth0</em>.</p>
-<p><img src="./assets/img-adaptadoresRenombrar.png" alt="Cambiar nombre interfaces de red" style="display: block; margin: auto; width: 80%; align:center;"></p>
-<h3 id="configuración-estática">Configuración Estática </h3>
-<p>La configuración a través del entorno gráfico <strong>siempre es persistente</strong>. Hacemos clic derecho (menú contextual) sobre el adaptador deseado y pulsamos la opción <em><code>Propiedades</code></em>. En la ventana de propiedades hacemos doble clic sobre la opción <em><code>Protocolo de Internet versión 4 (TCP/IPv4)</code></em>. Para que la configuración sea estática marcaremos las opciones <em><code>Usar la siguiente dirección IP</code></em> y <em><code>Usar las siguientes direcciones de servidor DNS</code></em> rellenaremos los diferentes campos y finalmente pulsamos el botón <em><code>Aceptar</code></em>.</p>
-<p>La siguiente imagen muestra la configuración de la interfaz <em>MiRed</em> de manera estática con la IP <code>10.100.13.1</code>, máscara <code>255.255.0.0</code> y puerta de enlace <code>10.100.0.2</code>. Como servidor DNS se ha configurado estáticamente la dirección <code>1.1.1.1</code>.</p>
-<p><img src="./assets/img-adaptadoresConfEstatica.png" alt="Configuración estática" style="display: block; margin: auto; width: 100%; align:center;"></p>
-<h3 id="configuración-dinámica">Configuración Dinámica </h3>
-<p>Hacemos clic derecho (menú contextual) sobre el adaptador deseado y pulsamos la opción <em><code>Propiedades</code></em>. En la ventana de propiedades hacemos doble clic sobre la opción <em><code>Protocolo de Internet versión 4 (TCP/IPv4)</code></em>. Para que la configuración sea dinámica marcaremos las opciones <em><code>Obtener una dirección IP automáticamente</code></em> y <em><code>Obtener la dirección del servidor DNS automáticamente</code></em> y finalmente pulsamos el botón <em><code>Aceptar</code></em>.</p>
-<p>La siguiente imagen muestra la configuración de la interfaz <em>MiRed</em> de manera dinámica.</p>
-<p><img src="./assets/img-adaptadoresConfDinamica.png" alt="Configuración diámica" style="display: block; margin: auto; width: 100%; align:center;"></p>
-<h2 id="interfaces-de-red-inalámbricas">INTERFACES DE RED INALÁMBRICAS </h2>
-<p>La configuración de nivel de red es igual que para un adaptador alámbrico. Sin embargo, en las redes inalámbricas debemos configurar el nivel de enlace para poder conectarnos con el punto de acceso. Para configurar una red inalámbrica debemos acceder a <em><code>Panel de control ➔ Redes e Internet ➔ Conectarse a una red</code></em> y acceder a la opción <em><code>Conectar manualmente con una red inalámbrica</code></em>.</p>
-<p><img src="./assets/img-inalambrica1.png" alt="Conexión inálambrica 1" style="display: block; margin: auto; width: 70%; align:center;"></p>
-<p>Los parámetros a configurar son los típicos de una red inalámbrica Nombre de la red (SSID) Tipo de Seguridad (autenticación WEP, WPA, WPA2,..) Tipo de codificación (TKIP, AES,..), conectar automaticamente (cuando detecte la red), conectar incluso cuando la red no hace broadcast (el AP no publica SSID).</p>
-<p><img src="./assets/img-inalambrica2.png" alt="Conexión inálambrica 2" style="display: block; margin: auto; width: 70%; align:center;"></p>
 
       </div>
       

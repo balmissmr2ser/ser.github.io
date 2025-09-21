@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U01 Windows PowerShell</title>
+      <title>SER - Windows PowerShell</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,6 +167,32 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0.5cm;
+  text-align: justify;
+  text-size: small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content {
+  background-color: lightgrey;
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -190,32 +220,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;
-    text-size: small    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
 <p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="u01-windows-powershell">U01 Windows PowerShell </h1>
+<h1 id="configuración-de-red-br-windows-powershell">Configuración de red <br> Windows PowerShell </h1>
 </div>
-<p>📙<a href="./win.pws.pdf">Descargar PDF</a></p>
+<p>📙<a href="./t03.win.pws.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
 <div style="background-color: Lightgrey;">
 
@@ -228,75 +237,75 @@ table {
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#interfaces-de-red" class="md-toc-link"><p>Interfaces de red</p>
+          <a href="#interfaces-de-red" class="md-toc-link"><p>INTERFACES DE RED</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-configuración-interfaces" class="md-toc-link">
-            <p>Mostrar configuración interfaces</p>
+          <a href="#mostrar-configuración-de-interfaces" class="md-toc-link">
+            <p>MOSTRAR CONFIGURACIÓN DE INTERFACES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mostrar-configuración-de-un-interfaz" class="md-toc-link">
-            <p>Mostrar configuración de un interfaz</p>
+            <p>MOSTRAR CONFIGURACIÓN DE UN INTERFAZ</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mostrar-configuración-dns" class="md-toc-link">
-            <p>Mostrar configuración dns</p>
+            <p>MOSTRAR CONFIGURACIÓN DNS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#activar-y-desactivar-interfaces" class="md-toc-link">
-            <p>Activar y Desactivar interfaces</p>
+            <p>ACTIVAR Y DESACTIVAR INTERFACES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cambiar-el-nombre-de-una-interfaz" class="md-toc-link">
-            <p>Cambiar el Nombre de una interfaz</p>
+          <a href="#cambiar-nombre-a-una-interfaz" class="md-toc-link">
+            <p>CAMBIAR NOMBRE A UNA INTERFAZ</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#configuración-estática-de-interfaces-de-red" class="md-toc-link"><p>Configuración estática de interfaces de red</p>
+          <a href="#configuración-estática" class="md-toc-link"><p>CONFIGURACIÓN ESTÁTICA</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#configurar-ip-y-gateway" class="md-toc-link">
-            <p>Configurar IP y gateway</p>
+            <p>CONFIGURAR IP Y GATEWAY</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#configurar-dns" class="md-toc-link">
-            <p>Configurar DNS</p>
+            <p>CONFIGURAR DNS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#borrar-ip-y-gateway" class="md-toc-link">
-            <p>Borrar IP y gateway</p>
+            <p>BORRAR IP Y GATEWAY</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#borrar-dns" class="md-toc-link">
-            <p>Borrar DNS</p>
+            <p>BORRAR DNS</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#configuración-dinámica-de-interfaces-de-red" class="md-toc-link"><p>Configuración dinámica de interfaces de red</p>
+          <a href="#configuración-dinámica" class="md-toc-link"><p>CONFIGURACIÓN DINÁMICA</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#configurar-ip-y-gateway-1" class="md-toc-link">
-            <p>Configurar IP y gateway</p>
+            <p>CONFIGURAR IP Y GATEWAY</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#configurar-dns-1" class="md-toc-link">
-            <p>Configurar DNS</p>
+            <p>CONFIGURAR DNS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#liberar-y-renovar-dirección-dinámica" class="md-toc-link">
-            <p>Liberar y Renovar dirección dinámica</p>
+          <a href="#liberar-y-renovar-ip-dinámica" class="md-toc-link">
+            <p>LIBERAR Y RENOVAR IP DINÁMICA</p>
 
           </a></div>
         </div>
@@ -311,26 +320,26 @@ table {
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar" class="md-toc-link">
-            <p>Mostrar</p>
+          <a href="#mostrar-tabla" class="md-toc-link">
+            <p>MOSTRAR TABLA</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#modificar" class="md-toc-link"><p>Modificar</p>
+          <a href="#modificar-tabla" class="md-toc-link"><p>MODIFICAR TABLA</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#añadir-entrada" class="md-toc-link">
-            <p>Añadir entrada</p>
+            <p>AÑADIR ENTRADA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#borrar-entrada" class="md-toc-link">
-            <p>Borrar entrada</p>
+            <p>BORRAR ENTRADA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#modificar-entrada" class="md-toc-link">
-            <p>Modificar entrada</p>
+            <p>MODIFICAR ENTRADA</p>
 
           </a></div>
         </div>
@@ -345,22 +354,22 @@ table {
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-tabla-arp" class="md-toc-link">
-            <p>Mostrar tabla ARP</p>
+          <a href="#mostrar-tabla-1" class="md-toc-link">
+            <p>MOSTRAR TABLA</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#modificar-tabla-arp" class="md-toc-link"><p>Modificar tabla ARP</p>
+          <a href="#modificar-tabla-1" class="md-toc-link"><p>MODIFICAR TABLA</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#añadir-entrada-a-la-tabla" class="md-toc-link">
-            <p>Añadir entrada a la tabla</p>
+          <a href="#añadir-entrada-1" class="md-toc-link">
+            <p>AÑADIR ENTRADA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#borrar-entrada-de-la-tabla" class="md-toc-link">
-            <p>Borrar entrada de la tabla</p>
+          <a href="#borrar-entrada-1" class="md-toc-link">
+            <p>BORRAR ENTRADA</p>
 
           </a></div>
         </div>
@@ -377,10 +386,14 @@ table {
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="nettcpip">NETTCPIP </h2>
+<div class="style-normal">
 <p>La mayor parte de los cmdlets que se utilizan para la configuración de red pertenecen al módulo <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/?view=windowsserver2025-ps">NetTCPIP</a>. En la mayoría de los cmdlets de NetTCPIP se puede usar indistintamente el nombre descriptivo de la interfaz (<code>-Name</code> o <code>-InterfaceAlias</code>) o su número de índice (<code>-InterfaceIndex</code>)</p>
-<h3 id="interfaces-de-red">Interfaces de red </h3>
-<h4 id="mostrar-configuración-interfaces">Mostrar configuración interfaces </h4>
+</div>
+<h3 id="interfaces-de-red">INTERFACES DE RED </h3>
+<h4 id="mostrar-configuración-de-interfaces">MOSTRAR CONFIGURACIÓN DE INTERFACES </h4>
+<div class="style-normal">
 <p>Podemos mostrar la configuración de todos los adaptadores de red con el comando <a href="https://learn.microsoft.com/es-es/powershell/module/netadapter/get-netadapter?view=windowsserver2025-ps">Get-NetAdapter</a> de PowerShell.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar interfaces de red</p>
 <p>Mostrar el nombre corto, nombre descriptivo e índice de todos los interfaces de red.</p>
@@ -391,8 +404,10 @@ MiRed                      Realtek PCIe GbE Family Controller                18
 vEthernet <span class="token punctuation">(</span>Default <span class="token keyword keyword-Switch">Switch</span><span class="token punctuation">)</span> Hyper-V Virtual Ethernet Adapter                  35
 RedVirtualBox              VirtualBox Host-Only Ethernet Adapter              5
 </code></pre></div>
-<h4 id="mostrar-configuración-de-un-interfaz">Mostrar configuración de un interfaz </h4>
+<h4 id="mostrar-configuración-de-un-interfaz">MOSTRAR CONFIGURACIÓN DE UN INTERFAZ </h4>
+<div class="style-normal">
 <p>También se puede realizar con el comando <a href="https://learn.microsoft.com/es-es/powershell/module/netadapter/get-netadapter?view=windowsserver2025-ps">Get-NetAdapter</a>.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Get-NetAdapter</span> <span class="token operator">-</span>name &lt;IFaceName&gt; <span class="token punctuation">|</span> <span class="token function">Format-List</span>
 </code></pre><div class="admonition example">
 <p class="admonition-title">Mostrar información de una interfaz de red</p>
@@ -411,17 +426,25 @@ MediaConnectionState       : Connected
 ConnectorPresent           : True
 DriverInformation          : Driver Date 2021-05-11 Version 10<span class="token punctuation">.</span>50<span class="token punctuation">.</span>511<span class="token punctuation">.</span>2021 NDIS 6<span class="token punctuation">.</span>40
 </code></pre></div>
+<div class="style-normal">
 <p>También se puede obtener información adicional con los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/get-netipaddress?view=windowsserver2025-ps">Get-NetIPAddress</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/get-netipinterface?view=windowsserver2025-ps">Get-NetIPInterface</a>.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Get-NetIPAddress</span>   <span class="token punctuation">[</span>–InterfaceAlias &lt;IfaceName&gt;<span class="token punctuation">]</span> <span class="token punctuation">|</span> <span class="token function">Format-List</span>
 <span class="token function">PS</span> C:\&gt;<span class="token function">Get-NetIPInterface</span> <span class="token punctuation">[</span>–InterfaceAlias &lt;IfaceName&gt;<span class="token punctuation">]</span> <span class="token punctuation">|</span> <span class="token function">Format-List</span>
-</code></pre><p>Podemos obtener datos adicionales como la IP, la máscara o la IP del servidor DHCP con el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.management/get-wmiobject?view=powershell-5.1">Get-WmiObject</a> que actúa sobre objectos <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/about/about_wmi_cmdlets?view=powershell-5.1">WMI</a> (<em>Windows Managament Instrumentation)</em>:</p>
+</code></pre><div class="style-normal">
+<p>Podemos obtener datos adicionales como la IP, la máscara o la IP del servidor DHCP con el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.management/get-wmiobject?view=powershell-5.1">Get-WmiObject</a> que actúa sobre objectos <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/about/about_wmi_cmdlets?view=powershell-5.1">WMI</a> (<em>Windows Managament Instrumentation)</em>:</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token punctuation">(</span><span class="token function">Get-WmiObject</span> Win32_NetworkAdapterConfiguration<span class="token punctuation">)</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">.</span>IPAddress<span class="token punctuation">[</span>0<span class="token punctuation">]</span> 
 <span class="token function">PS</span> C:\&gt;<span class="token punctuation">(</span><span class="token function">Get-WmiObject</span> Win32_NetworkAdapterConfiguration<span class="token punctuation">)</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">.</span>IPSubnet<span class="token punctuation">[</span>0<span class="token punctuation">]</span>
 <span class="token function">PS</span> C:\&gt;<span class="token punctuation">(</span><span class="token function">Get-WmiObject</span> Win32_NetworkAdapterConfiguration<span class="token punctuation">)</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">.</span>DHCPServer
-</code></pre><h4 id="mostrar-configuración-dns">Mostrar configuración dns </h4>
+</code></pre><h4 id="mostrar-configuración-dns">MOSTRAR CONFIGURACIÓN DNS </h4>
+<div class="style-normal">
 <p>Se utiliza el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/dnsclient/get-dnsclientserveraddress?view=windowsserver2025-ps">Get-DnsClientServerAddress</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Get-DnsClientServerAddress</span> <span class="token punctuation">[</span><span class="token operator">-</span>InterfaceAlias &lt;IFaceName&gt;<span class="token punctuation">]</span> 
-</code></pre><p>Si no se introduce la opción <code>-InterfaceAlias</code> entonces muestra la configuración de todas las interfaces.</p>
+</code></pre><div class="style-normal">
+<p>Si no se introduce la opción <code>-InterfaceAlias</code> entonces muestra la configuración de todas las interfaces.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Configuración cliente DNS</p>
 <p>Mostrar la configuración del DNS asociada al adaptador de red de nombre <em>MiRed</em>.</p>
@@ -431,8 +454,10 @@ InterfaceAlias InterfaceIndex AddressFamily ServerAddresses
 MiRed                       6 IPv4          <span class="token punctuation">{</span>1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">,</span> 4<span class="token punctuation">.</span>4<span class="token punctuation">.</span>4<span class="token punctuation">.</span>4<span class="token punctuation">}</span>
 MiRed                       6 IPv6          <span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre></div>
-<h4 id="activar-y-desactivar-interfaces">Activar y Desactivar interfaces </h4>
+<h4 id="activar-y-desactivar-interfaces">ACTIVAR Y DESACTIVAR INTERFACES </h4>
+<div class="style-normal">
 <p>Para activar y desactivar interfaces se utilizan los comandos de PowerShell <a href="https://learn.microsoft.com/es-es/powershell/module/netadapter/enable-netadapter?view=windowsserver2025-ps">Enable-NetAdapter</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/netadapter/disable-netadapter?view=windowsserver2025-ps">Disable-NetAdapter</a> respectivamente.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Disable-NetAdapter</span> –name &lt;IfaceName&gt; <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
 <span class="token function">PS</span> C:\&gt;<span class="token function">Enable-NetAdapter</span>  –name &lt;IfaceName&gt; <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
 </code></pre><div class="admonition example">
@@ -440,19 +465,26 @@ MiRed                       6 IPv6          <span class="token punctuation">{</s
 <p>Desactiva la interfaz de nombre <em>MiRed</em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Disable-NetAdapter</span> –name MiRed <span class="token operator">-</span>Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
-<h4 id="cambiar-el-nombre-de-una-interfaz">Cambiar el Nombre de una interfaz </h4>
+<div style="page-break-after:always;"></div>
+<h4 id="cambiar-nombre-a-una-interfaz">CAMBIAR NOMBRE A UNA INTERFAZ </h4>
+<div class="style-normal">
 <p>Se utiliza el comando <a href="https://learn.microsoft.com/es-es/powershell/module/netadapter/rename-netadapter?view=windowsserver2025-ps">Rename-NetAdapter</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>C:\&gt;<span class="token function">Rename-NetAdapter</span> –name &lt;IFaceName&gt; <span class="token operator">-</span>NewName &lt;NewIFaceName&gt;
 </code></pre><div class="admonition example">
 <p class="admonition-title">Cambiar nombre de interfaz de red</p>
 <p>Cambiar el nombre de la interfaz <em>Ethernet</em> por <em>MiRed</em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Rename-NetAdapter</span> –Name Ethernet –NewName MiRed
 </code></pre></div>
-<h3 id="configuración-estática-de-interfaces-de-red">Configuración estática de interfaces de red </h3>
-<h4 id="configurar-ip-y-gateway">Configurar IP y gateway </h4>
+<h3 id="configuración-estática">CONFIGURACIÓN ESTÁTICA </h3>
+<h4 id="configurar-ip-y-gateway">CONFIGURAR IP Y GATEWAY </h4>
+<div class="style-normal">
 <p>El comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/new-netipaddress?view=windowsserver2025-ps">New-NetIPAddress</a> se utiliza para asignar una IP a una interfaz de red así como para configurar la puerta de enlace.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">New-NetIPAddress</span> –InterfaceAlias &lt;IFaceName&gt; <span class="token operator">-</span>IPAddress &lt;IP&gt; <span class="token punctuation">[</span><span class="token operator">-</span>PrefixLength &lt;bits-xarxa&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>DefaultGateway &lt;IP-Gateway&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>PolicyStore <span class="token punctuation">{</span>ActiveStore<span class="token punctuation">,</span>PersistentStore<span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
-</code></pre><p>Hay que tener en cuenta que:</p>
+</code></pre><div class="style-normal">
+Hay que tener en cuenta que:
+</div>
 <ul>
 <li>
 <p>Una interfaz de red puede tener mas de una IP. Por ejemplo, si hacemos dos veces <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/new-netipaddress?view=windowsserver2025-ps">New-NetIPAddress</a> con direcciones IP diferentes tendremos dos configuraciones para la interfaz.</p>
@@ -468,19 +500,24 @@ MiRed                       6 IPv6          <span class="token punctuation">{</s
 –PrefixLength 24 –DefaultGateway 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>100 –Confirm:<span class="token boolean">$false</span>
 </code></pre><p>Como no hemos utilizado el parámetro <code>-PolicyStore</code> se dará de alta por defecto como persistente y activa.</p>
 </div>
-<h4 id="configurar-dns">Configurar DNS </h4>
+<h4 id="configurar-dns">CONFIGURAR DNS </h4>
+<div class="style-normal">
 <p>Con el comando <a href="https://learn.microsoft.com/es-es/powershell/module/dnsclient/set-dnsclientserveraddress?view=windowsserver2025-ps">Set-DnsClientServerAddress</a> se configura el cliente DNS (o clientes) al que inicialmente se envían las peticiones de resolución DNS.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Set-DnsClientServerAddress</span> –InterfaceAlias &lt;IFaceName&gt; `
 <span class="token operator">-</span>ServerAddresses &lt;IP_Server1<span class="token punctuation">,</span>IP_Server2&gt; <span class="token punctuation">[</span><span class="token operator">-</span>Validate:<span class="token boolean">$false</span><span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
-</code></pre><div class="admonition example">
+</code></pre><div style="page-break-after:always;"></div>
+<div class="admonition example">
 <p class="admonition-title">Configuración cliente DNS</p>
 <p>Configurar la interfaz de red <em>MiRed</em> con los DNS de IP <code>1.1.1.1</code> y <code>8.8.8.8</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Set-DnsClientServerAddress</span> –InterfaceAlias MiRed –ServerAddresses ` 
 &gt;&gt; 1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">,</span> 8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8 –Validate:<span class="token boolean">$false</span>
 </code></pre><p>El campo <code>-validate:$false</code> permite que la orden no intente conectar con el servidor para comprobar que existe.</p>
 </div>
-<h4 id="borrar-ip-y-gateway">Borrar IP y gateway </h4>
+<h4 id="borrar-ip-y-gateway">BORRAR IP Y GATEWAY </h4>
+<div class="style-normal">
 <p>Para borrar la configuración de la IP y/o puerta de enlace de un adaptador de red utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/remove-netipaddress?view=windowsserver2025-ps">Remove-NetIPAddress</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Remove-NetIPAddress</span> –InterfaceAlias &lt;IFaceName&gt; <span class="token operator">-</span>IPAddress &lt;IP&gt; `
 <span class="token operator">-</span>DefaultGateway &lt;IP-Gateway&gt; <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
 </code></pre><div class="admonition example">
@@ -489,18 +526,25 @@ MiRed                       6 IPv6          <span class="token punctuation">{</s
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>C:\&gt;<span class="token function">Remove-NetIPAddress</span> –InterfaceAlias MiRed –IPAddress 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>20 `
 &gt;&gt; –DefaultGateway 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>100 –Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
-<h4 id="borrar-dns">Borrar DNS </h4>
+<h4 id="borrar-dns">BORRAR DNS </h4>
+<div class="style-normal">
 <p>Para borrar la configuración del DNS de un adaptador de red utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/dnsclient/set-dnsclientserveraddress?view=windowsserver2025-ps">Set-DnsClientServerAddress</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Set-DnsClientServerAddress</span> –InterfaceAlias &lt;IfaceName&gt; <span class="token operator">-</span>ResetServerAddresses <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
 </code></pre><div class="admonition example">
 <p class="admonition-title">Borrar DNS de IP estática</p>
 <p>Borrar la configuración dns para la interfaz <em>MiRed</em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Set-DnsClientServerAddress</span> –InterfaceAlias MiRed –ResetServerAddresses <span class="token operator">-</span>Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
-<h3 id="configuración-dinámica-de-interfaces-de-red">Configuración dinámica de interfaces de red </h3>
+<div style="page-break-after:always;"></div>
+<h3 id="configuración-dinámica">CONFIGURACIÓN DINÁMICA </h3>
+<div class="style-normal">
 <p>Si previamente se ha realizado una configuración estática, es recomendable eliminarla antes de aplicar una configuración dinámica.</p>
-<h4 id="configurar-ip-y-gateway-1">Configurar IP y gateway </h4>
+</div>
+<h4 id="configurar-ip-y-gateway-1">CONFIGURAR IP Y GATEWAY </h4>
+<div class="style-normal">
 <p>Para configurar una interfaz de red para que obtenga su dirección IP y puerta de enlace mediante DHCP se utiliza el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/set-netipinterface?view=windowsserver2025-ps">Set-NetIPInterface</a>.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Set-NetIPInterface</span> –InterfaceAlias &lt;IfaceName&gt; <span class="token operator">-</span>dhcp Enabled
 </code></pre><div class="admonition example">
 <p class="admonition-title">Configurar IP dinámica</p>
@@ -508,11 +552,15 @@ MiRed                       6 IPv6          <span class="token punctuation">{</s
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Set-NetIPInterface</span> –InterfaceAlias MiRed –dhcp Enabled
 </code></pre><p>Esta configuración es persistente mientras dure el tiempo de alquiler (<em>lease time</em>) del DHCP.</p>
 </div>
-<h4 id="configurar-dns-1">Configurar DNS </h4>
+<h4 id="configurar-dns-1">CONFIGURAR DNS </h4>
+<div class="style-normal">
 <p>No es necesario configurarlo. Al configurar la interfaz como dhcp el sistema obtendrá el servidor dns a través de dicho protocolo.</p>
-<h4 id="liberar-y-renovar-dirección-dinámica">Liberar y Renovar dirección dinámica </h4>
+</div>
+<h4 id="liberar-y-renovar-ip-dinámica">LIBERAR Y RENOVAR IP DINÁMICA </h4>
+<div class="style-normal">
 <p>Aunque es más fácil hacerlo mediante <code>ipconfig /release</code> o <code>ipconfig /renew</code> tambien se puede realizar mediante objetos de powershell.<br>
 El proceso es el siguiente:</p>
+</div>
 <ul>
 <li>
 <p><strong>Obtener el objeto WMI para tratar la configuración</strong></p>
@@ -528,11 +576,16 @@ El proceso es el siguiente:</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token variable">$MyLan</span><span class="token punctuation">.</span>RenewDHCPLease<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre></li>
 </ul>
+<div style="page-break-after:always;"></div>
 <h2 id="tabla-de-enrutamiento">TABLA DE ENRUTAMIENTO </h2>
-<h3 id="mostrar">Mostrar </h3>
+<h3 id="mostrar-tabla">MOSTRAR TABLA </h3>
+<div class="style-normal">
 <p>Para mostrar la tabla de enrutamiento utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/get-netroute?view=windowsserver2025-ps">Get-NetRoute</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Get-NetRoute</span> <span class="token punctuation">[</span><span class="token operator">-</span>AddressFamily <span class="token punctuation">{</span>IPv4<span class="token punctuation">,</span>IPv6<span class="token punctuation">}</span><span class="token punctuation">]</span>
-</code></pre><p>Si no se indica <code>-AddressFamily</code> muestra las entradas para IPv4 e IPv6.</p>
+</code></pre><div class="style-normal">
+<p>Si no se indica <code>-AddressFamily</code> muestra las entradas para IPv4 e IPv6.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Mostra tabla de enrutamiento</p>
 <p>Mostrar la tabla de enrutamiento para las direcciones de la familia IPv4.</p>
@@ -550,9 +603,11 @@ ifIndex  DestinationPrefix     NextHop    RouteMetric  ifMetric  PolicyStore
 6        10<span class="token punctuation">.</span>0<span class="token punctuation">.</span>2<span class="token punctuation">.</span>0/24           0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0    256          25        ActiveStore
 6        0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0/0             10<span class="token punctuation">.</span>0<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2   0            25        ActiveStore
 </code></pre></div>
-<h3 id="modificar">Modificar </h3>
-<h4 id="añadir-entrada">Añadir entrada </h4>
+<h3 id="modificar-tabla">MODIFICAR TABLA </h3>
+<h4 id="añadir-entrada">AÑADIR ENTRADA </h4>
+<div class="style-normal">
 <p>Para añadir una ruta estática a la tabla de enrutamiento utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/new-netroute?view=windowsserver2025-ps">New-NetRoute</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">New-NetRoute</span> –DestinationPrefix &lt;<span class="token string">"IP/prefix"</span>&gt; `
 <span class="token punctuation">[</span><span class="token operator">-</span>Nexthop &lt;IP-Gateway&gt;<span class="token punctuation">]</span> `
 <span class="token operator">-</span>InterfaceAlias &lt;IFaceName&gt; `
@@ -570,8 +625,10 @@ ifIndex  DestinationPrefix     NextHop    RouteMetric  ifMetric  PolicyStore
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">New-NetRoute</span> –DestinationPrefix <span class="token string">"0.0.0.0/0"</span> –NextHop 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>200 `
 –InterfaceAlias MiRed –Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
-<h4 id="borrar-entrada">Borrar entrada </h4>
+<h4 id="borrar-entrada">BORRAR ENTRADA </h4>
+<div class="style-normal">
 <p>Para eliminar una ruta estática a la tabla de enrutamiento utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/remove-netroute?view=windowsserver2025-ps">Remove-NetRoute</a> de PowerShell.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Remove-NetRoute</span> –DestinationPrefix &lt;<span class="token string">"IP/prefix"</span>&gt; `
 <span class="token punctuation">[</span><span class="token operator">-</span>Nexthop &lt;IP-Gateway&gt;<span class="token punctuation">]</span> `
 <span class="token operator">-</span>InterfaceAlias &lt;IFaceName&gt; `
@@ -583,14 +640,20 @@ ifIndex  DestinationPrefix     NextHop    RouteMetric  ifMetric  PolicyStore
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>C:\&gt;<span class="token function">Remove-NetRoute</span> –DestinationPrefix <span class="token string">"192.168.2.0/24"</span> –NextHop 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>100 `
 <span class="token operator">-</span>InterfaceAlias MiRed –Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
-<h4 id="modificar-entrada">Modificar entrada </h4>
+<h4 id="modificar-entrada">MODIFICAR ENTRADA </h4>
+<div class="style-normal">
 <p>Aunque se puede utilizar el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/set-netroute?view=windowsserver2025-ps">Set-NetRoute</a> es mejor primero borrar la entrada y después volver a añadirla.</p>
 <p>Evidentemente para todos estos cmdlets si utilizamos <code>-Policystore ActiveStore</code> la configuración será no persistente.</p>
+</div>
 <h2 id="tabla-arp">TABLA ARP </h2>
-<h3 id="mostrar-tabla-arp">Mostrar tabla ARP </h3>
+<h3 id="mostrar-tabla-1">MOSTRAR TABLA </h3>
+<div class="style-normal">
 <p>Para mostrar el contenido de la tabla ARP utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/get-netneighbor?view=windowsserver2025-ps">Get-NetNeighbor</a>.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Get-NetNeighbor</span> <span class="token punctuation">[</span>–InterfaceAlias &lt;IfaceName&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>AddressFamily <span class="token punctuation">{</span>IPV4<span class="token punctuation">,</span>IPV6<span class="token punctuation">}</span><span class="token punctuation">]</span>
-</code></pre><p>Si no se indica interfaz entonces muestra la tabla ARP de todas las interfaces del sistema.</p>
+</code></pre><div class="style-normal">
+<p>Si no se indica interfaz entonces muestra la tabla ARP de todas las interfaces del sistema.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar tabla ARP</p>
 <p>Mostrar la tabla ARP de la interfaz de nombre <em>MiRed</em>.</p>
@@ -607,9 +670,11 @@ ifIndex  IPAddress         LinkLayerAddress      State         PolicyStore
 6        10<span class="token punctuation">.</span>0<span class="token punctuation">.</span>2<span class="token punctuation">.</span>1          00-00-00-00-00-00     Unreachable   ActiveStore
 6        10<span class="token punctuation">.</span>0<span class="token punctuation">.</span>2<span class="token punctuation">.</span>0          00-00-00-00-00-00     Unreachable   ActiveStore
 </code></pre></div>
-<h3 id="modificar-tabla-arp">Modificar tabla ARP </h3>
-<h4 id="añadir-entrada-a-la-tabla">Añadir entrada a la tabla </h4>
+<h3 id="modificar-tabla-1">MODIFICAR TABLA </h3>
+<h4 id="añadir-entrada-1">AÑADIR ENTRADA </h4>
+<div class="style-normal">
 <p>Para añadir una entrada a la tabla ARP que asocia una IP a una MAC en una interfaz de red utilizamos el comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/new-netneighbor?view=windowsserver2025-ps">New-NetNeighbor</a>.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">New-NetNeighbor</span> –InterfaceAlias &lt;IFaceName&gt; <span class="token operator">-</span>IPAddress &lt;IP&gt; `
 <span class="token operator">-</span>LinkLayerAddress &lt;MAC&gt; <span class="token punctuation">[</span><span class="token operator">-</span>PolicyStore <span class="token punctuation">{</span>ActiveStore<span class="token punctuation">,</span>PersistentStore<span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
 </code></pre><div class="admonition example">
@@ -618,8 +683,10 @@ ifIndex  IPAddress         LinkLayerAddress      State         PolicyStore
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">New-NetNeighbor</span> –InterfaceAlias MiRed –IPAddress 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>100 `
 <span class="token operator">-</span>LinkLayerAddress 02-00-00-00-00-01 –Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
-<h4 id="borrar-entrada-de-la-tabla">Borrar entrada de la tabla </h4>
+<h4 id="borrar-entrada-1">BORRAR ENTRADA </h4>
+<div class="style-normal">
 <p>El comando <a href="https://learn.microsoft.com/es-es/powershell/module/nettcpip/remove-netneighbor?view=windowsserver2025-ps">Remove-NetNeighbor</a> se utiliza para eliminar una o más entradas de la tabla ARP.</p>
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Remove-NetNeighbor</span> –InterfaceAlias &lt;IFaceName&gt; <span class="token operator">-</span>IPAddress &lt;IP&gt; `
 <span class="token operator">-</span>LinkLayerAddress &lt;MAC&gt; <span class="token punctuation">[</span><span class="token operator">-</span>PolicyStore <span class="token punctuation">{</span>ActiveStore<span class="token punctuation">,</span>PersistentStore<span class="token punctuation">}</span><span class="token punctuation">]</span> `
 <span class="token punctuation">[</span><span class="token operator">-</span>Confirm:<span class="token boolean">$false</span><span class="token punctuation">]</span>
@@ -631,7 +698,9 @@ ifIndex  IPAddress         LinkLayerAddress      State         PolicyStore
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Remove-NetNeighbor</span> –InterfaceAlias MiRed <span class="token operator">-</span>IPAddress  192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>100 –Confirm:<span class="token boolean">$false</span>
 </code></pre></div>
 <h2 id="interfaces-de-red-inálambricas">INTERFACES DE RED INÁLAMBRICAS </h2>
+<div class="style-normal">
 <p>Las interfaces de red inalámbricas se configuran en el nivel de red igual que las alámbricas. Sin embargo, para conectar una interfaz inalámbrica con un punto de acceso es necesario configurar su nivel de enlace, es decir: el SSID, la clave, el algoritmo de cifrado, etc. No existe un cmdlet o módulo específico para esta configuración por lo que se realiza mediante el contexto <a href="https://learn.microsoft.com/es-es/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd744889(v=ws.10)">netsh wlan</a></p>
+</div>
 
       </div>
       

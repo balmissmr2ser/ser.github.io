@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - Unidad 01 DHCP</title>
+      <title>SER - DHCP</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,6 +167,32 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0.5cm;
+  text-align: justify;
+  text-size: small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content {
+  background-color: lightgrey;
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -190,29 +220,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
-<p><img src="../../../assets/img-BalmisHeader.png" alt="ONU"></p>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="LOGOBALMIS"></p>
 <div class="style-title">
-<h1 id="unidad-01-dhcp">Unidad 01 DHCP </h1>
+<h1 id="parametros-de-red">PARAMETROS DE RED </h1>
 </div>
 <p>📙<a href="./u0101.teoria.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
@@ -229,25 +239,25 @@ table {
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#tipos" class="md-toc-link"><p>TIPOS</p>
+          <a href="#tipos-de-direcciones" class="md-toc-link"><p>TIPOS DE DIRECCIONES</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#dinámica" class="md-toc-link">
-            <p>Dinámica</p>
+            <p>DINÁMICA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#estática" class="md-toc-link">
-            <p>Estática</p>
+            <p>ESTÁTICA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#persistente" class="md-toc-link">
-            <p>Persistente</p>
+            <p>PERSISTENTE</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#no-persistente" class="md-toc-link">
-            <p>No Persistente</p>
+            <p>NO PERSISTENTE</p>
 
           </a></div>
         </div>
@@ -301,8 +311,8 @@ table {
 <p class="admonition-title">Pantalla configuración red MS-Windows</p>
 <p><img src="./assets/img-windowsconf.png" alt="Windows Configuracion" style="display: block; margin: auto; width: 40%; align:center;"></p>
 </div>
-<h2 id="tipos">TIPOS </h2>
-<h3 id="dinámica">Dinámica </h3>
+<h2 id="tipos-de-direcciones">TIPOS DE DIRECCIONES </h2>
+<h3 id="dinámica">DINÁMICA </h3>
 <div class="style-normal">
 <p>Denominamos configuración de red dinámica cuando la interfaz lógica del adaptador de red se configura automáticamente a partir de un servidor denominado servidor DHCP. <strong>El sistema operativo a través de un cliente DHCP solicita los parámetros de configuración de red a un servidor DHCP</strong>. Este proceso de solicitud se conoce con el nombre de D.O.R.A (Discover, Offer, Request, Acknowladge).</p>
 </div>
@@ -318,7 +328,7 @@ Si el servidor DHCP no responde entonces el cliente DHCP asignará al adaptador 
 <p class="admonition-title">Configuración DHCP MS-Windows</p>
 <p><img src="./assets/img-windowsdhcp.png" alt="windowsdhcp" style="display: block; margin: auto; width: 40%; align:center;"></p>
 </div>
-<h3 id="estática">Estática </h3>
+<h3 id="estática">ESTÁTICA </h3>
 <div class="style-normal">
 <p>Denominamos configuración de red estática cuando un administrador o usuario del nodo configura mediante comandos o interfaz gráfica los parámetros de la interfaz de red del adaptador.</p>
 </div>
@@ -326,11 +336,11 @@ Si el servidor DHCP no responde entonces el cliente DHCP asignará al adaptador 
 <p class="admonition-title">Configuración Estática MS-Windows</p>
 <p><img src="./assets/img-windowsstatic.png" alt="windowsstatic" style="display: block; margin: auto; width: 40%; align:center; "></p>
 </div>
-<h3 id="persistente">Persistente </h3>
+<h3 id="persistente">PERSISTENTE </h3>
 <div class="style-normal">
 <p>Denominamos configuración de red persistente cuando la configuración de red, sea esta dinámica o estática, se mantiene en el reinicio o apagado del nodo.</p>
 </div>
-<h3 id="no-persistente">No Persistente </h3>
+<h3 id="no-persistente">NO PERSISTENTE </h3>
 <div class="style-normal">
 <p>Denominamos configuración de red no persistente cuando la configuración de red, sea esta dinámica o estática, no se mantiene en el reinicio o apagado del nodo.</p>
 </div>

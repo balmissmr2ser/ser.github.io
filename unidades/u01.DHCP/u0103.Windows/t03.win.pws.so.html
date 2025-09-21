@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U01 Windows Administración SO PowerShell</title>
+      <title>SER - Windows Administración SO PowerShell</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,6 +167,32 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0.5cm;
+  text-align: justify;
+  text-size: small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content {
+  background-color: lightgrey;
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -190,32 +220,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;
-    text-size: small    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
 <p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="u01-windows-administración-so-powershell">U01 Windows Administración SO PowerShell </h1>
+<h1 id="windows-administración-con-br-powershell">WINDOWS ADMINISTRACIÓN CON <br> POWERSHELL </h1>
 </div>
-<p>📙<a href="./win.pws.so.pdf">Descargar PDF</a></p>
+<p>📙<a href="./t03.win.pws.so.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
 <div style="background-color: Lightgrey;">
 
@@ -232,76 +241,76 @@ table {
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#consulta-de-cmdlets-y-funciones" class="md-toc-link">
-            <p>Consulta de cmdlets y funciones</p>
+            <p>CONSULTA DE CMDLETS Y FUNCIONES</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#módulos" class="md-toc-link"><p>Módulos</p>
+          <a href="#modulos" class="md-toc-link"><p>MODULOS</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-módulos" class="md-toc-link">
-            <p>Mostrar módulos</p>
+          <a href="#mostrar-modulos" class="md-toc-link">
+            <p>MOSTRAR MODULOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#actualizar-módulos" class="md-toc-link">
-            <p>Actualizar módulos</p>
+          <a href="#actualizar-modulos" class="md-toc-link">
+            <p>ACTUALIZAR MODULOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#importar-módulos-en-sesión" class="md-toc-link">
-            <p>Importar módulos en sesión</p>
+          <a href="#importar-modulos-en-sesion" class="md-toc-link">
+            <p>IMPORTAR MODULOS EN SESION</p>
 
           </a></div>
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#obtener-ayuda" class="md-toc-link">
-            <p>Obtener ayuda</p>
+            <p>OBTENER AYUDA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#truncar-comandos" class="md-toc-link">
-            <p>Truncar comandos</p>
+            <p>TRUNCAR COMANDOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tuberías-" class="md-toc-link">
-            <p>Tuberías (|)</p>
+          <a href="#tuberias-" class="md-toc-link">
+            <p>TUBERIAS (|)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#objetos" class="md-toc-link">
-            <p>Objetos</p>
+            <p>OBJETOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#formatear-salida" class="md-toc-link">
-            <p>Formatear salida</p>
+            <p>FORMATEAR SALIDA</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#convertir-salida-a-otros-formatos" class="md-toc-link"><p>Convertir salida a otros formatos</p>
+          <a href="#convertir-salida-a-otros-formatos" class="md-toc-link"><p>CONVERTIR SALIDA A OTROS FORMATOS</p>
 </a>
           </summary>
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#cadena-de-texto" class="md-toc-link"><p>Cadena de texto</p>
+          <a href="#cadena-de-texto" class="md-toc-link"><p>CADENA DE TEXTO</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#fichero-txt" class="md-toc-link">
-            <p>Fichero TXT</p>
+            <p>FICHERO TXT</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#fichero-csv" class="md-toc-link">
-            <p>Fichero CSV</p>
+            <p>FICHERO CSV</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#fichero-json" class="md-toc-link">
-            <p>Fichero JSON</p>
+            <p>FICHERO JSON</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#fichero-xml" class="md-toc-link">
-            <p>Fichero XML</p>
+            <p>FICHERO XML</p>
 
           </a></div>
         </div>
@@ -320,21 +329,21 @@ table {
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#políticas-de-ejecución" class="md-toc-link"><p>Políticas de ejecución</p>
+          <a href="#politicas-de-ejecución" class="md-toc-link"><p>POLITICAS DE EJECUCIÓN</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tipos" class="md-toc-link">
-            <p>Tipos</p>
+            <p>TIPOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ámbitos" class="md-toc-link">
-            <p>Ámbitos</p>
+          <a href="#ambitos" class="md-toc-link">
+            <p>AMBITOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#administración-de-las-políticas-de-ejecución" class="md-toc-link">
-            <p>Administración de las políticas de ejecución</p>
+          <a href="#adminsitración-de-políticas" class="md-toc-link">
+            <p>ADMINSITRACIÓN DE POLÍTICAS</p>
 
           </a></div>
         </div>
@@ -347,16 +356,22 @@ table {
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="consola-powershell">CONSOLA POWERSHELL </h2>
+<div class="style-normal">
 <p>La consola Powershell (<code>powershell.exe</code>) permite mediante el uso de objetos del sistema operativo consultar y/o modificar cualquier parámetro del sistema, incluidos evidentemente los de red. <strong>Los objetos tienen propiedades que los definen y métodos u operaciones que se pueden realizar sobre los objetos</strong>. También hay objetos que además incluyen a otros objetos o colecciones de ellos.</p>
+</div>
 <h2 id="cmdlets">CMDLETS </h2>
+<div class="style-normal">
 <p>En <a href="https://learn.microsoft.com/en-us/powershell/">Powershell</a>, además del uso de órdenes sencillas existen los <strong>cmdlet</strong> y las <strong>funciones</strong>. Desde el punto de vista funcional un cmdlet y una función son similares, por lo que de ahora en adelante nos referiremos a ambos como cmdlet. <strong>Los cmdlet son órdenes o métodos que permiten manipular los objetos y se suelen agrupar en módulos funcionales</strong>. Utiliza el patrón de denominación <strong>verbo-objeto</strong>, donde verbo es el nombre del método a utilizar para manipular el objeto. Son comunes los verbos: Get, Set, New, Add, Remove, Rename, Disable, Enable, Start, Stop ...</p>
 <p>Las diferentes opciones y parámetros para la ejecución de un cmdlet se indican mediante el uso de un guion <code>-</code> y después un posible valor para dicha opción. Cuando ejecutamos un cmdlet la salida resultante es un objeto o una lista de objetos del sistema, aunque el sistema nos lo muestre como texto por la salida estándar en realidad se tratan de objetos.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Usa <code>TAB</code> para completar automáticamente nombres de cmdlets o parámetros.</p>
 </div>
-<h3 id="consulta-de-cmdlets-y-funciones">Consulta de cmdlets y funciones </h3>
+<h3 id="consulta-de-cmdlets-y-funciones">CONSULTA DE CMDLETS Y FUNCIONES </h3>
+<div class="style-normal">
 <p>Se puede obtener información de los comandos instalados en powershell con los cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5">Get-Command</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Command</p>
 <p>Obtener todos los cmdlet del objeto que contiene el patrón <em>-Net</em>.</p>
@@ -422,16 +437,18 @@ ommandType Name                  Version Source
 <span class="token keyword keyword-Function">Function</span>    <span class="token function">Update-Module</span>         1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1 PowerShellGet
 <span class="token keyword keyword-Function">Function</span>    <span class="token function">Update-ModuleManifest</span> 1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1 PowerShellGet
 Cmdlet      <span class="token function">Export-ModuleMember</span>   3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
-Cmdlet      <span class="token function">Get-Module</span>            3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
+</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Cmdlet      <span class="token function">Get-Module</span>            3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">Import-Module</span>         3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">New-Module</span>            3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">New-ModuleManifest</span>    3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">Remove-Module</span>         3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">Test-ModuleManifest</span>   3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 </code></pre></div>
-<h3 id="módulos">Módulos </h3>
-<h4 id="mostrar-módulos">Mostrar módulos </h4>
+<h3 id="modulos">MODULOS </h3>
+<h4 id="mostrar-modulos">MOSTRAR MODULOS </h4>
+<div class="style-normal">
 <p>Para mostrar los módulos instalados usamos el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/get-module?view=powershell-7.5">Get-Module</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Module</p>
 <p>Mostrar todos los módulos disponibles en la sesión actual.</p>
@@ -449,12 +466,19 @@ Script     2<span class="token punctuation">.</span>0<span class="token punctuat
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Module</span> <span class="token operator">-</span>ListAvailable
 </code></pre><p>No se ha mostrado la salida ya que es bastante extensa.</p>
 </div>
-<h4 id="actualizar-módulos">Actualizar módulos </h4>
+<h4 id="actualizar-modulos">ACTUALIZAR MODULOS </h4>
+<div class="style-normal">
 <p>Se pueden actualizar los módulos del sistema a partir de repositorios como <em>Powershell Gallery</em>. Podemos Buscar, Instalar, Actualizar o Desinstalar módulos del sistema. Para ello se utilizan los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/powershellget/find-module?view=powershellget-3.x">Find-Module</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/powershellget/install-module?view=powershellget-3.x">Install-Module</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/powershellget/update-module?view=powershellget-3.x">Update-Module</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/powershellget/uninstall-module?view=powershellget-3.x">Uninstall-Module</a> respectivamente.</p>
-<h4 id="importar-módulos-en-sesión">Importar módulos en sesión </h4>
+</div>
+<h4 id="importar-modulos-en-sesion">IMPORTAR MODULOS EN SESION </h4>
+<div class="style-normal">
 <p>A partir de Powershell 3.0 no es necesario importar módulos instalados a la sesión actual, ya que el sistema lo hace automáticamente al utilizar cualquier cmdlet definido en un módulo. No obstante, se puede realizar manualmente con los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/import-module?view=powershell-7.5">Import-Module</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/remove-module?view=powershell-7.5">Remove-Module</a> respectivamente.</p>
-<h3 id="obtener-ayuda">Obtener ayuda </h3>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="obtener-ayuda">OBTENER AYUDA </h3>
+<div class="style-normal">
 <p>Para obtener ayuda sobre el uso y las opciones que se pueden utilizar en un cmdlet se utiliza <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/get-help?view=powershell-7.5">Get-Help</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Ayuda en línea</p>
 <p>Obtener la ayuda sobre <code>Get-NetIPAddress</code>.</p>
@@ -477,17 +501,21 @@ SINTAXIS
 <p>Pulsa <code>TAB</code> tras para completar el nombre de un cmdlet, una opción, valores de las opciones, etc ...<br>
 Por ejemplo, si escribimos <code>Get-NetIPAddress –</code> y pulsamos la tecla <code>TAB</code> se nos mostrarán cada una de las posibles opciones.</p>
 </div>
-<h3 id="truncar-comandos">Truncar comandos </h3>
+<h3 id="truncar-comandos">TRUNCAR COMANDOS </h3>
+<div class="style-normal">
 <p>A veces, un cmdlet puede ser demasiado largo para escribirse en una sola línea. En estos casos, puedes dividirlo en varias líneas utilizando el carácter de escape <strong>`</strong> al final de cada línea y pulsando la tecla <code>Enter</code>. Al hacerlo, aparecerá el símbolo <code>&gt;&gt;</code> en la línea siguiente, indicando que puedes continuar escribiendo.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Cmdlet en más de una línea</p>
 <p>En el siguiente ejemplo después de escribir el carácter <strong>`</strong> pulsamos la tecla <em><code>Enter</code></em> (no se escribe el literal <code>&lt;Enter&gt;</code>) y nos aparece el literal <code>&gt;&gt;</code> en la siguiente línea.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-DnsClientServerAddress</span> –InterfaceAlias MiRed –ServerAddress `&lt;Enter&gt;
 &gt;&gt; 1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1 –Validate:<span class="token boolean">$false</span>
 </code></pre></div>
-<h3 id="tuberías-">Tuberías (|) </h3>
-<p>Se denomina tubería a la posibilidad de encadenar la salida de un cmdlet como entrada de otro. Para realizar tuberías se utiliza el operador pipe <code>|</code>.<br>
-Es muy común utilizar tuberías para dar formato a la salida, por ejemplo, con <code>Format-Table</code>, <code>Format-List</code> o <code>Format-Wide</code>.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="tuberias-">TUBERIAS (|) </h3>
+<div class="style-normal">
+<p>Se denomina tubería a la posibilidad de encadenar la salida de un cmdlet como entrada de otro. Para realizar tuberías se utiliza el operador pipe <code>|</code>. Es muy común utilizar tuberías para dar formato a la salida, por ejemplo, con <code>Format-Table</code>, <code>Format-List</code> o <code>Format-Wide</code>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Tuberías</p>
 <p>Obtener los usuarios locales de nombre <em>admin</em> y <em>guest</em> en formato de lista y mostrar solamente las propiedades <em><code>Name</code></em> y <em><code>Enabled</code></em>.</p>
@@ -498,8 +526,10 @@ Enabled  : True
 Name     : Guest
 Enabled  : False
 </code></pre></div>
-<h3 id="objetos">Objetos </h3>
+<h3 id="objetos">OBJETOS </h3>
+<div class="style-normal">
 <p>Como la salida de los cmdlets  es también un objeto o una lista de objetos se pueden utilizar el pipe (tubería) y cmdlets adicionales para manipular los objetos. Algunos cmdlets para manipular objetos son: <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/foreach-object?view=powershell-7.5">ForEach-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.5">Where-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/compare-object?view=powershell-7.5">Compare-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/group-object?view=powershell-7.5">Group-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.5">Select-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/sort-object?view=powershell-7.5">Sort-Object</a> ...</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Objetos</p>
 <p>Obtener todas las interfaces de red, pero solamente el índice y el nombre ordenadas por el número de índice.</p>
@@ -507,21 +537,21 @@ Enabled  : False
 ifIndex InterfaceAlias
 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
       1 Loopback Pseudo-Interface 1
-      1 Loopback Pseudo-Interface 1
       3 Conexión de área local* 12
-      3 Conexión de área local* 12
-      5 MiRed
       5 MiRed
      14 Wi-Fi
-     14 Wi
 </code></pre></div>
+<div class="style-normal">
 <p>También podemos asignar la salida de un cmdlet a una variable.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Objetos y variables</p>
 <p>Asignar a la variable <code>$i</code> el objeto obtenido por el cmdlet <code>Get-NetIPInterface</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$i</span> = <span class="token function">Get-NetIPInterface</span> –InterfaceAlias “MiRed” –AddressFamily IPv4
 </code></pre></div>
+<div class="style-normal">
 <p>Para ver todas las propiedades y métodos de un objeto podemos usar el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/get-member?view=powershell-7.5">Get-Member</a>. Además podemos ver el valor de una propiedad, modificarlo o invocar un método con la sintaxis <strong>objeto.propiedad</strong> u <strong>objeto.metodo()</strong>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Objetos y variables</p>
 <p>Mostrar las propiedades y métodos del objeto <code>$i</code> del ejemplo anterior.</p>
@@ -534,9 +564,11 @@ ifIndex InterfaceAlias
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$i</span><span class="token punctuation">.</span>ifIndex
 6
 </code></pre></div>
-<h3 id="formatear-salida">Formatear salida </h3>
+<h3 id="formatear-salida">FORMATEAR SALIDA </h3>
+<div class="style-normal">
 <p>PowerShell tiene un conjunto de cmdlets que permite controlar cómo se muestra la salida de un cmdlet. Estos cmdlet comienzan con el verbo Format y además permiten seleccionar las propiedades que se quieren mostrar mediante la opción <code>-Property</code>.</p>
 <p>Los cmdlets de formateo de la salida son:</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -587,47 +619,61 @@ Invitado             False
 Profesor              True
 WDAGUtilityAccount   False
 </code></pre></div>
-<h3 id="convertir-salida-a-otros-formatos">Convertir salida a otros formatos </h3>
+<h3 id="convertir-salida-a-otros-formatos">CONVERTIR SALIDA A OTROS FORMATOS </h3>
+<div class="style-normal">
 <p>Los cmdlet operan sobre objectos y devuelven como salida objetos. A veces, es necesario obtener la salida en otros formatos.</p>
-<h4 id="cadena-de-texto">Cadena de texto </h4>
+</div>
+<h4 id="cadena-de-texto">CADENA DE TEXTO </h4>
+<div class="style-normal">
 <p>Para producir la salida como una cadena de texto se utilizarán el operador pipe y el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-string?view=powershell-7.5">Out-String</a>. Por ejemplo, un uso común es utilizar la salida de un cmdlet para asignar el valor a una variable (las variables se definen en powershell utilizando el símbolo <code>$</code>).</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a cadena de texto</p>
 <p>Obtener el nombre de la interfaz de red de nombre <em>MiRed</em> en formato cadena y asignarlo a una variable de nombre <code>$MiRedName</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$MiRedName</span> = <span class="token punctuation">(</span><span class="token function">Get-NetAdapter</span> –Name MiRed <span class="token punctuation">|</span> <span class="token function">Format-Wide</span> –Property ifIndex <span class="token punctuation">|</span> <span class="token function">Out-String</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Trim<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre><p>El método <code>Trim()</code> elimina los espacios a izquierda y derecha de una cadena de texto.</p>
 </div>
-<h5 id="fichero-txt">Fichero TXT </h5>
+<div style="page-break-after:always;"></div>
+<h5 id="fichero-txt">FICHERO TXT </h5>
+<div class="style-normal">
 <p>Se utiliza el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero de texto</p>
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>.txt</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>txt
 </code></pre></div>
-<h5 id="fichero-csv">Fichero CSV </h5>
+<h5 id="fichero-csv">FICHERO CSV </h5>
+<div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-csv?view=powershell-7.5">ConvertTo-CSV</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero CSV</p>
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>csv</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-CSV</span> <span class="token operator">-</span>NoTypeInformation <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>csv
 </code></pre></div>
-<h5 id="fichero-json">Fichero JSON </h5>
+<h5 id="fichero-json">FICHERO JSON </h5>
+<div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-csv?view=powershell-7.5">ConvertTo-JSON</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero JSON</p>
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>json</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-Json</span> <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>json
 </code></pre></div>
-<h5 id="fichero-xml">Fichero XML </h5>
+<h5 id="fichero-xml">FICHERO XML </h5>
+<div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-xml?view=powershell-7.5">ConvertTo-XML</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero XML</p>
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>xml</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-XML</span> <span class="token operator">-</span>NoTypeInformation <span class="token operator">-As</span> String <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>xml
 </code></pre></div>
 <h2 id="scripts">SCRIPTS </h2>
-<p>Los scripts de Powershell son ficheros de texto que contienen una serie de comandos y/o funciones que se ejecutan en el orden en que aparecen. Los scripts pueden contener comentarios, variables, estructuras de control, funciones y cmdlets.<br>
-Los ficheros de scripts suelen tener las siguientes extensiones.</p>
+<div class="style-normal">
+<p>Los scripts de Powershell son ficheros de texto que contienen una serie de comandos y/o funciones que se ejecutan en el orden en que aparecen. Los scripts pueden contener comentarios, variables, estructuras de control, funciones y cmdlets. Los ficheros de scripts suelen tener las siguientes extensiones.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -650,9 +696,11 @@ Los ficheros de scripts suelen tener las siguientes extensiones.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="políticas-de-ejecución">Políticas de ejecución </h3>
+<h3 id="politicas-de-ejecución">POLITICAS DE EJECUCIÓN </h3>
+<div class="style-normal">
 <p>La ejecución de scripts en Powershell está restringida por las <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">políticas de ejecución</a>. Estas políticas de ejecución son una característica de seguridad que controla las condiciones en que Powershell carga ficheros de configuración y ejecuta los scripts.</p>
-<h4 id="tipos">Tipos </h4>
+</div>
+<h4 id="tipos">TIPOS </h4>
 <ul>
 <li><strong>Restricted</strong>
 <ul>
@@ -704,10 +752,14 @@ Los ficheros de scripts suelen tener las siguientes extensiones.</p>
 </ul>
 </li>
 </ul>
-<h4 id="ámbitos">Ámbitos </h4>
+<h4 id="ambitos">AMBITOS </h4>
+<div class="style-normal">
 <p>Las políticas de ejecución se pueden configurar y ejecutar en diferentes <strong>ámbitos</strong> (<code>scopes</code>). Los ámbitos por orden de preferencia son: <em>MachinePolicy</em>, <em>UserPolicy</em>, <em>Process</em>, <em>CurrentUser</em> y <em>LocalMachine</em></p>
-<h4 id="administración-de-las-políticas-de-ejecución">Administración de las políticas de ejecución </h4>
+</div>
+<h4 id="adminsitración-de-políticas">ADMINSITRACIÓN DE POLÍTICAS </h4>
+<div class="style-normal">
 <p>Las políticas de ejecución se pueden administrar a través del objeto <code>ExecutionPolicy</code> y los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7.5">Get-ExecutionPolicy</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.5">Set-ExecutionPolicy</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Políticas de ejecución</p>
 <p>Obtener la configuración actual de las políticas de ejecución.</p>
