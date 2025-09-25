@@ -171,7 +171,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   table-layout: auto !important;
   width: fit-content !important;
   max-width: none !important;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
@@ -246,11 +246,28 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#ambito-de-ejecución" class="md-toc-link">
             <p>AMBITO DE EJECUCIÓN</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#conexión-tcp-ip" class="md-toc-link"><p>CONEXIÓN TCP-IP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#estados-de-una-conexión" class="md-toc-link">
+            <p>ESTADOS DE UNA CONEXIÓN</p>
+
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#conexión-tcp-ip" class="md-toc-link">
-            <p>CONEXIÓN TCP-IP</p>
+          <a href="#netstat-windows" class="md-toc-link">
+            <p>NETSTAT WINDOWS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#netstat-linux" class="md-toc-link">
+            <p>NETSTAT LINUX</p>
 
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
@@ -352,6 +369,194 @@ El servidor ofrece sus servicios a cualquier equipo de cualquier red a la que es
 </tbody>
 </table>
 </div>
+</div>
+<h4 id="estados-de-una-conexión">ESTADOS DE UNA CONEXIÓN </h4>
+<div class="style-normal">
+<p>Las conexiones TCP tienen un ciclo de vida de 3 fases:</p>
+<div class="style-list" style="margin-left: 1cm;">
+<ul>
+<li>Establecimiento de la conexión</li>
+<li>Transmisión de datos</li>
+<li>Finalización de la conexión</li>
+</ul>
+</div>
+<p>Las conexiones UPD tienen un ciclo de vida de 1 fase:</p>
+<div class="style-list" style="margin-left: 1cm;">
+<ul>
+<li>Transmisión de datos.</li>
+</ul>
+</div>
+<p>Durante el ciclo de vida de una conexión los puertos que forman parte de ella se pueden encontrar en diferentes estados:</p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Estado</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Establecer</strong></td>
+<td>Listen</td>
+<td>Se ha abierto el puerto y está a la espera de conexiones. Es el estado típico de un proceso servidor</td>
+</tr>
+<tr>
+<td></td>
+<td>SYN-Sent</td>
+<td>Se ha enviado una petición de conexión</td>
+</tr>
+<tr>
+<td></td>
+<td>SYN-Received</td>
+<td>Se ha recibido una petición de conexión</td>
+</tr>
+<tr>
+<td><strong>Transmitir</strong></td>
+<td>Established</td>
+<td>Se ha establecido una conexión. Se pueden enviar y recibir datos</td>
+</tr>
+<tr>
+<td><strong>Finalizar</strong></td>
+<td>Fin-Wait-1</td>
+<td>Se ha solicitado la finalización de la conexión</td>
+</tr>
+<tr>
+<td></td>
+<td>Close-Wait</td>
+<td>Se ha recibido una solicitud de finalización</td>
+</tr>
+<tr>
+<td></td>
+<td>Closing</td>
+<td>Se esta realizando la finalización</td>
+</tr>
+<tr>
+<td></td>
+<td>Fin-Wait-2</td>
+<td>Se informa de que se está a la espera de finalización</td>
+</tr>
+<tr>
+<td></td>
+<td>Last-Ack</td>
+<td>Se encuentra en espera del ACK de finalización</td>
+</tr>
+<tr>
+<td></td>
+<td>Time-Wait</td>
+<td>Se espera a la recepción del Last-Ack por el destino</td>
+</tr>
+<tr>
+<td></td>
+<td>Closed</td>
+<td>Se ha cerrado la conexión</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="netstat-windows">NETSTAT WINDOWS </h4>
+<div class="style-normal">
+<p>En los sistemas windows podemos comprobar el estado de las conexiones mediante el comando <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/netstat"><code>netstat</code></a></p>
+<div class="admonition example">
+<p class="admonition-title">netstat</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -ano
+   Proto  Dirección local          Dirección remota     Estado          PID
+   TCP    0.0.0.0:135              0.0.0.0:0              LISTENING       1456
+   TCP    0.0.0.0:445              0.0.0.0:0              LISTENING       4
+   TCP    127.0.0.1:5939           0.0.0.0:0              LISTENING       5012
+   TCP    192.168.1.138:139        0.0.0.0:0              LISTENING       4
+   TCP    192.168.1.138:49712      23.196.96.159:80       CLOSE_WAIT      8728
+   TCP    192.168.1.138:57012      192.168.1.128:8009     ESTABLISHED     13260
+   TCP    [::]:135                 [::]:0                 LISTENING       1456
+   TCP    [::]:445                 [::]:0                 LISTENING       4
+   TCP    [2a0c::5035:277f]:10584  [2a00::c07::bc]:5228   ESTABLISHED     13260
+   TCP    [2a0c::5035:277f]:49693  [2603::400]:443        ESTABLISHED     4848
+   UDP    0.0.0.0:60196          *:*                                      2952
+   UDP    0.0.0.0:62285          *:*                                      3248
+   UDP    127.0.0.1:52111        127.0.0.1:52111                          4708
+   UDP    127.0.0.1:52112        127.0.0.1:52113                          4564
+   UDP    127.0.0.1:52113        127.0.0.1:52112                          4564
+   UDP    [::]:123               *:*                                      8424
+...
+</code></pre><p>Se han omitido resultados en la salida de netstat y se han utilizado solo algunos a modo de ejemplo. Se puede comprobar como netstat distingue entre conexiones TCP y UDP. Las conexiones UDP solo tienen una fase por lo que el puerto carece de estado. La salida incluye direcciones IPv4 e IPv6. El campo PID nos indica el identificador del proceso que ha ejecutado la conexión.</p>
+<p>Cuando en el campo dirección local la IP es any-address (0.0.0.0 en IPv4 ó [::] en IPv6) nos indica que el puerto esta siendo utilizado para cualquier dirección IP que tenga configurado el host.</p>
+<p>Cuando en dirección remota la IP es any-address nos está indicando que no hay conexión activa y se puede comprobar que el estado es LISTENING para TCP. En UDP esta situación se refleja con dirección remota *:*.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">obtener programa que ejecuta la conexión con tasklist</p>
+<p>Podemos obtener el programa que ha ejecutado la conexión con el comando <code>tasklist</code></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sintaxis 
+   tasklist /FI "PID eq [nºPID]"
+   tasklist /FI "PID eq 1456"
+   Nombre de imagen               PID Nombre de sesión Núm. de ses Uso de memoria
+   ========================= ======== ================ =========== ==============
+   svchost.exe                   1456 Services                   0      15.676 KB
+</code></pre></div>
+<div style="page-break-after:always;"></div>
+<div class="admonition tip">
+<p class="admonition-title">obtener programa que ejecuta la conexión con netstat</p>
+<p>Podemos obtener el programa que ha ejecutado la conexión añadiendo la opción -b a netstat</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -anob
+   Proto  Dirección local        Dirección remota       Estado          PID
+   TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       1456
+   RpcSs
+   [svchost.exe]
+   ....
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">netstat filtrar la salida</p>
+<p>Podemos filtar las conexiones añadiendo un filtrado con <code>findstr</code></p>
+<p>Obtener solo conexiones IPv4</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -ano | findstr /V "["
+</code></pre><p>Obtener solo conexiones IPv6</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -ano | findstr "["
+</code></pre><p>Obtener solo conexiones TCP</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -ano | findstr "TCP"
+</code></pre><p>Obtener solo conexiones IPv4 que sean UDP</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -ano | findstr /V "[" | findstr "UDP"
+</code></pre></div>
+</div>
+<h4 id="netstat-linux">NETSTAT LINUX </h4>
+<div class="style-normal">
+<p>En los sistemas linux podemos comprobar el estado de las conexiones mediante el comando <a href="https://manpages.debian.org/testing/manpages-es/netstat.8.es.html"><code>netstat</code></a> perteneciente al paquete <a href="https://manpages.debian.org/testing/net-tools/"><code>net-tools</code></a>. Las opciones del comando son ligeramente diferentes a las de windows.</p>
+<div class="admonition example">
+<p class="admonition-title">netstat</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -an
+   Proto  Recv-Q    Send-Q  LocalAddress             ForeingAddress    State
+   tcp         0         0  10.0.2.15:53             0.0.0.0:*         LISTEN
+   tcp         0         0  0.0.0.0:22               0.0.0.0:*         LISTEN
+   tcp6        0         0  fe80::a00:27ff:fe64::53  :::*              LISTEN
+   udp         0         0  10.0.2.15:53             0.0.0.0:*
+   udp         0         0  10.0.2.15:32959          100.100.1.1:53    ESTABLISHED
+...
+</code></pre><p>Se han omitido resultados en la salida de netstat y se han utilizado solo algunos a modo de ejemplo.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">obtener programa que ejecuta la conexión con netstat</p>
+<p>Podemos obtener el programa que ha ejecutado la conexión añadiendo la opción -p a netstat</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -anp
+   Proto  Recv-Q    Send-Q  LocalAddress             ForeingAddress    State   PID/Program name
+   tcp         0         0  10.0.2.15:53             0.0.0.0:*         LISTEN  412/named
+   ....
+</code></pre></div>
+<p>En los sistemas linux podemos también comprobar el estado de las conexiones mediante el comando <a href="https://manpages.debian.org/testing/iproute2/ss.8.en.html"><code>ss</code></a> perteneciente al paquete <a href="https://manpages.debian.org/testing/iproute2/"><code>iproute2</code></a>.</p>
+<div class="admonition example">
+<p class="admonition-title">ss</p>
+<p>Obtener conexiones IPv4</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ss -an -4
+   Proto  State     Recv-Q    Send-Q    Local Address:Port      Peer Address:Port
+   udp    UNCONN    0         0         10.0.2.15:53            0.0.0.0:*
+   udp    ESTAB     0         0         10.0.2.15:39784         100.90.1.1:53
+   tcp    LISTEN    0         128       0.0.0.0:22              0.0.0.0:*
+...
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">otras opciones ss</p>
+<p>Obtener conexiones IPv6</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ss -an -6
+</code></pre><p>Obtener el proceso que realiza la conexión</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ss -an -p
+</code></pre></div>
 </div>
 
       </div>
