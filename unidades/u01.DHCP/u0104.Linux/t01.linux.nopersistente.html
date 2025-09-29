@@ -343,11 +343,45 @@ table {
 </a>
           </summary>
         <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ip-link" class="md-toc-link"><p>IP LINK</p>
+</a>
+          </summary>
+        <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ip" class="md-toc-link">
-            <p>IP</p>
+          <a href="#mostrar-el-estado-de-las-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR EL ESTADO DE LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#activar-y-desactivar-interfaces-de-red" class="md-toc-link">
+            <p>ACTIVAR Y DESACTIVAR INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cambiar-la-mac-de-una-interfaz-de-red" class="md-toc-link">
+            <p>CAMBIAR LA MAC DE UNA INTERFAZ DE RED</p>
 
           </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ip-address" class="md-toc-link"><p>IP ADDRESS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-la-configuración-ip-de-las-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR LA CONFIGURACIÓN IP DE LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#asignar-una-dirección-ip-y-máscara-a-una-interfaz" class="md-toc-link">
+            <p>Asignar una dirección IP y máscara a una interfaz</p>
+
+          </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
@@ -790,22 +824,155 @@ Address       Hwtype      Hwaddress           Flags       Mask    Iface
 <h2 id="la-librería-iproute2">LA LIBRERÍA IPROUTE2 </h2>
 <div class="style-normal">
 <p>La librería <strong>iproute2</strong> es la más moderna y recomendada en las distribuciones actuales de Linux. Proporciona una herramienta unificada llamada <code>ip</code> para gestionar la red de forma avanzada. Esta herramienta reemplaza a las utilidades clásicas de <strong>net-tools</strong> y ofrece una interfaz más coherente y potente para la configuración de red.</p>
+<p>Con el comando <code>ip</code> se pueden realizar tareas que antes requerían múltiples comandos separados, como <code>ifconfig</code>, <code>route</code> y <code>arp</code>. La sintaxis del comando <code>ip</code> es flexible y permite gestionar diversos aspectos de la configuración de red, incluyendo interfaces, direcciones IP, rutas y tablas ARP. La sintaxis básica del comando ip es la siguiente:</p>
 </div>
-<h3 id="ip">IP </h3>
-<div class="style-normal">
-<p>La herramienta <code>ip</code> de <strong>iproute2</strong> permite realizar operaciones avanzadas de configuración de red. Algunas de las operaciones más comunes son:</p>
-</div>
-<ul>
-<li>
-<p><strong>Asignar una dirección IP y máscara a una interfaz</strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip [OPTIONS] OBJECT {COMMAND | help}
+</code></pre><div class="style-normal">
+<p>Las opciones (<strong>OPTIONS</strong>) y el objeto (<strong>OBJECT</strong>) determinan qué aspecto de la configuración de red se va a gestionar, mientras que el comando (<strong>COMMAND</strong>) especifica la acción a realizar. La opción <code>help</code> proporciona información sobre el uso del comando.<br>
+Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <strong>COMMAND</strong> son numerosos. Los valores más comunes son de <strong>OBJECT</strong> son:</p>
+</div> 
 <div class="style-normal2">
+<ul>
+<li><em><strong>link</strong></em>: Utilizado para la gestión de las interfaces de red a nivel de enlace.</li>
+<li><em><strong>address</strong></em>: Utilizado para la gestión del direccionamiento de red.</li>
+<li><em><strong>route</strong></em>: Utilizado para la gestión de las tablas de enrutamiento.</li>
+<li><em><strong>neighbour</strong></em>: Utilizado para la gestión de las tablas ARP.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>EL comando <code>ip</code> admite abreviaciones de las diferentes opciones con que se ejecuta siempre y cuando no haya ambigüedad.</p>
+</div>
+<h3 id="ip-link">IP LINK </h3>
+<div class="style-normal">
+<p>El comando <code>ip</code> con el objeto <strong>link</strong> nos permite llevar a cabo acciones como: activar y desactivar interfaces de red, ver el estado de éstas y cambiarles la dirección MAC.</p>
+</div>
+<h4 id="mostrar-el-estado-de-las-interfaces-de-red">MOSTRAR EL ESTADO DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip link show [up] [dev] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Muestra información del estado de una interfaz (o de todas si no se especifica interfaz). Con el flag <code>up</code> solo muestra las interfaces activas. La palabra reservada <code>dev</code> la podemos omitir.</p>
+<p>Una forma abreviada del comando para mostrar todas las interfaces de red sería la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip link
+</code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar estado interfaces de red</p>
+<div class="style-normal2">
+<p>Mostrar el estado de todas las interfaces e red que estén activas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link show up
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+   link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+   link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+</code></pre><p>Entre la información mostrada podemos comprobar que tenemos dos interfaces de red: la interfaz de loopback (<strong>lo</strong>) y la de la tarjeta de red <strong>enp0s3</strong>. Además se puede observar que las dos interfaces están activas (flag <code>UP</code>) y que la MAC de la tarjeta de red es <code>08:00:27:f2:b7:02</code>.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar estado interfaces de red</p>
+<div class="style-normal2">
+<p>Mostrar el estado de la interfaz de red <strong>enp0s8</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link dev enp0s8
+</code></pre><p>Alternativamente, podríamos haber utilizado el comando:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link enp0s8
+</code></pre></div>
+</div>
+<h4 id="activar-y-desactivar-interfaces-de-red">ACTIVAR Y DESACTIVAR INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set [dev] &lt;interfaz&gt; [up|down]
+</code></pre><div class="style-normal">
+<p>Activa una interfaz de red (opción <code>up</code>) y desactiva una interfaz de red (opción <code>down</code>).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Activar y desactivar interfaces de red</p>
+<div class="style-normal2">
+<p>Desactivar la interfaz de red <strong>enp0s3</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set dev enp0s3 down
+</code></pre></div>
+</div>
+<h4 id="cambiar-la-mac-de-una-interfaz-de-red">CAMBIAR LA MAC DE UNA INTERFAZ DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set [dev] &lt;interfaz&gt; address &lt;nueva-mac&gt;
+</code></pre><div class="style-normal">
+<p>Cuando cambiamos la MAC de una interfaz de red con el comando <code>ip link set</code> este cambio es temporal y no persistente; es decir, se pierde al reiniciar el sistema.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Cambiar MAC interfaz de red</p>
+<div class="style-normal2">
+<p>Cambiar la MAC de la interfaz de red <strong>enp0s3</strong> por la MAC <code>00:00:2a:3a:4a:5a</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set dev enp0s3 00:00:2a:3a:4a:5a
+</code></pre><p>Si mostramos el estado de la interfaz de red con el comando <code>ip link show enp0s3</code> podemos comprobar que la MAC ha cambiado. También podemos observar que aparece el campo <code>permaddr</code> que nos indica la MAC original de la interfaz de red.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link show enp0s3
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+   link/ether 00:00:2a:3a:4a:5a brd ff:ff:ff:ff:ff:ff permaddr 08:00:27:f2:b7:02
+</code></pre></div>
+</div>
+<h3 id="ip-address">IP ADDRESS </h3>
+<div class="style-normal">
+<p>El comando <code>ip</code> con el objeto <strong>address</strong> nos permite llevar a cabo acciones como: mostrar la configuración de las interfaces de red y asignar direcciones IP a las mismas.</p>
+</div>
+<h4 id="mostrar-la-configuración-ip-de-las-interfaces-de-red">MOSTRAR LA CONFIGURACIÓN IP DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address show [up] [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Muestra la configuración del direccionamiento de todas las interfaces de red o la de la interfaz pasada como parámetro. Con la opción <code>up</code> se muestran solo las que están activadas. La información más relevante que muestra este comando es:</p>
+</div>
+<div class="style-normal">
+<ul>
+<li>El nombre de la interfaz (o interfaces) de red</li>
+<li>La dirección IPv4</li>
+<li>La dirección de broadcast</li>
+<li>La dirección MAC</li>
+<li>El estado de la interfaz. El flag <code>UP</code> y el indicador <code>state UP</code> indican que la interfaz está activa (si no aparecen no está activa).</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración interfaces</p>
+<div class="style-normal2">
+<p>Muestra la configuración de todas las interfaces de red, estén o no activadas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address show
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast2 state UP group default qlen 1000
+    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.17/245 brd 192.168.2.255 scope global dynamic enp0s3
+       valid_lft 310sec preferred_lft 310sec
+    inet6 fe80::a00:27ff:fef2:b702/64 scope link
+       valid_lft forever preferred_lft forever
+</code></pre><p>En la imagen se muestra la salida del comando <code>ip addr show</code> en un equipo con una única interfaz de red activa (<strong>enp0s3</strong>) y la interfaz de loopback (<strong>lo</strong>).<br>
+En la salida del comando se puede observar:</p>
+<ul>
+<li>El nombre de la interfaz de red (<strong>enp0s3</strong> y <strong>lo</strong>).</li>
+<li>La dirección MAC (para <strong>enp0s3</strong> sería <code>08:00:27:f2:b7:02</code>).</li>
+<li>La dirección IPv4 (para <strong>enp0s3</strong> sería <code>192.168.1.10/24</code>).</li>
+<li>La dirección de broadcast (para <strong>enp0s3</strong> sería <code>192.168.1.255</code>).</li>
+<li>El estado de la interfaz. El flag <code>UP</code> y el indicador <code>state UP</code> indican que la interfaz está activa.</li>
+</ul>
+<p>Cualquiera de los comandos mostrados a continuación son equivalentes, pues como ya sabemos se admiten abreviaturas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address
+root@Host:~# ip addr show
+root@Host:~# ip addr
+root@Host:~# ip a sh
+root@Host:~# ip a
+</code></pre></div>
+</div>
+<p>Muestra la configuración de la interfaz enp0s3.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr show enp0s3
+</code></pre><p>Las opciones marcadas indican que la interfaz está activada. Si no aparece es que no está activada.</p>
+<p>Hemos desactivado la interfaz enp0s3. Primero mostramos la configuración de todas las interfaces y a continuación solo de las activas.<br>
+Todas las interfaces.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr show
+</code></pre><p>Fijémosnos que la interfaz enp0s3 ya no tiene el flag UP y el indicador state UP, lo que indica que la interfaz está desactivada.</p>
+<p>Solo las interfaces activas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr show up
+</code></pre><p>Ahora sólo se muestra la interfaz de loopback lo ya que la interfaz enp0s3 está desactivada.</p>
+<h4 id="asignar-una-dirección-ip-y-máscara-a-una-interfaz">Asignar una dirección IP y máscara a una interfaz </h4>
+  <div class="style-normal2">
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
 </code></pre><p>Asigna una dirección IP y una máscara de red a una interfaz de red.</p>
 <div class="admonition example">
 <p class="admonition-title">Asignar IP a interfaz</p>
 <p>Asignar la IP `</p>
 </div>
-</div></li>
+<ul>
 <li>
 <p><strong>Mostrar información de las interfaces de red</strong></p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr show [&lt;interfaz&gt;]
@@ -1559,7 +1726,7 @@ Dirección de Internet     Dirección física
 <p>Conectar a la red inálambrica utilizando el profile de nombre <em>MiCasa</em>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh wlan connect name="MiCasa"
 </code></pre></div>
-
+</div>
       </div>
       
       
