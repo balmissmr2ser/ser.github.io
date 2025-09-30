@@ -230,7 +230,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div class="style-title">
 <h1 id="servicios-br-windows">SERVICIOS <br> WINDOWS </h1>
 </div>
-<p>📙<a href="./t01.win.servicios.pdf">Descargar PDF</a></p>
+<p>📙<a href="./t02.win.servicios.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
 <div class="style-table-content">
 
@@ -254,8 +254,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             <p>CMD COMANDO SC</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#powershell-get-service" class="md-toc-link">
-            <p>POWERSHELL GET-SERVICE</p>
+          <a href="#powershell-service" class="md-toc-link">
+            <p>POWERSHELL SERVICE</p>
 
           </a></div>
         </div>
@@ -380,6 +380,7 @@ Contiene información sobre las dependencias del servicio:
 <h3 id="cmd-comando-net">CMD COMANDO NET </h3>
 <div class="style-normal">
 <p>El comando <code>net</code> nos permite gestionar entre otros aspectos los servicios del sistema. Las opciones más habituales son:</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -414,11 +415,11 @@ Contiene información sobre las dependencias del servicio:
 </tr>
 </tbody>
 </table>
-</div>
+<div class="style-normal2">
 <div class="admonition example">
 <p class="admonition-title">net start</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>net start
-   ...
+...
 Apple Mobile Device Service
 Asignador de extremos de RPC
 Audio de Windows
@@ -433,9 +434,7 @@ Configuración automática de WLAN
 Contenedor de Microsoft Passport
 Energía
 ...
-</code></pre><div class="style-normal">
-<p>Se han omitido resultados en la salida del comando y se han utilizado solo algunos a modo de ejemplo. Se puede comprobar que en la lista de servicios en ejecución no se utiliza el nombre identificador sino el nombre descriptivo (display name)</p>
-</div>
+</code></pre><p>Se han omitido resultados en la salida del comando y se han utilizado solo algunos a modo de ejemplo. Se puede comprobar que en la lista de servicios en ejecución no se utiliza el nombre identificador sino el nombre descriptivo (display name)</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">net stop</p>
@@ -445,19 +444,15 @@ Detener el servicio de Cliente DHCP también detendrá estos Servicios:
 Servicio de detección automática de proxy web WinHTTP
 ¿Desea continuar esta operación? (S/N) [N]:
 ...
-</code></pre><div class="style-normal">
-<p>Al detener un servicio nos indica los servicios que dependen de él y que también se detendran.</p>
-</div>
+</code></pre><p>Al detener un servicio nos indica los servicios que dependen de él y que también se detendran.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">net</p>
-<div class="style-normal">
-<p>Cuando  ejecutamos un comando net podemos usar tanto el nombre<br>
-descriptivo como el identificador del servicio.</p>
-</div>
+<p>Cuando  ejecutamos un comando net podemos usar tanto el nombre descriptivo como el identificador del servicio.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>net stop "Cliente DHCP"
 net stop dhcp
 </code></pre></div>
+</div>
 <h3 id="cmd-comando-sc">CMD COMANDO SC </h3>
 <div class="style-normal">
 <p>La consola <code>sc</code> (service controller) permite consultar la configuración y el estado de los servicios, así como crearlos, eliminarlos y cambiar la configuración de los mismos. La consola admite comandos y podemos obtener ayuda contextual según el comando utilizado. La siguiente tabla resume las operaciones más habituales</p>
@@ -537,7 +532,7 @@ net stop dhcp
 </tr>
 <tr>
 <td><code>sc create &lt;servicio&gt;</code></td>
-<td>Crea un servicio en el sistema y lo configura. Más información en <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/sc-create">Windows Learn</a></td>
+<td>Crea y configura un servicio. Más información en <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/sc-create">Windows Learn</a></td>
 </tr>
 <tr>
 <td><code>sc config &lt;servicio&gt;</code></td>
@@ -553,12 +548,9 @@ net stop dhcp
 </tr>
 </tbody>
 </table>
-</div>
 <div class="admonition tip">
 <p class="admonition-title">sc</p>
-<div class="style-normal">
 <p>Cuando  ejecutamos un comando sc debemos usar el identificador del servicio y no su nombre descriptivo. Excepto obviamente para el comando getkeyname.</p>
-</div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sc query "Cliente DHCP"  NO FUNCIONA
 sc query dhcp            SI FUNCIONA
 </code></pre></div>
@@ -573,18 +565,14 @@ NOMBRE_SERVICIO: dhcp
     CÓD_SALIDA_SERVICIO: 0  (0x0)
     PUNTO_COMPROB.     : 0x0
     INDICACIÓN_INICIO  : 0x0
-</code></pre><div class="style-normal">
-<p>Nos indica que el servicio DHCP está actualmente en ejecución (RUNNING)</p>
-</div>
+</code></pre><p>Nos indica que el servicio DHCP está actualmente en ejecución (RUNNING)</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">sc getdisplayname [servicio]</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sc getdisplayname dhcp
 N[SC] GetServiceDisplayName CORRECTO
 Nombre = Cliente DHCP
-</code></pre><div class="style-normal">
-<p>Nos indica que el nombre descriptivo para el identificador de servicio dhcp es "Cliente DHCP"</p>
-</div>
+</code></pre><p>Nos indica que el nombre descriptivo para el identificador de servicio dhcp es "Cliente DHCP"</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">sc qfailure [servicio]</p>
@@ -596,13 +584,12 @@ NOMBRE_SERVICIO: dhcp
     LÍNEA_COMANDOS                :
     ACCIONES_ERROR                : REINICIAR - Retraso= 120000 ms
                                     REINICIAR - Retraso= 300000 ms
-</code></pre><div class="style-normal">
-<p>Nos indica que el contador de errores se reinicia cada 86400 segundos (1 día). Cuando se produce el primer error hay que esperar 120000 ms (2 minutos) y reiniciar. Cuando se produce el segundo error hay que esperar 300000 ms (5 minutos) y reiniciar. Cuando se produce el tercer error y siguientes no se realiza ninguna acción (por eso no aparece).</p>
+</code></pre><p>Nos indica que el contador de errores se reinicia cada 86400 segundos (1 día). Cuando se produce el primer error hay que esperar 120000 ms (2 minutos) y reiniciar. Cuando se produce el segundo error hay que esperar 300000 ms (5 minutos) y reiniciar. Cuando se produce el tercer error y siguientes no se realiza ninguna acción (por eso no aparece).</p>
 </div>
 </div>
-<h3 id="powershell-get-service">POWERSHELL GET-SERVICE </h3>
+<h3 id="powershell-service">POWERSHELL SERVICE </h3>
 <div class="style-normal">
-<p>Powershell dispone de una serie de cmdlets relacionados con el objeto SERVICE para la administración de servicios. La funcionalidad y opciones de estos cmdlets varian en función de la versión de powershell instalada en el sistema. No obstante, si queremos mayor funcionalidad en powershell también podemos utilizar también la consola <code>sc</code></p>
+<p>Powershell dispone de una serie de cmdlets relacionados con el objeto SERVICE para la administración de servicios. La funcionalidad y opciones de estos cmdlets varian en función de la versión de powershell instalada en el sistema. No obstante, si queremos mayor funcionalidad en powershell también podemos utilizar la consola <code>sc</code></p>
 </div>
 <div class="style-normal2">
 <table>
@@ -675,7 +662,7 @@ NOMBRE_SERVICIO: dhcp
 </tr>
 </tbody>
 </table>
-</div>
+<div style="page-break-after:always;"></div>
 <div class="admonition example">
 <p class="admonition-title">get-service</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">Get-Service</span> dhcp <span class="token punctuation">|</span> <span class="token function">format-list</span>
@@ -704,8 +691,10 @@ Running  WinDefend          Servicio Antivirus <span class="token punctuation">.
 Running  WinHttpAutoProx<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Servicio de detección auto<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 </code></pre></div>
+</div>
+<div class="style-normal">
 <p>En Powershell versión 5 necesitamos utilizar cmdlets más complejos para obtener información adicional de un servicio como por ejemplo el ejecutable, la descripción o la cuenta con la que se ejecuta.</p>
-
+</div>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Mostrar el programa que ejecuta un servicio
 <span class="token punctuation">(</span><span class="token function">Get-CimInstance</span> win32_service <span class="token punctuation">|</span> <span class="token function">where-object</span> <span class="token punctuation">{</span><span class="token variable">$_</span><span class="token punctuation">.</span>Name <span class="token operator">-eq</span> <span class="token string">'&lt;servei&gt;'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>PathName
 </code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Mostrar la descripción de un servicio
