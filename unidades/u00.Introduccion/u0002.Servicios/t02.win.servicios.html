@@ -177,6 +177,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
+.markdown-preview.markdown-preview .style-normal2 {
+  text-align: justify;
+}
 .markdown-preview.markdown-preview .style-example {
   text-indent: 0.5cm;
   text-align: justify;
@@ -541,6 +544,10 @@ La consola `sc` (service controller) permite consultar la configuración y el es
 <tr>
 <td><code>sc delete &lt;servicio&gt;</code></td>
 <td>Elimina un servicio del sistema</td>
+</tr>
+<tr>
+<td><code>sc failure &lt;servicio&gt;</code></td>
+<td>Modifica el tratamiento de error de un servicio</td>
 </tr>
 </tbody>
 </table>
