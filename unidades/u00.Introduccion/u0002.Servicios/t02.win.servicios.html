@@ -181,9 +181,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
   text-align: justify;
-  text-size: small;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -415,7 +414,7 @@ Contiene información sobre las dependencias del servicio:
 </tr>
 </tbody>
 </table>
-<div class="style-normal2">
+<div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">net start</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>net start
@@ -457,7 +456,6 @@ net stop dhcp
 <div class="style-normal">
 <p>La consola <code>sc</code> (service controller) permite consultar la configuración y el estado de los servicios, así como crearlos, eliminarlos y cambiar la configuración de los mismos. La consola admite comandos y podemos obtener ayuda contextual según el comando utilizado. La siguiente tabla resume las operaciones más habituales</p>
 </div>
-<div class="style-normal2">
 <table>
 <thead>
 <tr>
@@ -548,6 +546,7 @@ net stop dhcp
 </tr>
 </tbody>
 </table>
+<div class="style-example">
 <div class="admonition tip">
 <p class="admonition-title">sc</p>
 <p>Cuando  ejecutamos un comando sc debemos usar el identificador del servicio y no su nombre descriptivo. Excepto obviamente para el comando getkeyname.</p>
@@ -591,7 +590,6 @@ NOMBRE_SERVICIO: dhcp
 <div class="style-normal">
 <p>Powershell dispone de una serie de cmdlets relacionados con el objeto SERVICE para la administración de servicios. La funcionalidad y opciones de estos cmdlets varian en función de la versión de powershell instalada en el sistema. No obstante, si queremos mayor funcionalidad en powershell también podemos utilizar la consola <code>sc</code></p>
 </div>
-<div class="style-normal2">
 <table>
 <thead>
 <tr>
@@ -602,7 +600,7 @@ NOMBRE_SERVICIO: dhcp
 <tbody>
 <tr>
 <td><code>Get-Service</code></td>
-<td>Muestra el estado los servicios configurados en el sistema. Más información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-5.1">Windows Learn</a></td>
+<td>Muestra el estado los servicios configurados en el sistema. <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-5.1">Windows Learn</a></td>
 </tr>
 <tr>
 <td><code>Get-Service | Where-Object {$_.Status -eq "&lt;estado"}</code></td>
@@ -650,21 +648,20 @@ NOMBRE_SERVICIO: dhcp
 </tr>
 <tr>
 <td><code>New-Service &lt;servicio&gt;</code></td>
-<td>Crea y configura un servicio en el sistema. Mas información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-5.1">Windows Learn</a></td>
+<td>Crea y configura un servicio en el sistema. <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-5.1">Windows Learn</a></td>
 </tr>
 <tr>
 <td><code>Set-Service &lt;servicio&gt;</code></td>
-<td>Cambia la configuración de un servicio en el sistema. Más información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-5.1">Windows Learn</a></td>
+<td>Cambia la configuración de un servicio en el sistema. <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-5.1">Windows Learn</a></td>
 </tr>
 <tr>
 <td><code>Remove-Service &lt;servicio&gt;</code></td>
-<td>Borra un servicio de la configuración del sistema. Solo funciona a partir de la versión 7.5 de powershell. Más información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-service?view=powershell-7.5">Windows Learn</a></td>
+<td>Borra un servicio de la configuración del sistema. Solo funciona a partir de la versión 7.5 de powershell. <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-service?view=powershell-7.5">Windows Learn</a></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div style="page-break-after:always;"></div>
-<div style="style-normal2">
+<div style="style-example">
 <div class="admonition example">
 <p class="admonition-title">Get-Service</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">Get-Service</span> dhcp <span class="token punctuation">|</span> <span class="token function">format-list</span>
