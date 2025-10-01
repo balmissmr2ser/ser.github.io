@@ -228,20 +228,33 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </style>
 <p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="servicios-br-windows">SERVICIOS <br> WINDOWS </h1>
+<h1 id="servicios-br-linux">SERVICIOS <br> LINUX </h1>
 </div>
-<p>📙<a href="./t02.win.servicios.pdf">Descargar PDF</a></p>
+<p>📙<a href="./t03.linux.servicios.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
 <div class="style-table-content">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#servicios-windows" class="md-toc-link"><p>SERVICIOS WINDOWS</p>
+          <a href="#servicios-linux" class="md-toc-link"><p>SERVICIOS LINUX</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#system-v" class="md-toc-link"><p>SYSTEM V</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#inittab" class="md-toc-link">
+            <p>INITTAB</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#panel-servicesmsc" class="md-toc-link">
             <p>PANEL SERVICES.MSC</p>
 
@@ -264,9 +277,103 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="servicios-windows">SERVICIOS WINDOWS </h2>
+<h2 id="servicios-linux">SERVICIOS LINUX </h2>
 <div class="style-normal">
-<p>En los sistemas Windows tenemos diferentes herramientas para administrar los servicios. Entre ellas tenemos:</p>
+<p>En las distribuciones Linux podemos encontrar dos sistemas inicio (init system) diferentes. Los sistemas de inicio son los responsables de arrancar la máquina, iniciar servicios y administrar los procesos del sistema.</p>
+<ul>
+<li>System V    Distribuciones Linux antiguas.</li>
+<li>SystemD     Distribuciones Linux modernas.</li>
+</ul>
+</div>
+<h3 id="system-v">SYSTEM V </h3>
+<div class="style-normal&quot;">
+<p>Se le denomina también UNIX System V o SysVinit. El proceso inicial a partir del cual arranca el sistema, servicios y resto de procesos se denomina <code>init</code> y ejecuta con PID 1.</p>
+<div class="admonition tip">
+<p class="admonition-title">proceso inicial init</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>/sbin/init
+</code></pre></div>
+<p>Al iniciarse el proceso init lee el fichero de configuración <code>/etc/inittab</code> y según el nivel de ejecución (runlevel) configurado en el mismo ejecuta secuencialmente los scripts que configuran los servicios, ubicados en <code>/etc/init.d</code> o en <code>/etc/rc.d/init.d</code> dependiendo de la distribución Linux instalada.</p>
+<h4 id="inittab">INITTAB </h4>
+<p><code>/etc/inittab</code> es el fichero de configuración principal del servicio <code>init</code>. Le indica al proceso <code>init</code> que debe hacer al iniciarse, que nivel de ejecución debe usar de manera predeterminada y que procesos debe iniciar o reiniciar.</p>
+<p>El fichero está formado por lineas de texto que tienen el siguiente formato:</p>
+<p><strong>id:runlevels:action:process</strong></p>
+<ul>
+<li>id<br>
+Identificador único para la entrada</li>
+<li>runlevels<br>
+Especifica los runlevels a los que se aplica la entrada
+<table>
+<thead>
+<tr>
+<th>runlevel</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Parada del sistema</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Monousuario. Se utilza normalmente para el mantenimiento del sistema</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Multiusuario sin soporte de red</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Multiusuario completo con soporte de red. Se utiliza para administrar en modo consola</td>
+</tr>
+<tr>
+<td>4</td>
+<td>No definido. Puede usarse para definir un runlevel personalizado</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Modo multiusario completo con inicio gráfico. Se utiliza para el login en modo gráfico (X-Windows)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Reinicio del sistema</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>action<br>
+Especifica que acción debe realizar init
+<table>
+<thead>
+<tr>
+<th>action</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>respawn</td>
+<td>Reiniciar el proceso</td>
+</tr>
+<tr>
+<td>wait</td>
+<td>Esperar a que el proceso termine antes de continuar</td>
+</tr>
+<tr>
+<td>once</td>
+<td>Ejecutar el proceso solo una vez al entrar en runlevel</td>
+</tr>
+<tr>
+<td>initdefault</td>
+<td>Especifica el runlevel por defecto</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>process<br>
+Comando o script a ejecutar</li>
+</ul>
+</div>
 <div class="style-list" style="margin-left: 1cm;">
 <ul>
 <li>Panel services.msc</li>
@@ -275,7 +382,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <li>Powershell cmdlet Get-Service</li>
 </ul>
 </div>
-</div>
+
 <h3 id="panel-servicesmsc">PANEL SERVICES.MSC </h3>
 <div class="style-normal">
 <p>Para ejecutar la consola gráfica services.msc podemos acceder a través de <strong>Inicio-&gt;Herramientas Administrativas-&gt;Servicios</strong> o bien simplemente teclear en el cuadro de búsqueda de windows <strong>services.msc</strong>.</p>
@@ -662,9 +769,7 @@ NOMBRE_SERVICIO: dhcp
 </tr>
 </tbody>
 </table>
-</div>
 <div style="page-break-after:always;"></div>
-<div style="style-normal2">
 <div class="admonition example">
 <p class="admonition-title">Get-Service</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">Get-Service</span> dhcp <span class="token punctuation">|</span> <span class="token function">format-list</span>
