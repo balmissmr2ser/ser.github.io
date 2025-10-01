@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U01 Linux red no persistente</title>
+      <title>SER - U01 Linux red tradicional</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -246,7 +246,7 @@ table {
 </style>
 <p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="configuración-no-persistente-de-la-red-en-linux">CONFIGURACIÓN NO PERSISTENTE DE LA RED EN LINUX </h1>
+<h1 id="configuración-tradicional-de-la-red-en-linux">CONFIGURACIÓN TRADICIONAL DE LA RED EN LINUX </h1>
 </div>
 <p>📙<a href="./t01.linux.nopersistente.pdf">Descargar PDF</a></p>
 <h2 id="índice">ÍNDICE </h2>
@@ -254,30 +254,30 @@ table {
 
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#configuración-no-persistente-de-la-red" class="md-toc-link">
-            <p>CONFIGURACIÓN NO PERSISTENTE DE LA RED</p>
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#mostrar-configuración-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR CONFIGURACIÓN INTERFACES DE RED</p>
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#la-librería-net-tools" class="md-toc-link"><p>LA LIBRERÍA NET-TOOLS</p>
+          <a href="#configuración-estática" class="md-toc-link"><p>CONFIGURACIÓN ESTÁTICA</p>
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-ip-y-gateway" class="md-toc-link">
+            <p>CONFIGURAR IP Y GATEWAY</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#ifconfig" class="md-toc-link"><p>IFCONFIG</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-las-interfaces-de-red" class="md-toc-link">
-            <p>MOSTRAR LAS INTERFACES DE RED</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-estadisticas-de-las-interfaces-de-red" class="md-toc-link">
-            <p>MOSTRAR ESTADISTICAS DE LAS INTERFACES DE RED</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#activar-o-desactivar-una-interfaz-de-red" class="md-toc-link">
             <p>ACTIVAR O DESACTIVAR UNA INTERFAZ DE RED</p>
 
@@ -385,11 +385,28 @@ table {
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ip-route" class="md-toc-link">
-            <p>IP ROUTE</p>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ip-route" class="md-toc-link"><p>IP ROUTE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consultar-tabla-de-enrutamiento" class="md-toc-link">
+            <p>CONSULTAR TABLA DE ENRUTAMIENTO</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-rutas-a-la-tabla-de-enrutamiento" class="md-toc-link">
+            <p>AÑADIR RUTAS A LA TABLA DE ENRUTAMIENTO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#eliminar-rutas-de-la-tabla-de-enrutamiento" class="md-toc-link">
+            <p>ELIMINAR RUTAS DE LA TABLA DE ENRUTAMIENTO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ip-neighbour" class="md-toc-link">
             <p>IP NEIGHBOUR</p>
 
@@ -397,6 +414,10 @@ table {
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#pruebas-de-conectividad" class="md-toc-link">
+            <p>PRUEBAS DE CONECTIVIDAD</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#configuración-dinámica-de-red" class="md-toc-link">
             <p>Configuración dinámica de red</p>
 
@@ -404,24 +425,29 @@ table {
 </div>
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="configuración-no-persistente-de-la-red">CONFIGURACIÓN NO PERSISTENTE DE LA RED </h2>
+<h2 id="introducción">INTRODUCCIÓN </h2>
 <div class="style-normal">
-<p>La <strong>configuración de bajo nivel</strong> o <strong>no persistente</strong> de red en Linux se refiere a los cambios realizados directamente desde la línea de comandos, que afectan a la configuración de la red de manera inmediata pero <strong>no se mantienen tras reiniciar el sistema</strong>. Este tipo de configuración es útil para pruebas, cambios temporales o en entornos donde no se requiere persistencia.</p>
-<p>Para realizar configuraciones de red no persistentes, se utilizan herramientas como <strong>net-tools</strong> o <strong>iproute2</strong>. Estas herramientas permiten configurar interfaces de red, asignar direcciones IP, establecer rutas y gestionar la conectividad de red sin necesidad de editar archivos de configuración permanentes.</p>
-<p>La librería <strong>net-tools</strong> es la más antigua y tradicional, mientras que <strong>iproute2</strong> es la más moderna y recomendada en las distribuciones actuales de Linux. Aunque net-tools aún está disponible, se considera obsoleta y se recomienda utilizar iproute2 para nuevas configuraciones.</p>
+<p>En el presente tema vamos a estudiar la configuración tradicional de la red en Linux. Nos centraremos en sistemas sin entorno de escritorio ya que en Linux hay una gran variedad de entornos de escritorio y la configuración de la red depende de cada uno de ellos.</p>
+<p>Básicamente distinguiremos dos formas diferentes de configuración de la red:</p>
 </div>
-<h2 id="la-librería-net-tools">LA LIBRERÍA NET-TOOLS </h2>
+<div class="style-normal2">
+<ul>
+<li>
+<p><strong>Configuración no persistente</strong> o de bajo nivel. Esta configuración se refiere a los cambios realizados directamente desde la línea de comandos, que afectan a la configuración de la red de manera inmediata pero <em>no se mantienen tras reiniciar el sistema</em>. Este tipo de configuración es útil para pruebas, cambios temporales o en entornos donde no se requiere persistencia. Se realiza desde la línea de comandos mediante utilidades específicas incluidas en la librería <strong>net-tools</strong>. Las más habituales son <code>ifconfig</code>, <code>route</code> y <code>arp</code>, que permiten gestionar interfaces, direcciones IP y rutas de forma temporal entre otras cosas.</p>
+</li>
+<li>
+<p><strong>Configuración persistente</strong>. La configuración persistente se lleva a cabo en ficheros. Las directivas u órdenes del fichero se ejecutan cuando se inicia la máquina, el servicio de red o el usuario invoca los comandos <code>ifup</code> e <code>ifdown</code>.</p>
+</li>
+</ul>
+</div>
+<h2 id="mostrar-configuración-interfaces-de-red">MOSTRAR CONFIGURACIÓN INTERFACES DE RED </h2>
 <div class="style-normal">
-<p>La librería <strong>net-tools</strong> dispone de las utilidades clásicas para la configuración de red en Linux. Aunque es menos común en las distribuciones modernas, aún se puede utilizar si se instala el paquete <strong>net-tools</strong>. Esta librería incluye herramientas como <strong><code>ifconfig</code></strong>, <strong><code>route</code></strong> y <strong><code>arp</code></strong>, que permiten configurar y gestionar las interfaces de red de forma temporal.</p>
+<p>La utilidad o comando <code>ifconfig</code> es muy versátil y se puede utilizar para mostrar información de las interfaces de red.</p>
+<p>Para mostrar la configuración de las interfaces de red el comando tiene la siguiente sintaxis:</p>
 </div>
-<h3 id="ifconfig">IFCONFIG </h3>
-<div class="style-normal">
-<p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
-</div>
-<h4 id="mostrar-las-interfaces-de-red">MOSTRAR LAS INTERFACES DE RED </h4>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-a] [&lt;interfaz&gt;]
 </code></pre><div class="style-normal">
-Entre la información mostrada podemos ver la IP, la MAC, la máscara de red, la dirección de broadcast e información sobre el estado de la interfaz entre otros datos.
+<p>Entre la información mostrada podemos ver la IP, la MAC, la máscara de red, la dirección de broadcast e información sobre el estado de la interfaz entre otros datos.</p>
 <p>Cuando no se especifica un interfaz muestra información de todas las interfaces de red o solo de las activas si omitimos el flag <code>-a</code>. Cuando se especifica una interfaz muestra solamente información de esa interfaz (esté o no activa).</p>
 </div>
 <div class="admonition example">
@@ -440,10 +466,49 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54
 </code></pre><p>La ejecución del comando nos indica que la interfaz <code>eth0</code> tiene la ip <code>192.168.2.16</code>, la máscara de red es la <code>255.255.255.0</code> y que está activa (<code>UP</code> ... <code>RUNNING</code>) entre otras cosas.</p>
 </div>
   </div>
-<h4 id="mostrar-estadisticas-de-las-interfaces-de-red">MOSTRAR ESTADISTICAS DE LAS INTERFACES DE RED </h4>
+<div class="style-normal">
+<p>La sintaxis del comando para mostrar las estadisticas de todas las interfaces (o una concreta) activas es la siguiente:</p>
+</div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-s] [&lt;interfaz&gt;]
+</code></pre><h2 id="configuración-estática">CONFIGURACIÓN ESTÁTICA </h2>
+<div class="style-normal">
+<p>Para llevar a cabo la configuración no persistente de las interfaces de red también utilizaremos el comando <code>ifconfig</code> además del comando <code>route</code>.</p>
+</div>
+<h3 id="configurar-ip-y-gateway">CONFIGURAR IP Y GATEWAY </h3>
+<div class="style-normal">
+<p>Para cambiar la dirección IP de una interfaz de red, o asignarle una si no tenía, la sintaxis sería la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; {&lt;ip/prefix&gt; | &lt;ip&gt; netmask &lt;máscara&gt;}
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configurar dirección IP</p>
+<div class="style-normal2">
+<p>Cambiar la dirección IP de la interfaz <code>eth0</code> a <code>192.168.2.20/27</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20/27
+</code></pre><p>También se obtendría el mismo resultado con el siguiente comando:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20 netmask 255.255.255.224
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Para configurar la puerta de enlace o gateway, de forma no persistente, añadiremos una ruta por defecto mediante el comando <code>route</code>.</p>
+<p>La sintaxis del comando para este propósito es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route add default gw &lt;puerta_de_enlace&gt; [metric &lt;métrica&gt;] [dev] [&lt;interfaz&gt;]
 </code></pre><div class="style-normal">
-Muestra estadisticas de todas las interfaces (o una concreta) activas.
+<p>En el comando se especifica la ruta por defecto (<code>default</code>) y la IP de la <code>puerta de enlace</code> que me proporciona acceso externo (Internet). La opción <code>dev</code> se puede omitir si sólo hay una interfaz de red; es más se puede omitir hasta el nombre de la interfaz.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configurar gateway</p>
+<div class="style-normal2">
+<p>Configurar la puerta de enlace con la ip <code>192.168.2.1</code>. Supondremos que la única interfaz de red es <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route add default gw 192.168.2.1
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>La configuración de la ip y la puerta de enlace de manera persistente se especifica en un fichero. Hay que distinguir entre los sistemas basados en <strong>Debian</strong> y los basados en <strong>RedHat</strong>. Nosotros principalmente nos centraremos en los primeros.</p>
+</div>
+<h3 id="ifconfig">IFCONFIG </h3>
+<div class="style-normal">
+<p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
 </div>
 <h4 id="activar-o-desactivar-una-interfaz-de-red">ACTIVAR O DESACTIVAR UNA INTERFAZ DE RED </h4>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; [up|down]
@@ -470,19 +535,7 @@ Muestra estadisticas de todas las interfaces (o una concreta) activas.
 </code></pre></div>
 </div>
 <h4 id="cambiar-la-dirección-ip-de-una-interfaz-de-red">CAMBIAR LA DIRECCIÓN IP DE UNA INTERFAZ DE RED </h4>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; {&lt;ip/prefix&gt; | &lt;ip&gt; netmask &lt;máscara&gt;}
-</code></pre><div class="style-normal">
-<p>Cambia la dirección IP de una interfaz de red o le asigna una si no tenía. La configuración de la dirección IP con ifconfig es <strong>estática</strong> (o manual).</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Cambiar dirección IP</p>
-<div class="style-normal2">
-<p>Cambiar la dirección IP de la interfaz <code>eth0</code> a <code>192.168.2.20/27</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20/27
-</code></pre><p>También se obtendría el mismo resultado con el siguiente comando:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20 netmask 255.255.255.224
-</code></pre></div>
-  </div>
+
 <h3 id="route">ROUTE </h3>
 <div class="style-normal">
 <p>La utilidad o comando <code>route</code> se utiliza para configurar y mostrar información de la tabla de enrutamiento de un equipo; es decir la tabla que nos indica como llegar a otras redes a las que no se está directamente conectado y a Internet. Entre las diferentes operaciones que podemos llevar a cabo con el comando route tenemos:</p>
@@ -853,26 +906,201 @@ root@Host:~# ip a
 <p class="admonition-title">Eliminar IP de intefaces de red</p>
 <div class="style-normal2">
 <p>Elimina todas las IPs asignadas a la interfaz <strong>enp0s3</strong>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@PCL-1:~# ip address flush dev enp0s3
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s3
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar IP de intefaces de red</p>
 <div class="style-normal2">
 <p>Elimina todas las IPs que se han asignado dinámicamente a cualquier interfaz.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@PCL-1:~# ip address flush dynamic
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dynamic
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar IP de intefaces de red</p>
 <div class="style-normal2">
 <p>Elimina todas las IPs que se han asignado de manera estática a la interfaz <strong>enp0s8</strong>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@PCL-1:~# ip address flush dev enp0s8 permanent
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s8 permanent
 </code></pre></div>
 </div>
 <h3 id="ip-route">IP ROUTE </h3>
+<div class="style-normal">
+<p>Utilizado para consultar y modificar la tabla de enrutamiento.</p>
+</div>
+<h4 id="consultar-tabla-de-enrutamiento">CONSULTAR TABLA DE ENRUTAMIENTO </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">ip</span> route <span class="token punctuation">[</span>show<span class="token punctuation">]</span>
+</code></pre><div class="style-normal">
+<p>Muestra la tabla de enrutamiento. No hay diferencia entre usar el parámetro <code>show</code> o no. Se muestra una línea por cada red que se puede alcanzar. Entre los datos más significativos se incluyen:</p>
+</div>
+<div class="style-normal2">
+<ul>
+<li>La red de destino a la cual se deben enviar los datos.</li>
+<li>Para aquellas redes a las que no se está directamente conectado, se indica la puerta de enlace o IP del equipo al cual debemos enviar los datos para que lleguen a su destino.</li>
+<li>Interfaz por donde se deben enviar los datos. Si solo tenemos una tarjeta de red, siempre usaremos la misma interfaz.</li>
+<li>Para redes directamente conectadas siempre aparece el valor <code>scope link</code>.</li>
+<li>Para aquellas redes a las que no se está directamente conectado, la IP por la cual me conecto a dicha red.</li>
+</ul>
+</div>
+<div class="style-normal">
+La entrada de la tabla con red de destino `default` (`0.0.0.0/0`) hace referencia a la ruta por defecto; es decir donde se envían los paquetes si no hay ninguna entrada para la red de destino en la tabla de enrutamiento.
+Es importante tener una ruta por defecto ya que en caso contrario, seguramente, no tendremos acceso a Internet.
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Muestra la tabla de enrutamiento.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route show
+default via 192.168.2.1 dev enp0s3
+192.168.2.0/24 dev enp0s3 proto kernel scope link src 192.168.2.17
+</code></pre><p>La primera línea de la tabla de enrutamiento nos indica que tenemos definida una ruta por defecto y que en este caso, los paquetes se dirigen a la ip 192.168.2.1 a través de la interfaz enp0s3.<br>
+La segunda línea nos indica que la interfaz enp0s3 tiene la ip 192.168.2.17 y está directamente conectada a la red 192.168.2.0/24.</p>
+</div>
+<h4 id="añadir-rutas-a-la-tabla-de-enrutamiento">AÑADIR RUTAS A LA TABLA DE ENRUTAMIENTO </h4>
+<div class="style-normal">
+<p>Con ip route podemos añadir rutas para acceder a redes a las que no estoy directamente conectado. De especial importancia es la red por defecto que nos sirve para acceder a Internet u otras redes para las que no he definido ninguna ruta.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add default via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Añade una ruta por defecto de manera que los datos que no sean para ninguna de las otras redes de la tabla de encaminamiento se envíen a la puerta de enlace dada y salgan por la interfaz dada. Si solo tenemos una interfaz de red, podemos omitir <code>dev &lt;interfaz&gt;</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir entrada a la tabla de enrutamiento</p>
+</div>
+<p>Configuración puerta de enlace de un equipo que solo tiene una tarjeta de red si sabemos que la puerta de enlace tiene la IP <code>192.168.2.1</code>.</p>
+<div class="style-normal2">
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.2.1
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta por defecto a la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Configuración de la puerta de enlace de un equipo que tiene dos tarjetas de red <code>eth0</code> y <code>eth1</code>, de manera que la primera tarjeta (<code>enp0s3</code>) está en la red interna <code>192.168.254.0/24</code> y la segunda (<code>enp0s8</code>) en la red <code>192.168.1.0/24</code>, donde hay un enrutador que da acceso a internet cuya IP es la primera de la red.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.1.1 dev enp0s8
+</code></pre></div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add &lt;red-destino/prefix-red&gt; via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Añade una ruta estática para llegar a una red a la que no se está directamente conectado. Se debe indicar cuál es la red a la que queremos acceder (<code>&lt;red-destino/prefix-red&gt;</code>), por qué interfaz (<code>&lt;interfaz&gt;</code>) deben salir los datos y a qué equipo (<code>&lt;puerta-enlace&gt;</code>) debemos enviar los datos para que lleguen a su destino.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta estática a la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Añadir una ruta estática para llegar a la red <code>192.168.11.128/25</code> desde la red <code>192.168.2.0/24</code>, utilizando como puerta de enlace el equipo con IP <code>192.168.2.1</code> y como interfaz de salida <code>enp0s3</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add 192.168.11.128/25 via 192.168.2.1 dev enp0s3
+</code></pre><p>Si solo tenemos una interfaz de red, podemos omitir <code>dev &lt;interfaz&gt;</code>.</p>
+<p>Podemos ver que se ha añadido la nueva ruta:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route show
+default via 192.168.2.1 dev enp0s3
+192.168.2.0/24 dev enp0s3 proto kernel scope link src 192.168.2.17
+192.168.11.128/25 via 192.168.2.1 dev enp0s3
+</code></pre></div>
+<h4 id="eliminar-rutas-de-la-tabla-de-enrutamiento">ELIMINAR RUTAS DE LA TABLA DE ENRUTAMIENTO </h4>
+<div class="style-normal">
+<p>De la misma manera que se pueden añadir rutas a la tabla de enrutamiento se pueden eliminar las rutas añadidas. También es posible modificar rutas con ip route change o ip route replace aunque esto no lo trataremos.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete default [via &lt;puerta-enlace&gt;]
+</code></pre><p>Elimina la ruta por defecto dada la puerta de enlace. Si solo tenemos una ruta por defecto, no es necesario especificar la puerta de enlace (es lo habitual).</p>
+<div class="admonition example">
+<p class="admonition-title">Eliminar ruta por defecto de la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Eliminar la ruta por defecto si solo hay una.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete default
+</code></pre><p>Se suele utilizar la abreviatura <code>del</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route del default
+</code></pre></div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete &lt;red-destino/prefix-red&gt; [via &lt;puerta-enlace&gt;]
+</code></pre><div class="style-normal2">
+<p>Elimina la ruta estática a la red especificada. Si solo hay una ruta estática con destino la red especificada, no es necesario indicar la puerta de enlace; en caso contrario, sí se debe especificar.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta estática a la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Elimina la ruta estática con destino la red <code>192.168.11.128/25</code> si a esta se llega por el equipo con IP <code>192.168.2.1</code>. Sabemos que hay más de una ruta con este destino.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete 192.168.11.128/25 via 192.168.2.1
+</code></pre></div>
 <h3 id="ip-neighbour">IP NEIGHBOUR </h3>
-<h2 id="configuración-dinámica-de-red">Configuración dinámica de red </h2>
+<h2 id="pruebas-de-conectividad">PRUEBAS DE CONECTIVIDAD </h2>
+<div class="style-normal">
+<p>Para concluir trataremos el tema de la conectividad. Cuando se configura el direccionamiento de red de los equipos, debemos garantizar que existe conectividad interna, conectividad externa con internet u otras redes a las que no estoy directamente conectado, y que funcione la resolución de nombres.</p>
+<p>Para comprobar la conectividad podemos utilizar el comando <code>ping</code>. El comando <code>ping</code> envía un paquete ICMP de petición de eco a un equipo y este nos envía de respuesta otro paquete ICMP llamado de respuesta de eco.</p>
+<p>La mejor manera de comprobar la conectividad interna es hacer un <code>ping</code> a la puerta de enlace o a otro equipo de la red que normalmente está en funcionamiento. Para la conectividad externa se puede hacer un <code>ping</code> a una dirección IP pública conocida, como la del servidor DNS de Google con IP <code>8.8.8.8</code>. Para comprobar la resolución DNS (necesaria, por ejemplo, cuando usamos un navegador para ir a una página web), debemos tener correctamente configurados los clientes DNS. Estos se configuran de manera permanente en un archivo del sistema.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Conectividad interna</p>
+</div>
+<div class="style-normal2">
+<p>Comprobamos que tenemos conectividad interna desde un equipo de la red <code>192.168.2.0/24</code> haciendo un <code>ping</code> a la puerta de enlace cuya IP es <code>192.168.2.1</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ping -c2 192.168.2.1
+PING 192.168.2.1 (192.168.2.1) 56(84) bytes of data.
+64 bytes from 192.168.2.1: icmp_seq=1 ttl=255 time=0.361 ms
+64 bytes from 192.168.2.1: icmp_seq=2 ttl=255 time=0.391 ms
+
+--- 192.168.2.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1024ms
+rtt min/avg/max/mdev = 0.361/0.376/0.391/0.015 ms
+</code></pre><p>Vemos que sí hay conectividad ya que se han enviado dos paquetes y no se ha perdido ninguna de las respuestas. El parámetro <code>-c2</code> indica que solo envía dos paquetes (por defecto se envían paquetes hasta que el usuario pulse Ctrl+C).<br>
+Si no nos llega ninguna respuesta, probablemente el problema es que no tenemos configurada la ruta por defecto. Esto lo podemos comprobar con el comando <code>ip route</code>.</p>
+
+<div class="admonition example">
+<p class="admonition-title">Conectividad externa</p>
+</div>
+<div class="style-normal2">
+<p>Para comprobar la conectividad externa podemos hacer un <code>ping</code> a la IP <code>8.8.8.8</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@Host:~<span class="token comment"># ping -c2 8.8.8.8</span>
+PING <span class="token number">8.8</span>.8.8 <span class="token punctuation">(</span><span class="token number">8.8</span>.8.8<span class="token punctuation">)</span> <span class="token number">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data.
+<span class="token number">64</span> bytes from <span class="token number">8.8</span>.8.8: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">117</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">13.1</span> ms
+<span class="token number">64</span> bytes from <span class="token number">8.8</span>.8.8: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">2</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">117</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">12.8</span> ms
+
+--- <span class="token number">8.8</span>.8.8 <span class="token function">ping</span> statistics ---
+<span class="token number">2</span> packets transmitted, <span class="token number">2</span> received, <span class="token number">0</span>% packet loss, <span class="token function">time</span> 1001ms
+rtt min/avg/max/mdev <span class="token operator">=</span> <span class="token number">12.782</span>/12.924/13.067/0.142 ms
+</code></pre><p>Si la puerta de enlace de la ruta por defecto está bien configurada, esta comprobación debería funcionar.</p>
+</div>
+<div class="style-normal">
+<p>El hecho de que el <code>ping</code> no funcionara no significa necesariamente que la configuración de la red esté mal hecha. Puede haber un cortafuegos que filtre las peticiones de eco. Por ejemplo, el cortafuegos Windows Defender no permite, por defecto, las peticiones de eco.<br>
+En estos casos podemos utilizar aplicaciones alternativas para comprobar la conectividad. Por ejemplo, la aplicación <code>hping3</code> permite enviar paquetes de petición de eco de muchos protocolos, no solo ICMP.</p>
+<div class="admonition example">
+<p class="admonition-title">Conectividad externa</p>
+</div>
+<p>Hacemos un <code>ping</code> convencional a uno de los servidores web de la Generalitat Valenciana cuya IP es <code>195.77.16.26</code>. Cuando hacemos un <code>ping</code> vemos que el equipo destino o un equipo intermedio bloquea las peticiones de eco.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># ping -c2 195.77.16.26</span>
+PING <span class="token number">195.77</span>.16.26 <span class="token punctuation">(</span><span class="token number">195.77</span>.16.26<span class="token punctuation">)</span> <span class="token number">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data.
+
+--- <span class="token number">195.77</span>.16.26 <span class="token function">ping</span> statistics ---
+<span class="token number">2</span> packets transmitted, <span class="token number">0</span> received, <span class="token number">100</span>% packet loss, <span class="token function">time</span> 1029ms
+</code></pre><p>No nos ha llegado ninguna respuesta, como se puede ver.</p>
+<p>Instalamos el paquete <code>hping3</code>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># apt install hping3</span>
+</code></pre><p>Hacemos un <code>hping3</code> a la IP del servidor web de la Generalitat, enviando un paquete de conexión HTTP, y vemos que sí tenemos respuesta:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># hping3 -c 2 -S -p 80 195.77.16.26</span>
+HPING <span class="token number">195.77</span>.16.26 <span class="token punctuation">(</span>enp0s3 <span class="token number">195.77</span>.16.26<span class="token punctuation">)</span>: S set, <span class="token number">40</span> headers + <span class="token number">0</span> data bytes
+<span class="token assign-left variable">len</span><span class="token operator">=</span><span class="token number">46</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token number">195.77</span>.16.26 <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">255</span> <span class="token assign-left variable">id</span><span class="token operator">=</span><span class="token number">42</span> <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">80</span> <span class="token assign-left variable">flags</span><span class="token operator">=</span>SA <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">win</span><span class="token operator">=</span><span class="token number">32768</span> <span class="token assign-left variable">rtt</span><span class="token operator">=</span><span class="token number">19.8</span> ms
+<span class="token assign-left variable">len</span><span class="token operator">=</span><span class="token number">46</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token number">195.77</span>.16.26 <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">255</span> <span class="token assign-left variable">id</span><span class="token operator">=</span><span class="token number">43</span> <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">80</span> <span class="token assign-left variable">flags</span><span class="token operator">=</span>SA <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">win</span><span class="token operator">=</span><span class="token number">32768</span> <span class="token assign-left variable">rtt</span><span class="token operator">=</span><span class="token number">19.7</span> ms
+
+--- <span class="token number">195.77</span>.16.26 hping statistic ---
+<span class="token number">2</span> packets transmitted, <span class="token number">2</span> packets received, <span class="token number">0</span>% packet loss
+round-trip min/avg/max <span class="token operator">=</span> <span class="token number">19.7</span>/19.8/19.8 ms
+</code></pre><p>Podemos encontrar más información de la utilidad <code>hping3</code> en las páginas de manual:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># man hping3</span>
+</code></pre><p>Para conocer la sintaxis del comando, podemos acceder a la ayuda contextual con:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># hping3 --help</span>
+</code></pre><p>En los sistemas Alpine Linux, el paquete <code>hping3</code> no se encuentra en los repositorios del sistema, sino en un repositorio de prueba. Podemos descargarlo e instalarlo de este repositorio con el comando:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>AlpineLinux:~<span class="token comment"># apk add hping3 --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing</span>
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.18/testing/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+<span class="token punctuation">(</span><span class="token number">1</span>/4<span class="token punctuation">)</span> Installing libpcap <span class="token punctuation">(</span><span class="token number">1.10</span>.4-r1<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">2</span>/4<span class="token punctuation">)</span> Installing tzdata <span class="token punctuation">(</span>2024a-r0<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">3</span>/4<span class="token punctuation">)</span> Installing tcl <span class="token punctuation">(</span><span class="token number">8.6</span>.13-r1<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">4</span>/4<span class="token punctuation">)</span> Installing hping3 <span class="token punctuation">(</span><span class="token number">20051105</span>-r4<span class="token punctuation">)</span>
+Executing busybox-1.36.1-r2.trigger
+OK: <span class="token number">160</span> MiB <span class="token keyword keyword-in">in</span> <span class="token number">71</span> packages
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>AlpineLinux:~<span class="token comment">#</span>
+</code></pre><h2 id="configuración-dinámica-de-red">Configuración dinámica de red </h2>
 <p>Para configurar una interfaz de red de forma dinámica, es decir, para que la dirección IP sea asignada automáticamente por un servidor DHCP, es necesario utilizar el cliente DHCP que proporciona la distribución de Linux.<br>
 En Debian y sus derivados, el cliente DHCP es <strong>dhclient</strong>.</p>
 <ul>
@@ -892,7 +1120,7 @@ En Debian y sus derivados, el cliente DHCP es <strong>dhclient</strong>.</p>
 </blockquote>
 </li>
 </ul>
-
+</div></div>
       </div>
       
       
