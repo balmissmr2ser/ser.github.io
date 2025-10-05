@@ -181,9 +181,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
   text-align: justify;
-  text-size: small;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -267,9 +266,56 @@ table {
 </a>
           </summary>
         <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configurar-ip-y-gateway" class="md-toc-link"><p>CONFIGURAR IP Y GATEWAY</p>
+</a>
+          </summary>
+        <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configurar-ip-y-gateway" class="md-toc-link">
-            <p>CONFIGURAR IP Y GATEWAY</p>
+          <a href="#caso-no-persistente" class="md-toc-link">
+            <p>CASO NO PERSISTENTE</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#caso-peristente" class="md-toc-link"><p>CASO PERISTENTE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sistemas-basados-en-debian" class="md-toc-link">
+            <p>SISTEMAS BASADOS EN DEBIAN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sistemas-basados-en-red-hat" class="md-toc-link">
+            <p>SISTEMAS BASADOS EN RED HAT</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configurar-dns" class="md-toc-link"><p>CONFIGURAR DNS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sistemas-basados-en-debian-1" class="md-toc-link">
+            <p>SISTEMAS BASADOS EN DEBIAN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sistemas-basados-en-red-hat-1" class="md-toc-link">
+            <p>SISTEMAS BASADOS EN RED HAT</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-ip-y-gateway" class="md-toc-link">
+            <p>BORRAR IP Y GATEWAY</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
@@ -473,8 +519,10 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54
 </code></pre><h2 id="configuración-estática">CONFIGURACIÓN ESTÁTICA </h2>
 <div class="style-normal">
 <p>Para llevar a cabo la configuración no persistente de las interfaces de red también utilizaremos el comando <code>ifconfig</code> además del comando <code>route</code>.</p>
+<p>Para el caso de la configuración persistente se usan ficheros. Hay que distinguir entre los sistemas basados en <strong>Debian</strong> y los basados en <strong>RedHat</strong>. Nosotros principalmente nos centraremos en los primeros.</p>
 </div>
 <h3 id="configurar-ip-y-gateway">CONFIGURAR IP Y GATEWAY </h3>
+<h4 id="caso-no-persistente">CASO NO PERSISTENTE </h4>
 <div class="style-normal">
 <p>Para cambiar la dirección IP de una interfaz de red, o asignarle una si no tenía, la sintaxis sería la siguiente:</p>
 </div>
@@ -503,9 +551,158 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route add default gw 192.168.2.1
 </code></pre></div>
 </div>
+<h4 id="caso-peristente">CASO PERISTENTE </h4>
 <div class="style-normal">
-<p>La configuración de la ip y la puerta de enlace de manera persistente se especifica en un fichero. Hay que distinguir entre los sistemas basados en <strong>Debian</strong> y los basados en <strong>RedHat</strong>. Nosotros principalmente nos centraremos en los primeros.</p>
+<p>Previamente a pasar a describir la configuración persistente de la red, se debe distinguir entre los conceptos de <strong>interfaz física de red</strong> e <strong>interfaz lógica de red</strong>. Un equipo tendrá tantas interfaces físicas de red como tarjetas de red tenga, ya sean reales o virtuales, pero puede tener una cantidad arbitraria de interfaces lógicas de red. A las interfaces lógicas de red también se les denomina <strong>perfiles de conexión de red</strong> o, simplemente, <strong>conexiones de red</strong>.<br>
+A partir de ahora, a las interfaces físicas de red las llamaremos simplemente <strong>interfaces</strong> y a las interfaces lógicas <strong>conexiones</strong>.</p>
+<p>Una <strong>conexión activa</strong> es aquella cuyos datos de configuración se han asignado a una interfaz de red. Podemos tener tantas conexiones definidas como queramos, pero solo puede haber una única conexión activa por cada interfaz en un momento dado.</p>
+<p>Es habitual que las conexiones se llamen igual que las interfaces de red. Por eso a veces se habla indistintamente de interfaces y conexiones.</p>
+<p>Cuando se realiza la configuración persistente de la red realmente estamos configurando <strong>conexiones</strong> y no <strong>interfaces</strong>.</p>
 </div>
+<h5 id="sistemas-basados-en-debian">SISTEMAS BASADOS EN DEBIAN </h5>
+<div class="style-normal">
+<p>En los sistemas <strong>Debian</strong> y derivados (Ubuntu, ...), especialmente los que no tienen entorno de escritorio, la configuración de la red se lleva a cabo en el archivo <code>/etc/network/interfaces</code>.</p>
+<p>El archivo de configuración, en su versión más simple, consiste en varias secciones como las que se muestran a continuación:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
+...
+auto &lt;lista-interfaces&gt;
+...
+allow-hotplug &lt;lista-interfaces&gt;
+...
+# Configuración conexión estática
+iface &lt;conexión&gt; inet static
+    address &lt;ip&gt;
+    netmask &lt;máscara&gt;
+    [gateway &lt;puerta-enlace&gt;]
+...
+</code></pre><div class="style-normal">
+<p>En la cláusula <code>auto</code> tenemos una lista separada por espacios en blanco de interfaces de red que se activarán cuando se ejecuta un comando de activación de la interfaz (cuando se inicia el sistema se activan todas las interfaces de la lista). Puede haber más de una línea con una cláusula <code>auto</code>.</p>
+<p>En la cláusula <code>allow-hotplug</code> tenemos una Lista separada por espacios en blanco de interfaces de red que se activarán cuando se detecta la conexión física de un adaptador de red al equipo (al inicio pasa esto). Por ejemplo, cuando se conecta el cable de red. Puede haber más de una línea con una cláusula <code>allow-hotplug</code>.</p>
+<p>Mediante la cláusula <code>iface</code> llevamos a cabo la configuración de una conexión de red. Se debe indicar el nombre de la conexión (<code>&lt;conexión&gt;</code>), es obligatorio proporcionar la dirección IP (<code>address &lt;ip&gt;</code>) y la máscara de red (<code>netmask &lt;máscara&gt;</code>). La puerta de enlace (<code>gateway &lt;puerta-enlace&gt;</code>) es opcional, aunque si no la ponemos no tendremos salida a internet. Puede haber más de una sección <code>iface</code>.</p>
+<p>Es habitual que las conexiones se llamen igual que las interfaces de red. Así, cuando se habla de configuración de la interfaz, lo que realmente se quiere decir es configuración de una conexión que tiene el mismo nombre que la interfaz. Los siguientes ejemplos aclaran los conceptos.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración red estática Debian</p>
+<div class="style-normal2">
+<p>Configurar la interfaz <code>enp0s3</code> (realmente es una conexión) de manera estática con la IP <code>192.168.5.96/26</code> con puerta de enlace <code>192.168.5.65</code>. La conexión se debe activar automáticamente cuando se ejecuta una instrucción de activación de la interfaz.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
+auto enp0s3
+
+# Configuración conexión estática
+iface enp0s3 inet static
+    address 192.168.5.96
+    netmask 255.255.255.192
+    gateway 192.168.5.65
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración red estática Debian</p>
+<div class="style-normal2">
+<p>Configurar una conexión llamada <code>trabajo</code> de manera estática con la IP <code>172.16.100.10/16</code> con puerta de enlace <code>172.16.0.1</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
+
+# Configuración conexión estática
+iface trabajo inet static
+    address 172.16.100.10
+    netmask 255.255.0.0
+    gateway 172.16.0.1
+</code></pre></div>
+</div>
+<h5 id="sistemas-basados-en-red-hat">SISTEMAS BASADOS EN RED HAT </h5>
+<div class="style-normal">
+<p>En estos sistemas, las interfaces lógicas de red o conexiones se configuran dentro de la carpeta <code>/etc/sysconfig/network-scripts</code>. Para cada interfaz lógica o conexión existe un archivo de configuración. La nomenclatura de los archivos de configuración es la siguiente: <code>ifcfg-&lt;nombre-conexión&gt;</code>.</p>
+<p>Como ocurría con los sistemas basados en Debian, es muy habitual que las conexiones se llamen igual que las interfaces. Así, si tenemos una tarjeta física de red que se llama <code>eth0</code>, tendremos una conexión que se llama <code>ifcfg-eth0</code>.</p>
+<p>Un archivo de configuración de una interfaz consiste en una lista de directivas de la forma <code>&lt;parámetro&gt;=&lt;valor&gt;</code>. El archivo de configuración habitual para las conexiones dinámicas y estáticas sigue el siguiente esquema:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=&lt;interfaz&gt;
+ONBOOT={yes\|no}
+BOOTPROTO=none
+IPADDR=&lt;ip&gt;
+NETMASK=&lt;máscara-red&gt;
+GATEWAY=&lt;puerta-enlace&gt;
+</code></pre><div class="style-normal">
+<p>El parámetro <code>DEVICE</code> especifica la interfaz física de red a la cual se asociará la conexión.</p>
+<p>Con la directiva <code>BOOTPROTO=none</code> indicamos que la conexión se configura de manera estática o manual.</p>
+<p>El parámetro <code>ONBOOT</code> sirve para que se active, o no, la conexión cuando se inicie el servicio de red o se reinicie la máquina. Solo debe haber una conexión con valor <code>yes</code> para cada interfaz de red (parámetro <code>DEVICE</code>).</p>
+<p>Las siguientes directivas son exclusivas de conexiones estáticas:</p>
+</div>
+<div class="style-normal2">
+<ul>
+<li><code>IPADDR</code>: contiene la IP que tomará la interfaz asociada cuando se active la conexión en el caso de configuración estática.</li>
+<li><code>NETMASK</code>: es la máscara de red.</li>
+<li><code>GATEWAY</code>: es la puerta de enlace.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Cuando se hace la instalación del sistema operativo, automáticamente se crea un archivo de conexión correspondiente a la primera tarjeta de red.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración red estática Red Hat</p>
+<div class="style-normal2">
+<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. La interfaz se debe activar cuando se inicia el equipo.</p>
+<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
+ONBOOT=yes
+BOOTPROTO=none
+IPADDR=192.168.4.10
+NETMASK=255.255.255.0
+GATEWAY=192.168.4.1
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración red estática Red Hat</p>
+<div class="style-normal2">
+<p>Configurar una conexión llamada <code>trabajo</code> de manera estática con la IP <code>172.16.100.10/16</code> con puerta de enlace <code>172.16.0.1</code>. La conexión estará asociada a la interfaz <code>eth1</code> y no se iniciará automáticamente.</p>
+<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-trabajo</code> y su contenido será el siguiente:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth1
+ONBOOT=no
+BOOTPROTO=none
+IPADDR=172.16.100.10
+NETMASK=255.255.0.0
+GATEWAY=172.16.0.1
+</code></pre></div>
+</div>
+<h3 id="configurar-dns">CONFIGURAR DNS </h3>
+<p>La configuración del DNS sólo puede ser <strong>persistente</strong>.</p>
+<h4 id="sistemas-basados-en-debian-1">SISTEMAS BASADOS EN DEBIAN </h4>
+<div class="style-normal">
+<p>En los sistemas basados en Debian, la configuración del DNS se realiza editando el archivo <code>/etc/resolv.conf</code>. Este archivo contiene una lista de servidores DNS que el sistema utilizará para resolver nombres de dominio. La sintaxis del archivo es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver &lt;ip-servidor-dns&gt;
+</code></pre><div class="style-normal">
+<p>Se pueden especificar múltiples servidores DNS (hasta un máximo de 3), uno por línea. Por ejemplo:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver &lt;ip-servidor-dns1&gt;
+nameserver &lt;ip-servidor-dns2&gt;
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configuración DNS Debian</p>
+<div class="style-normal2">
+<p>En una red tenemos un servidor DNS de IP <code>192.168.3.3</code>. Configurar una máquina de la red para que los nombres DNS los resuelva el servidor interno, y si este es incapaz de resolverlos, la petición la resuelva el servidor DNS público de IP <code>8.8.8.8</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver 192.168.3.3
+nameserver 8.8.8.8
+</code></pre></div>
+</div>
+<h4 id="sistemas-basados-en-red-hat-1">SISTEMAS BASADOS EN RED HAT </h4>
+<div class="style-normal">
+<p>En estos sistemas la configuración del DNS de lleva a cabo en los archivos de configuración de las conexiones. Cláusulas del tipo <code>DNS&lt;n&gt; = &lt;ip-dns&gt;</code>, donde n indica el número de servidor DNS (el 1 es el más prioritario) se utilizan para definir los servidores DNS.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración red con DNS Red Hat</p>
+<div class="style-normal2">
+<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. Además, los servidores DNS serán el <code>10.10.10.3</code> y <code>8.8.8.8</code>. La interfaz se debe activar cuando se inicia el equipo.</p>
+<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
+ONBOOT=yes
+BOOTPROTO=none
+IPADDR=192.168.4.10
+NETMASK=255.255.255.0
+GATEWAY=192.168.4.1
+DNS1=10.10.10.3
+DNS2=8.8.8.8
+</code></pre></div>
+</div>
+<h3 id="borrar-ip-y-gateway">BORRAR IP Y GATEWAY </h3>
 <h3 id="ifconfig">IFCONFIG </h3>
 <div class="style-normal">
 <p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
