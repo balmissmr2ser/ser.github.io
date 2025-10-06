@@ -181,9 +181,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
   text-align: justify;
-  text-size: small;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -248,29 +247,25 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#servicios" class="md-toc-link">
+            <p>SERVICIOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#operaciones" class="md-toc-link">
+            <p>OPERACIONES</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#runlevels" class="md-toc-link">
+            <p>RUNLEVELS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#inittab" class="md-toc-link">
             <p>INITTAB</p>
 
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#panel-servicesmsc" class="md-toc-link">
-            <p>PANEL SERVICES.MSC</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cmd-comando-net" class="md-toc-link">
-            <p>CMD COMANDO NET</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cmd-comando-sc" class="md-toc-link">
-            <p>CMD COMANDO SC</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#powershell-service" class="md-toc-link">
-            <p>POWERSHELL SERVICE</p>
-
-          </a></div>
+    
         </div>
       </details>
     
@@ -279,29 +274,96 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div style="page-break-after:always;"></div>
 <h2 id="servicios-linux">SERVICIOS LINUX </h2>
 <div class="style-normal">
-<p>En las distribuciones Linux podemos encontrar dos sistemas inicio (init system) diferentes. Los sistemas de inicio son los responsables de arrancar la máquina, iniciar servicios y administrar los procesos del sistema.</p>
+<p>Los sistemas de inicio son el primer proceso del sistema (PID 1) y son los responsables de arrancar la máquina, iniciar servicios y administrar el resto de procesos del sistema. En las distribuciones Linux podemos encontrar dos sistemas inicio diferentes.</p>
 <ul>
-<li>System V    Distribuciones Linux antiguas.</li>
-<li>SystemD     Distribuciones Linux modernas.</li>
+<li><strong>system V</strong>    distribuciones Linux antiguas (1983).</li>
+<li><strong>systemD</strong>     distribuciones Linux modernas (2010).</li>
 </ul>
 </div>
-<h3 id="system-v">SYSTEM V </h3>
-<div class="style-normal&quot;">
-<p>Se le denomina también UNIX System V o SysVinit. El proceso inicial a partir del cual arranca el sistema, servicios y resto de procesos se denomina <code>init</code> y ejecuta con PID 1.</p>
+<div class="style-example">
 <div class="admonition tip">
-<p class="admonition-title">proceso inicial init</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>/sbin/init
+<p class="admonition-title">¿system V o systemd?</p>
+<p>Comprobar proceso con PID 1</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># Ejemplo sistema System V</span>
+<span class="token function">ps</span> <span class="token parameter variable">-p</span> <span class="token number">1</span>
+PID  <span class="token environment constant">USER</span>   TIME  COMMAND
+<span class="token number">1</span>    root   <span class="token number">0</span>:00  /sbin/init
+<span class="token comment"># Ejemplo sistema systemD</span>
+<span class="token function">ps</span> <span class="token parameter variable">-p</span> <span class="token number">1</span>
+PID  <span class="token environment constant">USER</span>   TIME COMMAND
+<span class="token number">1</span>    root   <span class="token number">0</span>:00 systemd
 </code></pre></div>
-<p>Al iniciarse el proceso init lee el fichero de configuración <code>/etc/inittab</code> y según el nivel de ejecución (runlevel) configurado en el mismo ejecuta secuencialmente los scripts que configuran los servicios, ubicados en <code>/etc/init.d</code> o en <code>/etc/rc.d/init.d</code> dependiendo de la distribución Linux instalada.</p>
-<h4 id="inittab">INITTAB </h4>
-<p><code>/etc/inittab</code> es el fichero de configuración principal del servicio <code>init</code>. Le indica al proceso <code>init</code> que debe hacer al iniciarse, que nivel de ejecución debe usar de manera predeterminada y que procesos debe iniciar o reiniciar.</p>
-<p>El fichero está formado por lineas de texto que tienen el siguiente formato:</p>
-<p><strong>id:runlevels:action:process</strong></p>
-<ul>
-<li>id<br>
-Identificador único para la entrada</li>
-<li>runlevels<br>
-Especifica los runlevels a los que se aplica la entrada
+</div>
+<h3 id="system-v">SYSTEM V </h3>
+<div class="style-normal">
+<p>Denominado también UNIX System V o SysVinit. El proceso inicial se llama <code>init</code> y ejecuta el comando <code>/sbin/init</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>secuencialmente</strong>, es decir, cuando lanza la ejecución de un servicio espera a que termine antes de lanzar el siguiente.</p>
+</div>
+<h4 id="servicios">SERVICIOS </h4>
+<div class="style-normal">
+<p>Los scripts que definen los servicios están ubicados en la carpeta <code>/etc/init.d</code> o <code>/etc/rc.d/init.d</code> dependiendo de la distribución Linux. Un script de definición de servicio tiene normalmente la siguiente estructura:</p>
+</div>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>  <span class="token comment">#script definición servicio</span>
+  <span class="token comment">#$1 parámetro de ejecución del script</span>
+  <span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword keyword-in">in</span>
+  start<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones para iniciar el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  stop<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones para detener el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  restart<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones para reiniciar el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  status<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones parar comprobar el estado el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  *<span class="token punctuation">)</span>
+  <span class="token comment">#Cualquier otra opción nuestra la ayuda de uso</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> {start|stop|restart|status}"</span>
+  <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token keyword keyword-esac">esac</span>
+  <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+</code></pre></div>
+<h4 id="operaciones">OPERACIONES </h4>
+<div class="style-normal">
+<p>Para ejecutar las operaciones básicas sobre un servicio se puede invocar el script del servicio con la opción deseada <code>/etc/init.d/&lt;servicio&gt; &lt;opcion&gt;</code> o bien ejecutar el comando <code>service &lt;servicio&gt; &lt;opcion&gt;</code></p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>script</th>
+<th>comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mostrar</td>
+<td><code>/etc/init.d/&lt;servicio&gt; status</code></td>
+<td><code>service &lt;servicio&gt; status</code></td>
+</tr>
+<tr>
+<td>Iniciar</td>
+<td><code>/etc/init.d/&lt;servicio&gt; start</code></td>
+<td><code>service &lt;servicio&gt; start</code></td>
+</tr>
+<tr>
+<td>Detener</td>
+<td><code>/etc/init.d/&lt;servicio&gt; stop</code></td>
+<td><code>service &lt;servicio&gt; stop</code></td>
+</tr>
+<tr>
+<td>Reiniciar</td>
+<td><code>/etc/init.d/&lt;servicio&gt; restart</code></td>
+<td><code>service &lt;servicio&gt; restart</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="runlevels">RUNLEVELS </h4>
+<div class="style-normal">
+<p>El runlevel (nivel de ejecución) determina el conjunto de servicios que <code>init</code> va a ejecutar por defecto. Por ejemplo, en un runlevel se puede iniciar el sistema con interfaz gráfica mientras que en otro no.</p>
 <table>
 <thead>
 <tr>
@@ -311,38 +373,108 @@ Especifica los runlevels a los que se aplica la entrada
 </thead>
 <tbody>
 <tr>
-<td>0</td>
+<td><strong>0</strong></td>
 <td>Parada del sistema</td>
 </tr>
 <tr>
-<td>1</td>
-<td>Monousuario. Se utilza normalmente para el mantenimiento del sistema</td>
+<td><strong>1</strong></td>
+<td>Inicio Monousuario. Mantenimiento del sistema</td>
 </tr>
 <tr>
-<td>2</td>
-<td>Multiusuario sin soporte de red</td>
+<td><strong>2</strong></td>
+<td>Inicio Multiusuario sin soporte de red.</td>
 </tr>
 <tr>
-<td>3</td>
-<td>Multiusuario completo con soporte de red. Se utiliza para administrar en modo consola</td>
+<td><strong>3</strong></td>
+<td>Inicio Multiusuario con soporte de red.</td>
 </tr>
 <tr>
-<td>4</td>
-<td>No definido. Puede usarse para definir un runlevel personalizado</td>
+<td><strong>4</strong></td>
+<td>Inicio no definido. Para definir runlevel personalizado</td>
 </tr>
 <tr>
-<td>5</td>
-<td>Modo multiusario completo con inicio gráfico. Se utiliza para el login en modo gráfico (X-Windows)</td>
+<td><strong>5</strong></td>
+<td>Inicio Multiusario modo gráfico. Login en modo gráfico (X-Windows)</td>
 </tr>
 <tr>
-<td>6</td>
+<td><strong>6</strong></td>
 <td>Reinicio del sistema</td>
+</tr>
+<tr>
+<td><strong>S</strong></td>
+<td>Arranque Base. Se ejecuta antes que cualquier otro runlevel solo durante el arranque del sistema. Configura lo mínimo necesario para que el sistema funcione: monta particiones, verifica sistemas de archivos, inicializa dispositivos, configura la consola,...</td>
 </tr>
 </tbody>
 </table>
-</li>
+<p>Por cada runlevel existe un directorio <code>rcX.d</code> (X=runlevel) donde se define el conjunto de servicios que se ejecutan mediante <strong>enlaces simbólicos</strong> a los scripts del directorio <code>/etc/init.d</code>. La ubicación de los directorios <code>rcX.d</code> varía según la distribución de linux, normalmente: <code>/etc/rcX.d</code> o <code>/etc/rc.d/rcX.d</code></p>
+<p>Los nombres de los enlaces simbólicos siguen la siguiente estructura <code>[S|K]NNservicio</code></p>
+<ul>
+<li><strong>S</strong>   ejecuta el servicio con la opción start</li>
+<li><strong>K</strong>   ejecuta el servicio con la opción stop</li>
+<li><strong>NN</strong>  nº de orden de ejecución (01 ejecuta antes que 02)</li>
+<li><strong>servicio</strong> nombre del servicio en <code>/etc/init.d</code></li>
+</ul>
+<p>El proceso <code>init</code> utiliza el script <code>/etc/init.d/rc</code> para ejecutar los runlevels 0-6 y el script <code>/etc/init.d/rcS</code> para ejecutar S. Los servicios definidos se ejecutan secuencialmente en orden alfabetico. Por tanto, primero se ejecutan los que comienzan por K según su número de orden y luego los que comienzan por S según su número de orden.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Enlace simbolico</p>
+<p>Ejemplo de enlaces simbólicos para rc3.d. Observar como los servicios ftp o squid no son referenciados por rc3.d.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>/etc/init.d/
+├── rc
+├── apache2
+├── <span class="token function">ssh</span>
+├── network
+├── <span class="token function">ftp</span>
+├── squid
+/etc/rc3.d/
+├── S01network -<span class="token operator">&gt;</span> <span class="token punctuation">..</span>/init.d/network
+├── S02ssh -<span class="token operator">&gt;</span> <span class="token punctuation">..</span>/init.d/ssh
+├── K01apache2 -<span class="token operator">&gt;</span> <span class="token punctuation">..</span>/init.d/apache2
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Conocer el runlevel actual</p>
+<p>Ejecutar comando <code>runlevel</code>. Este comando muestra en su salida el runlevel anterior (primer valor)y el runlevel actual (segundo valor).</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>runlevel
+N <span class="token number">5</span>
+<span class="token comment"># N runlevel anterior no definido</span>
+<span class="token comment"># 5 runlevel actual multiusuario grafico</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Ejecutar o cambiar un runlevel</p>
+<p>Ejecutar comando <code>init &lt;runlevel&gt;</code> ó <code>telinit &lt;runlevel&gt;</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># Ejecutar runlevel de reinicio de maquina</span>
+init <span class="token number">6</span>
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Para <strong>generar los enlaces simbolicos</strong> asociados a un runlevel utilizaremos el comando <code>update-rc.d</code>.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">update-rc.d</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># Iniciar y parar un servicio en runlevel por defecto </span>
+<span class="token comment"># (start=2,3,4,5, stop=0,1,6) prioridad 30 start y 15 stop.</span>
+update-rc.d <span class="token operator">&lt;</span>servicio<span class="token operator">&gt;</span> defaults <span class="token number">30</span> <span class="token number">15</span>
+<span class="token comment"># Iniciar un servicio en runlevel 3 y 5 prioridad 30</span>
+update-rc.d <span class="token operator">&lt;</span>servicio<span class="token operator">&gt;</span> start <span class="token number">30</span> <span class="token number">3</span> <span class="token number">5</span>
+<span class="token comment"># Detener un servicio en runlevel 3 y 5 prioridad 15</span>
+update-rc.d <span class="token operator">&lt;</span>servicio<span class="token operator">&gt;</span> stop <span class="token number">15</span> <span class="token number">3</span> <span class="token number">5</span>
+</code></pre></div>
+</div>
+<div style="page-break-after:always;"></div>
+<h4 id="inittab">INITTAB </h4>
+<div class="style-normal">
+<p>El fichero de configuración del proceso <code>init</code> es <code>/etc/inittab</code>. Le indica al proceso <code>init</code> que acciones realizar en el arranque del sistema como por ejemplo: el runlevel predeterminado, el script de arranque base, etc... El fichero está formado por lineas de entrada con el siguiente formato: <strong>id:runlevels:action:process</strong></p>
+</div>
+<div class="style-list">
+<ul>
+<li>id<br>
+Identificador único para la entrada</li>
+<li>runlevels<br>
+Especifica los runlevels a los que se aplica la entrada. Cuando esta vacio, significa cualquier runlevel.</li>
 <li>action<br>
-Especifica que acción debe realizar init
+Especifica que acción debe realizar init, entre otras tenemos:
 <table>
 <thead>
 <tr>
@@ -367,6 +499,10 @@ Especifica que acción debe realizar init
 <td>initdefault</td>
 <td>Especifica el runlevel por defecto</td>
 </tr>
+<tr>
+<td>sysinit</td>
+<td>Ejecutar al inicio antes de cualquier runlevel</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -374,441 +510,24 @@ Especifica que acción debe realizar init
 Comando o script a ejecutar</li>
 </ul>
 </div>
-<div class="style-list" style="margin-left: 1cm;">
-<ul>
-<li>Panel services.msc</li>
-<li>CMD comando net</li>
-<li>CMD comando sc</li>
-<li>Powershell cmdlet Get-Service</li>
-</ul>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">inittab</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># /etc/inittab</span>
+<span class="token comment"># runlevel por defecto 3</span>
+id:3:initdefault:
+<span class="token comment"># proceso de arranque rcS </span>
+si::sysinit:/etc/init.d/rcS
+<span class="token comment"># Niveles de ejecución</span>
+<span class="token comment"># Nivel 0 ejecutar rc 0</span>
+l0:0:wait:/etc/init.d/rc <span class="token number">0</span>
+<span class="token comment"># Nivel 1 ejecutar rc 1</span>
+l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token comment"># Se omiten lineas de la salida</span>
+</code></pre></div>
 </div>
 
-<h3 id="panel-servicesmsc">PANEL SERVICES.MSC </h3>
-<div class="style-normal">
-<p>Para ejecutar la consola gráfica services.msc podemos acceder a través de <strong>Inicio-&gt;Herramientas Administrativas-&gt;Servicios</strong> o bien simplemente teclear en el cuadro de búsqueda de windows <strong>services.msc</strong>.</p>
-<p><img src="./assets/img-win-msc.png" alt="img" style="width: 85%; display: block; margin: auto; align:center; "></p>
-<p>La consola de gestión de servicios nos muestra la información de todos los servicios del sistema. Podemos distinguir las siguientes partes:</p>
-<div class="style-list">
-<ul>
-<li><strong>Barra menú</strong><br>
-Desde esta barra se puede realizar cualquier operación sobre un servicio y configurarlo.</li>
-<li><strong>Barra de botones</strong><br>
-Desde esta barra se pueden realizar rápidamente las operaciones básicas de un servicio: inicarlo, pararlo, pausarlo, etc...</li>
-<li><strong>Panel descriptivo</strong><br>
-Muestra una descripción detallada del servicio seleccionado.</li>
-<li><strong>Panel de servicios</strong><br>
-Muestra una lista de los servicios configurados en el sistema. Organiza la inforamción en 5 columnas:
-<ul>
-<li>Nombre<br>
-Nombre descriptivo del servicio dentro del sistema</li>
-<li>Descripción<br>
-Breve explicación de la función del servicio</li>
-<li>Estado<br>
-Indica el estado en el que se encuentra el servicio (iniciado, pausado, parado). Cuando aparece en blanco es que no se esta ejecutando.</li>
-<li>Tipo de inicio<br>
-Indica cuando y como se inicia el servicio: automáticamente, manual, automáticamente pero retardado o inhabilitado.</li>
-<li>Iniciar sesión como<br>
-Usuario o cuenta del sistema que ejecuta el servicio.</li>
-</ul>
-</li>
-</ul>
-</div>
-<p>Para <strong>configurar</strong> un servicio debemos acceder a las propiedades del servicio. Para acceder a las propiedades haremos doble clic sobre el servicio deseado del panel de servicios.</p>
-<p>Ejemplo. Propiedades servicio DHCP<br>
-<img src="./assets/img-win-msc01.png" alt="img" style="width: 40%; display: block; margin: auto; align:center; "></p>
-<div class="style-list">
-<ul>
-<li>
-<p><strong>General</strong><br>
-Contiene la información general del servicio: su nombre (identificador), el nombre descriptivo, la descripción, el programa que ejecuta el servicio, el tipo de inicio del servicio, el estado del servicio, y una serie de botones para poder iniciar, detener, pausar o reanudar el servicio.<br>
-Para la configuración del <strong>tipo de inicio</strong> tenemos las siguientes opciones:</p>
-<ul>
-<li><strong>Automático</strong><br>
-El servicio se inicia automáticamente al iniciar el equipo</li>
-<li><strong>Automático (inicio retrasado)</strong><br>
-Igual que el automático pero despues de inciar todos los demás componentes principales del sistema.</li>
-<li><strong>Manual</strong><br>
-Solamente se inicia bajo demanda, es decir, si un usuario, una aplicación u otro servicio lo solicitan.</li>
-<li><strong>Deshabilitado</strong><br>
-El servicio no está operativo.</li>
-</ul>
-</li>
-<li>
-<p><strong>Iniciar sesión</strong><br>
-Contiene la información sobre el usuario o cuentas del sistema que ejecuta el servicio. En Windows las cuentas del sistema son:</p>
-<ul>
-<li><strong>LocalSystem</strong>
-<ul>
-<li>Tiene privilegios elevados, incluso más que un administrador.</li>
-<li>Accede a la mayoría de los recursos del sistema.</li>
-<li>Se usa para servicios que necesitan control total del equipo.</li>
-</ul>
-</li>
-<li><strong>NetworkService</strong>
-<ul>
-<li>Tiene permisos limitados localmente, pero puede autenticarse en la red como el equipo.</li>
-<li>Ideal para servicios que necesitan comunicarse con otros equipos sin privilegios excesivos.</li>
-</ul>
-</li>
-<li><strong>LocalService</strong>
-<ul>
-<li>Tiene permisos muy restringidos, tanto localmente como en la red.</li>
-<li>Se usa para servicios que no necesitan acceso a recursos críticos ni comunicación externa.</li>
-</ul>
-</li>
-<li><strong>SYSTEM</strong>
-<ul>
-<li>Es otro nombre para LocalSystem, usado internamente por el sistema operativo.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="./assets/img-win-msc02.png" alt="img" style="width: 35%; display: block; margin: auto; align:center; "></p>
-<ul>
-<li><strong>Recuperación</strong><br>
-Contiene información sobre las acciones a realizar cuando se produce un error en el funcionamiento del servicio. Entre ellas tenemos: <strong>No realizar ninguna acción, Reiniciar el servicio, Ejecutar un programa o Reiniciar el equipo</strong>. Además permite establecer cada cuanto se reinicia el recuento de errores, el tiempo entre reinicios del servicio y el programa a ejecutar en el caso de haber elegido dicha acción.</li>
-</ul>
-<p><img src="./assets/img-win-msc03.png" alt="img" style="width: 35%; display: block; margin: auto; align:center; "></p>
-<ul>
-<li><strong>Dependencias</strong><br>
-Contiene información sobre las dependencias del servicio:
-<ul>
-<li>Componentes o servicios de los que depende este servicio para poder ejecutarse.</li>
-<li>Componentes o servicios que dependen de este servicio para poder ejecutarse.</li>
-</ul>
-</li>
-</ul>
-</div>
-<br>
-<p><img src="./assets/img-win-msc04.png" alt="img" style="width: 35%; display: block; margin: auto; align:center; "></p>
-</div>
-<div style="page-break-after:always;"></div>
-<h3 id="cmd-comando-net">CMD COMANDO NET </h3>
-<div class="style-normal">
-<p>El comando <code>net</code> nos permite gestionar entre otros aspectos los servicios del sistema. Las opciones más habituales son:</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>comando</th>
-<th>descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>net help</code></td>
-<td>Muestra la ayuda del comando</td>
-</tr>
-<tr>
-<td><code>net start</code></td>
-<td>Muestra los servicios en ejecución</td>
-</tr>
-<tr>
-<td><code>net start &lt;servicio&gt;</code></td>
-<td>Inicia un servicio</td>
-</tr>
-<tr>
-<td><code>net stop &lt;servicio&gt;</code></td>
-<td>Para un servicio</td>
-</tr>
-<tr>
-<td><code>net pause &lt;servicio&gt;</code></td>
-<td>Pausa un servicio que esta en ejecución</td>
-</tr>
-<tr>
-<td><code>net continue &lt;servicio&gt;</code></td>
-<td>Reanuda un servicio pausado</td>
-</tr>
-</tbody>
-</table>
-<div class="style-normal2">
-<div class="admonition example">
-<p class="admonition-title">net start</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>net start
-...
-Apple Mobile Device Service
-Asignador de extremos de RPC
-Audio de Windows
-Centro de seguridad
-Cliente de seguimiento de vínculos distribuidos
-Cliente DHCP
-Cliente DNS
-Cola de impresión
-Compilador de extremo de audio de Windows
-Configuración automática de dispositivos conectados a la red
-Configuración automática de WLAN
-Contenedor de Microsoft Passport
-Energía
-...
-</code></pre><p>Se han omitido resultados en la salida del comando y se han utilizado solo algunos a modo de ejemplo. Se puede comprobar que en la lista de servicios en ejecución no se utiliza el nombre identificador sino el nombre descriptivo (display name)</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">net stop</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>net stop "Cliente DHCP"
-Los siguientes servicios son dependientes del servicio de Cliente DHCP.
-Detener el servicio de Cliente DHCP también detendrá estos Servicios:
-Servicio de detección automática de proxy web WinHTTP
-¿Desea continuar esta operación? (S/N) [N]:
-...
-</code></pre><p>Al detener un servicio nos indica los servicios que dependen de él y que también se detendran.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">net</p>
-<p>Cuando  ejecutamos un comando net podemos usar tanto el nombre descriptivo como el identificador del servicio.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>net stop "Cliente DHCP"
-net stop dhcp
-</code></pre></div>
-</div>
-<h3 id="cmd-comando-sc">CMD COMANDO SC </h3>
-<div class="style-normal">
-<p>La consola <code>sc</code> (service controller) permite consultar la configuración y el estado de los servicios, así como crearlos, eliminarlos y cambiar la configuración de los mismos. La consola admite comandos y podemos obtener ayuda contextual según el comando utilizado. La siguiente tabla resume las operaciones más habituales</p>
-</div>
-<div class="style-normal2">
-<table>
-<thead>
-<tr>
-<th>comando</th>
-<th>descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sc help</code></td>
-<td>Muestra la ayuda de la consola</td>
-</tr>
-<tr>
-<td><code>sc &lt;comando&gt;</code></td>
-<td>Muestra la ayuda del comando</td>
-</tr>
-<tr>
-<td><code>sc query</code></td>
-<td>Muestra los servicios en ejecución. Más información en <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/sc-query">Windows Learn</a></td>
-</tr>
-<tr>
-<td><code>sc query state=inactive</code></td>
-<td>Muestra los servicios inactivos</td>
-</tr>
-<tr>
-<td><code>sc query state=all</code></td>
-<td>Muestra todos los servicios</td>
-</tr>
-<tr>
-<td><code>sc query &lt;servicio&gt;</code></td>
-<td>Muestra el estado de un servicio</td>
-</tr>
-<tr>
-<td><code>sc start &lt;servicio&gt;</code></td>
-<td>Inicia un servicio</td>
-</tr>
-<tr>
-<td><code>sc stop &lt;servicio&gt;</code></td>
-<td>Para un servicio</td>
-</tr>
-<tr>
-<td><code>sc pause &lt;servicio&gt;</code></td>
-<td>Pausa un servicio que esta en ejecución</td>
-</tr>
-<tr>
-<td><code>sc continue &lt;servicio&gt;</code></td>
-<td>Reanuda un servicio pausado</td>
-</tr>
-<tr>
-<td><code>sc qc &lt;servicio&gt;</code></td>
-<td>Muestra la configuración de un servicio</td>
-</tr>
-<tr>
-<td><code>sc qdescription &lt;servicio&gt;</code></td>
-<td>Muestra la descripción de un servicio</td>
-</tr>
-<tr>
-<td><code>sc qfailure &lt;servicio&gt;</code></td>
-<td>Muestra la configuración ante errores de un servicio</td>
-</tr>
-<tr>
-<td><code>sc getdisplayname &lt;servicio&gt;</code></td>
-<td>Muestra el nombre descriptivo de un servicio</td>
-</tr>
-<tr>
-<td><code>sc getkeyname &lt;servicio&gt;</code></td>
-<td>Muestra el identificador de un servicio</td>
-</tr>
-<tr>
-<td><code>sc enumdepend &lt;servicio&gt;</code></td>
-<td>Muestra las dependencias de un servicio</td>
-</tr>
-<tr>
-<td><code>sc create &lt;servicio&gt;</code></td>
-<td>Crea y configura un servicio. Más información en <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/sc-create">Windows Learn</a></td>
-</tr>
-<tr>
-<td><code>sc config &lt;servicio&gt;</code></td>
-<td>Cambia la configuración de un servicio. Más información en <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/sc-config">Windows Learn</a></td>
-</tr>
-<tr>
-<td><code>sc delete &lt;servicio&gt;</code></td>
-<td>Elimina un servicio del sistema</td>
-</tr>
-<tr>
-<td><code>sc failure &lt;servicio&gt;</code></td>
-<td>Modifica el tratamiento de error de un servicio</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition tip">
-<p class="admonition-title">sc</p>
-<p>Cuando  ejecutamos un comando sc debemos usar el identificador del servicio y no su nombre descriptivo. Excepto obviamente para el comando getkeyname.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sc query "Cliente DHCP"  NO FUNCIONA
-sc query dhcp            SI FUNCIONA
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">sc query [servicio]</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sc query dhcp
-NOMBRE_SERVICIO: dhcp
-    TIPO               : 30  WIN32
-    ESTADO             : 4  RUNNING
-                            (STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)
-    CÓD_SALIDA_WIN32   : 0  (0x0)
-    CÓD_SALIDA_SERVICIO: 0  (0x0)
-    PUNTO_COMPROB.     : 0x0
-    INDICACIÓN_INICIO  : 0x0
-</code></pre><p>Nos indica que el servicio DHCP está actualmente en ejecución (RUNNING)</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">sc getdisplayname [servicio]</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sc getdisplayname dhcp
-N[SC] GetServiceDisplayName CORRECTO
-Nombre = Cliente DHCP
-</code></pre><p>Nos indica que el nombre descriptivo para el identificador de servicio dhcp es "Cliente DHCP"</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">sc qfailure [servicio]</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sc qfailure dhcp
-[SC] QueryServiceConfig2 CORRECTO
-NOMBRE_SERVICIO: dhcp
-    PERÍODO_REINICIO (en segundos): 86400
-    MENSAJE_REINICIO              :
-    LÍNEA_COMANDOS                :
-    ACCIONES_ERROR                : REINICIAR - Retraso= 120000 ms
-                                    REINICIAR - Retraso= 300000 ms
-</code></pre><p>Nos indica que el contador de errores se reinicia cada 86400 segundos (1 día). Cuando se produce el primer error hay que esperar 120000 ms (2 minutos) y reiniciar. Cuando se produce el segundo error hay que esperar 300000 ms (5 minutos) y reiniciar. Cuando se produce el tercer error y siguientes no se realiza ninguna acción (por eso no aparece).</p>
-</div>
-</div>
-<h3 id="powershell-service">POWERSHELL SERVICE </h3>
-<div class="style-normal">
-<p>Powershell dispone de una serie de cmdlets relacionados con el objeto SERVICE para la administración de servicios. La funcionalidad y opciones de estos cmdlets varian en función de la versión de powershell instalada en el sistema. No obstante, si queremos mayor funcionalidad en powershell también podemos utilizar la consola <code>sc</code></p>
-</div>
-<div class="style-normal2">
-<table>
-<thead>
-<tr>
-<th>cmdlet</th>
-<th>descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Get-Service</code></td>
-<td>Muestra el estado los servicios configurados en el sistema. Más información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-5.1">Windows Learn</a></td>
-</tr>
-<tr>
-<td><code>Get-Service | Where-Object {$_.Status -eq "&lt;estado"}</code></td>
-<td>Muestra los servicios que se encuentran en un determinado estado: Running, Stopped, Paused</td>
-</tr>
-<tr>
-<td><code>Get-Service -Name &lt;servicio&gt;</code></td>
-<td>Muestra el estado de un servicio</td>
-</tr>
-<tr>
-<td><code>Get-Service -Name &lt;servicio&gt; | Format-List</code></td>
-<td>Muestra el estado de un servicio en formato lista (más propiedades)</td>
-</tr>
-<tr>
-<td><code>Get-Service -DisplayName &lt;servicio&gt;</code></td>
-<td>Muestra el estado de un s ervicio por su nombre descriptivo</td>
-</tr>
-<tr>
-<td><code>Get-Service -RequiredServices &lt;servicio&gt;</code></td>
-<td>Muestra los servicios que se requieren antes de poder ejecutar un servicio</td>
-</tr>
-<tr>
-<td><code>Get-Service -DependentServices &lt;servicio&gt;</code></td>
-<td>Muestra los servicios que dependen de un servicio</td>
-</tr>
-<tr>
-<td><code>Start-Service &lt;servicio&gt;</code></td>
-<td>Inicia un servicio</td>
-</tr>
-<tr>
-<td><code>Stop-Service &lt;servicio&gt;</code></td>
-<td>Para un servicio</td>
-</tr>
-<tr>
-<td><code>Suspend-Service &lt;servicio&gt;</code></td>
-<td>Pausa un servicio</td>
-</tr>
-<tr>
-<td><code>Resume-Service &lt;servicio&gt;</code></td>
-<td>Reanuda un servicio pausado</td>
-</tr>
-<tr>
-<td><code>Restart-Service &lt;servicio&gt;</code></td>
-<td>Para y inicia de nuevo un servicio</td>
-</tr>
-<tr>
-<td><code>New-Service &lt;servicio&gt;</code></td>
-<td>Crea y configura un servicio en el sistema. Mas información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-5.1">Windows Learn</a></td>
-</tr>
-<tr>
-<td><code>Set-Service &lt;servicio&gt;</code></td>
-<td>Cambia la configuración de un servicio en el sistema. Más información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-5.1">Windows Learn</a></td>
-</tr>
-<tr>
-<td><code>Remove-Service &lt;servicio&gt;</code></td>
-<td>Borra un servicio de la configuración del sistema. Solo funciona a partir de la versión 7.5 de powershell. Más información en <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-service?view=powershell-7.5">Windows Learn</a></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after:always;"></div>
-<div class="admonition example">
-<p class="admonition-title">Get-Service</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">Get-Service</span> dhcp <span class="token punctuation">|</span> <span class="token function">format-list</span>
-Name                : dhcp
-DisplayName         : Cliente DHCP
-Status              : Running
-DependentServices   : <span class="token punctuation">{</span>WlanSvc<span class="token punctuation">,</span> icssvc<span class="token punctuation">,</span> Wcmsvc<span class="token punctuation">,</span> NcaSvc<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
-ServicesDependedOn  : <span class="token punctuation">{</span>Afd<span class="token punctuation">,</span> NSI<span class="token punctuation">}</span>
-CanPauseAndContinue : False
-CanShutdown         : True
-CanStop             : True
-ServiceType         : Win32OwnProcess<span class="token punctuation">,</span> Win32ShareProcess
-</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">Get-Service</span> dhcp
-Status   Name               DisplayName
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>   <span class="token operator">--</span><span class="token operator">--</span>               <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-Running  dhcp               Cliente DHCP
-</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">Get-Service</span> <span class="token punctuation">|</span> <span class="token function">Where-Object</span> <span class="token punctuation">{</span> <span class="token variable">$_</span><span class="token punctuation">.</span>status <span class="token operator">-eq</span> <span class="token string">"RUNNING"</span> <span class="token punctuation">}</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-Running  W32Time            Hora de Windows
-Running  WdiSystemHost      Host de sistema de diagnóstico
-Running  WdNisSvc           Servicio de inspección de red <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-Running  webthreatdefsvc    Servicio de defensa <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-Running  webthreatdefuse<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Servicio de usuario de defensa <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-Running  whesvc             Estado y experiencias <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-Running  WinDefend          Servicio Antivirus <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-Running  WinHttpAutoProx<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Servicio de detección auto<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-</code></pre></div>
-</div>
-<div class="style-normal">
-<p>En Powershell versión 5 necesitamos utilizar cmdlets más complejos para obtener información adicional de un servicio como por ejemplo el ejecutable, la descripción o la cuenta con la que se ejecuta.</p>
-</div>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Mostrar el programa que ejecuta un servicio
-<span class="token punctuation">(</span><span class="token function">Get-CimInstance</span> win32_service <span class="token punctuation">|</span> <span class="token function">where-object</span> <span class="token punctuation">{</span><span class="token variable">$_</span><span class="token punctuation">.</span>Name <span class="token operator">-eq</span> <span class="token string">'&lt;servei&gt;'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>PathName
-</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Mostrar la descripción de un servicio
-<span class="token punctuation">(</span><span class="token function">Get-CimInstance</span> win32_service <span class="token punctuation">|</span> <span class="token function">where-object</span> <span class="token punctuation">{</span><span class="token variable">$_</span><span class="token punctuation">.</span>Name <span class="token operator">-eq</span> <span class="token string">'&lt;servei&gt;'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Description
-</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Mostrar la cuenta con la que se ejecuta un servicio
-<span class="token punctuation">(</span><span class="token function">Get-CimInstance</span> win32_service <span class="token punctuation">|</span> <span class="token function">where-object</span> <span class="token punctuation">{</span><span class="token variable">$_</span><span class="token punctuation">.</span>Name <span class="token operator">-eq</span> <span class="token string">'&lt;servei&gt;'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>StartName
-</code></pre>
       </div>
       
       
