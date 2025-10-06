@@ -317,7 +317,20 @@ table {
           <a href="#borrar-ip-y-gateway" class="md-toc-link">
             <p>BORRAR IP Y GATEWAY</p>
 
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-dns" class="md-toc-link">
+            <p>BORRAR DNS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configuración-dinámica" class="md-toc-link"><p>CONFIGURACIÓN DINÁMICA</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#ifconfig" class="md-toc-link"><p>IFCONFIG</p>
 </a>
@@ -683,6 +696,34 @@ nameserver &lt;ip-servidor-dns2&gt;
 nameserver 8.8.8.8
 </code></pre></div>
 </div>
+<div class="style-normal">
+<p>Cuando tenemos instalada la aplicación <code>resolvconf</code>, se pueden configurar los servidores DNS en el mismo archivo de configuración de las interfaces de red con la directiva <code>dns-nameservers</code>. Podemos comprobar si el servicio está instalado ejecutando, por ejemplo, el comando <code>service</code> o <code>dpkg</code>.<br>
+El siguiente comando nos indica si el servicio <code>resolvconf</code> está instalado y su estado (activo o inactivo):</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# service resolvconf status
+</code></pre><p>El siguiente comando es equivalente:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# dpkg -l | grep resolvconf
+</code></pre>
+<div class="style-normal">
+<p>Además, en este caso el archivo <code>/etc/resolv.conf</code> no es realmente el archivo de configuración de los DNS, sino un enlace simbólico (link) al archivo de configuración.</p>
+<p>El servicio <code>resolvconf</code> está instalado por defecto en muchas distribuciones Ubuntu antiguas como Ubuntu 16.04.</p>
+<p>Cuando se activa una conexión de red donde aparece una directiva <code>dns-nameservers</code>, el servicio <code>resolvconf</code> lee los valores de los servidores DNS y los pone en el archivo <code>/etc/resolv.conf</code>. Por tanto, si tenemos instalado este servicio, no debemos configurar los servidores DNS utilizados en el archivo <code>/etc/resolv.conf</code>. No obstante, se pueden añadir servidores DNS concretos si los ponemos en el archivo <code>/etc/resolvconf/resolv.conf.d/head</code> con una directiva <code>nameserver</code>. En este caso, <code>resolvconf</code> siempre pondrá este DNS en el archivo <code>/etc/resolv.conf</code>, además de los que aparecen en las directivas <code>dns-nameservers</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración DNS resolvconf</p>
+<div class="style-normal2">
+<p>Tenemos un equipo con Debian 11 que utiliza el servicio <code>resolvconf</code> como cliente DNS. La dirección de red es <code>192.168.4.0/24</code> y la IP del equipo es <code>192.168.4.5</code>. Queremos configurar la interfaz de red para que utilice los DNS <code>10.10.10.3</code> y <code>8.8.8.8</code>.</p>
+<p>El servicio <code>resolvconf</code> no viene instalado por defecto en las distribuciones Debian sin entorno de escritorio. Lo primero que debemos hacer es instalarlo:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# apt install resolvconf
+</code></pre><p>Ahora ya podemos configurar los servidores DNS utilizados.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>auto enp0s3
+iface enp0s3 inet static
+ address 192.168.4.5
+ netmask 255.255.255.0
+ gateway 192.168.4.1
+ dns-nameservers 10.10.10.3 8.8.8.8
+</code></pre></div>
+</div>
 <h4 id="sistemas-basados-en-red-hat-1">SISTEMAS BASADOS EN RED HAT </h4>
 <div class="style-normal">
 <p>En estos sistemas la configuración del DNS de lleva a cabo en los archivos de configuración de las conexiones. Cláusulas del tipo <code>DNS&lt;n&gt; = &lt;ip-dns&gt;</code>, donde n indica el número de servidor DNS (el 1 es el más prioritario) se utilizan para definir los servidores DNS.</p>
@@ -703,6 +744,32 @@ DNS2=8.8.8.8
 </code></pre></div>
 </div>
 <h3 id="borrar-ip-y-gateway">BORRAR IP Y GATEWAY </h3>
+<div class="style-normal">
+<p>Para borrar una ip de manera <strong>no persistente</strong> se asigna la ip <code>0.0.0.0</code> a la interfaz de red utilizando el comando <code>ifconfig</code>.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; 0.0.0.0
+</code></pre><div class="style-normal">
+<p>Para eliminar la puerta de enlace, se utiliza el comando <code>route del</code> para borrar la ruta asociada.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del default [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Si sólo tenemos una única ruta por defecto (lo habitual) no es necesario especificar la puerta de enlace (ni la interfaz de red).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar gateway</p>
+<div class="style-normal2">
+<p>Eliminar la ruta por defecto o gateway de la tabla de enrutamiento de un equipo. Suponemos que sólo hay una única ruta por defecto.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del default
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Para eliminar la ip en el caso de la configuración <strong>persistente</strong>, sólo hay que desactivar la interfaz, eliminar la sección de configuración de la interfaz (o el archivo de interfaz) y volver a activar la interfaz.</p>
+<p>Si sólo queremos elimar la puerta de enlace tenemos que desactivar la interfaz, eliminar del archivo de configuración la línea donde aparece la directiva <code>gateway</code> y volver a activar la interfaz.</p>
+</div>
+<h3 id="borrar-dns">BORRAR DNS </h3>
+<h2 id="configuración-dinámica">CONFIGURACIÓN DINÁMICA </h2>
+<p><em><strong>HASTA AQUÍ</strong></em></p>
+<hr>
 <h3 id="ifconfig">IFCONFIG </h3>
 <div class="style-normal">
 <p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
