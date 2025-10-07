@@ -330,7 +330,15 @@ table {
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#obtener-parámetros-de-red" class="md-toc-link">
+            <p>OBTENER PARÁMETROS DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#liberar-ip" class="md-toc-link">
+            <p>LIBERAR IP</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#ifconfig" class="md-toc-link"><p>IFCONFIG</p>
 </a>
@@ -767,9 +775,93 @@ DNS2=8.8.8.8
 <p>Si sólo queremos elimar la puerta de enlace tenemos que desactivar la interfaz, eliminar del archivo de configuración la línea donde aparece la directiva <code>gateway</code> y volver a activar la interfaz.</p>
 </div>
 <h3 id="borrar-dns">BORRAR DNS </h3>
+<div class="style-normal">
+<p>En el caso de los <strong>sistemas basados en Debian</strong> que configuran el DNS en el archivo <code>/etc/resolv.conf</code> simplemente hay que editar el archivo y eliminar las líneas correspondientes a los servidores DNS que queremos borrar.<br>
+Si se utiliza el servicio resolvconf en conjunción con el archivo <code>/etc/network/interfaces</code> sólo tenemos que parar el servicio, editar dicho archivo y eliminar los DNS que nos interesen de las cláusulas <code>dns-domainserver</code> y volver a iniciar el servicio resolvconf.</p>
+<p>Para los <strong>sistemas basados en Red Hat</strong> hay que desactivar la conexión que contiene los DNS a borrar, editar dicho archivo de conexión y eliminar las líneas que nos interesen donde aparece la palabra DNS. Por último hay que volver a activar la conexión.</p>
+</div>
 <h2 id="configuración-dinámica">CONFIGURACIÓN DINÁMICA </h2>
-<p><em><strong>HASTA AQUÍ</strong></em></p>
-<hr>
+<h3 id="obtener-parámetros-de-red">OBTENER PARÁMETROS DE RED </h3>
+<div class="style-normal">
+<p>Para configurar dinámicamente una interfaz de red; es decir para hacer que la dirección ip y otros parámetros de red (básicamente la puerta de enlace y servidores DNS) nos los proporcione un servidor DHCP no nos sirve el comando <code>ifconfig</code>. En su lugar tenemos que utilizar el cliente DHCP que venga con la distribución de linux utilizada. En linux Debian y derivados este cliente se llama <code>dhclient</code>.<br>
+La sintaxis del comando para obtener la ip dinámicamente es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>dhclient [-v] &lt;interfaz&gt;
+</code></pre><div class="style-normal">
+<p>El comando hace que la interfaz de red especificada solicite una dirección IP a un servidor DHCP de la red. Con la opción <code>-v</code> nos muestra información del proceso de obtención de la dirección.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Obtener ip dinámicamente</p>
+<div class="style-normal2">
+<p>Solicitar una ip dinámicamente para la interfaz de red <code>eth0</code>. Mostrar información adicional relativa a la obtención de la dirección.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -v eth0
+Internet Systems Consortium DHCP Client 4.2.2
+Copyright 2004-2011 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+Listening on LPF/eth0/08:00:27:d0:2f:54
+Sending on LPF/eth0/08:00:27:d0:2f:54
+Sending on Socket/fallback
+DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 4
+DHCPREQUEST on eth0 to 255.255.255.255 port 67
+DHCPOFFER from 192.168.2.3
+DHCPACK from 192.168.2.3
+bound to 192.168.2.16 -- renewal in 299 seconds.
+</code></pre><p>Los detalles de la información mostrada se explicaran en otro tema. La última línea me indica que la ip asignada a la interfaz <code>eth0</code> es la <code>192.168.2.16</code>.</p>
+</div>
+</div>
+<div class="style-normal">
+<p>Si a una interfaz ya se le ha asignado una ip dinámicamente, la ejecución del comando provoca la renovación de la concesión de la ip.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Obtener ip dinámicamente</p>
+<div class="style-normal2">
+<p>Solicitar una ip dinámicamente para la interfaz de red <code>eth0</code>. Mostrar información adicional relativa a la obtención de la dirección.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -v eth0
+Internet Systems Consortium DHCP Client 4.2.2
+Copyright 2004-2011 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+Listening on LPF/eth0/08:00:27:d0:2f:54
+Sending on LPF/eth0/08:00:27:d0:2f:54
+Sending on Socket/fallback
+DHCPREQUEST on eth0 to 255.255.255.255 port 67
+DHCPACK from 192.168.2.3
+RTNETLINK answers: File exists
+bound to 192.168.2.16 -- renewal in 238 seconds.
+</code></pre><p>Como en el ejemplo anterior, la ip asignada a la interfaz <code>eth0</code> es la <code>192.168.2.16</code>. La ausencia de las líneas que contienen la palabra <code>DHCPDISCOVER</code> y <code>DHCPOFFER</code> nos indican que la interfaz ya tenía asignada esta ip y que lo que se ha producido es la renovación de la ip.</p>
+</div>
+</div>
+<h3 id="liberar-ip">LIBERAR IP </h3>
+<p>Cuando en el comando dhclient utilizamos la opción -r lo que hacemos es eliminar la ip de nuestro adaptador de red e indicarle al servidor DHCP que la ip está disponible para asignarla a otro equipo.</p>
+<p>La sintaxis del comando para este caso es la siguiente:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>dhclient -r [-v] &lt;interfaz&gt;
+</code></pre><p>Libera la ip asignada a la interfaz de red especificada. La interfaz queda administrativamente activa pero sin ninguna ip. Con la opción -v se nos muestra información adicional. Si solo tenemos una única interfaz de red podemos omitir el parámetro <code>&lt;interfaz&gt;</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Liberar ip</p>
+<div class="style-normal2">
+<p>Liberar la ip asignada a la interfaz de red <code>eth0</code>. Mostrar información adicional relativa a la liberación de la dirección. Suponemos que solo hay una única interfaz de red.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -r -v eth0
+Internet Systems Consortium DHCP Client 4.2.2
+Copyright 2004-2011 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+Listening on LPF/eth0/08:00:27:d0:2f:54
+Sending on LPF/eth0/08:00:27:d0:2f:54
+Sending on Socket/fallback
+DHCPRELEASE on eth0 to 255.255.255.255 port 67
+</code></pre><p>Como solo hay una única interfaz de red, no es necesario especificar el parámetro <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -r -v
+Internet Systems Consortium DHCP Client 4.2.2
+Copyright 2004-2011 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+Listening on LPF/eth0/08:00:27:d0:2f:54
+Sending on LPF/eth0/08:00:27:d0:2f:54
+Sending on Socket/fallback
+DHCPRELEASE on eth0 to 255.255.255.255 port 67
+</code></pre></div>
+</div>
 <h3 id="ifconfig">IFCONFIG </h3>
 <div class="style-normal">
 <p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
