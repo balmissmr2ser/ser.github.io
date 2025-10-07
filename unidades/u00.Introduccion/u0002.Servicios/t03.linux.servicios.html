@@ -265,6 +265,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div>
         </div>
       </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#systemd" class="md-toc-link"><p>SYSTEMD</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#servicios-1" class="md-toc-link">
+            <p>SERVICIOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unidades" class="md-toc-link">
+            <p>UNIDADES</p>
+
+          </a></div>
+        </div>
+      </details>
     
         </div>
       </details>
@@ -296,7 +313,7 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 </div>
 <h3 id="system-v">SYSTEM V </h3>
 <div class="style-normal">
-<p>Denominado también UNIX System V o SysVinit. El proceso inicial se llama <code>init</code> y ejecuta el comando <code>/sbin/init</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>secuencialmente</strong>, es decir, cuando lanza la ejecución de un servicio espera a que termine antes de lanzar el siguiente.</p>
+<p>Denominado también UNIX System V o SysVinit. El proceso inicial se llama <code>init</code> y ejecuta el comando <code>/sbin/init</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>secuencialmente</strong>, es decir, cuando lanza la ejecución de un servicio espera a que termine antes de lanzar el siguiente. No existe definición explicita de dependencias más allá del orden en la ejecución secuencial.</p>
 </div>
 <h4 id="servicios">SERVICIOS </h4>
 <div class="style-normal">
@@ -527,6 +544,39 @@ l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
 <span class="token comment"># Se omiten lineas de la salida</span>
 </code></pre></div>
 </div>
+<h3 id="systemd">SYSTEMD </h3>
+<p>El proceso inicial se llama <code>systemd</code> y ejecuta el comando <code>/sbin/systemd</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>en paralelo</strong>, es decir, cuando lanza la ejecución de un servicio no es necesario esperar a que termine antes de lanzar el siguiente a no ser que haya dependencias entre ellos.</p>
+<p>El gestor <code>systemd</code> está diseñado para ser compatible con los scripts de inicio de <code>init</code> (System V) y por tanto se pueden definir los servicios al estilo de <code>/etc/init.d</code> con runlevels.</p>
+<h4 id="servicios-1">SERVICIOS </h4>
+<div class="style-normal">
+<h4 id="unidades">UNIDADES </h4>
+<p>Para la definición de los servicios se utiliza el concepto de <strong>unidad</strong>. Una unidad es un objeto de <code>systemd</code> que realiza o controla una tarea o acción en particular, por ejemplo, gestionar procesos, organizar el arranque del sistema, crear sockets, montar sistemas de archivos, etc..</p>
+<p>Una <strong>unidad</strong> consta de los siguiente elementos:</p>
+</div>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>  <span class="token comment">#script definición servicio</span>
+  <span class="token comment">#$1 parámetro de ejecución del script</span>
+  <span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword keyword-in">in</span>
+  start<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones para iniciar el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  stop<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones para detener el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  restart<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones para reiniciar el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  status<span class="token punctuation">)</span>
+  <span class="token comment">#Instrucciones parar comprobar el estado el servicio</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  *<span class="token punctuation">)</span>
+  <span class="token comment">#Cualquier otra opción nuestra la ayuda de uso</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> {start|stop|restart|status}"</span>
+  <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+  <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token keyword keyword-esac">esac</span>
+  <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+</code></pre></div>
 
       </div>
       
