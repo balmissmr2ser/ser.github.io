@@ -276,13 +276,17 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             <p>SERVICIOS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unidades" class="md-toc-link">
-            <p>UNIDADES</p>
+          <a href="#runlevels-1" class="md-toc-link">
+            <p>RUNLEVELS</p>
 
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#operaciones-1" class="md-toc-link">
+            <p>OPERACIONES</p>
+
+          </a></div>
         </div>
       </details>
     
@@ -545,38 +549,530 @@ l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
 </code></pre></div>
 </div>
 <h3 id="systemd">SYSTEMD </h3>
-<p>El proceso inicial se llama <code>systemd</code> y ejecuta el comando <code>/sbin/systemd</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>en paralelo</strong>, es decir, cuando lanza la ejecución de un servicio no es necesario esperar a que termine antes de lanzar el siguiente a no ser que haya dependencias entre ellos.</p>
-<p>El gestor <code>systemd</code> está diseñado para ser compatible con los scripts de inicio de <code>init</code> (System V) y por tanto se pueden definir los servicios al estilo de <code>/etc/init.d</code> con runlevels.</p>
+<div class="style-normal">
+<p>El proceso inicial se llama <code>systemd</code> y ejecuta el comando <code>/sbin/systemd</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>en paralelo</strong>, es decir, cuando lanza la ejecución de un servicio no espera a su terminación antes de lanzar un nuevo servicio a no ser que existan dependencias entre ellos. El proceso <code>systemd</code> tiene asociado un fichero de configuración global que define su comportamiento <code>/etc/systemd/system.conf</code></p>
+<p>Por otro lado, el gestor <code>systemd</code> está diseñado para ser compatible con los scripts de inicio de <code>init</code> (System V) y por tanto se pueden definir los servicios al estilo de <code>/etc/init.d</code>.</p>
+</div>
 <h4 id="servicios-1">SERVICIOS </h4>
 <div class="style-normal">
-<h4 id="unidades">UNIDADES </h4>
-<p>Para la definición de los servicios se utiliza el concepto de <strong>unidad</strong>. Una unidad es un objeto de <code>systemd</code> que realiza o controla una tarea o acción en particular, por ejemplo, gestionar procesos, organizar el arranque del sistema, crear sockets, montar sistemas de archivos, etc..</p>
-<p>Una <strong>unidad</strong> consta de los siguiente elementos:</p>
+<p>Para la definición de los servicios se utiliza el concepto de <strong>unidad</strong>. Una unidad es un objeto de <code>systemd</code> que realiza o controla una tarea o acción en particular, por ejemplo, gestionar procesos, organizar el arranque del sistema, crear sockets, montar sistemas de archivos, etc.. Para definir una unidad se utilizan los siguientes elementos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>Archivo de configuración</strong><br>
+Archivo que define la tarea que realiza la unidad. Se suelen utilizar los siguientes directorios:</p>
+<table>
+<thead>
+<tr>
+<th>Prioridad</th>
+<th>Directorio</th>
+<th>Proposito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>/etc/systemd/system/</code></td>
+<td>Unidades definidas por el usuario administrador del sistema. Se pueden modificar</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>/run/systemd/system</code></td>
+<td>Unidades definidas temporalmente en tiempo de ejecución. Se pierden tras reiniciar</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>/lib/systemd/system/</code></td>
+<td>Unidades definidas por la instalación de paquetes del sistema. No deben modificarse</td>
+</tr>
+</tbody>
+</table>
+<p>Si una unidad está definida en más de un directorio el orden de prioridad será: 1-&gt;2-&gt;3.</p>
+</li>
+<li>
+<p><strong>Nombre</strong><br>
+Identificador único de la unidad dentro del sistema. Es el nombre del archivo de configuración.</p>
+</li>
+<li>
+<p><strong>Categoria</strong><br>
+Se utiliza para agrupar unidades según su funcionalidad. Es la extensión del archivo de configuración. Algunas de ellas son:</p>
+<table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.service</td>
+<td>Servicio en el sistema</td>
+</tr>
+<tr>
+<td>.target</td>
+<td>Conjunto de unidades relacionadas entre sí. Similar a un runlevel</td>
+</tr>
+<tr>
+<td>.automount</td>
+<td>Punto de montaje automático para un sistema de archivos</td>
+</tr>
+<tr>
+<td>.mount</td>
+<td>Punto de montaje para un sistema de archivos</td>
+</tr>
+<tr>
+<td>.device</td>
+<td>Dispositivo físico reconocido por el kernel</td>
+</tr>
+<tr>
+<td>.path</td>
+<td>Monitoriza cambios en rutas de archivo para el control de los servicios</td>
+</tr>
+<tr>
+<td>.scope</td>
+<td>Organiza y gestiona procesos que se han creado externamente</td>
+</tr>
+<tr>
+<td>.slice</td>
+<td>Agrupación de recursos de sistema como la CPU o la memoria</td>
+</tr>
+<tr>
+<td>.socket</td>
+<td>Socket de comunicación entre procesos</td>
+</tr>
+<tr>
+<td>.swap</td>
+<td>Dispositivo o archivo de intercambio</td>
+</tr>
+<tr>
+<td>.timer</td>
+<td>Temporizador. Activa o desactiva un servicio específico basandose en temporizador</td>
+</tr>
+<tr>
+<td>.snapshot</td>
+<td>Realiza una instantánea del estado actual de todas las unidades en ejecución. Se utiliza para copia y restauración del sistema</td>
+</tr>
+<tr>
+<td>.busname</td>
+<td>Controla un sistema DBUS, o sistema de comunicación entre procesos</td>
+</tr>
+</tbody>
+</table>
+<p>Como podemos ver para definir un servicio se utilizaría la categoría <strong>.service</strong></p>
+</li>
+</ul>
 </div>
 <div class="style-example">
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>  <span class="token comment">#script definición servicio</span>
-  <span class="token comment">#$1 parámetro de ejecución del script</span>
-  <span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword keyword-in">in</span>
-  start<span class="token punctuation">)</span>
-  <span class="token comment">#Instrucciones para iniciar el servicio</span>
-  <span class="token punctuation">;</span><span class="token punctuation">;</span>
-  stop<span class="token punctuation">)</span>
-  <span class="token comment">#Instrucciones para detener el servicio</span>
-  <span class="token punctuation">;</span><span class="token punctuation">;</span>
-  restart<span class="token punctuation">)</span>
-  <span class="token comment">#Instrucciones para reiniciar el servicio</span>
-  <span class="token punctuation">;</span><span class="token punctuation">;</span>
-  status<span class="token punctuation">)</span>
-  <span class="token comment">#Instrucciones parar comprobar el estado el servicio</span>
-  <span class="token punctuation">;</span><span class="token punctuation">;</span>
-  *<span class="token punctuation">)</span>
-  <span class="token comment">#Cualquier otra opción nuestra la ayuda de uso</span>
-  <span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> {start|stop|restart|status}"</span>
-  <span class="token builtin class-name">exit</span> <span class="token number">1</span>
-  <span class="token punctuation">;</span><span class="token punctuation">;</span>
-  <span class="token keyword keyword-esac">esac</span>
-  <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+<div class="admonition example">
+<p class="admonition-title">Archivo de configuración de unidad</p>
+<p>El archivo <code>/etc/systemd/system/mi-servicio.service</code> sería un archivo de configuración de la unidad mi-servicio que pertenece a la categoria service y que ha sido definida por el administrador del sistema.</p>
+</div>
+</div>
+<div class="style-normal">
+<p><strong>Estructura archivo de configuración</strong></p>
+<p>Los archivos de configuración de unidades definen los valores que tienen los parámetros de configuración de las unidades agrupados en diferentes secciones.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Estructura definición unidad</p>
+<pre data-role="codeBlock" data-info="code" class="language-code code"><code>[sección]
+parámetro=valor
+parámetro=valor
+....
+[sección]
+parámetro=valor
+.... 
 </code></pre></div>
+</div>
+<div class="style-normal">
+<p>Las secciones pueden variar en función de la categoria de la unidad. Entre las <strong>secciones</strong> para la categoria <strong>.service</strong> tenemos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p>[<code>Unit</code>]<br>
+Describe unidad y su relación con otras unidades. Algunos parámetros de configuración son:</p>
+<table>
+<thead>
+<tr>
+<th>Parametro</th>
+<th>Proposito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Description</code></td>
+<td>Descripción breve de la unidad</td>
+</tr>
+<tr>
+<td><code>Documentation</code></td>
+<td>Indica las URIs donde encontrar información sobre la unidad</td>
+</tr>
+<tr>
+<td><code>Wants</code></td>
+<td>Lista de unidades no críticas que se recomienda iniciar junto con la unidad.</td>
+</tr>
+<tr>
+<td><code>Requires</code></td>
+<td>Lista de unidades críticas que deben estar activas para iniciar la unidad.</td>
+</tr>
+<tr>
+<td><code>BindsTo</code></td>
+<td>Similar a <code>Requires</code></td>
+</tr>
+<tr>
+<td><code>Before</code></td>
+<td>Indica que la unidad debe iniciarse despues de las unidades listadas</td>
+</tr>
+<tr>
+<td><code>After</code></td>
+<td>Indica que la unidad deben iniciarse despues de las unidades listadas</td>
+</tr>
+<tr>
+<td><code>Conflicts</code></td>
+<td>Lista de unidades con la unidad no debe ejecutarse al mismo tiempo</td>
+</tr>
+<tr>
+<td><code>Condition&lt;nombre&gt;</code></td>
+<td>Condicion que debe cumplir la unidad para iniciarse</td>
+</tr>
+<tr>
+<td><code>Assert&lt;nombre&gt;</code></td>
+<td>Igual que Condition pero se lanza un error sino se cumple</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>[<code>Install</code>]<br>
+Contiene los parámetros relacionados con las acciones que se deben realizar para habilitar o deshabilitar una unidad. Si la unidad no incluye esta sección se podra iniciar manualmente pero no se podrá habilitar para el inicio automático. Algunos parámetros de configuración son:</p>
+<table>
+<thead>
+<tr>
+<th>Parametro</th>
+<th>Proposito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WantedBy</code></td>
+<td>Lista de unidades (target) que quieren que esta unidad esté activa. Es la contraparte de <code>wants</code>, desde el punto de vista de la unidad dependiente. Se usa para crear enlaces simbólicos en <code>/etc/systemd/system/&lt;target&gt;.wants/</code></td>
+</tr>
+<tr>
+<td><code>RequiredBy</code></td>
+<td>Igual que <code>WantedBy</code> pero con dependencia. Se usa para crear enlaces simbólicos en <code>/etc/systemd/system/&lt;target&gt;.requires</code></td>
+</tr>
+<tr>
+<td><code>Alias</code></td>
+<td>Nombre alternativo para la unidad</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>[<code>Service</code>]<br>
+Contiene los parámetros relacionados con las unidades de la categoria servicio. Algunos parámetros de configuración son:</p>
+<table>
+<thead>
+<tr>
+<th>Parametro</th>
+<th>Proposito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Type</code></td>
+<td>Tipo de servicio: <code>simple, forking, oneshot, notify, dbus, exec</code></td>
+</tr>
+<tr>
+<td><code>ExecStart</code></td>
+<td>Comando que se ejecuta para iniciar el servicio.</td>
+</tr>
+<tr>
+<td><code>ExecStartPre</code></td>
+<td>Comando(s) que se ejecutan antes de <code>ExecStart</code>. Si fallan, el servicio no arranca.</td>
+</tr>
+<tr>
+<td><code>ExecStartPost</code></td>
+<td>Comando(s) que se ejecutan después de <code>ExecStart</code>, una vez que el proceso principal arranca correctamente.</td>
+</tr>
+<tr>
+<td><code>ExecReload</code></td>
+<td>Comando que se ejecuta cuando se llama a <code>systemctl reload</code>.</td>
+</tr>
+<tr>
+<td><code>ExecStop</code></td>
+<td>Comando que se ejecuta para detener el servicio (si no se quiere usar SIGTERM).</td>
+</tr>
+<tr>
+<td><code>ExecStopPost</code></td>
+<td>Comando que se ejecuta después de detener el servicio.</td>
+</tr>
+<tr>
+<td><code>Restart</code></td>
+<td>Define si el servicio debe reiniciarse al fallar. Ej: <code>no</code>, <code>on-failure</code>, <code>always</code>, <code>on-abort</code>, etc.</td>
+</tr>
+<tr>
+<td><code>RestartSec</code></td>
+<td>Cuántos segundos esperar antes de reiniciar. Ej:<code>5</code></td>
+</tr>
+<tr>
+<td><code>KillMode</code></td>
+<td>Define como se terminan los procesos asociados a la unidad cuando esta se detiene. Tenemos los siguientes valores: <code>control-group, process, mixed, none</code></td>
+</tr>
+<tr>
+<td><code>User</code></td>
+<td>Usuario con el que se ejecuta el servicio.</td>
+</tr>
+<tr>
+<td><code>Group</code></td>
+<td>Grupo con el que se ejecuta.</td>
+</tr>
+<tr>
+<td><code>WorkingDirectory</code></td>
+<td>Directorio de trabajo antes de ejecutar el servicio.</td>
+</tr>
+<tr>
+<td><code>Environment</code></td>
+<td>Define variables de entorno. Ej: <code>Environment="PORT=3000"</code></td>
+</tr>
+<tr>
+<td><code>EnvironmentFile</code></td>
+<td>Archivo desde el cual cargar variables de configuración del servicio. Ej: <code>/etc/default/mi-app</code></td>
+</tr>
+<tr>
+<td><code>TimeoutStartSec</code></td>
+<td>Tiempo máximo para que el servicio arranque.</td>
+</tr>
+<tr>
+<td><code>TimeoutStopSec</code></td>
+<td>Tiempo máximo para que el servicio se detenga.</td>
+</tr>
+<tr>
+<td><code>RemainAfterExit</code></td>
+<td>Útil para servicios <code>oneshot</code>; si se establece en <code>yes</code>, el servicio se considera activo tras la ejecución.</td>
+</tr>
+<tr>
+<td><code>GuessMainPID</code></td>
+<td>Solo para <code>forking</code>: indica si systemd debe intentar adivinar el PID principal.</td>
+</tr>
+<tr>
+<td><code>CapabilityBoundingSet</code></td>
+<td>Limita las capacidades Linux (capabilities) disponibles para el servicio.</td>
+</tr>
+<tr>
+<td><code>ProtectSystem</code></td>
+<td>Establece protección de solo lectura en partes del sistema de archivos.</td>
+</tr>
+<tr>
+<td><code>NoNewPrivileges</code></td>
+<td>Evita que el proceso y sus hijos ganen nuevos privilegios.</td>
+</tr>
+<tr>
+<td><code>PrivateTmp</code></td>
+<td>Si se pone <code>yes</code>, le da al servicio su propio <code>/tmp</code> aislado.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Definición servicio ssh</p>
+<pre data-role="codeBlock" data-info="code" class="language-code code"><code>#archivo de unidad en /lib/systemd/system/ssh.service
+
+[Unit]
+Description=OpenBSD Secure Shell server
+After=network.target auditd.service
+ConditionPathExists=!/etc/ssh/sshd_not_to_be_run
+
+[Install]
+WantedBy=multi-user.target
+Alias=sshd.service
+
+[Service]
+EnvironmentFile=/etc/default/ssh
+ExecStart=/usr/sbin/sshd -D $SSHD_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=notify
+
+# La variable SSHD_OPTS se encuentra definida en /etc/ default/ssh. 
+# La variable MAINPID se crea al cargarse la unidad
+</code></pre></div>
+</div>
+<h4 id="runlevels-1">RUNLEVELS </h4>
+<div class="style-normal">
+Systemd emula los niveles de ejecución de System V a través de unidades de tipo target. Las equivalencias son las siguientes:
+<table>
+<thead>
+<tr>
+<th>RunLevel</th>
+<th>Descripción</th>
+<th>Unidad</th>
+<th>Alias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Apagar sistema</td>
+<td>poweroff.target</td>
+<td>runlevel0.target</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Inicio monousuario</td>
+<td>rescue.target</td>
+<td>runlevel1.target</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Inicio multiusuario sin red</td>
+<td>multi-user.target</td>
+<td>runlevel2.target</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Inicio multiusuario con red</td>
+<td>multi-user.target</td>
+<td>runlevel3.target</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Inicio personalizado</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Inicio multiusuario gráfico</td>
+<td>graphical.target</td>
+<td>runlevel5.target</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Reinicio</td>
+<td>reboot.target</td>
+<td>runlevel6.target</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Emergencia</td>
+<td>emergency.target</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operaciones-1">OPERACIONES </h3>
+<p>Para realizar operaciones sobre las unidades y servicios en <code>systemd</code> utilizaremos el comando <code>systemctl</code>. Este comando tiene numerosas opciones que puedes consultar en la siguiente <a href="https://man7.org/linux/man-pages/man1/systemctl.1.html">url</a>. Entre ellas tenemos:</p>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iniciar</td>
+<td><code>systemctl start &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Parar</td>
+<td><code>systemctl stop &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Reiniciar</td>
+<td><code>systemctl restart &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Mostrar estado</td>
+<td><code>systemctl status &lt;servicio&gt;</code> <br> - enable Unidad habilitada automáticamente <br> - static  Unidad ejecutada manualmente o por otra unidad <br> - disabled Unidad deshabilitada <br> - masked Unidad deshabilitada y no se puede ejecutar ni siquiera manualmente</td>
+</tr>
+<tr>
+<td>Recargar configuración</td>
+<td><code>systemctl reload &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Habilitar</td>
+<td><code>systemctl enable &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Deshabilitar</td>
+<td><code>systemctl disable &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Enmascarar</td>
+<td><code>systemctl mask &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Desenmascarar</td>
+<td><code>systemctl umask &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Activo?</td>
+<td><code>systemctl is-active &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Habilitado?</td>
+<td><code>systemctl is-enabled &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Fallo?</td>
+<td><code>systemctl is-failed &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Dependecias after</td>
+<td><code>systemctl list-dependecies --after &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Dependecias before</td>
+<td><code>systemctl list-dependecies --before &lt;servicio&gt;</code></td>
+</tr>
+<tr>
+<td>Mostrar fichero <br> configuración</td>
+<td><code>systemctl cat &lt;servicio&gt;.service</code></td>
+</tr>
+<tr>
+<td>Mostrar propiedades <br> configuración</td>
+<td><code>systemctl show &lt;servicio&gt;.service</code></td>
+</tr>
+<tr>
+<td>Editar fichero <br> configuración</td>
+<td><code>systemctl edit --full --force &lt;servicio&gt;.service</code></td>
+</tr>
+<tr>
+<td>Mostrar runlevel <br> por defecto</td>
+<td><code>systemctl get-default</code></td>
+</tr>
+<tr>
+<td>Cambiar runlevel <br> por defecto</td>
+<td><code>systemctl set-default &lt;runlevel.target&gt;</code> <br> Ej. runlevel multiuser <br> <code>systemctl set-default multi-user.target</code></td>
+</tr>
+<tr>
+<td>Cambiar runlevel</td>
+<td><code>systemctl set-default isolate &lt;runlevel.target&gt;</code></td>
+</tr>
+<tr>
+<td>Mostrar unidades <br> del sistema</td>
+<td><code>systemctl list-units</code> <br> <code>systemctl list-units-files</code></td>
+</tr>
+<tr>
+<td>Mostrar servicios <br> del sistema</td>
+<td><code>systemctl list-units --type=service [--state={active|inactive|failed|dead}</code>] <br> Ej. Servicios inactivos <br> <code>systemctl list-units --type=service --state=active</code></td>
+</tr>
+<tr>
+<td>Aplicar cambios <br> sin reiniciar</td>
+<td><code>systemctl daemon-reload</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 
       </div>
       
