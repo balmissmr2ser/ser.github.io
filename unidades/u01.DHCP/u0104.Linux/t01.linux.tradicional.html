@@ -338,7 +338,20 @@ table {
           <a href="#liberar-ip" class="md-toc-link">
             <p>LIBERAR IP</p>
 
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#caso-persistente" class="md-toc-link">
+            <p>CASO PERSISTENTE</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#activar-y-desactivar-interfaces-de-red" class="md-toc-link"><p>ACTIVAR Y DESACTIVAR INTERFACES DE RED</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#ifconfig" class="md-toc-link"><p>IFCONFIG</p>
 </a>
@@ -421,7 +434,7 @@ table {
             <p>MOSTRAR EL ESTADO DE LAS INTERFACES DE RED</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#activar-y-desactivar-interfaces-de-red" class="md-toc-link">
+          <a href="#activar-y-desactivar-interfaces-de-red-1" class="md-toc-link">
             <p>ACTIVAR Y DESACTIVAR INTERFACES DE RED</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
@@ -661,7 +674,7 @@ GATEWAY=&lt;puerta-enlace&gt;
 <div class="admonition example">
 <p class="admonition-title">Configuración red estática Red Hat</p>
 <div class="style-normal2">
-<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. La interfaz se debe activar cuando se inicia el equipo.</p>
+<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. La interfaz asociada a esta conexión es <code>eth2</code> y se debe activar cuando se inicia el equipo.</p>
 <p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
 ONBOOT=yes
@@ -753,11 +766,11 @@ DNS2=8.8.8.8
 </div>
 <h3 id="borrar-ip-y-gateway">BORRAR IP Y GATEWAY </h3>
 <div class="style-normal">
-<p>Para borrar una ip de manera <strong>no persistente</strong> se asigna la ip <code>0.0.0.0</code> a la interfaz de red utilizando el comando <code>ifconfig</code>.</p>
+<p>Para borrar una ip de manera <strong>no persistente</strong> se asigna la ip <code>0.0.0.0</code> a la interfaz de red utilizando el comando <code>ifconfig</code>. Cuando se asigna esta ip a una interfaz, la interfaz queda administrativamente activa pero sin ninguna ip. Además, la ruta por defecto asociada a esa interfaz se elimina automáticamente de la tabla de enrutamiento.</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; 0.0.0.0
 </code></pre><div class="style-normal">
-<p>Para eliminar la puerta de enlace, se utiliza el comando <code>route del</code> para borrar la ruta asociada.</p>
+<p>Para eliminar la puerta de enlace, sin eliminar la ip de la interfaz, se utiliza el comando <code>route del</code> para borrar la ruta asociada.</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del default [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
 </code></pre><div class="style-normal">
@@ -772,7 +785,7 @@ DNS2=8.8.8.8
 </div>
 <div class="style-normal">
 <p>Para eliminar la ip en el caso de la configuración <strong>persistente</strong>, sólo hay que desactivar la interfaz, eliminar la sección de configuración de la interfaz (o el archivo de interfaz) y volver a activar la interfaz.</p>
-<p>Si sólo queremos elimar la puerta de enlace tenemos que desactivar la interfaz, eliminar del archivo de configuración la línea donde aparece la directiva <code>gateway</code> y volver a activar la interfaz.</p>
+<p>Si sólo queremos eliminar la puerta de enlace tenemos que desactivar la interfaz, eliminar del archivo de configuración la línea donde aparece la directiva <code>gateway</code> y volver a activar la interfaz.</p>
 </div>
 <h3 id="borrar-dns">BORRAR DNS </h3>
 <div class="style-normal">
@@ -862,6 +875,46 @@ Sending on Socket/fallback
 DHCPRELEASE on eth0 to 255.255.255.255 port 67
 </code></pre></div>
 </div>
+<h3 id="caso-persistente">CASO PERSISTENTE </h3>
+<div class="style-normal">
+<p>Lo visto hasta ahora es para el caso de una configuración no persistente. Para la <strong>configuración persistente</strong>, en el caso de las <strong>distribuciones basadas en Debian</strong>, solo tenemos que editar el archivo de configuración de las interfaces (<code>/etc/network/interfaces</code>) e indicar en la directiva <code>iface</code> que la asignación es por <code>dhcp</code>.<br>
+La sintaxis general para esta configuración es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code># /etc/network/interfaces
+...
+
+# Configuración conexión dinámica
+iface &lt;conexión&gt; inet dhcp
+...
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configuración red dinámica Debian</p>
+<div class="style-normal2">
+<p>Configurar la interfaz <code>enp0s3</code> (realmente es una conexión) de manera dinámica con DHCP.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code># /etc/network/interfaces
+auto enp0s3
+
+# Configuración conexión dinámica
+iface enp0s3 inet dhcp
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Para el caso de las <strong>distribuciones basadas en Red Hat</strong>, pondremos <code>dhcp</code> en el valor del parámetro <code>BOOTPROTO</code> en el archivo de configuración de la conexión que queremos configurar de esta manera.</p>
+<p>La sintaxis general de un archivo de configuración de conexión en este caso es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=&lt;interfaz&gt;
+ONBOOT={yes\|no}
+BOOTPROTO=dhcp
+</code></pre><div class="admonition example">
+<p class="admonition-title">Configuración red dinámica Red Hat</p>
+<div class="style-normal2">
+<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP y otros parámetros de red se asignen dinámicamente a la interfaz <code>eth2</code>.</p>
+<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
+ONBOOT=yes
+BOOTPROTO=dhcp
+</code></pre></div>
+</div>
+<h2 id="activar-y-desactivar-interfaces-de-red">ACTIVAR Y DESACTIVAR INTERFACES DE RED </h2>
 <h3 id="ifconfig">IFCONFIG </h3>
 <div class="style-normal">
 <p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
@@ -1085,7 +1138,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link enp0s8
 </code></pre></div>
 </div>
-<h4 id="activar-y-desactivar-interfaces-de-red">ACTIVAR Y DESACTIVAR INTERFACES DE RED </h4>
+<h4 id="activar-y-desactivar-interfaces-de-red-1">ACTIVAR Y DESACTIVAR INTERFACES DE RED </h4>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set [dev] &lt;interfaz&gt; [up|down]
 </code></pre><div class="style-normal">
 <p>Activa una interfaz de red (opción <code>up</code>) y desactiva una interfaz de red (opción <code>down</code>).</p>
