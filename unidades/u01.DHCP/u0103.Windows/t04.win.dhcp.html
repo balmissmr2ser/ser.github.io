@@ -171,16 +171,18 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   table-layout: auto !important;
   width: fit-content !important;
   max-width: none !important;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
+.markdown-preview.markdown-preview .style-normal2 {
   text-align: justify;
-  text-size: small;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-align: justify;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -287,9 +289,11 @@ A continuación se muestran una serie de comandos relativos a la administración
 </div>
 <div class="admonition example">
 <p class="admonition-title">Instalación del servidor DHCP</p>
+<div class="style-normal2">
 <p>Instalar el rol de servidor DHCP sin herramientas de administración.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Install-WindowsFeature</span> DHCP <span class="token operator">-</span>IncludeManagementTools
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Add-DhcpServerv4Scope [-&lt;opcio1&gt; &lt;valor1&gt;] [-&lt;opcio2&gt; &lt;valor2&gt;] ...</code></strong></p>
 <p>Agrega un ámbito IPv4 al servidor DHCP con las opciones especificadas. Las opciones habituales son las siguientes:</p>
@@ -307,6 +311,7 @@ A continuación se muestran una serie de comandos relativos a la administración
 </div>
 <div class="admonition example">
 <p class="admonition-title">Creación de ámbito DHCP</p>
+<div class="style-normal2">
 <p>Crear un ámbito para un servidor DHCP con las siguientes características:</p>
 <ul>
 <li><strong>Nombre</strong>: Ámbito 1</li>
@@ -322,16 +327,19 @@ A continuación se muestran una serie de comandos relativos a la administración
 <span class="token operator">-</span>SubnetMask 255<span class="token punctuation">.</span>255<span class="token punctuation">.</span>255<span class="token punctuation">.</span>0 `
 <span class="token operator">-</span>LeaseDuration 0<span class="token punctuation">.</span>06:00:00
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Add-DhcpServerv4ExclusionRange -ScopeId &lt;id de ámbito&gt; -StartRange &lt;ipinicial&gt; -EndRange &lt;ipfinal&gt;</code></strong></p>
 <p>Agrega un rango de exclusión de direcciones IP para un ámbito IPv4. Las direcciones IP excluidas no son asignadas por el servidor DHCP a ningún cliente que solicite una IP. La única excepción a esto es la reserva. Si se reserva una dirección IP, la misma dirección IP se concede al cliente designado incluso si se encuentra en el rango de exclusión. El parámetro <em>ScopeId</em> es el identificador del ámbito y <em>StartRange</em> y <em>EndRange</em> son las IP donde comienza y termina el rango de exclusión respectivamente.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Rangos de exclusión</p>
+<div class="style-normal2">
 <p>Agregar un rango de exclusión para el ámbito del ejemplo anterior que va desde la IP 192.168.1.192 hasta la 192.168.1.224.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Add-DhcpServerv4ExclusionRange <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 `
 <span class="token operator">-</span>StartRange 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>192 <span class="token operator">-</span>EndRange 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>224
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Add-DhcpServerv4Reservation -ScopeId &lt;id-ambito&gt; [-&lt;opcion1&gt; valor1] [-&lt;opcion2&gt; valor2] ...</code></strong></p>
 <p>Agrega una reserva de IP para un equipo en un ámbito dado. Se debe especificar la dirección MAC del equipo del que queremos hacer la reserva y la IP que queremos asignarle. Las opciones más habituales son:</p>
@@ -346,11 +354,13 @@ A continuación se muestran una serie de comandos relativos a la administración
 </div>
 <div class="admonition example">
 <p class="admonition-title">Reserva de direcciones IP</p>
+<div class="style-normal2">
 <p>Agregar una reserva para la impresora cuya dirección MAC es 08-00-27-13-31-75. La impresora siempre recibirá la IP 192.168.1.191, el nombre será "Reserva impresora" y la descripción "Reserva de IP para la impresora de la red 192.168.1.0/24".</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Add-DhcpServerv4Reservation <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 <span class="token operator">-</span>IPAddress 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>191 `
 <span class="token operator">-</span>ClientId <span class="token string">"08-00-27-13-31-75"</span> <span class="token operator">-</span>Name <span class="token string">"Reserva impresora"</span> `
 <span class="token operator">-</span>Description <span class="token string">"Reserva de IP para la impresora de la red 192.168.1.0/24"</span>
 </code></pre></div>
+</div>
 <h3 id="comandos-para-mostrar-la-configuración">COMANDOS PARA MOSTRAR LA CONFIGURACIÓN </h3>
 <div class="style-normal">
 <p><strong><code>Get-DhcpServerv4Scope [-ScopeId &lt;id-ambito&gt;]</code></strong></p>
@@ -358,6 +368,7 @@ A continuación se muestran una serie de comandos relativos a la administración
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar configuración de un ámbito (lista)</p>
+<div class="style-normal2">
 <p>Muestra la configuración del ámbito con id 192.168.1.0 en formato de lista.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Get-DhcpServerv4Scope <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 <span class="token punctuation">|</span> <span class="token function">Format-List</span>
 ScopeId          : 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
@@ -376,20 +387,24 @@ State            : Active
 MaxBootpClients  : 4294967295
 ActivatePolicies : True
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar configuración de un ámbito (tabla)</p>
+<div class="style-normal2">
 <p>Muestra la configuración del ámbito con id 192.168.1.0 en formato de tabla. La opción <em>Autosize</em> ajusta los valores para que no se recorten en pantalla.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Get-DhcpServerv4Scope <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 <span class="token punctuation">|</span> <span class="token function">Format-Table</span> <span class="token operator">-</span>AutoSize
 ScopeId      SubnetMask    Name     State  StartRange    EndRange      LeaseDuration
 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>      <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>    <span class="token operator">--</span><span class="token operator">--</span>     <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>  <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>    <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>      <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0  255<span class="token punctuation">.</span>255<span class="token punctuation">.</span>255<span class="token punctuation">.</span>0 Ámbito 1 Active 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>128 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>254 06:00:00     
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Get-DhcpServerv4OptionValue [-ScopeId &lt;id-ambito&gt; | -ReservedIP &lt;ip-reserva&gt;]</code></strong></p>
 <p>Devuelve los valores opcionales que se proporcionan a los clientes DHCP para un ámbito dado cuando se proporciona el parámetro <em>ScopeId</em>. Si no se especifica el parámetro <em>ScopeId</em> el comando devuelve los valores opcionales para todos los ámbitos definidos y si se especifica el parámetro <em>ReservedIP</em> se proporcionan los valores opcionales para la reserva indicada. Cada opción tiene un identificador asociado, por ejemplo la opción <em>Router</em> tiene el identificador de valor 3.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Parámetros opcionales</p>
+<div class="style-normal2">
 <p>Muestra todos los parámetros opcionales dados a los clientes DHCP para el ámbito 192.168.1.0.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Get-DhcpServerv4OptionValue <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 <span class="token punctuation">|</span> <span class="token function">Format-Table</span> <span class="token operator">-</span>AutoSize
 OptionId Name           <span class="token function">Type</span>        Value                 VendorClass UserClass PolicyName
@@ -397,13 +412,15 @@ OptionId Name           <span class="token function">Type</span>        Value   
 3        Enrutador      IPv4Address <span class="token punctuation">{</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>254<span class="token punctuation">}</span>                                      
 6        Servidores DNS IPv4Address <span class="token punctuation">{</span>10<span class="token punctuation">.</span>100<span class="token punctuation">.</span>1<span class="token punctuation">.</span>3<span class="token punctuation">,</span> 8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8<span class="token punctuation">}</span>                                 
 51       Concesión      DWord       <span class="token punctuation">{</span>43200<span class="token punctuation">}</span>
-</code></pre></div>
+</code></pre></div>            
+</div>
 <div class="style-normal">
 <p><strong><code>Get-DhcpServerv4Lease [-ScopeId &lt;id-ambito&gt;]</code></strong></p>
 <p>Devuelve el tiempo de todas las concesiones en un ámbito dado. Si no se especifica el ámbito se devuelve el tiempo de todas las concesiones de todos los ámbitos definidos en el servidor.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Concesiones</p>
+<div class="style-normal2">
 <p>Mostrar todas las concesiones hechas en el ámbito 192.168.1.0.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Get-DhcpServerv4Lease <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
 IPAddress      ScopeId      ClientId          HostName           AddressState        LeaseExpiryTime   
@@ -413,18 +430,21 @@ IPAddress      ScopeId      ClientId          HostName           AddressState   
 </code></pre><p>Aparece la concesión hecha por un cliente Windows 10 donde se indica que está activa y que expira en la fecha y hora indicada en el campo <em>LeaseExpiryTime</em>.<br>
 Por otro lado, aparece una concesión relativa a una reserva. No hay tiempo de expiración porque las reservas nunca caducan.</p>
 </div>
+</div>
 <div class="style-normal">
 <p><strong><code>Get-DhcpServerv4ExclusionRange [-ScopeId &lt;id-ambito&gt;]</code></strong></p>
 <p>Devuelve los rangos de exclusión de un ámbito dado. Si no se especifica el ámbito se devuelven los rangos de exclusión de todas las concesiones de todos los ámbitos definidos en el servidor.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Rangos de exclusión</p>
+<div class="style-normal2">
 <p>Mostrar todos los rangos de exclusión definidos en el ámbito 192.168.1.0.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:&gt; Get-DhcpServerv4ExclusionRange <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
 ScopeId              StartRange           EndRange
 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>              <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>           <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0          192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>192        192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>224
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Get-DhcpServerv4Binding</code></strong></p>
 <p>Devuelve las IP de todos los adaptadores de red del servidor por los que sirve direcciones IP.</p>
@@ -443,6 +463,7 @@ ScopeId              StartRange           EndRange
 </div>
 <div class="admonition example">
 <p class="admonition-title">Reservas</p>
+<div class="style-normal2">
 <p>Mostrar todas las reservas hechas en el ámbito 192.168.1.0.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Get-DhcpServerv4Reservation <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
 IPAddress            ScopeId              ClientId             Name                 <span class="token function">Type</span>           
@@ -457,6 +478,7 @@ Name        : Reserva impresora
 <span class="token function">Type</span>        : Both
 Description : Reserva de IP para la impresora de la red 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0/24
 </code></pre></div>
+</div>
 <h3 id="comandos-para-cambiar-la-configuración">COMANDOS PARA CAMBIAR LA CONFIGURACIÓN </h3>
 <div class="style-normal">
 <p><strong><code>Set-DhcpServerv4Scope -ScopeId &lt;id-ambito&gt; [-&lt;opcion1&gt; &lt;valor1&gt;] [-&lt;opcion2&gt; &lt;valor2&gt;]...</code></strong></p>
@@ -464,9 +486,11 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 </div>
 <div class="admonition example">
 <p class="admonition-title">Desactivar un ámbito</p>
+<div class="style-normal2">
 <p>Desactivar el ámbito con id 192.168.1.0.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set</span><span class="token operator">-</span>DhcpServerv4Scope <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 <span class="token operator">-</span>State Inactive
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Set-DhcpServerv4OptionValue -ScopeId &lt;id-ambito&gt; [-&lt;opcion1&gt; valor1] [-&lt;opcion2&gt; valor2] ...</code></strong></p>
 <p>Cambia las propiedades opcionales de un ámbito IPv4 existente en el servidor DHCP. Las opciones son las mismas que las del comando <code>Add-DhcpServerv4OptionValue</code>. Este comando permite configurar una serie de opciones que el servidor DHCP proporcionará a los clientes. Entre las opciones posibles, las más habituales son:</p>
@@ -481,10 +505,12 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configurar opciones de un ámbito</p>
+<div class="style-normal2">
 <p>Configurar el ámbito 192.168.1.0 de un servidor DHCP para que se asigne a los clientes la puerta de enlace 192.168.1.1 y los DNS 192.168.1.3 y 8.8.8.8.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set</span><span class="token operator">-</span>DhcpServerv4OptionValue <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 `
 <span class="token operator">-</span>Router 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1 <span class="token operator">-</span>DnsServer 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>3<span class="token punctuation">,</span>8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Set-DhcpServerv4OptionValue -ComputerName &lt;ip-o-nombreDns&gt; [-&lt;opcion1&gt; valor1] [-&lt;opcion2&gt; valor2] ...</code></strong></p>
 <p>En un servidor DHCP se puede definir más de un ámbito, con esta opción configuraremos las opciones que se aplicarán a todos los ámbitos definidos.</p>
@@ -501,9 +527,11 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 </div>
 <div class="admonition example">
 <p class="admonition-title">Desactivar concesión de direcciones en un adaptador</p>
-<p>Desactivar la concesión de direcciones IP para el adaptador de red llamado “Ethernet 2”.</p>
+<div class="style-normal2">
+<p>Desactivar la concesión de direcciones IP para el adaptador de red llamado "Ethernet 2".</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set</span><span class="token operator">-</span>DhcpServerv4Binding <span class="token operator">-</span>BindingState <span class="token boolean">$false</span> <span class="token operator">-</span>InterfaceAlias <span class="token string">"Ethernet 2"</span>
 </code></pre></div>
+</div>
 <h3 id="comandos-para-eliminar-la-configuración">Comandos para eliminar la configuración </h3>
 <div class="style-normal">
 <p><strong><code>Remove-DhcpServerv4Scope -ScopeId &lt;id-ambito&gt;</code></strong></p>
@@ -513,9 +541,11 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar todos los rangos de exclusión</p>
+<div class="style-normal2">
 <p>Eliminar todos los rangos de exclusión definidos en el ámbito 192.168.1.0.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Remove-DhcpServerv4ExclusionRange <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>Remove-DhcpServerv4OptionValue [-&lt;nivel&gt; &lt;valor-nivel&gt;] -OptionId &lt;lista-identificadores-opcion&gt;</code></strong></p>
 <p>Elimina las propiedades opcionales a nivel de ámbito (<em>ScopeId</em>), reserva (<em>ReservedIP</em>) o general. En la opción <em>OptionId</em> se proporciona una lista separada por comas con los identificadores de las propiedades opcionales.</p>
@@ -528,9 +558,11 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar una reserva</p>
+<div class="style-normal2">
 <p>Eliminar la reserva de la impresora con MAC 08-00-27-13-31-75.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; Remove-DhcpServerv4Reservation <span class="token operator">-</span>ScopeId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0 <span class="token operator">-</span>ClientId <span class="token string">"08-00-27-13-31-75"</span>
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p>Hay mucha más información sobre la administración de un servidor DHCP con Powershell en la documentación oficial de Microsoft.<br>
 URL: <a href="https://learn.microsoft.com/es-es/powershell/module/dhcpserver/?view=windowsserver2019-ps">https://learn.microsoft.com/es-es/powershell/module/dhcpserver/?view=windowsserver2019-ps</a></p>
@@ -555,6 +587,7 @@ URL: <a href="https://learn.microsoft.com/es-es/powershell/module/dhcpserver/?vi
 </div>
 <div class="admonition example">
 <p class="admonition-title">ipconfig /all</p>
+<div class="style-normal2">
 <p>Mostrar los parámetros de la configuración IP de un cliente Windows 10, destacando aquellos relacionados con la asignación dinámica mediante DHCP.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /all
 Configuración IP de Windows
@@ -585,12 +618,14 @@ Adaptador de Ethernet Ethernet:
                                        8.8.8.8
    NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>ipconfig /release [adaptador-red]</code></strong></p>
 <p>Libera la dirección IP asignada dinámicamente a un adaptador de red específico. Si no se indica ningún adaptador, se liberan las direcciones IP de todos los adaptadores de red que hayan recibido una IP de un servidor DHCP.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Liberar IP asignada dinámicamente</p>
+<div class="style-normal2">
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; ipconfig /release
 Configuración IP de Windows
 
@@ -600,12 +635,14 @@ Adaptador de Ethernet Ethernet:
    Vínculo: dirección IPv6 local . . . . . . : fe80::3ca9:1ae3:be0a:2cce%4
    Puerta de enlace predeterminada . . . . . : 
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p><strong><code>ipconfig /renew [adaptador-xarxa]</code></strong></p>
 <p>Renueva la dirección IP obtenida dinámicamente para un adaptador de red concreto. Si no se indica ningún adaptador, se renuevan las direcciones IP de todos los adaptadores de red que hayan recibido una IP dinámicamente. Solo se actualiza el tiempo de expiración de la concesión.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Renovación de IP</p>
+<div class="style-normal2">
 <p>Muestra la información de la concesión en un equipo con Windows 10.<br>
 Espera unos 5 minutos, renueva la concesión y vuelve a mostrar la información de la concesión.</p>
 <p>Información inicial de la concesión</p>
@@ -677,6 +714,7 @@ Adaptador de Ethernet Ethernet:
    NetBIOS sobre TCP/IP. . . . . . . . . . . : habilitado
 </code></pre><p>Observa que la fecha y hora en que se obtuvo la concesión no cambia tras realizar la renovación. Lo que sí varía es la fecha de expiración de la concesión, que se actualiza y ahora es unos 5 minutos posterior a la fecha de expiración que teníamos antes de renovar la IP.</p>
 </div>
+</div>
 <h2 id="reenvío-de-peticiones-dhcp-dhcp-relay">REENVÍO DE PETICIONES DHCP: DHCP RELAY </h2>
 <div class="style-normal>
 <p>Un servidor DHCP puede asignar direcciones IP a equipos de distintas redes si está conectado directamente a cada una de ellas, pero esta solución no es la más habitual ni la más recomendable. Existen dos métodos principales para que los equipos de varias redes obtengan direcciones IP de forma dinámica:</p>
@@ -690,73 +728,78 @@ Adaptador de Ethernet Ethernet:
 <div class="style-normal">
 <p>Por ejemplo, si disponemos de dos redes, con el servidor DHCP en la primera y el reenviador en la segunda, cuando un equipo de la segunda red solicita una dirección IP, la petición llega primero al reenviador. Este la reenvía, mediante un mensaje unicast, al servidor DHCP de la primera red, incluyendo la dirección MAC del cliente. El servidor DHCP asigna una dirección IP para ese equipo y la respuesta vuelve al reenviador, que finalmente la entrega al cliente. De este modo, el cliente recibe la respuesta como si hubiera sido atendido directamente por el servidor DHCP, sin saber que ha intervenido un agente reenviador.</p>
 </div>
-<p align="center" style="zoom:1" class="puml"><svg width="438pt" height="150pt" viewBox="0.00 0.00 437.87 150.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 146)">
+<div class="row">
+<div class="col-sm-12 my-auto">
+<p align="center" style="zoom:1" class="puml"><svg width="430pt" height="144pt" viewBox="0.00 0.00 430.00 144.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 140)">
 <title>DHCPRelay</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-146 433.87,-146 433.87,4 -4,4"></polygon>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-140 426,-140 426,4 -4,4"></polygon>
 <g id="clust1" class="cluster">
 <title>cluster2_red1</title>
-<polygon fill="none" stroke="lightgrey" points="8,-8 8,-91 88.21,-91 88.21,-8 8,-8"></polygon>
-<text text-anchor="middle" x="48.1" y="-74.4" font-family="Times New Roman,serif" font-size="14.00">Red 1</text>
+<polygon fill="none" stroke="lightgrey" points="8,-8 8,-85 87,-85 87,-8 8,-8"></polygon>
+<text text-anchor="middle" x="47.5" y="-69.8" font-family="Times,serif" font-size="14.00">Red 1</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster2_red2</title>
-<polygon fill="none" stroke="lightgrey" points="198.78,-18 198.78,-134 421.87,-134 421.87,-18 198.78,-18"></polygon>
-<text text-anchor="middle" x="310.32" y="-117.4" font-family="Times New Roman,serif" font-size="14.00">Red 2</text>
+<polygon fill="none" stroke="lightgrey" points="191,-18 191,-128 414,-128 414,-18 191,-18"></polygon>
+<text text-anchor="middle" x="302.5" y="-112.8" font-family="Times,serif" font-size="14.00">Red 2</text>
 </g>
 <!-- S1 -->
 <g id="node1" class="node">
 <title>S1</title>
-<polygon fill="#b3e6b3" stroke="black" points="80.31,-57.6 15.9,-57.6 15.9,-16.4 80.31,-16.4 80.31,-57.6"></polygon>
-<text text-anchor="middle" x="48.1" y="-41.2" font-family="Times New Roman,serif" font-size="14.00">Servidor</text>
-<text text-anchor="middle" x="48.1" y="-24.4" font-family="Times New Roman,serif" font-size="14.00">DHCP</text>
+<polygon fill="#b3e6b3" stroke="black" points="79,-54 16,-54 16,-16 79,-16 79,-54"></polygon>
+<text text-anchor="middle" x="47.5" y="-38.8" font-family="Times,serif" font-size="14.00">Servidor</text>
+<text text-anchor="middle" x="47.5" y="-23.8" font-family="Times,serif" font-size="14.00">DHCP</text>
 </g>
 <!-- S2 -->
 <g id="node2" class="node">
 <title>S2</title>
-<polygon fill="#ffd580" stroke="black" points="260.78,-82.6 206.78,-82.6 206.78,-41.4 260.78,-41.4 260.78,-82.6"></polygon>
-<text text-anchor="middle" x="233.78" y="-66.2" font-family="Times New Roman,serif" font-size="14.00">DHCP</text>
-<text text-anchor="middle" x="233.78" y="-49.4" font-family="Times New Roman,serif" font-size="14.00">Relay</text>
+<polygon fill="#ffd580" stroke="black" points="253,-78 199,-78 199,-40 253,-40 253,-78"></polygon>
+<text text-anchor="middle" x="226" y="-62.8" font-family="Times,serif" font-size="14.00">DHCP</text>
+<text text-anchor="middle" x="226" y="-47.8" font-family="Times,serif" font-size="14.00">Relay</text>
 </g>
 <!-- S1&#45;&gt;S2 -->
 <g id="edge3" class="edge">
 <title>S1-&gt;S2</title>
-<path fill="none" stroke="black" d="M80.46,-43.82C86.34,-44.98 92.45,-46.09 98.21,-47 131.32,-52.21 169.29,-56.27 196.43,-58.84"></path>
-<polygon fill="black" stroke="black" points="196.36,-62.35 206.64,-59.79 197,-55.38 196.36,-62.35"></polygon>
-<text text-anchor="middle" x="143.49" y="-62.2" font-family="Times New Roman,serif" font-size="14.00">3 - Resp. (u)</text>
+<path fill="none" stroke="black" d="M79.24,-41.02C85.12,-42.09 91.24,-43.13 97,-44 127.92,-48.67 163.22,-52.72 188.91,-55.42"></path>
+<polygon fill="black" stroke="black" points="188.64,-58.91 198.95,-56.46 189.36,-51.95 188.64,-58.91"></polygon>
+<text text-anchor="middle" x="139" y="-57.8" font-family="Times,serif" font-size="14.00">3 - Resp. (u)</text>
 </g>
 <!-- S2&#45;&gt;S1 -->
 <g id="edge2" class="edge">
 <title>S2-&gt;S1</title>
-<path fill="none" stroke="black" d="M209.62,-41.2C203.29,-36.7 196.13,-32.58 188.78,-30.2 156.89,-19.88 118.78,-22.67 90.43,-27.43"></path>
-<polygon fill="black" stroke="black" points="89.66,-24.01 80.45,-29.25 90.92,-30.9 89.66,-24.01"></polygon>
-<text text-anchor="middle" x="143.49" y="-34.2" font-family="Times New Roman,serif" font-size="14.00">2 - Reenvío (u)</text>
+<path fill="none" stroke="black" d="M202.61,-39.98C196.06,-35.5 188.6,-31.34 181,-29 151.28,-19.83 116.04,-22.01 89.37,-26.11"></path>
+<polygon fill="black" stroke="black" points="88.51,-22.71 79.24,-27.82 89.68,-29.61 88.51,-22.71"></polygon>
+<text text-anchor="middle" x="139" y="-32.8" font-family="Times,serif" font-size="14.00">2 - Reenvío (u)</text>
 </g>
 <!-- C -->
 <g id="node3" class="node">
 <title>C</title>
-<polygon fill="#e6f2ff" stroke="black" points="414.09,-81 357.21,-81 357.21,-45 414.09,-45 414.09,-81"></polygon>
-<text text-anchor="middle" x="385.65" y="-58.8" font-family="Times New Roman,serif" font-size="14.00">Cliente</text>
+<polygon fill="#e6f2ff" stroke="black" points="406,-79 350,-79 350,-43 406,-43 406,-79"></polygon>
+<text text-anchor="middle" x="378" y="-57.3" font-family="Times,serif" font-size="14.00">Cliente</text>
 </g>
 <!-- S2&#45;&gt;C -->
 <g id="edge4" class="edge">
 <title>S2-&gt;C</title>
-<path fill="none" stroke="black" d="M261.09,-47.28C266.76,-44.76 272.84,-42.53 278.78,-41.2 305.08,-35.3 313.15,-35.2 339.43,-41.2 342.22,-41.84 345.04,-42.67 347.83,-43.63"></path>
-<polygon fill="black" stroke="black" points="346.56,-46.9 357.15,-47.35 349.15,-40.4 346.56,-46.9"></polygon>
-<text text-anchor="middle" x="309.11" y="-45.2" font-family="Times New Roman,serif" font-size="14.00">4 - Resp.</text>
+<path fill="none" stroke="black" d="M253.01,-46.43C258.8,-44.18 265.01,-42.18 271,-41 297.6,-35.77 305.48,-35.37 332,-41 334.65,-41.56 337.34,-42.29 340.01,-43.14"></path>
+<polygon fill="black" stroke="black" points="338.93,-46.47 349.52,-46.64 341.34,-39.9 338.93,-46.47"></polygon>
+<text text-anchor="middle" x="301.5" y="-44.8" font-family="Times,serif" font-size="14.00">4 - Resp.</text>
 </g>
 <!-- C&#45;&gt;S2 -->
 <g id="edge1" class="edge">
 <title>C-&gt;S2</title>
-<path fill="none" stroke="black" d="M357.33,-62.82C333.1,-62.66 297.53,-62.42 270.95,-62.24"></path>
-<polygon fill="black" stroke="black" points="270.91,-58.74 260.88,-62.17 270.86,-65.74 270.91,-58.74"></polygon>
-<text text-anchor="middle" x="309.11" y="-66.2" font-family="Times New Roman,serif" font-size="14.00">1 - Sol. (b)</text>
+<path fill="none" stroke="black" d="M349.99,-60.84C328.56,-60.7 297.87,-60.43 271,-60 268.46,-59.96 265.84,-59.91 263.2,-59.86"></path>
+<polygon fill="black" stroke="black" points="263.13,-56.36 253.06,-59.65 262.98,-63.36 263.13,-56.36"></polygon>
+<text text-anchor="middle" x="301.5" y="-63.8" font-family="Times,serif" font-size="14.00">1 - Sol. (b)</text>
 </g>
 </g>
-</svg></p><div class="style-normal">
+</svg></p></div>
+</div>
+<div class="style-normal">
 <p>Al igual que los servidores DHCP, el agente reenviador debe configurarse para funcionar en un adaptador de red concreto. Si el reenviador dispone de varios adaptadores, es necesario habilitar el reenvío en cada uno de los que conectan con redes desde las que se quieran reenviar peticiones DHCP.</p>
 <p>Para instalar y configurar un reenviador de peticiones DHCP en un entorno sin interfaz gráfica, debes seguir dos pasos principales:</p>
 </div>
+<div class="style-normal2">
 <ul>
 <li>
 <p><strong>Instalar la característica de encaminamiento de Windows mediante PowerShell</strong></p>
@@ -789,13 +832,13 @@ Adaptador de Ethernet Ethernet:
 <li>Especificar la dirección IP del servidor DHCP al que se reenviarán las peticiones:</li>
 </ul>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>add dhcpserver server=&lt;ip-servidor-DHCP&gt;
-</code></pre></li>
+</code></pre><p>Los dos últimos pasos deben repetirse para cada adaptador de red que se desee configurar para reenviar solicitudes DHCP.</p>
+</li>
 </ul>
-<div class="style-normal">
-<p>Los dos últimos pasos deben repetirse para cada adaptador de red que se desee configurar para reenviar solicitudes DHCP.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Instalación y configuración DHCP Relay</p>
+<div class="style-normal2">
 <p>Supongamos que ya tenemos un servidor DHCP correctamente configurado, con una única tarjeta de red conectada a la red <code>192.168.1.0/24</code> y con la dirección IP <code>192.168.1.2</code>. Este servidor DHCP dispone de dos ámbitos configurados: uno para la red <code>192.168.1.0/24</code> y otro para la red <code>192.168.2.0/24</code> (los identificadores de ámbito coinciden con las direcciones de red).</p>
 <p>Ahora, en la segunda red, debemos configurar un agente reenviador DHCP (DHCP Relay) con la dirección IP <code>192.168.2.2</code>, de modo que los clientes de la red <code>192.168.2.0/24</code> puedan obtener una dirección IP del servidor DHCP. El DHCP Relay será una máquina con Windows Server 2019 y debe estar configurada con la dirección IP estática <code>192.168.2.2</code> (es obligatorio que la dirección sea estática).</p>
 <p><strong>Solución</strong><br>
@@ -809,6 +852,7 @@ netsh routing ip relay&gt; add interface “Ethernet”
 netsh routing ip relay&gt; add dhcpserver 192.168.1.2
 netsh routing ip relay&gt; quit    
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p>Para la máquina que actuará como DHCP Relay, se puede optar por utilizar la edición <em>Nano Server de Windows Server</em>. Las ediciones Nano Server de Windows Server consumen muy pocos recursos. La edición Nano Server de Windows Server 2016 puede instalarse tanto en un disco físico como en una máquina virtual. En versiones posteriores de Windows Server, Microsoft ya no proporciona documentación oficial para instalar Nano Server en discos físicos ni en máquinas virtuales que no sean Hyper-V. Sin embargo, es posible disponer de Nano Server en Windows Server 2019 y 2022 siguiendo los mismos pasos que para la instalación en Windows Server 2016.</p>
 <p>Una máquina con Windows Server 2016 Nano Server puede funcionar con tan solo 192 MB de RAM. El acceso a estas máquinas solo puede realizarse de forma remota mediante PowerShell. Desde la propia máquina únicamente es posible realizar algunas tareas básicas, como la configuración de los adaptadores de red, a través de un asistente muy sencillo.</p>

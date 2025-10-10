@@ -171,16 +171,18 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   table-layout: auto !important;
   width: fit-content !important;
   max-width: none !important;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
+.markdown-preview.markdown-preview .style-normal2 {
   text-align: justify;
-  text-size: small;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-align: justify;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -366,7 +368,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
+<div class="style-normal2">
 <p>Usa <code>TAB</code> para completar automáticamente nombres de cmdlets o parámetros.</p>
+</div>
 </div>
 <h3 id="consulta-de-cmdlets-y-funciones">CONSULTA DE CMDLETS Y FUNCIONES </h3>
 <div class="style-normal">
@@ -374,6 +378,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Command</p>
+<div class="style-normal2">
 <p>Obtener todos los cmdlet del objeto que contiene el patrón <em>-Net</em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Command</span> –Name <span class="token operator">*</span><span class="token operator">-</span>Net
 CommandType     Name                                             Version    Source
@@ -389,8 +394,10 @@ CommandType     Name                                             Version    Sour
 <span class="token keyword keyword-Function">Function</span>        <span class="token function">Get-NetAdapterLso</span>                                2<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0    NetAdapter
 <span class="token keyword keyword-Function">Function</span>        <span class="token function">Get-NetAdapterPacketDirect</span>                       2<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0    NetAdapter
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Command</p>
+<div class="style-normal2">
 <p>Obtener todos los cmdlet que comienzan con el verbo <em>Format</em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Command</span> –Verb Format
 CommandType Name                  Version Source
@@ -403,8 +410,10 @@ Cmdlet      <span class="token function">Format-SecureBootUEFI</span> 2<span cla
 Cmdlet      <span class="token function">Format-Table</span>          3<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Utility
 Cmdlet      <span class="token function">Format-Wide</span>           3<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Utility
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Command</p>
+<div class="style-normal2">
 <p>Obtener todos los cmdlet del módulo de nombre <em><code>NetTCPIP</code></em></p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Command</span> –Module NetTCPIP
 CommandType     Name                                             Version    Source
@@ -420,8 +429,10 @@ CommandType     Name                                             Version    Sour
 <span class="token keyword keyword-Function">Function</span>        <span class="token function">Get-NetAdapterLso</span>                                2<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0    NetAdapter
 <span class="token keyword keyword-Function">Function</span>        <span class="token function">Get-NetAdapterPacketDirect</span>                       2<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0    NetAdapter
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Command</p>
+<div class="style-normal2">
 <p>Obtener todos los cmdlet relacionados con el tratamiento de módulos.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Command</span> –Name <span class="token string">"*Module*"</span>
 ommandType Name                  Version Source
@@ -437,13 +448,14 @@ ommandType Name                  Version Source
 <span class="token keyword keyword-Function">Function</span>    <span class="token function">Update-Module</span>         1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1 PowerShellGet
 <span class="token keyword keyword-Function">Function</span>    <span class="token function">Update-ModuleManifest</span> 1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1 PowerShellGet
 Cmdlet      <span class="token function">Export-ModuleMember</span>   3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
-</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>Cmdlet      <span class="token function">Get-Module</span>            3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
+Cmdlet      <span class="token function">Get-Module</span>            3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">Import-Module</span>         3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">New-Module</span>            3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">New-ModuleManifest</span>    3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">Remove-Module</span>         3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 Cmdlet      <span class="token function">Test-ModuleManifest</span>   3<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0 Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Core
 </code></pre></div>
+</div>
 <h3 id="modulos">MODULOS </h3>
 <h4 id="mostrar-modulos">MOSTRAR MODULOS </h4>
 <div class="style-normal">
@@ -451,6 +463,7 @@ Cmdlet      <span class="token function">Test-ModuleManifest</span>   3<span cla
 </div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Module</p>
+<div class="style-normal2">
 <p>Mostrar todos los módulos disponibles en la sesión actual.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Module</span>
 ModuleType Version    Name                                ExportedCommands
@@ -460,11 +473,14 @@ Manifest   3<span class="token punctuation">.</span>1<span class="token punctuat
 Manifest   1<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0    NetTCPIP                            <span class="token punctuation">{</span><span class="token function">Find-NetRoute</span><span class="token punctuation">,</span> <span class="token function">Get-NetCompartment</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 Script     2<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0      PSReadLine                          <span class="token punctuation">{</span><span class="token function">Get-PSReadLineKeyHandler</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Uso de Get-Module</p>
+<div class="style-normal2">
 <p>Mostrar todos los módulos disponibles en el sistema.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Module</span> <span class="token operator">-</span>ListAvailable
 </code></pre><p>No se ha mostrado la salida ya que es bastante extensa.</p>
+</div>
 </div>
 <h4 id="actualizar-modulos">ACTUALIZAR MODULOS </h4>
 <div class="style-normal">
@@ -481,6 +497,7 @@ Script     2<span class="token punctuation">.</span>0<span class="token punctuat
 </div>
 <div class="admonition example">
 <p class="admonition-title">Ayuda en línea</p>
+<div class="style-normal2">
 <p>Obtener la ayuda sobre <code>Get-NetIPAddress</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Help</span> –Name <span class="token function">Get-NetIPAddress</span>
 NOMBRE
@@ -496,10 +513,13 @@ SINTAXIS
     <span class="token punctuation">[</span><span class="token operator">-</span>PrefixOrigin &lt;PrefixOrigin<span class="token punctuation">[</span><span class="token punctuation">]</span>&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>SkipAsSource &lt;Boolean<span class="token punctuation">[</span><span class="token punctuation">]</span>&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>SuffixOrigin &lt;SuffixOrigin<span class="token punctuation">[</span><span class="token punctuation">]</span>&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>ThrottleLimit &lt;Int32&gt;<span class="token punctuation">]</span>
     <span class="token punctuation">[</span><span class="token operator">-</span><span class="token function">Type</span> &lt;<span class="token function">Type</span><span class="token punctuation">[</span><span class="token punctuation">]</span>&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span>&lt;CommonParameters&gt;<span class="token punctuation">]</span>
 </code></pre></div>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
+<div class="style-normal2">
 <p>Pulsa <code>TAB</code> tras para completar el nombre de un cmdlet, una opción, valores de las opciones, etc ...<br>
 Por ejemplo, si escribimos <code>Get-NetIPAddress –</code> y pulsamos la tecla <code>TAB</code> se nos mostrarán cada una de las posibles opciones.</p>
+</div>
 </div>
 <h3 id="truncar-comandos">TRUNCAR COMANDOS </h3>
 <div class="style-normal">
@@ -507,10 +527,12 @@ Por ejemplo, si escribimos <code>Get-NetIPAddress –</code> y pulsamos la tecla
 </div>
 <div class="admonition example">
 <p class="admonition-title">Cmdlet en más de una línea</p>
+<div class="style-normal2">
 <p>En el siguiente ejemplo después de escribir el carácter <strong>`</strong> pulsamos la tecla <em><code>Enter</code></em> (no se escribe el literal <code>&lt;Enter&gt;</code>) y nos aparece el literal <code>&gt;&gt;</code> en la siguiente línea.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-DnsClientServerAddress</span> –InterfaceAlias MiRed –ServerAddress `&lt;Enter&gt;
 &gt;&gt; 1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1 –Validate:<span class="token boolean">$false</span>
 </code></pre></div>
+</div>
 <div style="page-break-after:always;"></div>
 <h3 id="tuberias-">TUBERIAS (|) </h3>
 <div class="style-normal">
@@ -518,6 +540,7 @@ Por ejemplo, si escribimos <code>Get-NetIPAddress –</code> y pulsamos la tecla
 </div>
 <div class="admonition example">
 <p class="admonition-title">Tuberías</p>
+<div class="style-normal2">
 <p>Obtener los usuarios locales de nombre <em>admin</em> y <em>guest</em> en formato de lista y mostrar solamente las propiedades <em><code>Name</code></em> y <em><code>Enabled</code></em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-LocalUser</span> –Name admin<span class="token punctuation">,</span>guest <span class="token punctuation">|</span> <span class="token function">Format-List</span> –Property Name<span class="token punctuation">,</span>Enabled
 Name     : admin
@@ -526,12 +549,14 @@ Enabled  : True
 Name     : Guest
 Enabled  : False
 </code></pre></div>
+</div>
 <h3 id="objetos">OBJETOS </h3>
 <div class="style-normal">
 <p>Como la salida de los cmdlets  es también un objeto o una lista de objetos se pueden utilizar el pipe (tubería) y cmdlets adicionales para manipular los objetos. Algunos cmdlets para manipular objetos son: <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/foreach-object?view=powershell-7.5">ForEach-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.5">Where-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/compare-object?view=powershell-7.5">Compare-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/group-object?view=powershell-7.5">Group-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.5">Select-Object</a>, <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/sort-object?view=powershell-7.5">Sort-Object</a> ...</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Objetos</p>
+<div class="style-normal2">
 <p>Obtener todas las interfaces de red, pero solamente el índice y el nombre ordenadas por el número de índice.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-NetIPInterface</span> <span class="token punctuation">|</span> <span class="token function">Select-Object</span> –Property IfIndex<span class="token punctuation">,</span>InterfaceAlias <span class="token punctuation">|</span> <span class="token function">Sort-Object</span> ifIndex
 ifIndex InterfaceAlias
@@ -541,34 +566,42 @@ ifIndex InterfaceAlias
       5 MiRed
      14 Wi-Fi
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p>También podemos asignar la salida de un cmdlet a una variable.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Objetos y variables</p>
+<div class="style-normal2">
 <p>Asignar a la variable <code>$i</code> el objeto obtenido por el cmdlet <code>Get-NetIPInterface</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$i</span> = <span class="token function">Get-NetIPInterface</span> –InterfaceAlias “MiRed” –AddressFamily IPv4
 </code></pre></div>
+</div>
 <div class="style-normal">
 <p>Para ver todas las propiedades y métodos de un objeto podemos usar el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/get-member?view=powershell-7.5">Get-Member</a>. Además podemos ver el valor de una propiedad, modificarlo o invocar un método con la sintaxis <strong>objeto.propiedad</strong> u <strong>objeto.metodo()</strong>.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Objetos y variables</p>
+<div class="style-normal2">
 <p>Mostrar las propiedades y métodos del objeto <code>$i</code> del ejemplo anterior.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$i</span> <span class="token punctuation">|</span> <span class="token function">Get-Member</span>
 </code></pre><p>La ejecución del comando muestra una gran cantidad de propiedades y métodos.</p>
 </div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Objetos y variables</p>
+<div class="style-normal2">
 <p>Mostrar la propiedad <code>ifIndex</code> del objeto $i del ejemplo anterior.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$i</span><span class="token punctuation">.</span>ifIndex
 6
 </code></pre></div>
+</div>
 <h3 id="formatear-salida">FORMATEAR SALIDA </h3>
 <div class="style-normal">
 <p>PowerShell tiene un conjunto de cmdlets que permite controlar cómo se muestra la salida de un cmdlet. Estos cmdlet comienzan con el verbo Format y además permiten seleccionar las propiedades que se quieren mostrar mediante la opción <code>-Property</code>.</p>
 <p>Los cmdlets de formateo de la salida son:</p>
 </div>
+<div class="style-normal2">
 <table>
 <thead>
 <tr>
@@ -591,8 +624,10 @@ ifIndex InterfaceAlias
 </tr>
 </tbody>
 </table>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Formateo de la salida</p>
+<div class="style-normal2">
 <p>Mostrar el nombre de los cmdlets del Module <code>Win*</code> en Formato ancho a 3 columnas.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;<span class="token function">Get-Command</span> <span class="token operator">-</span>Module <span class="token string">"Win*"</span> <span class="token punctuation">|</span> <span class="token function">Format-Wide</span> <span class="token operator">-</span>Property name <span class="token operator">-</span>Column 3
 <span class="token function">Get-WindowsUpdateLog</span>         <span class="token function">Get-WUAVersion</span>                <span class="token function">Get-WUIPendingReboot</span>
@@ -600,15 +635,19 @@ ifIndex InterfaceAlias
 <span class="token function">Start-WUScan</span>                 <span class="token function">Disable-WindowsErrorReporting</span> <span class="token function">Enable-WindowsErrorReporting</span>
 <span class="token function">Get-WindowsErrorReporting</span>
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Formateo de la salida</p>
+<div class="style-normal2">
 <p>Mostrar la ayuda de  <code>Format-Wide</code> en Formato Lista indicando solo nombre, el módulo y sinopsis.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Help</span> <span class="token operator">-</span>Name <span class="token string">"Format-Wide"</span> <span class="token punctuation">|</span> <span class="token function">Format-List</span> <span class="token operator">-</span>Property <span class="token punctuation">,</span>Synopsis
 ModuleName : Microsoft<span class="token punctuation">.</span>PowerShell<span class="token punctuation">.</span>Utility
 Synopsis   : Formats objects as a wide table that displays only one property of each object<span class="token punctuation">.</span>
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Formateo de la salida</p>
+<div class="style-normal2">
 <p>Mostrar los usaurios del sistema en Formato <em>Tabla</em> indicando solo el nombre y si está o no habilitado.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-LocalUser</span> <span class="token punctuation">|</span> <span class="token function">Format-Table</span> <span class="token operator">-</span>Property name<span class="token punctuation">,</span> enabled <span class="token operator">-</span>Autosize
 Name               Enabled
@@ -619,6 +658,7 @@ Invitado             False
 Profesor              True
 WDAGUtilityAccount   False
 </code></pre></div>
+</div>
 <h3 id="convertir-salida-a-otros-formatos">CONVERTIR SALIDA A OTROS FORMATOS </h3>
 <div class="style-normal">
 <p>Los cmdlet operan sobre objectos y devuelven como salida objetos. A veces, es necesario obtener la salida en otros formatos.</p>
@@ -629,9 +669,11 @@ WDAGUtilityAccount   False
 </div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a cadena de texto</p>
+<div class="style-normal2">
 <p>Obtener el nombre de la interfaz de red de nombre <em>MiRed</em> en formato cadena y asignarlo a una variable de nombre <code>$MiRedName</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$MiRedName</span> = <span class="token punctuation">(</span><span class="token function">Get-NetAdapter</span> –Name MiRed <span class="token punctuation">|</span> <span class="token function">Format-Wide</span> –Property ifIndex <span class="token punctuation">|</span> <span class="token function">Out-String</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Trim<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre><p>El método <code>Trim()</code> elimina los espacios a izquierda y derecha de una cadena de texto.</p>
+</div>
 </div>
 <div style="page-break-after:always;"></div>
 <h5 id="fichero-txt">FICHERO TXT </h5>
@@ -640,40 +682,49 @@ WDAGUtilityAccount   False
 </div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero de texto</p>
+<div class="style-normal2">
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>.txt</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>txt
 </code></pre></div>
+</div>
 <h5 id="fichero-csv">FICHERO CSV </h5>
 <div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-csv?view=powershell-7.5">ConvertTo-CSV</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero CSV</p>
+<div class="style-normal2">
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>csv</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-CSV</span> <span class="token operator">-</span>NoTypeInformation <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>csv
 </code></pre></div>
+</div>
 <h5 id="fichero-json">FICHERO JSON </h5>
 <div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-csv?view=powershell-7.5">ConvertTo-JSON</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero JSON</p>
+<div class="style-normal2">
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>json</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-Json</span> <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>json
 </code></pre></div>
+</div>
 <h5 id="fichero-xml">FICHERO XML </h5>
 <div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-xml?view=powershell-7.5">ConvertTo-XML</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Conversión a fichero XML</p>
+<div class="style-normal2">
 <p>Obtener todos los procesos del sistema y guardarlos en un fichero <code>xml</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-XML</span> <span class="token operator">-</span>NoTypeInformation <span class="token operator">-As</span> String <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>xml
 </code></pre></div>
+</div>
 <h2 id="scripts">SCRIPTS </h2>
 <div class="style-normal">
 <p>Los scripts de Powershell son ficheros de texto que contienen una serie de comandos y/o funciones que se ejecutan en el orden en que aparecen. Los scripts pueden contener comentarios, variables, estructuras de control, funciones y cmdlets. Los ficheros de scripts suelen tener las siguientes extensiones.</p>
 </div>
+<div class="style-normal2">
 <table>
 <thead>
 <tr>
@@ -696,11 +747,13 @@ WDAGUtilityAccount   False
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="politicas-de-ejecución">POLITICAS DE EJECUCIÓN </h3>
 <div class="style-normal">
 <p>La ejecución de scripts en Powershell está restringida por las <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">políticas de ejecución</a>. Estas políticas de ejecución son una característica de seguridad que controla las condiciones en que Powershell carga ficheros de configuración y ejecuta los scripts.</p>
 </div>
 <h4 id="tipos">TIPOS </h4>
+<div class="style-normal2">
 <ul>
 <li><strong>Restricted</strong>
 <ul>
@@ -752,6 +805,7 @@ WDAGUtilityAccount   False
 </ul>
 </li>
 </ul>
+</div>
 <h4 id="ambitos">AMBITOS </h4>
 <div class="style-normal">
 <p>Las políticas de ejecución se pueden configurar y ejecutar en diferentes <strong>ámbitos</strong> (<code>scopes</code>). Los ámbitos por orden de preferencia son: <em>MachinePolicy</em>, <em>UserPolicy</em>, <em>Process</em>, <em>CurrentUser</em> y <em>LocalMachine</em></p>
@@ -762,6 +816,7 @@ WDAGUtilityAccount   False
 </div>
 <div class="admonition example">
 <p class="admonition-title">Políticas de ejecución</p>
+<div class="style-normal2">
 <p>Obtener la configuración actual de las políticas de ejecución.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-ExecutionPolicy</span> <span class="token operator">-</span>List
         Scope       ExecutionPolicy
@@ -772,31 +827,42 @@ MachinePolicy             Undefined
   CurrentUser             Undefined
  LocalMachine          RemoteSigned
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Políticas de ejecución</p>
+<div class="style-normal2">
 <p>Obtener configuración actual de políticas de ejecución para el ámbito <code>CurrentUser</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-ExecutionPolicy</span> –Scope CurrentUser
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Políticas de ejecución</p>
+<div class="style-normal2">
 <p>Configurar <code>ByPass</code> para el ámbito <code>LocalMachine</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-ExecutionPolicy</span> <span class="token operator">-</span>ExecutionPolicy ByPass –Scope LocalMachine
 </code></pre><p>Tambíen es válido el siguiente cmdlet:</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-ExecutionPolicy</span> <span class="token operator">-</span>ExecutionPolicy ByPass
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Políticas de ejecución</p>
+<div class="style-normal2">
 <p>Configurar ByPass para el ámbito <code>CurrentUser</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-ExecutionPolicy</span> <span class="token operator">-</span>ExecutionPolicy ByPass –Scope CurrentUser
 </code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Políticas de ejecución</p>
+<div class="style-normal2">
 <p>Borrar la configuración del ámbito <code>CurrentUser</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-ExecutionPolicy</span> <span class="token operator">-</span>ExecutionPolicy Undefined –Scope CurrentUser
 </code></pre></div>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
+<div class="style-normal2">
 <p>Recordad, que si la configuración es <code>Undefined</code> entonces se aplica la configuración por defecto para el ámbito en función de que el sistema sea un cliente, un servidor o un sistema no Windows.</p>
+</div>
 </div>
 
       </div>
