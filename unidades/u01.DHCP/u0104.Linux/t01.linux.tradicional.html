@@ -349,38 +349,43 @@ table {
           <a href="#activar-y-desactivar-interfaces-de-red" class="md-toc-link">
             <p>ACTIVAR Y DESACTIVAR INTERFACES DE RED</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#tabla-de-enrutamiento" class="md-toc-link">
-            <p>TABLA DE ENRUTAMIENTO</p>
-
           </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tabla-de-enrutamiento" class="md-toc-link"><p>TABLA DE ENRUTAMIENTO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-tabla" class="md-toc-link">
+            <p>MOSTRAR TABLA</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#modificar-tabla" class="md-toc-link"><p>MODIFICAR TABLA</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-entrada" class="md-toc-link">
+            <p>AÑADIR ENTRADA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#borrar-entrada" class="md-toc-link">
+            <p>BORRAR ENTRADA</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#tabla-arp" class="md-toc-link"><p>TABLA ARP</p>
 </a>
           </summary>
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#route" class="md-toc-link"><p>ROUTE</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mostrar-la-tabla-de-enrutamiento" class="md-toc-link">
-            <p>MOSTRAR LA TABLA DE ENRUTAMIENTO</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#añadir-una-ruta-estática" class="md-toc-link">
-            <p>AÑADIR UNA RUTA ESTÁTICA</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#eliminar-una-ruta-estática" class="md-toc-link">
-            <p>ELIMINAR UNA RUTA ESTÁTICA</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#arp" class="md-toc-link"><p>ARP</p>
 </a>
@@ -978,26 +983,10 @@ root@debian:~# ifdown eth1
 </div>
 </div>
 <h2 id="tabla-de-enrutamiento">TABLA DE ENRUTAMIENTO </h2>
-<h2 id="tabla-arp">TABLA ARP </h2>
-<h4 id="cambiar-la-dirección-mac-de-una-interfaz-de-red">CAMBIAR LA DIRECCIÓN MAC DE UNA INTERFAZ DE RED </h4>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; hw ether &lt;mac&gt;
-</code></pre><div class="style-normal">
-<p>Cambia la dirección MAC de una interfaz de red. Es importante tener en cuenta que al reiniciar el sistema, la interfaz recuperará su dirección MAC original.</p>
- </div>
-<div class="admonition example">
-<p class="admonition-title">Cambiar dirección MAC</p>
-<div class="style-normal2">
-<p>Cambiar la dirección MAC de la interfaz <code>eth0</code> a <code>00:00:2a:3a:4a:5a</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 hw ether 00:00:2a:3a:4a:5a
-</code></pre></div>
-</div>
-<h4 id="cambiar-la-dirección-ip-de-una-interfaz-de-red">CAMBIAR LA DIRECCIÓN IP DE UNA INTERFAZ DE RED </h4>
-
-<h3 id="route">ROUTE </h3>
 <div class="style-normal">
-<p>La utilidad o comando <code>route</code> se utiliza para configurar y mostrar información de la tabla de enrutamiento de un equipo; es decir la tabla que nos indica como llegar a otras redes a las que no se está directamente conectado y a Internet. Entre las diferentes operaciones que podemos llevar a cabo con el comando route tenemos:</p>
+<p>La utilidad o comando <code>route</code> se utiliza para configurar, de <strong>manera no persistente</strong>, y mostrar información de la tabla de enrutamiento de un equipo; es decir la tabla nos indica como llegar a todas las redes: a las que estoy directamente conectado y a otras redes a las que no se está directamente conectado y a Internet.</p>
 </div>
-<h4 id="mostrar-la-tabla-de-enrutamiento">MOSTRAR LA TABLA DE ENRUTAMIENTO </h4>
+<h3 id="mostrar-tabla">MOSTRAR TABLA </h3>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route [-n]
 </code></pre><div class="style-normal">
 <p>Muestra la tabla de enrutamiento del sistema. Si se utiliza el flag <code>-n</code> muestra las direcciones IP en lugar de los nombres de host. La información más relevante que muestra este comando es:</p>
@@ -1019,33 +1008,30 @@ Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 default         192.168.2.1     0.0.0.0         UG    0      0        0 eth0
 192.168.2.0     *               255.255.255.0   U     0      0        0 eth0
+192.168.3.0     192.168.2.2     255.255.255.0   UG    0      0        0 eth1
 </code></pre><p>El resultado muestra que la ruta por defecto (<code>default</code>) utiliza la puerta de enlace <code>192.168.2.1</code> a través de la interfaz <code>eth0</code> para acceder a Internet.<br>
-Si utilizamos el flag <code>-n</code> el destino de la ruta por defecto se muestra como una dirección IP (<code>0.0.0.0</code>) en lugar de <code>default</code>.</p>
+Si utilizamos el flag <code>-n</code> el destino de la ruta por defecto se muestra como una dirección IP (<code>0.0.0.0</code>) en lugar de <code>default</code>. El asterisco en la columna <em>Gateway</em> correspondiente a la segunda entrada nos indica que el equipo está directamente conectado a la red <code>192.168.2.0/24</code> (a través de la interfaz <code>eth0</code>).<br>
+La última entrada nos indica que para acceder a la red <code>192.168.3.0/24</code>, el equipo debe utilizar la puerta de enlace <code>192.168.2.2</code> a través de la interfaz <code>eth1</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route -n
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         192.168.2.1     0.0.0.0         UG    0      0        0 eth0
 192.168.2.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+192.168.3.0     192.168.2.2     255.255.255.0   UG    0      0        0 eth1
 </code></pre></div>
 </div>
-<h4 id="añadir-una-ruta-estática">AÑADIR UNA RUTA ESTÁTICA </h4>
+<h3 id="modificar-tabla">MODIFICAR TABLA </h3>
 <div class="style-normal">
-<p>Podemos añadir entradas a la tabla de enritamiento para acceder a redes a las que no se está directamente conectado. Un caso especial, es la ruta por defecto o ruta que nos da acceo a Internet.</p>
+<p>También utilizaremos el comando route para añadir entradas o rutas en la tabla de enrutamiento y para eliminarlas. Para cambiar una entrada de la tabla de enrutamiento lo que haremos será eliminar la entrada que queremos cambiar y añadir una nueva con los cambios que queremos hacer.</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route add default gw &lt;puerta_de_enlace&gt; [metric &lt;métrica&gt;] [dev] [&lt;interfaz&gt;]
-</code></pre><div class="style-normal">
-<p>Añadir una ruta por defecto (a Internet) a través de una puerta de enlace. La opción <code>dev</code> se puede omitir si sólo hay una interfaz de red; es más se puede omitir hasta el nombre de la interfaz.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Añadir ruta por defecto</p>
-<div class="style-normal2">
-<p>Añadir una ruta por defecto a través de la puerta de enlace <code>192.168.2.1</code>. Suponiendo que la única interfaz de red es <code>eth0</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route add default gw 192.168.2.1
-</code></pre></div>
+<h4 id="añadir-entrada">AÑADIR ENTRADA </h4>
+<div class="style-normal">
+<p>Podemos añadir entradas a la tabla de enrutamiento para acceder a redes a las que no se está directamente conectado. Un caso especial, es la ruta por defecto o ruta que nos da acceo a Internet. Este último caso ya lo vimos anteriormente cuando estudiamos como configurar el <em>gateway</em>.</p>
+<p>Para añadir una ruta a una red a la que no estamos directamente conectados el comando adopta la siguiente sintaxis:</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route add -net {&lt;red&gt; netmask &lt;máscara&gt; | &lt;red/prefijo&gt;} gw &lt;puerta_de_enlace&gt; [metric &lt;métrica&gt;] dev [&lt;interfaz&gt;]
 </code></pre><div class="style-normal">
-<p>Añadir una ruta estática a la tabla de enrutamiento. La opción <code>metric</code> permite establecer la métrica de la ruta, que influye en la selección de rutas.</p>
+<p>Añadir una ruta estática a la tabla de enrutamiento. La opción <code>dev</code> se puede omitir si sólo hay una interfaz de red; es más se puede omitir hasta el nombre de la interfaz. La opción <code>metric</code> permite establecer la métrica de la ruta, que influye en la selección de rutas.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Añadir ruta estática</p>
@@ -1056,20 +1042,9 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>  root@Host:~# route add -net 192.168.11.0/25 gw 192.168.10.2
 </code></pre></div>
 </div>
-<h4 id="eliminar-una-ruta-estática">ELIMINAR UNA RUTA ESTÁTICA </h4>
+<h4 id="borrar-entrada">BORRAR ENTRADA </h4>
 <div class="style-normal">
-<p>De forma análoga a como se añadían rutas, podemos eliminar rutas.</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del default [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
-</code></pre><div class="style-normal">
-<p>Eliminar ruta por defecto. Si sólo tenemos una única ruta por defecto (lo habitual) no es necesario especificar la puerta de enlace (ni la interfaz de red).</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Eliminar ruta por defecto</p>
-<div class="style-normal2">
-<p>Eliminar la ruta por defecto de la tabla de enrutamiento de un equipo.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del default
-</code></pre></div>
+<p>De forma análoga a como se añadían rutas, podemos eliminarlas. La sintaxis del comando para eliminar una ruta a una red a la que no estoy directamente conectado es la siguiente:</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del -net {&lt;red&gt; netmask &lt;máscara&gt; | &lt;red/prefijo&gt;} [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
 </code></pre><div class="style-normal">
@@ -1084,6 +1059,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del -net 192.168.11.0 netmask 255.255.255.128
 </code></pre></div>
 </div>
+<h2 id="tabla-arp">TABLA ARP </h2>
 <h3 id="arp">ARP </h3>
 <div class="style-normal">
 <p>El comando <code>arp</code> se utiliza para manipular o mostrar las entradas de la tabla ARP (Address Resolution Protocol), que almacena la correspondencia entre direcciones IP y direcciones MAC de los equipos en una red local. Entre las diferentes operaciones que podemos llevar a cabo con el comando arp tenemos:</p>
