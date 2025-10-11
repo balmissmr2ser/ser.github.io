@@ -262,6 +262,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#inittab" class="md-toc-link">
             <p>INITTAB</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ficheros-de-log" class="md-toc-link">
+            <p>FICHEROS DE LOG</p>
+
           </a></div>
         </div>
       </details>
@@ -282,6 +286,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#operaciones-1" class="md-toc-link">
             <p>OPERACIONES</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ficheros-de-log-1" class="md-toc-link">
+            <p>FICHEROS DE LOG</p>
 
           </a></div>
         </div>
@@ -324,8 +332,8 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 <p>Los scripts que definen los servicios están ubicados en la carpeta <code>/etc/init.d</code> o <code>/etc/rc.d/init.d</code> dependiendo de la distribución Linux. Un script de definición de servicio tiene normalmente la siguiente estructura:</p>
 </div>
 <div class="style-example">
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>  <span class="token comment">#script definición servicio</span>
-  <span class="token comment">#$1 parámetro de ejecución del script</span>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>  <span class="token comment">#script definición servicio </span>
+  <span class="token comment"># $1 parámetro de ejecución del script</span>
   <span class="token keyword keyword-case">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword keyword-in">in</span>
   start<span class="token punctuation">)</span>
   <span class="token comment">#Instrucciones para iniciar el servicio</span>
@@ -340,12 +348,13 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
   <span class="token comment">#Instrucciones parar comprobar el estado el servicio</span>
   <span class="token punctuation">;</span><span class="token punctuation">;</span>
   *<span class="token punctuation">)</span>
-  <span class="token comment">#Cualquier otra opción nuestra la ayuda de uso</span>
-  <span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> {start|stop|restart|status}"</span>
-  <span class="token builtin class-name">exit</span> <span class="token number">1</span>
-  <span class="token punctuation">;</span><span class="token punctuation">;</span>
-  <span class="token keyword keyword-esac">esac</span>
-  <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+</code></pre>  <div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Cualquier otra opción nuestra la ayuda de uso</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> {start|stop|restart|status}"</span>
+<span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-esac">esac</span>
+<span class="token builtin class-name">exit</span> <span class="token number">0</span>
 </code></pre></div>
 <h4 id="operaciones">OPERACIONES </h4>
 <div class="style-normal">
@@ -427,12 +436,11 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 </tr>
 </tbody>
 </table>
-<p>Por cada runlevel existe un directorio <code>rcX.d</code> (X=runlevel) donde se define el conjunto de servicios que se ejecutan mediante <strong>enlaces simbólicos</strong> a los scripts del directorio <code>/etc/init.d</code>. La ubicación de los directorios <code>rcX.d</code> varía según la distribución de linux, normalmente: <code>/etc/rcX.d</code> o <code>/etc/rc.d/rcX.d</code></p>
-<p>Los nombres de los enlaces simbólicos siguen la siguiente estructura <code>[S|K]NNservicio</code></p>
+<p>Por cada runlevel existe un directorio <code>rcX.d</code> (X=runlevel) donde se define el conjunto de servicios que se ejecutan mediante <strong>enlaces simbólicos</strong> a los scripts del directorio <code>/etc/init.d</code>. La ubicación de los directorios <code>rcX.d</code> varía según la distribución de linux, normalmente: <code>/etc/rcX.d</code> o <code>/etc/rc.d/rcX.d</code>. Los <strong>nombres de los enlaces simbólicos</strong> siguen la siguiente estructura <code>[S|K]NNservicio</code></p>
 <ul>
 <li><strong>S</strong>   ejecuta el servicio con la opción start</li>
 <li><strong>K</strong>   ejecuta el servicio con la opción stop</li>
-<li><strong>NN</strong>  nº de orden de ejecución (01 ejecuta antes que 02)</li>
+<li><strong>NN</strong>  nº de orden de ejecución (01,02,03,...)</li>
 <li><strong>servicio</strong> nombre del servicio en <code>/etc/init.d</code></li>
 </ul>
 <p>El proceso <code>init</code> utiliza el script <code>/etc/init.d/rc</code> para ejecutar los runlevels 0-6 y el script <code>/etc/init.d/rcS</code> para ejecutar S. Los servicios definidos se ejecutan secuencialmente en orden alfabetico. Por tanto, primero se ejecutan los que comienzan por K según su número de orden y luego los que comienzan por S según su número de orden.</p>
@@ -448,6 +456,7 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 ├── network
 ├── <span class="token function">ftp</span>
 ├── squid
+
 /etc/rc3.d/
 ├── S01network -<span class="token operator">&gt;</span> <span class="token punctuation">..</span>/init.d/network
 ├── S02ssh -<span class="token operator">&gt;</span> <span class="token punctuation">..</span>/init.d/ssh
@@ -455,7 +464,6 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">Conocer el runlevel actual</p>
-<p>Ejecutar comando <code>runlevel</code>. Este comando muestra en su salida el runlevel anterior (primer valor)y el runlevel actual (segundo valor).</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>runlevel
 N <span class="token number">5</span>
 <span class="token comment"># N runlevel anterior no definido</span>
@@ -463,7 +471,6 @@ N <span class="token number">5</span>
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">Ejecutar o cambiar un runlevel</p>
-<p>Ejecutar comando <code>init &lt;runlevel&gt;</code> ó <code>telinit &lt;runlevel&gt;</code>.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># Ejecutar runlevel de reinicio de maquina</span>
 init <span class="token number">6</span>
 </code></pre></div>
@@ -490,11 +497,11 @@ update-rc.d <span class="token operator">&lt;</span>servicio<span class="token o
 </div>
 <div class="style-list">
 <ul>
-<li>id<br>
+<li><strong>id</strong><br>
 Identificador único para la entrada</li>
-<li>runlevels<br>
+<li><strong>runlevels</strong><br>
 Especifica los runlevels a los que se aplica la entrada. Cuando esta vacio, significa cualquier runlevel.</li>
-<li>action<br>
+<li><strong>action</strong><br>
 Especifica que acción debe realizar init, entre otras tenemos:
 <table>
 <thead>
@@ -527,7 +534,7 @@ Especifica que acción debe realizar init, entre otras tenemos:
 </tbody>
 </table>
 </li>
-<li>process<br>
+<li><strong>process</strong><br>
 Comando o script a ejecutar</li>
 </ul>
 </div>
@@ -548,6 +555,85 @@ l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
 <span class="token comment"># Se omiten lineas de la salida</span>
 </code></pre></div>
 </div>
+<h4 id="ficheros-de-log">FICHEROS DE LOG </h4>
+<div class="style-normal">
+<p><code>System V</code> no utiliza un sistema centralizado de registro de logs (bitácora), depende de otros servicios del sistema para registar eventos, especialmente el sistema de logging tradicional de linux <code>syslog</code>. Esto quiere decir que los mensajes de los servicios de <code>/etc/init.d/</code> no se registran automáticamente a no ser que utilicen llamadas a <code>syslog</code>.</p>
+<p>El sistema de logging <code>syslog</code> es gestionado tradicionalmente por el demonio <code>syslogd</code> o en distribuciones más modernas <code>rsyslogd</code>, <code>syslog-ng</code> o <code>busybox-syslog</code>.</p>
+<p>Los registros de logging se escriben en archivos dentro del directorio <code>/var/log/</code>. Entre los archivos más comunes tenemos:</p>
+<table>
+<thead>
+<tr>
+<th>archivo log</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/var/log/messages</code></td>
+<td>Registro general del sistema</td>
+</tr>
+<tr>
+<td><code>/var/log/syslog</code></td>
+<td>Registro general en distribuciones Debian, Ubuntu,..</td>
+</tr>
+<tr>
+<td><code>/var/log/auth.log</code></td>
+<td>Registro de autenticaciones y sudo</td>
+</tr>
+<tr>
+<td><code>/var/log/dmesg</code></td>
+<td>Registro del kernel (hardware,arranque)</td>
+</tr>
+<tr>
+<td><code>/var/log/boot.log</code></td>
+<td>Registro del proceso de arranque</td>
+</tr>
+<tr>
+<td><code>/var/log/daemon.log</code></td>
+<td>Registro de servicios o demonios</td>
+</tr>
+<tr>
+<td><code>/var/log/&lt;servicio&gt;</code></td>
+<td>Registro particular de un servicio <br> Ej. <code>/var/log/ssh</code></td>
+</tr>
+</tbody>
+</table>
+<p>Para consultar los mensajes de log podemos usar los siguientes comandos: <code>less</code>, <code>tail</code>,<code>grep</code>...</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">consulta de syslog</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#less consultar el fichero syslog</span>
+<span class="token comment">#para terminar pulsar q</span>
+<span class="token function">less</span> /var/log/syslog
+
+<span class="token comment">#tail consultar ultimos registros de syslog</span>
+<span class="token function">tail</span> /var/log/syslog
+
+<span class="token comment">#tail consultar ultimos 10 registros de syslog</span>
+<span class="token function">tail</span> <span class="token parameter variable">--lines</span> <span class="token number">10</span> /var/log/syslog
+
+<span class="token comment">#tail consultar ultimos registros de syslog y continuar a la escucha</span>
+<span class="token comment">#para terminar pulsar CTRL+C</span>
+<span class="token function">tail</span> <span class="token parameter variable">--follow</span> /var/log/syslog
+
+<span class="token comment">#tail consultar todos los registros de syslog</span>
+<span class="token function">tail</span> <span class="token parameter variable">--lines</span> +1 /var/log/syslog
+
+<span class="token comment">#tail consultar ultimos registros de syslog solo para </span>
+<span class="token comment">#el servicio dhclient</span>
+<span class="token function">tail</span> /var/log/syslog <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"dhclient"</span>
+
+<span class="token comment">#tail consultar los ultimos registros que hayan dado error</span>
+<span class="token function">tail</span> /var/log/syslog <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"error"</span>
+
+<span class="token comment">#tail consultar todos los registros de syslog para </span>
+<span class="token comment">#el servicio dhclient en el mes de octubre que hayan dado error</span>
+<span class="token function">tail</span> <span class="token parameter variable">--lines</span> +1 /var/log/syslog <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"dhclient"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"Oct"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"error"</span>
+</code></pre><p>De la misma manera que hemos consultado /var/log/syslog podriamos haber realizado la consulta sobre cualquier otro fichero de log.</p>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
 <h3 id="systemd">SYSTEMD </h3>
 <div class="style-normal">
 <p>El proceso inicial se llama <code>systemd</code> y ejecuta el comando <code>/sbin/systemd</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>en paralelo</strong>, es decir, cuando lanza la ejecución de un servicio no espera a su terminación antes de lanzar un nuevo servicio a no ser que existan dependencias entre ellos. El proceso <code>systemd</code> tiene asociado un fichero de configuración global que define su comportamiento <code>/etc/systemd/system.conf</code></p>
@@ -561,7 +647,8 @@ l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
 <ul>
 <li>
 <p><strong>Archivo de configuración</strong><br>
-Archivo que define la tarea que realiza la unidad. Se suelen utilizar los siguientes directorios:</p>
+Archivo que define la tarea que realiza la unidad.<br>
+Se suelen utilizar los siguientes directorios:</p>
 <table>
 <thead>
 <tr>
@@ -592,11 +679,13 @@ Archivo que define la tarea que realiza la unidad. Se suelen utilizar los siguie
 </li>
 <li>
 <p><strong>Nombre</strong><br>
-Identificador único de la unidad dentro del sistema. Es el nombre del archivo de configuración.</p>
+Identificador único de la unidad dentro del sistema.<br>
+Es el nombre del archivo de configuración.</p>
 </li>
 <li>
 <p><strong>Categoria</strong><br>
-Se utiliza para agrupar unidades según su funcionalidad. Es la extensión del archivo de configuración. Algunas de ellas son:</p>
+Se utiliza para agrupar unidades según su funcionalidad.<br>
+Es la extensión del archivo de configuración. Algunas de ellas son:</p>
 <table>
 <thead>
 <tr>
@@ -676,13 +765,13 @@ Se utiliza para agrupar unidades según su funcionalidad. Es la extensión del a
 <div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Estructura definición unidad</p>
-<pre data-role="codeBlock" data-info="code" class="language-code code"><code>[sección]
-parámetro=valor
-parámetro=valor
-....
-[sección]
-parámetro=valor
-.... 
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token punctuation">[</span>sección<span class="token punctuation">]</span>
+parámetro<span class="token operator">=</span>valor
+parámetro<span class="token operator">=</span>valor
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token punctuation">[</span>sección<span class="token punctuation">]</span>
+parámetro<span class="token operator">=</span>valor
+<span class="token punctuation">..</span><span class="token punctuation">..</span> 
 </code></pre></div>
 </div>
 <div class="style-normal">
@@ -711,11 +800,11 @@ Describe unidad y su relación con otras unidades. Algunos parámetros de config
 </tr>
 <tr>
 <td><code>Wants</code></td>
-<td>Lista de unidades no críticas que se recomienda iniciar junto con la unidad.</td>
+<td>Lista de unidades no críticas que se desean que esten activas para iniciar la unidad.</td>
 </tr>
 <tr>
 <td><code>Requires</code></td>
-<td>Lista de unidades críticas que deben estar activas para iniciar la unidad.</td>
+<td>Lista de unidades críticas que se requiere que esten activas para iniciar la unidad.</td>
 </tr>
 <tr>
 <td><code>BindsTo</code></td>
@@ -723,7 +812,7 @@ Describe unidad y su relación con otras unidades. Algunos parámetros de config
 </tr>
 <tr>
 <td><code>Before</code></td>
-<td>Indica que la unidad debe iniciarse despues de las unidades listadas</td>
+<td>Indica que la unidad debe iniciarse antes de las unidades listadas</td>
 </tr>
 <tr>
 <td><code>After</code></td>
@@ -783,7 +872,7 @@ Contiene los parámetros relacionados con las unidades de la categoria servicio.
 <tbody>
 <tr>
 <td><code>Type</code></td>
-<td>Tipo de servicio: <code>simple, forking, oneshot, notify, dbus, exec</code></td>
+<td>Tipo de servicio: <br><code>simple</code>. El servicio ejecuta en primer plano un único proceso<br><code>forking</code>. El servicio ejecuta un proceso principal o padre que lanza un proceso hijo, normalmente en segundo plano (daemon), y termina.<br><code>oneshot</code>. El servicio ejecuta  un proceso que termina inmediatamente al ejecutar su tarea.<br><code>notify</code>. El servicio ejecuta un proceso que envía una notificación a systemd cuando ha terminado de inicializarse y de esa manera pasar a estado <code>active</code>.<br><code>dbus</code>. El servicio lanza un proceso que se considera iniciado cuando se registra un nombre en el bus de D-Bus.<br><code>exec</code>. Similar a simple pero más estricto.<br><code>idle</code>. Como <code>simple</code>pero systemd espera a que el resto del arranque del sistema termine antes de ejecutar el servicio.</td>
 </tr>
 <tr>
 <td><code>ExecStart</code></td>
@@ -819,7 +908,7 @@ Contiene los parámetros relacionados con las unidades de la categoria servicio.
 </tr>
 <tr>
 <td><code>KillMode</code></td>
-<td>Define como se terminan los procesos asociados a la unidad cuando esta se detiene. Tenemos los siguientes valores: <code>control-group, process, mixed, none</code></td>
+<td>Define como se terminan los procesos asociados a la unidad cuando ésta se detiene. Pare ello se envía señales <code>SIGTERM</code> y/o <code>SIGKILL</code> a los procesos. Tenemos los siguientes valores:  <br><code>control-group</code>. Termina el cgroup ,es decir, el proceso y todos los recursos y procesos hijos que dependen de el. <br> <code>process</code>. Termina solo el proceso principal. <br> <code>mixed</code>. Termina primero  el proceso principal y si no termina en un tiempo termina el cgroup.<br><code>none</code>. No envia ninguna señal de terminación a los procesos.</td>
 </tr>
 <tr>
 <td><code>User</code></td>
@@ -851,11 +940,11 @@ Contiene los parámetros relacionados con las unidades de la categoria servicio.
 </tr>
 <tr>
 <td><code>RemainAfterExit</code></td>
-<td>Útil para servicios <code>oneshot</code>; si se establece en <code>yes</code>, el servicio se considera activo tras la ejecución.</td>
+<td>Útil para servicios <code>oneshot</code>, si se establece en <code>yes</code>, el servicio se considera activo tras la ejecución.</td>
 </tr>
 <tr>
 <td><code>GuessMainPID</code></td>
-<td>Solo para <code>forking</code>: indica si systemd debe intentar adivinar el PID principal.</td>
+<td>Solo para <code>forking</code>. Indica si systemd debe intentar adivinar el PID principal.</td>
 </tr>
 <tr>
 <td><code>CapabilityBoundingSet</code></td>
@@ -878,36 +967,38 @@ Contiene los parámetros relacionados con las unidades de la categoria servicio.
 </li>
 </ul>
 </div>
+<div style="page-break-after:always;"></div>
 <div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Definición servicio ssh</p>
-<pre data-role="codeBlock" data-info="code" class="language-code code"><code>#archivo de unidad en /lib/systemd/system/ssh.service
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#archivo de unidad en /lib/systemd/system/ssh.service</span>
 
-[Unit]
-Description=OpenBSD Secure Shell server
-After=network.target auditd.service
-ConditionPathExists=!/etc/ssh/sshd_not_to_be_run
+<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span>
+<span class="token assign-left variable">Description</span><span class="token operator">=</span>OpenBSD Secure Shell server
+<span class="token assign-left variable">After</span><span class="token operator">=</span>network.target auditd.service
+<span class="token assign-left variable">ConditionPathExists</span><span class="token operator">=</span><span class="token operator">!</span>/etc/ssh/sshd_not_to_be_run
 
-[Install]
-WantedBy=multi-user.target
-Alias=sshd.service
+<span class="token punctuation">[</span>Install<span class="token punctuation">]</span>
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target
+<span class="token assign-left variable">Alias</span><span class="token operator">=</span>sshd.service
 
-[Service]
-EnvironmentFile=/etc/default/ssh
-ExecStart=/usr/sbin/sshd -D $SSHD_OPTS
-ExecReload=/bin/kill -HUP $MAINPID
-KillMode=process
-Restart=on-failure
-RestartPreventExitStatus=255
-Type=notify
+<span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
+<span class="token assign-left variable">EnvironmentFile</span><span class="token operator">=</span>/etc/default/ssh
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/sbin/sshd <span class="token parameter variable">-D</span> <span class="token variable">$SSHD_OPTS</span>
+<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/bin/kill <span class="token parameter variable">-HUP</span> <span class="token variable">$MAINPID</span>
+<span class="token assign-left variable">KillMode</span><span class="token operator">=</span>process
+<span class="token assign-left variable">Restart</span><span class="token operator">=</span>on-failure
+<span class="token assign-left variable">RestartPreventExitStatus</span><span class="token operator">=</span><span class="token number">255</span>
+<span class="token assign-left variable">Type</span><span class="token operator">=</span>notify
 
-# La variable SSHD_OPTS se encuentra definida en /etc/ default/ssh. 
-# La variable MAINPID se crea al cargarse la unidad
+<span class="token comment"># La variable SSHD_OPTS se encuentra definida en /etc/ default/ssh. </span>
+<span class="token comment"># La variable MAINPID se crea al cargarse la unidad</span>
 </code></pre></div>
 </div>
 <h4 id="runlevels-1">RUNLEVELS </h4>
 <div class="style-normal">
-Systemd emula los niveles de ejecución de System V a través de unidades de tipo target. Las equivalencias son las siguientes:
+<p>Systemd emula los niveles de ejecución de System V a través de unidades de tipo target. Las equivalencias son las siguientes:</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -968,8 +1059,33 @@ Systemd emula los niveles de ejecución de System V a través de unidades de tip
 </tr>
 </tbody>
 </table>
+<div style="page-break-after:always;"></div>
+<div class="style-normal">
+<p>La manera más habitual de asociar un servicio a un determinado runlevel es añadir una propiedad WantedBy en la sección install del servicio.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">servicio ssh asociado a runlevel multi-user</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#archivo de unidad en /lib/systemd/system/ssh.service</span>
+
+<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span>
+<span class="token assign-left variable">Description</span><span class="token operator">=</span>OpenBSD Secure Shell server
+<span class="token assign-left variable">After</span><span class="token operator">=</span>network.target auditd.service
+<span class="token assign-left variable">ConditionPathExists</span><span class="token operator">=</span><span class="token operator">!</span>/etc/ssh/sshd_not_to_be_run
+
+<span class="token punctuation">[</span>Install<span class="token punctuation">]</span>
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target
+<span class="token assign-left variable">Alias</span><span class="token operator">=</span>sshd.service
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token comment"># Al asignar la propiedad WantedBy a multi-user.target se crea un enlace simbólico </span>
+<span class="token comment"># al servicio en el  directorio /etc/system/systemd/multi-user.target.wants </span>
+<span class="token comment"># De forma similar sucedería si en lugar de WantedBy se utiliza RequieredBy.</span>
+</code></pre></div>
+</div>
 <h4 id="operaciones-1">OPERACIONES </h4>
-<p>Para realizar operaciones sobre las unidades y servicios en <code>systemd</code> utilizaremos el comando <code>systemctl</code>. Este comando tiene numerosas opciones que puedes consultar en la siguiente <a href="https://man7.org/linux/man-pages/man1/systemctl.1.html">url</a>. Entre ellas tenemos:</p>
+<div class="style-normal">
+<p>Para realizar operaciones sobre las unidades y servicios en <code>systemd</code> utilizaremos el comando <code>systemctl</code>. Este comando tiene numerosas opciones que puedes consultar en <a href="https://man7.org/linux/man-pages/man1/systemctl.1.html">man systemctl</a>. Entre ellas tenemos:</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -992,7 +1108,7 @@ Systemd emula los niveles de ejecución de System V a través de unidades de tip
 </tr>
 <tr>
 <td>Mostrar estado</td>
-<td><code>systemctl status &lt;servicio&gt;</code> <br> - enable Unidad habilitada automáticamente <br> - static  Unidad ejecutada manualmente o por otra unidad <br> - disabled Unidad deshabilitada <br> - masked Unidad deshabilitada y no se puede ejecutar ni siquiera manualmente</td>
+<td><code>systemctl status &lt;servicio&gt;</code></td>
 </tr>
 <tr>
 <td>Recargar configuración</td>
@@ -1035,43 +1151,233 @@ Systemd emula los niveles de ejecución de System V a través de unidades de tip
 <td><code>systemctl list-dependecies --before &lt;servicio&gt;</code></td>
 </tr>
 <tr>
-<td>Mostrar fichero <br> configuración</td>
+<td>Mostrar fichero configuración</td>
 <td><code>systemctl cat &lt;servicio&gt;.service</code></td>
 </tr>
 <tr>
-<td>Mostrar propiedades <br> configuración</td>
+<td>Mostrar propiedades configuración</td>
 <td><code>systemctl show &lt;servicio&gt;.service</code></td>
 </tr>
 <tr>
-<td>Editar fichero <br> configuración</td>
+<td>Editar fichero configuración</td>
 <td><code>systemctl edit --full --force &lt;servicio&gt;.service</code></td>
 </tr>
 <tr>
-<td>Mostrar runlevel <br> por defecto</td>
+<td>Mostrar runlevel por defecto</td>
 <td><code>systemctl get-default</code></td>
 </tr>
 <tr>
-<td>Cambiar runlevel <br> por defecto</td>
-<td><code>systemctl set-default &lt;runlevel.target&gt;</code> <br> Ej. runlevel multiuser <br> <code>systemctl set-default multi-user.target</code></td>
+<td>Cambiar runlevel por defecto</td>
+<td><code>systemctl set-default &lt;runlevel.target&gt;</code></td>
 </tr>
 <tr>
 <td>Cambiar runlevel</td>
-<td><code>systemctl set-default isolate &lt;runlevel.target&gt;</code></td>
+<td><code>systemctl isolate &lt;runlevel.target&gt;</code></td>
 </tr>
 <tr>
-<td>Mostrar unidades <br> del sistema</td>
+<td>Mostrar unidades sistema</td>
 <td><code>systemctl list-units</code> <br> <code>systemctl list-units-files</code></td>
 </tr>
 <tr>
-<td>Mostrar servicios <br> del sistema</td>
-<td><code>systemctl list-units --type=service [--state={active|inactive|failed|dead}</code>] <br> Ej. Servicios inactivos <br> <code>systemctl list-units --type=service --state=active</code></td>
+<td>Mostrar servicios sistema</td>
+<td><code>systemctl list-units --type=service [--state={active|inactive|failed|dead|running}]</code></td>
 </tr>
 <tr>
-<td>Aplicar cambios <br> sin reiniciar</td>
+<td>Aplicar cambios sin reiniciar</td>
 <td><code>systemctl daemon-reload</code></td>
 </tr>
 </tbody>
 </table>
+
+<div class="style-normal">
+<p>También podemos utilizar para iniciar, parar, pausar o mostrar el estado de un servicio en lugar de <code>systemctl</code> el comando <code>service</code>.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Mostrar estado de un servicio</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>systemctl status <span class="token function">ssh</span>
+
+ssh.service - OpenBSD Secure Shell server
+Loaded: loaded <span class="token punctuation">(</span>/lib/systemd/system/ssh.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
+Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Thu <span class="token number">2025</span>-10-09 <span class="token number">14</span>:18:06 CEST<span class="token punctuation">;</span> 6h ago
+  Docs: man:sshd<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>
+        man:sshd_config<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+Process: <span class="token number">384</span> <span class="token assign-left variable">ExecStartPre</span><span class="token operator">=</span>/usr/sbin/sshd <span class="token parameter variable">-t</span>
+<span class="token punctuation">(</span>code<span class="token operator">=</span>exited, <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">0</span>/SUCCESS<span class="token punctuation">)</span>
+ Main PID: <span class="token number">395</span> <span class="token punctuation">(</span>sshd<span class="token punctuation">)</span>
+ Tasks: <span class="token number">1</span> <span class="token punctuation">(</span>limit: <span class="token number">528</span><span class="token punctuation">)</span>
+ Memory: <span class="token number">3</span>.7M
+ CPU: 34ms
+ CGroup: /system.slice/ssh.service
+         └─395 sshd: /usr/sbin/sshd <span class="token parameter variable">-D</span> <span class="token punctuation">[</span>listener<span class="token punctuation">]</span> <span class="token number">0</span> of
+          <span class="token number">10</span>-100 startups
+</code></pre><p>La propiedad <code>Main PID</code> nos indica el identificador del proceso asociado al servicio. La propiedad <code>cgroup</code> nos muestra los recursos y procesos asociados al servicio.</p>
+<p>La propiedad <code>loaded</code> nos muestra el estado del servicio en cuanto al momento en el que se inicia ("carga") en el sistema:</p>
+<table>
+<thead>
+<tr>
+<th>valor</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable</code></td>
+<td>Servicio que se ejecuta en el arranque del sistema automáticamente.</td>
+</tr>
+<tr>
+<td><code>static</code></td>
+<td>Servicio que se ejecuta manualmente o por otra unidad.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td>Servicio que no se ejecuta en el arranque del sistema de manera automática. Se puede ejecutar manualmente.</td>
+</tr>
+<tr>
+<td><code>masked</code></td>
+<td>Servicio que esta deshabilitada y que no se puede ejecutar ni siquiera manualmente. Es como bloquear el servicio.</td>
+</tr>
+</tbody>
+</table>
+<p>La propiedad <code>active</code> nos muestra el estado del servicio en cuanto a su ejecución:</p>
+<table>
+<thead>
+<tr>
+<th>valor</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td>El servicio esta en ejecución.</td>
+</tr>
+<tr>
+<td><code>inactive</code></td>
+<td>El servicio no esta en ejecución.1</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>El servicio ha fallado.</td>
+</tr>
+<tr>
+<td><code>activating</code></td>
+<td>El servicio se está iniciando.</td>
+</tr>
+<tr>
+<td><code>deactivating</code></td>
+<td>El servicio se está parando.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Runlevel</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Obtener el runlevel por defecto</span>
+systemctl get-default
+
+<span class="token comment">#Cambiar el runlevel por defecto a multi-user</span>
+systemctl set-default multi-user.target
+
+<span class="token comment">#Cambiar el runlevel actual para apagar la maquina</span>
+systemctl isolate poweroff.target
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar servicios</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#En la salida de los comandos se muestran solo algunas</span>
+<span class="token comment">#líneas a modo de ejemplo.</span>
+
+<span class="token comment">#Mostrar servicio inactivos</span>
+systemctl list-units <span class="token parameter variable">--type</span><span class="token operator">=</span>service <span class="token parameter variable">--state</span><span class="token operator">=</span>inactive
+
+UNIT                            LOAD   ACTIVE    SUB DESCRIPTION
+apt-daily-upgrade.service       loaded inactive  dead  Daily <span class="token function">apt</span> updgrade and clean
+apt-daily.service               loaded inactive dead Daily <span class="token function">apt</span> download activities
+<span class="token punctuation">..</span><span class="token punctuation">..</span>.
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Mostrar servicios activos</span>
+systemctl list-units <span class="token parameter variable">--type</span><span class="token operator">=</span>service <span class="token parameter variable">--state</span><span class="token operator">=</span>active
+
+UNIT                            LOAD   ACTIVE    SUB DESCRIPTION
+apparmor.service                loaded active    exited Load AppArmor profiles
+cron.service                    loaded active    running Background processing daemon
+networking.service              loaded active    exited Raise network interfaces
+ssh.service                     loades active     running OpenBSD Secure Shell Server
+<span class="token punctuation">..</span><span class="token punctuation">..</span>.
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Mostrar servicios en ejecución</span>
+systemctl list-units <span class="token parameter variable">--type</span><span class="token operator">=</span>service <span class="token parameter variable">--state</span><span class="token operator">=</span>running
+
+UNIT                            LOAD   ACTIVE    SUB DESCRIPTION
+cron.service                    loaded active    running Background processing daemon
+ssh.service                     loades active     running OpenBSD Secure Shell Server
+<span class="token punctuation">..</span><span class="token punctuation">..</span>.
+</code></pre></div>
+</div>
+<h4 id="ficheros-de-log-1">FICHEROS DE LOG </h4>
+<div class="style-normal">
+<p><code>Systemd</code> utiliza un sistema centralizado de registro de logs (bitácora) denominado <code>journal</code>que gestiona y almacena eventos del sistema, servicios, kernel y usuarios. El sistema <code>journal</code>es gestionado por el servicio <code>systemd-journald</code>.</p>
+<p>Los registros generados por <code>journal</code> pueden ser consultados con la herramienta <code>journalctl</code>. Puedes obtener información de este comando en <a href="https://man7.org/linux/man-pages/man1/journalctl.1.html">man journalctl</a>. Entre las opciones más comunes:</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>opción</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--unit &lt;servicio&gt;</code></td>
+<td>Registros para un determinado servicio</td>
+</tr>
+<tr>
+<td><code>--lines &lt;n&gt;</code></td>
+<td>Muestra n registros más recientes. También admite all.</td>
+</tr>
+<tr>
+<td><code>--follow</code></td>
+<td>Muestra los registros más recientes y continua a la escucha. Se termina la escucha con CTRL+C</td>
+</tr>
+<tr>
+<td><code>--since "&lt;fecha&gt;"</code></td>
+<td>Muestra los registros desde la fecha. La fecha en formato americano yyyy-mm-dd hh:mm:ss. También admite today,yesterday,now,ago,...</td>
+</tr>
+<tr>
+<td><code>--until "&lt;fecha&gt;"</code></td>
+<td>Muestra los registros hasta la fecha. La fecha en formato americano yyyy-mm-dd hh:mm:ss. También admite today,yesterday,now,ago...</td>
+</tr>
+<tr>
+<td><code>--priority &lt;n&gt;</code></td>
+<td>Muestra los registros según su prioridad. <br>0 emerg<br>1 alert<br>2 crit<br>3 err<br>4 warning<br>5 notice<br>6 info<br>7 debug</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">journalctl</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Todos los registros de ssh</span>
+journalctl <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+
+<span class="token comment">#Los ultimos 20 registros de ssh</span>
+journalctl <span class="token parameter variable">--lines</span> <span class="token number">20</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+
+<span class="token comment">#Los ultimos registros de ssh y mantenerse</span>
+journalctl <span class="token parameter variable">--follow</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+
+<span class="token comment">#Los registros de ssh desde hace 1 minuto</span>
+journalctl <span class="token parameter variable">--since</span> <span class="token string">"1 minute ago"</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Los registros de ssh desde hace 2 dias</span>
+journalctl <span class="token parameter variable">--since</span> <span class="token string">"2 days ago"</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+
+<span class="token comment">#Todos los registros de ssh de tipo error</span>
+journalctl <span class="token parameter variable">--lines</span> all <span class="token parameter variable">--priority</span> <span class="token number">3</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+
+<span class="token comment">#Los ultimos 10 registros de ssh de tipo error</span>
+journalctl <span class="token parameter variable">--lines</span> <span class="token number">10</span> <span class="token parameter variable">--priority</span> <span class="token number">3</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
+
+<span class="token comment">#Todos los registros de error de hoy</span>
+journalctl <span class="token parameter variable">--lines</span> all <span class="token parameter variable">--priority</span> <span class="token number">3</span> <span class="token parameter variable">--since</span> <span class="token string">"today"</span>
+
+</code></pre></div>
 </div>
 
       </div>
