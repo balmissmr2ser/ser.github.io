@@ -666,10 +666,48 @@ root@Host:~# ip link set dev enp0s8 up
 </div>
 <h2 id="configuración-estática">CONFIGURACIÓN ESTÁTICA </h2>
 <div class="style-normal">
-<p>Para llevar a cabo la configuración no persistente de las interfaces de red también utilizaremos el comando <code>ifconfig</code> además del comando <code>route</code>.</p>
-<p>Para el caso de la configuración persistente se usan ficheros. Hay que distinguir entre los sistemas basados en <strong>Debian</strong> y los basados en <strong>RedHat</strong>. Nosotros principalmente nos centraremos en los primeros.</p>
+<p>El comando <code>ip</code> con el objeto <strong>address</strong>, además de servir para mostrar la configuración de las interfaces de red, nos permite llevar a cabo acciones como: asignar direcciones IP a las interfaces de red y eliminar direcciones IP de las mismas.</p>
 </div>
 <h3 id="configurar-ip-y-gateway">CONFIGURAR IP Y GATEWAY </h3>
+<div class="style-normal">
+<p>Con el comando <code>ip address add</code> podemos asignar ip's a las interfaces de red. La sintaxis es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
+</code></pre><div class="style-normal">
+<p>La ejecución del comando añade una nueva IP a una interfaz de red. Si ya tenía una, ahora tendrá una más.</p>
+<p>Es más habitual utilizar las versiones abreviadas:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
+</code></pre><pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip a add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
+</code></pre><div class="admonition example">
+<p class="admonition-title">Añadir IP a interfaz de red</p>
+<div class="style-normal2">
+<p>Añadir la IP <code>192.168.2.128</code> a la interfaz de red <code>enp0s3</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address add 192.168.2.128/24 dev enp0s3
+</code></pre><p>Podemos comprobar que ahora tenemos dos IPs:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show dev enp0s3
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.17/24 brd 192.168.2.255 scope global dynamic enp0s3
+       valid_lft 106sec preferred_lft 106sec
+    inet 192.168.2.128/24 scope global secondary enp0s3
+       valid_lft forever preferred_lft forever
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Para añadir la puerta de enlace tenemos que añadir una ruta por defecto con el comando <code>ip route</code>. Su sintaxis es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add default via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>El comando añade una ruta por defecto de manera que los datos que no sean para ninguna de las otras redes de la tabla de enrutamiento se envíen a la puerta de enlace <code>&lt;puerta-enlace&gt;</code> dada y salen por la interfaz dada <code>&lt;interfaz&gt;</code>. Si solo tenemos una interfaz de red, podemos omitir <code>dev &lt;interfaz&gt;</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configurar gateway</p>
+<div class="style-normal2">
+<p>Configuración de la puerta de enlace (gateway) de un equipo que tiene dos tarjetas de red <code>enp0s3</code> y <code>enp0s8</code>, de manera que la primera tarjeta (<code>enp0s3</code>) está en la red interna <code>192.168.254.0/24</code> y la segunda (<code>enp0s8</code>) en la red <code>192.168.1.0/24</code>, donde hay un router que da acceso a internet cuya IP es la primera de la segunda red.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.1.1 dev enp0s8
+</code></pre></div>
+</div>
 <h4 id="caso-no-persistente">CASO NO PERSISTENTE </h4>
 <div class="style-normal">
 <p>Para cambiar la dirección IP de una interfaz de red, o asignarle una si no tenía, la sintaxis sería la siguiente:</p>
@@ -1043,25 +1081,6 @@ BOOTPROTO=dhcp
 <p>El comando <code>ip</code> con el objeto <strong>address</strong> nos permite llevar a cabo acciones como: mostrar la configuración de las interfaces de red y asignar direcciones IP a las mismas.</p>
 </div>
 <h4 id="configurar-las-ip-de-las-interfaces-de-red">CONFIGURAR LAS IP DE LAS INTERFACES DE RED </h4>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
-</code></pre><div class="style-normal">
-<p>Añade una nueva IP a una interfaz de red. Si ya tenía una, ahora tendrá una más.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Añadir IP a interfaz de red</p>
-<div class="style-normal2">
-<p>Añadir la IP <code>192.168.2.128</code> a la interfaz de red <strong>enp0s3</strong>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@PCL-1:~# ip address add 192.168.2.128/24 dev enp0s3
-</code></pre><p>Podemos comprobar que ahora tenemos dos IPs:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show dev enp0s3
-2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.2.17/24 brd 192.168.2.255 scope global dynamic enp0s3
-       valid_lft 106sec preferred_lft 106sec
-    inet 192.168.2.128/24 scope global secondary enp0s3
-       valid_lft forever preferred_lft forever
-</code></pre></div>
-</div>
 <h4 id="eliminar-ip-de-las-interfaces-de-red">ELIMINAR IP DE LAS INTERFACES DE RED </h4>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address {delete | del} &lt;ip/prefix&gt; dev &lt;interfaz&gt;
 </code></pre><div class="style-normal">
@@ -1151,26 +1170,7 @@ La segunda línea nos indica que la interfaz enp0s3 tiene la ip 192.168.2.17 y e
 <div class="style-normal">
 <p>Con ip route podemos añadir rutas para acceder a redes a las que no estoy directamente conectado. De especial importancia es la red por defecto que nos sirve para acceder a Internet u otras redes para las que no he definido ninguna ruta.</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add default via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
-</code></pre><div class="style-normal">
-<p>Añade una ruta por defecto de manera que los datos que no sean para ninguna de las otras redes de la tabla de encaminamiento se envíen a la puerta de enlace dada y salgan por la interfaz dada. Si solo tenemos una interfaz de red, podemos omitir <code>dev &lt;interfaz&gt;</code>.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Añadir entrada a la tabla de enrutamiento</p>
-</div>
-<p>Configuración puerta de enlace de un equipo que solo tiene una tarjeta de red si sabemos que la puerta de enlace tiene la IP <code>192.168.2.1</code>.</p>
-<div class="style-normal2">
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.2.1
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">Añadir ruta por defecto a la tabla de enrutamiento</p>
-</div>
-<div class="style-normal2">
-<p>Configuración de la puerta de enlace de un equipo que tiene dos tarjetas de red <code>eth0</code> y <code>eth1</code>, de manera que la primera tarjeta (<code>enp0s3</code>) está en la red interna <code>192.168.254.0/24</code> y la segunda (<code>enp0s8</code>) en la red <code>192.168.1.0/24</code>, donde hay un enrutador que da acceso a internet cuya IP es la primera de la red.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.1.1 dev enp0s8
-</code></pre></div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add &lt;red-destino/prefix-red&gt; via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
-</code></pre><div class="style-normal">
+<div class="style-normal">
 <p>Añade una ruta estática para llegar a una red a la que no se está directamente conectado. Se debe indicar cuál es la red a la que queremos acceder (<code>&lt;red-destino/prefix-red&gt;</code>), por qué interfaz (<code>&lt;interfaz&gt;</code>) deben salir los datos y a qué equipo (<code>&lt;puerta-enlace&gt;</code>) debemos enviar los datos para que lleguen a su destino.</p>
 </div>
 <div class="admonition example">
