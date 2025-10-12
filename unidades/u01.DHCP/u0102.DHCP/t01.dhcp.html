@@ -259,18 +259,18 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#tipos" class="md-toc-link">
             <p>TIPOS</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ciclo-de-vida" class="md-toc-link">
             <p>CICLO DE VIDA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#dhcp-relay" class="md-toc-link">
-            <p>DHCP Relay</p>
+            <p>DHCP RELAY</p>
 
           </a></div>
-        </div>
-      </details>
-    
         </div>
       </details>
     
@@ -509,7 +509,7 @@ Los tipos de mensajes DHCP son:
 </tr>
 </tbody>
 </table>
-<h3 id="ciclo-de-vida">CICLO DE VIDA </h3>
+<h2 id="ciclo-de-vida">CICLO DE VIDA </h2>
 <div class="style-normal">
 El proceso de concesión DHCP sigue un ciclo de vida durante el que los nodos se pueden encontrar en alguna de estas fases:
 </div>
@@ -611,7 +611,7 @@ El cliente puede decidir en cualquier momento que ya no quiere utilizar la confi
 <div class="style-normal">
 En algunos sistemas cuando el proceso de concesión DHCP falla y para no dejar la interfaz sin IP (0.0.0.0) el sistema operativo le asigna a la interfaz una IP del rango APIPA 169.254.0.0/16 que tiene ámbito privado de enlace.
 </div>
-<h3 id="dhcp-relay">DHCP Relay </h3>
+<h2 id="dhcp-relay">DHCP RELAY </h2>
 <div class="style-normal">
 <p>En las redes pequeñas normalmente se utilizan mensajes DHCP de tipo <strong>broadcast</strong>, concretamente en los <strong>DHCPDiscover</strong>. Los mensajes de broadcast (255.255.255.255) <strong>no son encaminados por los routers</strong>, por lo tanto, <strong>cada segmento de red necesita un servidor DHCP</strong> que proporcione servicio a ese segmento.</p>
 <p>No obstante, en algunas circunstancias se puede utilizar la configuración denominada <strong>DHCP Relaying</strong> (<a href="https://www.rfc-editor.org/rfc/rfc1542">RFC 1542</a>), en la que un servidor DHCP puede dar servicio a varias subredes. Dicho de otra forma, las redes tienen un único servidor DHCP que ofrece direcciones IP para distintas subredes.</p>
