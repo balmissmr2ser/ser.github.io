@@ -282,60 +282,13 @@ table {
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#configurar-ip-y-gateway" class="md-toc-link"><p>CONFIGURAR IP Y GATEWAY</p>
-</a>
-          </summary>
-        <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#caso-no-persistente" class="md-toc-link">
-            <p>CASO NO PERSISTENTE</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#caso-peristente" class="md-toc-link"><p>CASO PERISTENTE</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#sistemas-basados-en-debian" class="md-toc-link">
-            <p>SISTEMAS BASADOS EN DEBIAN</p>
+          <a href="#configurar-ip-y-gateway" class="md-toc-link">
+            <p>CONFIGURAR IP Y GATEWAY</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#sistemas-basados-en-red-hat" class="md-toc-link">
-            <p>SISTEMAS BASADOS EN RED HAT</p>
-
-          </a></div>
-        </div>
-      </details>
-    
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#configurar-dns" class="md-toc-link"><p>CONFIGURAR DNS</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#sistemas-basados-en-debian-1" class="md-toc-link">
-            <p>SISTEMAS BASADOS EN DEBIAN</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#sistemas-basados-en-red-hat-1" class="md-toc-link">
-            <p>SISTEMAS BASADOS EN RED HAT</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#borrar-ip-y-gateway" class="md-toc-link">
             <p>BORRAR IP Y GATEWAY</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#borrar-dns" class="md-toc-link">
-            <p>BORRAR DNS</p>
 
           </a></div>
         </div>
@@ -478,7 +431,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 </div>
 <h2 id="mostrar-interfaces-de-red">MOSTRAR INTERFACES DE RED </h2>
 <div class="style-normal">
-<p>Para este propósito utilizamos el comando <code>ip</code> con el objeto <code>link</code>. La sintaxis es la siguiente:</p>
+<p>Para este propósito utilizamos el comando <code>ip</code> con el objeto <strong>link</strong>. La sintaxis es la siguiente:</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip link show [up] [dev] [&lt;interfaz&gt;]
 </code></pre><div class="style-normal">
@@ -509,7 +462,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 </div>
 <h2 id="mostrar-configuración-interfaces-de-red">MOSTRAR CONFIGURACIÓN INTERFACES DE RED </h2>
 <div class="style-normal">
-<p>Para este propósito también utilizamos el comando <code>ip</code> pero con el objeto <code>address</code>. La sintaxis es la siguiente:</p>
+<p>Para este propósito también utilizamos el comando <code>ip</code> pero con el objeto <strong>address</strong>. La sintaxis es la siguiente:</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address show [up] [dev &lt;interfaz&gt;]
 </code></pre><div class="style-normal">
@@ -600,38 +553,13 @@ root@Host:~# ip a
 </code></pre><p>Ahora solo se muestra la interfaz de loopback <code>lo</code> ya que la interfaz <code>enp0s3</code> está desactivada.</p>
 </div>
 </div>
-<div class="style-normal">
-<p>La utilidad o comando <code>ifconfig</code> es muy versátil y se puede utilizar para mostrar información de las interfaces de red.</p>
-<p>Para mostrar la configuración de las interfaces de red el comando tiene la siguiente sintaxis:</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-a] [&lt;interfaz&gt;]
-</code></pre><div class="style-normal">
-<p>Entre la información mostrada podemos ver la IP, la MAC, la máscara de red, la dirección de broadcast e información sobre el estado de la interfaz entre otros datos.</p>
-<p>Cuando no se especifica un interfaz muestra información de todas las interfaces de red o solo de las activas si omitimos el flag <code>-a</code>. Cuando se especifica una interfaz muestra solamente información de esa interfaz (esté o no activa).</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Mostrar interfaces de red</p>
-<div class="style-normal2">
-<p>Mostrar el estado de la interfaz <code>eth0</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0
-eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54  
-          inet addr:192.168.2.16  Bcast:192.168.2.255  Mask:255.255.255.0
-          inet6 addr: fe80::a00:27ff:fed0:2f54/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:26 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:88 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:3553 (3.4 KiB)  TX bytes:5485 (5.3 KiB)
-</code></pre><p>La ejecución del comando nos indica que la interfaz <code>eth0</code> tiene la ip <code>192.168.2.16</code>, la máscara de red es la <code>255.255.255.0</code> y que está activa (<code>UP</code> ... <code>RUNNING</code>) entre otras cosas.</p>
-</div>
-  </div>
 <h2 id="mostrar-configuración-dns">MOSTRAR CONFIGURACIÓN DNS </h2>
 <div class="style-normal">
 <p>La configuración del DNS se realiza de forma persistente y por lo tanto mostrar su configuración depenede del modelo de configuración persistente de la red utilizado.</p>
 </div>
 <h2 id="desactivar-y-activar-interfaces">DESACTIVAR Y ACTIVAR INTERFACES </h2>
 <div class="style-normal">
-<p>Utilizamos el comando <code>ip</code> con el objeto <code>link</code>. La sintaxis es la siguiente:</p>
+<p>Utilizamos el comando <code>ip</code> con el objeto <strong>link</strong>. La sintaxis es la siguiente:</p>
 </div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set [dev] &lt;interfaz&gt; [up|down]
 </code></pre><div class="style-normal">
@@ -667,6 +595,8 @@ root@Host:~# ip link set dev enp0s8 up
 <h2 id="configuración-estática">CONFIGURACIÓN ESTÁTICA </h2>
 <div class="style-normal">
 <p>El comando <code>ip</code> con el objeto <strong>address</strong>, además de servir para mostrar la configuración de las interfaces de red, nos permite llevar a cabo acciones como: asignar direcciones IP a las interfaces de red y eliminar direcciones IP de las mismas.</p>
+<p>Con el comando <code>ip</code> con el objeto <strong>route</strong> podemos gestionar todo lo relativo al gateway.</p>
+<p>La configuración del <strong>DNS</strong> se realiza de <strong>forma persistente</strong> y por lo tanto depende del modelo de configuración persistente de la red utilizado.</p>
 </div>
 <h3 id="configurar-ip-y-gateway">CONFIGURAR IP Y GATEWAY </h3>
 <div class="style-normal">
@@ -708,242 +638,66 @@ root@Host:~# ip link set dev enp0s8 up
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.1.1 dev enp0s8
 </code></pre></div>
 </div>
-<h4 id="caso-no-persistente">CASO NO PERSISTENTE </h4>
+<h3 id="borrar-ip-y-gateway">BORRAR IP Y GATEWAY </h3>
 <div class="style-normal">
-<p>Para cambiar la dirección IP de una interfaz de red, o asignarle una si no tenía, la sintaxis sería la siguiente:</p>
+<p>Para eliminar una <strong>ip de una interfaz de red</strong> tenemos el comando <code>ip address delete</code>. Su sintaxis es la siguiente:</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; {&lt;ip/prefix&gt; | &lt;ip&gt; netmask &lt;máscara&gt;}
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address {delete | del} &lt;ip/prefix&gt; dev &lt;interfaz&gt;
 </code></pre><div class="admonition example">
-<p class="admonition-title">Configurar dirección IP</p>
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
 <div class="style-normal2">
-<p>Cambiar la dirección IP de la interfaz <code>eth0</code> a <code>192.168.2.20/27</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20/27
-</code></pre><p>También se obtendría el mismo resultado con el siguiente comando:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20 netmask 255.255.255.224
+<p>Eliminar la IP <code>192.168.2.128</code> de la interfaz de red <code>enp0s3</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address delete 192.168.2.128/24 dev enp0s3
+</code></pre><p>También habría sido válido hacer:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address del 192.168.2.128/24 dev enp0s3
+</code></pre><p>Es muy habitual escribir <code>addr</code> como forma abreviada de <code>address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip addr del 192.168.2.128/24 dev enp0s3
 </code></pre></div>
 </div>
 <div class="style-normal">
-<p>Para configurar la puerta de enlace o gateway, de forma no persistente, añadiremos una ruta por defecto mediante el comando <code>route</code>.</p>
-<p>La sintaxis del comando para este propósito es la siguiente:</p>
+<p>También se pueden eliminar todas las ip's asignadas a una interfaz de red (una interfaz puede tener más de una ip) con el comando <code>ip address flush</code>.</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route add default gw &lt;puerta_de_enlace&gt; [metric &lt;métrica&gt;] [dev] [&lt;interfaz&gt;]
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address flush [[dev] &lt;interfaz&gt;] [&lt;opción&gt;]
 </code></pre><div class="style-normal">
-<p>En el comando se especifica la ruta por defecto (<code>default</code>) y la IP de la <code>puerta de enlace</code> que me proporciona acceso externo (Internet). La opción <code>dev</code> se puede omitir si sólo hay una interfaz de red; es más se puede omitir hasta el nombre de la interfaz.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Configurar gateway</p>
-<div class="style-normal2">
-<p>Configurar la puerta de enlace con la ip <code>192.168.2.1</code>. Supondremos que la única interfaz de red es <code>eth0</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route add default gw 192.168.2.1
-</code></pre></div>
-</div>
-<h4 id="caso-peristente">CASO PERISTENTE </h4>
-<div class="style-normal">
-<p>Previamente a pasar a describir la configuración persistente de la red, se debe distinguir entre los conceptos de <strong>interfaz física de red</strong> e <strong>interfaz lógica de red</strong>. Un equipo tendrá tantas interfaces físicas de red como tarjetas de red tenga, ya sean reales o virtuales, pero puede tener una cantidad arbitraria de interfaces lógicas de red. A las interfaces lógicas de red también se les denomina <strong>perfiles de conexión de red</strong> o, simplemente, <strong>conexiones de red</strong>.<br>
-A partir de ahora, a las interfaces físicas de red las llamaremos simplemente <strong>interfaces</strong> y a las interfaces lógicas <strong>conexiones</strong>.</p>
-<p>Una <strong>conexión activa</strong> es aquella cuyos datos de configuración se han asignado a una interfaz de red. Podemos tener tantas conexiones definidas como queramos, pero solo puede haber una única conexión activa por cada interfaz en un momento dado.</p>
-<p>Es habitual que las conexiones se llamen igual que las interfaces de red. Por eso a veces se habla indistintamente de interfaces y conexiones.</p>
-<p>Cuando se realiza la configuración persistente de la red realmente estamos configurando <strong>conexiones</strong> y no <strong>interfaces</strong>.</p>
-</div>
-<h5 id="sistemas-basados-en-debian">SISTEMAS BASADOS EN DEBIAN </h5>
-<div class="style-normal">
-<p>En los sistemas <strong>Debian</strong> y derivados (Ubuntu, ...), especialmente los que no tienen entorno de escritorio, la configuración de la red se lleva a cabo en el archivo <code>/etc/network/interfaces</code>.</p>
-<p>El archivo de configuración, en su versión más simple, consiste en varias secciones como las que se muestran a continuación:</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
-...
-auto &lt;lista-interfaces&gt;
-...
-allow-hotplug &lt;lista-interfaces&gt;
-...
-# Configuración conexión estática
-iface &lt;conexión&gt; inet static
-    address &lt;ip&gt;
-    netmask &lt;máscara&gt;
-    [gateway &lt;puerta-enlace&gt;]
-...
-</code></pre><div class="style-normal">
-<p>En la cláusula <code>auto</code> tenemos una lista separada por espacios en blanco de interfaces de red que se activarán cuando se ejecuta un comando de activación de la interfaz (cuando se inicia el sistema se activan todas las interfaces de la lista). Puede haber más de una línea con una cláusula <code>auto</code>.</p>
-<p>En la cláusula <code>allow-hotplug</code> tenemos una Lista separada por espacios en blanco de interfaces de red que se activarán cuando se detecta la conexión física de un adaptador de red al equipo (al inicio pasa esto). Por ejemplo, cuando se conecta el cable de red. Puede haber más de una línea con una cláusula <code>allow-hotplug</code>.</p>
-<p>Mediante la cláusula <code>iface</code> llevamos a cabo la configuración de una conexión de red. Se debe indicar el nombre de la conexión (<code>&lt;conexión&gt;</code>), es obligatorio proporcionar la dirección IP (<code>address &lt;ip&gt;</code>) y la máscara de red (<code>netmask &lt;máscara&gt;</code>). La puerta de enlace (<code>gateway &lt;puerta-enlace&gt;</code>) es opcional, aunque si no la ponemos no tendremos salida a internet. Puede haber más de una sección <code>iface</code>.</p>
-<p>Es habitual que las conexiones se llamen igual que las interfaces de red. Así, cuando se habla de configuración de la interfaz, lo que realmente se quiere decir es configuración de una conexión que tiene el mismo nombre que la interfaz. Los siguientes ejemplos aclaran los conceptos.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Configuración red estática Debian</p>
-<div class="style-normal2">
-<p>Configurar la interfaz <code>enp0s3</code> (realmente es una conexión) de manera estática con la IP <code>192.168.5.96/26</code> con puerta de enlace <code>192.168.5.65</code>. La conexión se debe activar automáticamente cuando se ejecuta una instrucción de activación de la interfaz.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
-auto enp0s3
-
-# Configuración conexión estática
-iface enp0s3 inet static
-    address 192.168.5.96
-    netmask 255.255.255.192
-    gateway 192.168.5.65
-</code></pre></div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Configuración red estática Debian</p>
-<div class="style-normal2">
-<p>Configurar una conexión llamada <code>trabajo</code> de manera estática con la IP <code>172.16.100.10/16</code> con puerta de enlace <code>172.16.0.1</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
-
-# Configuración conexión estática
-iface trabajo inet static
-    address 172.16.100.10
-    netmask 255.255.0.0
-    gateway 172.16.0.1
-</code></pre></div>
-</div>
-<h5 id="sistemas-basados-en-red-hat">SISTEMAS BASADOS EN RED HAT </h5>
-<div class="style-normal">
-<p>En estos sistemas, las interfaces lógicas de red o conexiones se configuran dentro de la carpeta <code>/etc/sysconfig/network-scripts</code>. Para cada interfaz lógica o conexión existe un archivo de configuración. La nomenclatura de los archivos de configuración es la siguiente: <code>ifcfg-&lt;nombre-conexión&gt;</code>.</p>
-<p>Como ocurría con los sistemas basados en Debian, es muy habitual que las conexiones se llamen igual que las interfaces. Así, si tenemos una tarjeta física de red que se llama <code>eth0</code>, tendremos una conexión que se llama <code>ifcfg-eth0</code>.</p>
-<p>Un archivo de configuración de una interfaz consiste en una lista de directivas de la forma <code>&lt;parámetro&gt;=&lt;valor&gt;</code>. El archivo de configuración habitual para las conexiones dinámicas y estáticas sigue el siguiente esquema:</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=&lt;interfaz&gt;
-ONBOOT={yes\|no}
-BOOTPROTO=none
-IPADDR=&lt;ip&gt;
-NETMASK=&lt;máscara-red&gt;
-GATEWAY=&lt;puerta-enlace&gt;
-</code></pre><div class="style-normal">
-<p>El parámetro <code>DEVICE</code> especifica la interfaz física de red a la cual se asociará la conexión.</p>
-<p>Con la directiva <code>BOOTPROTO=none</code> indicamos que la conexión se configura de manera estática o manual.</p>
-<p>El parámetro <code>ONBOOT</code> sirve para que se active, o no, la conexión cuando se inicie el servicio de red o se reinicie la máquina. Solo debe haber una conexión con valor <code>yes</code> para cada interfaz de red (parámetro <code>DEVICE</code>).</p>
-<p>Las siguientes directivas son exclusivas de conexiones estáticas:</p>
+<p>La ejecución del comando elimina todas las IPs asignadas a una interfaz dada (o a todas) que cumplen una propiedad especificada por el parámetro <code>&lt;opción&gt;</code>. Algunos de los valores de las opciones son:</p>
 </div>
 <div class="style-normal2">
 <ul>
-<li><code>IPADDR</code>: contiene la IP que tomará la interfaz asociada cuando se active la conexión en el caso de configuración estática.</li>
-<li><code>NETMASK</code>: es la máscara de red.</li>
-<li><code>GATEWAY</code>: es la puerta de enlace.</li>
+<li><code>dynamic</code>: para IPs asignadas por un servidor DHCP.</li>
+<li><code>permanent</code>: para IPs configuradas manualmente.</li>
+<li><code>secondary</code>: para IPs secundarias.</li>
+<li><code>up</code>: para direcciones de interfaces activas que tengan IP asignada.</li>
 </ul>
 </div>
 <div class="style-normal">
-<p>Cuando se hace la instalación del sistema operativo, automáticamente se crea un archivo de conexión correspondiente a la primera tarjeta de red.</p>
+<p>Con la tecla <strong><code>Tab</code></strong> antes de finalizar de escribir la instrucción podemos ver todas las opciones disponibles.</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Configuración red estática Red Hat</p>
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
 <div class="style-normal2">
-<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. La interfaz asociada a esta conexión es <code>eth2</code> y se debe activar cuando se inicia el equipo.</p>
-<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
-ONBOOT=yes
-BOOTPROTO=none
-IPADDR=192.168.4.10
-NETMASK=255.255.255.0
-GATEWAY=192.168.4.1
+<p>Eliminar todas las IPs asignadas a la interfaz <code>enp0s3</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s3
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Configuración red estática Red Hat</p>
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
 <div class="style-normal2">
-<p>Configurar una conexión llamada <code>trabajo</code> de manera estática con la IP <code>172.16.100.10/16</code> con puerta de enlace <code>172.16.0.1</code>. La conexión estará asociada a la interfaz <code>eth1</code> y no se iniciará automáticamente.</p>
-<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-trabajo</code> y su contenido será el siguiente:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth1
-ONBOOT=no
-BOOTPROTO=none
-IPADDR=172.16.100.10
-NETMASK=255.255.0.0
-GATEWAY=172.16.0.1
+<p>Elimina todas las IPs que se han asignado de manera estática a la interfaz <code>enp0s8</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s8 permanent
 </code></pre></div>
 </div>
-<h3 id="configurar-dns">CONFIGURAR DNS </h3>
-<p>La configuración del DNS sólo puede ser <strong>persistente</strong>.</p>
-<h4 id="sistemas-basados-en-debian-1">SISTEMAS BASADOS EN DEBIAN </h4>
 <div class="style-normal">
-<p>En los sistemas basados en Debian, la configuración del DNS se realiza editando el archivo <code>/etc/resolv.conf</code>. Este archivo contiene una lista de servidores DNS que el sistema utilizará para resolver nombres de dominio. La sintaxis del archivo es la siguiente:</p>
+<p>Para eliminar una ruta por defecto (<strong>gateway</strong>) utilizamos el comando <code>ip route delete</code>. Si solo tenemos una ruta por defecto, no es necesario especificar la puerta de enlace (es lo habitual). Su sintaxis es la siguiente:</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver &lt;ip-servidor-dns&gt;
-</code></pre><div class="style-normal">
-<p>Se pueden especificar múltiples servidores DNS (hasta un máximo de 3), uno por línea. Por ejemplo:</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver &lt;ip-servidor-dns1&gt;
-nameserver &lt;ip-servidor-dns2&gt;
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete default [via &lt;puerta-enlace&gt;]
 </code></pre><div class="admonition example">
-<p class="admonition-title">Configuración DNS Debian</p>
-<div class="style-normal2">
-<p>En una red tenemos un servidor DNS de IP <code>192.168.3.3</code>. Configurar una máquina de la red para que los nombres DNS los resuelva el servidor interno, y si este es incapaz de resolverlos, la petición la resuelva el servidor DNS público de IP <code>8.8.8.8</code>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver 192.168.3.3
-nameserver 8.8.8.8
-</code></pre></div>
-</div>
-<div class="style-normal">
-<p>Cuando tenemos instalada la aplicación <code>resolvconf</code>, se pueden configurar los servidores DNS en el mismo archivo de configuración de las interfaces de red con la directiva <code>dns-nameservers</code>. Podemos comprobar si el servicio está instalado ejecutando, por ejemplo, el comando <code>service</code> o <code>dpkg</code>.<br>
-El siguiente comando nos indica si el servicio <code>resolvconf</code> está instalado y su estado (activo o inactivo):</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# service resolvconf status
-</code></pre><p>El siguiente comando es equivalente:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# dpkg -l | grep resolvconf
-</code></pre>
-<div class="style-normal">
-<p>Además, en este caso el archivo <code>/etc/resolv.conf</code> no es realmente el archivo de configuración de los DNS, sino un enlace simbólico (link) al archivo de configuración.</p>
-<p>El servicio <code>resolvconf</code> está instalado por defecto en muchas distribuciones Ubuntu antiguas como Ubuntu 16.04.</p>
-<p>Cuando se activa una conexión de red donde aparece una directiva <code>dns-nameservers</code>, el servicio <code>resolvconf</code> lee los valores de los servidores DNS y los pone en el archivo <code>/etc/resolv.conf</code>. Por tanto, si tenemos instalado este servicio, no debemos configurar los servidores DNS utilizados en el archivo <code>/etc/resolv.conf</code>. No obstante, se pueden añadir servidores DNS concretos si los ponemos en el archivo <code>/etc/resolvconf/resolv.conf.d/head</code> con una directiva <code>nameserver</code>. En este caso, <code>resolvconf</code> siempre pondrá este DNS en el archivo <code>/etc/resolv.conf</code>, además de los que aparecen en las directivas <code>dns-nameservers</code>.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Configuración DNS resolvconf</p>
-<div class="style-normal2">
-<p>Tenemos un equipo con Debian 11 que utiliza el servicio <code>resolvconf</code> como cliente DNS. La dirección de red es <code>192.168.4.0/24</code> y la IP del equipo es <code>192.168.4.5</code>. Queremos configurar la interfaz de red para que utilice los DNS <code>10.10.10.3</code> y <code>8.8.8.8</code>.</p>
-<p>El servicio <code>resolvconf</code> no viene instalado por defecto en las distribuciones Debian sin entorno de escritorio. Lo primero que debemos hacer es instalarlo:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# apt install resolvconf
-</code></pre><p>Ahora ya podemos configurar los servidores DNS utilizados.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>auto enp0s3
-iface enp0s3 inet static
- address 192.168.4.5
- netmask 255.255.255.0
- gateway 192.168.4.1
- dns-nameservers 10.10.10.3 8.8.8.8
-</code></pre></div>
-</div>
-<h4 id="sistemas-basados-en-red-hat-1">SISTEMAS BASADOS EN RED HAT </h4>
-<div class="style-normal">
-<p>En estos sistemas la configuración del DNS de lleva a cabo en los archivos de configuración de las conexiones. Cláusulas del tipo <code>DNS&lt;n&gt; = &lt;ip-dns&gt;</code>, donde n indica el número de servidor DNS (el 1 es el más prioritario) se utilizan para definir los servidores DNS.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Configuración red con DNS Red Hat</p>
-<div class="style-normal2">
-<p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. Además, los servidores DNS serán el <code>10.10.10.3</code> y <code>8.8.8.8</code>. La interfaz se debe activar cuando se inicia el equipo.</p>
-<p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
-ONBOOT=yes
-BOOTPROTO=none
-IPADDR=192.168.4.10
-NETMASK=255.255.255.0
-GATEWAY=192.168.4.1
-DNS1=10.10.10.3
-DNS2=8.8.8.8
-</code></pre></div>
-</div>
-<h3 id="borrar-ip-y-gateway">BORRAR IP Y GATEWAY </h3>
-<div class="style-normal">
-<p>Para borrar una ip de manera <strong>no persistente</strong> se asigna la ip <code>0.0.0.0</code> a la interfaz de red utilizando el comando <code>ifconfig</code>. Cuando se asigna esta ip a una interfaz, la interfaz queda administrativamente activa pero sin ninguna ip. Además, la ruta por defecto asociada a esa interfaz se elimina automáticamente de la tabla de enrutamiento.</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; 0.0.0.0
-</code></pre><div class="style-normal">
-<p>Para eliminar la puerta de enlace, sin eliminar la ip de la interfaz, se utiliza el comando <code>route del</code> para borrar la ruta asociada.</p>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del default [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
-</code></pre><div class="style-normal">
-<p>Si sólo tenemos una única ruta por defecto (lo habitual) no es necesario especificar la puerta de enlace (ni la interfaz de red).</p>
-</div>
-<div class="admonition example">
 <p class="admonition-title">Eliminar gateway</p>
 <div class="style-normal2">
-<p>Eliminar la ruta por defecto o gateway de la tabla de enrutamiento de un equipo. Suponemos que sólo hay una única ruta por defecto.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del default
+<p>Eliminar la ruta por defecto (gateway) del equipo. Solo hay una ruta por defecto.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete default
+</code></pre><p>O utilizando la abreviatura <code>del</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route del default
 </code></pre></div>
-</div>
-<div class="style-normal">
-<p>Para eliminar la ip en el caso de la configuración <strong>persistente</strong>, sólo hay que desactivar la interfaz, eliminar la sección de configuración de la interfaz (o el archivo de interfaz) y volver a activar la interfaz.</p>
-<p>Si sólo queremos eliminar la puerta de enlace tenemos que desactivar la interfaz, eliminar del archivo de configuración la línea donde aparece la directiva <code>gateway</code> y volver a activar la interfaz.</p>
-</div>
-<h3 id="borrar-dns">BORRAR DNS </h3>
-<div class="style-normal">
-<p>En el caso de los <strong>sistemas basados en Debian</strong> que configuran el DNS en el archivo <code>/etc/resolv.conf</code> simplemente hay que editar el archivo y eliminar las líneas correspondientes a los servidores DNS que queremos borrar.<br>
-Si se utiliza el servicio resolvconf en conjunción con el archivo <code>/etc/network/interfaces</code> sólo tenemos que parar el servicio, editar dicho archivo y eliminar los DNS que nos interesen de las cláusulas <code>dns-domainserver</code> y volver a iniciar el servicio resolvconf.</p>
-<p>Para los <strong>sistemas basados en Red Hat</strong> hay que desactivar la conexión que contiene los DNS a borrar, editar dicho archivo de conexión y eliminar las líneas que nos interesen donde aparece la palabra DNS. Por último hay que volver a activar la conexión.</p>
 </div>
 <h2 id="configuración-dinámica">CONFIGURACIÓN DINÁMICA </h2>
 <h3 id="obtener-parámetros-de-red">OBTENER PARÁMETROS DE RED </h3>
@@ -1082,57 +836,6 @@ BOOTPROTO=dhcp
 </div>
 <h4 id="configurar-las-ip-de-las-interfaces-de-red">CONFIGURAR LAS IP DE LAS INTERFACES DE RED </h4>
 <h4 id="eliminar-ip-de-las-interfaces-de-red">ELIMINAR IP DE LAS INTERFACES DE RED </h4>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address {delete | del} &lt;ip/prefix&gt; dev &lt;interfaz&gt;
-</code></pre><div class="style-normal">
-<p>Elimina la IP especificada de la interfaz de red dada.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
-<p>Eliminar la IP <code>192.168.2.128</code> de la interfaz de red <strong>enp0s3</strong>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address delete 192.168.2.128/24 dev enp0s3
-</code></pre><p>También habría sido válido hacer:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address del 192.168.2.128/24 dev enp0s3
-</code></pre><p>Es muy habitual escribir <code>addr</code> como forma abreviada de <code>address</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip addr del 192.168.2.128/24 dev enp0s3
-</code></pre></div>
-</div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address flush [[dev] &lt;interfaz&gt;] [&lt;opción&gt;]
-</code></pre><div class="style-normal">
-<p>Elimina todas las IPs asignadas a una interfaz dada (o a todas) que cumplen una propiedad especificada por el parámetro <code>opción</code>. Algunas de las opciones son:</p>
-</div>
-<div class="style-normal2">
-<ul>
-<li><code>dynamic</code>: para IPs asignadas por un servidor DHCP,</li>
-<li><code>permanent</code>: para IPs configuradas manualmente,</li>
-<li><code>secondary</code>: para IPs secundarias,</li>
-<li><code>up</code>: para direcciones de interfaces activas que tengan IP asignada.</li>
-</ul>
-</div>
-<div class="style-normal">
-<p>Con la tecla <strong><code>Tab</code></strong> antes de finalizar de escribir la instrucción podemos ver todas las opciones disponibles.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
-<p>Elimina todas las IPs asignadas a la interfaz <strong>enp0s3</strong>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s3
-</code></pre></div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
-<p>Elimina todas las IPs que se han asignado dinámicamente a cualquier interfaz.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dynamic
-</code></pre></div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
-<p>Elimina todas las IPs que se han asignado de manera estática a la interfaz <strong>enp0s8</strong>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s8 permanent
-</code></pre></div>
-</div>
 <h3 id="ip-route">IP ROUTE </h3>
 <div class="style-normal">
 <p>Utilizado para consultar y modificar la tabla de enrutamiento.</p>
@@ -1190,17 +893,6 @@ default via 192.168.2.1 dev enp0s3
 <div class="style-normal">
 <p>De la misma manera que se pueden añadir rutas a la tabla de enrutamiento se pueden eliminar las rutas añadidas. También es posible modificar rutas con ip route change o ip route replace aunque esto no lo trataremos.</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete default [via &lt;puerta-enlace&gt;]
-</code></pre><p>Elimina la ruta por defecto dada la puerta de enlace. Si solo tenemos una ruta por defecto, no es necesario especificar la puerta de enlace (es lo habitual).</p>
-<div class="admonition example">
-<p class="admonition-title">Eliminar ruta por defecto de la tabla de enrutamiento</p>
-</div>
-<div class="style-normal2">
-<p>Eliminar la ruta por defecto si solo hay una.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete default
-</code></pre><p>Se suele utilizar la abreviatura <code>del</code>:</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route del default
-</code></pre></div>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete &lt;red-destino/prefix-red&gt; [via &lt;puerta-enlace&gt;]
 </code></pre><div class="style-normal2">
 <p>Elimina la ruta estática a la red especificada. Si solo hay una ruta estática con destino la red especificada, no es necesario indicar la puerta de enlace; en caso contrario, sí se debe especificar.</p>
