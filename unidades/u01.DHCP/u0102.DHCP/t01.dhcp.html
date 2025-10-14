@@ -296,9 +296,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 <h2 id="parametros-de-configuración">PARAMETROS DE CONFIGURACIÓN </h2>
 <div class="style-normal">
-<p>Un cliente DHCP puede recibir del servidor diversos parámetros de configuración de red. Algunos de estos parámetros son <strong>obligatorios</strong>, mientras que otros son <strong>opcionales</strong> y pueden ser configurados por el servidor si son solicitados por los clientes.</p>
+<p>Los cliente DHCP reciben del servidor DHCP los parámetros de configuración de red. Algunos de estos parámetros son <strong>obligatorios</strong>, mientras que otros son <strong>opcionales</strong>.</p>
+<div class="style-list">
 <p><strong>Parámetros obligatorios</strong></p>
-<dic class="style-list">
 <ul>
 <li>Dirección IP del cliente</li>
 <li>Máscara de subred</li>
@@ -306,8 +306,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <li>Tiempo de renovación (<em>Renewal time</em>)</li>
 <li>Tiempo de reconexión (<em>Rebinding time</em>)</li>
 </ul>
-</dic></div>
-<dic class="style-list">
 <p><strong>Parámetros opcionales</strong></p>
 <ul>
 <li>Dirección IP de la puerta de enlace</li>
@@ -317,20 +315,36 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <li>Tipo de nodo WINS/NBT y servidor WINS para nodos Windows</li>
 <li>MTU de la interfaz de red</li>
 </ul>
-
-
+</div>
+</div>
 <h2 id="tipos-de-asignaciones">TIPOS DE ASIGNACIONES </h2>
 <div class="style-normal">
-<p>El tipo de asignación es el mecanismo mediante el cual un servidor DHCP decide qué configuración de red debe alquilar a un cliente y por cuánto tiempo. Normalmente, en el nodo servidor se definen uno o más <strong>ámbitos</strong> (redes), donde se configuran las direcciones y parámetros de red que el servidor puede alquilar. Por ejemplo, en cada ámbito se puede definir:</p>
+<p>El tipo de asignación es el <strong>mecanismo mediante el cual un servidor DHCP decide qué configuración de red debe alquilar a un cliente y por cuánto tiempo</strong>. Normalmente, en el servidor se definen uno o más <strong>ámbitos</strong> donde se configuran los rangos de direcciones direcciones y parámetros de red que puede alquilar. Por cada ámbito podemos tener 2 tipos de rangos:</p>
+</div>
 <div class="style-list">
 <ul>
 <li><strong>Rango de asignación</strong><br>
 Direcciones que pueden asignarse a los clientes.</li>
 <li><strong>Rango de exclusión</strong><br>
-Direcciones que no interesa asignar. Un uso habitual es reservarlas para servidores con direcciones estáticas.</li>
+Direcciones, normalmente dentro del rango de asignación, que no interesa asignar. Un uso habitual es reservarlas para servidores con direcciones estáticas.</li>
 </ul>
 </div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">DHCP configuración</p>
+<pre data-role="codeBlock" data-info="code" class="language-code code"><code>subnet 192.168.2.0 netmask 255.255.255.0 {
+range 192.168.2.64 192.168.2.127;
+range 192.168.2.192 192.168.2.254;
+option routers 192.168.2.1;
+option domain-name-servers 8.8.4.4;
+default-lease-time 36000;
+}
+</code></pre><p>En el ejemplo se ha definido un ámbito (<code>subnet</code>) para la red 192.168.2.0/24. En este ámbito se han definido dos rangos (<code>range</code>) de asignación (por tanto se ha excluido el resto). Se han definido también parámetros opcionales como la IP del default gateway (<code>router</code>) y la IP del servidor DNS (<code>domain-name-servers</code>). Además, se ha definido el tiempo de alquiler (<code>default-lease-time</code>) como 36000 segundos, es decir, 1 hora.</p>
+</div>
+</div>
+<div class="style-normal">
 <p>El protocolo DHCP permite a los servidores utilizar <strong>tres técnicas de asignación</strong>:</p>
+</div>
 <div class="style-list">
 <ol>
 <li>
@@ -347,12 +361,54 @@ El servidor <strong>asigna una dirección IP del rango de asignación durante un
 </li>
 </ol>
 </div>
+<div style="page-break-after:always;"></div>
+<div class="style-normal">
+<p>Los servidores DHCP registran las asignaciones realizadas en una <strong>tabla de alquileres</strong> (lease table) utilizando la dirección física (MAC) del nodo cliente y los parámetros de configuración alquilados.</p>
+</div>
+<div class="style-normal">
+<div class="admonition note">
+<p class="admonition-title">Tabla de alquileres (lease table)</p>
+<table>
+<thead>
+<tr>
+<th>MAC cliente</th>
+<th>IP asignada</th>
+<th>Lease Time</th>
+<th>Estado</th>
+<th>Nombre host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00:1A:2B:3C:3D:5E</td>
+<td>192.168.2.64</td>
+<td>2h15m</td>
+<td>Activo</td>
+<td>PC-OF1</td>
+</tr>
+<tr>
+<td>00:1F:2E:3D:4C:5B</td>
+<td>192.168.2.65</td>
+<td>1h45m</td>
+<td>Activo</td>
+<td>PC-OF32</td>
+</tr>
+<tr>
+<td>00:1C:2D:3E:4F:6A</td>
+<td>192.168.2.66</td>
+<td>30m</td>
+<td>Expirado</td>
+<td>PC-OF33</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <h2 id="mensajes">MENSAJES </h2>
 <h3 id="formato">FORMATO </h3>
 <div class="style-normal">
 El formato de los mensajes DHCP es el siguiente:
-<p><img src="./assets/img-dhcpmsg.png" alt="img" style="width: 70%; display: block; margin: auto; align:center; "></p>
+<p><img src="./assets/img-dhcpmsg.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
 <div class="style-list">
 <ul>
 <li><strong>Message Type</strong><br>
@@ -426,30 +482,45 @@ Formato campo opcion:<br>
 Podemos obtener un listado completo de todas las opciones del protocolo DHCP en el siguiente enlace: <a href="https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml">options.</a><br>
 Ejemplos:
 <ul>
-<li>Opción tipo de mensaje DHCP<br>
-Option-Type=53<br>
-Option-Length=1<br>
-Option-Data<br>
-1-DHCPDiscover<br>
-2-DHCPOffer<br>
-3-DHCPRequest<br>
-4-DHCPDecline<br>
-5-DHCPAck<br>
-6-DHCPNack<br>
-7-DHCPRelease<br>
-8-DHCPInform</li>
-<li>Opción máscara de red<br>
-Option-Type=1<br>
-Option-Length=4<br>
-Option-Data=&lt;máscara IP&gt;</li>
-<li>Opción Request IP<br>
-Option-Type=50<br>
-Option-Length=4<br>
-Option-Data=IP que el cliente quiere alquilar</li>
-<li>Opción End (indica fin de las opciones)<br>
-Option-Type=255<br>
-Option-Length=No existe el campo<br>
-Option-Data=No existe el campo</li>
+<li>Opción tipo de mensaje DHCP
+<ul>
+<li>Option-Type=53</li>
+<li>Option-Length=1</li>
+<li>Option-Data
+<ul>
+<li>1-DHCPDiscover</li>
+<li>2-DHCPOffer</li>
+<li>3-DHCPRequest</li>
+<li>4-DHCPDecline</li>
+<li>5-DHCPAck</li>
+<li>6-DHCPNack</li>
+<li>7-DHCPRelease</li>
+<li>8-DHCPInform</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Opción máscara de red
+<ul>
+<li>Option-Type=1</li>
+<li>Option-Length=4</li>
+<li>Option-Data=&lt;máscara IP&gt;</li>
+</ul>
+</li>
+<li>Opción Request IP
+<ul>
+<li>Option-Type=50</li>
+<li>Option-Length=4</li>
+<li>Option-Data=IP que el cliente quiere alquilar</li>
+</ul>
+</li>
+<li>Opción End (indica fin de las opciones)
+<ul>
+<li>Option-Type=255</li>
+<li>Option-Length=No existe el campo</li>
+<li>Option-Data=No existe el campo</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -469,38 +540,39 @@ Los tipos de mensajes DHCP son:
 <tbody>
 <tr>
 <td><strong>DHCPDiscover</strong></td>
-<td>Mensaje de un cliente que envia una solicitud para descubrir si hay algún servidor DHCP.</td>
+<td>Cliente que envia una solicitud para descubrir si hay algún servidor DHCP.</td>
 </tr>
 <tr>
 <td><strong>DHCPOffer</strong></td>
-<td>Mensaje de un servidor que ha recibido una solicitud respondiendo al cliente y proponiendole una configuración de red.</td>
+<td>Servidor que ha recibido una solicitud y que responde al cliente y proponiendole una configuración de red.</td>
 </tr>
 <tr>
 <td><strong>DHCPRequest</strong></td>
-<td>Mensaje de un cliente que acepta una de las configuraciones propuestas y se lo comunica al servidor que ha elegido.</td>
+<td>Cliente que acepta una de las configuraciones propuestas y se lo comunica al servidor que ha elegido.</td>
 </tr>
 <tr>
 <td><strong>DHCPAck</strong></td>
-<td>Mensaje de un servidor que responde al cliente con la configuración de red asignada y el tiempo de concesión de la misma.</td>
+<td>Servidor que responde al cliente con la configuración de red asignada y el tiempo de concesión de la misma.</td>
 </tr>
 <tr>
 <td><strong>DHCPNack</strong></td>
-<td>Mensaje de un servidor que responde al cliente denegandole la configuración de red asiganda. Este mensaje se puede dar por ejemplo durante la renovación de una concesión.</td>
+<td>Servidor que responde al cliente denegandole la configuración de red asiganda. Este mensaje se puede dar por ejemplo durante la renovación de una concesión.</td>
 </tr>
 <tr>
 <td><strong>DHCPDecline</strong></td>
-<td>Mensaje de un cliente declinando la configuración asignada por el servidor,.Por ejemplo, porque la IP ya esta siendo utilizada en la red por otro nodo.</td>
+<td>Cliente declinando la configuración asignada por el servidor,.Por ejemplo, porque la IP ya esta siendo utilizada en la red por otro nodo.</td>
 </tr>
 <tr>
 <td><strong>DHCPRelease</strong></td>
-<td>Mensaje de un cliente para indicar al servidor ue da por finalizada la concesión. Por ejemplo, se le ha acabado el tiempo de concesión</td>
+<td>Cliente que indica al servidor que da por finalizada la concesión. Por ejemplo, se le ha acabado el tiempo de concesión o simplemente desea otra configuración posterior.</td>
 </tr>
 <tr>
 <td><strong>DHCPInform</strong></td>
-<td>Mensaje de un cliente para solicitar al servidor parametros adicionales de configuración</td>
+<td>Cliente que pregunta al servidor por parametros adicionales de configuración</td>
 </tr>
 </tbody>
 </table>
+<div style="page-break-after:always;"></div>
 <h2 id="ciclo-de-vida">CICLO DE VIDA </h2>
 <div class="style-normal">
 El proceso de concesión DHCP sigue un ciclo de vida durante el que los nodos se pueden encontrar en alguna de estas fases:
@@ -508,7 +580,7 @@ El proceso de concesión DHCP sigue un ciclo de vida durante el que los nodos se
 <ul>
 <li>
 <p><strong>Concesión (<em>Allocation</em>)</strong><br>
-Un cliente sin ninguna concesión activa. Por ejemplo, acaba de arrancar el nodo por primera vez en la red. El cliente adquiere una concesión a través de un proceso de asignación denominado <strong>D.O.R.A</strong> (Discover,Offer,Request,Ack)</p>
+Un cliente sin ninguna concesión activa. Por ejemplo, acaba de arrancar el cliente por primera vez en la red. En este caso, el cliente adquiere una concesión a través de un proceso de asignación denominado <strong>D.O.R.A</strong> (Discover,Offer,Request,Ack)</p>
 <div class="admonition example">
 <p class="admonition-title">D.O.R.A</p>
 <p><img src="./assets/img-dhcpdora.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "><br>
@@ -517,15 +589,15 @@ En los mensajes Offer y Ack la dirección MAC destino puede ser la MAC del clien
 </li>
 <li>
 <p><strong>Reasignación (<em>Reallocation</em>)</strong><br>
-Si el cliente ya tiene una concesión activa, cuando se vuelve a activar la interfaz (se ha reiniciado, se ha deshabilitado,..) se podrá en contacto con el servidor DHCP que le otorgó la concesión para confirmar de nuevo los parametros de configuración que ya disponia. A veces, se denomina redistribución, es similar al proceso de asignación pero más corto.</p>
+Un cliente con una concesión activa. Si el cliente se ha desactivado (reincio, deshabilitar interfaz,...), cuando se vuelve a activar se pondrá en contacto con el servidor DHCP que le otorgó la concesión para confirmar de nuevo los parametros de configuración que ya disponia. A veces, se denomina redistribución, es similar al proceso de asignación pero más corto.</p>
 </li>
 <li>
 <p><strong>Vinculación (<em>Bound</em>)</strong><br>
-El cliente tiene una concesión activa y la está utilizando en la configuración de su interfaz de red.</p>
+Un cliente con una concesión activa. El cliente  está utilizando la concesión en la configuración de su interfaz de red.</p>
 </li>
 <li>
 <p><strong>Renovación (<em>Renewal</em>)</strong><br>
-El cliente durante el estado de vinculación, pasado un cierto tiempo de concesión (<em>renewal time</em>) y antes de que la concesión expire, trata de contactar con el servidor DHCP que le asignó la concesión para renovarla. Al renvocar la concesión se le asigna más tiempo de concesión y se pueden utilizar los parámetros iniciales. Esta fase se realiza solamente con mensajes Request y ACK.</p>
+Un cliente con una concesión activa. El cliente durante el estado de vinculación pasado un cierto tiempo de concesión (<em>renewal time</em>) y antes de que la concesión expire trata de contactar con el servidor DHCP que le asignó la concesión para renovarla y obtener así más tiempo de concesión. Esta fase se realiza solamente con mensajes Request y ACK.</p>
 <div class="admonition example">
 <p class="admonition-title">Renewal</p>
 <p><img src="./assets/img-dhcprenewal.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
@@ -533,22 +605,22 @@ El cliente durante el estado de vinculación, pasado un cierto tiempo de concesi
 </li>
 <li>
 <p><strong>Reconexión (<em>Rebinding</em>)</strong><br>
-El cliente durante el estado de vinculación si la renovación con el servidor DHCP no funciona y pasado el tiempo de reconexión (<em>rebinding time</em>) trata de vincularse con cualquier otro servidor DHCP que le permita extender su concesión.</p>
+Un cliente con una concesión activa. El cliente durante el estado de vinculación si la renovación con el servidor DHCP no funciona y pasado el tiempo de reconexión (<em>rebinding time</em>) trata de vincularse con cualquier otro servidor DHCP que le permita extender su concesión.</p>
 </li>
 <li>
 <p><strong>Liberación (<em>Release</em>)</strong><br>
-El cliente puede decidir en cualquier momento que ya no quiere utilizar la configuración de red asignada, que quiere finalizar la concesión y liberar la IP asignada. Esto se realiza mediante un mensaje de tipo Release.</p>
+Un cliente con una concesión activa. El cliente puede decidir en cualquier momento que ya no quiere utilizar la configuración de red asignada, que quiere finalizar la concesión y liberar la IP asignada. Esto se realiza mediante un mensaje de tipo Release.</p>
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Ejemplo temporizadores</p>
-<p><img src="./assets/img-temporizadores.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
+<p class="admonition-title">Temporizadores</p>
+<p><img src="./assets/img-temporizadores.png" alt="img" style="width: 65%; display: block; margin: auto; align:center; "></p>
 </div>
-<div class="style-normal" style="font-size: xx-small;">
+<div class="style-normal">
 <p>La figura ilustra el ciclo de vida de DHCP con un ejemplo que abarca tres contratos de arrendamiento. En este ejemplo, el contrato inicial tiene una duración (allocation) de 8 días y comienza en el día 0. Los temporizadores T1 (renovación) y T2 (reconexión) están establecidos en 4 días y 7 días respectivamente. Cuando el temporizador T1 expira, el cliente entra en el período de renovación (renewal), y con éxito se renueva en el día 5 con un nuevo contrato de arrendamiento de 8 días. Cuando el temporizador T1 vuelve a expirar después de 4 días, el cliente no puede renovar con el servidor original. Se entra en el período de reconexión (rebinding) cuando su temporizador T2 se apaga, y se concede una renovación (renewal) de 8 días de arrendamiento con un servidor diferente. Tras 3 días en este contrato de arrendamiento, el cliente se mueve a una red diferente y ya no necesita la dirección concedida, por lo que voluntariamente la libera (release).</p>
 </div>
 <p><strong>Esquema del Ciclo de Vida</strong></p>
-<p><img src="./assets/img-ciclovida.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
+<p><img src="./assets/img-ciclovida.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
 <table>
 <thead>
 <tr>
@@ -605,20 +677,15 @@ En algunos sistemas cuando el proceso de concesión DHCP falla y para no dejar l
 </div>
 <h2 id="dhcp-relay">DHCP RELAY </h2>
 <div class="style-normal">
-<p>En las redes pequeñas normalmente se utilizan mensajes DHCP de tipo <strong>broadcast</strong>, concretamente en los <strong>DHCPDiscover</strong>. Los mensajes de broadcast (255.255.255.255) <strong>no son encaminados por los routers</strong>, por lo tanto, <strong>cada segmento de red necesita un servidor DHCP</strong> que proporcione servicio a ese segmento.</p>
-<p>No obstante, en algunas circunstancias se puede utilizar la configuración denominada <strong>DHCP Relaying</strong> (<a href="https://www.rfc-editor.org/rfc/rfc1542">RFC 1542</a>), en la que un servidor DHCP puede dar servicio a varias subredes. Dicho de otra forma, las redes tienen un único servidor DHCP que ofrece direcciones IP para distintas subredes.</p>
+<p>Como hemos visto, normalmente, los mensajes <strong>DHCPDiscover</strong> son de tipo <strong>broadcast</strong> (255.255.255.255). Los mensajes de broadcast  <strong>no son encaminados por los routers</strong>, por lo tanto, <strong>cada segmento de red necesita un servidor DHCP</strong> que proporcione servicio a ese segmento.</p>
+<p>No obstante, en algunas circunstancias se puede utilizar la configuración denominada <strong>DHCP Relaying</strong> (<a href="https://www.rfc-editor.org/rfc/rfc1542">RFC 1542</a>), en la que un servidor DHCP puede dar servicio a varias subredes.</p>
 <p><strong>¿Cómo funciona?</strong></p>
-<p>La solución consiste en utilizar <strong>agentes DHCP Relay</strong> o de retransmisión. Un agente DHCP Relay es un servidor DHCP ligero en modo Relay que escucha las solicitudes DHCP que se producen y las <strong>encamina hacia otro servidor DHCP</strong> que se encuentra en otra red para que este las atienda. El servidor DHCP responderá con un mensaje que enviará al agente de retransmisión, y este lo <strong>trasladará al cliente</strong> que hizo la petición. En el agente DHCP Relay:</p>
+<p>La solución consiste en utilizar agentes DHCP Relay o de retransmisión. Un agente DHCP Relay es un servidor DHCP ligero en modo Relay que escucha las solicitudes DHCP que se producen en su red y las reenvia hacia otro servidor DHCP que se encuentra en otra red para que este las atienda. El servidor DHCP responderá con mensajes DHCP que enviará al DHCP Relay que a su vez los reenviará al cliente que hizo la petición.</p>
+<p>Evidentemente, en el agente DHCP Relay se debe configurar la IP del servidor DHCP al que se le van a reenviar los mensajes DHCP de la red. Por otro lado, el campo <code>gateway IP Address</code> de los mensajes DHCP se utiliza para que el servidor DHCP sepa que agente DHCP Relay le ha reenviado la información.</p>
 </div>
-<ul>
-<li>La solicitud <strong>broadcast (DHCPDiscover)</strong> del cliente se convierte en una solicitud <strong>unicast</strong> dirigida a un servidor DHCP específico.</li>
-<li>El campo <strong>“gateway IP Address”</strong> se utiliza para identificar al agente DHCP Relay ante el servidor DHCP.</li>
-</ul>
-<div class="style-normal">
-<p>Finalmente, el servidor DHCP responde con un mensaje <strong>DHCPOffer</strong> de tipo <strong>unicast</strong> al agente DHCP Relay, que lo reenvía a su red. Este mismo proceso se aplica a los mensajes <strong>DHCPRequest</strong>, <strong>DHCPAck</strong> y el resto de mensajes DHCP.</p>
 <p><img src="./assets/img-relay.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
-</div>
-</dic>
+
+
       </div>
       
       
