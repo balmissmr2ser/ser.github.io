@@ -561,15 +561,15 @@ Configuración para la interfaz "MiRed"
 <div class="style-normal">
 <p>Para desactivar o activar una interfaz de red se utiliza el comando <code>set interface</code>:</p>
 </div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" disable
-C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" enable
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" admin=DISABLED
+C:\&gt; netsh interface set interface "&lt;IfaceName&gt;" admin=ENABLED
 </code></pre><div style="page-break-after:always;"></div>
 <div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Desactivar y Activar</p>
 <p>Desactivar y activar la interfaz de red <em>MiRed</em>.</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "MiRed" disable
-C:\&gt; netsh interface set interface "MiRed" enable
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\&gt; netsh interface set interface "MiRed" admin=DISABLED
+C:\&gt; netsh interface set interface "MiRed" admin=ENABLED
 </code></pre></div>
 </div>
 <h3 id="cambiar-nombre-a-una-interfaz">CAMBIAR NOMBRE A UNA INTERFAZ </h3>
