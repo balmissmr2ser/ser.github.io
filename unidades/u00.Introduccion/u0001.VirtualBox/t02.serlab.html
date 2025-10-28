@@ -223,105 +223,75 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       <div class="crossnote markdown-preview  ">
       
 <style type="text/css">
-
+  <!-- estilos internos al fichero -->
 </style>
 <p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="máquinas-virtuales">MÁQUINAS VIRTUALES </h1>
+<h1 id="laboratorio-de-prácticas">LABORATORIO DE PRÁCTICAS </h1>
 </div>
-<p>📙<a href="./guia.pdf">Descargar PDF</a></p>
-<h2 id="indice">INDICE </h2>
+<p>📙<a href="./t02.serlab.pdf">Descargar PDF</a></p>
+<h2 id="índice">ÍNDICE </h2>
 <div class="style-table-content">
-<table>
-<thead>
-<tr>
-<th>Recurso</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong><a href="./t01.virtualbox.html">Teoria</a></strong></td>
-<td>Apuntes sobre Máquinas Virtuales</td>
-</tr>
-<tr>
-<td><strong><a href="./a01.virtualbox.doc">Actividad</a></strong></td>
-<td>Varias actividades de Máquinas Virtuales</td>
-</tr>
-<tr>
-<td><strong><a href="./t02.serlab.md">SERLAB</a></strong></td>
-<td>Laboratorio de prácticas</td>
-</tr>
-<tr>
-<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="anexos">ANEXOS </h3>
-<div class="style-table-content">
-<table>
-<thead>
-<tr>
-<th>Recurso</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong><a href="https://www.youtube.com/watch?v=VsL4ZPySALo&amp;list=PLn5IkU1Zhgib6lti2HBpL7bMYCTd1d3r9">Videos</a></strong></td>
-<td>VirtualBox. Curso online con videos</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.nakivo.com/blog/virtualbox-network-setting-guide/">Adaptadores Red</a></strong></td>
-<td>VirtualBox. Curso online sobre configuración de adaptadores de red</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.virtualbox.org/manual/ch08.html">VBoxManage</a></strong></td>
-<td>VirtualBox. Uso de VBoxManage</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.fpgenred.es/VirtualBox/">Tutorial</a></strong></td>
-<td>VirtualBox. Tutorial online</td>
-</tr>
-<tr>
-<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="software">SOFTWARE </h3>
-<div class="style-table-content">
-<table>
-<thead>
-<tr>
-<th>Recurso</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong><a href="https://www.virtualbox.org/wiki/Downloads">Download</a></strong></td>
-<td>VirtualBox</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.vbox.me/">Download</a></strong></td>
-<td>VirtualBox Portable</td>
-</tr>
-<tr>
-<td><strong><a href="./assets/doc-vb-usermanual.pdf">Download</a></strong></td>
-<td>VirtualBox Manual</td>
-</tr>
-<tr>
-<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
 
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#laboratorio-de-prácticas-1" class="md-toc-link">
+            <p>LABORATORIO DE PRÁCTICAS</p>
+
+          </a></div>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="laboratorio-de-prácticas-1">LABORATORIO DE PRÁCTICAS </h2>
+<div class="style-normal">
+<p>Para realizar las actividades prácticas de este curso tales como configurar interfaces de red, configurar enrutadores, instalar y configurar servicios DHCP, DNS, SSH, FTP, etc... vamos a utilizar  VirtualBox donde simularemos una serie de redes interconectadas que denominaremos <strong>SERLAB</strong> o Laboratorio de prácticas.</p>
+</div>
+<p><img src="./assets/serlab.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<div class="style-normal">
+<p>Como se ve en la imagen el laboratorio consistirá en <strong>3 redes internas</strong> conectadas por un <strong>router</strong> que conectará con la red externa mediante una interfaz NAT.</p>
+</div>
+<div class="style-list">
+<p>Las <strong>redes internas</strong> son:</p>
+<ul>
+<li>LAN1 <code>172.16.1.0 /24</code></li>
+<li>LAN2 <code>172.16.2.0 /24</code></li>
+<li>LAN3 <code>172.16.3.0 /24</code></li>
+</ul>
+<p>La <strong>configuración</strong> de las interfaces del <strong>router</strong> es:</p>
+<ul>
+<li>Adaptador 1  NAT <code>10.0.2.15 /24</code></li>
+<li>Adaptador 2  LAN1 <code>172.16.1.254 /24</code></li>
+<li>Adaptador 3  LAN2 <code>172.16.2.254 /24</code></li>
+<li>Adaptador 4  LAN3 <code>172.16.3.254 /24</code></li>
+</ul>
+<p>Los <strong>servicios</strong> instalados en el <strong>router</strong> son:</p>
+<ul>
+<li>Reenvío de datagramas.</li>
+<li>NAT sobre el adaptador 1 de las 3 redes internas.</li>
+<li>Servicio DHCP en los siguientes rangos
+<ul>
+<li>LAN1 <code>{172.16.1.150,172.16.1.200}</code></li>
+<li>LAN2 <code>{172.16.2.150,172.16.2.200}</code></li>
+<li>LAN3 <code>{172.16.3.150,172.16.3.200}</code></li>
+</ul>
+</li>
+<li>Servicio DNS caché
+<ul>
+<li>LAN1 <code>172.16.1.254</code></li>
+<li>LAN2 <code>172.16.2.254</code></li>
+<li>LAN3 <code>172.16.3.254</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Inicialmente se proveé al alumnado de un router diseñado por el equipo docente basado en una distribución Linux Alpine. Se puede descargar la <strong>OVA</strong> correspondiente al router en el siguiente enlace:</p>
+<div class="style-list">
+<ul>
+<li>💻<a href="./assets/Router.Alpine.ova">OVA Router Alpine</a></li>
+</ul>
+</div>
+</div>
       </div>
       
       
