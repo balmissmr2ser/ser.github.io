@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -270,11 +270,36 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#obtener-ayuda" class="md-toc-link">
             <p>OBTENER AYUDA</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#truncar-comandos" class="md-toc-link">
-            <p>TRUNCAR COMANDOS</p>
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#legibilidad-del-código" class="md-toc-link"><p>LEGIBILIDAD DEL CÓDIGO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#backquote" class="md-toc-link">
+            <p>BACKQUOTE</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#here-string" class="md-toc-link">
+            <p>HERE-STRING</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#hash-table" class="md-toc-link">
+            <p>HASH-TABLE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#arrays" class="md-toc-link">
+            <p>ARRAYS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#script-blocks" class="md-toc-link">
+            <p>SCRIPT-BLOCKS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tuberias-" class="md-toc-link">
             <p>TUBERIAS (|)</p>
 
@@ -528,9 +553,21 @@ SINTAXIS
 <p>Pulsa <code>TAB</code> tras para completar el nombre de un cmdlet, una opción, valores de las opciones, etc ...</p>
 </div>
 </div>
-<h3 id="truncar-comandos">TRUNCAR COMANDOS </h3>
+<div style="page-break-after:always;"></div>
+<h3 id="legibilidad-del-código">LEGIBILIDAD DEL CÓDIGO </h3>
 <div class="style-normal">
-<p>A veces, un cmdlet puede ser demasiado largo para escribirse en una sola línea. En estos casos, puedes dividirlo en varias líneas utilizando el carácter de escape <strong>`</strong> al final de cada línea y pulsando la tecla <code>Enter</code>. Al hacerlo, aparecerá el símbolo <code>&gt;&gt;</code> en la línea siguiente, indicando que puedes continuar escribiendo.</p>
+<p>Para aumentar la legibilidad del código podemos utilizar varias técnicas.</p>
+</div>
+<ul>
+<li>Backquote</li>
+<li>Here-strings</li>
+<li>Hash-Tables</li>
+<li>Arrays</li>
+<li>Script-Blocks</li>
+</ul>
+<h4 id="backquote">BACKQUOTE </h4>
+<div class="style-normal">
+<p>A veces, un cmdlet puede ser demasiado largo para escribirse en una sola línea. En estos casos, puedes dividirlo en varias líneas utilizando el carácter de escape denominado <strong>backquote</strong> <strong>`</strong> al final de cada línea y pulsando la tecla <code>Enter</code>. Al hacerlo, aparecerá el símbolo <code>&gt;&gt;</code> en la línea siguiente, indicando que puedes continuar escribiendo.</p>
 </div>
 <div class="style-example">
 <div class="admonition example">
@@ -540,13 +577,219 @@ SINTAXIS
 &gt;&gt; 1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1<span class="token punctuation">.</span>1 –Validate:<span class="token boolean">$false</span>
 </code></pre></div>
 </div>
+<h4 id="here-string">HERE-STRING </h4>
+<div class="style-normal">
+<p>En PowerShell, utilizando una estructura denominada <strong>here-string</strong>, podemos escribir texto para pasarlo como parámetro a un cmdlet o incluso cmdlets complejos tratándolos como cadenas de caracteres. Algunas ventajas del uso de here-string son:</p>
+</div>
+<ul>
+<li>Permite escribir texto en varias líneas sin necesidad de usar backquote (`).</li>
+<li>No hay necesidad de escapar comillas dentro del bloque.</li>
+</ul>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>    <span class="token comment">#Estructura básica de un here-string</span>
+    @<span class="token string">'....'</span>@   here-string literal
+    @<span class="token string">"...."</span>@   here-string con evaluación de variables
+</code></pre><div class="style-normal">
+<p>Veamos algunos ejemplos</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">here-string</p>
+<p>Crear una cadena literal</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token variable">$nombre</span> = <span class="token string">"Ana"</span>
+<span class="token variable">$mensaje</span> = @<span class="token string">'
+    Hola $nombre,
+    texto literal sin evaluación de "variables".
+'</span>@
+<span class="token function">Write-Output</span> <span class="token variable">$mensaje</span>
+</code></pre><p>Esta será la salida del comando</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>    Hola <span class="token variable">$nombre</span><span class="token punctuation">,</span>
+    texto literal sin evaluación de <span class="token string">"variables"</span><span class="token punctuation">.</span>
+</code></pre><p>Crear una cadena con evaluación de variables</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token variable">$nombre</span> = <span class="token string">"Ana"</span>
+<span class="token variable">$mensaje</span> = @<span class="token string">"
+    Hola <span class="token variable">$nombre</span>,
+    texto literal con evaluación de "</span>variables<span class="token string">".
+"</span>@
+<span class="token function">Write-Output</span> <span class="token variable">$mensaje</span>
+</code></pre><p>Esta será la salida del comando</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>    Hola ana<span class="token punctuation">,</span>
+    texto literal con evaluación de <span class="token string">"variables"</span><span class="token punctuation">.</span>
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Podemos utilizar los here-string no sólo para crear cadenas que luego pasamos como parámetros a un cmdlet sino que incluso podemos escribir un cmdlet que luego será invocado mediante el uso de la función <code>invoke-expression</code>.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">here-string e invoke-expression</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#crear el cmdlet con here-string</span>
+<span class="token variable">$cmdlet</span> = @<span class="token string">'
+New-NetIPAddress -InterfaceAlias "MiRed" -IPAddress 192.168.1.20 `
+-PrefixLength 24 -DefaultGateway 192.168.1.100 -Confirm:$false
+'</span>@
+<span class="token comment">#ejecutar el cmdlet </span>
+<span class="token function">Invoke-Expression</span> <span class="token variable">$cmdlet</span>
+</code></pre></div>
+</div>
+<h4 id="hash-table">HASH-TABLE </h4>
+<div class="style-normal">
+<p>En PowerShell, utilizando una estructura denominada <strong>hash-table</strong>, podemos definir los parámetros que queremos pasar a un cmdlet. Posteriormente para aplicar el hash-table al cmdlet se utilizará el operador <strong>splatting</strong> <strong>@</strong> que permite expandir la tabla definida a los parametros del cmdlet. Al igual que here-string se permiten varias lineas y las comillas dobles.</p>
+</div>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#Estructura básica de un hash-table</span>
+ <span class="token variable">$hash</span><span class="token operator">-</span>table=@<span class="token punctuation">{</span>
+    parametro-1=valor
+    parametro-2=valor
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ <span class="token punctuation">}</span>
+ cmdlet @hash-table
+</code></pre><div class="style-example">
+<div class="admonition tip">
+<p class="admonition-title">Cuidado</p>
+<p>En las hash-table hay que tratar de evitar definir parámetros de tipo switch como WhatIf ya que a veces no funcionan correctamente dependiendo de como se haya implementado el cmdlet.</p>
+</div>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">hash-table</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#crear el hash-table</span>
+<span class="token variable">$ipParams</span> = @<span class="token punctuation">{</span>
+InterfaceAlias = <span class="token string">"MiRed"</span>
+IPAddress      = <span class="token string">"192.168.1.20"</span>
+PrefixLength   = 24
+DefaultGateway = <span class="token string">"192.168.1.100"</span>
+Confirm        = <span class="token boolean">$false</span>
+<span class="token punctuation">}</span>
+<span class="token comment">#ejecutar el cmdlet con los parámetros</span>
+<span class="token comment">#Se observa que además del hash-table</span>
+<span class="token comment">#se pueden pasar también otros parámetros</span>
+<span class="token function">New-NetIPAddress</span> @ipParams <span class="token operator">-</span>WhatIf
+</code></pre></div>
+</div>
+<h4 id="arrays">ARRAYS </h4>
+<div class="style-normal">
+<p>En PowerShell, utilizando una estructura denominada <strong>array</strong>, podemos definir de manera <strong>posicional</strong> los parámetros que queremos pasar a un cmdlet. Posteriormente, expandiremos el array definido mediante splatting (<strong>@</strong>) sobre el cmdlet</p>
+</div>
+<div class="style-example">
+<div class="admonition tip">
+<p class="admonition-title">Cuidado</p>
+<p>El array es posicional y por tanto los parámetros deben coincidir en el mismo orden en el que los define el cmdlet. Es menos flexible que una hash-table.</p>
+</div>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Array</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#crear el array</span>
+<span class="token variable">$ipParams</span> = @<span class="token punctuation">(</span>
+    <span class="token string">"MiRed"</span><span class="token punctuation">,</span>           <span class="token comment"># InterfaceAlias</span>
+    <span class="token string">"192.168.1.20"</span><span class="token punctuation">,</span>    <span class="token comment"># IPAddress</span>
+    24<span class="token punctuation">,</span>                <span class="token comment"># PrefixLength</span>
+    <span class="token string">"192.168.1.100"</span><span class="token punctuation">,</span>   <span class="token comment"># DefaultGateway</span>
+    <span class="token boolean">$false</span>             <span class="token comment"># Confirm</span>
+<span class="token punctuation">)</span>
+<span class="token comment">#ejecutar cmdlet</span>
+<span class="token function">New-NetIPAddress</span> @ipParams <span class="token operator">-</span>WhatIf
+</code></pre></div>
+</div>
+<h4 id="script-blocks">SCRIPT-BLOCKS </h4>
+<div class="style-normal">
+<p>Un <strong>script block</strong> es un bloque de código delimitado por llaves <strong>{ }</strong> que PowerShell puede almacenar, ejecutar o pasar como argumento a un cmdlet o función. Un script-block, es en esencia, una unidad de código ejecutable que puede:</p>
+</div>
+<ul>
+<li>Guardarse en una variable</li>
+<li>Pasarse como parámetro a otro comando</li>
+<li>Ejecutarse más tarde o repetidamente</li>
+<li>Modificarse dinámicamente.</li>
+</ul>
+<div class="style-normal">
+<div style="page-break-after:always;"></div>
+<p>Para ejecutar el código contenido en el script block utilizaremos <code>&amp; $sb</code> o <code>Invoke-command -ScriptBlock $sb</code>.</p>
+</div>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#Estructura básica de un script-block</span>
+<span class="token comment">#definir script-block</span>
+ <span class="token variable">$sb</span>=<span class="token punctuation">{</span> codigo <span class="token punctuation">}</span>
+<span class="token comment">#ejecutar script-block</span>
+ &amp; <span class="token function">Invoke-Command</span> <span class="token operator">-</span>ScriptBlock <span class="token variable">$sb</span>
+</code></pre><div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">script-block</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#definicion del script block</span>
+<span class="token variable">$sb</span> = <span class="token punctuation">{</span>
+    <span class="token variable">$parameters</span> = @<span class="token punctuation">{</span>
+        InterfaceAlias = <span class="token string">"Ethernet"</span>
+        IPAddress      = <span class="token string">"192.168.1.20"</span>
+        PrefixLength   = 24
+        DefaultGateway = <span class="token string">"192.168.1.1"</span>
+        Confirm        = <span class="token boolean">$false</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">New-NetIPAddress</span> @parameters
+<span class="token punctuation">}</span>
+<span class="token comment">#Ejecución del script block</span>
+&amp; <span class="token variable">$sb</span>
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>Se puede modificar dinámicamente la ejecución de un script-block mediante el paso de variables externas y la clausula <code>$using:variable</code>.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">script-block y using</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#definicion del script block</span>
+<span class="token variable">$ip</span> = <span class="token string">"192.168.1.20"</span>
+<span class="token variable">$sb</span> = <span class="token punctuation">{</span>
+    <span class="token variable">$parameters</span> = @<span class="token punctuation">{</span>
+        InterfaceAlias = <span class="token string">"Ethernet"</span>
+        IPAddress      = <span class="token variable">$using</span>:ip
+        PrefixLength   = 24
+        DefaultGateway = <span class="token string">"192.168.1.1"</span>
+        Confirm        = <span class="token boolean">$false</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">New-NetIPAddress</span> @parameters
+<span class="token punctuation">}</span>
+<span class="token comment">#Ejecución del script block</span>
+&amp; <span class="token variable">$sb</span>
+</code></pre></div>
+</div>
+<div class="style-normal">
+<p>También podemos modificar dinámicamente la ejecución de un script-block si definimos parámetros para dicho script-block. Luego podemos sustituir los valores de los parámetros mediante un hash-table o un array.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">script-block y parámetros</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment">#definir el script-block</span>
+<span class="token variable">$sb</span> = <span class="token punctuation">{</span>
+    <span class="token comment">#definir los parametros del script-block</span>
+    <span class="token keyword keyword-param">param</span><span class="token punctuation">(</span>
+        <span class="token namespace">[string]</span><span class="token variable">$InterfaceAlias</span><span class="token punctuation">,</span>   <span class="token comment"># Posición 0</span>
+        <span class="token namespace">[string]</span><span class="token variable">$IPAddress</span><span class="token punctuation">,</span>        <span class="token comment"># Posición 1</span>
+        <span class="token namespace">[int]</span><span class="token variable">$PrefixLength</span><span class="token punctuation">,</span>        <span class="token comment"># Posición 2 </span>
+</code></pre><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>        <span class="token namespace">[string]</span><span class="token variable">$DefaultGateway</span><span class="token punctuation">,</span>   <span class="token comment"># Posición 3</span>
+        <span class="token namespace">[switch]</span><span class="token variable">$Confirm</span>           <span class="token comment"># Posición 4</span>
+    <span class="token punctuation">)</span>
+    <span class="token function">New-NetIPAddress</span> <span class="token operator">-</span>InterfaceAlias <span class="token variable">$InterfaceAlias</span> `
+                 <span class="token operator">-</span>IPAddress <span class="token variable">$IPAddress</span> `
+                 <span class="token operator">-</span>PrefixLength <span class="token variable">$PrefixLength</span> `
+                 <span class="token operator">-</span>DefaultGateway <span class="token variable">$DefaultGateway</span> `
+                 <span class="token operator">-</span>Confirm:<span class="token variable">$Confirm</span>
+<span class="token punctuation">}</span>
+<span class="token comment"># Definir valores de los parámetros mediante hash table</span>
+<span class="token variable">$parameters</span> = @<span class="token punctuation">{</span>
+    InterfaceAlias = <span class="token string">"Ethernet"</span>
+    IPAddress      = <span class="token string">"192.168.1.20"</span>
+    PrefixLength   = 24
+    DefaultGateway = <span class="token string">"192.168.1.1"</span>
+    Confirm        = <span class="token boolean">$false</span>
+<span class="token punctuation">}</span>
+<span class="token comment">#Ejecutar usando splatting</span>
+&amp; <span class="token variable">$sb</span> @ipParams
+</code></pre></div>
+</div>
 <h3 id="tuberias-">TUBERIAS (|) </h3>
 <div class="style-normal">
 <p>Se denomina tubería a la posibilidad de encadenar la salida de un cmdlet como entrada de otro. Para realizar tuberías se utiliza el operador pipe <code>|</code>. Es muy común utilizar tuberías para dar formato a la salida, por ejemplo, con <code>Format-Table</code>, <code>Format-List</code> o <code>Format-Wide</code>.</p>
 </div>
+<div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Tuberías</p>
-<div class="style-normal2">
 <p>Obtener los usuarios locales de nombre <em>admin</em> y <em>guest</em> en formato de lista y mostrar solamente las propiedades <em><code>Name</code></em> y <em><code>Enabled</code></em>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-LocalUser</span> –Name admin<span class="token punctuation">,</span>guest <span class="token punctuation">|</span> <span class="token function">Format-List</span> –Property Name<span class="token punctuation">,</span>Enabled
 Name     : admin
@@ -563,12 +806,11 @@ Enabled  : False
 <div class="admonition example">
 <p class="admonition-title">Objetos</p>
 <div class="style-normal2">
-<p>Obtener todas las interfaces de red, pero solamente el índice y el nombre ordenadas por el número de índice.</p>
+<p>Obtener el nombre e indice de las interfaces de red, ordenadas por número de índice.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-NetIPInterface</span> <span class="token punctuation">|</span> <span class="token function">Select-Object</span> –Property IfIndex<span class="token punctuation">,</span>InterfaceAlias <span class="token punctuation">|</span> <span class="token function">Sort-Object</span> ifIndex
 ifIndex InterfaceAlias
 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
       1 Loopback Pseudo-Interface 1
-      3 Conexión de área local* 12
       5 MiRed
      14 Wi-Fi
 </code></pre></div>
@@ -631,6 +873,7 @@ ifIndex InterfaceAlias
 </tbody>
 </table>
 </div>
+<div style="page-break-after:always;"></div>
 <div class="admonition example">
 <p class="admonition-title">Formateo de la salida</p>
 <div class="style-normal2">
@@ -667,7 +910,7 @@ WDAGUtilityAccount   False
 </div>
 <h3 id="convertir-salida-a-otros-formatos">CONVERTIR SALIDA A OTROS FORMATOS </h3>
 <div class="style-normal">
-<p>Los cmdlet operan sobre objectos y devuelven como salida objetos. A veces, es necesario obtener la salida en otros formatos.</p>
+<p>La salida de los cmdlet son objetos. A veces, es necesario obtener la salida en otros formatos.</p>
 </div>
 <h4 id="cadena-de-texto">CADENA DE TEXTO </h4>
 <div class="style-normal">
@@ -676,7 +919,7 @@ WDAGUtilityAccount   False
 <div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Conversión a cadena de texto</p>
-<p>Obtener el nombre de la interfaz de red de nombre <em>MiRed</em> en formato cadena y asignarlo a una variable de nombre <code>$MiRedName</code>.</p>
+<p>Obtener el nombre de la interfaz <em>MiRed</em> y asignar a una variable.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token variable">$MiRedName</span> = <span class="token punctuation">(</span><span class="token function">Get-NetAdapter</span> –Name MiRed <span class="token punctuation">|</span> <span class="token function">Format-Wide</span> –Property ifIndex <span class="token punctuation">|</span> <span class="token function">Out-String</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Trim<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre><p>El método <code>Trim()</code> elimina los espacios a izquierda y derecha de una cadena de texto.</p>
 </div>
@@ -692,7 +935,6 @@ WDAGUtilityAccount   False
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>txt
 </code></pre></div>
 </div>
-<div style="page-break-after:always;"></div>
 <h5 id="fichero-csv">FICHERO CSV </h5>
 <div class="style-normal">
 <p>Se utiliza los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/convertto-csv?view=powershell-7.5">ConvertTo-CSV</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.utility/out-file?view=powershell-7.5">Out-File</a>.</p>
@@ -726,6 +968,7 @@ WDAGUtilityAccount   False
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Get-Process</span> <span class="token punctuation">|</span> <span class="token function">ConvertTo-XML</span> <span class="token operator">-</span>NoTypeInformation <span class="token operator">-As</span> String <span class="token punctuation">|</span> <span class="token function">Out-File</span> <span class="token operator">-</span>FilePath MisProcesos<span class="token punctuation">.</span>xml
 </code></pre></div>
 </div>
+<div style="page-break-after:always;"></div>
 <h2 id="scripts">SCRIPTS </h2>
 <div class="style-normal">
 <p>Los scripts de Powershell son ficheros de texto que contienen una serie de comandos y/o funciones que se ejecutan en el orden en que aparecen. Los scripts pueden contener comentarios, variables, estructuras de control, funciones y cmdlets. Los ficheros de scripts suelen tener las siguientes extensiones.</p>
@@ -816,7 +1059,6 @@ WDAGUtilityAccount   False
 <div class="style-normal">
 <p>Las políticas de ejecución se pueden configurar y ejecutar en diferentes <strong>ámbitos</strong> (<code>scopes</code>). Los ámbitos por orden de preferencia son: <em>MachinePolicy</em>, <em>UserPolicy</em>, <em>Process</em>, <em>CurrentUser</em> y <em>LocalMachine</em></p>
 </div>
-<div style="page-break-after:always;"></div>
 <h4 id="adminsitración-de-políticas">ADMINSITRACIÓN DE POLÍTICAS </h4>
 <div class="style-normal">
 <p>Las políticas de ejecución se pueden administrar a través del objeto <code>ExecutionPolicy</code> y los cmdlets <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7.5">Get-ExecutionPolicy</a> y <a href="https://learn.microsoft.com/es-es/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.5">Set-ExecutionPolicy</a>.</p>
