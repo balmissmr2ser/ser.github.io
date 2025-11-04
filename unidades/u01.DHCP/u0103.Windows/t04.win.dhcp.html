@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -238,27 +238,27 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#comandos-de-instalación-y-configuración" class="md-toc-link">
-            <p>COMANDOS DE INSTALACIÓN Y CONFIGURACIÓN</p>
+          <a href="#instalación-y-configuración" class="md-toc-link">
+            <p>INSTALACIÓN Y CONFIGURACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#comandos-para-mostrar-la-configuración" class="md-toc-link">
-            <p>COMANDOS PARA MOSTRAR LA CONFIGURACIÓN</p>
+          <a href="#mostrar-configuración" class="md-toc-link">
+            <p>MOSTRAR CONFIGURACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#comandos-para-cambiar-la-configuración" class="md-toc-link">
-            <p>COMANDOS PARA CAMBIAR LA CONFIGURACIÓN</p>
+          <a href="#modificar-configuración" class="md-toc-link">
+            <p>MODIFICAR CONFIGURACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#comandos-para-eliminar-la-configuración" class="md-toc-link">
-            <p>Comandos para eliminar la configuración</p>
+          <a href="#eliminar-configuración" class="md-toc-link">
+            <p>ELIMINAR CONFIGURACIÓN</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#clientes-dhcp-en-sistemas-windows" class="md-toc-link"><p>CLIENTES DHCP EN SISTEMAS WINDOWS</p>
+          <a href="#clientes-dhcp" class="md-toc-link"><p>CLIENTES DHCP</p>
 </a>
           </summary>
         <div>
@@ -270,8 +270,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#reenvío-de-peticiones-dhcp-dhcp-relay" class="md-toc-link">
-            <p>REENVÍO DE PETICIONES DHCP: DHCP RELAY</p>
+          <a href="#dhcp-relay-reenvío-de-peticiones-dhcp" class="md-toc-link">
+            <p>DHCP RELAY. REENVÍO DE PETICIONES DHCP.</p>
 
           </a></div>
 </div>
@@ -282,7 +282,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <p>Como ya sabemos, un servidor DHCP proporciona IP a los equipos de una red que están configurados para ello. El servidor DHCP, además de proporcionar una IP, ofrece otros parámetros necesarios para garantizar la conectividad interna y externa de los equipos de la red.<br>
 A continuación se muestran una serie de comandos relativos a la administración del servidor DHCP.</p>
 </div>
-<h3 id="comandos-de-instalación-y-configuración">COMANDOS DE INSTALACIÓN Y CONFIGURACIÓN </h3>
+<h3 id="instalación-y-configuración">INSTALACIÓN Y CONFIGURACIÓN </h3>
 <div class="style-normal">
 <p><strong><code>Install-WindowsFeature DHCP [-IncludeManagementTools]</code></strong></p>
 <p>Instalar la característica o rol de servidor DHCP. Con la opción IncludeManagementTools se instalan herramientas adicionales como la consola de administración de Microsoft para el servicio DHCP (dhcpmgmt.msc) que nos permite administrar el servicio gráficamente de manera muy intuitiva.</p>
@@ -361,7 +361,7 @@ A continuación se muestran una serie de comandos relativos a la administración
 <span class="token operator">-</span>Description <span class="token string">"Reserva de IP para la impresora de la red 192.168.1.0/24"</span>
 </code></pre></div>
 </div>
-<h3 id="comandos-para-mostrar-la-configuración">COMANDOS PARA MOSTRAR LA CONFIGURACIÓN </h3>
+<h3 id="mostrar-configuración">MOSTRAR CONFIGURACIÓN </h3>
 <div class="style-normal">
 <p><strong><code>Get-DhcpServerv4Scope [-ScopeId &lt;id-ambito&gt;]</code></strong></p>
 <p>Muestra la configuración del ámbito dado. Si no se especifica el parámetro <em>ScopeId</em>, se devuelven todos los ámbitos configurados en el servidor DHCP.</p>
@@ -479,7 +479,7 @@ Name        : Reserva impresora
 Description : Reserva de IP para la impresora de la red 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0/24
 </code></pre></div>
 </div>
-<h3 id="comandos-para-cambiar-la-configuración">COMANDOS PARA CAMBIAR LA CONFIGURACIÓN </h3>
+<h3 id="modificar-configuración">MODIFICAR CONFIGURACIÓN </h3>
 <div class="style-normal">
 <p><strong><code>Set-DhcpServerv4Scope -ScopeId &lt;id-ambito&gt; [-&lt;opcion1&gt; &lt;valor1&gt;] [-&lt;opcion2&gt; &lt;valor2&gt;]...</code></strong></p>
 <p>Establece las propiedades de un ámbito IPv4 existente en el servidor DHCP. Las opciones son las mismas que las del comando <code>Add-DhcpServerv4Scope</code>. Utilizando la opción <em>State</em> podemos activar o desactivar el ámbito con los valores <em>Active</em> e <em>Inactive</em> respectivamente.</p>
@@ -532,7 +532,7 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set</span><span class="token operator">-</span>DhcpServerv4Binding <span class="token operator">-</span>BindingState <span class="token boolean">$false</span> <span class="token operator">-</span>InterfaceAlias <span class="token string">"Ethernet 2"</span>
 </code></pre></div>
 </div>
-<h3 id="comandos-para-eliminar-la-configuración">Comandos para eliminar la configuración </h3>
+<h3 id="eliminar-configuración">ELIMINAR CONFIGURACIÓN </h3>
 <div class="style-normal">
 <p><strong><code>Remove-DhcpServerv4Scope -ScopeId &lt;id-ambito&gt;</code></strong></p>
 <p>Elimina un ámbito del servidor DHCP.</p>
@@ -567,7 +567,7 @@ Description : Reserva de IP para la impresora de la red 192<span class="token pu
 <p>Hay mucha más información sobre la administración de un servidor DHCP con Powershell en la documentación oficial de Microsoft.<br>
 URL: <a href="https://learn.microsoft.com/es-es/powershell/module/dhcpserver/?view=windowsserver2019-ps">https://learn.microsoft.com/es-es/powershell/module/dhcpserver/?view=windowsserver2019-ps</a></p>
 </div>
-<h2 id="clientes-dhcp-en-sistemas-windows">CLIENTES DHCP EN SISTEMAS WINDOWS </h2>
+<h2 id="clientes-dhcp">CLIENTES DHCP </h2>
 <div class="style-normal">
 <p>En los sistemas Windows, el cliente DHCP funciona como un servicio del sistema operativo. Podemos gestionarlo desde la consola de administración de servicios (<em>services.msc</em>), donde aparece con el nombre corto <strong>Dhcp</strong> y el nombre completo <strong>Cliente DHCP</strong>.</p>
 <p><img src="./assets/services-consola.png" alt="Consola services"></p>
@@ -715,7 +715,7 @@ Adaptador de Ethernet Ethernet:
 </code></pre><p>Observa que la fecha y hora en que se obtuvo la concesión no cambia tras realizar la renovación. Lo que sí varía es la fecha de expiración de la concesión, que se actualiza y ahora es unos 5 minutos posterior a la fecha de expiración que teníamos antes de renovar la IP.</p>
 </div>
 </div>
-<h2 id="reenvío-de-peticiones-dhcp-dhcp-relay">REENVÍO DE PETICIONES DHCP: DHCP RELAY </h2>
+<h2 id="dhcp-relay-reenvío-de-peticiones-dhcp">DHCP RELAY. REENVÍO DE PETICIONES DHCP. </h2>
 <div class="style-normal>
 <p>Un servidor DHCP puede asignar direcciones IP a equipos de distintas redes si está conectado directamente a cada una de ellas, pero esta solución no es la más habitual ni la más recomendable. Existen dos métodos principales para que los equipos de varias redes obtengan direcciones IP de forma dinámica:</p>
 </div>
@@ -730,67 +730,67 @@ Adaptador de Ethernet Ethernet:
 </div>
 <div class="row">
 <div class="col-sm-12 my-auto">
-<p align="center" style="zoom:1" class="puml"><svg width="430pt" height="144pt" viewBox="0.00 0.00 430.00 144.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 140)">
+<p align="center" style="zoom:1" class="puml"><svg width="438pt" height="150pt" viewBox="0.00 0.00 437.87 150.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 146)">
 <title>DHCPRelay</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-140 426,-140 426,4 -4,4"></polygon>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-146 433.87,-146 433.87,4 -4,4"></polygon>
 <g id="clust1" class="cluster">
 <title>cluster2_red1</title>
-<polygon fill="none" stroke="lightgrey" points="8,-8 8,-85 87,-85 87,-8 8,-8"></polygon>
-<text text-anchor="middle" x="47.5" y="-69.8" font-family="Times,serif" font-size="14.00">Red 1</text>
+<polygon fill="none" stroke="lightgrey" points="8,-8 8,-91 88.21,-91 88.21,-8 8,-8"></polygon>
+<text text-anchor="middle" x="48.1" y="-74.4" font-family="Times New Roman,serif" font-size="14.00">Red 1</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster2_red2</title>
-<polygon fill="none" stroke="lightgrey" points="191,-18 191,-128 414,-128 414,-18 191,-18"></polygon>
-<text text-anchor="middle" x="302.5" y="-112.8" font-family="Times,serif" font-size="14.00">Red 2</text>
+<polygon fill="none" stroke="lightgrey" points="198.78,-18 198.78,-134 421.87,-134 421.87,-18 198.78,-18"></polygon>
+<text text-anchor="middle" x="310.32" y="-117.4" font-family="Times New Roman,serif" font-size="14.00">Red 2</text>
 </g>
 <!-- S1 -->
 <g id="node1" class="node">
 <title>S1</title>
-<polygon fill="#b3e6b3" stroke="black" points="79,-54 16,-54 16,-16 79,-16 79,-54"></polygon>
-<text text-anchor="middle" x="47.5" y="-38.8" font-family="Times,serif" font-size="14.00">Servidor</text>
-<text text-anchor="middle" x="47.5" y="-23.8" font-family="Times,serif" font-size="14.00">DHCP</text>
+<polygon fill="#b3e6b3" stroke="black" points="80.31,-57.6 15.9,-57.6 15.9,-16.4 80.31,-16.4 80.31,-57.6"></polygon>
+<text text-anchor="middle" x="48.1" y="-41.2" font-family="Times New Roman,serif" font-size="14.00">Servidor</text>
+<text text-anchor="middle" x="48.1" y="-24.4" font-family="Times New Roman,serif" font-size="14.00">DHCP</text>
 </g>
 <!-- S2 -->
 <g id="node2" class="node">
 <title>S2</title>
-<polygon fill="#ffd580" stroke="black" points="253,-78 199,-78 199,-40 253,-40 253,-78"></polygon>
-<text text-anchor="middle" x="226" y="-62.8" font-family="Times,serif" font-size="14.00">DHCP</text>
-<text text-anchor="middle" x="226" y="-47.8" font-family="Times,serif" font-size="14.00">Relay</text>
+<polygon fill="#ffd580" stroke="black" points="260.78,-82.6 206.78,-82.6 206.78,-41.4 260.78,-41.4 260.78,-82.6"></polygon>
+<text text-anchor="middle" x="233.78" y="-66.2" font-family="Times New Roman,serif" font-size="14.00">DHCP</text>
+<text text-anchor="middle" x="233.78" y="-49.4" font-family="Times New Roman,serif" font-size="14.00">Relay</text>
 </g>
 <!-- S1&#45;&gt;S2 -->
 <g id="edge3" class="edge">
 <title>S1-&gt;S2</title>
-<path fill="none" stroke="black" d="M79.24,-41.02C85.12,-42.09 91.24,-43.13 97,-44 127.92,-48.67 163.22,-52.72 188.91,-55.42"></path>
-<polygon fill="black" stroke="black" points="188.64,-58.91 198.95,-56.46 189.36,-51.95 188.64,-58.91"></polygon>
-<text text-anchor="middle" x="139" y="-57.8" font-family="Times,serif" font-size="14.00">3 - Resp. (u)</text>
+<path fill="none" stroke="black" d="M80.46,-43.82C86.34,-44.98 92.45,-46.09 98.21,-47 131.32,-52.21 169.29,-56.27 196.43,-58.84"></path>
+<polygon fill="black" stroke="black" points="196.36,-62.35 206.64,-59.79 197,-55.38 196.36,-62.35"></polygon>
+<text text-anchor="middle" x="143.49" y="-62.2" font-family="Times New Roman,serif" font-size="14.00">3 - Resp. (u)</text>
 </g>
 <!-- S2&#45;&gt;S1 -->
 <g id="edge2" class="edge">
 <title>S2-&gt;S1</title>
-<path fill="none" stroke="black" d="M202.61,-39.98C196.06,-35.5 188.6,-31.34 181,-29 151.28,-19.83 116.04,-22.01 89.37,-26.11"></path>
-<polygon fill="black" stroke="black" points="88.51,-22.71 79.24,-27.82 89.68,-29.61 88.51,-22.71"></polygon>
-<text text-anchor="middle" x="139" y="-32.8" font-family="Times,serif" font-size="14.00">2 - Reenvío (u)</text>
+<path fill="none" stroke="black" d="M209.62,-41.2C203.29,-36.7 196.13,-32.58 188.78,-30.2 156.89,-19.88 118.78,-22.67 90.43,-27.43"></path>
+<polygon fill="black" stroke="black" points="89.66,-24.01 80.45,-29.25 90.92,-30.9 89.66,-24.01"></polygon>
+<text text-anchor="middle" x="143.49" y="-34.2" font-family="Times New Roman,serif" font-size="14.00">2 - Reenvío (u)</text>
 </g>
 <!-- C -->
 <g id="node3" class="node">
 <title>C</title>
-<polygon fill="#e6f2ff" stroke="black" points="406,-79 350,-79 350,-43 406,-43 406,-79"></polygon>
-<text text-anchor="middle" x="378" y="-57.3" font-family="Times,serif" font-size="14.00">Cliente</text>
+<polygon fill="#e6f2ff" stroke="black" points="414.09,-81 357.21,-81 357.21,-45 414.09,-45 414.09,-81"></polygon>
+<text text-anchor="middle" x="385.65" y="-58.8" font-family="Times New Roman,serif" font-size="14.00">Cliente</text>
 </g>
 <!-- S2&#45;&gt;C -->
 <g id="edge4" class="edge">
 <title>S2-&gt;C</title>
-<path fill="none" stroke="black" d="M253.01,-46.43C258.8,-44.18 265.01,-42.18 271,-41 297.6,-35.77 305.48,-35.37 332,-41 334.65,-41.56 337.34,-42.29 340.01,-43.14"></path>
-<polygon fill="black" stroke="black" points="338.93,-46.47 349.52,-46.64 341.34,-39.9 338.93,-46.47"></polygon>
-<text text-anchor="middle" x="301.5" y="-44.8" font-family="Times,serif" font-size="14.00">4 - Resp.</text>
+<path fill="none" stroke="black" d="M261.09,-47.28C266.76,-44.76 272.84,-42.53 278.78,-41.2 305.08,-35.3 313.15,-35.2 339.43,-41.2 342.22,-41.84 345.04,-42.67 347.83,-43.63"></path>
+<polygon fill="black" stroke="black" points="346.56,-46.9 357.15,-47.35 349.15,-40.4 346.56,-46.9"></polygon>
+<text text-anchor="middle" x="309.11" y="-45.2" font-family="Times New Roman,serif" font-size="14.00">4 - Resp.</text>
 </g>
 <!-- C&#45;&gt;S2 -->
 <g id="edge1" class="edge">
 <title>C-&gt;S2</title>
-<path fill="none" stroke="black" d="M349.99,-60.84C328.56,-60.7 297.87,-60.43 271,-60 268.46,-59.96 265.84,-59.91 263.2,-59.86"></path>
-<polygon fill="black" stroke="black" points="263.13,-56.36 253.06,-59.65 262.98,-63.36 263.13,-56.36"></polygon>
-<text text-anchor="middle" x="301.5" y="-63.8" font-family="Times,serif" font-size="14.00">1 - Sol. (b)</text>
+<path fill="none" stroke="black" d="M357.33,-62.82C333.1,-62.66 297.53,-62.42 270.95,-62.24"></path>
+<polygon fill="black" stroke="black" points="270.91,-58.74 260.88,-62.17 270.86,-65.74 270.91,-58.74"></polygon>
+<text text-anchor="middle" x="309.11" y="-66.2" font-family="Times New Roman,serif" font-size="14.00">1 - Sol. (b)</text>
 </g>
 </g>
 </svg></p></div>
