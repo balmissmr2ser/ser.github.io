@@ -1,0 +1,1080 @@
+<!DOCTYPE html><html><head>
+      <title>SER - U01 Linux red no persistente</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-normal2 {
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content {
+  background-color: lightgrey;
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  const configureMermaidIconPacks = () => {
+    window["mermaid"].registerIconPacks([
+      {
+        name: "logos",
+        loader: () =>
+          fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+            (res) => res.json()
+          ),
+      },
+    ]);
+  };
+
+  if (document.readyState !== 'loading') {
+    configureMermaidIconPacks();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      configureMermaidIconPacks();
+    });
+  }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<div class="style-title">
+<h1 id="configuración-no-persistente-de-la-red-en-linux">CONFIGURACIÓN NO PERSISTENTE DE LA RED EN LINUX </h1>
+</div>
+<p>📙<a href="./t01.linux.nopersistente.pdf">Descargar PDF</a></p>
+<h2 id="índice">ÍNDICE </h2>
+<div style="background-color: Lightgrey;">
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#configuración-no-persistente-de-la-red" class="md-toc-link">
+            <p>CONFIGURACIÓN NO PERSISTENTE DE LA RED</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#la-librería-net-tools" class="md-toc-link"><p>LA LIBRERÍA NET-TOOLS</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ifconfig" class="md-toc-link"><p>IFCONFIG</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-las-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-estadisticas-de-las-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR ESTADISTICAS DE LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#activar-o-desactivar-una-interfaz-de-red" class="md-toc-link">
+            <p>ACTIVAR O DESACTIVAR UNA INTERFAZ DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cambiar-la-dirección-mac-de-una-interfaz-de-red" class="md-toc-link">
+            <p>CAMBIAR LA DIRECCIÓN MAC DE UNA INTERFAZ DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cambiar-la-dirección-ip-de-una-interfaz-de-red" class="md-toc-link">
+            <p>CAMBIAR LA DIRECCIÓN IP DE UNA INTERFAZ DE RED</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#route" class="md-toc-link"><p>ROUTE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-la-tabla-de-enrutamiento" class="md-toc-link">
+            <p>MOSTRAR LA TABLA DE ENRUTAMIENTO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-una-ruta-estática" class="md-toc-link">
+            <p>AÑADIR UNA RUTA ESTÁTICA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#eliminar-una-ruta-estática" class="md-toc-link">
+            <p>ELIMINAR UNA RUTA ESTÁTICA</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#arp" class="md-toc-link"><p>ARP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-la-tabla-arp" class="md-toc-link">
+            <p>MOSTRAR LA TABLA ARP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-una-entrada-a-la-tabla-arp" class="md-toc-link">
+            <p>AÑADIR UNA ENTRADA A LA TABLA ARP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#eliminar-una-entrada-de-la-tabla-arp" class="md-toc-link">
+            <p>ELIMINAR UNA ENTRADA DE LA TABLA ARP</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#la-librería-iproute2" class="md-toc-link"><p>LA LIBRERÍA IPROUTE2</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ip-link" class="md-toc-link"><p>IP LINK</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-el-estado-de-las-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR EL ESTADO DE LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#activar-y-desactivar-interfaces-de-red" class="md-toc-link">
+            <p>ACTIVAR Y DESACTIVAR INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cambiar-la-mac-de-una-interfaz-de-red" class="md-toc-link">
+            <p>CAMBIAR LA MAC DE UNA INTERFAZ DE RED</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ip-address" class="md-toc-link"><p>IP ADDRESS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mostrar-la-configuración-ip-de-las-interfaces-de-red" class="md-toc-link">
+            <p>MOSTRAR LA CONFIGURACIÓN IP DE LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurar-las-ip-de-las-interfaces-de-red" class="md-toc-link">
+            <p>CONFIGURAR LAS IP DE LAS INTERFACES DE RED</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#eliminar-ip-de-las-interfaces-de-red" class="md-toc-link">
+            <p>ELIMINAR IP DE LAS INTERFACES DE RED</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ip-route" class="md-toc-link"><p>IP ROUTE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consultar-tabla-de-enrutamiento" class="md-toc-link">
+            <p>CONSULTAR TABLA DE ENRUTAMIENTO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-rutas-a-la-tabla-de-enrutamiento" class="md-toc-link">
+            <p>AÑADIR RUTAS A LA TABLA DE ENRUTAMIENTO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#eliminar-rutas-de-la-tabla-de-enrutamiento" class="md-toc-link">
+            <p>ELIMINAR RUTAS DE LA TABLA DE ENRUTAMIENTO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ip-neighbour" class="md-toc-link">
+            <p>IP NEIGHBOUR</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#pruebas-de-conectividad" class="md-toc-link">
+            <p>PRUEBAS DE CONECTIVIDAD</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#configuración-dinámica-de-red" class="md-toc-link">
+            <p>Configuración dinámica de red</p>
+
+          </a></div>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="configuración-no-persistente-de-la-red">CONFIGURACIÓN NO PERSISTENTE DE LA RED </h2>
+<div class="style-normal">
+<p>La <strong>configuración de bajo nivel</strong> o <strong>no persistente</strong> de red en Linux se refiere a los cambios realizados directamente desde la línea de comandos, que afectan a la configuración de la red de manera inmediata pero <strong>no se mantienen tras reiniciar el sistema</strong>. Este tipo de configuración es útil para pruebas, cambios temporales o en entornos donde no se requiere persistencia.</p>
+<p>Para realizar configuraciones de red no persistentes, se utilizan herramientas como <strong>net-tools</strong> o <strong>iproute2</strong>. Estas herramientas permiten configurar interfaces de red, asignar direcciones IP, establecer rutas y gestionar la conectividad de red sin necesidad de editar archivos de configuración permanentes.</p>
+<p>La librería <strong>net-tools</strong> es la más antigua y tradicional, mientras que <strong>iproute2</strong> es la más moderna y recomendada en las distribuciones actuales de Linux. Aunque net-tools aún está disponible, se considera obsoleta y se recomienda utilizar iproute2 para nuevas configuraciones.</p>
+</div>
+<h2 id="la-librería-net-tools">LA LIBRERÍA NET-TOOLS </h2>
+<div class="style-normal">
+<p>La librería <strong>net-tools</strong> dispone de las utilidades clásicas para la configuración de red en Linux. Aunque es menos común en las distribuciones modernas, aún se puede utilizar si se instala el paquete <strong>net-tools</strong>. Esta librería incluye herramientas como <strong><code>ifconfig</code></strong>, <strong><code>route</code></strong> y <strong><code>arp</code></strong>, que permiten configurar y gestionar las interfaces de red de forma temporal.</p>
+</div>
+<h3 id="ifconfig">IFCONFIG </h3>
+<div class="style-normal">
+<p>La utilidad o comando <strong>ifconfig</strong> se utiliza para configurar y mostrar información de las interfaces de red. Entre las diferentes operaciones que podemos llevar a cabo con el comando ifconfig tenemos:</p>
+</div>
+<h4 id="mostrar-las-interfaces-de-red">MOSTRAR LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-a] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+Entre la información mostrada podemos ver la IP, la MAC, la máscara de red, la dirección de broadcast e información sobre el estado de la interfaz entre otros datos.
+<p>Cuando no se especifica un interfaz muestra información de todas las interfaces de red o solo de las activas si omitimos el flag <code>-a</code>. Cuando se especifica una interfaz muestra solamente información de esa interfaz (esté o no activa).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar interfaces de red</p>
+<div class="style-normal2">
+<p>Mostrar el estado de la interfaz <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0
+eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54  
+          inet addr:192.168.2.16  Bcast:192.168.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fed0:2f54/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:26 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:88 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3553 (3.4 KiB)  TX bytes:5485 (5.3 KiB)
+</code></pre><p>La ejecución del comando nos indica que la interfaz <code>eth0</code> tiene la ip <code>192.168.2.16</code>, la máscara de red es la <code>255.255.255.0</code> y que está activa (<code>UP</code> ... <code>RUNNING</code>) entre otras cosas.</p>
+</div>
+  </div>
+<h4 id="mostrar-estadisticas-de-las-interfaces-de-red">MOSTRAR ESTADISTICAS DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig [-s] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+Muestra estadisticas de todas las interfaces (o una concreta) activas.
+</div>
+<h4 id="activar-o-desactivar-una-interfaz-de-red">ACTIVAR O DESACTIVAR UNA INTERFAZ DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; [up|down]
+</code></pre><div class="style-normal">
+<p>Para activar una interfaz de red se utiliza el flag <code>up</code> y para desactivarla el flag <code>down</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Activar una interfaz de red</p>
+<div class="style-normal2">
+<p>Activar la interfaz <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 up
+</code></pre></div>
+</div>
+<h4 id="cambiar-la-dirección-mac-de-una-interfaz-de-red">CAMBIAR LA DIRECCIÓN MAC DE UNA INTERFAZ DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; hw ether &lt;mac&gt;
+</code></pre><div class="style-normal">
+<p>Cambia la dirección MAC de una interfaz de red. Es importante tener en cuenta que al reiniciar el sistema, la interfaz recuperará su dirección MAC original.</p>
+ </div>
+<div class="admonition example">
+<p class="admonition-title">Cambiar dirección MAC</p>
+<div class="style-normal2">
+<p>Cambiar la dirección MAC de la interfaz <code>eth0</code> a <code>00:00:2a:3a:4a:5a</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 hw ether 00:00:2a:3a:4a:5a
+</code></pre></div>
+</div>
+<h4 id="cambiar-la-dirección-ip-de-una-interfaz-de-red">CAMBIAR LA DIRECCIÓN IP DE UNA INTERFAZ DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; {&lt;ip/prefix&gt; | &lt;ip&gt; netmask &lt;máscara&gt;}
+</code></pre><div class="style-normal">
+<p>Cambia la dirección IP de una interfaz de red o le asigna una si no tenía. La configuración de la dirección IP con ifconfig es <strong>estática</strong> (o manual).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Cambiar dirección IP</p>
+<div class="style-normal2">
+<p>Cambiar la dirección IP de la interfaz <code>eth0</code> a <code>192.168.2.20/27</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20/27
+</code></pre><p>También se obtendría el mismo resultado con el siguiente comando:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20 netmask 255.255.255.224
+</code></pre></div>
+  </div>
+<h3 id="route">ROUTE </h3>
+<div class="style-normal">
+<p>La utilidad o comando <code>route</code> se utiliza para configurar y mostrar información de la tabla de enrutamiento de un equipo; es decir la tabla que nos indica como llegar a otras redes a las que no se está directamente conectado y a Internet. Entre las diferentes operaciones que podemos llevar a cabo con el comando route tenemos:</p>
+</div>
+<h4 id="mostrar-la-tabla-de-enrutamiento">MOSTRAR LA TABLA DE ENRUTAMIENTO </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route [-n]
+</code></pre><div class="style-normal">
+<p>Muestra la tabla de enrutamiento del sistema. Si se utiliza el flag <code>-n</code> muestra las direcciones IP en lugar de los nombres de host. La información más relevante que muestra este comando es:</p>
+</div>
+<ul>
+<li><em>Destination</em>: La red de destino a la que se quiere llegar.</li>
+<li><em>Gateway</em>: La puerta de enlace a través de la cual se accede a la red de destino.</li>
+<li><em>Genmask</em>: La máscara de red que define el rango de direcciones IP de la red de destino.</li>
+<li><em>Flags</em>: Indicadores que muestran el estado de la ruta (U: ruta activa, G: puerta de enlace, H: host, etc.).</li>
+<li><em>Metric</em>: La métrica de la ruta, que indica la preferencia de la ruta (rutas con menor métrica son preferidas).</li>
+<li><em>Iface</em>: La interfaz de red a través de la cual se accede a la red de destino.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Mostrar tabla de enrutamiento</p>
+<div class="style-normal2">
+<p>Mostrar la tabla de enrutamiento del sistema.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.2.1     0.0.0.0         UG    0      0        0 eth0
+192.168.2.0     *               255.255.255.0   U     0      0        0 eth0
+</code></pre><p>El resultado muestra que la ruta por defecto (<code>default</code>) utiliza la puerta de enlace <code>192.168.2.1</code> a través de la interfaz <code>eth0</code> para acceder a Internet.<br>
+Si utilizamos el flag <code>-n</code> el destino de la ruta por defecto se muestra como una dirección IP (<code>0.0.0.0</code>) en lugar de <code>default</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.2.1     0.0.0.0         UG    0      0        0 eth0
+192.168.2.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+</code></pre></div>
+</div>
+<h4 id="añadir-una-ruta-estática">AÑADIR UNA RUTA ESTÁTICA </h4>
+<div class="style-normal">
+<p>Podemos añadir entradas a la tabla de enritamiento para acceder a redes a las que no se está directamente conectado. Un caso especial, es la ruta por defecto o ruta que nos da acceo a Internet.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route add default gw &lt;puerta_de_enlace&gt; [metric &lt;métrica&gt;] [dev] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Añadir una ruta por defecto (a Internet) a través de una puerta de enlace. La opción <code>dev</code> se puede omitir si sólo hay una interfaz de red; es más se puede omitir hasta el nombre de la interfaz.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta por defecto</p>
+<div class="style-normal2">
+<p>Añadir una ruta por defecto a través de la puerta de enlace <code>192.168.2.1</code>. Suponiendo que la única interfaz de red es <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route add default gw 192.168.2.1
+</code></pre></div>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route add -net {&lt;red&gt; netmask &lt;máscara&gt; | &lt;red/prefijo&gt;} gw &lt;puerta_de_enlace&gt; [metric &lt;métrica&gt;] dev [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Añadir una ruta estática a la tabla de enrutamiento. La opción <code>metric</code> permite establecer la métrica de la ruta, que influye en la selección de rutas.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta estática</p>
+<div class="style-normal2">
+<p>Añadir una ruta estática para acceder a la red <code>192.168.11.0/25</code> desde un equipo de la red <code>192.168.10.0/24</code> utilizando como puerta de enlace el equipo con IP <code>192.168.10.2</code>. El equipo sólo tiene una interfaz de salida de nombre <code>eth0</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>  root@Host:~# route add -net 192.168.11.0 netmask 255.255.255.128 gw 192.168.10.2 dev eth0
+</code></pre><p>Otra forma alternativa y simplificada del mismo comando seía:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>  root@Host:~# route add -net 192.168.11.0/25 gw 192.168.10.2
+</code></pre></div>
+</div>
+<h4 id="eliminar-una-ruta-estática">ELIMINAR UNA RUTA ESTÁTICA </h4>
+<div class="style-normal">
+<p>De forma análoga a como se añadían rutas, podemos eliminar rutas.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del default [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Eliminar ruta por defecto. Si sólo tenemos una única ruta por defecto (lo habitual) no es necesario especificar la puerta de enlace (ni la interfaz de red).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar ruta por defecto</p>
+<div class="style-normal2">
+<p>Eliminar la ruta por defecto de la tabla de enrutamiento de un equipo.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del default
+</code></pre></div>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>route del -net {&lt;red&gt; netmask &lt;máscara&gt; | &lt;red/prefijo&gt;} [gw &lt;puerta_de_enlace&gt;] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Elimina una ruta estática a una red no directamente conectada a través de un equipo (gw). Si sólo hay una red a través de un equipo se puede omitir la opción <code>gw</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar ruta estática</p>
+<div class="style-normal2">
+<p>Eliminar la ruta estática a la red de destino <code>192.168.11.0/25</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del -net 192.168.11.0/25
+</code></pre><p>Alternativamente, podemos utilizar el comando:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del -net 192.168.11.0 netmask 255.255.255.128
+</code></pre></div>
+</div>
+<h3 id="arp">ARP </h3>
+<div class="style-normal">
+<p>El comando <code>arp</code> se utiliza para manipular o mostrar las entradas de la tabla ARP (Address Resolution Protocol), que almacena la correspondencia entre direcciones IP y direcciones MAC de los equipos en una red local. Entre las diferentes operaciones que podemos llevar a cabo con el comando arp tenemos:</p>
+</div>
+<h4 id="mostrar-la-tabla-arp">MOSTRAR LA TABLA ARP </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>arp [-a | -v] [&lt;equipo&gt;]
+</code></pre><div class="style-normal">
+<p>Muestra el contenido de la tabla ARP. Si se utiliza la opción <code>-a</code>, muestra la tabla en formato BSD. La opción <code>-v</code> proporciona información adicional (verbose).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar tabla ARP</p>
+<div class="style-normal2">
+<p>Mostrar todas las entradas de la tabla ARP.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# arp
+Address       Hwtype      Hwaddress           Flags       Mask    Iface
+192.168.2.3   ether       08:00:27:3b:72:33   C                   eth0
+192.168.2.1   ether       52:54:00:12:35:00   C                   eth0
+</code></pre></div>
+</div>
+<h4 id="añadir-una-entrada-a-la-tabla-arp">AÑADIR UNA ENTRADA A LA TABLA ARP </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>arp -s &lt;ip_equipo&gt; &lt;mac&gt;
+</code></pre><div class="style-normal">
+<p>Añade manualmente una entrada a la tabla ARP especificando la dirección IP del equipo y su dirección MAC.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir entrada ARP</p>
+<div class="style-normal2">
+<p>Añadir una entrada a la tabla ARP para el equipo con IP <code>192.168.2.10</code> con mac <code>08:00:27:aa:bb:cc</code> y a continuación visualizar la tabla ARP.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# arp -s 192.168.2.10 08:00:27:aa:bb:cc
+root@Host:~# arp
+Address       Hwtype      Hwaddress           Flags       Mask    Iface
+192.168.2.3   ether       08:00:27:3b:72:33   C                   eth0
+192.168.2.10  ether       08:00:27:aa:bb:cc   CM                  eth0
+192.168.2.1   ether       52:54:00:12:35:00   C                   eth0
+</code></pre><p>El valor de <code>Flags</code> a <code>M</code> indica que la entrada se ha añadido manualmente y no se ha aprendido dinámicamente.</p>
+</div>
+</div>
+<h4 id="eliminar-una-entrada-de-la-tabla-arp">ELIMINAR UNA ENTRADA DE LA TABLA ARP </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>arp -d &lt;ip_equipo&gt;
+</code></pre><div class="style-normal">
+<p>Elimina la entrada de la tabla ARP correspondiente a la dirección IP especificada.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar entrada ARP</p>
+<div class="style-normal2">
+<p>Eliminar la entrada de la tabla ARP para el equipo con IP <code>192.168.2.10</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# arp -d 192.168.2.10
+</code></pre></div>
+</div>
+<h2 id="la-librería-iproute2">LA LIBRERÍA IPROUTE2 </h2>
+<div class="style-normal">
+<p>La librería <strong>iproute2</strong> es la más moderna y recomendada en las distribuciones actuales de Linux. Proporciona una herramienta unificada llamada <code>ip</code> para gestionar la red de forma avanzada. Esta herramienta reemplaza a las utilidades clásicas de <strong>net-tools</strong> y ofrece una interfaz más coherente y potente para la configuración de red.</p>
+<p>Con el comando <code>ip</code> se pueden realizar tareas que antes requerían múltiples comandos separados, como <code>ifconfig</code>, <code>route</code> y <code>arp</code>. La sintaxis del comando <code>ip</code> es flexible y permite gestionar diversos aspectos de la configuración de red, incluyendo interfaces, direcciones IP, rutas y tablas ARP. La sintaxis básica del comando ip es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip [OPTIONS] OBJECT {COMMAND | help}
+</code></pre><div class="style-normal">
+<p>Las opciones (<strong>OPTIONS</strong>) y el objeto (<strong>OBJECT</strong>) determinan qué aspecto de la configuración de red se va a gestionar, mientras que el comando (<strong>COMMAND</strong>) especifica la acción a realizar. La opción <code>help</code> proporciona información sobre el uso del comando.<br>
+Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <strong>COMMAND</strong> son numerosos. Los valores más comunes son de <strong>OBJECT</strong> son:</p>
+</div> 
+<div class="style-normal2">
+<ul>
+<li><em><strong>link</strong></em>: Utilizado para la gestión de las interfaces de red a nivel de enlace.</li>
+<li><em><strong>address</strong></em>: Utilizado para la gestión del direccionamiento de red.</li>
+<li><em><strong>route</strong></em>: Utilizado para la gestión de las tablas de enrutamiento.</li>
+<li><em><strong>neighbour</strong></em>: Utilizado para la gestión de las tablas ARP.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>EL comando <code>ip</code> admite abreviaciones de las diferentes opciones con que se ejecuta siempre y cuando no haya ambigüedad.</p>
+</div>
+<h3 id="ip-link">IP LINK </h3>
+<div class="style-normal">
+<p>El comando <code>ip</code> con el objeto <strong>link</strong> nos permite llevar a cabo acciones como: activar y desactivar interfaces de red, ver el estado de éstas y cambiarles la dirección MAC.</p>
+</div>
+<h4 id="mostrar-el-estado-de-las-interfaces-de-red">MOSTRAR EL ESTADO DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip link show [up] [dev] [&lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Muestra información del estado de una interfaz (o de todas si no se especifica interfaz). Con el flag <code>up</code> solo muestra las interfaces activas. La palabra reservada <code>dev</code> la podemos omitir.</p>
+<p>Una forma abreviada del comando para mostrar todas las interfaces de red sería la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip link
+</code></pre><div class="admonition example">
+<p class="admonition-title">Mostrar estado interfaces de red</p>
+<div class="style-normal2">
+<p>Mostrar el estado de todas las interfaces e red que estén activas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link show up
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+   link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+   link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+</code></pre><p>Entre la información mostrada podemos comprobar que tenemos dos interfaces de red: la interfaz de loopback (<strong>lo</strong>) y la de la tarjeta de red <strong>enp0s3</strong>. Además se puede observar que las dos interfaces están activas (flag <code>UP</code>) y que la MAC de la tarjeta de red es <code>08:00:27:f2:b7:02</code>.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar estado interfaces de red</p>
+<div class="style-normal2">
+<p>Mostrar el estado de la interfaz de red <strong>enp0s8</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link dev enp0s8
+</code></pre><p>Alternativamente, podríamos haber utilizado el comando:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link enp0s8
+</code></pre></div>
+</div>
+<h4 id="activar-y-desactivar-interfaces-de-red">ACTIVAR Y DESACTIVAR INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set [dev] &lt;interfaz&gt; [up|down]
+</code></pre><div class="style-normal">
+<p>Activa una interfaz de red (opción <code>up</code>) y desactiva una interfaz de red (opción <code>down</code>).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Activar y desactivar interfaces de red</p>
+<div class="style-normal2">
+<p>Desactivar la interfaz de red <strong>enp0s3</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set dev enp0s3 down
+</code></pre></div>
+</div>
+<h4 id="cambiar-la-mac-de-una-interfaz-de-red">CAMBIAR LA MAC DE UNA INTERFAZ DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set [dev] &lt;interfaz&gt; address &lt;nueva-mac&gt;
+</code></pre><div class="style-normal">
+<p>Cuando cambiamos la MAC de una interfaz de red con el comando <code>ip link set</code> este cambio es temporal y no persistente; es decir, se pierde al reiniciar el sistema.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Cambiar MAC interfaz de red</p>
+<div class="style-normal2">
+<p>Cambiar la MAC de la interfaz de red <strong>enp0s3</strong> por la MAC <code>00:00:2a:3a:4a:5a</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set dev enp0s3 00:00:2a:3a:4a:5a
+</code></pre><p>Si mostramos el estado de la interfaz de red con el comando <code>ip link show enp0s3</code> podemos comprobar que la MAC ha cambiado. También podemos observar que aparece el campo <code>permaddr</code> que nos indica la MAC original de la interfaz de red.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link show enp0s3
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+   link/ether 00:00:2a:3a:4a:5a brd ff:ff:ff:ff:ff:ff permaddr 08:00:27:f2:b7:02
+</code></pre></div>
+</div>
+<h3 id="ip-address">IP ADDRESS </h3>
+<div class="style-normal">
+<p>El comando <code>ip</code> con el objeto <strong>address</strong> nos permite llevar a cabo acciones como: mostrar la configuración de las interfaces de red y asignar direcciones IP a las mismas.</p>
+</div>
+<h4 id="mostrar-la-configuración-ip-de-las-interfaces-de-red">MOSTRAR LA CONFIGURACIÓN IP DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address show [up] [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Muestra la configuración del direccionamiento de todas las interfaces de red o la de la interfaz pasada como parámetro. Con la opción <code>up</code> se muestran solo las que están activadas. La información más relevante que muestra este comando es:</p>
+</div>
+<div class="style-normal">
+<ul>
+<li>El nombre de la interfaz (o interfaces) de red</li>
+<li>La dirección IPv4</li>
+<li>La dirección de broadcast</li>
+<li>La dirección MAC</li>
+<li>El estado de la interfaz. El flag <code>UP</code> y el indicador <code>state UP</code> indican que la interfaz está activa (si no aparecen no está activa).</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración interfaces</p>
+<div class="style-normal2">
+<p>Muestra la configuración de todas las interfaces de red, estén o no activadas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast2 state UP group default qlen 1000
+    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.17/245 brd 192.168.2.255 scope global dynamic enp0s3
+       valid_lft 310sec preferred_lft 310sec
+    inet6 fe80::a00:27ff:fef2:b702/64 scope link
+       valid_lft forever preferred_lft forever
+</code></pre><p>En la imagen se muestra la salida del comando <code>ip addr show</code> en un equipo con una única interfaz de red activa (<strong>enp0s3</strong>) y la interfaz de loopback (<strong>lo</strong>).<br>
+En la salida del comando se puede observar:</p>
+<ul>
+<li>El nombre de la interfaz de red (<strong>enp0s3</strong> y <strong>lo</strong>).</li>
+<li>La dirección MAC (para <strong>enp0s3</strong> sería <code>08:00:27:f2:b7:02</code>).</li>
+<li>La dirección IPv4 (para <strong>enp0s3</strong> sería <code>192.168.1.10/24</code>).</li>
+<li>La dirección de broadcast (para <strong>enp0s3</strong> sería <code>192.168.1.255</code>).</li>
+<li>El estado de la interfaz. El flag <code>UP</code> y el indicador <code>state UP</code> indican que la interfaz está activa.</li>
+</ul>
+<p>Cualquiera de los comandos mostrados a continuación son equivalentes, pues como ya sabemos se admiten abreviaturas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address
+root@Host:~# ip addr show
+root@Host:~# ip addr
+root@Host:~# ip a sh
+root@Host:~# ip a
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración interfaces</p>
+<div class="style-normal2">
+<p>Muestra la configuración de la interfaz <strong>enp0s3</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show dev enp0s3
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.17/24 brd 192.168.2.255 scope global dynamic enp0s3
+       valid_lft 283sec preferred_lft 283sec
+    inet6 fe80::a00:27ff:fef2:b702/64 scope link
+       valid_lft forever preferred_lft forever
+</code></pre><p>Las opciones <code>UP</code> y <code>state UP</code> indican que la interfaz está activada. Si no aparecen es que no está activada.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar configuración interfaces</p>
+<div class="style-normal2">
+<p>Hemos desactivado la interfaz <strong>enp0s3</strong>. Primero mostramos la configuración de todas las interfaces y a continuación solo de las activas.</p>
+<p>Mostrar todas las interfaces.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.17/24 brd 192.168.2.255 scope global dynamic enp0s3
+       valid_lft 225sec preferred_lft 225sec
+</code></pre><p>Fijémonos que no aparece el indicador de estado <code>UP</code> en la interfaz <strong>enp0s3</strong>. Además, el indicador <code>state DOWN</code> nos dice que la interfaz no está activa.</p>
+<p>Ahora mostramos solo las interfaces activas.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show up
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+</code></pre><p>Ahora solo se muestra la interfaz de loopback <strong>lo</strong> ya que la interfaz <strong>enp0s3</strong> está desactivada.</p>
+</div>
+</div>
+<h4 id="configurar-las-ip-de-las-interfaces-de-red">CONFIGURAR LAS IP DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip addr add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
+</code></pre><div class="style-normal">
+<p>Añade una nueva IP a una interfaz de red. Si ya tenía una, ahora tendrá una más.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir IP a interfaz de red</p>
+<div class="style-normal2">
+<p>Añadir la IP <code>192.168.2.128</code> a la interfaz de red <strong>enp0s3</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@PCL-1:~# ip address add 192.168.2.128/24 dev enp0s3
+</code></pre><p>Podemos comprobar que ahora tenemos dos IPs:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show dev enp0s3
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:f2:b7:02 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.17/24 brd 192.168.2.255 scope global dynamic enp0s3
+       valid_lft 106sec preferred_lft 106sec
+    inet 192.168.2.128/24 scope global secondary enp0s3
+       valid_lft forever preferred_lft forever
+</code></pre></div>
+</div>
+<h4 id="eliminar-ip-de-las-interfaces-de-red">ELIMINAR IP DE LAS INTERFACES DE RED </h4>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address {delete | del} &lt;ip/prefix&gt; dev &lt;interfaz&gt;
+</code></pre><div class="style-normal">
+<p>Elimina la IP especificada de la interfaz de red dada.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
+<div class="style-normal2">
+<p>Eliminar la IP <code>192.168.2.128</code> de la interfaz de red <strong>enp0s3</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address delete 192.168.2.128/24 dev enp0s3
+</code></pre><p>También habría sido válido hacer:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address del 192.168.2.128/24 dev enp0s3
+</code></pre><p>Es muy habitual escribir <code>addr</code> como forma abreviada de <code>address</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip addr del 192.168.2.128/24 dev enp0s3
+</code></pre></div>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address flush [[dev] &lt;interfaz&gt;] [&lt;opción&gt;]
+</code></pre><div class="style-normal">
+<p>Elimina todas las IPs asignadas a una interfaz dada (o a todas) que cumplen una propiedad especificada por el parámetro <code>opción</code>. Algunas de las opciones son:</p>
+</div>
+<div class="style-normal2">
+<ul>
+<li><code>dynamic</code>: para IPs asignadas por un servidor DHCP,</li>
+<li><code>permanent</code>: para IPs configuradas manualmente,</li>
+<li><code>secondary</code>: para IPs secundarias,</li>
+<li><code>up</code>: para direcciones de interfaces activas que tengan IP asignada.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Con la tecla <strong><code>Tab</code></strong> antes de finalizar de escribir la instrucción podemos ver todas las opciones disponibles.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
+<div class="style-normal2">
+<p>Elimina todas las IPs asignadas a la interfaz <strong>enp0s3</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s3
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
+<div class="style-normal2">
+<p>Elimina todas las IPs que se han asignado dinámicamente a cualquier interfaz.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dynamic
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Eliminar IP de intefaces de red</p>
+<div class="style-normal2">
+<p>Elimina todas las IPs que se han asignado de manera estática a la interfaz <strong>enp0s8</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s8 permanent
+</code></pre></div>
+</div>
+<h3 id="ip-route">IP ROUTE </h3>
+<div class="style-normal">
+<p>Utilizado para consultar y modificar la tabla de enrutamiento.</p>
+</div>
+<h4 id="consultar-tabla-de-enrutamiento">CONSULTAR TABLA DE ENRUTAMIENTO </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">ip</span> route <span class="token punctuation">[</span>show<span class="token punctuation">]</span>
+</code></pre><div class="style-normal">
+<p>Muestra la tabla de enrutamiento. No hay diferencia entre usar el parámetro <code>show</code> o no. Se muestra una línea por cada red que se puede alcanzar. Entre los datos más significativos se incluyen:</p>
+</div>
+<div class="style-normal2">
+<ul>
+<li>La red de destino a la cual se deben enviar los datos.</li>
+<li>Para aquellas redes a las que no se está directamente conectado, se indica la puerta de enlace o IP del equipo al cual debemos enviar los datos para que lleguen a su destino.</li>
+<li>Interfaz por donde se deben enviar los datos. Si solo tenemos una tarjeta de red, siempre usaremos la misma interfaz.</li>
+<li>Para redes directamente conectadas siempre aparece el valor <code>scope link</code>.</li>
+<li>Para aquellas redes a las que no se está directamente conectado, la IP por la cual me conecto a dicha red.</li>
+</ul>
+</div>
+<div class="style-normal">
+La entrada de la tabla con red de destino `default` (`0.0.0.0/0`) hace referencia a la ruta por defecto; es decir donde se envían los paquetes si no hay ninguna entrada para la red de destino en la tabla de enrutamiento.
+Es importante tener una ruta por defecto ya que en caso contrario, seguramente, no tendremos acceso a Internet.
+</div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Muestra la tabla de enrutamiento.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route show
+default via 192.168.2.1 dev enp0s3
+192.168.2.0/24 dev enp0s3 proto kernel scope link src 192.168.2.17
+</code></pre><p>La primera línea de la tabla de enrutamiento nos indica que tenemos definida una ruta por defecto y que en este caso, los paquetes se dirigen a la ip 192.168.2.1 a través de la interfaz enp0s3.<br>
+La segunda línea nos indica que la interfaz enp0s3 tiene la ip 192.168.2.17 y está directamente conectada a la red 192.168.2.0/24.</p>
+</div>
+<h4 id="añadir-rutas-a-la-tabla-de-enrutamiento">AÑADIR RUTAS A LA TABLA DE ENRUTAMIENTO </h4>
+<div class="style-normal">
+<p>Con ip route podemos añadir rutas para acceder a redes a las que no estoy directamente conectado. De especial importancia es la red por defecto que nos sirve para acceder a Internet u otras redes para las que no he definido ninguna ruta.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add default via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Añade una ruta por defecto de manera que los datos que no sean para ninguna de las otras redes de la tabla de encaminamiento se envíen a la puerta de enlace dada y salgan por la interfaz dada. Si solo tenemos una interfaz de red, podemos omitir <code>dev &lt;interfaz&gt;</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir entrada a la tabla de enrutamiento</p>
+</div>
+<p>Configuración puerta de enlace de un equipo que solo tiene una tarjeta de red si sabemos que la puerta de enlace tiene la IP <code>192.168.2.1</code>.</p>
+<div class="style-normal2">
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.2.1
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta por defecto a la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Configuración de la puerta de enlace de un equipo que tiene dos tarjetas de red <code>eth0</code> y <code>eth1</code>, de manera que la primera tarjeta (<code>enp0s3</code>) está en la red interna <code>192.168.254.0/24</code> y la segunda (<code>enp0s8</code>) en la red <code>192.168.1.0/24</code>, donde hay un enrutador que da acceso a internet cuya IP es la primera de la red.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.1.1 dev enp0s8
+</code></pre></div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route add &lt;red-destino/prefix-red&gt; via &lt;puerta-enlace&gt; [dev &lt;interfaz&gt;]
+</code></pre><div class="style-normal">
+<p>Añade una ruta estática para llegar a una red a la que no se está directamente conectado. Se debe indicar cuál es la red a la que queremos acceder (<code>&lt;red-destino/prefix-red&gt;</code>), por qué interfaz (<code>&lt;interfaz&gt;</code>) deben salir los datos y a qué equipo (<code>&lt;puerta-enlace&gt;</code>) debemos enviar los datos para que lleguen a su destino.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta estática a la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Añadir una ruta estática para llegar a la red <code>192.168.11.128/25</code> desde la red <code>192.168.2.0/24</code>, utilizando como puerta de enlace el equipo con IP <code>192.168.2.1</code> y como interfaz de salida <code>enp0s3</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add 192.168.11.128/25 via 192.168.2.1 dev enp0s3
+</code></pre><p>Si solo tenemos una interfaz de red, podemos omitir <code>dev &lt;interfaz&gt;</code>.</p>
+<p>Podemos ver que se ha añadido la nueva ruta:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route show
+default via 192.168.2.1 dev enp0s3
+192.168.2.0/24 dev enp0s3 proto kernel scope link src 192.168.2.17
+192.168.11.128/25 via 192.168.2.1 dev enp0s3
+</code></pre></div>
+<h4 id="eliminar-rutas-de-la-tabla-de-enrutamiento">ELIMINAR RUTAS DE LA TABLA DE ENRUTAMIENTO </h4>
+<div class="style-normal">
+<p>De la misma manera que se pueden añadir rutas a la tabla de enrutamiento se pueden eliminar las rutas añadidas. También es posible modificar rutas con ip route change o ip route replace aunque esto no lo trataremos.</p>
+</div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete default [via &lt;puerta-enlace&gt;]
+</code></pre><p>Elimina la ruta por defecto dada la puerta de enlace. Si solo tenemos una ruta por defecto, no es necesario especificar la puerta de enlace (es lo habitual).</p>
+<div class="admonition example">
+<p class="admonition-title">Eliminar ruta por defecto de la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Eliminar la ruta por defecto si solo hay una.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete default
+</code></pre><p>Se suele utilizar la abreviatura <code>del</code>:</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route del default
+</code></pre></div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete &lt;red-destino/prefix-red&gt; [via &lt;puerta-enlace&gt;]
+</code></pre><div class="style-normal2">
+<p>Elimina la ruta estática a la red especificada. Si solo hay una ruta estática con destino la red especificada, no es necesario indicar la puerta de enlace; en caso contrario, sí se debe especificar.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Añadir ruta estática a la tabla de enrutamiento</p>
+</div>
+<div class="style-normal2">
+<p>Elimina la ruta estática con destino la red <code>192.168.11.128/25</code> si a esta se llega por el equipo con IP <code>192.168.2.1</code>. Sabemos que hay más de una ruta con este destino.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete 192.168.11.128/25 via 192.168.2.1
+</code></pre></div>
+<h3 id="ip-neighbour">IP NEIGHBOUR </h3>
+<h2 id="pruebas-de-conectividad">PRUEBAS DE CONECTIVIDAD </h2>
+<div class="style-normal">
+<p>Para concluir trataremos el tema de la conectividad. Cuando se configura el direccionamiento de red de los equipos, debemos garantizar que existe conectividad interna, conectividad externa con internet u otras redes a las que no estoy directamente conectado, y que funcione la resolución de nombres.</p>
+<p>Para comprobar la conectividad podemos utilizar el comando <code>ping</code>. El comando <code>ping</code> envía un paquete ICMP de petición de eco a un equipo y este nos envía de respuesta otro paquete ICMP llamado de respuesta de eco.</p>
+<p>La mejor manera de comprobar la conectividad interna es hacer un <code>ping</code> a la puerta de enlace o a otro equipo de la red que normalmente está en funcionamiento. Para la conectividad externa se puede hacer un <code>ping</code> a una dirección IP pública conocida, como la del servidor DNS de Google con IP <code>8.8.8.8</code>. Para comprobar la resolución DNS (necesaria, por ejemplo, cuando usamos un navegador para ir a una página web), debemos tener correctamente configurados los clientes DNS. Estos se configuran de manera permanente en un archivo del sistema.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Conectividad interna</p>
+</div>
+<div class="style-normal2">
+<p>Comprobamos que tenemos conectividad interna desde un equipo de la red <code>192.168.2.0/24</code> haciendo un <code>ping</code> a la puerta de enlace cuya IP es <code>192.168.2.1</code>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ping -c2 192.168.2.1
+PING 192.168.2.1 (192.168.2.1) 56(84) bytes of data.
+64 bytes from 192.168.2.1: icmp_seq=1 ttl=255 time=0.361 ms
+64 bytes from 192.168.2.1: icmp_seq=2 ttl=255 time=0.391 ms
+
+--- 192.168.2.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1024ms
+rtt min/avg/max/mdev = 0.361/0.376/0.391/0.015 ms
+</code></pre><p>Vemos que sí hay conectividad ya que se han enviado dos paquetes y no se ha perdido ninguna de las respuestas. El parámetro <code>-c2</code> indica que solo envía dos paquetes (por defecto se envían paquetes hasta que el usuario pulse Ctrl+C).<br>
+Si no nos llega ninguna respuesta, probablemente el problema es que no tenemos configurada la ruta por defecto. Esto lo podemos comprobar con el comando <code>ip route</code>.</p>
+
+<div class="admonition example">
+<p class="admonition-title">Conectividad externa</p>
+</div>
+<div class="style-normal2">
+<p>Para comprobar la conectividad externa podemos hacer un <code>ping</code> a la IP <code>8.8.8.8</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@Host:~<span class="token comment"># ping -c2 8.8.8.8</span>
+PING <span class="token number">8.8</span>.8.8 <span class="token punctuation">(</span><span class="token number">8.8</span>.8.8<span class="token punctuation">)</span> <span class="token number">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data.
+<span class="token number">64</span> bytes from <span class="token number">8.8</span>.8.8: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">117</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">13.1</span> ms
+<span class="token number">64</span> bytes from <span class="token number">8.8</span>.8.8: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">2</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">117</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">12.8</span> ms
+
+--- <span class="token number">8.8</span>.8.8 <span class="token function">ping</span> statistics ---
+<span class="token number">2</span> packets transmitted, <span class="token number">2</span> received, <span class="token number">0</span>% packet loss, <span class="token function">time</span> 1001ms
+rtt min/avg/max/mdev <span class="token operator">=</span> <span class="token number">12.782</span>/12.924/13.067/0.142 ms
+</code></pre><p>Si la puerta de enlace de la ruta por defecto está bien configurada, esta comprobación debería funcionar.</p>
+</div>
+<div class="style-normal">
+<p>El hecho de que el <code>ping</code> no funcionara no significa necesariamente que la configuración de la red esté mal hecha. Puede haber un cortafuegos que filtre las peticiones de eco. Por ejemplo, el cortafuegos Windows Defender no permite, por defecto, las peticiones de eco.<br>
+En estos casos podemos utilizar aplicaciones alternativas para comprobar la conectividad. Por ejemplo, la aplicación <code>hping3</code> permite enviar paquetes de petición de eco de muchos protocolos, no solo ICMP.</p>
+<div class="admonition example">
+<p class="admonition-title">Conectividad externa</p>
+</div>
+<p>Hacemos un <code>ping</code> convencional a uno de los servidores web de la Generalitat Valenciana cuya IP es <code>195.77.16.26</code>. Cuando hacemos un <code>ping</code> vemos que el equipo destino o un equipo intermedio bloquea las peticiones de eco.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># ping -c2 195.77.16.26</span>
+PING <span class="token number">195.77</span>.16.26 <span class="token punctuation">(</span><span class="token number">195.77</span>.16.26<span class="token punctuation">)</span> <span class="token number">56</span><span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span> bytes of data.
+
+--- <span class="token number">195.77</span>.16.26 <span class="token function">ping</span> statistics ---
+<span class="token number">2</span> packets transmitted, <span class="token number">0</span> received, <span class="token number">100</span>% packet loss, <span class="token function">time</span> 1029ms
+</code></pre><p>No nos ha llegado ninguna respuesta, como se puede ver.</p>
+<p>Instalamos el paquete <code>hping3</code>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># apt install hping3</span>
+</code></pre><p>Hacemos un <code>hping3</code> a la IP del servidor web de la Generalitat, enviando un paquete de conexión HTTP, y vemos que sí tenemos respuesta:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># hping3 -c 2 -S -p 80 195.77.16.26</span>
+HPING <span class="token number">195.77</span>.16.26 <span class="token punctuation">(</span>enp0s3 <span class="token number">195.77</span>.16.26<span class="token punctuation">)</span>: S set, <span class="token number">40</span> headers + <span class="token number">0</span> data bytes
+<span class="token assign-left variable">len</span><span class="token operator">=</span><span class="token number">46</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token number">195.77</span>.16.26 <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">255</span> <span class="token assign-left variable">id</span><span class="token operator">=</span><span class="token number">42</span> <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">80</span> <span class="token assign-left variable">flags</span><span class="token operator">=</span>SA <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">0</span> <span class="token assign-left variable">win</span><span class="token operator">=</span><span class="token number">32768</span> <span class="token assign-left variable">rtt</span><span class="token operator">=</span><span class="token number">19.8</span> ms
+<span class="token assign-left variable">len</span><span class="token operator">=</span><span class="token number">46</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token number">195.77</span>.16.26 <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">255</span> <span class="token assign-left variable">id</span><span class="token operator">=</span><span class="token number">43</span> <span class="token assign-left variable">sport</span><span class="token operator">=</span><span class="token number">80</span> <span class="token assign-left variable">flags</span><span class="token operator">=</span>SA <span class="token assign-left variable">seq</span><span class="token operator">=</span><span class="token number">1</span> <span class="token assign-left variable">win</span><span class="token operator">=</span><span class="token number">32768</span> <span class="token assign-left variable">rtt</span><span class="token operator">=</span><span class="token number">19.7</span> ms
+
+--- <span class="token number">195.77</span>.16.26 hping statistic ---
+<span class="token number">2</span> packets transmitted, <span class="token number">2</span> packets received, <span class="token number">0</span>% packet loss
+round-trip min/avg/max <span class="token operator">=</span> <span class="token number">19.7</span>/19.8/19.8 ms
+</code></pre><p>Podemos encontrar más información de la utilidad <code>hping3</code> en las páginas de manual:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># man hping3</span>
+</code></pre><p>Para conocer la sintaxis del comando, podemos acceder a la ayuda contextual con:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>root@PCL-1:~<span class="token comment"># hping3 --help</span>
+</code></pre><p>En los sistemas Alpine Linux, el paquete <code>hping3</code> no se encuentra en los repositorios del sistema, sino en un repositorio de prueba. Podemos descargarlo e instalarlo de este repositorio con el comando:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>AlpineLinux:~<span class="token comment"># apk add hping3 --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing</span>
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.18/testing/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+<span class="token punctuation">(</span><span class="token number">1</span>/4<span class="token punctuation">)</span> Installing libpcap <span class="token punctuation">(</span><span class="token number">1.10</span>.4-r1<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">2</span>/4<span class="token punctuation">)</span> Installing tzdata <span class="token punctuation">(</span>2024a-r0<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">3</span>/4<span class="token punctuation">)</span> Installing tcl <span class="token punctuation">(</span><span class="token number">8.6</span>.13-r1<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">4</span>/4<span class="token punctuation">)</span> Installing hping3 <span class="token punctuation">(</span><span class="token number">20051105</span>-r4<span class="token punctuation">)</span>
+Executing busybox-1.36.1-r2.trigger
+OK: <span class="token number">160</span> MiB <span class="token keyword keyword-in">in</span> <span class="token number">71</span> packages
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>AlpineLinux:~<span class="token comment">#</span>
+</code></pre><h2 id="configuración-dinámica-de-red">Configuración dinámica de red </h2>
+<p>Para configurar una interfaz de red de forma dinámica, es decir, para que la dirección IP sea asignada automáticamente por un servidor DHCP, es necesario utilizar el cliente DHCP que proporciona la distribución de Linux.<br>
+En Debian y sus derivados, el cliente DHCP es <strong>dhclient</strong>.</p>
+<ul>
+<li>
+<p><strong>Solicitar una dirección IP por DHCP</strong></p>
+<p>Para solicitar una dirección IP de forma dinámica a través de un servidor DHCP, se utiliza el cliente DHCP proporcionado por la distribución de Linux. En Debian y sus derivados, el cliente DHCP es <strong>dhclient</strong>.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sudo dhclient &lt;interfaz&gt;
+</code></pre><p>Solicita una dirección IP para la interfaz especificada desde un servidor DHCP.</p>
+<div class="admonition example">
+<p class="admonition-title">Solicitar IP por DHCP</p>
+<p>Solicitar una dirección IP para la interfaz <code>eth0</code> utilizando el cliente DHCP.</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sudo dhclient eth0
+</code></pre><pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>sudo dhclient enp0s3
+</code></pre></div>
+<blockquote>
+<p>Al igual que con net-tools, estos cambios son <strong>temporales</strong> y se perderán tras un reinicio.</p>
+</blockquote>
+</li>
+</ul>
+</div></div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
