@@ -215,8 +215,15 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 #sidebar-toc-btn {
   display: none;
 }
+.md-sidebar-toc {
+  display: none;
+}
 @media screen and (min-width: 1024px) {
   #sidebar-toc-btn {
+    position: fixed;
+    display: block;
+  }
+  .md-sidebar-toc {
     position: fixed;
     display: block;
   }
