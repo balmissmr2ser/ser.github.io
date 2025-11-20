@@ -192,8 +192,14 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: #f0f9ff;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
 }
 .markdown-preview.markdown-preview .md-toc {
   background-color: #f0f9ff;
@@ -265,7 +271,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <td>Laboratorio de prácticas</td>
 </tr>
 <tr>
-<td><div style="margin-left: 200px;"> &nbsp; </div></td>
+<td><div style=" margin-left: 200px;"> &nbsp; </div></td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
