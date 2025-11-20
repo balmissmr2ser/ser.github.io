@@ -195,39 +195,42 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 .markdown-preview.markdown-preview .style-table-content {
   background-color: lightgrey;
 }
-/* @media screen and (min-width: 1024px) {
-    .md-toc {
-        position: fixed !important;
-        width: 250px; 
-        left: 0;
-        top: 0;
-        height: 100%;
-        background-color: #f8f8f8;
-        overflow-y: auto;
-        padding: 1em;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        z-index: 1000;
-    }
-    body {
-        padding-left: 270px !important;
-    }
-}*/
-#sidebar-toc-btn {
-  display: none;
-}
-.md-sidebar-toc {
-  display: none;
-}
 @media screen and (min-width: 1024px) {
-  #sidebar-toc-btn {
+  .md-toc {
     position: fixed;
-    display: block;
+    float: left;
+    width: 250px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    padding: 1em;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   }
-  .md-sidebar-toc {
-    position: fixed;
-    display: block;
+  body {
+    padding-left: 270px;
   }
 }
+/*HTML TOC*/
+/*#sidebar-toc-btn {
+    display: none;
+}
+
+.md-sidebar-toc {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+    #sidebar-toc-btn {
+    position: fixed;
+    display: block;  
+   }
+   .md-sidebar-toc {
+    position: fixed;
+    display: block;
+   }
+}*/
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -257,7 +260,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       
 <p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="máquinas-virtuales">MÁQUINAS VIRTUALES </h1>
+<h1 id="máquinas-virtualess">MÁQUINAS VIRTUALESs </h1>
 </div>
 <p>📙<a href="./t01.virtualbox.pdf">Descargar PDF</a></p>
 <div class="style-table-content">
@@ -265,7 +268,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#máquinas-virtuales" class="md-toc-link"><p>MÁQUINAS VIRTUALES</p>
+          <a href="#máquinas-virtualess" class="md-toc-link"><p>MÁQUINAS VIRTUALESs</p>
 </a>
           </summary>
         <div>
@@ -1115,163 +1118,13 @@ C:\&gt; VBoxManage modifyvm &lt;VM_name&gt; --hostonlyadapter1 &lt;intnet_name&g
 </div>
 
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#máquinas-virtuales" class="md-toc-link"><p>MÁQUINAS VIRTUALES</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#virtualización" class="md-toc-link">
-            <p>VIRTUALIZACIÓN</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#virtualbox" class="md-toc-link"><p>VIRTUALBOX</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#características" class="md-toc-link">
-            <p>CARACTERÍSTICAS</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#administrador" class="md-toc-link">
-            <p>ADMINISTRADOR</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#operaciones-con-maquinas-virtuales" class="md-toc-link"><p>OPERACIONES CON MAQUINAS VIRTUALES</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#crear-maquina-virtual" class="md-toc-link">
-            <p>CREAR MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instalar-sop-en-una-maquina-virtual" class="md-toc-link">
-            <p>INSTALAR S.OP. EN UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejecutar-parar-pausar-una-maquina-virtual" class="md-toc-link">
-            <p>EJECUTAR, PARAR, PAUSAR UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#exportar-una-maquina-virtual" class="md-toc-link">
-            <p>EXPORTAR UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#importar-una-maquina-virtual" class="md-toc-link">
-            <p>IMPORTAR UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instantanea-de-una-maquina-virtual" class="md-toc-link">
-            <p>INSTANTANEA DE UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#clonacion-de-una-maquina-virtual" class="md-toc-link">
-            <p>CLONACION DE UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#agrupación-de-maquinas-virtuales" class="md-toc-link">
-            <p>AGRUPACIÓN DE MAQUINAS VIRTUALES</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#uso-del-usb-en-una-maquina-virtual" class="md-toc-link">
-            <p>USO DEL USB EN UNA MAQUINA VIRTUAL</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#eliminar-una-maquina-virtual" class="md-toc-link">
-            <p>ELIMINAR UNA MAQUINA VIRTUAL</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#virtualbox-network-adapters" class="md-toc-link"><p>VIRTUALBOX NETWORK ADAPTERS</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tipos-de-adaptadores" class="md-toc-link">
-            <p>TIPOS DE ADAPTADORES</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#virtualbox-network-modes" class="md-toc-link"><p>VIRTUALBOX NETWORK MODES</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#not-attached" class="md-toc-link">
-            <p>NOT ATTACHED</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#nat" class="md-toc-link">
-            <p>NAT</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#nat-network" class="md-toc-link">
-            <p>NAT NETWORK</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#bridged-adapter" class="md-toc-link">
-            <p>BRIDGED ADAPTER</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#internal-network" class="md-toc-link">
-            <p>INTERNAL NETWORK</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#host-only-adapter" class="md-toc-link">
-            <p>HOST-ONLY ADAPTER</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#generic-driver" class="md-toc-link">
-            <p>GENERIC DRIVER</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#comparativa" class="md-toc-link">
-            <p>COMPARATIVA</p>
-
-          </a></div>
-        </div>
-      </details>
-    
-        </div>
-      </details>
-    
-        </div>
-      </details>
-    
-</div>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    
-    
-    
-    
-    
-    
-<script>
-document.body.setAttribute('html-show-sidebar-toc', true)
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
       
+      
+    
+    
+    
+    
+    
+    
   
     </body></html>
