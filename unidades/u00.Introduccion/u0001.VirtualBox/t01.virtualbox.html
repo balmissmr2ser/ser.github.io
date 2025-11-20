@@ -193,44 +193,24 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+  background-color: #f0f9ff;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: #f0f9ff;
 }
 @media screen and (min-width: 1024px) {
-  .md-toc {
+  .markdown-preview.markdown-preview .md-toc {
     position: fixed;
-    float: left;
     width: 250px;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background-color: #f8f8f8;
-    overflow-y: auto;
-    padding: 1em;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    left: 20px;
+    top: 20px;
+    height: auto;
+    z-index: 1000;
   }
-  body {
-    padding-left: 270px;
+  .markdown-preview.markdown-preview body {
+    padding-left: calc(250px + 20px + 10px);
   }
 }
-/*HTML TOC*/
-/*#sidebar-toc-btn {
-    display: none;
-}
-
-.md-sidebar-toc {
-    display: none;
-}
-
-@media screen and (min-width: 1024px) {
-    #sidebar-toc-btn {
-    position: fixed;
-    display: block;  
-   }
-   .md-sidebar-toc {
-    position: fixed;
-    display: block;
-   }
-}*/
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -260,15 +240,14 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       
 <p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="máquinas-virtualess">MÁQUINAS VIRTUALESs </h1>
+<h1 id="máquinas-virtuales---116">MÁQUINAS VIRTUALES - 116 </h1>
 </div>
 <p>📙<a href="./t01.virtualbox.pdf">Descargar PDF</a></p>
-<div class="style-table-content">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#máquinas-virtualess" class="md-toc-link"><p>MÁQUINAS VIRTUALESs</p>
+          <a href="#máquinas-virtuales---116" class="md-toc-link"><p>MÁQUINAS VIRTUALES - 116</p>
 </a>
           </summary>
         <div>
@@ -400,7 +379,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         </div>
       </details>
     
-</div>
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="virtualización">VIRTUALIZACIÓN </h2>

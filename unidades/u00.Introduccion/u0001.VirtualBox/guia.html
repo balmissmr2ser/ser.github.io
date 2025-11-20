@@ -193,7 +193,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+  background-color: #f0f9ff;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: #f0f9ff;
+}
+@media screen and (min-width: 1024px) {
+  .markdown-preview.markdown-preview .md-toc {
+    position: fixed;
+    width: 250px;
+    left: 20px;
+    top: 20px;
+    height: auto;
+    z-index: 1000;
+  }
+  .markdown-preview.markdown-preview body {
+    padding-left: calc(250px + 20px + 10px);
+  }
 }
 
       </style>
@@ -250,7 +266,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </tr>
 <tr>
 <td><div style="margin-left: 200px;"> &nbsp; </div></td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
