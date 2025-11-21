@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,24 +189,22 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: #f0f9ff;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
 }
 .markdown-preview.markdown-preview .md-toc {
-  background-color: #f0f9ff;
-}
-@media screen and (min-width: 1024px) {
-  .markdown-preview.markdown-preview .md-toc {
-    position: fixed;
-    width: 250px;
-    left: 20px;
-    top: 20px;
-    height: auto;
-    z-index: 1000;
-  }
-  .markdown-preview.markdown-preview body {
-    padding-left: calc(250px + 20px + 10px);
-  }
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -238,16 +233,16 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="máquinas-virtuales---116">MÁQUINAS VIRTUALES - 116 </h1>
+<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="máquinas-virtuales">MÁQUINAS VIRTUALES </h1>
 </div>
 <p>📙<a href="./t01.virtualbox.pdf">Descargar PDF</a></p>
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#máquinas-virtuales---116" class="md-toc-link"><p>MÁQUINAS VIRTUALES - 116</p>
+          <a href="#máquinas-virtuales" class="md-toc-link"><p>MÁQUINAS VIRTUALES</p>
 </a>
           </summary>
         <div>
@@ -572,9 +567,9 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 </div>
 <div style="page-break-after:always;"></div>
 <h5 id="sistema-sin-entorno-gráfico-linux">SISTEMA SIN ENTORNO GRÁFICO LINUX </h5>
-
+<div class="style-normal">
 <p>En los sistemas operativos sin entorno gráfico o de escritorio de tipo Linux como Linux Alpine, Linux Debian 11, ..., la usb debe ser montada y desmontada por el usuario.</p>
-
+</div>
 <div class="style-list">
 <ol>
 <li>Identificar la unidad y tipo de archivo en el que se detecto la usb. Utilizaremos el comando <code>blkid</code>.</li>
@@ -618,7 +613,7 @@ Para configurar la máquina y arrancar con la ISO utilizaremos la opción:</p>
 </div>
 <h5 id="sistema-sin-entorno-gráfico-windows">SISTEMA SIN ENTORNO GRÁFICO WINDOWS </h5>
 <div class="style-normal">
-En los sistemas sin entorno gráfico o de escritorio de tipo Windows como Windows Server Core o Windows Server Nano las usb se montan automáticamente, normalemente como unidad D ó E.
+<p>En los sistemas sin entorno gráfico o de escritorio de tipo Windows como Windows Server Core o Windows Server Nano las usb se montan automáticamente, normalemente como unidad D ó E.</p>
 </div>
 <div class="style-list">
 <ol>

@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -196,7 +193,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   background-color: #f0f9ff !important;
   border-style: none !important;
   width: 100% !important;
-  table-layout: fixed;
+  table-layout: fixed !important;
 }
 .markdown-preview.markdown-preview .style-table-content th,
 .markdown-preview.markdown-preview .style-table-content td {
@@ -204,23 +201,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 }
 .markdown-preview.markdown-preview .style-table-content th:first-child,
 .markdown-preview.markdown-preview .style-table-content td:first-child {
-  width: 150px;
+  width: 200px !important;
 }
 .markdown-preview.markdown-preview .md-toc {
-  background-color: #f0f9ff;
-}
-@media screen and (min-width: 1024px) {
-  .markdown-preview.markdown-preview .md-toc {
-    position: fixed;
-    width: 250px;
-    left: 20px;
-    top: 20px;
-    height: auto;
-    z-index: 1000;
-  }
-  .markdown-preview.markdown-preview body {
-    padding-left: calc(250px + 20px + 10px);
-  }
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -252,8 +236,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <style type="text/css">
 
 </style>
-<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
+<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <h1 id="máquinas-virtuales">MÁQUINAS VIRTUALES </h1>
 </div>
 <p>📙<a href="./guia.pdf">Descargar PDF</a></p>
@@ -345,10 +329,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <tr>
 <td><strong><a href="./assets/doc-vb-usermanual.pdf">Download</a></strong></td>
 <td>VirtualBox Manual</td>
-</tr>
-<tr>
-<td><div style="margin-left: 200px;"> &nbsp; </div></td>
-<td></td>
 </tr>
 </tbody>
 </table>
