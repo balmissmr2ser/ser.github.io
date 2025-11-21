@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - DHCP</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -171,16 +171,15 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   table-layout: auto !important;
   width: fit-content !important;
   max-width: none !important;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
   text-align: justify;
-  text-size: small;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -190,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -220,24 +234,28 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="../../../assets/img-BalmisHeader.png" alt="LOGOBALMIS"></p>
 <div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <h1 id="parámetros-de-red">PARÁMETROS DE RED </h1>
 </div>
 <p>📙<a href="./t01.parametros.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
 
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#parámetros-de-red" class="md-toc-link"><p>PARÁMETROS DE RED</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#introducción" class="md-toc-link">
             <p>INTRODUCCIÓN</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#parametros" class="md-toc-link">
             <p>PARAMETROS</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#tipos-de-direcciones" class="md-toc-link"><p>TIPOS DE DIRECCIONES</p>
 </a>
@@ -263,7 +281,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         </div>
       </details>
     
-</div>
+        </div>
+      </details>
+    
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="introducción">INTRODUCCIÓN </h2>

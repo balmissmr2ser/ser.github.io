@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,13 +234,13 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <h1 id="dhcp-linux">DHCP LINUX </h1>
 </div>
 <p>📙<a href="./guia.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
+<h2 id="contenidos">CONTENIDOS </h2>
+<div style="style-table-content">
 <table>
 <thead>
 <tr>
@@ -238,42 +250,38 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="./t01.linux.tradicional.html">Linux tradicional</a></strong></td>
+<td><strong><a href="./t01.linux.tradicional.html">Tradicional</a></strong></td>
 <td>Configuración interfaces de red. Modo Tradicional</td>
 </tr>
 <tr>
-<td><strong><a href="./t01.linux.moderno.html">Linux moderno</a></strong></td>
+<td><strong><a href="./t01.linux.moderno.html">Moderno</a></strong></td>
 <td>Configuración interfaces de red. Modo Moderno</td>
 </tr>
 <tr>
-<td><strong><a href="../../../working.html">Linux Networkd</a></strong></td>
+<td><strong><a href="../../../working.html">Networkd</a></strong></td>
 <td>Configuración interfaces de red. Systemd-networkd</td>
 </tr>
 <tr>
-<td><strong><a href="../../../working.html">Linux Network Manager</a></strong></td>
+<td><strong><a href="../../../working.html">Network Manager</a></strong></td>
 <td>Configuración interfaces de red. Network Manager</td>
 </tr>
 <tr>
-<td><strong><a href="../../../working.html">Linux NetPlan</a></strong></td>
+<td><strong><a href="../../../working.html">NetPlan</a></strong></td>
 <td>Configuración interfaces de red. NetPlan</td>
 </tr>
 <tr>
-<td><strong><a href="./t03.linux.dhcp.html">Linux DHCP Server</a></strong></td>
+<td><strong><a href="./t03.linux.dhcp.html">Servidor</a></strong></td>
 <td>Configuración servidor DHCP</td>
-</tr>
-<tr>
-<td><div style="margin-left: 200px;"> &nbsp; </div></td>
-<td></td>
 </tr>
 </tbody>
 </table>
 </div>
 <h2 id="actividades">ACTIVIDADES </h2>
-<div style="background-color: Lightgrey;">
+<div style="style-table-content">
 <table>
 <thead>
 <tr>
-<th>Actividad</th>
+<th>Recursos</th>
 <th>Descripción</th>
 </tr>
 </thead>
@@ -289,10 +297,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <tr>
 <td><strong><a href="./a03.linux.dhcp.doc">Actividad 03</a></strong></td>
 <td>Configuración servidor DHCP</td>
-</tr>
-<tr>
-<td><div style="margin-left: 200px;"> &nbsp; </div></td>
-<td></td>
 </tr>
 </tbody>
 </table>

@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U01 Linux red tradicional</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,24 +234,28 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="configuración-tradicional-de-la-red-en-linux">CONFIGURACIÓN TRADICIONAL DE LA RED EN LINUX </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="linux-tradicional">LINUX TRADICIONAL </h1>
 </div>
 <p>📙<a href="./t01.linux.nopersistente.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
 
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#linux-tradicional" class="md-toc-link"><p>LINUX TRADICIONAL</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#introducción" class="md-toc-link">
             <p>INTRODUCCIÓN</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mostrar-configuración-interfaces-de-red" class="md-toc-link">
             <p>MOSTRAR CONFIGURACIÓN INTERFACES DE RED</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#configuración-estática" class="md-toc-link"><p>CONFIGURACIÓN ESTÁTICA</p>
 </a>
@@ -303,7 +319,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#configuración-dinámica" class="md-toc-link"><p>CONFIGURACIÓN DINÁMICA</p>
 </a>
@@ -324,11 +340,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#activar-y-desactivar-interfaces-de-red" class="md-toc-link">
             <p>ACTIVAR Y DESACTIVAR INTERFACES DE RED</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#tabla-de-enrutamiento" class="md-toc-link"><p>TABLA DE ENRUTAMIENTO</p>
 </a>
@@ -362,7 +378,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#tabla-arp" class="md-toc-link"><p>TABLA ARP</p>
 </a>
@@ -393,7 +409,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         </div>
       </details>
     
-</div>
+        </div>
+      </details>
+    
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="introducción">INTRODUCCIÓN </h2>
@@ -401,7 +419,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <p>En el presente tema vamos a estudiar la configuración tradicional de la red en Linux. Nos centraremos en sistemas sin entorno de escritorio ya que en Linux hay una gran variedad de entornos de escritorio y la configuración de la red depende de cada uno de ellos.</p>
 <p>Básicamente distinguiremos dos formas diferentes de configuración de la red:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li>
 <p><strong>Configuración no persistente</strong> o de bajo nivel. Esta configuración se refiere a los cambios realizados directamente desde la línea de comandos, que afectan a la configuración de la red de manera inmediata pero <em>no se mantienen tras reiniciar el sistema</em>. Este tipo de configuración es útil para pruebas, cambios temporales o en entornos donde no se requiere persistencia. Se realiza desde la línea de comandos mediante utilidades específicas incluidas en la librería <strong>net-tools</strong>. Las más habituales son <code>ifconfig</code>, <code>route</code> y <code>arp</code>, que permiten gestionar interfaces, direcciones IP y rutas de forma temporal entre otras cosas.</p>
@@ -423,7 +441,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar interfaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Mostrar el estado de la interfaz <code>eth0</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0
 eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54  
@@ -454,7 +472,7 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifconfig &lt;interfaz&gt; {&lt;ip/prefix&gt; | &lt;ip&gt; netmask &lt;máscara&gt;}
 </code></pre><div class="admonition example">
 <p class="admonition-title">Configurar dirección IP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Cambiar la dirección IP de la interfaz <code>eth0</code> a <code>192.168.2.20/27</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 192.168.2.20/27
 </code></pre><p>También se obtendría el mismo resultado con el siguiente comando:</p>
@@ -471,7 +489,7 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:d0:2f:54
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configurar gateway</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar la puerta de enlace con la ip <code>192.168.2.1</code>. Supondremos que la única interfaz de red es <code>eth0</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route add default gw 192.168.2.1
 </code></pre></div>
@@ -509,7 +527,7 @@ iface &lt;conexión&gt; inet static
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configuración red estática Debian</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar la interfaz <code>enp0s3</code> (realmente es una conexión) de manera estática con la IP <code>192.168.5.96/26</code> con puerta de enlace <code>192.168.5.65</code>. La conexión se debe activar automáticamente cuando se ejecuta una instrucción de activación de la interfaz.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
 auto enp0s3
@@ -523,7 +541,7 @@ iface enp0s3 inet static
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configuración red estática Debian</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar una conexión llamada <code>trabajo</code> de manera estática con la IP <code>172.16.100.10/16</code> con puerta de enlace <code>172.16.0.1</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>#/etc/network/interfaces
 
@@ -552,7 +570,7 @@ GATEWAY=&lt;puerta-enlace&gt;
 <p>El parámetro <code>ONBOOT</code> sirve para que se active, o no, la conexión cuando se inicie el servicio de red o se reinicie la máquina. Solo debe haber una conexión con valor <code>yes</code> para cada interfaz de red (parámetro <code>DEVICE</code>).</p>
 <p>Las siguientes directivas son exclusivas de conexiones estáticas:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li><code>IPADDR</code>: contiene la IP que tomará la interfaz asociada cuando se active la conexión en el caso de configuración estática.</li>
 <li><code>NETMASK</code>: es la máscara de red.</li>
@@ -564,7 +582,7 @@ GATEWAY=&lt;puerta-enlace&gt;
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configuración red estática Red Hat</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. La interfaz asociada a esta conexión es <code>eth2</code> y se debe activar cuando se inicia el equipo.</p>
 <p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
@@ -577,7 +595,7 @@ GATEWAY=192.168.4.1
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configuración red estática Red Hat</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar una conexión llamada <code>trabajo</code> de manera estática con la IP <code>172.16.100.10/16</code> con puerta de enlace <code>172.16.0.1</code>. La conexión estará asociada a la interfaz <code>eth1</code> y no se iniciará automáticamente.</p>
 <p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-trabajo</code> y su contenido será el siguiente:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth1
@@ -602,7 +620,7 @@ GATEWAY=172.16.0.1
 nameserver &lt;ip-servidor-dns2&gt;
 </code></pre><div class="admonition example">
 <p class="admonition-title">Configuración DNS Debian</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>En una red tenemos un servidor DNS de IP <code>192.168.3.3</code>. Configurar una máquina de la red para que los nombres DNS los resuelva el servidor interno, y si este es incapaz de resolverlos, la petición la resuelva el servidor DNS público de IP <code>8.8.8.8</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>nameserver 192.168.3.3
 nameserver 8.8.8.8
@@ -623,7 +641,7 @@ El siguiente comando nos indica si el servicio <code>resolvconf</code> está ins
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configuración DNS resolvconf</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Tenemos un equipo con Debian 11 que utiliza el servicio <code>resolvconf</code> como cliente DNS. La dirección de red es <code>192.168.4.0/24</code> y la IP del equipo es <code>192.168.4.5</code>. Queremos configurar la interfaz de red para que utilice los DNS <code>10.10.10.3</code> y <code>8.8.8.8</code>.</p>
 <p>El servicio <code>resolvconf</code> no viene instalado por defecto en las distribuciones Debian sin entorno de escritorio. Lo primero que debemos hacer es instalarlo:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@linux:~# apt install resolvconf
@@ -642,7 +660,7 @@ iface enp0s3 inet static
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configuración red con DNS Red Hat</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar una conexión llamada <code>eth2</code> de manera que la IP sea <code>192.168.4.10</code>, la máscara de red <code>255.255.255.0</code> y la puerta de enlace <code>192.168.4.1</code>. Además, los servidores DNS serán el <code>10.10.10.3</code> y <code>8.8.8.8</code>. La interfaz se debe activar cuando se inicia el equipo.</p>
 <p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
@@ -669,7 +687,7 @@ DNS2=8.8.8.8
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar gateway</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar la ruta por defecto o gateway de la tabla de enrutamiento de un equipo. Suponemos que sólo hay una única ruta por defecto.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del default
 </code></pre></div>
@@ -696,7 +714,7 @@ La sintaxis del comando para obtener la ip dinámicamente es la siguiente:</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Obtener ip dinámicamente</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Solicitar una ip dinámicamente para la interfaz de red <code>eth0</code>. Mostrar información adicional relativa a la obtención de la dirección.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -v eth0
 Internet Systems Consortium DHCP Client 4.2.2
@@ -719,7 +737,7 @@ bound to 192.168.2.16 -- renewal in 299 seconds.
 </div>
 <div class="admonition example">
 <p class="admonition-title">Obtener ip dinámicamente</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Solicitar una ip dinámicamente para la interfaz de red <code>eth0</code>. Mostrar información adicional relativa a la obtención de la dirección.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -v eth0
 Internet Systems Consortium DHCP Client 4.2.2
@@ -743,7 +761,7 @@ bound to 192.168.2.16 -- renewal in 238 seconds.
 </code></pre><p>Libera la ip asignada a la interfaz de red especificada. La interfaz queda administrativamente activa pero sin ninguna ip. Con la opción -v se nos muestra información adicional. Si solo tenemos una única interfaz de red podemos omitir el parámetro <code>&lt;interfaz&gt;</code>.</p>
 <div class="admonition example">
 <p class="admonition-title">Liberar ip</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Liberar la ip asignada a la interfaz de red <code>eth0</code>. Mostrar información adicional relativa a la liberación de la dirección. Suponemos que solo hay una única interfaz de red.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -r -v eth0
 Internet Systems Consortium DHCP Client 4.2.2
@@ -779,7 +797,7 @@ iface &lt;conexión&gt; inet dhcp
 ...
 </code></pre><div class="admonition example">
 <p class="admonition-title">Configuración red dinámica Debian</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar la interfaz <code>enp0s3</code> (realmente es una conexión) de manera dinámica con DHCP.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code># /etc/network/interfaces
 auto enp0s3
@@ -797,7 +815,7 @@ ONBOOT={yes\|no}
 BOOTPROTO=dhcp
 </code></pre><div class="admonition example">
 <p class="admonition-title">Configuración red dinámica Red Hat</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configurar una conexión llamada <code>eth2</code> de manera que la IP y otros parámetros de red se asignen dinámicamente a la interfaz <code>eth2</code>.</p>
 <p>El archivo se llamará <code>/etc/sysconfig/network-scripts/ifcfg-eth2</code> y su contenido será el siguiente:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>DEVICE=eth2
@@ -815,7 +833,7 @@ BOOTPROTO=dhcp
 </div>
 <div class="admonition example">
 <p class="admonition-title">Activar interfaz de red (no persistente)</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Activar la interfaz <code>eth0</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ifconfig eth0 up
 </code></pre></div>
@@ -830,7 +848,7 @@ BOOTPROTO=dhcp
 </div>
 <div class="admonition example">
 <p class="admonition-title">Activar interfaz de red (persistente)</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>En un máquina Debian tenemos configurada de manera persistente las conexiones <em>eth0</em> y <em>universidad</em>. Activar las interfaces de red <code>eth0</code> con la conexión del mismo nombre y la interfaz <code>eth1</code> con la conexión <em>universidad</em>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@debian:~# ifup eth0
 root@debian:~# ifup eth1=universidad
@@ -859,7 +877,7 @@ Las cláusulas <code>mapping</code> están fuera del alcance de este curso. En c
 </div>
 <div class="admonition example">
 <p class="admonition-title">Desactivar interfaz de red (persistente)</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>En un máquina Debian tenemos configurada de manera persistente las conexiones <em>eth0</em> y <em>universidad</em>. Desactivar las interfaces de red <code>eth0</code> asociada a la conexión del mismo nombre y la interfaz <code>eth1</code> asociada a la conexión <em>universidad</em>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@debian:~# ifdown eth0
 root@debian:~# ifdown eth1
@@ -877,7 +895,7 @@ root@debian:~# ifdown eth1
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ifdown &lt;conexion&gt;
 </code></pre><div class="admonition example">
 <p class="admonition-title">Desactivar conexión</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>En una máquina con el sistema Red Hat, desactivar la conexión de nombre <em>universidad</em>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@redhat:~# ifdown universidad
 </code></pre><p>El archivo donde está configurada la conexión se llamará <code>/etc/sysconfig/network-scripts/ifcfg-universidad</code>. Dentro de este archivo habrá un parámetro <code>DEVICE</code> con la interfaz a la cual se asociado la conexión, por ejemplo <code>DEVICE=eth1</code>. El comando, realmente, desactiva esta interfaz.</p>
@@ -902,7 +920,7 @@ root@debian:~# ifdown eth1
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Mostrar tabla de enrutamiento</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Mostrar la tabla de enrutamiento del sistema.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route
 Kernel IP routing table
@@ -936,7 +954,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 </div>
 <div class="admonition example">
 <p class="admonition-title">Añadir ruta estática</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Añadir una ruta estática para acceder a la red <code>192.168.11.0/25</code> desde un equipo de la red <code>192.168.10.0/24</code> utilizando como puerta de enlace el equipo con IP <code>192.168.10.2</code>. El equipo sólo tiene una interfaz de salida de nombre <code>eth0</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>  root@Host:~# route add -net 192.168.11.0 netmask 255.255.255.128 gw 192.168.10.2 dev eth0
 </code></pre><p>Otra forma alternativa y simplificada del mismo comando seía:</p>
@@ -953,7 +971,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar ruta estática</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar la ruta estática a la red de destino <code>192.168.11.0/25</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# route del -net 192.168.11.0/25
 </code></pre><p>Alternativamente, podemos utilizar el comando:</p>
@@ -964,7 +982,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 <div class="style-normal">
 <p>Para que los cambios realizados en la tabla de enrutamiento sean <strong>persistentes</strong>, es decir, que se mantengan después de reiniciar el equipo, hay que añadir las rutas estáticas en los archivos de configuración de las interfaces de red. En el caso de las <strong>distribuciones basadas en Debian</strong>, disponemos de unas directivas que ejecutan un comando o script cuando se activa una interfaz y cuando se desactiva. Las directivas son las siguientes:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li><code>up &lt;comando&gt;</code>: el comando se ejecuta cuando se activa la conexión.</li>
 <li><code>post-up &lt;comando&gt;</code>: el comando se ejecuta después de activar la conexión. Si la conexión no se activa correctamente, el comando no se ejecuta.</li>
@@ -978,7 +996,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 </div>
 <div class="admonition example">
 <p class="admonition-title">Añadir y eliminar rutas persistentes</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>En una red tenemos un router que está directamente conectado a las redes <code>192.168.1.0/24</code> por la interfaz <code>eth0</code> y <code>192.168.2.0/25</code> por <code>eth1</code>. Necesita acceder a la red <code>192.168.2.128/25</code> a la cual se accede a través de la puerta de enlace <code>192.168.1.2</code>.</p>
 <p>Configuramos las interfaces de red de manera que cuando se active la interfaz <code>eth0</code> se cree una ruta estática que da acceso a la red <code>192.168.2.128/25</code> y cuando se desactive se elimine la ruta.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>auto eth0
@@ -1005,7 +1023,7 @@ iface eth1 inet static
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar tabla ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Mostrar todas las entradas de la tabla ARP.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# arp
 Address       Hwtype      Hwaddress           Flags       Mask    Iface
@@ -1024,7 +1042,7 @@ Address       Hwtype      Hwaddress           Flags       Mask    Iface
 </div>
 <div class="admonition example">
 <p class="admonition-title">Añadir entrada ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Añadir una entrada a la tabla ARP para el equipo con IP <code>192.168.2.10</code> con mac <code>08:00:27:aa:bb:cc</code> y a continuación visualizar la tabla ARP.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# arp -s 192.168.2.10 08:00:27:aa:bb:cc
 root@Host:~# arp
@@ -1042,7 +1060,7 @@ Address       Hwtype      Hwaddress           Flags       Mask    Iface
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar entrada ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar la entrada de la tabla ARP para el equipo con IP <code>192.168.2.10</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# arp -d 192.168.2.10
 </code></pre></div>

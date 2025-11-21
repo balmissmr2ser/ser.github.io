@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,16 +234,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-  <!-- estilos internos al fichero -->
-</style>
-<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="servicios-br-windows">SERVICIOS <br> WINDOWS </h1>
+<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="servicios-windows">SERVICIOS WINDOWS </h1>
 </div>
 <p>📙<a href="./t02.win.servicios.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div class="style-table-content">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
@@ -241,6 +248,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#panel-servicesmsc" class="md-toc-link">
             <p>PANEL SERVICES.MSC</p>
 
@@ -261,9 +272,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       </details>
     
 </div>
-</div>
 <div style="page-break-after:always;"></div>
-<h2 id="servicios-windows">SERVICIOS WINDOWS </h2>
+<h2 id="introducción">INTRODUCCIÓN </h2>
 <div class="style-normal">
 <p>En los sistemas Windows tenemos diferentes herramientas para administrar los servicios. Entre ellas tenemos:</p>
 <div class="style-list" style="margin-left: 1cm;">
@@ -275,7 +285,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </ul>
 </div>
 </div>
-<h3 id="panel-servicesmsc">PANEL SERVICES.MSC </h3>
+<h2 id="panel-servicesmsc">PANEL SERVICES.MSC </h2>
 <div class="style-normal">
 <p>Para ejecutar la consola gráfica services.msc podemos acceder a través de <strong>Inicio-&gt;Herramientas Administrativas-&gt;Servicios</strong> o bien simplemente teclear en el cuadro de búsqueda de windows <strong>services.msc</strong>.</p>
 <p><img src="./assets/img-win-msc.png" alt="img" style="width: 85%; display: block; margin: auto; align:center; "></p>
@@ -376,7 +386,7 @@ Contiene información sobre las dependencias del servicio:
 <p><img src="./assets/img-win-msc04.png" alt="img" style="width: 35%; display: block; margin: auto; align:center; "></p>
 </div>
 <div style="page-break-after:always;"></div>
-<h3 id="cmd-comando-net">CMD COMANDO NET </h3>
+<h2 id="cmd-comando-net">CMD COMANDO NET </h2>
 <div class="style-normal">
 <p>El comando <code>net</code> nos permite gestionar entre otros aspectos los servicios del sistema. Las opciones más habituales son:</p>
 </div>
@@ -452,7 +462,7 @@ Servicio de detección automática de proxy web WinHTTP
 net stop dhcp
 </code></pre></div>
 </div>
-<h3 id="cmd-comando-sc">CMD COMANDO SC </h3>
+<h2 id="cmd-comando-sc">CMD COMANDO SC </h2>
 <div class="style-normal">
 <p>La consola <code>sc</code> (service controller) permite consultar la configuración y el estado de los servicios, así como crearlos, eliminarlos y cambiar la configuración de los mismos. La consola admite comandos y podemos obtener ayuda contextual según el comando utilizado. La siguiente tabla resume las operaciones más habituales</p>
 </div>
@@ -587,7 +597,7 @@ NOMBRE_SERVICIO: dhcp
 </div>
 </div>
 <div style="page-break-after:always;"></div>
-<h3 id="powershell-service">POWERSHELL SERVICE </h3>
+<h2 id="powershell-service">POWERSHELL SERVICE </h2>
 <div class="style-normal">
 <p>Powershell dispone de una serie de cmdlets relacionados con el objeto SERVICE para la administración de servicios. La funcionalidad y opciones de estos cmdlets varian en función de la versión de powershell instalada en el sistema. No obstante, si queremos mayor funcionalidad en powershell también podemos utilizar la consola <code>sc</code></p>
 </div>

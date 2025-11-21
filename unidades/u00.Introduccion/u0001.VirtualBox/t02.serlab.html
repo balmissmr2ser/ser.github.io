@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,16 +234,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-  <!-- estilos internos al fichero -->
-</style>
-<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
+<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <h1 id="laboratorio-de-prácticas">LABORATORIO DE PRÁCTICAS </h1>
 </div>
 <p>📙<a href="./t02.serlab.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div class="style-table-content">
 
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
@@ -239,7 +246,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             <p>LABORATORIO DE PRÁCTICAS</p>
 
           </a></div>
-</div>
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="laboratorio-de-prácticas-1">LABORATORIO DE PRÁCTICAS </h2>

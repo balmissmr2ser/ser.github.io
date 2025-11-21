@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -178,9 +178,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-example {
-  text-indent: 0.5cm;
   text-align: justify;
-  text-size: small;
+  font-size: small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -190,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -220,16 +234,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-  <!-- estilos internos al fichero -->
-</style>
-<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="servicios-br-introducción">SERVICIOS <br> INTRODUCCIÓN </h1>
+<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="servicios">SERVICIOS </h1>
 </div>
 <p>📙<a href="./t01.servicios.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div class="style-table-content">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
@@ -239,6 +248,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#modelo-cliente-servidor" class="md-toc-link">
             <p>MODELO CLIENTE-SERVIDOR</p>
 
@@ -272,14 +285,13 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       </details>
     
 </div>
-</div>
 <div style="page-break-after:always;"></div>
-<h2 id="servicios">SERVICIOS </h2>
+<h2 id="introducción">INTRODUCCIÓN </h2>
 <div class="style-normal">
 <p>Un <strong>servicio</strong> es una <strong>aplicación que se ejecuta en segundo plano</strong>. Los servicios utilizan una interfaz de programación de aplicaciones (API) para manejar las tareas principales sin la interacción del usuario.  Por ello, normalmente utilizan archivos de bitácora (logs) para registrar mensajes de error y de actividad del servicio.Los servicios brindan funciones básicas del sistema operativo, como servicio web, registro de eventos, servicio de archivos, ayuda y soporte, impresión, criptografía e informes de errores y actividad.</p>
 <p>El administrador de servicios es un programa con el que se pueden realizar diferentes tareas sobre los servicios. En concreto, un <strong>servicio</strong> se puede <strong>iniciar, detener y reiniciar</strong>. También podemos <strong>mostrar el estado</strong> del servicio, <strong>habilitarlo y deshabilitarlo</strong>. Los servicios se pueden configurar para que se inicien cuando se inicie el equipo, antes de abrir una sesión de usuario o bien puede iniciarlos un usuario u otra aplicación si tiene los permisos adecuados.</p>
 </div>
-<h3 id="modelo-cliente-servidor">MODELO CLIENTE-SERVIDOR </h3>
+<h2 id="modelo-cliente-servidor">MODELO CLIENTE-SERVIDOR </h2>
 <div class="style-normal">
 <p>Normalmente, los servicios siguen el llamado <strong>modelo cliente-servidor</strong>. En este modelo de servicio tenemos dos componentes:</p>
 <div class="style-list">
@@ -300,7 +312,7 @@ Proceso que solicita un servicio a un servidor. El cliente puede ser un proceso 
 <p>En este modelo cliente-servidor, normalmente los procesos servidores se ejecutan en máquinas dedicadas para prestar el servicio. Por este motivo, la mayoría de las veces llamamos servidor a la maquina y no al proceso. En realidad, una maquina podría tener varios procesos de tipo servidor alojados en ella como por ejemplo un servidor web, un servidor ftp y un servidor ssh.</p>
 </div>
 <div style="page-break-after:always;"></div>
-<h3 id="ambito-de-ejecución">AMBITO DE EJECUCIÓN </h3>
+<h2 id="ambito-de-ejecución">AMBITO DE EJECUCIÓN </h2>
 <div class="style-normal">
 <p>Los <strong>servicios</strong> se pueden clasificar <strong>según el ambito de ejecución</strong> del servidor como:</p>
 <div class="style-list">
@@ -320,7 +332,7 @@ El servidor ofrece sus servicios a cualquier equipo de cualquier red a la que es
 </div>
 <p>Algunos servicios se pueden configurar indistintamente como de tipo Intranet o Internet en función de las necesidades de la empresa.</p>
 </div>
-<h3 id="conexión-tcp-ip">CONEXIÓN TCP-IP </h3>
+<h2 id="conexión-tcp-ip">CONEXIÓN TCP-IP </h2>
 <div class="style-normal">
 <p>Como hemos indicado servidor y cliente son en realidad procesos en ejecución y por tanto se encuentran en la capa de aplicación. Para realizar la comunicación entre el cliente y el servidor se utiliza a nivel de aplicación el concepto de <strong>conexión</strong>. Una conexión esta definida por <strong>2 sockets</strong>: <strong>socket origen</strong> y <strong>socket destino</strong>. Un <strong>socket</strong> esta definido por la pareja <strong>IP:PUERTO</strong>.</p>
 <p>En la pila TCP-IP las <strong>IPs</strong> se definen en <strong>nivel de red</strong> (protocolo IP), mientras que los <strong>puertos</strong> se definene en el nivel de <strong>transporte</strong> (protocolo TCP o UDP). <strong>Cada proceso en ejecución en una red debe tener asociado un puerto</strong> de comunicaciones a nivel de transporte. Estos <strong>puertos</strong> se pueden <strong>clasificar</strong> en:</p>
@@ -370,7 +382,7 @@ El servidor ofrece sus servicios a cualquier equipo de cualquier red a la que es
 </table>
 </div>
 </div>
-<h4 id="estados-de-una-conexión">ESTADOS DE UNA CONEXIÓN </h4>
+<h3 id="estados-de-una-conexión">ESTADOS DE UNA CONEXIÓN </h3>
 <div class="style-normal">
 <p>Las conexiones TCP tienen un ciclo de vida de 3 fases:</p>
 <div class="style-list" style="margin-left: 1cm;">
@@ -408,7 +420,7 @@ El servidor ofrece sus servicios a cualquier equipo de cualquier red a la que es
 </tr>
 <tr>
 <td></td>
-<td>SYN-Received</td>
+<td>SYN-Recived</td>
 <td>Se ha recibido una petición de conexión</td>
 </tr>
 <tr>
@@ -454,7 +466,7 @@ El servidor ofrece sus servicios a cualquier equipo de cualquier red a la que es
 </tbody>
 </table>
 </div>
-<h4 id="netstat-windows">NETSTAT WINDOWS </h4>
+<h3 id="netstat-windows">NETSTAT WINDOWS </h3>
 <div class="style-normal">
 <p>En los sistemas windows podemos comprobar el estado de las conexiones mediante el comando <a href="https://learn.microsoft.com/es-es/windows-server/administration/windows-commands/netstat"><code>netstat</code></a></p>
 <div class="admonition example">
@@ -516,7 +528,7 @@ El servidor ofrece sus servicios a cualquier equipo de cualquier red a la que es
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>netstat -ano | findstr /V "[" | findstr "UDP"
 </code></pre></div>
 </div>
-<h4 id="netstat-linux">NETSTAT LINUX </h4>
+<h3 id="netstat-linux">NETSTAT LINUX </h3>
 <div class="style-normal">
 <p>En los sistemas linux podemos comprobar el estado de las conexiones mediante el comando <a href="https://manpages.debian.org/testing/manpages-es/netstat.8.es.html"><code>netstat</code></a> perteneciente al paquete <a href="https://manpages.debian.org/testing/net-tools/"><code>net-tools</code></a>. Las opciones del comando son ligeramente diferentes a las de windows.</p>
 <div class="admonition example">

@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,12 +234,12 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="dhcp">DHCP </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="dhcp-protocolo">DHCP PROTOCOLO </h1>
 </div>
 <p>📙<a href="./guia.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
+<h2 id="contenidos">CONTENIDOS </h2>
 <div class="style-table-content">
 <table>
 <thead>
@@ -241,10 +253,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <td><strong><a href="./t01.dhcp.html">Teoria</a></strong></td>
 <td>Protocolo DHCP</td>
 </tr>
-<tr>
-<td><div style="margin-left: 200px;"> &nbsp; </div></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -253,7 +261,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <table>
 <thead>
 <tr>
-<th>Actividad</th>
+<th>Recurso</th>
 <th>Descripción</th>
 </tr>
 </thead>
@@ -261,10 +269,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <tr>
 <td><strong><a href="./a01.dhcp.doc">Actividad 01</a></strong></td>
 <td>D.O.R.A.</td>
-</tr>
-<tr>
-<td><div style="margin-left: 200px;"> &nbsp; </div></td>
-<td></td>
 </tr>
 </tbody>
 </table>

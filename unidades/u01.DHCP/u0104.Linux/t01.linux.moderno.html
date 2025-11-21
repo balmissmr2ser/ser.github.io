@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U01 Linux red moderna</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,40 +234,44 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="configuración-moderna-de-la-red-en-linux">CONFIGURACIÓN MODERNA DE LA RED EN LINUX </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="linux-moderno">LINUX MODERNO </h1>
 </div>
 <p>📙<a href="./t01.linux.moderno.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
 
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#linux-moderno" class="md-toc-link"><p>LINUX MODERNO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#introducción" class="md-toc-link">
             <p>INTRODUCCIÓN</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mostrar-interfaces-de-red" class="md-toc-link">
             <p>MOSTRAR INTERFACES DE RED</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mostrar-configuración-interfaces-de-red" class="md-toc-link">
             <p>MOSTRAR CONFIGURACIÓN INTERFACES DE RED</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mostrar-configuración-dns" class="md-toc-link">
             <p>MOSTRAR CONFIGURACIÓN DNS</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#desactivar-y-activar-interfaces" class="md-toc-link">
             <p>DESACTIVAR Y ACTIVAR INTERFACES</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#cambiar-mac-a-una-interfaz" class="md-toc-link">
             <p>CAMBIAR MAC A UNA INTERFAZ</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#configuración-estática" class="md-toc-link"><p>CONFIGURACIÓN ESTÁTICA</p>
 </a>
@@ -272,11 +288,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#configuración-dinámica" class="md-toc-link">
             <p>CONFIGURACIÓN DINÁMICA</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#tabla-de-enrutamiento" class="md-toc-link"><p>TABLA DE ENRUTAMIENTO</p>
 </a>
@@ -306,7 +322,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#tabla-arp" class="md-toc-link"><p>TABLA ARP</p>
 </a>
@@ -337,7 +353,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         </div>
       </details>
     
-</div>
+        </div>
+      </details>
+    
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="introducción">INTRODUCCIÓN </h2>
@@ -345,7 +363,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <p>En el presente tema vamos a estudiar la configuración de la red en los sistemas Linux modernos; los basados en <em>systemd</em>. Nos centraremos en sistemas sin entorno de escritorio ya que en Linux hay una gran variedad de entornos de escritorio y la configuración de la red depende de cada uno de ellos.</p>
 <p>Al igual que en los sistemas tradicionales, distinguiremos dos formas diferentes de configuración de la red:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li>
 <p><strong>Configuración no persistente</strong> o de bajo nivel. Para esta configuración se utilizan utilidades específicas incluidas en la librería <strong>iproute2</strong>.<br>
@@ -387,7 +405,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip link
 </code></pre><div class="admonition example">
 <p class="admonition-title">Mostrar estado interfaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Mostrar el estado de todas las interfaces e red que estén activas.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link show up
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
@@ -399,7 +417,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar estado interfaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Mostrar el estado de la interfaz de red <code>enp0s8</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link dev enp0s8
 </code></pre><p>Alternativamente, podríamos haber utilizado el comando:</p>
@@ -414,7 +432,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 </code></pre><div class="style-normal">
 <p>Muestra la configuración del direccionamiento de todas las interfaces de red o la de la interfaz pasada como parámetro. Con la opción <code>up</code> se muestran solo las que están activadas. La información más relevante que muestra este comando es:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li>El nombre de la interfaz (o interfaces) de red</li>
 <li>La dirección IPv4</li>
@@ -425,7 +443,7 @@ Los valores posibles para <strong>OPTIONS</strong>, <strong>OBJECT</strong> y <s
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar configuración interfaces</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Muestra la configuración de todas las interfaces de red, estén o no activadas.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -459,7 +477,7 @@ root@Host:~# ip a
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar configuración interfaces</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Muestra la configuración de la interfaz <code>enp0s3</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show dev enp0s3
 2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
@@ -473,7 +491,7 @@ root@Host:~# ip a
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar configuración interfaces</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Hemos desactivado la interfaz <code>enp0s3</code>. Primero mostramos la configuración de todas las interfaces y a continuación solo de las activas.</p>
 <p>Mostrar todas las interfaces.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address show
@@ -513,7 +531,7 @@ root@Host:~# ip a
 </div>
 <div class="admonition example">
 <p class="admonition-title">Activar y desactivar interfaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Desactivar la interfaz de red <code>enp0s3</code> y activar la interfaz <code>enp0s8</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set dev enp0s3 down
 root@Host:~# ip link set dev enp0s8 up
@@ -529,7 +547,7 @@ root@Host:~# ip link set dev enp0s8 up
 </div>
 <div class="admonition example">
 <p class="admonition-title">Cambiar MAC interfaz de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Cambiar la MAC de la interfaz de red <code>enp0s3</code> por la MAC <code>00:00:2a:3a:4a:5a</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip link set dev enp0s3 00:00:2a:3a:4a:5a
 </code></pre><p>Si mostramos el estado de la interfaz de red con el comando <code>ip link show enp0s3</code> podemos comprobar que la MAC ha cambiado. También podemos observar que aparece el campo <code>permaddr</code> que nos indica la MAC original de la interfaz de red.</p>
@@ -557,7 +575,7 @@ root@Host:~# ip link set dev enp0s8 up
 </code></pre><pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip a add &lt;ip&gt;/&lt;prefijo&gt; dev &lt;interfaz&gt;
 </code></pre><div class="admonition example">
 <p class="admonition-title">Añadir IP a interfaz de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Añadir la IP <code>192.168.2.128</code> a la interfaz de red <code>enp0s3</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address add 192.168.2.128/24 dev enp0s3
 </code></pre><p>Podemos comprobar que ahora tenemos dos IPs:</p>
@@ -579,7 +597,7 @@ root@Host:~# ip link set dev enp0s8 up
 </div>
 <div class="admonition example">
 <p class="admonition-title">Configurar gateway</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Configuración de la puerta de enlace (gateway) de un equipo que tiene dos tarjetas de red <code>enp0s3</code> y <code>enp0s8</code>, de manera que la primera tarjeta (<code>enp0s3</code>) está en la red interna <code>192.168.254.0/24</code> y la segunda (<code>enp0s8</code>) en la red <code>192.168.1.0/24</code>, donde hay un router que da acceso a internet cuya IP es la primera de la segunda red.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add default via 192.168.1.1 dev enp0s8
 </code></pre></div>
@@ -591,7 +609,7 @@ root@Host:~# ip link set dev enp0s8 up
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip address {delete | del} &lt;ip/prefijo&gt; dev &lt;interfaz&gt;
 </code></pre><div class="admonition example">
 <p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar la IP <code>192.168.2.128</code> de la interfaz de red <code>enp0s3</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address delete 192.168.2.128/24 dev enp0s3
 </code></pre><p>También habría sido válido hacer:</p>
@@ -607,7 +625,7 @@ root@Host:~# ip link set dev enp0s8 up
 </code></pre><div class="style-normal">
 <p>La ejecución del comando elimina todas las IPs asignadas a una interfaz dada (o a todas) que cumplen una propiedad especificada por el parámetro <code>&lt;opción&gt;</code>. Algunos de los valores de las opciones son:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li><code>dynamic</code>: para IPs asignadas por un servidor DHCP.</li>
 <li><code>permanent</code>: para IPs configuradas manualmente.</li>
@@ -620,14 +638,14 @@ root@Host:~# ip link set dev enp0s8 up
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar todas las IPs asignadas a la interfaz <code>enp0s3</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s3
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar IP de intefaces de red</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Elimina todas las IPs que se han asignado de manera estática a la interfaz <code>enp0s8</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip address flush dev enp0s8 permanent
 </code></pre></div>
@@ -638,7 +656,7 @@ root@Host:~# ip link set dev enp0s8 up
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip route delete default [via &lt;puerta-enlace&gt;]
 </code></pre><div class="admonition example">
 <p class="admonition-title">Eliminar gateway</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar la ruta por defecto (gateway) del equipo. Solo hay una ruta por defecto.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete default
 </code></pre><p>O utilizando la abreviatura <code>del</code>:</p>
@@ -652,7 +670,7 @@ root@Host:~# ip link set dev enp0s8 up
 </div>
 <div class="admonition example">
 <p class="admonition-title">Liberar ip dinámicamente</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Liberar la ip asignada dinámicamente con el cliente <code>dhclient</code> y con <code>ip flush</code> a la interfaz <code>enp0s3</code>.</p>
 <p>Con <code>dhclient</code>:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# dhclient -r enp0s3
@@ -672,7 +690,7 @@ root@Host:~# ip link set dev enp0s8 up
 </code></pre><div class="style-normal">
 <p>No hay diferencia entre usar el parámetro <code>show</code> o no. Se muestra una línea por cada red que se puede alcanzar. Entre los datos más significativos se incluyen:</p>
 </div>
-<div class="style-normal2">
+<div class="style-list">
 <ul>
 <li>La red de destino a la cual se deben enviar los datos.</li>
 <li>Para aquellas redes a las que no se está directamente conectado, se indica la puerta de enlace o IP del equipo al cual debemos enviar los datos para que lleguen a su destino.</li>
@@ -687,7 +705,7 @@ Es importante tener una ruta por defecto ya que en caso contrario, seguramente, 
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar tabla de enrutamiento</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Muestra la tabla de enrutamiento.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route show
 default via 192.168.2.1 dev enp0s3
@@ -712,7 +730,7 @@ La tercera línea nos indica que la red <code>192.168.3.0/24</code> se alcanza a
 </div>
 <div class="admonition example">
 <p class="admonition-title">Añadir ruta estática</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Añadir una ruta estática para llegar a la red <code>192.168.11.128/25</code> desde la red <code>192.168.2.0/24</code>, utilizando como puerta de enlace el equipo con IP <code>192.168.2.1</code> y como interfaz de salida <code>enp0s3</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route add 192.168.11.128/25 via 192.168.2.1 dev enp0s3
 </code></pre><p>Podemos ver que se ha añadido la nueva ruta:</p>
@@ -732,7 +750,7 @@ default via 192.168.2.1 dev enp0s3
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar ruta estática</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Elimina la ruta estática con destino la red <code>192.168.11.128/25</code> si a esta se llega por el equipo con IP <code>192.168.2.1</code>. Sabemos que hay más de una ruta con este destino.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip route delete 192.168.11.128/25 via 192.168.2.1
 </code></pre></div>
@@ -753,7 +771,7 @@ Como habíamos comentado, se pueden utilizar abreviaturas en el comando. En este
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar tabla ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Muestra todas las entradas de la tabla ARP.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip neigh
 192.168.2.16 dev enp0s3 lladdr 08:00:27:d0:2f:54 REACHABLE
@@ -769,7 +787,7 @@ root@Host:~# ip neigh show
 </div>
 <div class="admonition example">
 <p class="admonition-title">Mostrar tabla ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Muestra la entrada de la tabla ARP correspondiente a la IP <code>192.168.2.16</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@PHost:~# ip neighbour show 192.168.2.16
 192.168.2.16 dev enp0s3 lladdr 08:00:27:d0:2f:54 REACHABLE
@@ -789,7 +807,7 @@ root@Host:~# ip neigh show
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>ip neighbour show nud &lt;estado&gt;
 </code></pre><div class="admonition example">
 <p class="admonition-title">Mostrar tabla ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Muestra todas las entradas que están en el estado llamado <code>stale</code>.</p>
 <p>En un momento dado tenemos la siguiente tabla ARP:</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip neighbour show
@@ -818,7 +836,7 @@ root@Host:~# ip neigh show
 </div>
 <div class="admonition example">
 <p class="admonition-title">Añadir entrada a tabla ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Añadir a la tabla ARP el equipo de IP <code>192.168.2.10</code> con MAC <code>08:00:27:ee:11:22</code> a la interfaz <code>enp0s3</code>.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip neigh add 192.168.2.10 lladdr 08:00:27:ee:11:22 dev enp0s3
 </code></pre><p>Hemos utilizado la forma abreviada.</p>
@@ -838,7 +856,7 @@ root@Host:~# ip neigh show
 </div>
 <div class="admonition example">
 <p class="admonition-title">Eliminar entrada de la tabla ARP</p>
-<div class="style-normal2">
+<div class="style-example">
 <p>Eliminar la entrada correspondiente a la IP <code>192.168.2.10</code> de la tabla ARP que hemos añadido anteriormente.</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>root@Host:~# ip neigh del 192.168.2.10 lladdr 08:00:27:aa:aa:aa dev enp0s3
 </code></pre></div>

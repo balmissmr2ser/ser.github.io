@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,16 +234,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-  <!-- estilos internos al fichero -->
-</style>
-<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
 <div class="style-title">
-<h1 id="servicios-br-linux">SERVICIOS <br> LINUX </h1>
+<p><img src="..\..\..\assets\img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="servicios-linux">SERVICIOS LINUX </h1>
 </div>
 <p>📙<a href="./t03.linux.servicios.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div class="style-table-content">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
@@ -240,7 +247,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#system-v" class="md-toc-link"><p>SYSTEM V</p>
 </a>
@@ -299,9 +310,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       </details>
     
 </div>
-</div>
 <div style="page-break-after:always;"></div>
-<h2 id="servicios-linux">SERVICIOS LINUX </h2>
+<h2 id="introducción">INTRODUCCIÓN </h2>
 <div class="style-normal">
 <p>Los sistemas de inicio son el primer proceso del sistema (PID 1) y son los responsables de arrancar la máquina, iniciar servicios y administrar el resto de procesos del sistema. En las distribuciones Linux podemos encontrar dos sistemas inicio diferentes.</p>
 <ul>
@@ -323,11 +333,11 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 <span class="token number">1</span>    root   <span class="token number">0</span>:00 systemd
 </code></pre></div>
 </div>
-<h3 id="system-v">SYSTEM V </h3>
+<h2 id="system-v">SYSTEM V </h2>
 <div class="style-normal">
 <p>Denominado también UNIX System V o SysVinit. El proceso inicial se llama <code>init</code> y ejecuta el comando <code>/sbin/init</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>secuencialmente</strong>, es decir, cuando lanza la ejecución de un servicio espera a que termine antes de lanzar el siguiente. No existe definición explicita de dependencias más allá del orden en la ejecución secuencial.</p>
 </div>
-<h4 id="servicios">SERVICIOS </h4>
+<h3 id="servicios">SERVICIOS </h3>
 <div class="style-normal">
 <p>Los scripts que definen los servicios están ubicados en la carpeta <code>/etc/init.d</code> o <code>/etc/rc.d/init.d</code> dependiendo de la distribución Linux. Un script de definición de servicio tiene normalmente la siguiente estructura:</p>
 </div>
@@ -356,7 +366,7 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 <span class="token keyword keyword-esac">esac</span>
 <span class="token builtin class-name">exit</span> <span class="token number">0</span>
 </code></pre></div>
-<h4 id="operaciones">OPERACIONES </h4>
+<h3 id="operaciones">OPERACIONES </h3>
 <div class="style-normal">
 <p>Para ejecutar las operaciones básicas sobre un servicio se puede invocar el script del servicio con la opción deseada <code>/etc/init.d/&lt;servicio&gt; &lt;opcion&gt;</code> o bien ejecutar el comando <code>service &lt;servicio&gt; &lt;opcion&gt;</code></p>
 </div>
@@ -391,7 +401,7 @@ PID  <span class="token environment constant">USER</span>   TIME COMMAND
 </tr>
 </tbody>
 </table>
-<h4 id="runlevels">RUNLEVELS </h4>
+<h3 id="runlevels">RUNLEVELS </h3>
 <div class="style-normal">
 <p>El runlevel (nivel de ejecución) determina el conjunto de servicios que <code>init</code> va a ejecutar por defecto. Por ejemplo, en un runlevel se puede iniciar el sistema con interfaz gráfica mientras que en otro no.</p>
 <table>
@@ -491,7 +501,7 @@ update-rc.d <span class="token operator">&lt;</span>servicio<span class="token o
 </code></pre></div>
 </div>
 <div style="page-break-after:always;"></div>
-<h4 id="inittab">INITTAB </h4>
+<h3 id="inittab">INITTAB </h3>
 <div class="style-normal">
 <p>El fichero de configuración del proceso <code>init</code> es <code>/etc/inittab</code>. Le indica al proceso <code>init</code> que acciones realizar en el arranque del sistema como por ejemplo: el runlevel predeterminado, el script de arranque base, etc... El fichero está formado por lineas de entrada con el siguiente formato: <strong>id:runlevels:action:process</strong></p>
 </div>
@@ -555,7 +565,7 @@ l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
 <span class="token comment"># Se omiten lineas de la salida</span>
 </code></pre></div>
 </div>
-<h4 id="ficheros-de-log">FICHEROS DE LOG </h4>
+<h3 id="ficheros-de-log">FICHEROS DE LOG </h3>
 <div class="style-normal">
 <p><code>System V</code> no utiliza un sistema centralizado de registro de logs (bitácora), depende de otros servicios del sistema para registar eventos, especialmente el sistema de logging tradicional de linux <code>syslog</code>. Esto quiere decir que los mensajes de los servicios de <code>/etc/init.d/</code> no se registran automáticamente a no ser que utilicen llamadas a <code>syslog</code>.</p>
 <p>El sistema de logging <code>syslog</code> es gestionado tradicionalmente por el demonio <code>syslogd</code> o en distribuciones más modernas <code>rsyslogd</code>, <code>syslog-ng</code> o <code>busybox-syslog</code>.</p>
@@ -634,12 +644,12 @@ l1:1:wait:/etc/init.d/rc <span class="token number">1</span>
 </div>
 </div>
 <div style="page-break-after:always;"></div>
-<h3 id="systemd">SYSTEMD </h3>
+<h2 id="systemd">SYSTEMD </h2>
 <div class="style-normal">
 <p>El proceso inicial se llama <code>systemd</code> y ejecuta el comando <code>/sbin/systemd</code> con PID 1. La <strong>ejecución</strong> de los servicios se realiza <strong>en paralelo</strong>, es decir, cuando lanza la ejecución de un servicio no espera a su terminación antes de lanzar un nuevo servicio a no ser que existan dependencias entre ellos. El proceso <code>systemd</code> tiene asociado un fichero de configuración global que define su comportamiento <code>/etc/systemd/system.conf</code></p>
 <p>Por otro lado, el gestor <code>systemd</code> está diseñado para ser compatible con los scripts de inicio de <code>init</code> (System V) y por tanto se pueden definir los servicios al estilo de <code>/etc/init.d</code>.</p>
 </div>
-<h4 id="servicios-1">SERVICIOS </h4>
+<h3 id="servicios-1">SERVICIOS </h3>
 <div class="style-normal">
 <p>Para la definición de los servicios se utiliza el concepto de <strong>unidad</strong>. Una unidad es un objeto de <code>systemd</code> que realiza o controla una tarea o acción en particular, por ejemplo, gestionar procesos, organizar el arranque del sistema, crear sockets, montar sistemas de archivos, etc.. Para definir una unidad se utilizan los siguientes elementos:</p>
 </div>
@@ -995,7 +1005,7 @@ Contiene los parámetros relacionados con las unidades de la categoria servicio.
 <span class="token comment"># La variable MAINPID se crea al cargarse la unidad</span>
 </code></pre></div>
 </div>
-<h4 id="runlevels-1">RUNLEVELS </h4>
+<h3 id="runlevels-1">RUNLEVELS </h3>
 <div class="style-normal">
 <p>Systemd emula los niveles de ejecución de System V a través de unidades de tipo target. Las equivalencias son las siguientes:</p>
 </div>
@@ -1082,7 +1092,7 @@ Contiene los parámetros relacionados con las unidades de la categoria servicio.
 <span class="token comment"># De forma similar sucedería si en lugar de WantedBy se utiliza RequieredBy.</span>
 </code></pre></div>
 </div>
-<h4 id="operaciones-1">OPERACIONES </h4>
+<h3 id="operaciones-1">OPERACIONES </h3>
 <div class="style-normal">
 <p>Para realizar operaciones sobre las unidades y servicios en <code>systemd</code> utilizaremos el comando <code>systemctl</code>. Este comando tiene numerosas opciones que puedes consultar en <a href="https://man7.org/linux/man-pages/man1/systemctl.1.html">man systemctl</a>. Entre ellas tenemos:</p>
 </div>
@@ -1312,7 +1322,7 @@ ssh.service                     loades active     running OpenBSD Secure Shell S
 <span class="token punctuation">..</span><span class="token punctuation">..</span>.
 </code></pre></div>
 </div>
-<h4 id="ficheros-de-log-1">FICHEROS DE LOG </h4>
+<h3 id="ficheros-de-log-1">FICHEROS DE LOG </h3>
 <div class="style-normal">
 <p><code>Systemd</code> utiliza un sistema centralizado de registro de logs (bitácora) denominado <code>journal</code>que gestiona y almacena eventos del sistema, servicios, kernel y usuarios. El sistema <code>journal</code>es gestionado por el servicio <code>systemd-journald</code>.</p>
 <p>Los registros generados por <code>journal</code> pueden ser consultados con la herramienta <code>journalctl</code>. Puedes obtener información de este comando en <a href="https://man7.org/linux/man-pages/man1/journalctl.1.html">man journalctl</a>. Entre las opciones más comunes:</p>
@@ -1362,10 +1372,10 @@ journalctl <span class="token parameter variable">--lines</span> <span class="to
 
 <span class="token comment">#Los ultimos registros de ssh y mantenerse</span>
 journalctl <span class="token parameter variable">--follow</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
-
-<span class="token comment">#Los registros de ssh desde hace 1 minuto</span>
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Los registros de ssh desde hace 1 minuto</span>
 journalctl <span class="token parameter variable">--since</span> <span class="token string">"1 minute ago"</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
-</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment">#Los registros de ssh desde hace 2 dias</span>
+
+<span class="token comment">#Los registros de ssh desde hace 2 dias</span>
 journalctl <span class="token parameter variable">--since</span> <span class="token string">"2 days ago"</span> <span class="token parameter variable">--unit</span> <span class="token function">ssh</span>
 
 <span class="token comment">#Todos los registros de ssh de tipo error</span>

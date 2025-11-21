@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>SER - Unidad 01 DHCP</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -177,9 +177,6 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0.5cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-normal2 {
-  text-align: justify;
-}
 .markdown-preview.markdown-preview .style-example {
   text-align: justify;
   font-size: small;
@@ -192,8 +189,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-indent: 0cm;
   text-align: justify;
 }
-.markdown-preview.markdown-preview .style-table-content {
-  background-color: lightgrey;
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
 }
 
       </style>
@@ -222,125 +234,131 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<p><img src="../../../assets/img-BalmisHeader.png" alt="ONU"></p>
 <div class="style-title">
-<h1 id="dhcp-server-br-linux">DHCP SERVER <br> LINUX </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="dhcp-server-linux">DHCP SERVER LINUX </h1>
 </div>
 <p>📙<a href="./t03.linux.dhcp.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
 
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#instalación-y-configuración-de-un-servidor-dhcp" class="md-toc-link">
-            <p>INSTALACIÓN Y CONFIGURACIÓN DE UN SERVIDOR DHCP</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+<details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#el-servidor-isc-dhcp-server" class="md-toc-link"><p>EL SERVIDOR isc-dhcp-server</p>
+          <a href="#dhcp-server-linux" class="md-toc-link"><p>DHCP SERVER LINUX</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introduccion" class="md-toc-link">
+            <p>INTRODUCCION</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#servidor-isc-dhcp-server" class="md-toc-link"><p>SERVIDOR ISC-DHCP-SERVER</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#instalación" class="md-toc-link">
-            <p>Instalación</p>
+            <p>INSTALACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#interfaces-del-servidor-dhcp" class="md-toc-link">
-            <p>Interfaces del servidor DHCP</p>
+          <a href="#interfaces-del-servidor" class="md-toc-link">
+            <p>INTERFACES DEL SERVIDOR</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#configuración-del-servidor-dhcp" class="md-toc-link"><p>Configuración del servidor DHCP</p>
+          <a href="#configuracion-del-servidor" class="md-toc-link"><p>CONFIGURACION DEL SERVIDOR</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#elementos-clave-de-configuración" class="md-toc-link">
-            <p>Elementos clave de configuración</p>
+          <a href="#elementos-clave-de-configuracion" class="md-toc-link">
+            <p>ELEMENTOS CLAVE DE CONFIGURACION</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#estructura-general-de-las-declaraciones" class="md-toc-link">
-            <p>Estructura general de las declaraciones</p>
+          <a href="#estructura-general-de-declaraciones" class="md-toc-link">
+            <p>ESTRUCTURA GENERAL DE DECLARACIONES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#parámetros-usuales" class="md-toc-link">
-            <p>Parámetros usuales</p>
+          <a href="#parametros-usuales" class="md-toc-link">
+            <p>PARAMETROS USUALES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ejemplos" class="md-toc-link">
-            <p>Ejemplos</p>
+            <p>EJEMPLOS</p>
 
           </a></div>
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#gestión-de-concesiones-de-direcciones-ip" class="md-toc-link">
-            <p>Gestión de concesiones de direcciones IP</p>
+          <a href="#gestion-de-concesiones-ip" class="md-toc-link">
+            <p>GESTION DE CONCESIONES IP</p>
 
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#clientes-dhcp" class="md-toc-link"><p>Clientes DHCP</p>
+          <a href="#clientes-dhcp" class="md-toc-link"><p>CLIENTES DHCP</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instalación-del-cliente-dhcp" class="md-toc-link">
-            <p>Instalación del cliente DHCP</p>
+          <a href="#instalacion-del-cliente" class="md-toc-link">
+            <p>INSTALACION DEL CLIENTE</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#uso-básico" class="md-toc-link">
-            <p>Uso básico</p>
+            <p>USO BÁSICO</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configuración-del-cliente-dhcp" class="md-toc-link">
-            <p>Configuración del cliente DHCP</p>
+          <a href="#configuración-del-cliente" class="md-toc-link">
+            <p>CONFIGURACIÓN DEL CLIENTE</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#almacenamiento-de-concesiones" class="md-toc-link">
-            <p>Almacenamiento de concesiones</p>
+            <p>ALMACENAMIENTO DE CONCESIONES</p>
 
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#agentes-de-retransmisión-dhcp-dhcp-relay" class="md-toc-link"><p>Agentes de retransmisión DHCP (DHCP Relay)</p>
+          <a href="#dhcp-relay" class="md-toc-link"><p>DHCP RELAY</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instalación-del-agente-de-retransmisión-dhcp-en-linux" class="md-toc-link">
-            <p>Instalación del agente de retransmisión DHCP en Linux</p>
+          <a href="#instalacion-de-dhcp-relay" class="md-toc-link">
+            <p>INSTALACION DE DHCP RELAY</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configuración-del-dhcp-relay" class="md-toc-link">
-            <p>Configuración del DHCP Relay</p>
+          <a href="#configuracion-de-dhcp-relay" class="md-toc-link">
+            <p>CONFIGURACION DE DHCP RELAY</p>
 
           </a></div>
         </div>
       </details>
     
-</div>
+        </div>
+      </details>
+    
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="instalación-y-configuración-de-un-servidor-dhcp">INSTALACIÓN Y CONFIGURACIÓN DE UN SERVIDOR DHCP </h2>
+<h2 id="introduccion">INTRODUCCION </h2>
 <p>En los sistemas Linux básicamente tenemos dos opciones para instalar un servidor DHCP:</p>
 <ul>
 <li>Servidor DHCP proporcionado por el paquete <code>isc-dhcp-server</code>.</li>
 <li>Servidor DHCP proporcionado por el paquete <code>dnsmasq</code>.</li>
 </ul>
 <p>En este documento nos centraremos en el servidor DHCP del ISC (Internet Systems Consortium).</p>
-<h2 id="el-servidor-isc-dhcp-server">EL SERVIDOR isc-dhcp-server </h2>
+<h2 id="servidor-isc-dhcp-server">SERVIDOR ISC-DHCP-SERVER </h2>
 <p>El servidor DHCP del ISC permite hacer configuraciones muy complejas del servicio DHCP. Nosotros nos centraremos en las configuraciones elementales.</p>
-<h3 id="instalación">Instalación </h3>
+<h3 id="instalación">INSTALACIÓN </h3>
 <p>Lo primero que debemos hacer es instalar el paquete <strong><code>isc-dhcp-server</code></strong>. En distribuciones basadas en Debian, podemos hacerlo con cualquiera de los siguientes comandos:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>apt install isc-dhcp-server
 </code></pre><pre data-role="codeBlock" data-info="text" class="language-text text"><code>apt-get install isc-dhcp-server
-</code></pre><h3 id="interfaces-del-servidor-dhcp">Interfaces del servidor DHCP </h3>
+</code></pre><h3 id="interfaces-del-servidor">INTERFACES DEL SERVIDOR </h3>
 <p>En el archivo <strong><code>/etc/default/isc-dhcp-server</code></strong> se especifica por qué interfaces de red el servidor DHCP acepta peticiones (en caso de tener más de una). En versiones más modernas, el servidor también puede proporcionar direcciones IPv6.</p>
 <p>La siguiente tabla muestra las directivas que se pueden configurar en dicho archivo:</p>
 <table>
@@ -388,7 +406,7 @@ Editamos el archivo de configuración de opciones por defecto <code>/etc/default
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>INTERFACESv4="enp0s8"
 INTERFACESv6=""
 </code></pre></div>
-<h3 id="configuración-del-servidor-dhcp">Configuración del servidor DHCP </h3>
+<h3 id="configuracion-del-servidor">CONFIGURACION DEL SERVIDOR </h3>
 <p>La configuración del servidor se realiza en el archivo <strong><code>/etc/dhcp/dhcpd.conf</code></strong> (si no hemos cambiado la configuración por defecto). Es un archivo de texto con una serie de entradas, normalmente una por línea. Si una entrada necesita varios parámetros, estos se pueden agrupar mediante llaves <code>{}</code> y cada parámetro va en una línea. Las líneas que empiezan por <code>#</code> son comentarios y son ignoradas.</p>
 <p>Las entradas pueden ser:</p>
 <ul>
@@ -405,14 +423,14 @@ Declaración_2 {
     [Parámetros relativos a Declaración_2]
     [Subdeclaración anidada]
 }
-</code></pre><h4 id="elementos-clave-de-configuración">Elementos clave de configuración </h4>
+</code></pre><h4 id="elementos-clave-de-configuracion">ELEMENTOS CLAVE DE CONFIGURACION </h4>
 <p>En el archivo de configuración se definen las redes en las que actúa el servidor DHCP y los rangos de direcciones que puede asignar. Las opciones más importantes son:</p>
 <ul>
 <li><strong>subnet</strong>: Aplica un conjunto de parámetros y/o declaraciones a un conjunto de direcciones que coincidan con los datos de la declaración.</li>
 <li><strong>range</strong>: Establece un rango de direcciones IP válidas para asignar a los clientes. Los rangos se definen dentro de la red indicada en la declaración. Puede haber más de una declaración de rango, permitiendo definir rangos discontinuos.</li>
 <li><strong>host</strong>: Permite definir reservas, de forma que se asigne siempre la misma IP a un equipo identificado por su dirección MAC.</li>
 </ul>
-<h4 id="estructura-general-de-las-declaraciones">Estructura general de las declaraciones </h4>
+<h4 id="estructura-general-de-declaraciones">ESTRUCTURA GENERAL DE DECLARACIONES </h4>
 <div class="row">
 <div class="col-sm-6 my-auto">
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>subnet &lt;ip-red&gt; netmask &lt;máscara-red&gt; {
@@ -434,7 +452,7 @@ Declaración_2 {
 <p>Los parámetros definidos de manera global se aplican a todas las declaraciones definidas en el archivo. Por ejemplo, se puede definir un servidor DNS globalmente, de modo que si en una declaración subnet no se especifica ninguna opción DNS, se asignará a los clientes el DNS definido globalmente. Un parámetro dentro de una declaración, como por ejemplo subnet, sobrescribe el valor del mismo parámetro si este está definido de forma global.</p>
 <p>En cuanto a las declaraciones host, hay que tener en cuenta que si reservamos una IP que está dentro de un rango definido por una cláusula <code>range</code> en una declaración <code>subnet</code>, esa IP puede ser asignada a cualquier cliente. Por tanto, en estos casos lo recomendable es utilizar direcciones IP que pertenezcan a una de las redes definidas en una declaración subnet, pero que no estén incluidas dentro del rango de direcciones especificado en la cláusula range.</p>
 <p>Otro aspecto importante es que el tiempo de concesión asignado a la reserva no es ilimitado, sino que corresponde al tiempo definido en la declaración subnet, de forma global o por defecto. Este inconveniente se puede solucionar estableciendo el tiempo mínimo de concesión como infinito mediante una opción dentro de la declaración host.</p>
-<h4 id="parámetros-usuales">Parámetros usuales </h4>
+<h4 id="parametros-usuales">PARAMETROS USUALES </h4>
 <p>Los parámetros de configuración general del servidor DHCP tinen la siguiente sintaxis:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>parámetro [&lt;valor&gt;]
 </code></pre><p>La siguiente tabla recoge los parámetros de configuración del servidor más comunes.</p>
@@ -495,7 +513,7 @@ Declaración_2 {
 </tr>
 </tbody>
 </table>
-<h4 id="ejemplos">Ejemplos </h4>
+<h4 id="ejemplos">EJEMPLOS </h4>
 <div class="admonition example">
 <p class="admonition-title">Configuración básica servidor DHCP</p>
 <p>Vamos a configurar un servidor DHCP en un equipo con un único adaptador y sistema operativo Debian.<br>
@@ -566,7 +584,7 @@ INTERFACESv6=""
     min-lease-time infinite;
 }
 </code></pre></div>
-<h3 id="gestión-de-concesiones-de-direcciones-ip">Gestión de concesiones de direcciones IP </h3>
+<h3 id="gestion-de-concesiones-ip">GESTION DE CONCESIONES IP </h3>
 <p>El servidor DHCP utiliza un archivo de texto ASCII como base de datos para controlar qué direcciones IP ha asignado a los diferentes equipos de la red. El nombre del archivo de concesiones se puede especificar usando el parámetro <code>lease-file-name</code> en el archivo de configuración de DHCP. Si no se especifica, el valor por defecto es:</p>
 <pre data-role="codeBlock" data-info="" class="language-text"><code>/var/lib/dhcp/dhcpd.leases
 </code></pre><p>La estructura general del archivo es la siguiente:</p>
@@ -653,16 +671,16 @@ MAC                IP              hostname           valid until          manuf
 08:00:27:0d:e7:32  192.168.2.64    PC1-X2             2023-11-02 22:02:13 -NA-
 </code></pre><p>En el siguiente se observa, por un lado, que el host PC1-X2 tiene una concesión activa de la dirección IP 192.168.2.64 hasta el 2 de noviembre de 2023 a las 22:02:13 y por otro lado, que el host PC3-X1 tiene una concesión activa de la dirección IP 192.168.2.130 hasta el 2 de noviembre de 2023 a las 19:43:27.</p>
 </div>
-<h2 id="clientes-dhcp">Clientes DHCP </h2>
+<h2 id="clientes-dhcp">CLIENTES DHCP </h2>
 <p>Para que un equipo pueda obtener una dirección IP de forma dinámica en una red, es necesario que tenga instalado un cliente DHCP. Este cliente se encarga de solicitar la configuración de red al servidor DHCP. El cliente DHCP más común en sistemas Linux es <strong><code>dhclient</code></strong>, incluido en el paquete <code>isc-dhcp-client</code>.</p>
-<h3 id="instalación-del-cliente-dhcp">Instalación del cliente DHCP </h3>
+<h3 id="instalacion-del-cliente">INSTALACION DEL CLIENTE </h3>
 <p>El cliente DHCP suele venir preinstalado en la mayoría de las distribuciones Linux. Sin embargo, si no está instalado, se puede instalar fácilmente utilizando el gestor de paquetes correspondiente. Para instalar el cliente DHCP en sistemas basados en Debian/Ubuntu:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>apt install isc-dhcp-client
-</code></pre><h3 id="uso-básico">Uso básico </h3>
+</code></pre><h3 id="uso-básico">USO BÁSICO </h3>
 <p>El cliente DHCP suele ejecutarse automáticamente al iniciar el sistema o al conectar un adaptador de red. Sin embargo, también puede ejecutarse manualmente para renovar o liberar una concesión de dirección IP:</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>dhclient <span class="token punctuation">[</span>interfaz<span class="token punctuation">]</span>         <span class="token comment"># Solicita o renueva una dirección IP para la interfaz indicada</span>
 dhclient <span class="token parameter variable">-r</span> <span class="token punctuation">[</span>interfaz<span class="token punctuation">]</span>      <span class="token comment"># Libera la concesión de la dirección IP de la interfaz indicada</span>
-</code></pre><h3 id="configuración-del-cliente-dhcp">Configuración del cliente DHCP </h3>
+</code></pre><h3 id="configuración-del-cliente">CONFIGURACIÓN DEL CLIENTE </h3>
 <p>La configuración principal del cliente DHCP se realiza en el archivo <code>/etc/dhcp/dhclient.conf</code>. En este archivo se pueden personalizar aspectos como las opciones que solicita el cliente al servidor o el comportamiento ante las concesiones de direcciones IP. Algunos parámetros habituales en <code>dhclient.conf</code> son:</p>
 <ul>
 <li><code>request &lt;opciones&gt;</code>: Especifica una lista de opciones que el cliente solicita al servidor. El servidor puede proporcionarlas o no.</li>
@@ -670,7 +688,7 @@ dhclient <span class="token parameter variable">-r</span> <span class="token pun
 <li><code>send &lt;opción&gt; &lt;valor&gt;</code>: Permite enviar una opción concreta con un valor determinado al servidor DHCP.</li>
 </ul>
 <p>Por defecto, <code>dhclient</code> funciona con una configuración estándar, pero puede adaptarse a las necesidades del usuario modificando este archivo.</p>
-<h3 id="almacenamiento-de-concesiones">Almacenamiento de concesiones </h3>
+<h3 id="almacenamiento-de-concesiones">ALMACENAMIENTO DE CONCESIONES </h3>
 <p>El cliente almacena la información de las concesiones recibidas del servidor DHCP en archivos similares a los del propio servidor. Los archivos habituales son:</p>
 <ul>
 <li><code>/var/lib/dhcp/dhclient.leases</code> (archivo general)</li>
@@ -685,13 +703,13 @@ dhclient <span class="token parameter variable">-r</span> <span class="token pun
 <li>Opciones recibidas del servidor, indicadas con la palabra <code>option</code>.</li>
 </ul>
 <p>La configuración avanzada del cliente DHCP puede ser compleja y está fuera del alcance de este curso, pero con estos conceptos básicos es posible gestionar la obtención dinámica de direcciones IP en sistemas Linux.</p>
-<h2 id="agentes-de-retransmisión-dhcp-dhcp-relay">Agentes de retransmisión DHCP (DHCP Relay) </h2>
+<h2 id="dhcp-relay">DHCP RELAY </h2>
 <p>Un agente de retransmisión DHCP permite transmitir peticiones DHCP entre diferentes subredes, facilitando que los clientes puedan obtener una dirección IP aunque el servidor DHCP no esté en su misma red.<br>
 En sistemas Linux, la instalación y configuración de un agente de retransmisión es sencilla gracias al paquete proporcionado por ISC (Internet Software Consortium): <strong>isc-dhcp-relay</strong>.</p>
-<h3 id="instalación-del-agente-de-retransmisión-dhcp-en-linux">Instalación del agente de retransmisión DHCP en Linux </h3>
+<h3 id="instalacion-de-dhcp-relay">INSTALACION DE DHCP RELAY </h3>
 <p>Para instalar el agente de retransmisión DHCP en sistemas basados en Debian/Ubuntu, puedes utilizar el siguiente comando:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>apt install isc-dhcp-relay
-</code></pre><h3 id="configuración-del-dhcp-relay">Configuración del DHCP Relay </h3>
+</code></pre><h3 id="configuracion-de-dhcp-relay">CONFIGURACION DE DHCP RELAY </h3>
 <p>Una vez instalado, el agente de retransmisión DHCP se configura principalmente editando el archivo <code>/etc/default/isc-dhcp-relay</code>. Durante la instalación se solicitarán los siguientes datos:</p>
 <ul>
 <li><strong>Dirección IP del servidor DHCP</strong>: Una o varias direcciones IP de los servidores a los que el relay enviará las peticiones.</li>
