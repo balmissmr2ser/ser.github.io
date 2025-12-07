@@ -278,47 +278,35 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div>
         </div>
       </details>
-    
-        </div>
-      </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#dhcp-protocolo" class="md-toc-link">
-            <p>DHCP PROTOCOLO</p>
+          <a href="#características-de-la-estructura-dns" class="md-toc-link">
+            <p>CARACTERÍSTICAS DE LA ESTRUCTURA DNS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#parametros-de-configuración" class="md-toc-link">
-            <p>PARAMETROS DE CONFIGURACIÓN</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tipos-de-asignaciones" class="md-toc-link">
-            <p>TIPOS DE ASIGNACIONES</p>
+          <a href="#dominio-raíz" class="md-toc-link">
+            <p>DOMINIO RAÍZ</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#mensajes" class="md-toc-link"><p>MENSAJES</p>
+          <a href="#base-de-datos" class="md-toc-link"><p>BASE DE DATOS</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#formato" class="md-toc-link">
-            <p>FORMATO</p>
+          <a href="#zona" class="md-toc-link">
+            <p>ZONA</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tipos" class="md-toc-link">
-            <p>TIPOS</p>
+          <a href="#registros" class="md-toc-link">
+            <p>REGISTROS</p>
 
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ciclo-de-vida" class="md-toc-link">
-            <p>CICLO DE VIDA</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#dhcp-relay" class="md-toc-link">
-            <p>DHCP RELAY</p>
-
-          </a></div>
+    
+        </div>
+      </details>
+    
         </div>
       </details>
     
@@ -370,421 +358,387 @@ Algunos servidores DNS son: BIND, DNSMasq, NSD, Microsoft DNS, Power DNS, Simple
 <p>Software en la máquina cliente que realiza consultas a un servidor DNS.<br>
 El resolver puede ser una librería que utilizan las aplicaciones para realizar las consultas DNS o un programa independiente que realiza las consultas en nombre de las aplicaciones. Algunos ejemplos de resolvers son: <code>nslookup</code>, <code>dig</code>, <code>host</code>, <code>gethostbyname()</code>, <code>getaddrinfo()</code>,...<br>
 Como los servidores DNS pueden hacerse consultas entre sí, muchas veces se implementa como un servidor DNS. En los sistemas operativos se trata de un servicio en ejecución que responde a las consultas de los otros programas.</p>
-<p><img src="./assets/Arquitectura.DNS.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
-<p>DNS está definido a las RFC 1034, 1035 i 1886 (IPv6) y utiliza los siguientes puertos:</p>
+<p><img src="./assets/Arquitectura.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
+<p>DNS está definido a las RFC <a href="https://www.rfc-editor.org/info/rfc1034">1034</a>, <a href="https://www.rfc-editor.org/info/rfc1035">1035</a>, <a href="https://www.rfc-editor.org/info/rfc1886">1886</a> (IPv6) y utiliza los siguientes puertos:</p>
 </div>
 <div class="style-list">
 <ul>
-<li>UDP 53 para consultas y respuestas DNS.</li>
-<li>TCP 53 para transferencias de zonas y respuestas DNS grandes (&gt; 512 bytes).</li>
-<li>Para los clientes se utilizan puertos efímeros.</li>
+<li><strong>UDP 53</strong> para consultas y respuestas DNS.</li>
+<li><strong>TCP 53</strong> para transferencias de zonas y respuestas DNS grandes (&gt; 512 bytes).</li>
+<li>Para los clientes se utilizan <strong>puertos efímeros</strong>.</li>
 </ul>
 </div>
-<h2 id="dhcp-protocolo">DHCP PROTOCOLO </h2>
-<p>Los <strong>nodos clientes solicitan a</strong> uno o varios <strong>servidores DHCP</strong> de su red los <strong>parámetros de configuración</strong> para las interfaces de red configuradas en modo DHCP. De manera general, los servidores DHCP <strong>alquilan</strong> (<em>lease</em>) la configuración a los clientes durante un tiempo concesión determinado. Una vez finalizado el tiempo de concesión, los clientes deben: <strong>renovar</strong> o <strong>liberar</strong> la concesión.</p>
-<p><strong>Ventajas</strong></p>
+<h3 id="características-de-la-estructura-dns">CARACTERÍSTICAS DE LA ESTRUCTURA DNS </h3>
+<div class="style-normal">
+<p>DNS se fundamenta en una base de datos distribuida que organiza un espacio jerárquico de nombres de dominio con las siguientes características:</p>
+</div>
 <div class="style-list">
 <ul>
-<li>Se reduce el trabajo de administración.</li>
-<li>Se centraliza la configuración de red.</li>
-<li>Se reducen los errores de configuración.</li>
-<li>Se disminuyen los conflictos de direcciones IP en la red.</li>
-<li>Los nodos clientes configurados como DHCP pueden cambiar a otra red sin necesidad de reconfigurar los adaptadores.</li>
+<li><strong>Estructura jerárquica.</strong> El sistema se organiza en forma de árbol que comienza con un dominio raíz, el cual se subdivide en subdominios. Estos subdominios pueden dividirse nuevamente en otros subdominios, permitiendo hasta 127 niveles de profundidad en la jerarquía.<br>
+<img src="./assets/Jerarquia.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></li>
+<li><strong>Distribución descentralizada.</strong> La información que define esta estructura arbórea no se almacena en un único repositorio central. En su lugar, se distribuye entre múltiples servidores DNS repartidos geográficamente, lo que permite que cada servidor gestione una parte específica del espacio de nombres.<br>
+<img src="./assets/Distribuido.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></li>
+<li><strong>Nombres de dominio.</strong> Cada nodo del árbol recibe un nombre de dominio con reglas específicas: máximo 63 caracteres, sin distinción entre mayúsculas y minúsculas, y sin repeticiones entre nodos del mismo nivel (hermanos). Los nombres se separan mediante puntos (.) para construir rutas. El nombre completo desde cualquier nodo hoja puede alcanzar un máximo de 255 caracteres.
+<ul>
+<li><strong>Raíz del dominio.</strong> El nodo raíz del árbol se identifica con una cadena vacía que representa el punto más alto de la jerarquía.</li>
+<li><strong>Nombres absolutos (FQDN).</strong> Un nombre de dominio completamente cualificado (Full Qualified Domain Name) especifica la ruta completa desde un nodo hasta la raíz, terminando siempre con un punto. Este nombre es único en todo el espacio de nombres. Ejemplos: <code>www.gva.edu.</code>, <code>www.gva.net.</code>, <code>gva.edu.</code></li>
+<li><strong>Nombres relativos.</strong> Son nombres de nodos que no incluyen la ruta completa hasta la raíz. Normalmente requieren procesamiento por software para completarse y convertirse en nombres absolutos. Ejemplos: <code>ftp</code>, <code>gva.edu</code>.</li>
+</ul>
+</li>
+<li><strong>Dominios y subdominios.</strong> Un dominio es un nombre asignado a un nodo que abarca tanto ese nodo como todo el subárbol que cuelga de él. Por ejemplo, <code>edu</code> es un dominio que contiene el subdominio <code>gva</code>; <code>net</code> es un dominio que contiene los subdominios <code>gva</code> y <code>ua</code>; y <code>ua</code> es a su vez un subdominio de <code>net</code> que define máquinas específicas como <code>enps3</code> y <code>enps4</code>.</li>
+<li><strong>Delegación de dominios.</strong> Este mecanismo permite descentralizar la administración del sistema DNS mediante la división de dominios en subdominios. Cada subdominio puede ceder su control administrativo a una autoridad diferente (otro servidor DNS), quien asume la responsabilidad de mantener los registros de recursos de ese subdominio.</li>
+<li><strong>Espacio de nombres.</strong> El espacio de nombres DNS comprende el dominio raíz y la totalidad de los subdominios que derivan de él, formando un conjunto completo de nombres únicos organizados jerárquicamente.</li>
 </ul>
 </div>
+<h3 id="dominio-raíz">DOMINIO RAÍZ </h3>
+<div class="style-normal">
+<p>Hay 13 servidores DNS raíz en toda Internet. Esto no quiere decir que haya 13 servidores físicos, cada operador utiliza equipos redundantes para ofrecer un servicio fiable. Además, en la actualidad se utiliza también el direccionamiento anycast para acceder a los servidores raíz. Los nombres de los servidores raíz son de la forma letra.root-servers.net.Sus nombres y direcciones actuales son:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Letra</th>
+<th>IPv4</th>
+<th>Ubicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td>198.41.0.4</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td>192.228.79.201</td>
+<td>Marina del Rey – California - US</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td>192.33.4.12</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td>199.7.91.13</td>
+<td>College park – Maryland - US</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td>192.203.230.10</td>
+<td>Mountain View – California - US</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td>192.5.5.241</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td>192.112.36.4</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">H</td>
+<td>198.63.2.53</td>
+<td>Distribuido – Maryland - US</td>
+</tr>
+<tr>
+<td style="text-align:center">I</td>
+<td>192.36.148.17</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">J</td>
+<td>192.58.128.30</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">K</td>
+<td>193.0.14.129</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">L</td>
+<td>199.7.83.42</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td>202.12.27.33</td>
+<td>Distribuido, Anycast</td>
+</tr>
+</tbody>
+</table>
+<p>Podéis consultar la lista actualizada de servidores raíz en el siguiente enllaç root-servers.</p>
+<p>Cada uno de estos servidores guardan una copia de la zona de definición de los dominios de primer nivel o <strong>TLD</strong> (Top Level Domain). Esta zona TLD es definida por la <em>ICANN</em> pero es controlada por el Departamento de Comercio de los Estados Unidos.<br>
+La ICANN distingue actualmente los siguientes grupos para los TLD:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>ccTLD</strong> (country code TLD) (dos caracteres). Identifican los países. Algunos ejemplos son: es, fr, dk, de, jp, it.</li>
+<li><strong>gTLD</strong> (genérico TLD) (tres o más caracteres).
+<ul>
+<li>sTLD sponsored TLD (Ejemplos: edu, gov, jobs, museum, cat, ...).</li>
+<li>uTLD unsponsored TLD (Ejemplos: hoteles).</li>
+</ul>
+</li>
+<li><strong>.arpa</strong> utilizado por la ICANN para su propia infraestructura.</li>
+</ul>
+<p>Se puede consultar la definición de la lista de servidores raíz y de la zona raíz en los siguientes enlaces:</p>
+<p><a href="https://www.internic.net/domain/named.root">Lista de servidores raíz (root hints zone)</a><br>
+<a href="https://www.internic.net/domain/root.zone">TLD definidos en los servidores raíz (root zone)</a></p>
+</div>
+<h3 id="base-de-datos">BASE DE DATOS </h3>
+<h4 id="zona">ZONA </h4>
+<div class="style-normal">
+<p>Cada servidor DNS mantiene en su base de datos la información de una <strong>parte del espacio de nombres</strong> llamada <strong>zona</strong>. Una zona puede coincidir con un dominio pero no es necesario. Los servidores que gestionan la zona tienen información completa sobre ella y se dice que tienen <strong>autoridad</strong> respecto a ella. Un servidor DNS puede definir una o más zonas, además una zona puede ser gestionada por más de un servidor DNS.<br>
+Un servidor DNS puede delegar la administración de una parte de su zona a otros servidores DNS. En este caso, pierde la autoridad sobre la zona delegada pero puede recuperar la información a partir de los DNS delegados.<br>
+En la siguiente imagen se muestra un espacio de nombres con cuatro zonas y catorce dominios:<br>
+<img src="./assets/Zonas.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
+<p>En la especificación de la base de datos en el servidor DNS habrá al menos los siguientes archivos de zona:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>Zona de resolución directa</strong>. Esta zona mantiene las asociaciones de los nombres de dominio a direcciones IP.</li>
+<li><strong>Zona de resolución inversa</strong>. Esta zona mantiene las asociaciones de cada dirección IP con su nombre de dominio canónico.</li>
+<li><strong>Zona de resolución inversa de la dirección de loopback</strong>. Esta zona mantiene la traducción inversa de las direcciones de loopback.</li>
+<li><strong>Zona root</strong>. Esta zona mantiene las direcciones de los nodos DNS raíz.</li>
+</ul>
+<p>La forma en que un servidor define sus zonas en la base de datos varía de un tipo de servidor a otro.</p>
+</div>
+<div class="style-normal">
+<p>Las mayoría de las distribuciones Linux incorporan <em>BIND9</em> como servidor DNS. La configuración del servicio (<strong>named</strong>) y las zonas se hacen en el archivo <strong>/etc/bind/named.conf</strong>. Normalmente no se modifica el archivo para introducir las nuevas zonas y opciones. Para ello se utilizan los archivos que hay bajo la directiva include:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>named.conf.options</strong>: Opciones globales de configuración.</li>
+<li><strong>named.conf.local</strong>: zonas nuevas definidas.</li>
+</ul>
+<p>El archivo <strong>named.conf</strong> tiene la siguiente estructura:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>// Archivo de configuración principal de BIND9
+include "/etc/bind/named.conf.options";
+include "/etc/bind/named.conf.local";
 
-<h2 id="parametros-de-configuración">PARAMETROS DE CONFIGURACIÓN </h2>
+# Be authoritative for the localhost forward and
+# broadcast zones as per RFC 1912.
+zone "." {
+    type hint;
+    //Tipo servidor definido para zona cache
+    file "/etc/bind/db.root";
+};
+
+zone "localhost." {
+    type master;
+    file "/etc/bind/db.local";
+};
+
+zone "127.in-addr.arpa." {
+    type master;
+};
+    file "/etc/bind/db.127";
+
+zone "0.in-addr.arpa." {
+    type master;
+};
+    file "/etc/bind/db.0";
+
+zone "255.in-addr.arpa." {
+    type master;
+    file "/etc/bind/db.255";
+};
+
+include "/etc/bind/named.conf.default-zones";
+</code></pre><p>Las zonas que aparecen en el archivo son las zonas por defecto que tiene <em>BIND9</em>. En las versiones más recientes de <em>BIND9</em> las zonas por defecto se definen en el archivo <strong>named.conf.default-zones</strong>. En ese caso el archivo <strong>named.conf</strong> queda así:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>// Archivo de configuración principal de BIND9
+include "/etc/bind/named.conf.options";
+include "/etc/bind/named.conf.default-zones";
+include "/etc/bind/named.conf.local";
+</code></pre></div>
+<p>En <em>BIND9</em> se pueden definir zonas de diversos tipos:</p>
+<ul>
+<li><strong>Master</strong>: Es una zona autoritativa. Es decir, en esta zona se definen los registros que asocian nombres e IP y a la inversa.</li>
+<li><strong>Slave</strong>: Se trata de una copia completa de una zona autoritativa.</li>
+<li><strong>Stub</strong>: Se trata de una copia parcial de una zona autoritativa.</li>
+<li><strong>Forward</strong>: Se trata de una zona en la que no hay definición, sino que las consultas se reenvían a otros servidores.</li>
+<li><strong>Hint</strong>: Se trata de la zona donde están definidos los servidores raíz.</li>
+</ul>
+<p>A las zonas <strong>master</strong> y <strong>slave</strong> se las llamaba antes <strong>primaria</strong> y <strong>secundaria</strong> respectivamente.</p>
+
 <div class="style-normal">
-<p>Los cliente DHCP reciben del servidor DHCP los parámetros de configuración de red. Algunos de estos parámetros son <strong>obligatorios</strong>, mientras que otros son <strong>opcionales</strong>.</p>
+<p>Además, se pueden utilizar diferentes opciones globales para modificar el comportamiento del servidor, por ejemplo:</p>
+</div>
 <div class="style-list">
-<p><strong>Parámetros obligatorios</strong></p>
 <ul>
-<li>Dirección IP del cliente</li>
-<li>Máscara de subred</li>
-<li>Tiempo de concesión (<em>Allocation time</em>)</li>
-<li>Tiempo de renovación (<em>Renewal time</em>)</li>
-<li>Tiempo de reconexión (<em>Rebinding time</em>)</li>
-</ul>
-<p><strong>Parámetros opcionales</strong></p>
-<ul>
-<li>Dirección IP de la puerta de enlace</li>
-<li>Direcciones IP de los servidores DNS</li>
-<li>Dirección IP de broadcast de la red</li>
-<li>Nombre (sufijo) del dominio DNS</li>
-<li>Tipo de nodo WINS/NBT y servidor WINS para nodos Windows</li>
-<li>MTU de la interfaz de red</li>
+<li><strong>Listen-on</strong>. Especifica la IP donde el servicio escucha las peticiones.</li>
+<li><strong>Forwarders</strong>. Especifica la IP de los servidores DNS a los que se hará un reenvío si no se consigue resolver localmente la consulta.</li>
+<li><strong>acl</strong>. Especifica una lista de IPs para cumplir una condición.</li>
 </ul>
 </div>
-</div>
-<h2 id="tipos-de-asignaciones">TIPOS DE ASIGNACIONES </h2>
 <div class="style-normal">
-<p>El tipo de asignación es el <strong>mecanismo mediante el cual un servidor DHCP decide qué configuración de red debe alquilar a un cliente y por cuánto tiempo</strong>. Normalmente, en el servidor se definen uno o más <strong>ámbitos</strong> donde se configuran los rangos de direcciones direcciones y parámetros de red que puede alquilar. Por cada ámbito podemos tener 2 tipos de rangos:</p>
+<p>Para definir una zona se utiliza la siguiente estructura, aunque puede tener más opciones:</p>
 </div>
-<div class="style-list">
-<ul>
-<li><strong>Rango de asignación</strong><br>
-Direcciones que pueden asignarse a los clientes.</li>
-<li><strong>Rango de exclusión</strong><br>
-Direcciones, normalmente dentro del rango de asignación, que no interesa asignar. Un uso habitual es reservarlas para servidores con direcciones estáticas.</li>
-</ul>
-</div>
-<div class="style-example">
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "&lt;dominio FQDN&gt;" {
+    type (master,slave,stub,forward,hint);
+    file "archivo-definición-registros";
+};
+</code></pre><div class="style-list">
 <div class="admonition example">
-<p class="admonition-title">DHCP configuración</p>
-<pre data-role="codeBlock" data-info="code" class="language-code code"><code>subnet 192.168.2.0 netmask 255.255.255.0 {
-range 192.168.2.64 192.168.2.127;
-range 192.168.2.192 192.168.2.254;
-option routers 192.168.2.1;
-option domain-name-servers 8.8.4.4;
-default-lease-time 36000;
+<p class="admonition-title">Configuración de zonas en BIND9</p>
+<p>En el siguiente ejemplo se muestran las definiciones de las zonas master y slave para un dominio <a href="http://ies.com">ies.com</a> y su correspondiente zona inversa para la red.<br>
+<img src="./assets/Ejemplo-Zonas-BIND.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "><br>
+La configuración de las zonas se haría en el archivo <strong>/etc/bind/named.conf.local</strong>. Para el nodo de dirección IP 192.168.0.200 (DNS master) la definición de las zonas directa e inversa sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ies.com" {
+    type master;
+    file "/etc/bind/ies.com.db";
+    allow-transfer {192.168.0.201;};
+};
+
+zone "0.168.192.in-addr.arpa"{
+    type master;
+    file "/etc/bind/0.168.192.db";
+    allow-transfer {192.168.0.201;};
+};
+</code></pre><p>Y para el nodo de dirección IP 192.168.0.201 (DNS slave) la definición de las zonas serían:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ies.com" {
+    type slave;
+    file "/etc/bind/ies.com.db";
+    masters {192.168.0.200;};
 }
-</code></pre><p>En el ejemplo se ha definido un ámbito (<code>subnet</code>) para la red 192.168.2.0/24. En este ámbito se han definido dos rangos (<code>range</code>) de asignación (por tanto se ha excluido el resto). Se han definido también parámetros opcionales como la IP del default gateway (<code>router</code>) y la IP del servidor DNS (<code>domain-name-servers</code>). Además, se ha definido el tiempo de alquiler (<code>default-lease-time</code>) como 36000 segundos, es decir, 1 hora.</p>
-</div>
-</div>
-<div class="style-normal">
-<p>El protocolo DHCP permite a los servidores utilizar <strong>tres técnicas de asignación</strong>:</p>
-</div>
-<div class="style-list">
-<ol>
-<li>
-<p><strong>Manual o estática</strong><br>
-El servidor <strong>asigna una dirección IP de forma exclusiva para un cliente</strong>. De este modo, el cliente recibe siempre la misma configuración. Normalmente, el servidor asocia la configuración de red con la dirección física (<strong>MAC</strong>) del cliente. Por ejemplo, esta técnica se utiliza para asignar siempre la misma IP a un host (servidores, impresoras, equipos,...)</p>
-</li>
-<li>
-<p><strong>Automática</strong><br>
-El servidor <strong>asigna una dirección IP del rango de asignación de forma permanente a cualquier cliente</strong>. La IP no podrá reutilizarse hasta que el cliente envíe un mensaje de renuncia. La ventaja es que fideliza las IPs asignadas, el inconveniente es que si el cliente está apagado mucho tiempo su IP no puede reutilizarse.</p>
-</li>
-<li>
-<p><strong>Dinámica</strong><br>
-El servidor <strong>asigna una dirección IP del rango de asignación durante un determinado tiempo de concesión a cualquier cliente</strong>. Para mantener la configuración, el cliente debe renovar la concesión antes de que expire el tiempo. Si el tiempo de concesión se agota y no se ha renovado, entonces la IP vuelve a estar disponible en el rango de asignación del servidor para otros clientes.</p>
-</li>
-</ol>
-</div>
-<div style="page-break-after:always;"></div>
-<div class="style-normal">
-<p>Los servidores DHCP registran las asignaciones realizadas en una <strong>tabla de alquileres</strong> (lease table) utilizando la dirección física (MAC) del nodo cliente y los parámetros de configuración alquilados.</p>
-</div>
-<div class="style-normal">
-<div class="admonition note">
-<p class="admonition-title">Tabla de alquileres (lease table)</p>
-<table>
-<thead>
-<tr>
-<th>MAC cliente</th>
-<th>IP asignada</th>
-<th>Lease Time</th>
-<th>Estado</th>
-<th>Nombre host</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>00:1A:2B:3C:3D:5E</td>
-<td>192.168.2.64</td>
-<td>2h15m</td>
-<td>Activo</td>
-<td>PC-OF1</td>
-</tr>
-<tr>
-<td>00:1F:2E:3D:4C:5B</td>
-<td>192.168.2.65</td>
-<td>1h45m</td>
-<td>Activo</td>
-<td>PC-OF32</td>
-</tr>
-<tr>
-<td>00:1C:2D:3E:4F:6A</td>
-<td>192.168.2.66</td>
-<td>30m</td>
-<td>Expirado</td>
-<td>PC-OF33</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<h2 id="mensajes">MENSAJES </h2>
-<h3 id="formato">FORMATO </h3>
-<div class="style-normal">
-El formato de los mensajes DHCP es el siguiente:
-<p><img src="./assets/img-dhcpmsg.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
-<div class="style-list">
-<ul>
-<li><strong>Message Type</strong><br>
-Tipo general del mensaje DHCP<br>
-1- Request<br>
-2- Reply</li>
-<li><strong>Hardware Type</strong><br>
-Tipo de dirección hardware que se utiliza en el nivel de enlace.</li>
-</ul>
-<div class="container">
-    <div class="row">
-        <div class="col-1">
-        </div>
-        <div class="col-5">
-        1- Ethernet<br>
-        6- IEEE 802<br>
-        7- ARCNET<br>
-        11-LocalTalk<br>
-        12-LocalNet<br>
-        14-SMDS
-        </div>
-        <div class="col-6">
-        15-Frame Relay<br>
-        16-ATM<br>
-        17-HDLC<br>
-        18-FiberChannel<br>
-        19-ATM<br>
-        20-Serial Line<br>
-        </div>
-    </div>
-</div>
-<ul>
-<li><strong>Hardware Length</strong><br>
-Longitud en bytes de la dirección hardware. Por ejemplo, para Ethernet o IEEE 802 el valor será 6 porque las direcciones MAC tienen 6 bytes.</li>
-<li><strong>Hop Count</strong><br>
-Numero de saltos (routers) hasta llegar al servidor DHCP. Los clientes ponen este valor a 0. Este campo es utilizado por los servidores DHCP de tipo RELAY.</li>
-<li><strong>Transaction Identifier</strong><br>
-Número de 32 bits generado por el nodo cliente para identificar las respuestas recibidas desde los servidores DHCP.</li>
-<li><strong>Seconds</strong><br>
-Número de segundos transcurridos desde que el cliente va iniciar el intento de adquirir o renovar la concesión de un alquiler.</li>
-<li><strong>Flags</strong><br>
-B R R R R R R R R R R R R R R R<br>
-R-Reserved Flag<br>
-Su valor siempre es 0.<br>
-B-Broadcast Flag
-<ul>
-<li>1=Broadcast<br>
-Los servidores deben contestar en modo broadcast a nivel de enlace.</li>
-<li>0=Unicast<br>
-Los servidores deben contestar en modo unicast a nivel de enlace.</li>
-</ul>
-</li>
-<li><strong>Client IP address</strong><br>
-IP del nodo cliente. Puede ser 0.0.0.0 si todavía no le han asignado nunca una IP o una IP alquilada con anterioridad.</li>
-<li><strong>Your IP address</strong><br>
-IP que el servidor quiere conceder al cliente</li>
-<li><strong>Server IP address</strong><br>
-IP del servidor DHCP. Puede ser 0.0.0.0 cuando el cliente no conoce todavía quien es el servidor.</li>
-<li><strong>Gateway IP address</strong><br>
-IP del router para hacer DHCP-Relay. No es la IP de la puerta de enlace, esta información se encuentra en un campo de opción.</li>
-<li><strong>Client Hardware Address</strong><br>
-Dirección de nivel de enlace del cliente. En IEEE 802 será la dirección MAC.</li>
-<li><strong>Server Name</strong><br>
-Nombre del servidor DHCP o en blanco.</li>
-<li><strong>Boot file name</strong><br>
-Nombre del fichero que se utilizará para el arranque de la maquina o en blanco.</li>
-<li><strong>Options</strong><br>
-Este campo se inicia con 4 bytes denominados <em>magic cookies</em> que indican el comienzo de las opciones. El valor de <em>magic cookies</em> es: 99(0x63),130(0x82),83(0x53),99(0x63)<br>
-Formato campo opcion:<br>
-<img src="./assets/img-dhcpoptions.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "><br>
-Podemos obtener un listado completo de todas las opciones del protocolo DHCP en el siguiente enlace: <a href="https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml">options.</a><br>
-Ejemplos:
-<ul>
-<li>Opción tipo de mensaje DHCP
-<ul>
-<li>Option-Type=53</li>
-<li>Option-Length=1</li>
-<li>Option-Data
-<ul>
-<li>1-DHCPDiscover</li>
-<li>2-DHCPOffer</li>
-<li>3-DHCPRequest</li>
-<li>4-DHCPDecline</li>
-<li>5-DHCPAck</li>
-<li>6-DHCPNack</li>
-<li>7-DHCPRelease</li>
-<li>8-DHCPInform</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Opción máscara de red
-<ul>
-<li>Option-Type=1</li>
-<li>Option-Length=4</li>
-<li>Option-Data=&lt;máscara IP&gt;</li>
-</ul>
-</li>
-<li>Opción Request IP
-<ul>
-<li>Option-Type=50</li>
-<li>Option-Length=4</li>
-<li>Option-Data=IP que el cliente quiere alquilar</li>
-</ul>
-</li>
-<li>Opción End (indica fin de las opciones)
-<ul>
-<li>Option-Type=255</li>
-<li>Option-Length=No existe el campo</li>
-<li>Option-Data=No existe el campo</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<h3 id="tipos">TIPOS </h3>
-<div class="style-normal">
-Los tipos de mensajes DHCP son:
-</div>
-<table>
-<thead>
-<tr>
-<th>Mensaje</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DHCPDiscover</strong></td>
-<td>Cliente que envia una solicitud para descubrir si hay algún servidor DHCP.</td>
-</tr>
-<tr>
-<td><strong>DHCPOffer</strong></td>
-<td>Servidor que ha recibido una solicitud y que responde al cliente y proponiendole una configuración de red.</td>
-</tr>
-<tr>
-<td><strong>DHCPRequest</strong></td>
-<td>Cliente que acepta una de las configuraciones propuestas y se lo comunica al servidor que ha elegido.</td>
-</tr>
-<tr>
-<td><strong>DHCPAck</strong></td>
-<td>Servidor que responde al cliente con la configuración de red asignada y el tiempo de concesión de la misma.</td>
-</tr>
-<tr>
-<td><strong>DHCPNack</strong></td>
-<td>Servidor que responde al cliente denegandole la configuración de red asiganda. Este mensaje se puede dar por ejemplo durante la renovación de una concesión.</td>
-</tr>
-<tr>
-<td><strong>DHCPDecline</strong></td>
-<td>Cliente declinando la configuración asignada por el servidor,.Por ejemplo, porque la IP ya esta siendo utilizada en la red por otro nodo.</td>
-</tr>
-<tr>
-<td><strong>DHCPRelease</strong></td>
-<td>Cliente que indica al servidor que da por finalizada la concesión. Por ejemplo, se le ha acabado el tiempo de concesión o simplemente desea otra configuración posterior.</td>
-</tr>
-<tr>
-<td><strong>DHCPInform</strong></td>
-<td>Cliente que pregunta al servidor por parametros adicionales de configuración</td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after:always;"></div>
-<h2 id="ciclo-de-vida">CICLO DE VIDA </h2>
-<div class="style-normal">
-El proceso de concesión DHCP sigue un ciclo de vida durante el que los nodos se pueden encontrar en alguna de estas fases:
-</div>
-<ul>
-<li>
-<p><strong>Concesión (<em>Allocation</em>)</strong><br>
-Un cliente sin ninguna concesión activa. Por ejemplo, acaba de arrancar el cliente por primera vez en la red. En este caso, el cliente adquiere una concesión a través de un proceso de asignación denominado <strong>D.O.R.A</strong> (Discover,Offer,Request,Ack)</p>
-<div class="admonition example">
-<p class="admonition-title">D.O.R.A</p>
-<p><img src="./assets/img-dhcpdora.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "><br>
-En los mensajes Offer y Ack la dirección MAC destino puede ser la MAC del cliente si en el mensaje original el flag B=0. Eso le indica que el cliente DHCP es capaz de recibir mensajes unicast a nivel de enlace.</p>
-</div>
-</li>
-<li>
-<p><strong>Reasignación (<em>Reallocation</em>)</strong><br>
-Un cliente con una concesión activa. Si el cliente se ha desactivado (reincio, deshabilitar interfaz,...), cuando se vuelve a activar se pondrá en contacto con el servidor DHCP que le otorgó la concesión para confirmar de nuevo los parametros de configuración que ya disponia. A veces, se denomina redistribución, es similar al proceso de asignación pero más corto.</p>
-</li>
-<li>
-<p><strong>Vinculación (<em>Bound</em>)</strong><br>
-Un cliente con una concesión activa. El cliente  está utilizando la concesión en la configuración de su interfaz de red.</p>
-</li>
-<li>
-<p><strong>Renovación (<em>Renewal</em>)</strong><br>
-Un cliente con una concesión activa. El cliente durante el estado de vinculación pasado un cierto tiempo de concesión (<em>renewal time</em>) y antes de que la concesión expire trata de contactar con el servidor DHCP que le asignó la concesión para renovarla y obtener así más tiempo de concesión. Esta fase se realiza solamente con mensajes Request y ACK.</p>
-<div class="admonition example">
-<p class="admonition-title">Renewal</p>
-<p><img src="./assets/img-dhcprenewal.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
-</div>
-</li>
-<li>
-<p><strong>Reconexión (<em>Rebinding</em>)</strong><br>
-Un cliente con una concesión activa. El cliente durante el estado de vinculación si la renovación con el servidor DHCP no funciona y pasado el tiempo de reconexión (<em>rebinding time</em>) trata de vincularse con cualquier otro servidor DHCP que le permita extender su concesión.</p>
-</li>
-<li>
-<p><strong>Liberación (<em>Release</em>)</strong><br>
-Un cliente con una concesión activa. El cliente puede decidir en cualquier momento que ya no quiere utilizar la configuración de red asignada, que quiere finalizar la concesión y liberar la IP asignada. Esto se realiza mediante un mensaje de tipo Release.</p>
-</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Temporizadores</p>
-<p><img src="./assets/img-temporizadores.png" alt="img" style="width: 65%; display: block; margin: auto; align:center; "></p>
-</div>
-<div class="style-normal">
-<p>La figura ilustra el ciclo de vida de DHCP con un ejemplo que abarca tres contratos de arrendamiento. En este ejemplo, el contrato inicial tiene una duración (allocation) de 8 días y comienza en el día 0. Los temporizadores T1 (renovación) y T2 (reconexión) están establecidos en 4 días y 7 días respectivamente. Cuando el temporizador T1 expira, el cliente entra en el período de renovación (renewal), y con éxito se renueva en el día 5 con un nuevo contrato de arrendamiento de 8 días. Cuando el temporizador T1 vuelve a expirar después de 4 días, el cliente no puede renovar con el servidor original. Se entra en el período de reconexión (rebinding) cuando su temporizador T2 se apaga, y se concede una renovación (renewal) de 8 días de arrendamiento con un servidor diferente. Tras 3 días en este contrato de arrendamiento, el cliente se mueve a una red diferente y ya no necesita la dirección concedida, por lo que voluntariamente la libera (release).</p>
-</div>
-<p><strong>Esquema del Ciclo de Vida</strong></p>
-<p><img src="./assets/img-ciclovida.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
-<table>
-<thead>
-<tr>
-<th>Estado</th>
-<th>Descripción</th>
-<th>Transición</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>INIT</strong></td>
-<td>Estado de inicialización, el cliente comienza el proceso de adquisición de un arrendamiento. También regresa aquí cuando finaliza un contrato de arrendamiento o falla una negociación.</td>
-<td>El cliente crea un mensaje DHCPDISCOVER y lo emite para intentar encontrar un servidor DHCP. Pasa al estado SELECTING.</td>
-</tr>
-<tr>
-<td><strong>SELECTING</strong></td>
-<td>El cliente espera recibir mensajes DHCPOFFER de uno o más servidores DHCP para poder elegir uno.</td>
-<td>El cliente elige una de las ofertas recibidas y emite un mensaje DHCPREQUEST para notificar su elección. Pasa al estado REQUESTING.</td>
-</tr>
-<tr>
-<td><strong>REQUESTING</strong></td>
-<td>El cliente espera una respuesta del servidor al que envió su solicitud.</td>
-<td>1. Recibe DHCPACK, verifica que la IP no esté en uso, registra parámetros y pasa a BOUND.<br> 2. Recibe DHCPACK pero la IP está en uso, envía DHCPDECLINE y vuelve a INIT.<br> 3. Recibe DHCPNAK, el servidor retira la oferta, vuelve a INIT.</td>
-</tr>
-<tr>
-<td><strong>INIT-REBOOT</strong></td>
-<td>Cuando un cliente con arrendamiento válido se reinicia, comienza aquí en lugar de INIT.</td>
-<td>El cliente envía DHCPREQUEST para verificar su arrendamiento y pasa a REBOOTING.</td>
-</tr>
-<tr>
-<td><strong>REBOOTING</strong></td>
-<td>Cliente reiniciado con IP asignada espera confirmación del servidor.</td>
-<td>1. Recibe DHCPACK, verifica IP libre, registra parámetros y pasa a BOUND.<br> 2. Recibe DHCPACK pero IP está en uso, envía DHCPDECLINE y vuelve a INIT.<br> 3. Recibe DHCPNAK, arrendamiento no válido, vuelve a INIT.</td>
-</tr>
-<tr>
-<td><strong>BOUND</strong></td>
-<td>Cliente con arrendamiento válido en estado normal.</td>
-<td>1. Temporizador T1 expira, pasa a RENEWING.<br> 2. Cliente libera arrendamiento, envía DHCPRELEASE y vuelve a INIT.</td>
-</tr>
-<tr>
-<td><strong>RENEWING</strong></td>
-<td>Cliente intenta renovar su arrendamiento actual.</td>
-<td>1. Recibe DHCPACK, renueva arrendamiento y vuelve a BOUND.<br> 2. Recibe DHCPNAK, servidor rechaza renovación, vuelve a INIT.<br> 3. Temporizador T2 expira, pasa a REBINDING.</td>
-</tr>
-<tr>
-<td><strong>REBINDING</strong></td>
-<td>Cliente no pudo renovar con el servidor original y solicita extensión a cualquier servidor disponible.</td>
-<td>1. Otro servidor renueva arrendamiento, cliente reinicia temporizadores y vuelve a BOUND.<br> 2. Recibe DHCPNAK, servidor indica reiniciar proceso, vuelve a INIT.<br> 3. No recibe respuesta antes de expiración, vuelve a INIT.</td>
-</tr>
-</tbody>
-</table>
-<div class="style-normal">
-En algunos sistemas cuando el proceso de concesión DHCP falla y para no dejar la interfaz sin IP (0.0.0.0) el sistema operativo le asigna a la interfaz una IP del rango APIPA 169.254.0.0/16 que tiene ámbito privado de enlace.
-</div>
-<h2 id="dhcp-relay">DHCP RELAY </h2>
-<div class="style-normal">
-<p>Como hemos visto, normalmente, los mensajes <strong>DHCPDiscover</strong> son de tipo <strong>broadcast</strong> (255.255.255.255). Los mensajes de broadcast  <strong>no son encaminados por los routers</strong>, por lo tanto, <strong>cada segmento de red necesita un servidor DHCP</strong> que proporcione servicio a ese segmento.</p>
-<p>No obstante, en algunas circunstancias se puede utilizar la configuración denominada <strong>DHCP Relaying</strong> (<a href="https://www.rfc-editor.org/rfc/rfc1542">RFC 1542</a>), en la que un servidor DHCP puede dar servicio a varias subredes.</p>
-<p><strong>¿Cómo funciona?</strong></p>
-<p>La solución consiste en utilizar agentes DHCP Relay o de retransmisión. Un agente DHCP Relay es un servidor DHCP ligero en modo Relay que escucha las solicitudes DHCP que se producen en su red y las reenvia hacia otro servidor DHCP que se encuentra en otra red para que este las atienda. El servidor DHCP responderá con mensajes DHCP que enviará al DHCP Relay que a su vez los reenviará al cliente que hizo la petición.</p>
-<p>Evidentemente, en el agente DHCP Relay se debe configurar la IP del servidor DHCP al que se le van a reenviar los mensajes DHCP de la red. Por otro lado, el campo <code>gateway IP Address</code> de los mensajes DHCP se utiliza para que el servidor DHCP sepa que agente DHCP Relay le ha reenviado la información.</p>
-</div>
-<p><img src="./assets/img-relay.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
 
-
+zone "0.168.192.in-addr.arpa"{
+    type slave;
+    file "/etc/bind/0.168.192.db";
+    masters {192.168.0.200;};
+};
+</code></pre><p>El reenvío (forwarding) se tiene que hacer en los dos servidores en las opciones globales:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>forwarders {
+    190.20.2.1;
+};
+</code></pre><p>En este caso, no se ha utilizado una zona tipo forward ya que lo que se quiere es que cualquier consulta que no pueda resolver con autoridad el servidor se reenvíe al servidor DNS del ISP.</p>
+</div>
+</div>
+<h4 id="registros">REGISTROS </h4>
+<div class="style-normal">
+La base de datos que define una zona se basa en diferentes tipos de registros de recursos (RR). Para su definición se utiliza el siguiente formato: <propietario> <clase> [ttl] <tipo> rdata.
+Campo
+Descripción
+Propietario
+Nombre del dominio que se está definiendo.
+Clase
+IN – Internet.
+TTL
+Opcional. Indica el tiempo de vida de este registro en caché. Se puede expresar en días (d), horas (h), minutos (m) o segundos (s). Si contiene un 0 indica que no se tiene que almacenar en caché.
+TIPO
+Tipo de registro.
+RDATA
+Valor asociado al registro.
+Los tipos de registros incluyen:
+• SOA: Identifica al servidor como autoritario de una zona y permite definir sus parámetros de configuración.
+• NS: Identifica los servidores de nombres autorizados para la zona.
+• A: Asocia un nombre FQDN a una dirección IPv4.
+• AAAA: Asocia un nombre FQDN a una dirección IPV6.
+• PTR: Asocia una dirección IP a un nombre FQDN (resolución inversa).
+• MX: Indica los servidores de correo definidos en la zona.
+• CNAME: Permite asignar un alias a un nombre canónico.
+• TXT: Registro para almacenar cualquier información.
+• SRV: Ubicación de los servidores para un servicio.
+En los archivos de definición de registros de la zona se pueden usar las siguientes directivas:
+• $ORIGIN define el nombre base a partir del cual se forman los nombres FQDN para los nombres relativos. Si no está, entonces se hace $ORIGIN=nombre de la zona.
+• $TTL define el tiempo por defecto para guardar un registro en la caché, si no se ha especificado en el propio registro. Si no se indica, su valor por defecto es de 1 h.
+El estándar DNS permite hacer abreviaciones en los archivos de definición de zona para facilitar la sintaxis:
+• @ para utilizar el valor de $ORIGIN.
+• El espacio en blanco para indicar que se repite el valor del registro anterior.
+• A los nombres de dominio relativos (no acabados en punto) se les añade automáticamente $ORIGIN para formar un nombre FQDN.
+Página 9 | 17 SOA El registro de recurso SOA o start of authority dice que el archivo de zona donde se encuentra es la mejor fuente de datos para la zona, y que el servidor de nombres es autoritario para la zona. Acostumbra a ser el primer RR que hay en el archivo de zona, aunque no es obligatorio. Por cada archivo de zona tiene que haber solo un registro SOA. Un registro SOA tiene el formato: NAME. IN SOA MNAME. RNAME. (OPCIONES-SLAVES).
+Los campos de opciones para los esclavos (OPCIONES-SLAVES) son parámetros para definir la comunicación entre las zonas master y slave.
+• SERIAL Número de serie de la versión de los datos. Las zonas slaves actualizarán sus registros cuando su número serial sea menor al de la zona master.
+• REFRESH Indica cada cuánto tiempo la zona slave debe consultar la zona master para comprobar los cambios.
+• RETRY Indica el tiempo de espera para volver a hacer un "refresh" después de haber fallado.
+• EXPIRE Indica el tiempo de caducidad de la zona slave. Si no se ha refrescado antes, la zona slave se considera sin autoridad.
+• NXDOMAIN TTL Tiempo de validez en la caché del mensaje NXDOMAIN. Este mensaje se recibe cuando no se ha podido resolver una consulta.
+Página 10 | 17 NS El registro de recurso NS o name server define un servidor de nombres autoritativo para la zona. Habrá tantas entradas NS como servidores de nombres autoritativos haya en la zona. El estándar DNS recomienda al menos dos (uno primario o master y uno de seguridad secundario o slave).
+A Un registro de recurso A o address asocia un nombre de host a una dirección IP (resolución directa). Un host puede tener más de una IP asociada a su nombre (multi-homed). Los nombres definidos en los registros de tipo A son nombres canónicos (originales). Los alias se definen con el tipo de registro CNAME.
+CNAME Los registros de recurso CNAME o canonical name asocian un alias a un nombre canónico. Un registro CNAME consta de los campos: NAME. IN CNAME CANONICALNAME | IP. En lugar de un nombre canónico se puede utilizar la IP del registro A, lo que sirve para diferenciar aquellos registros A de tipo multi-homed.
+Página 11 | 17 PTR Un registro de recurso PTR o pointer asocia una dirección IP al nombre de host pertinente (resolución inversa). Es necesaria una entrada PTR para cada interfaz de red de la zona. Para el formato de registro PTR, la IP se escribe de forma inversa. Por ejemplo, la IP 192.168.0.1 se expresa como 1.0.168.192, seguida por .IN-ADDR.ARPA. que identifica la IP como inversa.
+MX Un registro MX mail exchanger define un servidor de correo. El software del servidor de correo (MTA) consulta los registros MX para identificar los servidores de correo de los destinatarios. El MTA establece una conexión SMTP con estos servidores de correo, según su prioridad.
+Campo
+Descripción
+NUM
+Número de prioridad con respecto a otros servidores MX definidos. El menor valor es el más prioritario.
+MAILSERVER
+Nombre FQDN del servidor de correo.
+Página 12 | 17 SRV Un registro SRV (servicio) especifica los servidores disponibles para realizar un servicio o protocolo determinado. Formato: SERVICIO.PROTOCOL.NAME. IN SRV PRIORIDAD PES PORT CANONICALNAME.
+• PRIORIDAD Orden en el que los clientes se pondrán en contacto (mayor prioridad, el número más bajo).
+• PES (Peso) Mecanismo de balanceo de carga.
+• PORT Puerto de servicio.
+TIPOS DE SERVIDORES En función de cómo el servidor tiene configuradas sus zonas y opciones globales, existen los siguientes tipos de servidores:
+• Master Tiene definida una zona de tipo master sobre la que tiene autoridad (también llamado primario).
+• Slave Tiene definida una zona de tipo slave sobre la que tiene autoridad (también llamado secundario).
+• Forwarder Tiene definida alguna zona y para las consultas que no son de sus zonas reenvía las solicitudes a otros servidores y guarda las respuestas en su memoria caché.
+• Forwarder caché No tiene definida ninguna zona y solamente hace reenvíos a otros servidores y guarda las respuestas en su memoria caché.
+Un servidor puede ser master para una zona, slave para otra zona y, al mismo tiempo, ser de tipo forwarder para el resto de peticiones.
+Página 13 | 17 CONSULTAS Las consultas DNS para la resolución de nombres de dominio pueden ser de dos tipos: recursivas o iterativas.
+El proceso de resolución de un nombre en un servidor DNS sigue los siguientes pasos:
+1. El servidor consulta sus zonas. Si encuentra un registro, la respuesta es autoritativa. Si no lo encuentra, va al paso 2.
+2. El servidor consulta su memoria caché. Si encuentra un registro, la respuesta es no autoritativa. Si no lo encuentra, va al paso 3.
+3. El servidor reenvía la consulta a otros servidores DNS de forma recursiva o iterativa. Si recibe una respuesta, la almacena en la caché y responde de forma no autoritativa. Si no recibe ninguna respuesta, devuelve un mensaje de error NXDOMAIN.
+RECURSIVA En las consultas recursivas el servidor DNS debe devolver una respuesta (el RR que resuelve la consulta o un mensaje de error). Si el servidor no tiene la respuesta en su zona o caché, consultará a otros servidores DNS. Este tipo de consultas se suelen producir entre los clientes resolvers y los DNS locales (como el DNS de un ISP). También se utiliza entre un servidor DNS y sus servidores DNS forwarders.
+ITERATIVA En las consultas iterativas el servidor DNS proporciona la mejor respuesta que tiene, que puede ser la solución o una referencia a otro servidor DNS de nivel inferior. Las consultas iterativas se suelen producir entre servidores DNS. Cuando un servidor no sabe resolver una consulta, inicia una consulta iterativa con los servidores DNS raíz.
+Página 14 | 17 Ejemplo de resolución iterativa/recursiva:
+1. DNS cliente hace una consulta recursiva, para example.microsft.com, a DNS local.
+2. DNS local no encuentra la respuesta e inicia el proceso de iteración haciendo una consulta iterativa a un servidor DNS raíz.
+3. El servidor DNS raíz contesta con la mejor de sus respuestas, que es el dominio .com y una lista de servidores para este dominio. DNS local guarda en caché.
+4. DNS local hace una consulta iterativa a un servidor DNS de dominio .com.
+5. El servidor DNS de dominio .com contesta con microsoft.com y una lista de servidores para este dominio. DNS local guarda en caché.
+6. DNS local hace una consulta iterativa a un servidor DNS de dominio microsoft.com.
+7. El servidor DNS de dominio microsoft.com contesta con el registro de exemple.microsoft.com. DNS local guarda en caché y termina las iteraciones.
+8. El servidor DNS local responde al DNS cliente con el registro que resuelve la consulta.
+MENSAJES Los mensajes DNS se utilizan para las consultas de resolución de nombres y el intercambio de información entre los servidores DNS.
+Página 15 | 17 HEADER Es la cabecera del mensaje.
+• ID: 2 bytes. Número de identificación de la consulta.
+• Flags: 2 bytes. Indican toda la información sobre la consulta. Incluyen:
+    ◦ QR (Tipo mensaje): 0-query, 1-response.
+    ◦ OPCODE (Tipo consulta): 000 – standard query, 001 – inverse query, 010 – server status query.
+    ◦ AA (Bit autoridad): 1-authoritative answer.
+    ◦ TC (Bit truncamiento).
+    ◦ RD (Bit recursividad): 1-recursive query.
+    ◦ RA (Recursividad al servidor).
+    ◦ RCODE (Tipo respuesta): 0000-no error, 0001-name does not exits.
+• QDCount: 2 bytes. Número de registros en la sección de preguntas.
+• ANCount: 2 bytes. Número de registros en la sección de respuestas.
+• NSCount: 2 bytes. Número de registros en la sección de autoridad.
+• ARCount: 2 bytes. Número de registros en la sección adicional.
+Página 16 | 17 QUESTION Pregunta que se hace al servidor DNS. Contiene:
+• QNAME (Nombre de dominio por el que se pregunta).
+• QTYPE (Tipo de registro), puede ser A, PTR, etc., o tipos especiales como AXFR (zona especial de transferencia) o * (cualquier tipo).
+• QCLASS (Tipo de clase del registro), como IN, CH o * (cualquier clase).
+ANSWER, AUTHORITY, ADDITIONAL Estos tres campos tienen el siguiente formato:
+Campo
+Tamaño
+Descripción
+NAME
+n bytes
+Nombre del propietario del registro.
+TYPE
+2 bytes
+Tipo de registro.
+CLASS
+2 bytes
+Tipo de clase.
+TTL
+4 bytes
+Tiempo de vida asignado al registro en segundos.
+RDLENGTH
+2 bytes
+Número de bytes del campo RDATA.
+RDATA
+n bytes
+Datos del registro.
+Página 17 | 17 EVOLUCIÓN Los protocolos DNS han evolucionado gracias al incremento exponencial de las redes. Dos vías principales de evolución son el DDNS o dinámico DNS y el DNSSEC o DNS seguro.
+DDNS El protocolo DDNS (dynamic DNS) permite que los datos del servidor DNS se actualicen en tiempo real. Su principal uso es permitir que clientes con direcciones IP dinámicas puedan disponer de un nombre de dominio a pesar de que su dirección IP varíe de una sesión a otra. Un mecanismo para lograr esto es permitir que los servidores DHCP se comuniquen con los servidores DNS y les notifiquen las actualizaciones necesarias en la base de datos de DNS.
+DNSSEC El protocolo DNS data de la década de los 80, una época donde la funcionalidad estaba por encima de la seguridad. Las transferencias de zonas y las consultas se hacen en claro, sin cifrar. Las deficiencias de seguridad hacen al protocolo susceptible de falsificación de registros, con riesgos de redirección a sitios maliciosos y suplantación.
+DNSSEC (Domain Name System Security Extensions) se diseñó para solucionar estos problemas, añadiendo una capa de seguridad adicional que permite comprobar la integridad y autenticidad de los datos. DNSSEC se basa en el uso de claves asimétricas. Cada servidor DNS tiene una clave pública (transmitida al resto de servidores) y una clave privada (solo conocida por el servidor). DNSSEC no cifra; solo se utiliza para comprobar la identidad correcta del servidor que ha generado el mensaje DNS (autenticidad) y comprobar que no ha sido modificado durante el trayecto hasta el cliente (integridad).
+</tipo></clase></propietario></div>
       </div>
       
       
