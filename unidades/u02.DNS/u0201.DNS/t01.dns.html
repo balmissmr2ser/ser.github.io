@@ -373,11 +373,24 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#formato-de-mensajes-dns" class="md-toc-link">
             <p>FORMATO DE MENSAJES DNS</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#evolución" class="md-toc-link"><p>EVOLUCIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ddns" class="md-toc-link">
+            <p>DDNS</p>
+
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#evolución" class="md-toc-link">
-            <p>EVOLUCIÓN</p>
+          <a href="#dnssec" class="md-toc-link">
+            <p>DNSSEC</p>
 
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
@@ -1134,39 +1147,97 @@ Contiene:</p>
 <p><strong>AUTHORITY</strong>: Registro de los servidores que tienen autoridad sobre la respuesta.</p>
 </li>
 <li>
-<p><strong>ADDITIONAL</strong>: Registros adicionales que pueden ser útiles para la resolución de la consulta.<br>
-Cada registro en las secciones ANSWER, AUTHORITY y ADDITIONAL tiene el siguiente formato:<br>
-<img src="./assets/Adicional.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<p><strong>ADDITIONAL</strong>: Registros adicionales que pueden ser útiles para la resolución de la consulta.</p>
 </li>
 </ul>
-<p>donde el significado de cada campo es:</p>
-<p>Campo<br>
-Tamaño<br>
-Descripción<br>
-NAME<br>
-n bytes<br>
-Nombre del propietario del registro.<br>
-TYPE<br>
-2 bytes<br>
-Tipo de registro.<br>
-CLASS<br>
-2 bytes<br>
-Tipo de clase.<br>
-TTL<br>
-4 bytes<br>
-Tiempo de vida asignado al registro en segundos.<br>
-RDLENGTH<br>
-2 bytes<br>
-Número de bytes del campo RDATA.<br>
-RDATA<br>
-n bytes<br>
-Datos del registro.</p>
-<h3 id="evolución">EVOLUCIÓN </h3>
-<p>Los protocolos DNS han evolucionado gracias al incremento exponencial de las redes. Dos vías principales de evolución son el DDNS o dinámico DNS y el DNSSEC o DNS seguro.<br>
-DDNS El protocolo DDNS (dynamic DNS) permite que los datos del servidor DNS se actualicen en tiempo real. Su principal uso es permitir que clientes con direcciones IP dinámicas puedan disponer de un nombre de dominio a pesar de que su dirección IP varíe de una sesión a otra. Un mecanismo para lograr esto es permitir que los servidores DHCP se comuniquen con los servidores DNS y les notifiquen las actualizaciones necesarias en la base de datos de DNS.<br>
-DNSSEC El protocolo DNS data de la década de los 80, una época donde la funcionalidad estaba por encima de la seguridad. Las transferencias de zonas y las consultas se hacen en claro, sin cifrar. Las deficiencias de seguridad hacen al protocolo susceptible de falsificación de registros, con riesgos de redirección a sitios maliciosos y suplantación.<br>
-DNSSEC (Domain Name System Security Extensions) se diseñó para solucionar estos problemas, añadiendo una capa de seguridad adicional que permite comprobar la integridad y autenticidad de los datos. DNSSEC se basa en el uso de claves asimétricas. Cada servidor DNS tiene una clave pública (transmitida al resto de servidores) y una clave privada (solo conocida por el servidor). DNSSEC no cifra; solo se utiliza para comprobar la identidad correcta del servidor que ha generado el mensaje DNS (autenticidad) y comprobar que no ha sido modificado durante el trayecto hasta el cliente (integridad).</p>
 </div>
+<div class="style-normal">
+<p>Cada registro en las secciones ANSWER, AUTHORITY y ADDITIONAL tiene el siguiente formato:<br>
+<img src="./assets/Adicional.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "><br>
+donde el significado de cada campo es:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tamaño</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME</td>
+<td>n bytes</td>
+<td>Nombre del propietario del registro</td>
+</tr>
+<tr>
+<td>TYPE</td>
+<td>2 bytes</td>
+<td>Tipo de registro</td>
+</tr>
+<tr>
+<td>CLASS</td>
+<td>2 bytes</td>
+<td>Tipo de clase</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>4 bytes</td>
+<td>Tiempo de vida asignado al registro en segundos</td>
+</tr>
+<tr>
+<td>RDLENGTH</td>
+<td>2 bytes</td>
+<td>Número de bytes del campo RDATA</td>
+</tr>
+<tr>
+<td>RDATA</td>
+<td>n bytes</td>
+<td>Datos del registro</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo de consulta DNS</p>
+<p>A continuación se muestra un ejemplo de consulta DNS que resuelve el nombre <a href="http://uoc.es">uoc.es</a> utilizando la herramienta <em>host</em> en modo detallado.<br>
+<img src="./assets/Ejemplo-Consultas.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<p>El comando utilizado es:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>[root@portatil ~]# host -a uoc.es
+Trying "uoc.es"
+;; --&gt;HEADER&lt;-- opcode: QUERY, status: NOERROR, id: 14091
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 2, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;uoc.es.                IN ANY
+
+;; ANSWER SECTION:
+uoc.es.         82747 IN NS tibet.uoc.es.
+uoc.es.         82747 IN NS nepal.uoc.es.
+
+;; AUTHORITY SECTION:
+uoc.es.         82747 IN NS nepal.uoc.es.
+uoc.es.         82747 IN NS tibet.uoc.es.
+
+;; ADDITIONAL SECTION:
+nepal.uoc.es.   73649 IN A 213.73.40.47
+tibet.uoc.es.   76582 IN A 213.73.40.45
+
+Received 124 bytes from 127.0.0.1#53 in 2 ms
+</code></pre></div>
+<h3 id="evolución">EVOLUCIÓN </h3>
+<div class="style-normal">
+<p>Los protocolos DNS han evolucionado gracias al incremento exponencial de las redes. Dos vías principales de evolución son el <strong>DDNS o dinámico DNS</strong> y el <strong>DNSSEC o DNS seguro</strong>.</p>
+</div>
+<h4 id="ddns">DDNS </h4>
+<div class="style-normal">
+<p>El protocolo DDNS (dynamic DNS) permite que los datos del servidor DNS se actualicen en tiempo real. Su principal uso es permitir que clientes con direcciones IP dinámicas puedan disponer de un nombre de dominio a pesar de que su dirección IP varíe de una sesión a otra. Un mecanismo para lograr esto es permitir que los servidores DHCP se comuniquen con los servidores DNS y les notifiquen las actualizaciones necesarias en la base de datos de DNS.</p>
+</div>
+<h4 id="dnssec">DNSSEC </h4>
+<div class="style-normal">
+<p>El protocolo DNS data de la década de los 80, una época donde la funcionalidad estaba por encima de la seguridad. Las transferencias de zonas y las consultas se hacen en claro, sin cifrar. Las deficiencias de seguridad hacen al protocolo susceptible de falsificación de registros, con riesgos de redirección a sitios maliciosos y suplantación.</p>
+<p>DNSSEC (Domain Name System Security Extensions) se diseñó para solucionar estos problemas, añadiendo una capa de seguridad adicional que permite comprobar la integridad y autenticidad de los datos. DNSSEC se basa en el uso de claves asimétricas. Cada servidor DNS tiene una clave pública (transmitida al resto de servidores) y una clave privada (solo conocida por el servidor). DNSSEC no cifra; solo se utiliza para comprobar la identidad correcta del servidor que ha generado el mensaje DNS (autenticidad) y comprobar que no ha sido modificado durante el trayecto hasta el cliente (integridad).</p>
+</div>
+
       </div>
       
       
