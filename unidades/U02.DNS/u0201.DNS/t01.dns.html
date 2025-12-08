@@ -296,14 +296,88 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#zona" class="md-toc-link">
             <p>ZONA</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#registros-de-recursos-rr" class="md-toc-link"><p>REGISTROS DE RECURSOS (RR)</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipos-de-registros-de-recursos" class="md-toc-link">
+            <p>TIPOS DE REGISTROS DE RECURSOS</p>
+
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#registros" class="md-toc-link">
-            <p>REGISTROS</p>
+          <a href="#directivas-en-archivos-de-definición-de-registros" class="md-toc-link">
+            <p>DIRECTIVAS EN ARCHIVOS DE DEFINICIÓN DE REGISTROS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#abreviaciones-en-el-estándar-dns" class="md-toc-link">
+            <p>ABREVIACIONES EN EL ESTÁNDAR DNS</p>
 
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-soa-start-of-authority" class="md-toc-link">
+            <p>REGISTRO SOA (Start Of Authority)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-ns-name-server" class="md-toc-link">
+            <p>REGISTRO NS (Name Server)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-a-address" class="md-toc-link">
+            <p>REGISTRO A (Address)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-cname-canonical-name" class="md-toc-link">
+            <p>REGISTRO CNAME (Canonical Name)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-ptr-pointer" class="md-toc-link">
+            <p>REGISTRO PTR (Pointer)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-mx-mail-exchanger" class="md-toc-link">
+            <p>REGISTRO MX (Mail Exchanger)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-srv-service" class="md-toc-link">
+            <p>REGISTRO SRV (Service)</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipos-de-servidores" class="md-toc-link">
+            <p>TIPOS DE SERVIDORES</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#consultas" class="md-toc-link"><p>CONSULTAS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consultas-recursivas" class="md-toc-link">
+            <p>CONSULTAS RECURSIVAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consultas-iterativas" class="md-toc-link">
+            <p>CONSULTAS ITERATIVAS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#formato-de-mensajes-dns" class="md-toc-link">
+            <p>FORMATO DE MENSAJES DNS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#evolución" class="md-toc-link">
+            <p>EVOLUCIÓN</p>
+
+          </a></div>
         </div>
       </details>
     
@@ -617,128 +691,482 @@ zone "0.168.192.in-addr.arpa"{
 </code></pre><p>En este caso, no se ha utilizado una zona tipo forward ya que lo que se quiere es que cualquier consulta que no pueda resolver con autoridad el servidor se reenvíe al servidor DNS del ISP.</p>
 </div>
 </div>
-<h4 id="registros">REGISTROS </h4>
+<h4 id="registros-de-recursos-rr">REGISTROS DE RECURSOS (RR) </h4>
 <div class="style-normal">
-La base de datos que define una zona se basa en diferentes tipos de registros de recursos (RR). Para su definición se utiliza el siguiente formato: <propietario> <clase> [ttl] <tipo> rdata.
-Campo
-Descripción
-Propietario
-Nombre del dominio que se está definiendo.
-Clase
-IN – Internet.
-TTL
-Opcional. Indica el tiempo de vida de este registro en caché. Se puede expresar en días (d), horas (h), minutos (m) o segundos (s). Si contiene un 0 indica que no se tiene que almacenar en caché.
-TIPO
-Tipo de registro.
-RDATA
-Valor asociado al registro.
-Los tipos de registros incluyen:
-• SOA: Identifica al servidor como autoritario de una zona y permite definir sus parámetros de configuración.
-• NS: Identifica los servidores de nombres autorizados para la zona.
-• A: Asocia un nombre FQDN a una dirección IPv4.
-• AAAA: Asocia un nombre FQDN a una dirección IPV6.
-• PTR: Asocia una dirección IP a un nombre FQDN (resolución inversa).
-• MX: Indica los servidores de correo definidos en la zona.
-• CNAME: Permite asignar un alias a un nombre canónico.
-• TXT: Registro para almacenar cualquier información.
-• SRV: Ubicación de los servidores para un servicio.
-En los archivos de definición de registros de la zona se pueden usar las siguientes directivas:
-• $ORIGIN define el nombre base a partir del cual se forman los nombres FQDN para los nombres relativos. Si no está, entonces se hace $ORIGIN=nombre de la zona.
-• $TTL define el tiempo por defecto para guardar un registro en la caché, si no se ha especificado en el propio registro. Si no se indica, su valor por defecto es de 1 h.
-El estándar DNS permite hacer abreviaciones en los archivos de definición de zona para facilitar la sintaxis:
-• @ para utilizar el valor de $ORIGIN.
-• El espacio en blanco para indicar que se repite el valor del registro anterior.
-• A los nombres de dominio relativos (no acabados en punto) se les añade automáticamente $ORIGIN para formar un nombre FQDN.
-Página 9 | 17 SOA El registro de recurso SOA o start of authority dice que el archivo de zona donde se encuentra es la mejor fuente de datos para la zona, y que el servidor de nombres es autoritario para la zona. Acostumbra a ser el primer RR que hay en el archivo de zona, aunque no es obligatorio. Por cada archivo de zona tiene que haber solo un registro SOA. Un registro SOA tiene el formato: NAME. IN SOA MNAME. RNAME. (OPCIONES-SLAVES).
-Los campos de opciones para los esclavos (OPCIONES-SLAVES) son parámetros para definir la comunicación entre las zonas master y slave.
-• SERIAL Número de serie de la versión de los datos. Las zonas slaves actualizarán sus registros cuando su número serial sea menor al de la zona master.
-• REFRESH Indica cada cuánto tiempo la zona slave debe consultar la zona master para comprobar los cambios.
-• RETRY Indica el tiempo de espera para volver a hacer un "refresh" después de haber fallado.
-• EXPIRE Indica el tiempo de caducidad de la zona slave. Si no se ha refrescado antes, la zona slave se considera sin autoridad.
-• NXDOMAIN TTL Tiempo de validez en la caché del mensaje NXDOMAIN. Este mensaje se recibe cuando no se ha podido resolver una consulta.
-Página 10 | 17 NS El registro de recurso NS o name server define un servidor de nombres autoritativo para la zona. Habrá tantas entradas NS como servidores de nombres autoritativos haya en la zona. El estándar DNS recomienda al menos dos (uno primario o master y uno de seguridad secundario o slave).
-A Un registro de recurso A o address asocia un nombre de host a una dirección IP (resolución directa). Un host puede tener más de una IP asociada a su nombre (multi-homed). Los nombres definidos en los registros de tipo A son nombres canónicos (originales). Los alias se definen con el tipo de registro CNAME.
-CNAME Los registros de recurso CNAME o canonical name asocian un alias a un nombre canónico. Un registro CNAME consta de los campos: NAME. IN CNAME CANONICALNAME | IP. En lugar de un nombre canónico se puede utilizar la IP del registro A, lo que sirve para diferenciar aquellos registros A de tipo multi-homed.
-Página 11 | 17 PTR Un registro de recurso PTR o pointer asocia una dirección IP al nombre de host pertinente (resolución inversa). Es necesaria una entrada PTR para cada interfaz de red de la zona. Para el formato de registro PTR, la IP se escribe de forma inversa. Por ejemplo, la IP 192.168.0.1 se expresa como 1.0.168.192, seguida por .IN-ADDR.ARPA. que identifica la IP como inversa.
-MX Un registro MX mail exchanger define un servidor de correo. El software del servidor de correo (MTA) consulta los registros MX para identificar los servidores de correo de los destinatarios. El MTA establece una conexión SMTP con estos servidores de correo, según su prioridad.
-Campo
-Descripción
-NUM
-Número de prioridad con respecto a otros servidores MX definidos. El menor valor es el más prioritario.
-MAILSERVER
-Nombre FQDN del servidor de correo.
-Página 12 | 17 SRV Un registro SRV (servicio) especifica los servidores disponibles para realizar un servicio o protocolo determinado. Formato: SERVICIO.PROTOCOL.NAME. IN SRV PRIORIDAD PES PORT CANONICALNAME.
-• PRIORIDAD Orden en el que los clientes se pondrán en contacto (mayor prioridad, el número más bajo).
-• PES (Peso) Mecanismo de balanceo de carga.
-• PORT Puerto de servicio.
-TIPOS DE SERVIDORES En función de cómo el servidor tiene configuradas sus zonas y opciones globales, existen los siguientes tipos de servidores:
-• Master Tiene definida una zona de tipo master sobre la que tiene autoridad (también llamado primario).
-• Slave Tiene definida una zona de tipo slave sobre la que tiene autoridad (también llamado secundario).
-• Forwarder Tiene definida alguna zona y para las consultas que no son de sus zonas reenvía las solicitudes a otros servidores y guarda las respuestas en su memoria caché.
-• Forwarder caché No tiene definida ninguna zona y solamente hace reenvíos a otros servidores y guarda las respuestas en su memoria caché.
-Un servidor puede ser master para una zona, slave para otra zona y, al mismo tiempo, ser de tipo forwarder para el resto de peticiones.
-Página 13 | 17 CONSULTAS Las consultas DNS para la resolución de nombres de dominio pueden ser de dos tipos: recursivas o iterativas.
-El proceso de resolución de un nombre en un servidor DNS sigue los siguientes pasos:
-1. El servidor consulta sus zonas. Si encuentra un registro, la respuesta es autoritativa. Si no lo encuentra, va al paso 2.
-2. El servidor consulta su memoria caché. Si encuentra un registro, la respuesta es no autoritativa. Si no lo encuentra, va al paso 3.
-3. El servidor reenvía la consulta a otros servidores DNS de forma recursiva o iterativa. Si recibe una respuesta, la almacena en la caché y responde de forma no autoritativa. Si no recibe ninguna respuesta, devuelve un mensaje de error NXDOMAIN.
-RECURSIVA En las consultas recursivas el servidor DNS debe devolver una respuesta (el RR que resuelve la consulta o un mensaje de error). Si el servidor no tiene la respuesta en su zona o caché, consultará a otros servidores DNS. Este tipo de consultas se suelen producir entre los clientes resolvers y los DNS locales (como el DNS de un ISP). También se utiliza entre un servidor DNS y sus servidores DNS forwarders.
-ITERATIVA En las consultas iterativas el servidor DNS proporciona la mejor respuesta que tiene, que puede ser la solución o una referencia a otro servidor DNS de nivel inferior. Las consultas iterativas se suelen producir entre servidores DNS. Cuando un servidor no sabe resolver una consulta, inicia una consulta iterativa con los servidores DNS raíz.
-Página 14 | 17 Ejemplo de resolución iterativa/recursiva:
-1. DNS cliente hace una consulta recursiva, para example.microsft.com, a DNS local.
-2. DNS local no encuentra la respuesta e inicia el proceso de iteración haciendo una consulta iterativa a un servidor DNS raíz.
-3. El servidor DNS raíz contesta con la mejor de sus respuestas, que es el dominio .com y una lista de servidores para este dominio. DNS local guarda en caché.
-4. DNS local hace una consulta iterativa a un servidor DNS de dominio .com.
-5. El servidor DNS de dominio .com contesta con microsoft.com y una lista de servidores para este dominio. DNS local guarda en caché.
-6. DNS local hace una consulta iterativa a un servidor DNS de dominio microsoft.com.
-7. El servidor DNS de dominio microsoft.com contesta con el registro de exemple.microsoft.com. DNS local guarda en caché y termina las iteraciones.
-8. El servidor DNS local responde al DNS cliente con el registro que resuelve la consulta.
-MENSAJES Los mensajes DNS se utilizan para las consultas de resolución de nombres y el intercambio de información entre los servidores DNS.
-Página 15 | 17 HEADER Es la cabecera del mensaje.
-• ID: 2 bytes. Número de identificación de la consulta.
-• Flags: 2 bytes. Indican toda la información sobre la consulta. Incluyen:
-    ◦ QR (Tipo mensaje): 0-query, 1-response.
-    ◦ OPCODE (Tipo consulta): 000 – standard query, 001 – inverse query, 010 – server status query.
-    ◦ AA (Bit autoridad): 1-authoritative answer.
-    ◦ TC (Bit truncamiento).
-    ◦ RD (Bit recursividad): 1-recursive query.
-    ◦ RA (Recursividad al servidor).
-    ◦ RCODE (Tipo respuesta): 0000-no error, 0001-name does not exits.
-• QDCount: 2 bytes. Número de registros en la sección de preguntas.
-• ANCount: 2 bytes. Número de registros en la sección de respuestas.
-• NSCount: 2 bytes. Número de registros en la sección de autoridad.
-• ARCount: 2 bytes. Número de registros en la sección adicional.
-Página 16 | 17 QUESTION Pregunta que se hace al servidor DNS. Contiene:
-• QNAME (Nombre de dominio por el que se pregunta).
-• QTYPE (Tipo de registro), puede ser A, PTR, etc., o tipos especiales como AXFR (zona especial de transferencia) o * (cualquier tipo).
-• QCLASS (Tipo de clase del registro), como IN, CH o * (cualquier clase).
-ANSWER, AUTHORITY, ADDITIONAL Estos tres campos tienen el siguiente formato:
-Campo
-Tamaño
-Descripción
-NAME
-n bytes
-Nombre del propietario del registro.
-TYPE
-2 bytes
-Tipo de registro.
-CLASS
-2 bytes
-Tipo de clase.
-TTL
-4 bytes
-Tiempo de vida asignado al registro en segundos.
-RDLENGTH
-2 bytes
-Número de bytes del campo RDATA.
-RDATA
-n bytes
-Datos del registro.
-Página 17 | 17 EVOLUCIÓN Los protocolos DNS han evolucionado gracias al incremento exponencial de las redes. Dos vías principales de evolución son el DDNS o dinámico DNS y el DNSSEC o DNS seguro.
-DDNS El protocolo DDNS (dynamic DNS) permite que los datos del servidor DNS se actualicen en tiempo real. Su principal uso es permitir que clientes con direcciones IP dinámicas puedan disponer de un nombre de dominio a pesar de que su dirección IP varíe de una sesión a otra. Un mecanismo para lograr esto es permitir que los servidores DHCP se comuniquen con los servidores DNS y les notifiquen las actualizaciones necesarias en la base de datos de DNS.
-DNSSEC El protocolo DNS data de la década de los 80, una época donde la funcionalidad estaba por encima de la seguridad. Las transferencias de zonas y las consultas se hacen en claro, sin cifrar. Las deficiencias de seguridad hacen al protocolo susceptible de falsificación de registros, con riesgos de redirección a sitios maliciosos y suplantación.
-DNSSEC (Domain Name System Security Extensions) se diseñó para solucionar estos problemas, añadiendo una capa de seguridad adicional que permite comprobar la integridad y autenticidad de los datos. DNSSEC se basa en el uso de claves asimétricas. Cada servidor DNS tiene una clave pública (transmitida al resto de servidores) y una clave privada (solo conocida por el servidor). DNSSEC no cifra; solo se utiliza para comprobar la identidad correcta del servidor que ha generado el mensaje DNS (autenticidad) y comprobar que no ha sido modificado durante el trayecto hasta el cliente (integridad).
-</tipo></clase></propietario></div>
+<p>La base de datos que define una zona se basa en diferentes tipos de <strong>registros de recursos (RR)</strong>. Para su definición se utiliza el siguiente formato:</p>
+<p><strong>&lt;propietario&gt; &lt;clase&gt; [ttl] &lt;tipo&gt; rdata</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<p><strong>Propietario</strong>: Nombre del dominio que se está definiendo.</p>
+<p><strong>Clase</strong>: IN – Internet.</p>
+<p><strong>TTL</strong>: Opcional. Indica el tiempo de vida de este registro en caché. Se puede expresar en días (d), horas (h), minutos (m) o segundos (s). Si contiene un 0 indica que no se tiene que almacenar en caché. Ejemplos: 4h40m, 2300 (no indica nada, por tanto segundos).</p>
+<p><strong>TIPO</strong>: Tipo de registro.</p>
+<p><strong>RDATA</strong>: Valor asociado al registro.</p>
+<h5 id="tipos-de-registros-de-recursos">TIPOS DE REGISTROS DE RECURSOS </h5>
+<p>Los tipos de registros más importantes son:</p>
+<ul>
+<li>
+<p><strong>SOA</strong> (Start Of Authority): Identifica al servidor como autoritario de una zona y permite definir sus parámetros de configuración.</p>
+</li>
+<li>
+<p><strong>NS</strong> (Name Server): Identifica los servidores de nombres autorizados para la zona.</p>
+</li>
+<li>
+<p><strong>A</strong> (Address): Asocia un nombre FQDN a una dirección IPv4.</p>
+</li>
+<li>
+<p><strong>AAAA</strong> (Address IPv6): Asocia un nombre FQDN a una dirección IPv6.</p>
+</li>
+<li>
+<p><strong>PTR</strong> (Pointer): Asocia una dirección IP a un nombre FQDN (resolución inversa).</p>
+</li>
+<li>
+<p><strong>MX</strong> (Mail Exchanger): Indica los servidores de correo definidos en la zona.</p>
+</li>
+<li>
+<p><strong>CNAME</strong> (Canonical Name): Permite asignar un alias a un nombre canónico.</p>
+</li>
+<li>
+<p><strong>TXT</strong> (Text): Registro para almacenar cualquier información.</p>
+</li>
+<li>
+<p><strong>SRV</strong> (Service): Ubicación de los servidores para un servicio.</p>
+</li>
+</ul>
+</div>
+<h5 id="directivas-en-archivos-de-definición-de-registros">DIRECTIVAS EN ARCHIVOS DE DEFINICIÓN DE REGISTROS </h5>
+<div class="style-normal">
+<p>En los archivos de definición de registros de la zona se pueden usar las siguientes directivas:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>$ORIGIN</strong>: Define el nombre base a partir del cual se forman los nombres FQDN para los nombres relativos. Si no está, entonces se hace <code>$ORIGIN=nombre</code> de la zona.</p>
+</li>
+<li>
+<p><strong>$TTL</strong>: Define el tiempo por defecto para guardar un registro en la caché, si no se ha especificado en el propio registro. Si no se indica, su valor por defecto es de 1 hora.</p>
+</li>
+</ul>
+</div>
+<h5 id="abreviaciones-en-el-estándar-dns">ABREVIACIONES EN EL ESTÁNDAR DNS </h5>
+<div class="style-normal">
+<p>El estándar DNS permite hacer abreviaciones en los archivos de definición de zona para facilitar la sintaxis:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>@</strong>: Para utilizar el valor de <code>$ORIGIN</code>.</p>
+</li>
+<li>
+<p><strong>Espacio en blanco</strong>: Para indicar que se repite el valor del registro anterior.</p>
+</li>
+<li>
+<p><strong>Nombres de dominio relativos</strong>: A los nombres de dominio relativos (no acabados en punto) se les añade automáticamente <code>$ORIGIN</code> para formar un nombre FQDN.</p>
+</li>
+</ul>
+</div>
+<h4 id="registro-soa-start-of-authority">REGISTRO SOA (Start Of Authority) </h4>
+<div class="style-normal">
+<p>El registro de recurso SOA o <strong>start of authority</strong> dice que el archivo de zona donde se encuentra es la mejor fuente de datos para la zona, y que el servidor de nombres es autoritario para la zona. Acostumbra a ser el primer RR que hay en el archivo de zona, aunque no es obligatorio. Por cada archivo de zona tiene que haber solo un registro SOA.</p>
+<p>Un registro SOA tiene el siguiente formato:</p>
+<p><strong>NAME. IN SOA MNAME. RNAME. (OPCIONES-SLAVES)</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li>
+<p><strong>NAME</strong>: Nombre de dominio de la zona.</p>
+</li>
+<li>
+<p><strong>IN</strong>: Clase del registro (Internet).</p>
+</li>
+<li>
+<p><strong>SOA</strong>: Tipo de registro (Start Of Authority).</p>
+</li>
+<li>
+<p><strong>MNAME</strong>: Nombre FQDN del servidor DNS master de la zona.</p>
+</li>
+<li>
+<p><strong>RNAME</strong>: Dirección de correo electrónico del administrador de la zona. El carácter "@" se sustituye por un punto ".". Por ejemplo, <a href="http://admin.ies.com">admin.ies.com</a>.</p>
+</li>
+<li>
+<p><strong>OPCIONES-SLAVES</strong>: Parámetros para definir la comunicación entre las zonas master y slave. Dichas opciones son:</p>
+<ul>
+<li><strong>SERIAL</strong>: Número de serie de la versión de los datos. Las zonas slaves actualizarán sus registros cuando su número serial sea menor al de la zona master.</li>
+<li><strong>REFRESH</strong>: Indica cada cuánto tiempo la zona slave debe consultar la zona master para comprobar los cambios.</li>
+<li><strong>RETRY</strong>: Indica el tiempo de espera para volver a hacer un "refresh" después de haber fallado.</li>
+<li><strong>EXPIRE</strong>: Indica el tiempo de caducidad de la zona slave. Si no se ha refrescado antes, la zona slave se considera sin autoridad.</li>
+<li><strong>NXDOMAIN TTL</strong>: Tiempo de validez en la caché del mensaje NXDOMAIN. Este mensaje se recibe cuando no se ha podido resolver una consulta.</li>
+</ul>
+</li>
+</ul>
+<p><em>El tiempo se puede expresar en semanas (W), días (D), horas (H), minutos (M) o segundos (S). Si no se especifica, el tiempo se expresa en segundos.</em></p>
+<div class="admonition example">
+<p class="admonition-title">Registro SOA</p>
+<p>El siguiente es un ejemplo de registro SOA para la zona <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>@   IN  SOA ns1.ies.com. admin.ies.com. (
+        2024041501 ; Serial
+        3600       ; Refresh 1H
+        900        ; Retry 15M
+        604800     ; Expire 1W
+        86400      ; NXDOMAIN TTL 1D
+    )
+</code></pre></div>
+</div>
+<h4 id="registro-ns-name-server">REGISTRO NS (Name Server) </h4>
+<div class="style-normal">
+<p>El registro de recurso NS o <strong>name server</strong> define un servidor de nombres autoritativo para la zona. Habrá tantas entradas NS como servidores de nombres autoritativos haya en la zona. El estándar DNS recomienda al menos dos (uno primario o master y uno de seguridad secundario o slave).<br>
+Un registro NS tiene el siguiente formato:</p>
+<p><strong>NAME. IN NS MNAME.</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN de dominio de la zona.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>NS</strong>: Tipo de registro (Name Server).</li>
+<li><strong>MNAME</strong>: Nombre FQDN del servidor DNS autoritativo para la zona.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro NS</p>
+<p>El siguiente es un ejemplo de registro NS para la zona <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ies.com.   IN  NS  nsmaster.ies.com.
+ies.com.   IN  NS  nsslave.ies.com.
+</code></pre></div>
+</div>
+<h4 id="registro-a-address">REGISTRO A (Address) </h4>
+<div class="style-normal">
+<p>Un registro de recurso A o <strong>address</strong> asocia un nombre de host a una dirección IP (resolución directa). Un host puede tener más de una IP asociada a su nombre (multi-homed). Los nombres definidos en los registros de tipo A son nombres canónicos (originales). Los alias se definen con el tipo de registro CNAME.<br>
+Un registro A tiene el siguiente formato:</p>
+<p><strong>NAME. IN A IP</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN del host.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>A</strong>: Tipo de registro (Address).</li>
+<li><strong>IP</strong>: Dirección IPv4 asociada al nombre del host.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro A</p>
+<p>El siguiente es un ejemplo de registro A para diferentes hosts del dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>nsmaster.ies.com.   IN  A 192.168.0.200
+nsslave.ies.com.    IN  A 192.168.0.201
+pc1.ies.com.        IN  A 192.168.0.1
+pc1.ies.com.        IN  A 192.168.0.10
+pc2.ies.com.        IN  A 192.168.0.2
+</code></pre></div>
+</div>
+<h4 id="registro-cname-canonical-name">REGISTRO CNAME (Canonical Name) </h4>
+<div class="style-normal">
+<p>Los registros de recurso CNAME o <strong>canonical name</strong> asocian un alias a un nombre canónico. Un registro CNAME consta de los campos:</p>
+<p><strong>NAME. IN CNAME CANONICALNAME | IP</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN del alias.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>CNAME</strong>: Tipo de registro (Canonical Name).</li>
+<li><strong>CANONICALNAME</strong>: Nombre canónico (definido en un registro A) asociado al alias.</li>
+<li><strong>IP</strong>:  En vez de un nombre canónico se puede utilizar la IP del registro A, eso sirve para diferenciar aquellos registros A de tipo multi-homed.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro CNAME</p>
+<p>El siguiente es un ejemplo de registro CNAME para diferentes alias del dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>nsprimary.ies.com.    IN  CNAME nsmaster.ies.com.
+nssecondary.ies.com.  IN  CNAME nsslave.ies.com.
+contable.ies.com.     IN  CNAME 192.168.0.1 ;alias para IP en un registro A multi-homed
+</code></pre></div>
+</div>
+<h4 id="registro-ptr-pointer">REGISTRO PTR (Pointer) </h4>
+<div class="style-normal">
+<p>Un registro de recurso PTR o <strong>pointer</strong> asocia una dirección IP al nombre de host pertinente (resolución inversa). Es necesaria una entrada PTR para cada interfaz de red de la zona.</p>
+<p>Para el formato de registro PTR, la IP se escribe de forma inversa. Por ejemplo, la IP 192.168.0.1 se expresa como 1.0.168.192, seguida por .IN-ADDR.ARPA. que identifica la IP como inversa.<br>
+El formato del registro PTR es:</p>
+<p><strong>IPINVERSA.IN-ADDR.ARPA. IN PTR CANONICALNAME.</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>IPINVERSA.IN-ADDR.ARPA.</strong>: Dirección IP escrita de forma inversa seguida de .IN-ADDR.ARPA.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>PTR</strong>: Tipo de registro (Pointer).</li>
+<li><strong>CANONICALNAME.</strong>: Nombre FQDN canónico asociado a la IP</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro PTR</p>
+<p>El siguiente es un ejemplo de registro PTR para diferentes hosts del dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>200.0.168.192.IN-ADDR.ARPA. IN PTR nsmaster.ies.com.
+201.0.168.192.IN-ADDR.ARPA. IN PTR nsslave.ies.com.
+1.0.168.192.IN-ADDR.ARPA.   IN PTR pc1.ies.com.
+10.0.168.192.IN-ADDR.ARPA.  IN PTR pc1.ies.com.
+2.0.168.192.IN-ADDR.ARPA.   IN PTR pc2.ies.com.
+</code></pre></div>
+</div>
+<h4 id="registro-mx-mail-exchanger">REGISTRO MX (Mail Exchanger) </h4>
+<div class="style-normal">
+<p>Un registro MX o <strong>mail exchanger</strong> define un servidor de correo. El software del servidor de correo (MTA) consulta los registros MX para identificar los servidores de correo de los destinatarios. El MTA establece una conexión SMTP con estos servidores de correo, según su prioridad.<br>
+El formato del registro MX es:</p>
+<p><strong>NAME. IN MX NUM MAILSERVER.</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN del dominio.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>MX</strong>: Tipo de registro (Mail Exchanger).</li>
+<li><strong>NUM</strong>: Número de prioridad con respecto a otros servidores MX definidos. El menor valor es el más prioritario.</li>
+<li><strong>MAILSERVER</strong>: Nombre FQDN del servidor de correo.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro MX</p>
+<p>El siguiente es un ejemplo de registro MX para el dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ies.com.         IN  MX  10  mail.ies.com.
+ies.com.         IN  MX  20  mail2.ies.com.
+mail.ies.com.    IN  A 192.168.0.220
+mail2.ies.com.   IN  A 192.168.0.221
+</code></pre></div>
+</div>
+<h4 id="registro-srv-service">REGISTRO SRV (Service) </h4>
+<div class="style-normal">
+<p>Un registro SRV o <strong>servicio</strong> especifica los servidores disponibles para realizar un servicio o protocolo determinado. El formato del registro SRV es:</p>
+<p><strong><a href="http://SERVICIO.PROTOCOL.NAME">SERVICIO.PROTOCOL.NAME</a>. IN SRV PRIORIDAD PESO PUERTO CANONICALNAME</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>SERVICIO</strong>: Nombre del servicio (por ejemplo, ftp, http, ssh,...).</li>
+<li><strong>PROTOCOL</strong>: Protocolo utilizado (tcp o udp).</li>
+<li><strong>NAME</strong>: Nombre FQDN del dominio.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>SRV</strong>: Tipo de registro (Service).</li>
+<li><strong>PRIORIDAD</strong>: Orden en el que los clientes se pondrán en contacto (mayor prioridad, el número más bajo).</li>
+<li><strong>PESO</strong>: Mecanismo de balanceo de carga.</li>
+<li><strong>PUERTO</strong>: Puerto de servicio.</li>
+<li><strong>CANONICALNAME</strong>: Nombre canónico del servidor que proporciona el servicio.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro SRV</p>
+<p>El siguiente es un ejemplo de registro SRV para los servicios de FTP y HTTP en el dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ftp.tcp.ies.com.    IN  SRV  0  0  21  ftp.ies.com.
+http.tcp.ies.com.   IN  SRV  0  0  80  http.ies.com.
+ftp.ies.com.        IN  A 192.168.0.230
+http.ies.com.       IN  A 192.168.0.225
+</code></pre></div>
+</div>
+<h3 id="tipos-de-servidores">TIPOS DE SERVIDORES </h3>
+<div class="style-normal">
+<p>En función de cómo el servidor tiene configuradas sus zonas y opciones globales, existen los siguientes tipos de servidores:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>Master</strong>. Tiene definida una zona de tipo master sobre la que tiene autoridad (también llamado primario).</li>
+<li><strong>Slave</strong>. Tiene definida una zona de tipo slave sobre la que tiene autoridad (también llamado secundario).</li>
+<li><strong>Forwarder</strong>. Tiene definida alguna zona y para las consultas que no son de sus zonas reenvía las solicitudes a otros servidores y guarda las respuestas en su memoria caché.</li>
+<li><strong>Forwarder caché</strong>. No tiene definida ninguna zona y solamente hace reenvíos a otros servidores y guarda las respuestas en su memoria caché.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Un servidor puede ser master para una zona, slave para otra zona y, al mismo tiempo, ser de tipo forwarder para el resto de peticiones.</p>
+</div>
+<h3 id="consultas">CONSULTAS </h3>
+<div class="style-normal">
+<p>Las consultas DNS para la resolución de nombres de dominio pueden ser de dos tipos: <strong>recursivas</strong> o <strong>iterativas</strong>.</p>
+<p>El proceso de resolución de un nombre en un servidor DNS sigue los siguientes pasos:</p>
+</div>
+<div class="style-list">
+<ol>
+<li>El servidor consulta sus zonas. Si encuentra un registro, la respuesta es autoritativa. Si no lo encuentra, va al paso 2.</li>
+<li>El servidor consulta su memoria caché. Si encuentra un registro, la respuesta es no autoritativa. Si no lo encuentra, va al paso 3.</li>
+<li>El servidor reenvía la consulta a otros servidores DNS de forma recursiva o iterativa. Si recibe una respuesta, la almacena en la caché y responde de forma no autoritativa. Si no recibe ninguna respuesta, devuelve un mensaje de error NXDOMAIN.</li>
+</ol>
+<p>Esquema de resolución DNS:</p>
+<p><img src="./assets/Consultas.DNS.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
+</div>
+<h4 id="consultas-recursivas">CONSULTAS RECURSIVAS </h4>
+<div class="style-normal">
+<p>En las consultas recursivas el servidor DNS debe devolver una respuesta (el RR que resuelve la consulta o un mensaje de error).</p>
+<p>Si el servidor no tiene la respuesta en su zona o caché, consultará a otros servidores DNS.</p>
+<p>Este tipo de consultas se suelen producir entre los clientes resolvers y los DNS locales (como el DNS de un ISP). También se utiliza entre un servidor DNS y sus servidores DNS forwarders.</p>
+</div>
+<h4 id="consultas-iterativas">CONSULTAS ITERATIVAS </h4>
+<div class="style-normal">
+<p>En las consultas iterativas el servidor DNS proporciona la mejor respuesta que tiene, que puede ser la solución o una referencia a otro servidor DNS de nivel inferior. Si se recibe una referencia a un servidor se vuelve a hacer una consulta iterativa con este servidor.</p>
+<p>Las consultas iterativas se suelen producir entre servidores DNS. Cuando un servidor no sabe resolver una consulta, inicia una consulta iterativa con los servidores DNS raíz, y así sucesivamente hasta encontrar la respuesta o agotar las posibilidades.</p>
+</div>
+<div class="style-list">
+<div class="admonition example">
+<p class="admonition-title">Ejemplo de resolución iterativa/recursiva:</p>
+<p>Supongamos que un DNS cliente quiere resolver el nombre <a href="http://example.microsoft.com">example.microsoft.com</a> y envía una consulta recursiva a su DNS local. El proceso de resolución sería el siguiente:</p>
+<ol>
+<li>DNS cliente hace una consulta recursiva, para <a href="http://example.microsft.com">example.microsft.com</a>, al DNS local.</li>
+<li>DNS local no encuentra la respuesta e inicia el proceso de iteración haciendo una consulta iterativa a un servidor DNS raíz.</li>
+<li>El servidor DNS raíz contesta con la mejor de sus respuestas, que es el dominio .com y una lista de servidores para este dominio. EL servidor DNS local guarda en caché la respuesta.</li>
+<li>DNS local hace una consulta iterativa a un servidor DNS de dominio .com.</li>
+<li>El servidor DNS de dominio .com contesta con <a href="http://microsoft.com">microsoft.com</a> y una lista de servidores para este dominio. EL servidor DNS local guarda en caché la respuesta.</li>
+<li>DNS local hace una consulta iterativa a un servidor DNS de dominio <a href="http://microsoft.com">microsoft.com</a>.</li>
+<li>El servidor DNS de dominio <a href="http://microsoft.com">microsoft.com</a> contesta con el registro de <a href="http://exemple.microsoft.com">exemple.microsoft.com</a>. El DNS local guarda en caché la respuesta y termina las iteraciones.</li>
+<li>El servidor DNS local responde al DNS cliente con el registro que resuelve la consulta <a href="http://exemple.microsoft.com">exemple.microsoft.com</a>.</li>
+</ol>
+</div>
+</div>
+<h3 id="formato-de-mensajes-dns">FORMATO DE MENSAJES DNS </h3>
+<div class="style-normal">
+<p>Los mensajes DNS se utilizan para las consultas de resolución de nombres y el intercambio de información entre los servidores DNS. Su formato es el siguiente:</p>
+<p><img src="./assets/Packet.DNS.png" alt="img" style="width: 50%; display: block; margin: auto; align:center; "></p>
+<p>A continuación se describen los diferentes campos del mensaje DNS:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>HEADER</strong>: es la cabecera del mensaje. Se compone del ID, Flags y los campos que indican el número de registros en cada sección (QDCount, ANCount, NSCount, ARCount).<br>
+<img src="./assets/Header.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<ul>
+<li>
+<p><strong>ID</strong>: 2 bytes. Número de identificación de la consulta.</p>
+</li>
+<li>
+<p><strong>Flags</strong>: 2 bytes. Indican toda la información sobre la consulta. Contiene los subcampos descritos en la siguiente tabla:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Flag</th>
+<th style="text-align:center">Bit</th>
+<th>Descripción</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">QR</td>
+<td style="text-align:center">0</td>
+<td>Tipo de mensaje</td>
+<td>0-query, 1-response</td>
+</tr>
+<tr>
+<td style="text-align:center">OPCODE</td>
+<td style="text-align:center">1-4</td>
+<td>Tipo de consulta</td>
+<td>000 – standard query<br>001 – inverse query<br>010 – server status query<br>El resto de combinaciones no se utilizan</td>
+</tr>
+<tr>
+<td style="text-align:center">AA</td>
+<td style="text-align:center">5</td>
+<td>Bit autoridad</td>
+<td>0-non authoritative answer<br>1-authoritative answer</td>
+</tr>
+<tr>
+<td style="text-align:center">TC</td>
+<td style="text-align:center">6</td>
+<td>Bit truncamiento</td>
+<td>0-message not truncated<br>1-Message truncated</td>
+</tr>
+<tr>
+<td style="text-align:center">RD</td>
+<td style="text-align:center">7</td>
+<td>Bit recursividad</td>
+<td>0-non recursive query<br>1-recursive query</td>
+</tr>
+<tr>
+<td style="text-align:center">RA</td>
+<td style="text-align:center">8</td>
+<td>Bit recursividad al servidor</td>
+<td>0-recursion not available<br>1-recursion available</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">9-11</td>
+<td>Bit reservado</td>
+<td>0-reserved</td>
+</tr>
+<tr>
+<td style="text-align:center">AD</td>
+<td style="text-align:center">10</td>
+<td>Bit autenticaciones</td>
+<td>0-authority section was not authenticated<br>1-authority section was authenticated</td>
+</tr>
+<tr>
+<td style="text-align:center">CD</td>
+<td style="text-align:center">11</td>
+<td>Bit autenticación obligatoria</td>
+<td>0-no authenticated data is acceptable for query<br>1-only authenticated data is acceptable for query</td>
+</tr>
+<tr>
+<td style="text-align:center">RCODE</td>
+<td style="text-align:center">12-15</td>
+<td>Tipo respuesta</td>
+<td>0000-no error<br>0100-format error in query<br>0010-server failure<br>0001-name does not exits</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>QDCount</strong>: 2 bytes. Número de registros en la sección de preguntas.</p>
+</li>
+<li>
+<p><strong>ANCount</strong>: 2 bytes. Número de registros en la sección de respuestas.</p>
+</li>
+<li>
+<p><strong>NSCount</strong>: 2 bytes. Número de registros en la sección de autoridad.</p>
+</li>
+<li>
+<p><strong>ARCount</strong>: 2 bytes. Número de registros en la sección adicional.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>QUESTION</strong>: Pregunta que se hace al servidor DNS. Tiene el siguiente formato:<br>
+<img src="./assets/Question.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "><br>
+Contiene:</p>
+<ul>
+<li><strong>QNAME</strong>: Nombre de dominio por el que se pregunta. Consta de n bytes.</li>
+<li><strong>QTYPE</strong>: Tipo de registro, puede ser A, PTR, etc., o tipos especiales como AXFR (zona especial de transferencia) o * cualquier tipo. Consta de 2 bytes.</li>
+<li><strong>QCLASS</strong>: Tipo de clase del registro, como IN, CH o * (cualquier clase). Consta de 2 bytes.</li>
+</ul>
+</li>
+<li>
+<p><strong>ANSWER</strong>: Registro o registros de respuesta.</p>
+</li>
+<li>
+<p><strong>AUTHORITY</strong>: Registro de los servidores que tienen autoridad sobre la respuesta.</p>
+</li>
+<li>
+<p><strong>ADDITIONAL</strong>: Registros adicionales que pueden ser útiles para la resolución de la consulta.<br>
+Cada registro en las secciones ANSWER, AUTHORITY y ADDITIONAL tiene el siguiente formato:<br>
+<img src="./assets/Adicional.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+</li>
+</ul>
+<p>donde el significado de cada campo es:</p>
+<p>Campo<br>
+Tamaño<br>
+Descripción<br>
+NAME<br>
+n bytes<br>
+Nombre del propietario del registro.<br>
+TYPE<br>
+2 bytes<br>
+Tipo de registro.<br>
+CLASS<br>
+2 bytes<br>
+Tipo de clase.<br>
+TTL<br>
+4 bytes<br>
+Tiempo de vida asignado al registro en segundos.<br>
+RDLENGTH<br>
+2 bytes<br>
+Número de bytes del campo RDATA.<br>
+RDATA<br>
+n bytes<br>
+Datos del registro.</p>
+<h3 id="evolución">EVOLUCIÓN </h3>
+<p>Los protocolos DNS han evolucionado gracias al incremento exponencial de las redes. Dos vías principales de evolución son el DDNS o dinámico DNS y el DNSSEC o DNS seguro.<br>
+DDNS El protocolo DDNS (dynamic DNS) permite que los datos del servidor DNS se actualicen en tiempo real. Su principal uso es permitir que clientes con direcciones IP dinámicas puedan disponer de un nombre de dominio a pesar de que su dirección IP varíe de una sesión a otra. Un mecanismo para lograr esto es permitir que los servidores DHCP se comuniquen con los servidores DNS y les notifiquen las actualizaciones necesarias en la base de datos de DNS.<br>
+DNSSEC El protocolo DNS data de la década de los 80, una época donde la funcionalidad estaba por encima de la seguridad. Las transferencias de zonas y las consultas se hacen en claro, sin cifrar. Las deficiencias de seguridad hacen al protocolo susceptible de falsificación de registros, con riesgos de redirección a sitios maliciosos y suplantación.<br>
+DNSSEC (Domain Name System Security Extensions) se diseñó para solucionar estos problemas, añadiendo una capa de seguridad adicional que permite comprobar la integridad y autenticidad de los datos. DNSSEC se basa en el uso de claves asimétricas. Cada servidor DNS tiene una clave pública (transmitida al resto de servidores) y una clave privada (solo conocida por el servidor). DNSSEC no cifra; solo se utiliza para comprobar la identidad correcta del servidor que ha generado el mensaje DNS (autenticidad) y comprobar que no ha sido modificado durante el trayecto hasta el cliente (integridad).</p>
+</div>
       </div>
       
       
