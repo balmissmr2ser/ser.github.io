@@ -1013,7 +1013,9 @@ http.ies.com.       IN  A 192.168.0.225
 <div class="style-list">
 <div class="admonition example">
 <p class="admonition-title">Ejemplo de resolución iterativa/recursiva:</p>
-<p>Supongamos que un DNS cliente quiere resolver el nombre <a href="http://example.microsoft.com">example.microsoft.com</a> y envía una consulta recursiva a su DNS local. El proceso de resolución sería el siguiente:</p>
+<p>Supongamos que un DNS cliente quiere resolver el nombre <a href="http://example.microsoft.com">example.microsoft.com</a> y envía una consulta recursiva a su DNS local.<br>
+<img src="./assets/Ejemplo-Consultas.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<p>El proceso de resolución sería el siguiente:</p>
 <ol>
 <li>DNS cliente hace una consulta recursiva, para <a href="http://example.microsft.com">example.microsft.com</a>, al DNS local.</li>
 <li>DNS local no encuentra la respuesta e inicia el proceso de iteración haciendo una consulta iterativa a un servidor DNS raíz.</li>
@@ -1199,9 +1201,7 @@ donde el significado de cada campo es:</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Ejemplo de consulta DNS</p>
-<p>A continuación se muestra un ejemplo de consulta DNS que resuelve el nombre <a href="http://uoc.es">uoc.es</a> utilizando la herramienta <em>host</em> en modo detallado.<br>
-<img src="./assets/Ejemplo-Consultas.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
-<p>El comando utilizado es:</p>
+<p>A continuación se muestra un ejemplo de consulta DNS que resuelve el nombre <a href="http://uoc.es">uoc.es</a> utilizando la herramienta <em>host</em> en modo detallado.</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>[root@portatil ~]# host -a uoc.es
 Trying "uoc.es"
 ;; --&gt;HEADER&lt;-- opcode: QUERY, status: NOERROR, id: 14091
