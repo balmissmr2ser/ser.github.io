@@ -259,7 +259,32 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#gestión-de-registros-de-recursos" class="md-toc-link">
             <p>GESTIÓN DE REGISTROS DE RECURSOS</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configuraciones-avanzadas" class="md-toc-link"><p>CONFIGURACIONES AVANZADAS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#servicio-dns-en-windows-nano-server" class="md-toc-link">
+            <p>SERVICIO DNS EN WINDOWS NANO SERVER</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#reenviadores-y-zonas-de-reenvío" class="md-toc-link">
+            <p>REENVIADORES Y ZONAS DE REENVÍO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuración-de-registros-ns-y-soa" class="md-toc-link">
+            <p>CONFIGURACIÓN DE REGISTROS NS Y SOA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#subdominios-y-delegaciones-de-zonas" class="md-toc-link">
+            <p>SUBDOMINIOS Y DELEGACIONES DE ZONAS</p>
+
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
@@ -282,7 +307,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 Instala la característica o rol especificado. Opcionalmente se puede indicar que se instalen las herramientas de administración.</p>
 <div class="admonition example">
 <p class="admonition-title">Instalar servidor DNS</p>
-<p>Instalación del rol de servidor DNS sin herramientas de administración:</p>
+<p>Instalación del rol de servidor DNS sin herramientas de administración.</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Install-WindowsFeature DNS
 Success Restart Needed Exit Code             Feature Result
 ------- -------------- ---------             --------------
@@ -294,7 +319,7 @@ True    No             Success               {Servidor DNS}
 Muestra información de un rol o característica dada; indica si está instalado o no y si está disponible. Si no se pasa ningún parámetro muestra el estado de todos los roles o características de Windows.</p>
 <div class="admonition example">
 <p class="admonition-title">Verificar instalación DNS</p>
-<p>Verificar si el rol de DNS está instalado:</p>
+<p>Verificar si el rol de DNS está instalado.</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Get-WindowsFeature DNS
 Display Name                                  Name                         Install State
 ------------                                  ----                         -------------
@@ -318,7 +343,7 @@ Desinstala la característica o rol especificado.</p>
 Añade una zona primaria de resolución directa con un nombre de zona y un archivo de zona dados.</p>
 <div class="admonition example">
 <p class="admonition-title">Crear zona primaria directa</p>
-<p>Crear la zona primaria para el dominio <code>midominio.dom</code> con el archivo de zona <code>midominio.dom.dns</code>:</p>
+<p>Crear la zona primaria para el dominio <code>midominio.dom</code> con el archivo de zona <code>midominio.dom.dns</code>.</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerPrimaryZone -Name "midominio.dom" -ZoneFile "midominio.dom.dns"
 </code></pre></div>
 </li>
@@ -327,7 +352,7 @@ Añade una zona primaria de resolución directa con un nombre de zona y un archi
 Añade una zona primaria de resolución inversa para una red y un nombre de archivo de resolución dados.</p>
 <div class="admonition example">
 <p class="admonition-title">Crear zona primaria inversa</p>
-<p>Crear la zona primaria de resolución inversa para la red <code>192.168.1.0/24</code>:</p>
+<p>Crear la zona primaria de resolución inversa para la red <code>192.168.1.0/24</code>.</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerPrimaryZone -NetworkId 192.168.1.0/24 -ZoneFile "1.168.192.in-addr.arpa.dns"
 </code></pre></div>
 </li>
@@ -336,7 +361,7 @@ Añade una zona primaria de resolución inversa para una red y un nombre de arch
 Muestra todas las zonas existentes en el servidor DNS. También indica si la zona se creó manualmente o automáticamente.</p>
 <div class="admonition example">
 <p class="admonition-title">Mostrar zonas creadas</p>
-<p>Mostrar todas las zonas de resolución creadas:</p>
+<p>Mostrar todas las zonas de resolución creadas.</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Get-DnsServerZone | Format-Table -AutoSize
 
  ZoneName                 ZoneType IsAutoCreated IsDsIntegrated IsReverseLookupZone IsSigned
@@ -355,138 +380,125 @@ Elimina la zona especificada.</p>
 </ul>
 </div>
 <h2 id="gestión-de-registros-de-recursos">GESTIÓN DE REGISTROS DE RECURSOS </h2>
-<div class="style-list">
-<ul>
-<li><code>Add-DnsServerResourceRecordA -Name &lt;nom-dns&gt; -ZoneName &lt;zona&gt; -Ipv4Address &lt;ip&gt; [-CreatePtr]</code><br>
-Añade un registro de recurso tipo A (host address) a una zona directa. Se especifica el nombre DNS corto (no FQDN) y la IP asociada. El parámetro opcional <code>-CreatePtr</code> hace que el servidor DNS cree automáticamente el registro PTR correspondiente en la zona inversa.</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Añadir registro A <code>www</code> para <code>elmeudomini.dom</code> con IP <code>192.168.1.4</code> y crear automáticamente el PTR:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerResourceRecordA</span> <span class="token operator">-</span>Name www `
-&gt;&gt; <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> <span class="token operator">-</span>IPv4Address 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>4 <span class="token operator">-</span>CreatePtr
-</code></pre></div>
-<div class="style-list">
-<ul>
-<li>
-<p><code>Add-DnsServerResourceRecordAAAA -Name &lt;nom-dns&gt; -ZoneName &lt;nom-zona&gt; -Ipv6Address &lt;ip&gt; [-CreatePtr]</code><br>
-Añade un registro AAAA (IPv6) a una zona directa. Opcionalmente crea el PTR en la zona inversa.</p>
-</li>
-<li>
-<p><code>Add-DnsServerResourceRecordCNAME -Name &lt;nom-dns&gt; -HostNameAlias &lt;nom-dns-fqdn&gt; -ZoneName &lt;nom-zona&gt;</code><br>
-Añade un registro CNAME (alias). Se especifica el nombre del alias y el FQDN del host canónico.</p>
-</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Añadir alias <code>w3</code> apuntando a <code>www.elmeudomini.dom</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerResourceRecordCName</span> <span class="token operator">-</span>Name w3 `
-&gt;&gt; <span class="token operator">-</span>HostNameAlias <span class="token string">"www.elmeudomini.dom"</span> <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span>
-</code></pre></div>
-<div class="style-list">
-<ul>
-<li>
-<p><code>Add-DnsServerResourceRecordPtr -Name &lt;ip-part-host&gt; -ZoneName &lt;zona-inversa&gt; -PtrDomainName &lt;nom-dns-fqdn&gt;</code><br>
-Añade un registro PTR en una zona inversa. En PTR se indica la parte host de la IP y el FQDN correspondiente.</p>
-</li>
-<li>
-<p><code>Add-DnsServerResourceRecordMX -Name &lt;nom-serv-correu&gt; -MailExchange &lt;nom-dns-fqdn&gt; -ZoneName &lt;nom-zona&gt; -Preference &lt;valor&gt;</code><br>
-Añade un registro MX (Mail Exchanger). <code>-Preference</code> indica la prioridad (por defecto 10). <code>-MailExchange</code> debe corresponder a un nombre que tenga un registro A.</p>
-</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Añadir un servidor de correo <code>correu</code> para <code>elmeudomini.dom</code> con prioridad 15:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerResourceRecordMX</span> <span class="token operator">-</span>Name correu `
-&gt;&gt; <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> <span class="token operator">-</span>MailExchange <span class="token string">"correu.elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>Preference 15
-</code></pre></div>
-<div class="style-list">
-<ul>
-<li><code>Add-DnsServerResourceRecord -Name &lt;nom&gt; -ZoneName &lt;nom-zona&gt; -&lt;tipus-registre&gt; [&lt;opcio1&gt; ...]</code><br>
-Comando general para añadir registros de distintos tipos (NS, TXT, etc.).</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Añadir otro servidor de nombres <code>dns2</code> para <code>elmeudomini.dom</code> con IP <code>192.168.1.5</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerResourceRecord</span> <span class="token operator">-</span>Name dns2 `
-&gt;&gt; <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> <span class="token operator">-</span>NS <span class="token operator">-</span>NameServer <span class="token string">"dns2.elmeudomini.dom"</span>
-</code></pre></div>
-<div class="style-list">
-<ul>
-<li><code>Get-DnsServerResourceRecord -ZoneName &lt;nom-zona&gt; [-Name &lt;nom&gt;] [-RRType &lt;tipus-registre&gt;]</code><br>
-Muestra los registros de una zona; se puede filtrar por nombre o tipo.</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">1</p>
-<p>Mostrar todos los registros A de la zona <code>elmeudomini.dom</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Get-DnsServerResourceRecord</span> <span class="token operator">-</span>Zonename <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>RRType A <span class="token punctuation">|</span> <span class="token function">Format-Table</span> <span class="token operator">-</span>AutoSize
-
- HostName RecordType <span class="token function">Type</span> Timestamp TimeToLive RecordData
- <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
- dhcp     A             1    0          01:00:00     192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>2
- dns      A             1    0          01:00:00     192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>3
- www      A             1    0          01:00:00     192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>4
- ftp      A             1    0          01:00:00     192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>5
- correu   A             1    0          01:00:00     192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>6
- dns2     A             1    0          01:00:00     192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>13
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">2</p>
-<p>Mostrar todos los registros PTR de la zona inversa <code>1.168.192.in-addr.arpa</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Get-DnsServerResourceRecord</span> `
-&gt;&gt; <span class="token operator">-</span>Zonename <span class="token string">"1.168.192.in-addr.arpa"</span> <span class="token operator">-</span>RRType Ptr <span class="token punctuation">|</span> <span class="token function">Format-Table</span> <span class="token operator">-</span>AutoSize
-
-HostName RecordType <span class="token function">Type</span> Timestamp TimeToLive RecordData
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
-13        PTR          12   0         01:00:00    dns2<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom<span class="token punctuation">.</span>
-6         PTR          12   0         01:00:00    correu<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom<span class="token punctuation">.</span>
-5         PTR          12   0         01:00:00    ftp<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom<span class="token punctuation">.</span>
-4         PTR          12   0         01:00:00    www<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom<span class="token punctuation">.</span>
-3         PTR          12   0         01:00:00    dns<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom<span class="token punctuation">.</span>
-2         PTR          12   0         01:00:00    dhcp<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom<span class="token punctuation">.</span>
-</code></pre></div>
-<div class="style-list">
-<ul>
-<li><code>Set-DnsServerResourceRecord -Zonename &lt;nom-zona&gt; -OldInputObject &lt;$RRantic&gt; -NewInputObject &lt;$RRnou&gt;</code><br>
-Modifica un registro de recurso reemplazando el objeto antiguo por uno nuevo. Se usa habitualmente para parámetros del SOA.</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Modificar un registro: cargar el antiguo en <code>$rro</code>, clonar/modificar en <code>$rrn</code>, y aplicar con <code>Set-DnsServerResourceRecord</code>.</p>
-</div>
-<div class="style-list">
-<ul>
-<li><code>Remove-DnsServerResourceRecord -ZoneName &lt;nom-zona&gt; -RRType &lt;tipus-registre&gt; -Name &lt;nom&gt; [-RecordData &lt;llista-dades-registre&gt;]</code><br>
-Elimina uno o varios registros de un tipo dado en una zona. El valor de <code>-RecordData</code> depende del tipo de registro.</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Eliminar el registro A <code>ftp</code> de <code>elmeudomini.dom</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Remove-DnsServerResourceRecord</span> <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>RRType A <span class="token operator">-</span>Name ftp <span class="token operator">-</span>RecordData 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>5
-</code></pre></div>
-<hr>
-<p><strong>Configuración avanzada de servidores DNS con PowerShell</strong></p>
 <div class="style-normal">
-<p>A continuación se muestran configuraciones avanzadas y casos especiales, incluidos Nano Server y reenviadores.</p>
+<p>Los comandos para la gestión de los registros de recursos en las zonas DNS son los siguientes:</p>
 </div>
-<p><strong>Servicio DNS en ediciones Nano Server</strong></p>
+<div class="style-list">
+<ul>
+<li>
+<p><code>Add-DnsServerResourceRecordA -Name &lt;nombre-dns&gt; -ZoneName &lt;zona&gt; -Ipv4Address &lt;ip&gt; [-CreatePtr]</code><br>
+Añade un <strong>registro de recurso tipo A</strong> (host address) a una zona directa. Se especifica el nombre DNS corto (no FQDN) y la IP asociada. El parámetro opcional <code>-CreatePtr</code> hace que el servidor DNS cree automáticamente el <strong>registro PTR</strong> correspondiente en la zona inversa.</p>
+<div class="admonition example">
+<p class="admonition-title">Añadir registro A</p>
+<p>Añadir registro A <code>www</code> para <code>midominio.dom</code> con IP <code>192.168.1.4</code> y crear automáticamente el registro PTR.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerResourceRecordA -Name www -ZoneName "midominio.dom" -IPv4Address 192.168.1.4 -CreatePtr
+</code></pre></div>
+</li>
+<li>
+<p><code>Add-DnsServerResourceRecordAAAA -Name &lt;nombre-dns&gt; -ZoneName &lt;nombre-zona&gt; -Ipv6Address &lt;ip&gt; [-CreatePtr]</code><br>
+Añade un <strong>registro AAAA</strong> (IPv6) a una zona directa. Opcionalmente crea el PTR en la zona inversa.</p>
+</li>
+<li>
+<p><code>Add-DnsServerResourceRecordCNAME -Name &lt;nombre-dns&gt; -HostNameAlias &lt;nombre-dns-fqdn&gt; -ZoneName &lt;nombre-zona&gt;</code><br>
+Añade un <strong>registro CNAME</strong> (alias). Se especifica el nombre del alias y el FQDN del host canónico.</p>
+<div class="admonition example">
+<p class="admonition-title">Añadir registro CNAME</p>
+<p>Añadir alias <code>w3</code> apuntando a <code>www.midominio.dom</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerResourceRecordCName -Name w3 -HostNameAlias "www.midominio.dom" -ZoneName "midominio.dom"
+</code></pre></div>
+</li>
+<li>
+<p><code>Add-DnsServerResourceRecordPtr -Name &lt;ip-parte-host&gt; -ZoneName &lt;zona-inversa&gt; -PtrDomainName &lt;nombre-dns-fqdn&gt;</code><br>
+Añade un <strong>registro PTR</strong> en una zona inversa. En PTR se indica la parte host de la IP y el FQDN correspondiente.</p>
+</li>
+<li>
+<p><code>Add-DnsServerResourceRecordMX -Name &lt;nombre-serv-correo&gt; -MailExchange &lt;nombre-dns-fqdn&gt; -ZoneName &lt;nombre-zona&gt; -Preference &lt;valor&gt;</code><br>
+Añade un <strong>registro MX</strong> (Mail Exchanger). <code>-Preference</code> indica la prioridad (por defecto 10). <code>-MailExchange</code> debe corresponder a un nombre que tenga un registro A.</p>
+<div class="admonition example">
+<p class="admonition-title">Añadir registro MX</p>
+<p>Añadir un servidor de correo <code>correo</code> para <code>midominio.dom</code> con prioridad 15.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerResourceRecordMX -Name correo -ZoneName "midominio.dom" -MailExchange "correo.midominio.dom"  -Preference 15
+</code></pre></div>
+</li>
+<li>
+<p><code>Add-DnsServerResourceRecord -Name &lt;nombre&gt; -ZoneName &lt;nombre-zona&gt; -&lt;tipo-registro&gt; [&lt;opción1&gt; ...]</code></p>
+<p>Comando general para añadir registros de distintos tipos (NS, TXT, etc.).</p>
+<div class="admonition example">
+<p class="admonition-title">Añadir registro NS</p>
+<p>Añadir otro servidor de nombres <code>dns2</code> para <code>midominio.dom</code> con IP <code>192.168.1.5</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerResourceRecord -Name dns2 -ZoneName "midominio.dom" -NS -NameServer "dns2.midominio.dom"
+</code></pre></div>
+</li>
+<li>
+<p><code>Get-DnsServerResourceRecord -ZoneName &lt;nombre-zona&gt; [-Name &lt;nombre&gt;] [-RRType &lt;tipo-registro&gt;]</code><br>
+Muestra los registros de una zona; se puede filtrar por nombre o tipo.</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar registros de una zona</p>
+<p>Mostrar todos los registros A de la zona <code>midominio.dom</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Get-DnsServerResourceRecord -Zonename "midominio.dom" -RRType A | Format-Table -AutoSize
+HostName RecordType Type Timestamp TimeToLive RecordData
+-------- ---------- ---- --------- ---------- ----------
+dhcp     A          1    0         01:00:00   192.168.1.2
+dns      A          1    0         01:00:00   192.168.1.3
+www      A          1    0         01:00:00   192.168.1.4
+ftp      A          1    0         01:00:00   192.168.1.5
+correo   A          1    0         01:00:00   192.168.1.6
+dns2     A          1    0         01:00:00   192.168.1.13
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Mostrar registros de una zona</p>
+<p>Mostrar todos los registros PTR de la zona inversa <code>1.168.192.in-addr.arpa</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Get-DnsServerResourceRecord -Zonename "1.168.192.in-addr.arpa" -RRType Ptr | Format-Table -AutoSize
+HostName RecordType Type Timestamp TimeToLive RecordData
+-------- ---------- ---- --------- ---------- ----------
+13       PTR        12   0         01:00:00   dns2.midominio.dom.
+6        PTR        12   0         01:00:00   correo.midominio.dom.
+5        PTR        12   0         01:00:00   ftp.midominio.dom.
+4        PTR        12   0         01:00:00   www.midominio.dom.
+3        PTR        12   0         01:00:00   dns.midominio.dom.
+2        PTR        12   0         01:00:00   dhcp.midominio.dom.
+</code></pre></div>
+</li>
+<li>
+<p><code>Set-DnsServerResourceRecord -Zonename &lt;nombre-zona&gt; -OldInputObject &lt;$RRantic&gt; -NewInputObject &lt;$RRnou&gt;</code><br>
+Modifica un registro de recurso reemplazando el objeto antiguo por uno nuevo. Se usa habitualmente para parámetros del SOA.</p>
+<div class="admonition example">
+<p class="admonition-title">Modificar un registro</p>
+<p>Modificar un registro suponiendo que los valores antiguos están en la variable <code>$rro</code> y los valores nuevos en <code>$rrn</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Set-DnsServerResourceRecord -ZoneName "midominio.dom" -OldInputObject $rro -NewInputObject $rrn
+</code></pre></div>
+</li>
+<li>
+<p><code>Remove-DnsServerResourceRecord -ZoneName &lt;nombre-zona&gt; -RRType &lt;tipo-registro&gt; -Name &lt;nombre&gt; [-RecordData &lt;lista-datos-registro&gt;]</code><br>
+Elimina uno o varios registros de un tipo dado en una zona. El valor de <code>-RecordData</code> depende del tipo de registro.</p>
+<div class="admonition example">
+<p class="admonition-title">Eliminar un registro</p>
+<p>Eliminar el registro A <code>ftp</code> de <code>midominio.dom</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Remove-DnsServerResourceRecord -ZoneName "midominio.dom" -RRType A -Name ftp -RecordData 192.168.1.5
+</code></pre></div>
+</li>
+</ul>
+</div>
+<h2 id="configuraciones-avanzadas">CONFIGURACIONES AVANZADAS </h2>
+<div class="style-normal">
+<p>A continuación se muestran configuraciones avanzadas y casos especiales del servicio DNS en Windows Server.</p>
+</div>
+<h3 id="servicio-dns-en-windows-nano-server">SERVICIO DNS EN WINDOWS NANO SERVER </h3>
 <div class="style-normal">
 <p>Las ediciones Nano Server se usan en máquinas virtuales de Hyper-V y en contenedores Windows. En Nano Server el servicio DNS se instala de forma diferente: se instala el SO y se preconfigura para luego instalar el servicio DNS de forma remota mediante WinRM desde otro equipo.</p>
+</div>
+<div class="style-list">
 <p>Comandos relevantes:</p>
 <ul>
 <li>
 <p><code>Enable-WindowsOptionalFeature -Online -FeatureName DNS-Server-Full-Role</code><br>
 Desempaqueta/instala el servicio DNS.</p>
+<div class="admonition example">
+<p class="admonition-title">Instalación DNS en Nano Server</p>
+<p>Instalar/extraer el paquete DNS en una máquina remota (ejemplo de uso con WinRM).<br>
+Tras conectarse a la máquina remota (WinRM), ejecutar el siguiente código:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>[192.168.1.100]: PS C:\&gt; Enable-WindowsOptionalFeature -Online -FeatureName DNS-Server-Full-Role
+</code></pre></div>
 </li>
 <li>
 <p><code>Import-Module DnsServer</code><br>
@@ -498,124 +510,107 @@ Lista los comandos disponibles del módulo.</p>
 </li>
 </ul>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Instalar/extraer el paquete DNS en una máquina remota (ejemplo de uso con WinRM):</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token punctuation">[</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>100<span class="token punctuation">]</span>: <span class="token function">PS</span> C:\Users\Administrador\Documents&gt; <span class="token function">Enable-WindowsOptionalFeature</span> `
-&gt;&gt; <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName DNS-Server-Full-Role
-
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Import-Module</span> DnsServer
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Get-Command</span> <span class="token operator">-</span>Module DnsServer
-</code></pre></div>
-<hr>
-<p><strong>Configuración de reenviadores (forwarders)</strong></p>
+<h3 id="reenviadores-y-zonas-de-reenvío">REENVIADORES Y ZONAS DE REENVÍO </h3>
 <div class="style-normal">
-<p>Un servidor DNS puede actuar de forma híbrida, realizando tanto resoluciones recursivas como autoritativas. Se puede configurar para reenviar peticiones a otros servidores si el nombre solicitado no está en sus zonas autoritativas. Los reenviadores se pueden definir a nivel de servidor o a nivel de zona (zonas de reenviamiento condicional).</p>
+<p>Un servidor DNS puede actuar de forma híbrida, realizando tanto resoluciones recursivas como autoritativas. Se puede configurar para reenviar peticiones a otros servidores si el nombre solicitado no está en sus zonas autoritativas. Los <strong>reenviadores (forwarders)</strong> se pueden definir a <strong>nivel de servidor</strong> o a <strong>nivel de zona</strong> (zonas de reenviamiento condicional).</p>
 </div>
 <div class="style-list">
+<p>Los comandos relevantes son:</p>
 <ul>
 <li>
 <p><code>Add-DnsServerForwarder -IPAddress &lt;ip&gt;</code><br>
 Añade un servidor DNS público/privado a la lista de reenviadores a nivel de servidor.</p>
+<div class="admonition example">
+<p class="admonition-title">Forwarders a nivel de servidor</p>
+<p>Añadir el reenviador público de Google <code>8.8.8.8</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerForwarder -IPAddress 8.8.8.8
+</code></pre></div>
 </li>
 <li>
 <p><code>Get-DnsServerForwarder</code><br>
-Muestra los reenviadores definidos.</p>
+Muestra los reenviadores definidos (a nivel de servidor).</p>
 </li>
 <li>
 <p><code>Remove-DnsServerForwarder -IPAddress &lt;ip&gt;</code><br>
-Elimina el reenviador indicado.</p>
+Elimina el reenviador indicado (a nivel de servidor).</p>
 </li>
 <li>
-<p><code>Add-DnsServerConditionalForwarderZone -Name &lt;nom-zona&gt; -MasterServers &lt;llista-ip&gt;</code><br>
-Añade una zona de reenviamiento condicional que reenvía consultas para un dominio a servidores específicos.</p>
-</li>
-</ul>
+<p><code>Add-DnsServerConditionalForwarderZone -Name &lt;nombre-zona&gt; -MasterServers &lt;lista-ip&gt;</code><br>
+Añade una zona de reenvío condicional que reenvía consultas para un dominio a servidores específicos.</p>
+<div class="admonition example">
+<p class="admonition-title">Forwarding condicional</p>
+<p>Añadir una zona de reenvío condicional para <code>otrodominio.dom</code> cuyo servidor que conoce ese dominio es <code>192.168.2.252</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:&gt; Add-DnsServerConditionalForwarderZone -Name otrodominio.dom -MasterServers 192.168.2.252 -Passthru
+ZoneName          ZoneType  IsAutoCreated IsDsIntegrated IsReverseLookupZone IsSigned
+--------          --------  ------------  -------------- ------------------- --------
+otrodominio.dom   Forwarder False         False          False
+</code></pre><p>El parámetro <code>-Passthru</code> hace que se muestre información adicional sobre la zona creada.</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">1</p>
-<p>Añadir el reenviador público de Google <code>8.8.8.8</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerForwarder</span> <span class="token operator">-</span>IPAddress 8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8<span class="token punctuation">.</span>8
+<p class="admonition-title">Forwarding condicional</p>
+<p>Añadir una zona de reenvío condicional inversa para la red <code>192.168.2.0/24</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerConditionalForwarderZone -Name 2.168.192.in-addr.arpa -MasterServers 192.168.2.252 -Passthru
+ZoneName               ZoneType  IsAutoCreated IsDsIntegrated   IsReverseLookupZone   IsSigned
+--------               --------  ------------  --------------   -------------------   --------
+2.168.192.in-addr.arpa Forwarder False         False            True
 </code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">2</p>
-<p>Añadir una zona de reenviamiento condicional para <code>altredomini.dom</code> cuyo servidor que conoce ese dominio es <code>192.168.2.252</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerConditionalForwarderZone</span> <span class="token operator">-</span>Name altredomini<span class="token punctuation">.</span>dom `
-&gt;&gt; <span class="token operator">-</span>MasterServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>2<span class="token punctuation">.</span>252 <span class="token operator">-</span>Passthru
-
-ZoneName          ZoneType IsAutoCreated IsDsIntegrated IsReverseLookupZone IsSigned
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>          <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
-altredomini<span class="token punctuation">.</span>dom Forwarder False             False           False
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">3</p>
-<p>Añadir una zona de reenviamiento condicional inversa para la red <code>192.168.2.0/24</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerConditionalForwarderZone</span> `
-&gt;&gt; <span class="token operator">-</span>Name 2<span class="token punctuation">.</span>168<span class="token punctuation">.</span>192<span class="token punctuation">.</span>in-addr<span class="token punctuation">.</span>arpa <span class="token operator">-</span>MasterServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>2<span class="token punctuation">.</span>252 <span class="token operator">-</span>Passthru
-
- ZoneName               ZoneType IsAutoCreated IsDsIntegrated   IsReverseLookupZone   IsSigned
- <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>               <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>    <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>   <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
- 2<span class="token punctuation">.</span>168<span class="token punctuation">.</span>192<span class="token punctuation">.</span>in-addr<span class="token punctuation">.</span>arpa Forwarder False        False            True
-</code></pre></div>
+</li>
+</ul>
 <div class="style-normal">
 <p>Las zonas de reenviamiento se eliminan con el mismo comando que se utiliza para eliminar cualquier zona (<code>Remove-DnsServerZone -Name &lt;zona&gt;</code>).</p>
 </div>
-<hr>
-<p><strong>Configuración de parámetros de los registros NS y SOA</strong></p>
+<h3 id="configuración-de-registros-ns-y-soa">CONFIGURACIÓN DE REGISTROS NS Y SOA </h3>
 <div class="style-normal">
 <p>Al crear una zona automáticamente se crean los registros NS y SOA con valores por defecto en la sección <code>RecordData</code>. Es habitual modificar algunos de esos valores (por ejemplo servidor primario, responsable, intervalos de refresh/retry/expire). El proceso general para modificar estos campos es:</p>
+</div>
+<div class="style-list">
 <ol>
 <li>Cargar en una variable el objeto del registro que queremos modificar.</li>
 <li>Clonar/copiar ese objeto en otra variable.</li>
 <li>Modificar los valores en la nueva variable.</li>
-<li>Actualizar el registro con <code>Set-DnsServerResourceRecord</code>.</li>
+<li>Actualizar el registro con el cmdlet <code>Set-DnsServerResourceRecord</code>.</li>
 </ol>
+<div class="admonition example">
+<p class="admonition-title">Modificar registro NS</p>
+<p>Cambiar el nombre del servidor DNS en el registro NS de <code>midominio.dom</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Paso 1: obtener registro NS
+PS C:\&gt; $RRnsOld = Get-DnsServerResourceRecord -ZoneName "midominio.dom" -RRType Ns
+
+# Paso 2: clonar registro
+PS C:\&gt; $RRnsNew = [ciminstance]::new($RRnsOld)
+# (en Windows 2019+ se puede usar Clone)
+PS C:\&gt; $RRnsNew = $RRnsOld.Clone()
+
+# Paso 3: modificar
+PS C:\&gt; $RRnsNew.RecordData.NameServer = "dns.midominio.dom"
+
+# Paso 4: actualizar
+PS C:\&gt; Set-DnsServerResourceRecord -ZoneName "midominio.dom" -OldInputObject $RRnsOld -NewInputObject $RRnsNew
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Modificar registro SOA</p>
+<p>Modificar el registro SOA de la zona de resolución directa del dominio <code>midominio.dom</code> de manera que el servidor se llame <code>dns</code>, las incidencias de funcionamiento del servicio DNS se envíen al usuario de correo del dominio <code>admin</code>. También se tiene que configurar para que se hagan transferencias de zona cada dia, que se reintente conectar cada 4 horas y que las zonas secundarias consideren que la zona ha caducado despues de 7 dias sin actualizarse.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Paso 1: obtener registro SOA
+PS C:\&gt; $RRsoaOld = Get-DnsServerResourceRecord -ZoneName "midominio.dom" -RRType Soa
+
+# Paso 2: clonar registro
+PS C:\&gt; $RRsoaNew = [ciminstance]::new($RRsoaOld)
+
+# Paso 3: modificar valores del RecordData
+PS C:\&gt; $RRsoaNew.RecordData.PrimaryServer = "dns.midominio.dom"
+PS C:\&gt; $RRsoaNew.RecordData.ResponsiblePerson = "admin.midominio.dom"
+PS C:\&gt; $RRsoaNew.RecordData.RefreshInterval = New-TimeSpan -Days 1
+PS C:\&gt; $RRsoaNew.RecordData.RetryDelay = New-TimeSpan -Hours 4
+PS C:\&gt; $RRsoaNew.RecordData.ExpireLimit = New-TimeSpan -Days 7
+
+# Paso 4: actualizar registro SOA
+PS C:\&gt; Set-DnsServerResourceRecord -ZoneName "midominio.dom" -OldInputObject $RRsoaOld -NewInputObject $RRsoaNew
+</code></pre></div>
 </div>
-<div class="admonition example">
-<p class="admonition-title">1</p>
-<p>Cambiar el nombre del servidor DNS en el registro NS de <code>elmeudomini.dom</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment"># Paso 1: obtener registro NS</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRnsOld</span> = <span class="token function">Get-DnsServerResourceRecord</span> `
-&gt;&gt; <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> <span class="token operator">-</span>RRType Ns
-
-<span class="token comment"># Paso 2: clonar registro</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRnsNew</span> = <span class="token namespace">[ciminstance]</span>::new<span class="token punctuation">(</span><span class="token variable">$RRnsOld</span><span class="token punctuation">)</span>
-<span class="token comment"># (en Windows 2019+ se puede usar Clone)</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRnsNew</span> = <span class="token variable">$RRnsOld</span><span class="token punctuation">.</span>Clone<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment"># Paso 3: modificar</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRnsNew</span><span class="token punctuation">.</span>RecordData<span class="token punctuation">.</span>NameServer = <span class="token string">"dns.elmeudomini.dom"</span>
-
-<span class="token comment"># Paso 4: actualizar</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Set-DnsServerResourceRecord</span> <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>OldInputObject <span class="token variable">$RRnsOld</span> <span class="token operator">-</span>NewInputObject <span class="token variable">$RRnsNew</span>
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">2</p>
-<p>Modificar el registro SOA para <code>elmeudomini.dom</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment"># Paso 1: obtener registro SOA</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaOld</span> = <span class="token function">Get-DnsServerResourceRecord</span> `
-&gt;&gt; <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> <span class="token operator">-</span>RRType Soa
-
-<span class="token comment"># Paso 2: clonar registro</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaNew</span> = <span class="token namespace">[ciminstance]</span>::new<span class="token punctuation">(</span><span class="token variable">$RRsoaOld</span><span class="token punctuation">)</span>
-
-<span class="token comment"># Paso 3: modificar valores del RecordData</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaNew</span><span class="token punctuation">.</span>RecordData<span class="token punctuation">.</span>PrimaryServer = <span class="token string">"dns.elmeudomini.dom"</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaNew</span><span class="token punctuation">.</span>RecordData<span class="token punctuation">.</span>ResponsiblePerson = <span class="token string">"admin.elmeudomini.dom"</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaNew</span><span class="token punctuation">.</span>RecordData<span class="token punctuation">.</span>RefreshInterval = <span class="token function">New-TimeSpan</span> <span class="token operator">-</span>Days 1
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaNew</span><span class="token punctuation">.</span>RecordData<span class="token punctuation">.</span>RetryDelay = <span class="token function">New-TimeSpan</span> <span class="token operator">-</span>Hours 4
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token variable">$RRsoaNew</span><span class="token punctuation">.</span>RecordData<span class="token punctuation">.</span>ExpireLimit = <span class="token function">New-TimeSpan</span> <span class="token operator">-</span>Days 7
-
-<span class="token comment"># Paso 4: actualizar registro SOA</span>
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Set-DnsServerResourceRecord</span> <span class="token operator">-</span>ZoneName <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>OldInputObject <span class="token variable">$RRsoaOld</span> <span class="token operator">-</span>NewInputObject <span class="token variable">$RRsoaNew</span>
-</code></pre></div>
-<hr>
-<p><strong>Subdominios y delegaciones de zonas</strong></p>
+<h3 id="subdominios-y-delegaciones-de-zonas">SUBDOMINIOS Y DELEGACIONES DE ZONAS </h3>
 <div class="style-normal">
-<p>Un servidor autoritativo de un dominio puede delegar la resolución de nombres de uno de sus subdominios a otro servidor DNS. Esto se consigue añadiendo una delegación de zona (registro de delegación) que apunta al servidor DNS del subdominio (normalmente un par: un NS y un registro A "glue") en el servidor del dominio padre.</p>
-<p>En Windows Server no es necesario crear manualmente los registros glue: se indica la delegación usando el comando apropiado y el servidor se encarga de crear lo necesario (si procede). Los servidores DNS del subdominio deben estar configurados correctamente.</p>
+<p>Un servidor autoritativo de un dominio puede delegar la resolución de nombres de uno de sus subdominios a otro servidor DNS. Esto se consigue añadiendo una delegación de zona (registro de delegación) que apunta al servidor DNS del subdominio (normalmente un par: un NS y un registro A <strong>glue</strong>) en el servidor del dominio padre.</p>
+<p>En Windows Server no es necesario crear manualmente los registros glue; se indica la delegación usando el comando apropiado y el servidor se encarga de crear lo necesario (si procede). Los servidores DNS del subdominio deben estar configurados correctamente.</p>
 <p>Comandos:</p>
 <ul>
 <li>
@@ -699,7 +694,7 @@ Añade una zona secundaria inversa.</p>
 <div class="style-normal">
 <p>Fin del documento.</p>
 </div>
-
+</div>
       </div>
       
       
