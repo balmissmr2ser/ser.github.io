@@ -281,6 +281,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#subdominios-y-delegaciones-de-zonas" class="md-toc-link">
             <p>SUBDOMINIOS Y DELEGACIONES DE ZONAS</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#servidores-secundarios-y-transferencias-de-zona" class="md-toc-link">
+            <p>SERVIDORES SECUNDARIOS Y TRANSFERENCIAS DE ZONA</p>
+
           </a></div>
         </div>
       </details>
@@ -573,7 +577,7 @@ ZoneName               ZoneType  IsAutoCreated IsDsIntegrated   IsReverseLookupZ
 <div class="admonition example">
 <p class="admonition-title">Modificar registro NS</p>
 <p>Cambiar el nombre del servidor DNS en el registro NS de <code>midominio.dom</code>.</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Paso 1: obtener registro NS
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Paso 1: obtener registro de recurso NS
 PS C:\&gt; $RRnsOld = Get-DnsServerResourceRecord -ZoneName "midominio.dom" -RRType Ns
 
 # Paso 2: clonar registro
@@ -581,16 +585,16 @@ PS C:\&gt; $RRnsNew = [ciminstance]::new($RRnsOld)
 # (en Windows 2019+ se puede usar Clone)
 PS C:\&gt; $RRnsNew = $RRnsOld.Clone()
 
-# Paso 3: modificar
+# Paso 3: modificar nombre del servidor al RecordData
 PS C:\&gt; $RRnsNew.RecordData.NameServer = "dns.midominio.dom"
 
-# Paso 4: actualizar
+# Paso 4: actualizar registro NS
 PS C:\&gt; Set-DnsServerResourceRecord -ZoneName "midominio.dom" -OldInputObject $RRnsOld -NewInputObject $RRnsNew
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">Modificar registro SOA</p>
 <p>Modificar el registro SOA de la zona de resolución directa del dominio <code>midominio.dom</code> de manera que el servidor se llame <code>dns</code>, las incidencias de funcionamiento del servicio DNS se envíen al usuario de correo del dominio <code>admin</code>. También se tiene que configurar para que se hagan transferencias de zona cada dia, que se reintente conectar cada 4 horas y que las zonas secundarias consideren que la zona ha caducado despues de 7 dias sin actualizarse.</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Paso 1: obtener registro SOA
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Paso 1: obtener registro de recurso SOA
 PS C:\&gt; $RRsoaOld = Get-DnsServerResourceRecord -ZoneName "midominio.dom" -RRType Soa
 
 # Paso 2: clonar registro
@@ -611,88 +615,104 @@ PS C:\&gt; Set-DnsServerResourceRecord -ZoneName "midominio.dom" -OldInputObject
 <div class="style-normal">
 <p>Un servidor autoritativo de un dominio puede delegar la resolución de nombres de uno de sus subdominios a otro servidor DNS. Esto se consigue añadiendo una delegación de zona (registro de delegación) que apunta al servidor DNS del subdominio (normalmente un par: un NS y un registro A <strong>glue</strong>) en el servidor del dominio padre.</p>
 <p>En Windows Server no es necesario crear manualmente los registros glue; se indica la delegación usando el comando apropiado y el servidor se encarga de crear lo necesario (si procede). Los servidores DNS del subdominio deben estar configurados correctamente.</p>
+</div>
+<div class="style-list">
 <p>Comandos:</p>
 <ul>
 <li>
-<p><code>Add-DnsServerZoneDelegation -Name &lt;zona-domini&gt; -ChildZoneName &lt;zona-subdomini&gt; -NameServer &lt;fqdn-dns-subdomini&gt; -IPAddress &lt;ip-dns-subdomini&gt;</code><br>
-Delegar la administración de un subdominio en un servidor DNS especificado.</p>
+<p><code>Add-DnsServerZoneDelegation -Name &lt;zona-dominio&gt; -ChildZoneName &lt;zona-subdominio&gt; -NameServer &lt;fqdn-dns-subdominio&gt; -IPAddress &lt;ip-dns-subdominio&gt;</code><br>
+Delegar la administración de un subdominio en el servidor DNS especificado por su FQDN e IP.</p>
+<div class="admonition example">
+<p class="admonition-title">Delegación de subdominios</p>
+<p>Delegar <code>grupo1.midominio.dom</code> y <code>grupo2.midominio.dom</code>. Los servidores DNS de los subdominios son <code>dnsG1.grupo1.midominio.dom</code> (IP <code>192.168.1.23</code>) y <code>dnsG2.grupo2.midominio.dom</code> (IP <code>192.168.1.33</code>).</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerZoneDelegation -Name "midominio.dom" `
+-ChildZoneName "grupo1" `
+-NameServer "dnsG1.grupo1.midominio.dom" `
+-IPAddress 192.168.1.23
+
+PS C:\&gt; Add-DnsServerZoneDelegation -Name "midominio.dom" `
+-ChildZoneName "grupo2" `
+-NameServer "dnsG2.grupo2.midominio.dom" `
+-IPAddress 192.168.1.33
+</code></pre></div>
 </li>
 <li>
-<p><code>Get-DnsServerZoneDelegation -Name &lt;nom-zona&gt;</code><br>
+<p><code>Get-DnsServerZoneDelegation -Name &lt;nombre-zona&gt;</code><br>
 Mostrar delegaciones definidas para una zona.</p>
+<div class="admonition example">
+<p class="admonition-title">Mostrar delegaciones</p>
+<p>Mostrar las delegaciones definidas en la zona <code>midominio.dom</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Get-DnsServerZoneDelegation -Name "midominio.dom" | Format-Table -AutoSize
+ZoneName          ChildZoneName          NameServer                  IPAddress
+--------          -------------          ----------                  ---------
+midominio.dom     grupo1.midominio.dom   dnsG1.grupo1.midominio.dom  192.168.1.23
+midominio.dom     grupo2.midominio.dom   dnsG2.grupo2.midominio.dom  192.168.1.33
+</code></pre></div>
 </li>
 <li>
-<p><code>Remove-DnsServerZoneDelegation -Name &lt;zona-domini&gt; -ChildZoneName &lt;zona-subdomini&gt;</code><br>
-Eliminar una delegación.</p>
+<p><code>Remove-DnsServerZoneDelegation -Name &lt;zona-dominio&gt; -ChildZoneName &lt;zona-subdominio&gt;</code><br>
+Eliminar una delegación de subdominio.</p>
 </li>
 </ul>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Delegar <code>grup1.elmeudomini.dom</code> y <code>grup2.elmeudomini.dom</code>:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerZoneDelegation</span> <span class="token operator">-</span>Name <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>ChildZoneName <span class="token string">"grup1"</span> <span class="token operator">-</span>NameServer <span class="token string">"dnsG1.grup1.elmeudomini.dom"</span> <span class="token operator">-</span>IPAddress 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>23
-
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerZoneDelegation</span> <span class="token operator">-</span>Name <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>ChildZoneName <span class="token string">"grup2"</span> <span class="token operator">-</span>NameServer <span class="token string">"dnsG2.grup2.elmeudomini.dom"</span> <span class="token operator">-</span>IPAddress 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>33
-
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Get-DnsServerZoneDelegation</span> <span class="token operator">-</span>Name <span class="token string">"elmeudomini.dom"</span> <span class="token punctuation">|</span> `
-&gt;&gt; <span class="token function">Format-Table</span> <span class="token operator">-</span>AutoSize
-
-ZoneName          ChildZoneName          NameServer                  IPAddress
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>          <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>          <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>                  <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-elmeudomini<span class="token punctuation">.</span>dom grup1<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom dnsG1<span class="token punctuation">.</span>grup1<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>23
-elmeudomini<span class="token punctuation">.</span>dom grup2<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom dnsG2<span class="token punctuation">.</span>grup1<span class="token punctuation">.</span>elmeudomini<span class="token punctuation">.</span>dom 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>33
-</code></pre></div>
-<hr>
-<p><strong>Servidores secundarios y transferencias de zona</strong></p>
+<h3 id="servidores-secundarios-y-transferencias-de-zona">SERVIDORES SECUNDARIOS Y TRANSFERENCIAS DE ZONA </h3>
 <div class="style-normal">
 <p>El servicio DNS debe proveer alta disponibilidad; esto se logra mediante réplicas (servidores secundarios) por zona. Las zonas primarias (maestras) y secundarias (esclavas) deben mantenerse sincronizadas. Las transferencias de zona pueden ser completas o incrementales. Los atributos numéricos del <code>RecordData</code> del SOA configuran cuándo y cómo se hacen las transferencias (SerialNumber, RefreshInterval, RetryDelay, ExpireLimit, MinimumTTL).</p>
+</div>
+<div class="style-list">
+<p>Los atributos son:</p>
 <ul>
-<li><code>SerialNumber</code> — número de serie de la zona; las secundarias actualizan si detectan un serial mayor en la primaria.</li>
-<li><code>RefreshInterval</code> — intervalo entre comprobaciones de cambios por parte de la secundaria.</li>
-<li><code>RetryDelay</code> — tiempo de reintento si falla la transferencia.</li>
-<li><code>ExpireLimit</code> — tiempo tras el cual la secundaria considera la zona sin autoridad si no puede actualizarse.</li>
-<li><code>MinimumTTL</code> — TTL mínimo para respuestas negativas en caché.</li>
+<li><code>SerialNumber</code>: número de serie de la zona. La zona primaria y secundaria tienen que tener el mismo número de serie. Si el número de serie de la zona primaria es mayor que el de la secundaria, entonces se producirá una transferencia de zona cuando corresponda para actualizar la secundaria.</li>
+<li><code>RefreshInterval</code>: intervalo entre comprobaciones de cambios por parte de la secundaria. Por defecto el valor se expresa en segundos (como todos los campos que expresen tiempos). Con el sufijo <em>m</em> el tiempo se expresa en minutos, con <em>h</em> en horas y con el sufijo <em>d</em> en días.</li>
+<li><code>RetryDelay</code>: tiempo de reintento si falla la transferencia.</li>
+<li><code>ExpireLimit</code>: tiempo tras el cual la secundaria considera que la zona ha caducado si no ha podido actualizarse y por lo tanto deja de responder a consultas.</li>
+<li><code>MinimumTTL</code>: TTL mínimo para respuestas negativas en caché; es decir, el tiempo que un cliente debe esperar antes de volver a consultar por un nombre que no existe.</li>
 </ul>
+</div>
+<div class="style-normal">
 <p>Para forzar una transferencia incremental o completa se incrementa el <code>SerialNumber</code> en la zona primaria (y opcionalmente se configuran notificaciones a secundarias).</p>
 </div>
 <div class="style-list">
+<p>Comandos relevantes para configurar zonas secundarias y transferencias de zona:</p>
 <ul>
 <li>
 <p><code>Set-DnsServerPrimaryZone -Name "&lt;zona&gt;" -Notify NotifyServers -NotifyServers &lt;ips&gt; -SecondaryServers &lt;ips&gt; -SecureSecondaries TransferToSecureServers</code><br>
-Configura notificaciones y servidores secundarios.</p>
+Configurar el servidor primario para que notifique a los servidores secundarios especificados cuando haya cambios en la zona. El parámetro <code>-SecureSecondaries</code> indica que solo se permiten transferencias a servidores seguros (autenticados).</p>
+<div class="admonition example">
+<p class="admonition-title">Configurar notificaciones y transferencias de zona</p>
+<p>Configurar el servidor primario de la zona midominio.dom para que notifique los cambios de la base de datos de resolución de la zona al servidor secundario de ip <code>192.168.1.13</code>. Configurar también el servidor primario de la zona de resolución inversa correspondiente a la red <code>192.168.1.0/24</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Set-DnsServerPrimaryZone -Name "midominio.dom" `
+-Notify NotifyServers -NotifyServers 192.168.1.13 `
+-SecondaryServers 192.168.1.13 -SecureSecondaries TransferToSecureServers
+
+PS C:\&gt; Set-DnsServerPrimaryZone -Name "1.168.192.in-addr.arpa" `
+-Notify NotifyServers -NotifyServers 192.168.1.13 `
+-SecondaryServers 192.168.1.13 -SecureSecondaries TransferToSecureServers
+</code></pre></div>
 </li>
 <li>
-<p><code>Add-DnsServerSecondaryZone -Name &lt;nom-zona&gt; -ZoneFile &lt;arxiu-resolucio-zona&gt; -MasterServers &lt;llista-dns-primari&gt;</code><br>
-Añade una zona secundaria completa.</p>
+<p><code>Add-DnsServerSecondaryZone -Name &lt;nombre-zona&gt; -ZoneFile &lt;archivo-resolución-zona&gt; -MasterServers &lt;lista-dns-primarios&gt;</code><br>
+Añadir una zona secundaria de resolución directa.</p>
+<div class="admonition example">
+<p class="admonition-title">Crear zonas secundarias directas</p>
+<p>Crear la zona secundaria para el dominio <code>midominio.dom</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerSecondaryZone -Name "midominio.dom" `
+-ZoneFile "midominio.dom.dns" `
+-MasterServers 192.168.1.3
+</code></pre></div>
 </li>
 <li>
-<p><code>Add-DnsServerSecondaryZone -NetworkId &lt;xarxa&gt; -ZoneFile &lt;arxiu&gt; -MasterServers &lt;llista&gt;</code><br>
-Añade una zona secundaria inversa.</p>
+<p><code>Add-DnsServerSecondaryZone -NetworkId &lt;red&gt; -ZoneFile &lt;archivo&gt; -MasterServers &lt;lista-dns-primarios&gt;</code><br>
+Añadir una zona secundaria de resolución inversa.</p>
+<div class="admonition example">
+<p class="admonition-title">Crear zonas secundarias inversas</p>
+<p>Crear la zona secundaria de resolución inversa para la red <code>192.168.1.0/24</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PS C:\&gt; Add-DnsServerSecondaryZone -NetworkId 192.168.1.0/24 `
+-ZoneFile "1.168.192.in-addr.arpa.dns" `
+-MasterServers 192.168.1.3
+</code></pre></div>
 </li>
 </ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Configurar notificaciones de la zona <code>elmeudomini.dom</code> al secundario <code>192.168.1.13</code> y crear la zona secundaria:</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Set-DnsServerPrimaryZone</span> <span class="token operator">-</span>Name <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>Notify NotifyServers <span class="token operator">-</span>NotifyServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>13 `
-&gt;&gt; <span class="token operator">-</span>SecondaryServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>13 <span class="token operator">-</span>SecureSecondaries TransferToSecureServers
-
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Set-DnsServerPrimaryZone</span> <span class="token operator">-</span>Name <span class="token string">"1.168.192.in-addr.arpa"</span> `
-&gt;&gt; <span class="token operator">-</span>Notify NotifyServers <span class="token operator">-</span>NotifyServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>13 `
-&gt;&gt; <span class="token operator">-</span>SecondaryServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>13 <span class="token operator">-</span>SecureSecondaries TransferToSecureServers
-
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerSecondaryZone</span> <span class="token operator">-</span>Name <span class="token string">"elmeudomini.dom"</span> `
-&gt;&gt; <span class="token operator">-</span>ZoneFile <span class="token string">"elmeudomini.dom.dns"</span> <span class="token operator">-</span>MasterServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>3
-
-<span class="token function">PS</span> C:\Windows\system32&gt; <span class="token function">Add-DnsServerSecondaryZone</span> <span class="token operator">-</span>NetworkId 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0/24 `
-&gt;&gt; <span class="token operator">-</span>ZoneFile <span class="token string">"1.168.192.in-addr.arpa.dns"</span> <span class="token operator">-</span>MasterServers 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>3
-</code></pre></div>
-<hr>
-<div class="style-normal">
-<p>Fin del documento.</p>
 </div>
 </div>
       </div>
