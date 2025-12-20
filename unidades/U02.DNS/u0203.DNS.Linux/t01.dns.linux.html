@@ -1,0 +1,2109 @@
+<!DOCTYPE html><html><head>
+      <title>SER</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  const configureMermaidIconPacks = () => {
+    window["mermaid"].registerIconPacks([
+      {
+        name: "logos",
+        loader: () =>
+          fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+            (res) => res.json()
+          ),
+      },
+    ]);
+  };
+
+  if (document.readyState !== 'loading') {
+    configureMermaidIconPacks();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      configureMermaidIconPacks();
+    });
+  }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="dns-linux-bind">DNS LINUX BIND </h1>
+</div>
+<p>📙<a href="./t01.dns.linux.pdf">Descargar PDF</a><br>
+
+</p><div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#dns-linux-bind" class="md-toc-link"><p>DNS LINUX BIND</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#instalación" class="md-toc-link">
+            <p>INSTALACIÓN</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#archivos-de-configuración" class="md-toc-link"><p>ARCHIVOS DE CONFIGURACIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#namedconf" class="md-toc-link">
+            <p>NAMED.CONF</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#namedconfoptions" class="md-toc-link">
+            <p>NAMED.CONF.OPTIONS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#namedconflocal" class="md-toc-link">
+            <p>NAMED.CONF.LOCAL</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dbzona" class="md-toc-link">
+            <p>DB.ZONA</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#zonas" class="md-toc-link"><p>ZONAS</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#resolución" class="md-toc-link"><p>RESOLUCIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#directas" class="md-toc-link">
+            <p>DIRECTAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#inversas" class="md-toc-link">
+            <p>INVERSAS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tipo" class="md-toc-link"><p>TIPO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#master" class="md-toc-link">
+            <p>MASTER</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#slave" class="md-toc-link">
+            <p>SLAVE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#stub" class="md-toc-link">
+            <p>STUB</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#forward" class="md-toc-link">
+            <p>FORWARD</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#registros-de-recursos" class="md-toc-link"><p>REGISTROS DE RECURSOS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#esquema-rr" class="md-toc-link">
+            <p>ESQUEMA RR</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#directivas" class="md-toc-link">
+            <p>DIRECTIVAS</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tipos-de-registros" class="md-toc-link"><p>TIPOS DE REGISTROS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#soa" class="md-toc-link">
+            <p>SOA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ns" class="md-toc-link">
+            <p>NS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#a" class="md-toc-link">
+            <p>A</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#aaaa" class="md-toc-link">
+            <p>AAAA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ptr" class="md-toc-link">
+            <p>PTR</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cname" class="md-toc-link">
+            <p>CNAME</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mx" class="md-toc-link">
+            <p>MX</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#opciones" class="md-toc-link"><p>OPCIONES</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#acl" class="md-toc-link">
+            <p>ACL</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#directory" class="md-toc-link">
+            <p>DIRECTORY</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#forwarders" class="md-toc-link">
+            <p>FORWARDERS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#listen-on" class="md-toc-link">
+            <p>LISTEN-ON</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#recursion" class="md-toc-link">
+            <p>RECURSION</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#allow-recursion" class="md-toc-link">
+            <p>ALLOW-RECURSION</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#allow-query-cache" class="md-toc-link">
+            <p>ALLOW-QUERY-CACHE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cache" class="md-toc-link">
+            <p>CACHE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#allow-query" class="md-toc-link">
+            <p>ALLOW-QUERY</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#delegación-de-dominios" class="md-toc-link">
+            <p>DELEGACIÓN DE DOMINIOS</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#transferencias-de-zonas" class="md-toc-link"><p>TRANSFERENCIAS DE ZONAS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#allow-transfer" class="md-toc-link">
+            <p>ALLOW-TRANSFER</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#claves-tsig" class="md-toc-link">
+            <p>CLAVES TSIG</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#notify" class="md-toc-link">
+            <p>NOTIFY</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#balanceo-de-carga" class="md-toc-link">
+            <p>BALANCEO DE CARGA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dnssec" class="md-toc-link">
+            <p>DNSSEC</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ddns" class="md-toc-link">
+            <p>DDNS</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ficheros-de-log" class="md-toc-link"><p>FICHEROS DE LOG</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#rsyslogd" class="md-toc-link">
+            <p>RSYSLOGD</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#journald" class="md-toc-link">
+            <p>JOURNALD</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#clausula-logging" class="md-toc-link">
+            <p>CLAUSULA LOGGING</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="introducción">INTRODUCCIÓN </h2>
+<div style="style-normal">
+<p>Los sistemas Linux incorporan en sus repositorios los paquetes <code>dnsmasq</code> y <code>bind9</code> para implementar servidores DNS, siendo <code>bind9</code> el servidor más utilizado por su pontencia y versatilidad.</p>
+</div>
+<h2 id="instalación">INSTALACIÓN </h2>
+<div class="style-normal">
+<p>Podemos instalar BIND en prácticamente cualquier distribución Linux, nosotros nos centraremos en las distribuciones Linux Alpine y Linux Debian.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Instalación</p>
+<p>En un sistema Linux Alpine</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>root@pc~<span class="token comment"># apk update &amp;&amp; apk add bind</span>
+root@pc~<span class="token comment"># apk update &amp;&amp; apk add bind-tools</span>
+</code></pre><p>En un sistema Linux Debian</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>root@pc~<span class="token comment"># apt update &amp;&amp; apt install bind9 -y</span>
+root@pc~<span class="token comment"># apt update &amp;&amp; apt install dnsutils -y</span>
+</code></pre></div>
+</div>
+<p>Para comprobar la versión instalada ejecutar el siguiente comando.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#Ejemplo salida named-v
+    named -v
+    BIND 9.16.50 
+</code></pre><p>Los archivos ejecutables instalados son:</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Ruta más común</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>named</code></td>
+<td><code>/usr/sbin/</code></td>
+<td>servidor DNS</td>
+</tr>
+<tr>
+<td><code>named-checkconf</code></td>
+<td><code>/usr/sbin/</code></td>
+<td>verifica fichero de configuracion</td>
+</tr>
+<tr>
+<td><code>named-checkzone</code></td>
+<td><code>/usr/sbin/</code></td>
+<td>verifica fichero de zona</td>
+</tr>
+<tr>
+<td><code>named-compilezone</code></td>
+<td><code>/usr/sbin/</code></td>
+<td>verifica y convierte en binario un archivo de zona</td>
+</tr>
+<tr>
+<td><code>rndc</code></td>
+<td><code>/usr/sbin/</code></td>
+<td>control del servicio named</td>
+</tr>
+</tbody>
+</table>
+<p>Las utilidades instaladas son:</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Ruta más común</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dig</code></td>
+<td><code>/usr/bin/</code></td>
+<td>consultas y diagnostico detallado de DNS</td>
+</tr>
+<tr>
+<td><code>nslookup</code></td>
+<td><code>/usr/bin/</code></td>
+<td>consultas básicas de DNS</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td><code>/usr/bin/</code></td>
+<td>consultas rápidas y simples de DNS</td>
+</tr>
+</tbody>
+</table>
+<p>Los servicios instalados son:</p>
+<table>
+<thead>
+<tr>
+<th>Sistemas</th>
+<th>Servicio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System V</td>
+<td><code>/etc/init.d/named</code></td>
+</tr>
+<tr>
+<td>SystemD</td>
+<td><code>/lib/systemd/system/named.service</code></td>
+</tr>
+</tbody>
+</table>
+<p>Linux Debian utiliza System V o SystemD dependiendo de la versión del sistema. Los sistemas Linux Alpine utilizan OpenRC una versión ampliada de System V.</p>
+<p>Para forzar que el servicio se ejecute solo usando la pila IPv4 debemos modificar los parametros de llamada al servicio y añadir la opción <code>-4</code>.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">named IPv4</p>
+<p>En un servidor DNS sobre un sistema Linux con SystemD se quiere configurar BIND para utilizar solamente la pila de protocolos IPv4.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#parar el servicio
+systemctl stop named
+
+#editar fichero de opciones del servicio y modificar OPTIONS
+nano /etc/default/named
+....
+OPTIONS="-u bind -4"
+....
+
+#iniciar el servicio
+systemctl start named
+</code></pre></div>
+</div>
+<p>Las acciones más comunes para gestioner el servicio DNS son:</p>
+<table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>System V</th>
+<th>SystemD</th>
+<th>OpenRC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Habilitar</td>
+<td><code>update-rc.d named defaults</code></td>
+<td><code>systemctl enable named</code></td>
+<td><code>rc-update add named default</code></td>
+</tr>
+<tr>
+<td>Deshabilitar</td>
+<td><code>update-rc.d -f named remove</code></td>
+<td><code>systemctl disable named</code></td>
+<td><code>rc-update del named</code></td>
+</tr>
+<tr>
+<td>Iniciar</td>
+<td><code>service named start</code></td>
+<td><code>systemctl start named</code></td>
+<td><code>rc-service named start</code></td>
+</tr>
+<tr>
+<td>Parar</td>
+<td><code>service named stop</code></td>
+<td><code>systemctl stop named</code></td>
+<td><code>rc-service named stop</code></td>
+</tr>
+<tr>
+<td>Reiniciar</td>
+<td><code>service named restart</code></td>
+<td><code>systemctl restart named</code></td>
+<td><code>rc-service named restart</code></td>
+</tr>
+<tr>
+<td>Estado</td>
+<td><code>service named status</code></td>
+<td><code>systemctl status named</code></td>
+<td><code>rc-service named status</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="archivos-de-configuración">ARCHIVOS DE CONFIGURACIÓN </h2>
+<div class="style-normal">
+<p>Los archivos de configuración se almacenan en la carpeta <code>/etc/bind/</code>. A continuación se describen los principales archivos de configuración que permiten una configuración modular y flexible:</p>
+</div>
+<h3 id="namedconf">NAMED.CONF </h3>
+<div class="style-normal">
+<p>El archivo <code>named.conf</code> es el archivo de configuración general e incorpora una serie de clausulas <code>include</code> que especifican archivos que configuran distintos aspectos del servidor.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title"><code>named.conf</code></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//use this file for global options
+include "/etc/bind/named.conf.options";
+//use this file for local zones
+include "/etc/bind/named.conf.local";
+//default zones do not modify
+include "/etc/bind/named.conf.default-zones";
+
+</code></pre></div>
+</div>
+<div class="style-note" style="text-indent: 0cm;">
+<blockquote>
+<p><strong>Nota:</strong> la clausula include se puede utilizar en cualquier archivo de configuración. Por ejemplo, podriamos poner dentro del archivo named.conf.options una clasula include al archivo named.conf.acl utilizado para definir reglas de acceso.<br>
+<strong>Nota:</strong> el archivo named.conf.default-zones incluye las zonas por defecto en BIND y no se debe modificar.</p>
+</blockquote>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title"><code>named.conf.default.zones</code></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//root-servers
+zone "."{
+    type hint;
+    file "/usr/share/dns/root.hints";
+};
+//RFC 1912
+//localhost
+zone "localhost."{
+    type master;
+    file "/etc/bind/db.local";
+};
+//localhost inverse
+zone "127.in-addr.arpa."{
+    type master;
+    file "/etc/bind/db.127";
+};
+//net inverse
+zone "0.in-addr.arpa."{
+    type master;
+    file "/etc/bind/db.0";
+};
+//broadcast inverse
+zone "255.in-addr.arpa."{
+    type master;
+    file "/etc/bind/db.255";
+};
+
+</code></pre></div>
+</div>
+</div>
+<h3 id="namedconfoptions">NAMED.CONF.OPTIONS </h3>
+<div class="style-normal">
+<p>El archivo <code>named.conf.options</code> es el archivo en el que se <strong>definen las opciones globales</strong> de configuración del servidor DNS, como pueden ser los reenviadores (forwarders), listas de control de acceso (ACL), modo de resolución (recursivo o iterativo), la seguridad avanzada (DNSSEC) o la actualización dinámica (DDNS). Las opciones globales se definen dentro de la clausula <strong><code>options</code></strong>.Evidentemente, existen númerosas opciones globales que modifican el comportamiento de BIND y se pueden encontrar en la documentación oficial de BIND.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title"><code>named.conf.local</code></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>options {
+    // Directorio donde BIND buscará archivos de zona
+    directory "/var/cache/bind";
+
+    // Manejo de DNSSEC (Validación Automática)
+    dnssec-validation auto;
+
+    // Si no se usa el reenvío, esto evita errores RFC1035
+    auth-nxdomain no;
+
+    // Escucha en todas las interfaces IPv6
+    listen-on-v6 { any; };
+
+    // Permite peticiones de cualquier red
+    allow-query { any; };
+};
+</code></pre></div>
+</div>
+</div>
+<h3 id="namedconflocal">NAMED.CONF.LOCAL </h3>
+<div class="style-normal">
+<p>El archivo <code>named.conf.local</code>es el archivo en el que se <strong>definen las zonas</strong> que gestionará el servidor, aparte de las zonas por defecto que se han creado en el momento de la instalación. Las zonas se definen mediante la clausula <code>zone</code>.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title"><code>named.conf.local</code></p>
+<p><strong>zone define nombres de zona</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>zone "ser.smr."{
+    type master;
+    file "/etc/bind/db.ser.smr";
+};
+zone "192.168.0.in-addr.arpa."{
+    type master;
+    file "/etc/bind/db.192.168.0.in-addr.arpa";
+};   
+</code></pre></div>
+</div>
+</div>
+<h3 id="dbzona">DB.ZONA </h3>
+<div class="style-normal">
+<p>Por cada zona de la que queremos tener resolución se define, mediante de la clausula <code>file</code>, un archivo de resolución de zona (<code>db</code>). En este archivo se <strong>definen los registros de recursos</strong> que configuran la zona.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title"><code>named.conf.local</code></p>
+<p><strong>file define registro de recursos</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>zone "ser.smr."{
+    type master;
+    file "/etc/bind/db.ser.smr";
+};
+zone "192.168.1.in-addr.arpa."{
+    type master;
+    file "/etc/bind/db.192.168.1.in-addr.arpa";
+};   
+</code></pre></div>
+</div>
+<p>Podemos comprobar la sintaxis de un archivo de configuración mediante el comando <code>named-checkconf</code> y la sintaxís de un archivo de recursos de una zona mediante el comando <code>named-checkzone</code>.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Comprobación de archivos</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#comprobar archivo de configuracion opciones globales
+named-checkconf /etc/bind/named.conf.options
+
+#comprobar archivo de configuracion de zonas
+named-checkconf /etc/bind/named.conf.local
+
+#comprobar fichero de recursos de zona ser.smr
+named-chekzone ser.smr /etc/bind/db.ser.smr
+
+</code></pre></div>
+</div>
+</div>
+<h2 id="zonas">ZONAS </h2>
+<div class="style-normal">
+<h3 id="resolución">RESOLUCIÓN </h3>
+<p>En cuanto a la <strong>resolución del nombre</strong> tenemos 2 tipos de zonas:</p>
+<h4 id="directas">DIRECTAS </h4>
+<p>Son aquellas zonas cuyos registros resuelven la relación Nombre - IP. Es decir, son aquellas zonas a las que se les pregunta el nombre y devuelven la IP correspondiente. Se definen usando el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona directa
+zone &lt;dominio.&gt; {
+    type {master,slave,stub} ;
+    file "/etc/bind/db.&lt;dominio&gt;"
+    [opciones]
+};
+</code></pre><div class="admonition example">
+<p class="admonition-title">Definición zona directa</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona directa para el nombre ser.smr
+zone "ser.smr."{
+    type master;
+    file "/etc/bind/db.ser.smr";
+};
+</code></pre></div>
+</div>
+<h4 id="inversas">INVERSAS </h4>
+<p>Son aquellas zonas cuyos registros resuelven la relación IP - Nombre. Es decir, son aquellas zonas a las que se les pregunta por una IP y devuelven el nombre correspodiente. <strong>Como nombre de zona se utiliza la inversa de la IP de red y el sufijo in-addr.arpa</strong>. Se definen usando el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona inversa
+zone &lt;net.in-addr.arpa.&gt; {
+    type {master,slave,stub} ;
+    file "/etc/bind/db.&lt;net.in-addr.arpa&gt;"
+    [opciones]
+};
+</code></pre><div class="admonition example">
+<p class="admonition-title">Definición zona inversa</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona inversa para la red 192.168.1.0/24
+    zone "1.168.192.in-addr.arpa."{
+    type master;
+    file "/etc/bind/db.1.168.192.in-addr.arpa";
+};   
+</code></pre></div>
+</div>
+<h3 id="tipo">TIPO </h3>
+<p>En cuanto al <strong>tipo de zona</strong> (opción <code>type</code>) tenemos 4 tipos de zonas:</p>
+<h4 id="master">MASTER </h4>
+<p>Una zona master define una <strong>zona principal</strong> o primaria sobre la que el servidor DNS tiene <strong>autoridad</strong>. Se definen usando el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona directa
+zone &lt;dominio.&gt; {
+    type master;
+    file "/etc/bind/db.&lt;dominio&gt;";
+    [opciones]
+};
+
+//zona inversa
+zone &lt;net.in-addr.arpa.&gt; {
+    type master;
+    file "/etc/bind/db.&lt;net.in-addr.arpa&gt;";
+    [opciones]
+};
+</code></pre><div class="admonition example">
+<p class="admonition-title">Zonas Master</p>
+<p>Un servidor DNS define la zona ser.smr para la red 192.168.1.0/24. La definición de la zona master directa e inversa sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ser.smr." {
+    type master;
+    file "/etc/bind/db.ser.smr";
+};
+zone "1.168.192.in-addr.arpa." {
+    type master;
+    file "/etc/bind/db.1.168.192.in-addr.arpa";
+};
+</code></pre></div>
+</div>
+<h4 id="slave">SLAVE </h4>
+<p>Una zona slave define una <strong>zona esclava</strong> o secundaria de una zona master sobre la que el servidor DNS tiene <strong>autoridad</strong>. Las zonas esclavas son una <strong>copia completa de una zona master</strong> y por tanto son autoritativas. El proceso por el cual la zona esclava realiza la copia o sincronizaión de la zona master se denomina <strong>transferencia de zona</strong>.  Se ha de asegurar que los archivos de recursos de las zonas slave tengan los permisos necesarios para poder ser escritos tras las transferencias de zonas. El directorio <strong><code>/var/lib/bind/</code></strong> tiene los permisos adecuados y suele ser el utilizado para guardar estas zonas slaves. El esquema de definición de las zonas slaves es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona directa
+zone &lt;dominio.&gt; {
+    type slave;
+    file "/var/lib/bind/db.&lt;dominio&gt;";
+    masters { &lt;IP-master&gt; ; &lt;IP-master&gt; };
+    [opciones]
+};
+//zona inversa
+zone &lt;net.in-addr.arpa.&gt; {
+    type slave;
+    file "/var/lib/bind/db.&lt;net.in-addr.arpa&gt;";
+    masters { &lt;IP-master&gt; ; &lt;IP-master&gt; };
+    [opciones]
+};
+</code></pre><div class="admonition example">
+<p class="admonition-title">Zonas Slave</p>
+<p>Un servidor DNS define la zona esclava ser.smr que esta definida en el servidor 192.168.1.254. La definición de la zona slave directa e inversa sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ser.smr." {
+    type slave;
+    file "/var/lib/bind/db.ser.smr";
+    masters { 192.168.1.254; };
+};
+zone "1.168.192.in-addr.arpa." {
+    type slave;
+    file "/var/lib/bind/db.1.168.192.in-addr.arpa";
+    masters { 192.168.1.254; };
+};
+</code></pre></div>
+</div>
+<p>Los archivos de registros de las zonas transferidas se guardan en formato RAW para agilizar la carga por parte del servidor DNS, podemos convertirlos a texto usando la utilidad <code>named-compilezone</code>.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">RAW a TXT</p>
+<p>Convertir a TXT el archivo de registros de recursos en formato RAW para la zona esclava ser.smr</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>#named-compilezone -f raw -F text -o &lt;fichero.txt&gt;  &lt;zona&gt;  &lt;fichero.raw&gt;
+ named-compilezone -f raw -F text -o db.ser.smr.txt ser.smr /var/lib/bind/db.ser.smr.saved
+</code></pre></div>
+</div>
+<h4 id="stub">STUB </h4>
+<p>Una zona stub define una <strong>zona esclava</strong> o secundaria de una zona master sobre la que el servidor DNS tiene <strong>autoridad</strong>. Las zonas stub son una <strong>copia parcial de una zona master</strong>. Estas zonas solo copian los registros SOA y NS del archivo de resolución de la zona master y se utilizan fundamentalmente para facilitar la resolución recursiva de nombres en otra zona sin transferir toda la base de datos de esa zona. Permite que el servidor sepa qué servidores son autoritativos para dicha zona. El esquema de definición es el siguiente.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona directa
+zone &lt;dominio.&gt; {
+    type stub;
+    file "/var/lib/bind/db.&lt;dominio&gt;";
+    masters { &lt;IP-master&gt; ; &lt;IP-master&gt; };
+    [opciones]
+};
+//zona inversa
+zone &lt;net.in-addr.arpa.&gt; {
+    type stub;
+    file "/var/lib/bind/db.&lt;net.in-addr.arpa&gt;";
+    masters { &lt;IP-master&gt; ; &lt;IP-master&gt; };
+    [opciones]
+};
+</code></pre></div>
+<h4 id="forward">FORWARD </h4>
+<p>Una zona foward define una <strong>zona de reenvío</strong> de otra zona definida en un servidor DNS. Estas zonas no responden autoritativamente ya que no definen la zona sino que reenvían las peticiones a otros servidores que si las definen. No se hace forwarding para zonas inversa. El esquema de definición es el siguiente.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//zona directa
+zone &lt;dominio.&gt; {
+    type forward;        
+    forwarders { &lt;IP-fowarder&gt; ; &lt;IP-forwarder&gt; };
+    foward only;
+    [opciones]
+};
+</code></pre><div class="admonition example">
+<p class="admonition-title">Zona Foward</p>
+<p>Un servidor DNS define la zona forward ser.smr que esta definida en el servidor 192.168.1.254. La definición de la zona de forwarding sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ser.smr." {
+    type forward;        
+    forwarders { 192.168.1.254; };
+    forward only;
+};
+</code></pre></div>
+</div>
+</div>
+<h2 id="registros-de-recursos">REGISTROS DE RECURSOS </h2>
+<div class="style-normal">
+<p>Los archivos de resolución de nombres (<code>db.&lt;zona&gt;</code>) consisten en una colección de elementos llamados <strong>RR</strong> o <strong>registros de recurso</strong> (<em>resource records</em>). Los registros de recurso <strong>son las unidades de consulta</strong>, es decir, son los registros que un servidor DNS devuelve cuando se le realiza una consulta.</p>
+<p>Los registros de recursos tienen 5 campos, algunos de ellos opcionales. Los campos que no se especifican toman un valor por defecto.</p>
+<h3 id="esquema-rr">ESQUEMA RR </h3>
+<center>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>TTL</th>
+<th>Clase</th>
+<th>Tipo</th>
+<th>Datos</th>
+</tr>
+</thead>
+</table>
+</center>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>Nombre</strong><br>
+Nombre DNS del recurso. Puede ser un nombre fqdn (Fully Qualified Domain Name), o un nombre corto o no fqdn.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo fqdn y no fqdn</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ser.smr.    ; es un nombre fqdn ya que acaba en . ,es decir, en la raíz.
+ns          ; es un nombre no fqdn
+www.ser     ; es un nombre no fqdn
+</code></pre></div>
+</li>
+<li>
+<p><strong>TTL (time to live)</strong><br>
+<strong>Tiempo en segundos</strong> que un registro de recurso <strong>permanece</strong> en la <strong>memoria caché</strong> de un cliente. Puede especificarse en semanas (<code>w</code>) días (<code>d</code>), horas (<code>h</code>), minutos (<code>m</code>) o segundos (<code>s</code>), si no se especifica unidad de tiempo se suponen segundos. Si el valor es 0, el registro no se guarda en la memoria caché.</p>
+<div class="admonition example">
+<p class="admonition-title">TTL</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>1h30m       ; TTL de 1 hora y 30 minutos
+86400       ; TTL de 1 dia  por defecto en segundos
+3600s       ; TTL de 1 hora expresado en segundos        
+</code></pre></div>
+</li>
+<li>
+<p><strong>Clase</strong><br>
+Espacio de nombres a los que pertenece el registro. Aunque existen varios espacios hoy solo se usa el de Internet, el resto están en desuso. Su valor es el siguiente:</p>
+<ul>
+<li><strong>IN</strong> Internet</li>
+<li>CH Chaos  (diagnóstico)</li>
+<li>HS Hesiod (MIT)</li>
+</ul>
+</li>
+<li>
+<p><strong>Tipo</strong><br>
+Identifica el tipo de registro de recurso. Algunos valores habituales son: SOA, NS, A, AAAA, PTR, MX, CNAME, etc.</p>
+</li>
+<li>
+<p><strong>Datos</strong><br>
+Datos del registro. Dependen del tipo de registro.</p>
+</li>
+</ul>
+</div>
+<h3 id="directivas">DIRECTIVAS </h3>
+<p>Para mejorar la legibilidad de los archivos de resolución de zonas se suelen definir las siguientes <strong>directivas</strong>:</p>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>$ORIGIN</strong></p>
+<p>Define el <strong>nombre fqdn de la zona</strong> que se configura en el archivo.  La directiva $ORIGIN es <strong>usada</strong> por BIND <strong>para completar los nombres de registro no fqdn</strong>. El caracter <strong>@</strong> se utiliza para expandir el valor de esta directiva en el campo nombre de los RR. Además si en un RR no se especifica nombre (espacio en blanco) se sustituye por el nombre del registro anterior. Si en un fichero <code>db</code> no se define la directiva entonces su valor por defecto es el nombre de la zona, sin embargo, por legibilidad se suele recomendar definirla.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo $ORIGIN</p>
+<p>En el archivo <code>db.ser.smr</code> que define la zona <code>ser.smr</code> se define la siguiente directiva $ORIGIN</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>$ORIGIN ser.smr.   ; acaba en . -&gt; fqdn
+...
+;nombre ttl  clase  tipo  dato
+@       1h   IN     NS    ns.ser.smr.    ; @=$ORIGIN=ser.smr.
+ns      1h   IN     A     192.168.1.254  ; ns.ser.smr.
+        1h   IN     A     192.168.1.253  ; espacio=ns.ser.smr.
+...
+</code></pre></div>
+</li>
+<li>
+<p><strong>$TTL (time to live)</strong></p>
+<p>Define el <strong>tiempo</strong> en segundos que <strong>por defecto</strong> que un registro DNS permanece en la <strong>caché</strong>. Este valor se aplica a aquellos registros de recursos que no definan su propio TTL. Si no se define esta directiva su valor por defecto es 1 hora. Para definir el tiempo se puede usar el valor en segundos o bien los símbolos w (week), h (hour), m (minute), s (second).</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo $TTL</p>
+<p>En el archivo <code>db.ser.smr</code> que define la zona <code>ser.smr</code> se define la siguiente directiva $TTL</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>$TTL 1h30m
+...
+;nombre ttl  clase  tipo  dato
+@       2h   IN     NS    ns.ser.smr.   ; TTL 2h
+ns           IN     A     192.168.1.254 ; TTL=$TTL=1h30m
+...
+</code></pre></div>
+</li>
+</ul>
+</div>
+</div>
+<h3 id="tipos-de-registros">TIPOS DE REGISTROS </h3>
+<div class="style-normal">
+<h4 id="soa">SOA </h4>
+<p>Define las características globales de la zona como por ejemplo el servidor que la define o la sincronización con zonas esclavas. En cada archivo <code>db</code> solamente puede existir un registro SOA y es el primer registro que se debe definir en la zona. Se define con el siguiente esquema</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;nombre&gt; &lt;ttl&gt; IN SOA &lt;server&gt; &lt;email&gt; (
+        &lt;serial&gt;    
+        &lt;refresh&gt;
+        &lt;retry&gt;
+        &lt;expire&gt;
+        &lt;nxdomain&gt;
+)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre fqdn de la zona. Si se ha definido directiva $ORIGIN su valor suele ser @.</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>SOA</code></td>
+<td>Tipo de Registro Start Of Authority</td>
+</tr>
+<tr>
+<td><code>&lt;server&gt;</code></td>
+<td>Nombre fqdn del servidor que define la zona</td>
+</tr>
+<tr>
+<td><code>&lt;email&gt;</code></td>
+<td>Dirección de correo del administrador de la zona. Como las direcciones de correo tienen la forma usuario@servidor y la @ es un simbolo reservado se utiliza el caracter "." en lugar de arroba. Por ejemplo, si el email es <a href="mailto:admin@google.com">admin@google.com</a> se escribe <a href="http://admin.google.com">admin.google.com</a></td>
+</tr>
+<tr>
+<td><code>&lt;serial&gt;</code></td>
+<td>Se utiliza en la sincronización con las zonas esclavas. Cuando una zona esclava solicita transferencia de zona comprueba el serial, si este es mayor que el de la zona esclava entonces se produce la transferencia de zona. Como número serial se suele utilizar la fecha en formato americano seguido de un valor secuencial de dos digitos. Por ejemplo, si se ha modificado la zona el 15 de Diciembre de 2025 por segunda vez en el día su serial sería 2025121502.</td>
+</tr>
+<tr>
+<td><code>&lt;refresh&gt;</code></td>
+<td>Se utiliza en la sincronización con las zonas esclavas. Tiempo de espera de las zonas esclavas para volver a sincronizar la zona.</td>
+</tr>
+<tr>
+<td><code>&lt;retry&gt;</code></td>
+<td>Se utiliza en la sincronización con las zonas esclavas. Tiempo de espera de las zonas esclavas después de un fallo en la sincronización de la zona.</td>
+</tr>
+<tr>
+<td><code>&lt;expire&gt;</code></td>
+<td>Se utiliza en la sincronización con las zonas esclavas. Tiempo máximo que una zona esclava puede seguir usando la zona sin sincronizarse.</td>
+</tr>
+<tr>
+<td><code>&lt;nxdomain&gt;</code></td>
+<td>TTL que un registro nxdomain (dominio no existe) de esta zona debe ser almacenado en la cache</td>
+</tr>
+</tbody>
+</table>
+<div class="style-note" style="text-indent: 0cm;">
+<blockquote>
+<p><strong>Nota:</strong> Los tiempos se expresan en segundos aunque se pueden usar las unidades w,h,m,s de forma similar a los TTL.</p>
+</blockquote>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">SOA</p>
+<p>Ejemplo registro SOA para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+
+@ IN SOA ns.ser.smr. admin.ser.smr. (
+    2025121502     ; serial
+    1d             ; refresh
+    3h             ; retry
+    1w             ; expire
+    1h             ; nxdomain
+)
+</code></pre></div>
+</div>
+<h4 id="ns">NS </h4>
+<p>Define los servidores autorizados para la zona. Es un registro obligatorio. Puede existir más de un registro NS, por ejemplo, cuando una zona esta definida en otros servidores que definen la zona como esclava. Se define con el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;nombre&gt; &lt;ttl&gt; IN NS &lt;server&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre fqdn de la zona. Si se ha definido directiva $ORIGIN su valor suele ser @.</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>NS</code></td>
+<td>Tipo de Registro Name Server</td>
+</tr>
+<tr>
+<td><code>&lt;server&gt;</code></td>
+<td>Nombre fqdn del servidor que define la zona</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">NS</p>
+<p>Ejemplo registro NS para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+....
+@ IN NS ns.ser.smr.   ;server master
+  IN NS nss.ser.smr.  ;server slave
+....
+</code></pre></div>
+</div>
+<h4 id="a">A </h4>
+<p>Define la IPv4 asociada a un nombre. Se utiliza en la resolución directa de un nombre. Se define con el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;nombre&gt; &lt;ttl&gt; IN A &lt;IPv4&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>Tipo de Registro Address IPv4</td>
+</tr>
+<tr>
+<td><code>&lt;IPv4&gt;</code></td>
+<td>Dirección IPv4 asociada al nombre</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">A</p>
+<p>Ejemplo registros A para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+....    
+ns  IN A 192.168.1.254
+nss IN A 172.10.10.254
+www IN A 192.168.1.250
+....
+</code></pre></div>
+</div>
+<h4 id="aaaa">AAAA </h4>
+<p>Define la IPv6 asociada a un nombre. Se utiliza en la resolución directa de un nombre. Se define con el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;nombre&gt; &lt;ttl&gt; IN AAAA &lt;IPv6&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>AAAA</code></td>
+<td>Tipo de Registro Address IPv6</td>
+</tr>
+<tr>
+<td><code>&lt;IPv6&gt;</code></td>
+<td>Dirección IPv6 asociada al nombre</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">AAAA</p>
+<p>Ejemplo registros A para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+....    
+ns  IN AAAA 2001:db8:a0b:12f0::10
+nss IN AAAA 2001:aaa:bbb:ccc0::25
+www IN AAAA 2001:db8:a0b:12f0::15
+....
+</code></pre></div>
+</div>
+<h4 id="ptr">PTR </h4>
+<p>Define el nombre asociado a una IP. Se utiliza en la resolución inversa. Se define con el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;IP&gt; &lt;ttl&gt; IN PTR &lt;nombre&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;IP&gt;</code></td>
+<td>Dirección IP</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>PTR</code></td>
+<td>Tipo de Registro Address IPv6</td>
+</tr>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre asociado a la IP. Debe ser siempre fqdn</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">PTR</p>
+<p>Ejemplo registros PTR para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN 1.168.192.in-addr.arpa.
+$TTL 2d
+....
+254 IN PTR ns.ser.smr.
+250 IN PTR www.ser.smr.
+....
+</code></pre></div>
+</div>
+<h4 id="cname">CNAME </h4>
+<p>Define el una alias para un nombre canónico, es decir, aquel que tiene asociado un registro A o AAA. Se utiliza en la resolución directa. Se define con el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;alias&gt; &lt;ttl&gt; IN CNAME &lt;nombre&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;alias&gt;</code></td>
+<td>Nombre que se utilizará como alias</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>CNAME</code></td>
+<td>Tipo de Registro Canonical Name</td>
+</tr>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre asociado a la IP. Debe ser siempre fqdn</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">CNAME</p>
+<p>Ejemplo registros CNAME para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+....
+ns  IN A 192.168.1.254
+nss IN A 172.10.10.254
+www IN A 192.168.1.250
+; alias
+web IN CNAME www.ser.smr.
+....
+</code></pre></div>
+</div>
+<h4 id="mx">MX </h4>
+<p>Define el nombre del servidor de correo que se encarga de gestionar los correos de la zona. Se define con el siguiente esquema:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;nombre&gt; &lt;ttl&gt; IN MX &lt;prioridad&gt; &lt;servidor&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre de la zona. Si se ha definido $ORIGIN normalmente será @.</td>
+</tr>
+<tr>
+<td><code>&lt;ttl&gt;</code></td>
+<td>TTL del registro. Si se omite su valor será $TTL.</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>MX</code></td>
+<td>Tipo de Registro Mail Exchanger</td>
+</tr>
+<tr>
+<td><code>&lt;prioridad&gt;</code></td>
+<td>Cuanto menor es el número mayor prioridad. Esto es debido a que se pueden definir varios servidores de correo para el dominio. De esta manera si el de mayor prioridad falla se puede usar el de siguiente prioridad.</td>
+</tr>
+<tr>
+<td><code>&lt;servidor&gt;</code></td>
+<td>Nombre del servidor de correo. Debe ser siempre fqdn</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">MX</p>
+<p>Ejemplo registros MX para el dominio ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+....
+@   IN MX 10 mail.ser.smr.
+    IN MX 20 aspmx.l.google.com.
+
+;registro A del mail de la zona
+mail  IN A 192.168.1.201
+; observar que aspmx.l.google.com. es externo
+; a la zona y por tanto no hay que definir
+; registro A 
+....
+</code></pre></div>
+</div>
+</div>
+<h2 id="opciones">OPCIONES </h2>
+<div class="style-normal">
+<p>Las opciones permiten modificar le comportamiento del servidor. Algunas opciones sólo se pueden definir a nivel global (<code>options</code>) otras se pueden definir también a nivel de zona (<code>zone</code>).</p>
+<h3 id="acl">ACL </h3>
+<p>Las ACL (Access Control List) permiten definir mediante un nombre descriptivo un <strong>grupo de direcciones IP o redes</strong> para posteriormente utilizarlas dentro de alguna opción de configuración. Las ACL se evaluan desde la primera condición hasta que se cumpla alguna de sus condiciones. Exiten varias <strong>ACL</strong> ya creadas <strong>por defecto</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>ACL</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>none</code></td>
+<td>Ninguna dirección IP</td>
+</tr>
+<tr>
+<td><code>any</code></td>
+<td>Cualquier dirección IP</td>
+</tr>
+<tr>
+<td><code>localhost</code></td>
+<td>Cualquier dirección IP configurada en el host</td>
+</tr>
+<tr>
+<td><code>localnets</code></td>
+<td>Cualquier dirección IP de la red o redes del host</td>
+</tr>
+</tbody>
+</table>
+<p>Se pueden definir a nivel global y a nivel de zona siempre fuera de la clausula option y/o zone. Es habitual definirlas en su propio fichero de configuración, por ejemplo, <code>/etc/bind/named.conf.acl</code> para luego realizar un include en algún archivo de configuración o de zona. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    acl "&lt;nombre&gt;" {
+        &lt;IP&gt;;            // IP  aceptada
+        &lt;IP&gt;/&lt;mascara&gt;;  // Red aceptada    
+        "acl";           // ACL aceptada
+        !&lt;IP&gt;;           // IP  rechazada
+        !&lt;IP&gt;/&lt;mascara&gt;; // Red rechazada
+        !"acl";          // ACL rechazada
+};
+</code></pre><div class="admonition example">
+<p class="admonition-title">ACL</p>
+<p>Un servidor DNS quiere crear un ACL para permitir peticiones de cualquier IP menos de la red 172.20.20.0/24</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+acl "query-net" {
+    !172.20.20.0/24;
+    any;
+};
+options {
+    allow-query { "query-net"; };
+};
+</code></pre></div>
+</div>
+<h3 id="directory">DIRECTORY </h3>
+<p>Permite definir el directorio en el que BIND buscará los archivos <code>db.zona</code> cuando no se utilicen path absolutos en la clausula <code>file</code> de la definición de la zona. Se define a nivel global. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    directory "directorio";
+</code></pre><div class="admonition example">
+<p class="admonition-title">directory</p>
+<p>El servidor DNS grabará el archivo db.ser.smr en el directorio /var/cache/bind</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+options {
+    directory "/var/cache/bind";
+};
+// archivo /etc/bind/named.conf.local
+zone "ser.smr." {
+    type master;
+    file "db.ser.smr";
+};
+</code></pre></div>
+</div>
+<h3 id="forwarders">FORWARDERS </h3>
+<p>Permite definir una lista de servidores DNS a los que reenviar las peticiones de resolución de nombres cuando no se pueden resolver en las zonas definidas en el propio servidor. En este caso, el servidor se comportará como un servidor DNS recursivo caché y responderá de manera no autoritativa para dichas peticiones. Se define a nivel global. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    fowarders { &lt;IP-forward&gt;; &lt;IP-forward&gt;; };
+</code></pre><div class="admonition example">
+<p class="admonition-title">DNS forwarder</p>
+<p>Un servidor DNS con IP 192.168.1.254 define la zona ser.smr. , el resto de peticiones las reenvía al servidor 1.1.1.1.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+options {
+    fowarders { 1.1.1.1; };
+};
+</code></pre></div>
+</div>
+<h3 id="listen-on">LISTEN-ON </h3>
+<p>Permite definir las interfaces IPv4, IPv6 y puertos por los que se servirán las consultas DNS. Se puede usar <code>any</code> o <code>none</code> para indicar todas o ningua interfaz. Se definen a nivel global. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    listen-on  [&lt;port&gt;]   { &lt;IPv4&gt;; &lt;IPv4&gt;; };
+    listen-on-v6 [&lt;port&gt;] { &lt;IPv6&gt;; &lt;IPv6&gt;; };
+</code></pre><div class="admonition example">
+<p class="admonition-title">listen-on</p>
+<p>Un servidor DNS con dos interfaces de red de direcciones  192.168.1.254 y 172.18.1.1.1 quiere escuchar peticiones DNS solo para la interfaz localhost y la interfaz de IP 192.168.1.254</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+options {
+    listen-on {127.0.0.1; 192.168.1.254; };
+    listen-on-v6 {none; };
+};
+</code></pre></div>
+</div>
+<h3 id="recursion">RECURSION </h3>
+<p>Configura al servidor para realizar resoluciones de nombres recursivas. Por defecto, es recursivo. Se define a nivel global. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    recursion &lt;yes|no&gt;;
+</code></pre></div>
+<h3 id="allow-recursion">ALLOW-RECURSION </h3>
+<p>Especifica que equipos podrán realizar consultas recursivas al servidor. Se define a nivel global. Por defecto,  por motivos de seguridad, su valor es <code>{ localnets; localhost; }</code> por lo que solamente se permite recursión al propio equipo y a su red a no ser que se defina explícitamente. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    allow-recursion { &lt;IP&gt;; &lt;IP&gt;/&lt;mascara&gt;; acl; };
+</code></pre><div class="admonition example">
+<p class="admonition-title">allow-recursion</p>
+<p>Un servidor DNS quiere ser recursivo solo para las redes 172.16.16.0/24 y 192.168.1.0/24 además de para su propia red y él mismo.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+acl "recursive-net" {
+    172.16.16.0/24;
+    192.168.1.0/24;
+    localhost;
+    localnets;
+};
+options {
+    recursion yes;
+    allow-recursion { "recursive-net"; };
+};
+</code></pre></div>
+</div>
+<h3 id="allow-query-cache">ALLOW-QUERY-CACHE </h3>
+<p>Especifica que equipos podrán realizar consultas a la cache. Se define a nivel global. Por defecto,  por motivos de seguridad, su valor es <code>{ localnets; localhost; }</code> Si se define allow-recursion entonces hereda el valor definido en dicha opción, por ese motivo, suele ser habitual definir solo allow-recursion y no esta clausula. De esta forma se evitan los ataques de envenamiento de cache o analicen el historial de tráfico DNS del servidor. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    allow-query-cache { &lt;IP&gt;; &lt;IP&gt;/&lt;mascara&gt;; acl; };
+</code></pre></div>
+<h3 id="cache">CACHE </h3>
+<p>Existen varias clausulas para controlar el comportamiento de la cache, entre ellas: <code>max-cache-size</code>, <code>max-cache-ttl</code> y <code>max-ncache-ttl</code>.</p>
+<p>La clausula <strong><code>max-cache-size</code></strong> especifica el tamaño máximo de la memoria cache en RAM.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    max-cache-size ( default | unlimited | &lt;sizeval&gt; | &lt;percentage&gt; );
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td>Depende del valor de <code>recursion</code>. Si <code>recursion yes</code> es el 90% del tamaño de la memoria del equipo. Si <code>recursion no</code> entonces es 2 MB.</td>
+</tr>
+<tr>
+<td><code>unlimited</code></td>
+<td>Hasta acabar con los recursos de memoria del servidor</td>
+</tr>
+<tr>
+<td><code>&lt;sizeval&gt;</code></td>
+<td>Valor en <code>K</code>iloBytes, <code>M</code>egaBytes, <code>G</code>igaBytes.</td>
+</tr>
+<tr>
+<td><code>&lt;percentage&gt;</code></td>
+<td>Valor en % sobre el total de la memoria</td>
+</tr>
+</tbody>
+</table>
+<p>La clausula <strong><code>max-cache-ttl</code></strong> especifica el tiempo máximo que un registro permanece en la cache. Se pueden especificar con w,d,h,m,s como $TTL. El valor por defecto es 1w y no se puede poner a 0.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    max-cache-ttl &lt;duration&gt;;
+</code></pre></div>
+<p>La clausula <strong><code>max-ncache-ttl</code></strong> especifica el tiempo máximo que un registro no resuelto (NXDOMAIN) permanece en la cache. Se pueden especificar con w,d,h,m,s como $TTL. El valor por defecto es 3h y su valor máximo es 7d;</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    max-ncache-ttl &lt;duration&gt;;
+</code></pre></div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Configuración cache</p>
+<p>Un servidor DNS recursivo quiere restringir el tamaño de su memoria cache a 512 MB, que el tiempo máximo de los registros resueltos sea de 3 días y de los no resueltos de 1 hora.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+options {
+    max-cache-size 512M;
+    max-cache-ttl 3d;
+    max-ncache-ttl 1h;
+};
+</code></pre></div>
+</div>
+<h3 id="allow-query">ALLOW-QUERY </h3>
+<p>Especifica que equipos podrán realizar consultas al servidor. Se define a nivel global o de zona. Por defecto, su valor es <code>{ any; }</code> por lo se permite la consulta a cualquier equipo. Su esquema es el siguiente:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    allow-query { &lt;IP&gt;; &lt;IP&gt;/&lt;mascara&gt;; acl; };
+</code></pre><div class="admonition example">
+<p class="admonition-title">allow-recursion</p>
+<p>Un servidor DNS quiere permitir consultas solo a las redes 172.16.16.0/24 y 192.168.1.0/24 además de su propia red y él mismo.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+acl "query-net" {
+    172.16.16.0/24;
+    192.168.1.0/24;
+    localhost;
+    localnets;
+};
+options {
+    allow-query { "query-net"; };
+};
+</code></pre></div>
+</div>
+</div>
+<h2 id="delegación-de-dominios">DELEGACIÓN DE DOMINIOS </h2>
+<div class="style-normal">
+<p>La delegación de dominios es el mecanismo de DNS que permite que la autoridad sobre un dominio o subdominio pase a otros servidores DNS sin perder la jerarquía sobre dicho dominio. La delagación de dominios es la piedra de toque en la que se basa todo el sistema de distribución de la base de datos de DNS.</p>
+<p>La delegación de domino se realiza fundamentalmente mediante la definición de los registros NS que permiten alcanzar dichos dominios. Veamoslo con un ejemplo.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Delegación de dominios</p>
+<p>Un servidor DNS de nombre ns.ser.smr e IP 192.168.1.254 define el dominio ser.smr y delega los subdominio ga y gb en los servidores ns.ga.ser.smr y ns.gb.ser.smr que tienen IP 192.168.2.254 y 192.168.3.254 respectivamente.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL  1d
+@ IN SOA ns.ser.smr. admin.ser.smr. (
+    2025121502     ; serial
+    1d             ; refresh
+    3h             ; retry
+    1w             ; expire
+    1h             ; nxdomain
+)
+
+@      IN NS ns.ser.smr.
+ga     IN NS ns.ga.ser.smr. ;delegacion
+gb     IN NS ns.gb.ser.smr. ;delegacion
+
+ns     IN A 192.168.1.254
+ns.ga  IN A 192.168.2.254   ;delegacion
+ns.gb  IN A 192.168.3.254   ;delegacion
+
+www    IN A 192.168.1.250
+ftp    IN A 192.168.1.249
+
+</code></pre></div>
+</div>
+</div>
+<h2 id="transferencias-de-zonas">TRANSFERENCIAS DE ZONAS </h2>
+<div class="style-normal">
+<p>Las transferencias de zonas es el mecanismo que utilizan las zonas master y slave para transferirse los registros de recursos. Básicamente el mecanismo de transferencias de zona es el siguiente:</p>
+<p>Cuando un administrador modifica una zona master aumenta el <code>serial</code> definido en el registro SOA de la zona. El servidor que contiene la zona slave intenta sincronizarse periódicamente, según el tiempo definido en <code>refresh</code>, con la zona master. Si el <code>serial</code> de la zona master es superior al de la zona slave se producira la transferencia de zona y por tanto la sincronización de la zona.</p>
+<p>Existen dos tipos de transferencia de zonas:</p>
+<div class="style-list">
+<ul>
+<li><strong>AXFR</strong> (Asynchronous Full Transfer)<br>
+Se produce cuando la zona slave realiza una petición de sincronización con la zona master. La zona master envía todos los registros que definen la zona. Este tipo de transferencia se produce siempre la primera vez que se sincronizan las zonas master y slave y tambien cuando no se soporta el otro tipo de transferencia. El problema es que consume mucho ancho de banda y es algo lento ya que envía todos los registros de la zona.</li>
+<li><strong>IXFR</strong> (Incremental Zone Transfer)<br>
+Se produce cuando la zona slave realiza una petición de sincronización con la zona master. La zona slave manda un número de serie indicando la ultima sincronización realizada, entonces la zona master envía sólo los registros que definen la zona y que se modificaron posteriormente a dicho número de serie. Las transferencias consumen menos ancho de banda y son más rápidas.</li>
+</ul>
+</div>
+<h3 id="allow-transfer">ALLOW-TRANSFER </h3>
+<p>Es evidente que la seguridad de la base de datos de una zona se puede ver comprometida si algún "hacker" define un servidor DNS con una zona esclava apuntando a la dirección del servidor DNS master. Para evitar que cualquier servidor pueda apuntar a nuestras zonas se utiliza la clausula <code>allow-transfer</code>.</p>
+<p>Pasos:</p>
+<div class="style-list">
+<ul>
+<li>
+<p>1.Servidor master. En la configuración global "bloqueamos" todas las transferencias.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>//archivo named.conf.options
+options {
+...
+  allow-transfer { none; };
+...
+};
+</code></pre></div>
+</li>
+<li>
+<p>2.Servidor master. En la configuración de la zona master "permitimos" las transferencias para los servidores secundarios que consideremos seguros.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>//archivo named.conf.local
+...
+//zona master
+zone "&lt;dominio.&gt;" {
+...
+  allow-transfer { IP-slave; IP-slave; };
+...
+};
+</code></pre></div>
+</li>
+</ul>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">allow-transfer</p>
+<p>Un servidor DNS define la zona master ser.smr y quiere permitir solo las transferencias de zona para los servidores esclavos con dirección 192.168.1.20 y 172.16.10.10:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>//archivo named.conf.options
+options {
+    ...
+    allow-transfer { none; };
+    ...
+};
+
+//archivo named.conf.local
+...
+zone "ser.smr." {
+    type master;
+    file "/etc/bind/db.ser.smr";
+    allow-transfer { 192.168.1.20; 172.16.10.10; };
+};
+...
+</code></pre></div>
+</div>
+<h3 id="claves-tsig">CLAVES TSIG </h3>
+<p>Aparentemente la protección mediante IP podría ser suficiente. Sin embargo, dista mucho de la realidad, cualquier "hacker" podría averigurar IPs en la red simplemente analizando el tráfico de las peticiones DNS el cual no es cifrado.</p>
+<p>Un paso más en la seguridad de las transferencias entre zonas master y slaves es el uso de una clave simétrica para permitir las trasnferencias. Las claves <strong>TSIG</strong> (Transaction Signature) son claves simétricas compartidas por los servidores DNS, normalmente uno master y otro slave. Se usan para firmar criptográficamente los mensajes DNS y permite verificar:</p>
+<div class="style-list">
+<ul>
+<li>Autenticidad. El mensaje proviene de un servidor autorizado.</li>
+<li>Integridad. El mensaje no ha sido modificado.</li>
+<li>Fiablidad. La comunicación es fiable.</li>
+</ul>
+</div>
+<p>Pasos:</p>
+<div class="style-list">
+<ul>
+<li>1.Servidor master. Crear clave.<pre data-role="codeBlock" data-info="" class="language-text"><code>tsig-keygen -a hmac-sha256 clave &gt; /etc/bind/tsig-clave.key
+chmod 640 /etc/bind/tsig-clave.key
+chown root:bin /etc/bind/tsig-clave.key  
+</code></pre>tsig-keygen habrá creado con el algoritmo hmac-sha256 una key de nombre clave que define una contraseña o secret. El archivo .key tiene la siguiente forma.<pre data-role="codeBlock" data-info="" class="language-text"><code>//archivo tsig-clave.key
+key "clave" {
+  algorithm hmac-sha256;
+  secret "mXJ7p7b9zG+YxLQ8Q0dKxZQpXxK9WZP3R9uGZJ0sTn4=";
+};
+</code></pre></li>
+<li>2.Servidor master. Incluir en el archivo de zonas la clave y asignarla a la zona que se desea proteger.<pre data-role="codeBlock" data-info="" class="language-text"><code>//archivo named.conf.local
+...
+include "/etc/bind/tsig-clave.key"
+...
+zone "&lt;dominio.&gt; {
+  type master;
+  file /etc/bind/db.dominio";
+  allow-transfer { key clave; };
+};
+</code></pre></li>
+<li>3.Servidores slave. Copiar el archivo .key a los servidores DNS slave que se desean puedan hacer transferencias de zonas.<pre data-role="codeBlock" data-info="" class="language-text"><code>cp tsig-clave.key /etc/bind/tsig-clave.key
+</code></pre></li>
+<li>4.Servidores slave. Incluir en el archivo de zonas la clave y asignarla a las zonas en las que se quiere realizar transferencias.<pre data-role="codeBlock" data-info="" class="language-text"><code>//archivo named.conf.local
+...
+include "/etc/bind/tsig-clave.key"
+...
+zone "&lt;dominio.&gt; {
+  type slave;
+  file /var/lib/bind/db.dominio";
+  masters { &lt;IP-master&gt; key clave; };
+};
+</code></pre></li>
+</ul>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">TSIG</p>
+<p>Un servidor DNS con IP 192.168.1.254 define la zona master ser.smr y quiere permitir las transferencias de zona solo para los servidores esclavos que tengan la clave TSIG.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>#1.Servidor master. Generar TSIG
+tsig-keygen -a hmac-sha256 clave &gt; /etc/bind/tsig-clave.key
+chmod 640 /etc/bind/tsig-clave.key
+chown root:bin /etc/bind/tsig-clave.key
+
+#2.Servidor master. Incluir TSIG en la zona
+//archivo named.conf.local
+...
+include "/etc/bind/tsig-clave.key"
+...
+zone "ser.smr." {
+    type master;
+    file /etc/bind/db.ser.smr";
+    allow-transfer { key clave; };
+};
+
+#3.Servidores slave. Copiar tsig-clave.key 
+cp tsig-clave.key /etc/bind/tsig-clave.key
+
+#4.Servidores slave. Incluir TSIG enla zona
+//archivo named.conf.local
+...
+include "/etc/bind/tsig-clave.key"
+...
+zone "ser.smr." {
+    type slave;
+    file /var/lib/bind/db.ser.smr";
+    masters { 192.168.1.254 key clave; };
+};
+
+</code></pre></div>
+</div>
+<h3 id="notify">NOTIFY </h3>
+<p>Los servidores DNS BIND permiten no solo que el servidor  slave inicie la sincronización con el servidor master, sino que sea el propio servidor  master quien envíe notificaciones al servidor slave cuando haya realizado modificaciones en la zona para de este modo iniciar el proceso de sincronización. Se realiza mediante las clausulas <code>notify</code>, <code>also-notify</code> y <code>allow-notify</code></p>
+<p>En la <strong>zona master</strong> usamos.</p>
+<p><code>notify &lt;yes | no | explicit&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>valor</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>yes</code></td>
+<td>Se envia notificación a todos los servidores esclavos definidos en los registros NS de la zona. Es el valor por defecto.</td>
+</tr>
+<tr>
+<td><code>no</code></td>
+<td>No se envia ninguna notificación</td>
+</tr>
+<tr>
+<td><code>explicit</code></td>
+<td>Se envia notificación sólo a los servidores esclavos definidos en la clausula <code>also-nofify</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>also-notify { &lt;IP-slave&gt;; &lt;IP-slave&gt;; | &lt;IP-slave&gt; key &lt;clave&gt;;}</code></p>
+<p>Lista de servidores slaves a los que se les pasa notificación, también se puede incluir una clave TSIG.</p>
+<p>En la <strong>zona slave</strong>, usamos.</p>
+<p><code>allow-notify { &lt;IP-master&gt;; &lt;IP-master&gt;; | key &lt;clave&gt;; }</code></p>
+<p>Por defecto, si no se indica allow-notify es igual a la lista de masters definidos en la zona slave.</p>
+<p>Por tanto, en BIND, por defecto se realizan notificaciones de las zonas master (<code>notify yes</code>) a las zonas slave definidas en los registros NS de la zona. Estas zonas slave aceptan notificaciones de los servidores master definidos (<code>allow-notify = { masters; }</code> ).</p>
+</div>
+<h2 id="balanceo-de-carga">BALANCEO DE CARGA </h2>
+<div class="style-normal">
+<p>En BIND podemos, por ejemplo, definir varios registros que apuntan a la misma dirección (<code>A</code>) o varios registros que definen un mismo dominio (<code>NS</code>). Por ejemplo:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+
+@ IN SOA ns.ser.smr. admin.ser.smr. (
+        2025121502     ; serial
+        1d             ; refresh
+        3h             ; retry
+        1w             ; expire
+        1h             ; nxdomain
+    )
+
+@   IN NS   ns.ser.smr.
+    IN NS   ns2.ser.smr.
+    IN NS   ns3.ser.smr.
+
+ns  IN A    192.168.1.254
+ns2 IN A    192.168.1.253
+ns3 IN A    192.168.1.252
+www IN A    192.168.1.100
+    IN A    192.168.1.101
+    IN A    192.168.1.102
+</code></pre></div>
+<p>Por ejemplo, una consulta del registro www provocaría la contestación de un conjunto de registros de recursos (<strong><code>RRSet</code></strong>), en concreto 3 registros. Es muy importante el orden en que estos registros aparecen en la sección de respuesta del mensaje DNS ya que el cliente que ha realizado la consulta intentará la conexión en el orden propuesto. Variando el orden del la respuesta BIND puede <strong>"balancear la carga"</strong> sobre el servicio www, es decir, puede hacer que el orden varíe mejorando de esa manera la carga de trabajo de cada servidor wwww.</p>
+<p>El balanceo de carga se puede configurar en la clausula <strong><code>rrset-order</code></strong> de las opciones globales de BIND.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>rrset-order {
+    [class &lt;class_name&gt;] [type &lt;type_name&gt;] [name "&lt;domain_name&gt;"] order &lt;ordering&gt;;
+    [class &lt;class_name&gt;] [type &lt;type_name&gt;] [name "&lt;domain_name&gt;"] order &lt;ordering&gt;;
+    [class &lt;class_name&gt;] [type &lt;type_name&gt;] [name "&lt;domain_name&gt;"] order &lt;ordering&gt;;
+    }
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class</code></td>
+<td>Clase del registro. Si no se define es ANY</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Tipo del registro.  Si no se define es ANY</td>
+</tr>
+<tr>
+<td><code>nombre</code></td>
+<td>Nombre del registro. Si no se define es *</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td><code>fixed</code> según estan escritos en la zona <br><code>random</code> aleatorio <br> <code>cyclic</code> round-robin <br> <code>none</code> indeterminado según la base de datos</td>
+</tr>
+</tbody>
+</table>
+<p>Si no se configura <code>rrset-order</code>, el valor por defecto es <code>random</code> para todos los RRSet que se devuelvan. Si se configura <code>rrset-order</code> se aplican las reglas secuencialmente la primera que coincida se aplica.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">rrset-order</p>
+<p>En un servidor DNS se quiere que los registros de direcciones correspondientes al nombre www.ser.smr. se devuelvan en orden round-robin y el resto de registros en orden random.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>//archivo /etc/bind/named.conf.options
+options {
+    rrset-order {
+        type A name www.ser.smr. order cyclic;
+        order random;
+    };
+};
+</code></pre></div>
+</div>
+<p>Para comprobar el orden en que nos devuelve la respuestas podemos usar la utilidad <code>dig</code>.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">dig y order</p>
+<p>Para el servidor del ejemplo anterior se podrían realizar las siguientes consultas sobre www para comprobar la respuesta round-robin.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>dig @127.0.0.1 www.ser.smr. +short
+  www 192.168.1.100
+  www 192.168.1.101
+  www 192.168.1.102
+dig @127.0.0.1 www.ser.smr. +short
+  www 192.168.1.101
+  www 192.168.1.102
+  www 192.168.1.100
+dig @127.0.0.1 www.ser.smr. +short
+  www 192.168.1.102
+  www 192.168.1.100
+  www 192.168.1.101
+</code></pre></div>
+</div>
+</div>
+<h2 id="dnssec">DNSSEC </h2>
+<div class="style-normal">
+<p>BIND permite el uso del protocolo DNSSEC para autenticar y mantener la integridad de los mensajes DNS.</p>
+<p>La opción global <strong><code>dnssec-validation</code></strong> activa o desactiva el uso de DNSSEC y la verificación de firmas digitales en las consultas DNS. El objetivo es garantizar que los datos recibidos de la consulta no hayan sido manipulados por ningun atacante.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>//archivo named.conf.options
+options {
+    ...
+    dnssec-validation &lt;yes | no | auto&gt;;
+    ...
+};
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>valor</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code></td>
+<td>El servidor utiliza DNSSEC con las <strong>trust anchors</strong> (claves de confianza) integradas en BIND para validar la zona raíz. La primera vez que conecta con los servidores raíz lo hace con la clave almacenada en <code>/etc/bind/bind.keys</code>, posteriormente la clave es actualizada mediante el módulo managed-keys en el archivo <code>/var/cache/bind/managed-keys.bind</code></td>
+</tr>
+<tr>
+<td><code>yes</code></td>
+<td>El servidor utiliza DNSSEC pero requiere que el administrador configure manualmente las <strong>trust anchors</strong> (claves de confianza) para validar la zona raíz</td>
+</tr>
+<tr>
+<td><code>no</code></td>
+<td>El servidor desactiva DNSSEC y realiza consultas no seguras</td>
+</tr>
+</tbody>
+</table>
+<div class="style-note" style="text-indent: 0cm;">
+<blockquote>
+<p><strong>Nota:</strong> En una red configurada sólo con IPv4 es necesario arrancar el servicio en modo IPv4 para que funcione dnssec.</p>
+</blockquote>
+<blockquote>
+<p><strong>Nota:</strong> Actualizar las claves de confianza integradas.<br>
+systemctl start named       ; servidor en funcionamiento<br>
+rndc managed-keys refresh   ; actualiza claves<br>
+rndc managed-keys status    ; comprueba claves<br>
+rndc flush                  ; limpia cache</p>
+</blockquote>
+<blockquote>
+<p><strong>Nota:</strong> Forzar la carga de las claves de confianza.<br>
+systemctl stop named<br>
+rm -f /var/cache/bind/managed-keys.bind*<br>
+systemctl start named</p>
+</blockquote>
+</div>
+<p>Para comprobar el funcionamiento de DNSSEC se pueden realizar consultas mediante el comando <code>dig</code> o el comando <code>delv</code> diseñado por BIND para comprobar exclusivamente el funcionamiento de DNSSEC.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Consulta DNSSEC</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>dig @127.0.0.1 google.com +dnssec
+delv @127.0.0.1 google.com 
+</code></pre></div>
+</div>
+</div>
+<h2 id="ddns">DDNS </h2>
+<div class="style-normal">
+<p>DDNS (Dynamic DNS) permite realizar actualizaciones de los registros de recursos del servidor. BIND permite controlar DDNS mediante la clausula <strong><code>allow-update</code></strong> que se puede definir tanto a nivel global (<code>options</code>) como a nivel de zona (<code>zone</code>). Por defecto, su valor es <code>{ none; }</code> por lo no se permite la actualizacion a ningún equipo.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    allow-update { &lt;IP&gt;; &lt;IP&gt;/&lt;mascara&gt;; acl; | key "clave"; };
+</code></pre></div>
+<p>Como se observa en la definición se puede usar una lista de IPs o bien una clave TSIG, método mucho más seguro.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">allow-update</p>
+<p>Un servidor DNS quiere permitir actualizaciones de registros solo desde el equipo 192.168.1.250 y locahost.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.options
+acl "update-net" {
+    192.168.1.250;
+    localhost;
+};
+options {
+    allow-update { "update-net"; };
+};
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">allow-update</p>
+<p>Un servidor DNS quiere permitir actualizaciones de registros solo a los equipos que tengan la clave TSIG para la zona ser.smr.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>// archivo /etc/bind/named.conf.local
+include "/etc/bind/ddns.key"
+zone "ser.smr." {
+    type master;
+    // el directorio debe tener permisos de escritura
+    file "/etc/bind/db.ser.smr";
+    allow-update { key "ddns"; }
+}
+</code></pre></div>
+</div>
+</div>
+<h2 id="ficheros-de-log">FICHEROS DE LOG </h2>
+<div class="style-normal">
+<p>El servidor DNS BIND envía mensajes de log para indicar multiples situaciones, desde simples informaciones a notificaciones de error.<br>
+Hay 3 maneras de configurar y acceder a estos mensajes.</p>
+<h3 id="rsyslogd">RSYSLOGD </h3>
+<p>El daemon <code>rsyslogd</code> gestiona los mensajes de log mediante el protocolo SYSLOG y por defecto sus mensajes acaban en el archivo <code>/etc/log/syslog</code> donde se mezclan mensajes de diferentes servicios y aplicaciones. Para filtar los mensajes del servicio DNS podremos ejecutar.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>cat /var/log/syslog | grep named | more
+
+fgrep named /var/log/syslog
+
+</code></pre></div>
+<h3 id="journald">JOURNALD </h3>
+<p>El daemon <code>journald</code> se gestionan los mensajes de log enviandolos a un archivo binario que se puede consultar mediante la utilidad <code>journalctl</code>. Para filtar los mensajes del servicio DNS podremos ejecutar.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>journalctl -u named.service -xe
+
+</code></pre></div>
+<h3 id="clausula-logging">CLAUSULA LOGGING </h3>
+<p>BIND9 permite mediante la clausula <code>logging</code> personalizar la salida de sus mensajes de log. Esta clausula se puede especificar por ejemplo en el archivo <code>/etc/bind/named.conf.options</code>. El sistema de logging se basa en los conceptos de canal y categoria.</p>
+<div class="style-list">
+<ul>
+<li>Canal<br>
+Define donde se enviarán los mensajes de log. Puede ser un fichero, rsyslogd, la salida estandard, null, etc...</li>
+<li>Categoria<br>
+Se refiere a categorias de mensajes de log. Por ejemplo: default, network, security, database,...La que más interesa es default que representa a todas las categorias.</li>
+</ul>
+</div>
+<p>El formato general de <code>logging</code> es:</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>    logging {
+        category &lt;categoria&gt; { &lt;canal&gt;; }; 
+        channel  &lt;canal&gt; {
+            &lt;proceso_salida&gt; &lt;salida&gt; [&lt;opciones&gt;];
+            [opciones print];
+        }
+    }
+</code></pre><div class="admonition example">
+<p class="admonition-title">Logging</p>
+<p>Se hará log de todos los mensajes (default) sobre un fichero de nombre /var/lib/bind/bind.log del que se guardarán hasta 3 versiones con un tamaño máximo de 100K. Además del mensaje se imprimirá en el archivo la hora, la gravedad del mensaje y su categoria.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>logging {
+    category default { "canal-log"; };
+    channel "canal-log" {
+        file "/var/lib/bind/bind.log" versions 3 size 100k;
+        print-time yes;
+        print-severity yes;
+        print-category yes;
+    };
+};
+</code></pre></div>
+</div>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
