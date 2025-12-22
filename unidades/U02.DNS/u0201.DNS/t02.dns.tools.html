@@ -280,7 +280,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div style="page-break-after:always;"></div>
 <h2 id="introducción">INTRODUCCIÓN </h2>
 <div class="style-normal">
-<p>Existen herramientas que permiten preguntar a los servidores DNS por la resolución de nombres de dominio, así como obtener los diferentes tipos de registros de sus bases de datos. Las más habituales son:</p>
+<p>Existen utilidades que permiten consultar a los servidores DNS por la resolución de nombres de dominio, así como obtener los diferentes tipos de registros de sus bases de datos. Las más habituales son:</p>
 <div class="style-list">
 <ul>
 <li><strong>nslookup</strong></li>
@@ -291,9 +291,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 <h2 id="instalacion">INSTALACION </h2>
 <div class="style-normal">
-<p>Estas herramientas pertenecen a la suite BIND de ISC, podemos instalarlas de la siguiente manera:</p>
+<p>Estas utilidades pertenecen a la suite BIND de ISC. Veamos su proceso de instalación:</p>
 <p><strong>Windows</strong></p>
-<p>La última version de BIND con soporte para Windows es la versión 9.16 podemos acceder al repositorio de BIND y descargarnos la versión para windows en el siguiente enlace <a href="https://downloads.isc.org/isc/bind9/9.16.0/BIND9.16.0.x64.zip">BIND 9.16 windows</a>.</p>
+<p>BIND 9.16 es la última versión con soporte para Windows. Podemos acceder al repositorio de BIND y descargarnos la versión para windows en el siguiente enlace <a href="https://downloads.isc.org/isc/bind9/9.16.0/BIND9.16.0.x64.zip">BIND 9.16 windows</a>.</p>
 <p>Pasos para la instalación:</p>
 <div class="style-list">
 <ul>
@@ -568,36 +568,53 @@ aitana.cpd.ua.es.       7146    IN      A       193.145.233.5
 </div>
 <h2 id="host">HOST </h2>
 <div class="style-normal">
-<p>Se puede encontrar información del comando en <a href="https://man.openbsd.org/host.1">dig man</a>. El esquema general del comando es:</p>
-<p>aqui ---</p>
+<p>Se puede encontrar información del comando en <a href="https://man.openbsd.org/host.1">host man</a>. El esquema general del comando es:</p>
 <div class="style-example">
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>dig [@name-server] [options] [domain-name] [type class] [+queryopt]
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>host  [options] [-c class] [-m flag] [-N ndots] [-R number] [-t type] [-W wait] name [server]
 
-@name-server    servidor dns al que se hace la consulta. 
-                Si no se indica utilizará el configurado en el sistema.
 options
  -4                 IPv4
  -6                 IPv6
- -b ip[#port]       ip y puerto origen de la consulta
- -c class           Por defecto IN, también puede ser HS o CH
- -f file            fichero con consultas. Una por línea
- -h                 help
- -i                 consulta inversa
- -k keyfile         Consulta firmada con TSIG. 
- -p port            consultar en el puerto y no en el 53.
- -q name            consultar el nombre name.
- -t type            consultar tipo de registro (NS,A,SOA,...)
- -u                 mostrar el tiempo en microsegundos
- -v                 mostrar versión de dig
- -x addr            consulta inversa addr (B1.B2.B3.B4)
- -y [hmac]keyname:secret    Consulta firmada amb TSIG
- -d                 Debug mode
-domain-name         nombre de dominio a consultar
-type class          Por defecto class IN.
-+queryopt           Se pueden consultar en man dig con dig -h
+ -a                 Equivalente a -v -t ANY
+ -C                 Comprobar consistencia. Solicita SOA.
+ -c clase           Clase IN,HS,CH. Por defecto IN
+ -d                 Debug
+ -i                 Obsoleto,  sin uso.
+ -l                 Listar la zona (NS,PTR,A,AAAA)
+ -m flag            Flag record, usage, trace. Se usa junto con -d
+ -r                 Consulta no recursiva
+ -T                 Usar TCP en lugar de UDP.
+ -t type            Tipo de registro
+ -v                 Verbose. Equivalente a -d
+ -W wait            Tiempo de espera para las consultas. Por defecto 5 sg.
+       
+name                nombre de dominio a consultar
+server              servidor a consultar. Por defecto el servidor configurado en el sistema.
 </code></pre></div>
 <p>Algunos ejemplos de uso.</p>
 <div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">host <a href="http://www.ua.es">www.ua.es</a></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>www.ua.es has address 147.156.1.1
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">host -d <a href="http://ua.es">ua.es</a></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Using domain server:
+Name: 8.8.8.8
+Address: 8.8.8.8#53
+Aliases: 
+Trying "ua.es"
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 12345
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; QUESTION SECTION:
+;;ua.es.                        IN      A
+;; ANSWER SECTION:
+ua.es.                 3600    IN      A       147.156.1.1
+;; Query time: 45 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: Sat Dec 22 10:00:00 2025
+;; MSG SIZE  rcvd: 58
+</code></pre></div>
 </div>
 </div>
 </div>
