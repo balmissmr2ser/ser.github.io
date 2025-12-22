@@ -212,6 +212,12 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 .markdown-preview.markdown-preview .md-toc {
   background-color: rgba(173, 216, 230, 0.4) !important;
 }
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -383,6 +389,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mx" class="md-toc-link">
             <p>MX</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#srv" class="md-toc-link">
+            <p>SRV</p>
 
           </a></div>
         </div>
@@ -1412,11 +1422,11 @@ web IN CNAME www.ser.smr.
 </tr>
 <tr>
 <td><code>&lt;prioridad&gt;</code></td>
-<td>Cuanto menor es el número mayor prioridad. Esto es debido a que se pueden definir varios servidores de correo para el dominio. De esta manera si el de mayor prioridad falla se puede usar el de siguiente prioridad.</td>
+<td>Número que determina la prioridad de los servidores disponibles. Los servidores con menor  prioridad se utilizan primero.</td>
 </tr>
 <tr>
 <td><code>&lt;servidor&gt;</code></td>
-<td>Nombre del servidor de correo. Debe ser siempre fqdn</td>
+<td>Nombre del servidor que administra el correo. Debe ser siempre fqdn</td>
 </tr>
 </tbody>
 </table>
@@ -1433,6 +1443,75 @@ $TTL 2d
 ;registro A del mail de la zona
 mail  IN A 192.168.1.201
 ; observar que aspmx.l.google.com. es externo
+; a la zona y por tanto no hay que definir
+; registro A 
+....
+</code></pre></div>
+</div>
+<h4 id="srv">SRV </h4>
+<p>El registro SRV (Service Record) se utiliza para especificar los servicios disponibles en un dominio, y cómo los clientes deben encontrarlos. El propósito principal de este registro es ayudar a localizar servicios específicos (como servidores de ftp, www, ldap, etc.) dentro de un dominio.</p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;_servicio&gt;.&lt;_protocolo&gt;.&lt;nombre&gt;. IN SRV &lt;prioridad&gt; &lt;peso&gt; &lt;puerto&gt; &lt;servidor&gt;.
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>campo</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;_servicio&gt;</code></td>
+<td>Nombre del servicio que se quiere definir. Por ejemplo, ftp, ldap, etc.</td>
+</tr>
+<tr>
+<td><code>&lt;_protocolo&gt;</code></td>
+<td>Protocolo de transporte para el servicio. Por ejemplo, tcp o udp</td>
+</tr>
+<tr>
+<td><code>&lt;nombre&gt;</code></td>
+<td>Nombre del dominio</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Clase del registro Internet</td>
+</tr>
+<tr>
+<td><code>SRV</code></td>
+<td>Tipo de registro Servicio</td>
+</tr>
+<tr>
+<td><code>&lt;prioridad&gt;</code></td>
+<td>Número que determina la prioridad de los servidores disponibles. Los servidores con menor  prioridad se utilizan primero.</td>
+</tr>
+<tr>
+<td><code>&lt;peso&gt;</code></td>
+<td>Número que determina el peso de los servidores de la misma prioridad. Los servidores de igual prioridad con mayor peso se utilizan primero.</td>
+</tr>
+<tr>
+<td><code>&lt;puerto&gt;</code></td>
+<td>Número de puerto para acceder al servicio.</td>
+</tr>
+<tr>
+<td><code>&lt;servidor&gt;</code></td>
+<td>Nombre del servidor que administra el servicio. Debe ser siempre fqdn</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">SRV ldap</p>
+<p>Ejemplo registros SRV para el dominio ser.smr. y administración del servicio LDAP</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>$ORIGIN ser.smr.
+$TTL 2d
+....    
+_ldap._tcp.ser.smr.  IN SRV 0 10 389 ldap.ser.smr.
+_ldap._tcp.ser.smr.  IN SRV 0 5  389 ldap.secure.smr.
+    
+;registro A del ldap de la zona
+ldap  IN A 192.168.1.230
+; observar que ldap.secure.smr. es externo
 ; a la zona y por tanto no hay que definir
 ; registro A 
 ....
