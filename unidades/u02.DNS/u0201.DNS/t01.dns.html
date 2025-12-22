@@ -1,0 +1,1251 @@
+<!DOCTYPE html><html><head>
+      <title>SER</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  const configureMermaidIconPacks = () => {
+    window["mermaid"].registerIconPacks([
+      {
+        name: "logos",
+        loader: () =>
+          fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+            (res) => res.json()
+          ),
+      },
+    ]);
+  };
+
+  if (document.readyState !== 'loading') {
+    configureMermaidIconPacks();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      configureMermaidIconPacks();
+    });
+  }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="dns-protocolo">DNS PROTOCOLO </h1>
+</div>
+<p>📙<a href="./t01.dns.pdf">Descargar PDF</a><br>
+
+</p><div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#dns-protocolo" class="md-toc-link"><p>DNS PROTOCOLO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sistema-de-nombres-plano" class="md-toc-link">
+            <p>SISTEMA DE NOMBRES PLANO</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#domain-name-system" class="md-toc-link"><p>DOMAIN NAME SYSTEM</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#definición" class="md-toc-link"><p>DEFINICIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dns-server" class="md-toc-link">
+            <p>DNS Server</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#resolver" class="md-toc-link">
+            <p>Resolver</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#características-de-la-estructura-dns" class="md-toc-link">
+            <p>CARACTERÍSTICAS DE LA ESTRUCTURA DNS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dominio-raíz" class="md-toc-link">
+            <p>DOMINIO RAÍZ</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#base-de-datos" class="md-toc-link"><p>BASE DE DATOS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#zona" class="md-toc-link">
+            <p>ZONA</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#registros-de-recursos-rr" class="md-toc-link"><p>REGISTROS DE RECURSOS (RR)</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipos-de-registros-de-recursos" class="md-toc-link">
+            <p>TIPOS DE REGISTROS DE RECURSOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#directivas-en-archivos-de-definición-de-registros" class="md-toc-link">
+            <p>DIRECTIVAS EN ARCHIVOS DE DEFINICIÓN DE REGISTROS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#abreviaciones-en-el-estándar-dns" class="md-toc-link">
+            <p>ABREVIACIONES EN EL ESTÁNDAR DNS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-soa-start-of-authority" class="md-toc-link">
+            <p>REGISTRO SOA (Start Of Authority)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-ns-name-server" class="md-toc-link">
+            <p>REGISTRO NS (Name Server)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-a-address" class="md-toc-link">
+            <p>REGISTRO A (Address)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-cname-canonical-name" class="md-toc-link">
+            <p>REGISTRO CNAME (Canonical Name)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-ptr-pointer" class="md-toc-link">
+            <p>REGISTRO PTR (Pointer)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-mx-mail-exchanger" class="md-toc-link">
+            <p>REGISTRO MX (Mail Exchanger)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-srv-service" class="md-toc-link">
+            <p>REGISTRO SRV (Service)</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipos-de-servidores" class="md-toc-link">
+            <p>TIPOS DE SERVIDORES</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#consultas" class="md-toc-link"><p>CONSULTAS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consultas-recursivas" class="md-toc-link">
+            <p>CONSULTAS RECURSIVAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consultas-iterativas" class="md-toc-link">
+            <p>CONSULTAS ITERATIVAS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#formato-de-mensajes-dns" class="md-toc-link">
+            <p>FORMATO DE MENSAJES DNS</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#evolución" class="md-toc-link"><p>EVOLUCIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ddns" class="md-toc-link">
+            <p>DDNS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dnssec" class="md-toc-link">
+            <p>DNSSEC</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<div class="style-normal">
+<h2 id="introducción">INTRODUCCIÓN </h2>
+<p>En una red TCP/IP, los nodos se identifican mediante una dirección IP. Recordar números IP en una red pequeña puede ser una tarea sencilla, sin embargo, la tarea se complica cuando el número de nodos crece. Por lo tanto, es necesario implementar un mecanismo en "lenguaje humano" que permita al usuario identificar de una manera más natural los nodos, este mecanismo consiste en utilizar un nombre para identificar al nodo. Para el ser humano:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Resulta mucho más fácil recordar un nombre que una dirección IP.</li>
+<li>El nombre es un mecanismo más fiable, ya que la dirección IP puede cambiar.</li>
+</ul>
+</div>
+<h2 id="sistema-de-nombres-plano">SISTEMA DE NOMBRES PLANO </h2>
+<div class="style-normal">
+<p>El <strong>sistema de nombres plano</strong> es un sistema de asignación de nombres en el que cada nombre es único y no existe ninguna jerarquía entre los nombres. Cada nombre se asocia directamente con una dirección IP.<br>
+El problema de este sistema es que no escala bien en redes grandes, ya que es necesario mantener una tabla con todos los nombres y sus correspondientes direcciones IP. Además, la administración de los nombres es complicada, ya que es necesario asignar los nombres de forma manual y evitar conflictos entre ellos.</p>
+<p>El fichero de <strong>hosts</strong> es un ejemplo de sistema de nombres plano. En el fichero de hosts se realiza la asociación entre nombres y direcciones IP de forma manual y además permite definir aliases para los nombres. Se puede encontrar en la dirección <em>/etc/hosts</em> en sistemas Unix/Linux y en la dirección <em>C:\Windows\System32\drivers\etc\hosts</em> en sistemas Windows.</p>
+</div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Fichero hosts</p>
+<p>El siguiente es un ejemplo de fichero hosts en un sistema Unix/Linux:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>[root@pc~]# cat /etc/hosts
+127.0.0.1 localhost
+::1 localhost
+192.168.1.1 router
+192.168.1.31 server escritorio padre
+192.168.1.32 pc01 dormitorio madre
+192.168.1.33 pc02 niño juegos
+</code></pre></div>
+</div>
+<h2 id="domain-name-system">DOMAIN NAME SYSTEM </h2>
+<h3 id="definición">DEFINICIÓN </h3>
+<div class="style-normal">
+<p>En 1983, debido al crecimiento de Internet, el sistema de nombres plano resultaba insuficiente para gestionar la gran cantidad de nodos que se conectaban a la red. Por este motivo, se diseñó un sistema de nombres jerárquico y distribuido denominado <strong>Domain Name System (DNS)</strong>. DNS es un sistema de nombres jerárquico y distribuido que permite la resolución de nombres de dominio en direcciones IP y viceversa.<br>
+El protocolo DNS sigue el <strong>modelo cliente-servidor</strong>, donde los nodos clientes realizan consultas a los servidores DNS para resolver nombres de dominio.</p>
+<p><img src="./assets/Cliente-Servidor.DNS.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
+</div>
+<h4 id="dns-server">DNS Server </h4>
+<div class="style-normal">
+<p>Software que mantiene una base de datos de nombres y responde a las consultas de los clientes y de otros servidores DNS. A las máquinas que tienen instalado este software se les llama name server. Los servidores DNS tienen memorias caché para almacenar las consultas más habituales y mejorar el tiempo de respuesta.<br>
+Algunos servidores DNS son: BIND, DNSMasq, NSD, Microsoft DNS, Power DNS, Simple DNS plus, Knot DNS, Mara DNS,...</p>
+</div>
+<h4 id="resolver">Resolver </h4>
+<div class="style-normal">
+<p>Software en la máquina cliente que realiza consultas a un servidor DNS.<br>
+El resolver puede ser una librería que utilizan las aplicaciones para realizar las consultas DNS o un programa independiente que realiza las consultas en nombre de las aplicaciones. Algunos ejemplos de resolvers son: <code>nslookup</code>, <code>dig</code>, <code>host</code>, <code>gethostbyname()</code>, <code>getaddrinfo()</code>,...<br>
+Como los servidores DNS pueden hacerse consultas entre sí, muchas veces se implementa como un servidor DNS. En los sistemas operativos se trata de un servicio en ejecución que responde a las consultas de los otros programas.</p>
+<p><img src="./assets/Arquitectura.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
+<p>DNS está definido a las RFC <a href="https://www.rfc-editor.org/info/rfc1034">1034</a>, <a href="https://www.rfc-editor.org/info/rfc1035">1035</a>, <a href="https://www.rfc-editor.org/info/rfc1886">1886</a> (IPv6) y utiliza los siguientes puertos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>UDP 53</strong> para consultas y respuestas DNS.</li>
+<li><strong>TCP 53</strong> para transferencias de zonas y respuestas DNS grandes (&gt; 512 bytes).</li>
+<li>Para los clientes se utilizan <strong>puertos efímeros</strong>.</li>
+</ul>
+</div>
+<h3 id="características-de-la-estructura-dns">CARACTERÍSTICAS DE LA ESTRUCTURA DNS </h3>
+<div class="style-normal">
+<p>DNS se fundamenta en una base de datos distribuida que organiza un espacio jerárquico de nombres de dominio con las siguientes características:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>Estructura jerárquica.</strong> El sistema se organiza en forma de árbol que comienza con un dominio raíz, el cual se subdivide en subdominios. Estos subdominios pueden dividirse nuevamente en otros subdominios, permitiendo hasta 127 niveles de profundidad en la jerarquía.<br>
+<img src="./assets/Jerarquia.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></li>
+<li><strong>Distribución descentralizada.</strong> La información que define esta estructura arbórea no se almacena en un único repositorio central. En su lugar, se distribuye entre múltiples servidores DNS repartidos geográficamente, lo que permite que cada servidor gestione una parte específica del espacio de nombres.<br>
+<img src="./assets/Distribuido.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></li>
+<li><strong>Nombres de dominio.</strong> Cada nodo del árbol recibe un nombre de dominio con reglas específicas: máximo 63 caracteres, sin distinción entre mayúsculas y minúsculas, y sin repeticiones entre nodos del mismo nivel (hermanos). Los nombres se separan mediante puntos (.) para construir rutas. El nombre completo desde cualquier nodo hoja puede alcanzar un máximo de 255 caracteres.
+<ul>
+<li><strong>Raíz del dominio.</strong> El nodo raíz del árbol se identifica con una cadena vacía que representa el punto más alto de la jerarquía.</li>
+<li><strong>Nombres absolutos (FQDN).</strong> Un nombre de dominio completamente cualificado (Full Qualified Domain Name) especifica la ruta completa desde un nodo hasta la raíz, terminando siempre con un punto. Este nombre es único en todo el espacio de nombres. Ejemplos: <code>www.gva.edu.</code>, <code>www.gva.net.</code>, <code>gva.edu.</code></li>
+<li><strong>Nombres relativos.</strong> Son nombres de nodos que no incluyen la ruta completa hasta la raíz. Normalmente requieren procesamiento por software para completarse y convertirse en nombres absolutos. Ejemplos: <code>ftp</code>, <code>gva.edu</code>.</li>
+</ul>
+</li>
+<li><strong>Dominios y subdominios.</strong> Un dominio es un nombre asignado a un nodo que abarca tanto ese nodo como todo el subárbol que cuelga de él. Por ejemplo, <code>edu</code> es un dominio que contiene el subdominio <code>gva</code>; <code>net</code> es un dominio que contiene los subdominios <code>gva</code> y <code>ua</code>; y <code>ua</code> es a su vez un subdominio de <code>net</code> que define máquinas específicas como <code>enps3</code> y <code>enps4</code>.</li>
+<li><strong>Delegación de dominios.</strong> Este mecanismo permite descentralizar la administración del sistema DNS mediante la división de dominios en subdominios. Cada subdominio puede ceder su control administrativo a una autoridad diferente (otro servidor DNS), quien asume la responsabilidad de mantener los registros de recursos de ese subdominio.</li>
+<li><strong>Espacio de nombres.</strong> El espacio de nombres DNS comprende el dominio raíz y la totalidad de los subdominios que derivan de él, formando un conjunto completo de nombres únicos organizados jerárquicamente.</li>
+</ul>
+</div>
+<h3 id="dominio-raíz">DOMINIO RAÍZ </h3>
+<div class="style-normal">
+<p>Hay 13 servidores DNS raíz en toda Internet. Esto no quiere decir que haya 13 servidores físicos, cada operador utiliza equipos redundantes para ofrecer un servicio fiable. Además, en la actualidad se utiliza también el direccionamiento anycast para acceder a los servidores raíz. Los nombres de los servidores raíz son de la forma letra.root-servers.net.Sus nombres y direcciones actuales son:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Letra</th>
+<th>IPv4</th>
+<th>Ubicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td>198.41.0.4</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td>192.228.79.201</td>
+<td>Marina del Rey – California - US</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td>192.33.4.12</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td>199.7.91.13</td>
+<td>College park – Maryland - US</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td>192.203.230.10</td>
+<td>Mountain View – California - US</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td>192.5.5.241</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td>192.112.36.4</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">H</td>
+<td>198.63.2.53</td>
+<td>Distribuido – Maryland - US</td>
+</tr>
+<tr>
+<td style="text-align:center">I</td>
+<td>192.36.148.17</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">J</td>
+<td>192.58.128.30</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">K</td>
+<td>193.0.14.129</td>
+<td>Distribuido, anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">L</td>
+<td>199.7.83.42</td>
+<td>Distribuido, Anycast</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td>202.12.27.33</td>
+<td>Distribuido, Anycast</td>
+</tr>
+</tbody>
+</table>
+<p>Podéis consultar la lista actualizada de servidores raíz en el siguiente enllaç root-servers.</p>
+<p>Cada uno de estos servidores guardan una copia de la zona de definición de los dominios de primer nivel o <strong>TLD</strong> (Top Level Domain). Esta zona TLD es definida por la <em>ICANN</em> pero es controlada por el Departamento de Comercio de los Estados Unidos.<br>
+La ICANN distingue actualmente los siguientes grupos para los TLD:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>ccTLD</strong> (country code TLD) (dos caracteres). Identifican los países. Algunos ejemplos son: es, fr, dk, de, jp, it.</li>
+<li><strong>gTLD</strong> (genérico TLD) (tres o más caracteres).
+<ul>
+<li>sTLD sponsored TLD (Ejemplos: edu, gov, jobs, museum, cat, ...).</li>
+<li>uTLD unsponsored TLD (Ejemplos: hoteles).</li>
+</ul>
+</li>
+<li><strong>.arpa</strong> utilizado por la ICANN para su propia infraestructura.</li>
+</ul>
+<p>Se puede consultar la definición de la lista de servidores raíz y de la zona raíz en los siguientes enlaces:</p>
+<p><a href="https://www.internic.net/domain/named.root">Lista de servidores raíz (root hints zone)</a><br>
+<a href="https://www.internic.net/domain/root.zone">TLD definidos en los servidores raíz (root zone)</a></p>
+</div>
+<h3 id="base-de-datos">BASE DE DATOS </h3>
+<h4 id="zona">ZONA </h4>
+<div class="style-normal">
+<p>Cada servidor DNS mantiene en su base de datos la información de una <strong>parte del espacio de nombres</strong> llamada <strong>zona</strong>. Una zona puede coincidir con un dominio pero no es necesario. Los servidores que gestionan la zona tienen información completa sobre ella y se dice que tienen <strong>autoridad</strong> respecto a ella. Un servidor DNS puede definir una o más zonas, además una zona puede ser gestionada por más de un servidor DNS.<br>
+Un servidor DNS puede delegar la administración de una parte de su zona a otros servidores DNS. En este caso, pierde la autoridad sobre la zona delegada pero puede recuperar la información a partir de los DNS delegados.<br>
+En la siguiente imagen se muestra un espacio de nombres con cuatro zonas y catorce dominios:<br>
+<img src="./assets/Zonas.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "></p>
+<p>En la especificación de la base de datos en el servidor DNS habrá al menos los siguientes archivos de zona:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>Zona de resolución directa</strong>. Esta zona mantiene las asociaciones de los nombres de dominio a direcciones IP.</li>
+<li><strong>Zona de resolución inversa</strong>. Esta zona mantiene las asociaciones de cada dirección IP con su nombre de dominio canónico.</li>
+<li><strong>Zona de resolución inversa de la dirección de loopback</strong>. Esta zona mantiene la traducción inversa de las direcciones de loopback.</li>
+<li><strong>Zona root</strong>. Esta zona mantiene las direcciones de los nodos DNS raíz.</li>
+</ul>
+<p>La forma en que un servidor define sus zonas en la base de datos varía de un tipo de servidor a otro.</p>
+</div>
+<div class="style-normal">
+<p>Las mayoría de las distribuciones Linux incorporan <em>BIND9</em> como servidor DNS. La configuración del servicio (<strong>named</strong>) y las zonas se hacen en el archivo <strong>/etc/bind/named.conf</strong>. Normalmente no se modifica el archivo para introducir las nuevas zonas y opciones. Para ello se utilizan los archivos que hay bajo la directiva include:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>named.conf.options</strong>: Opciones globales de configuración.</li>
+<li><strong>named.conf.local</strong>: zonas nuevas definidas.</li>
+</ul>
+<p>El archivo <strong>named.conf</strong> tiene la siguiente estructura:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>// Archivo de configuración principal de BIND9
+include "/etc/bind/named.conf.options";
+include "/etc/bind/named.conf.local";
+
+# Be authoritative for the localhost forward and
+# broadcast zones as per RFC 1912.
+zone "." {
+    type hint;
+    //Tipo servidor definido para zona cache
+    file "/etc/bind/db.root";
+};
+
+zone "localhost." {
+    type master;
+    file "/etc/bind/db.local";
+};
+
+zone "127.in-addr.arpa." {
+    type master;
+};
+    file "/etc/bind/db.127";
+
+zone "0.in-addr.arpa." {
+    type master;
+};
+    file "/etc/bind/db.0";
+
+zone "255.in-addr.arpa." {
+    type master;
+    file "/etc/bind/db.255";
+};
+
+include "/etc/bind/named.conf.default-zones";
+</code></pre><p>Las zonas que aparecen en el archivo son las zonas por defecto que tiene <em>BIND9</em>. En las versiones más recientes de <em>BIND9</em> las zonas por defecto se definen en el archivo <strong>named.conf.default-zones</strong>. En ese caso el archivo <strong>named.conf</strong> queda así:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>// Archivo de configuración principal de BIND9
+include "/etc/bind/named.conf.options";
+include "/etc/bind/named.conf.default-zones";
+include "/etc/bind/named.conf.local";
+</code></pre></div>
+<p>En <em>BIND9</em> se pueden definir zonas de diversos tipos:</p>
+<ul>
+<li><strong>Master</strong>: Es una zona autoritativa. Es decir, en esta zona se definen los registros que asocian nombres e IP y a la inversa.</li>
+<li><strong>Slave</strong>: Se trata de una copia completa de una zona autoritativa.</li>
+<li><strong>Stub</strong>: Se trata de una copia parcial de una zona autoritativa.</li>
+<li><strong>Forward</strong>: Se trata de una zona en la que no hay definición, sino que las consultas se reenvían a otros servidores.</li>
+<li><strong>Hint</strong>: Se trata de la zona donde están definidos los servidores raíz.</li>
+</ul>
+<p>A las zonas <strong>master</strong> y <strong>slave</strong> se las llamaba antes <strong>primaria</strong> y <strong>secundaria</strong> respectivamente.</p>
+
+<div class="style-normal">
+<p>Además, se pueden utilizar diferentes opciones globales para modificar el comportamiento del servidor, por ejemplo:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>Listen-on</strong>. Especifica la IP donde el servicio escucha las peticiones.</li>
+<li><strong>Forwarders</strong>. Especifica la IP de los servidores DNS a los que se hará un reenvío si no se consigue resolver localmente la consulta.</li>
+<li><strong>acl</strong>. Especifica una lista de IPs para cumplir una condición.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Para definir una zona se utiliza la siguiente estructura, aunque puede tener más opciones:</p>
+</div>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "&lt;dominio FQDN&gt;" {
+    type (master,slave,stub,forward,hint);
+    file "archivo-definición-registros";
+};
+</code></pre><div class="style-list">
+<div class="admonition example">
+<p class="admonition-title">Configuración de zonas en BIND9</p>
+<p>En el siguiente ejemplo se muestran las definiciones de las zonas master y slave para un dominio <a href="http://ies.com">ies.com</a> y su correspondiente zona inversa para la red.<br>
+<img src="./assets/Ejemplo-Zonas-BIND.DNS.png" alt="img" style="width: 80%; display: block; margin: auto; align:center; "><br>
+La configuración de las zonas se haría en el archivo <strong>/etc/bind/named.conf.local</strong>. Para el nodo de dirección IP 192.168.0.200 (DNS master) la definición de las zonas directa e inversa sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ies.com" {
+    type master;
+    file "/etc/bind/ies.com.db";
+    allow-transfer {192.168.0.201;};
+};
+
+zone "0.168.192.in-addr.arpa"{
+    type master;
+    file "/etc/bind/0.168.192.db";
+    allow-transfer {192.168.0.201;};
+};
+</code></pre><p>Y para el nodo de dirección IP 192.168.0.201 (DNS slave) la definición de las zonas serían:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>zone "ies.com" {
+    type slave;
+    file "/etc/bind/ies.com.db";
+    masters {192.168.0.200;};
+}
+
+zone "0.168.192.in-addr.arpa"{
+    type slave;
+    file "/etc/bind/0.168.192.db";
+    masters {192.168.0.200;};
+};
+</code></pre><p>El reenvío (forwarding) se tiene que hacer en los dos servidores en las opciones globales:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>forwarders {
+    190.20.2.1;
+};
+</code></pre><p>En este caso, no se ha utilizado una zona tipo forward ya que lo que se quiere es que cualquier consulta que no pueda resolver con autoridad el servidor se reenvíe al servidor DNS del ISP.</p>
+</div>
+</div>
+<h4 id="registros-de-recursos-rr">REGISTROS DE RECURSOS (RR) </h4>
+<div class="style-normal">
+<p>La base de datos que define una zona se basa en diferentes tipos de <strong>registros de recursos (RR)</strong>. Para su definición se utiliza el siguiente formato:</p>
+<p><strong>&lt;propietario&gt; &lt;clase&gt; [ttl] &lt;tipo&gt; rdata</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<p><strong>Propietario</strong>: Nombre del dominio que se está definiendo.</p>
+<p><strong>Clase</strong>: IN – Internet.</p>
+<p><strong>TTL</strong>: Opcional. Indica el tiempo de vida de este registro en caché. Se puede expresar en días (d), horas (h), minutos (m) o segundos (s). Si contiene un 0 indica que no se tiene que almacenar en caché. Ejemplos: 4h40m, 2300 (no indica nada, por tanto segundos).</p>
+<p><strong>TIPO</strong>: Tipo de registro.</p>
+<p><strong>RDATA</strong>: Valor asociado al registro.</p>
+<h5 id="tipos-de-registros-de-recursos">TIPOS DE REGISTROS DE RECURSOS </h5>
+<p>Los tipos de registros más importantes son:</p>
+<ul>
+<li>
+<p><strong>SOA</strong> (Start Of Authority): Identifica al servidor como autoritario de una zona y permite definir sus parámetros de configuración.</p>
+</li>
+<li>
+<p><strong>NS</strong> (Name Server): Identifica los servidores de nombres autorizados para la zona.</p>
+</li>
+<li>
+<p><strong>A</strong> (Address): Asocia un nombre FQDN a una dirección IPv4.</p>
+</li>
+<li>
+<p><strong>AAAA</strong> (Address IPv6): Asocia un nombre FQDN a una dirección IPv6.</p>
+</li>
+<li>
+<p><strong>PTR</strong> (Pointer): Asocia una dirección IP a un nombre FQDN (resolución inversa).</p>
+</li>
+<li>
+<p><strong>MX</strong> (Mail Exchanger): Indica los servidores de correo definidos en la zona.</p>
+</li>
+<li>
+<p><strong>CNAME</strong> (Canonical Name): Permite asignar un alias a un nombre canónico.</p>
+</li>
+<li>
+<p><strong>TXT</strong> (Text): Registro para almacenar cualquier información.</p>
+</li>
+<li>
+<p><strong>SRV</strong> (Service): Ubicación de los servidores para un servicio.</p>
+</li>
+</ul>
+</div>
+<h5 id="directivas-en-archivos-de-definición-de-registros">DIRECTIVAS EN ARCHIVOS DE DEFINICIÓN DE REGISTROS </h5>
+<div class="style-normal">
+<p>En los archivos de definición de registros de la zona se pueden usar las siguientes directivas:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>$ORIGIN</strong>: Define el nombre base a partir del cual se forman los nombres FQDN para los nombres relativos. Si no está, entonces se hace <code>$ORIGIN=nombre</code> de la zona.</p>
+</li>
+<li>
+<p><strong>$TTL</strong>: Define el tiempo por defecto para guardar un registro en la caché, si no se ha especificado en el propio registro. Si no se indica, su valor por defecto es de 1 hora.</p>
+</li>
+</ul>
+</div>
+<h5 id="abreviaciones-en-el-estándar-dns">ABREVIACIONES EN EL ESTÁNDAR DNS </h5>
+<div class="style-normal">
+<p>El estándar DNS permite hacer abreviaciones en los archivos de definición de zona para facilitar la sintaxis:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>@</strong>: Para utilizar el valor de <code>$ORIGIN</code>.</p>
+</li>
+<li>
+<p><strong>Espacio en blanco</strong>: Para indicar que se repite el valor del registro anterior.</p>
+</li>
+<li>
+<p><strong>Nombres de dominio relativos</strong>: A los nombres de dominio relativos (no acabados en punto) se les añade automáticamente <code>$ORIGIN</code> para formar un nombre FQDN.</p>
+</li>
+</ul>
+</div>
+<h4 id="registro-soa-start-of-authority">REGISTRO SOA (Start Of Authority) </h4>
+<div class="style-normal">
+<p>El registro de recurso SOA o <strong>start of authority</strong> dice que el archivo de zona donde se encuentra es la mejor fuente de datos para la zona, y que el servidor de nombres es autoritario para la zona. Acostumbra a ser el primer RR que hay en el archivo de zona, aunque no es obligatorio. Por cada archivo de zona tiene que haber solo un registro SOA.</p>
+<p>Un registro SOA tiene el siguiente formato:</p>
+<p><strong>NAME. IN SOA MNAME. RNAME. (OPCIONES-SLAVES)</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li>
+<p><strong>NAME</strong>: Nombre de dominio de la zona.</p>
+</li>
+<li>
+<p><strong>IN</strong>: Clase del registro (Internet).</p>
+</li>
+<li>
+<p><strong>SOA</strong>: Tipo de registro (Start Of Authority).</p>
+</li>
+<li>
+<p><strong>MNAME</strong>: Nombre FQDN del servidor DNS master de la zona.</p>
+</li>
+<li>
+<p><strong>RNAME</strong>: Dirección de correo electrónico del administrador de la zona. El carácter "@" se sustituye por un punto ".". Por ejemplo, <a href="http://admin.ies.com">admin.ies.com</a>.</p>
+</li>
+<li>
+<p><strong>OPCIONES-SLAVES</strong>: Parámetros para definir la comunicación entre las zonas master y slave. Dichas opciones son:</p>
+<ul>
+<li><strong>SERIAL</strong>: Número de serie de la versión de los datos. Las zonas slaves actualizarán sus registros cuando su número serial sea menor al de la zona master.</li>
+<li><strong>REFRESH</strong>: Indica cada cuánto tiempo la zona slave debe consultar la zona master para comprobar los cambios.</li>
+<li><strong>RETRY</strong>: Indica el tiempo de espera para volver a hacer un "refresh" después de haber fallado.</li>
+<li><strong>EXPIRE</strong>: Indica el tiempo de caducidad de la zona slave. Si no se ha refrescado antes, la zona slave se considera sin autoridad.</li>
+<li><strong>NXDOMAIN TTL</strong>: Tiempo de validez en la caché del mensaje NXDOMAIN. Este mensaje se recibe cuando no se ha podido resolver una consulta.</li>
+</ul>
+</li>
+</ul>
+<p><em>El tiempo se puede expresar en semanas (W), días (D), horas (H), minutos (M) o segundos (S). Si no se especifica, el tiempo se expresa en segundos.</em></p>
+<div class="admonition example">
+<p class="admonition-title">Registro SOA</p>
+<p>El siguiente es un ejemplo de registro SOA para la zona <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>@   IN  SOA ns1.ies.com. admin.ies.com. (
+        2024041501 ; Serial
+        3600       ; Refresh 1H
+        900        ; Retry 15M
+        604800     ; Expire 1W
+        86400      ; NXDOMAIN TTL 1D
+    )
+</code></pre></div>
+</div>
+<h4 id="registro-ns-name-server">REGISTRO NS (Name Server) </h4>
+<div class="style-normal">
+<p>El registro de recurso NS o <strong>name server</strong> define un servidor de nombres autoritativo para la zona. Habrá tantas entradas NS como servidores de nombres autoritativos haya en la zona. El estándar DNS recomienda al menos dos (uno primario o master y uno de seguridad secundario o slave).<br>
+Un registro NS tiene el siguiente formato:</p>
+<p><strong>NAME. IN NS MNAME.</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN de dominio de la zona.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>NS</strong>: Tipo de registro (Name Server).</li>
+<li><strong>MNAME</strong>: Nombre FQDN del servidor DNS autoritativo para la zona.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro NS</p>
+<p>El siguiente es un ejemplo de registro NS para la zona <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ies.com.   IN  NS  nsmaster.ies.com.
+ies.com.   IN  NS  nsslave.ies.com.
+</code></pre></div>
+</div>
+<h4 id="registro-a-address">REGISTRO A (Address) </h4>
+<div class="style-normal">
+<p>Un registro de recurso A o <strong>address</strong> asocia un nombre de host a una dirección IP (resolución directa). Un host puede tener más de una IP asociada a su nombre (multi-homed). Los nombres definidos en los registros de tipo A son nombres canónicos (originales). Los alias se definen con el tipo de registro CNAME.<br>
+Un registro A tiene el siguiente formato:</p>
+<p><strong>NAME. IN A IP</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN del host.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>A</strong>: Tipo de registro (Address).</li>
+<li><strong>IP</strong>: Dirección IPv4 asociada al nombre del host.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro A</p>
+<p>El siguiente es un ejemplo de registro A para diferentes hosts del dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>nsmaster.ies.com.   IN  A 192.168.0.200
+nsslave.ies.com.    IN  A 192.168.0.201
+pc1.ies.com.        IN  A 192.168.0.1
+pc1.ies.com.        IN  A 192.168.0.10
+pc2.ies.com.        IN  A 192.168.0.2
+</code></pre></div>
+</div>
+<h4 id="registro-cname-canonical-name">REGISTRO CNAME (Canonical Name) </h4>
+<div class="style-normal">
+<p>Los registros de recurso CNAME o <strong>canonical name</strong> asocian un alias a un nombre canónico. Un registro CNAME consta de los campos:</p>
+<p><strong>NAME. IN CNAME CANONICALNAME | IP</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN del alias.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>CNAME</strong>: Tipo de registro (Canonical Name).</li>
+<li><strong>CANONICALNAME</strong>: Nombre canónico (definido en un registro A) asociado al alias.</li>
+<li><strong>IP</strong>:  En vez de un nombre canónico se puede utilizar la IP del registro A, eso sirve para diferenciar aquellos registros A de tipo multi-homed.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro CNAME</p>
+<p>El siguiente es un ejemplo de registro CNAME para diferentes alias del dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>nsprimary.ies.com.    IN  CNAME nsmaster.ies.com.
+nssecondary.ies.com.  IN  CNAME nsslave.ies.com.
+contable.ies.com.     IN  CNAME 192.168.0.1 ;alias para IP en un registro A multi-homed
+</code></pre></div>
+</div>
+<h4 id="registro-ptr-pointer">REGISTRO PTR (Pointer) </h4>
+<div class="style-normal">
+<p>Un registro de recurso PTR o <strong>pointer</strong> asocia una dirección IP al nombre de host pertinente (resolución inversa). Es necesaria una entrada PTR para cada interfaz de red de la zona.</p>
+<p>Para el formato de registro PTR, la IP se escribe de forma inversa. Por ejemplo, la IP 192.168.0.1 se expresa como 1.0.168.192, seguida por .IN-ADDR.ARPA. que identifica la IP como inversa.<br>
+El formato del registro PTR es:</p>
+<p><strong>IPINVERSA.IN-ADDR.ARPA. IN PTR CANONICALNAME.</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>IPINVERSA.IN-ADDR.ARPA.</strong>: Dirección IP escrita de forma inversa seguida de .IN-ADDR.ARPA.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>PTR</strong>: Tipo de registro (Pointer).</li>
+<li><strong>CANONICALNAME.</strong>: Nombre FQDN canónico asociado a la IP</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro PTR</p>
+<p>El siguiente es un ejemplo de registro PTR para diferentes hosts del dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>200.0.168.192.IN-ADDR.ARPA. IN PTR nsmaster.ies.com.
+201.0.168.192.IN-ADDR.ARPA. IN PTR nsslave.ies.com.
+1.0.168.192.IN-ADDR.ARPA.   IN PTR pc1.ies.com.
+10.0.168.192.IN-ADDR.ARPA.  IN PTR pc1.ies.com.
+2.0.168.192.IN-ADDR.ARPA.   IN PTR pc2.ies.com.
+</code></pre></div>
+</div>
+<h4 id="registro-mx-mail-exchanger">REGISTRO MX (Mail Exchanger) </h4>
+<div class="style-normal">
+<p>Un registro MX o <strong>mail exchanger</strong> define un servidor de correo. El software del servidor de correo (MTA) consulta los registros MX para identificar los servidores de correo de los destinatarios. El MTA establece una conexión SMTP con estos servidores de correo, según su prioridad.<br>
+El formato del registro MX es:</p>
+<p><strong>NAME. IN MX NUM MAILSERVER.</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>NAME</strong>: Nombre FQDN del dominio.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>MX</strong>: Tipo de registro (Mail Exchanger).</li>
+<li><strong>NUM</strong>: Número de prioridad con respecto a otros servidores MX definidos. El menor valor es el más prioritario.</li>
+<li><strong>MAILSERVER</strong>: Nombre FQDN del servidor de correo.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro MX</p>
+<p>El siguiente es un ejemplo de registro MX para el dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ies.com.         IN  MX  10  mail.ies.com.
+ies.com.         IN  MX  20  mail2.ies.com.
+mail.ies.com.    IN  A 192.168.0.220
+mail2.ies.com.   IN  A 192.168.0.221
+</code></pre></div>
+</div>
+<h4 id="registro-srv-service">REGISTRO SRV (Service) </h4>
+<div class="style-normal">
+<p>Un registro SRV o <strong>servicio</strong> especifica los servidores disponibles para realizar un servicio o protocolo determinado. El formato del registro SRV es:</p>
+<p><strong><a href="http://SERVICIO.PROTOCOL.NAME">SERVICIO.PROTOCOL.NAME</a>. IN SRV PRIORIDAD PESO PUERTO CANONICALNAME</strong></p>
+</div>
+<div class="style-list">
+<p>donde el significado de cada campo es:</p>
+<ul>
+<li><strong>SERVICIO</strong>: Nombre del servicio (por ejemplo, ftp, http, ssh,...).</li>
+<li><strong>PROTOCOL</strong>: Protocolo utilizado (tcp o udp).</li>
+<li><strong>NAME</strong>: Nombre FQDN del dominio.</li>
+<li><strong>IN</strong>: Clase del registro (Internet).</li>
+<li><strong>SRV</strong>: Tipo de registro (Service).</li>
+<li><strong>PRIORIDAD</strong>: Orden en el que los clientes se pondrán en contacto (mayor prioridad, el número más bajo).</li>
+<li><strong>PESO</strong>: Mecanismo de balanceo de carga.</li>
+<li><strong>PUERTO</strong>: Puerto de servicio.</li>
+<li><strong>CANONICALNAME</strong>: Nombre canónico del servidor que proporciona el servicio.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Registro SRV</p>
+<p>El siguiente es un ejemplo de registro SRV para los servicios de FTP y HTTP en el dominio <a href="http://ies.com">ies.com</a>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ftp.tcp.ies.com.    IN  SRV  0  0  21  ftp.ies.com.
+http.tcp.ies.com.   IN  SRV  0  0  80  http.ies.com.
+ftp.ies.com.        IN  A 192.168.0.230
+http.ies.com.       IN  A 192.168.0.225
+</code></pre></div>
+</div>
+<h3 id="tipos-de-servidores">TIPOS DE SERVIDORES </h3>
+<div class="style-normal">
+<p>En función de cómo el servidor tiene configuradas sus zonas y opciones globales, existen los siguientes tipos de servidores:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><strong>Master</strong>. Tiene definida una zona de tipo master sobre la que tiene autoridad (también llamado primario).</li>
+<li><strong>Slave</strong>. Tiene definida una zona de tipo slave sobre la que tiene autoridad (también llamado secundario).</li>
+<li><strong>Forwarder</strong>. Tiene definida alguna zona y para las consultas que no son de sus zonas reenvía las solicitudes a otros servidores y guarda las respuestas en su memoria caché.</li>
+<li><strong>Forwarder caché</strong>. No tiene definida ninguna zona y solamente hace reenvíos a otros servidores y guarda las respuestas en su memoria caché.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Un servidor puede ser master para una zona, slave para otra zona y, al mismo tiempo, ser de tipo forwarder para el resto de peticiones.</p>
+</div>
+<h3 id="consultas">CONSULTAS </h3>
+<div class="style-normal">
+<p>Las consultas DNS para la resolución de nombres de dominio pueden ser de dos tipos: <strong>recursivas</strong> o <strong>iterativas</strong>.</p>
+<p>El proceso de resolución de un nombre en un servidor DNS sigue los siguientes pasos:</p>
+</div>
+<div class="style-list">
+<ol>
+<li>El servidor consulta sus zonas. Si encuentra un registro, la respuesta es autoritativa. Si no lo encuentra, va al paso 2.</li>
+<li>El servidor consulta su memoria caché. Si encuentra un registro, la respuesta es no autoritativa. Si no lo encuentra, va al paso 3.</li>
+<li>El servidor reenvía la consulta a otros servidores DNS de forma recursiva o iterativa. Si recibe una respuesta, la almacena en la caché y responde de forma no autoritativa. Si no recibe ninguna respuesta, devuelve un mensaje de error NXDOMAIN.</li>
+</ol>
+<p>Esquema de resolución DNS:</p>
+<p><img src="./assets/Consultas.DNS.png" alt="img" style="width: 60%; display: block; margin: auto; align:center; "></p>
+</div>
+<h4 id="consultas-recursivas">CONSULTAS RECURSIVAS </h4>
+<div class="style-normal">
+<p>En las consultas recursivas el servidor DNS debe devolver una respuesta (el RR que resuelve la consulta o un mensaje de error).</p>
+<p>Si el servidor no tiene la respuesta en su zona o caché, consultará a otros servidores DNS.</p>
+<p>Este tipo de consultas se suelen producir entre los clientes resolvers y los DNS locales (como el DNS de un ISP). También se utiliza entre un servidor DNS y sus servidores DNS forwarders.</p>
+</div>
+<h4 id="consultas-iterativas">CONSULTAS ITERATIVAS </h4>
+<div class="style-normal">
+<p>En las consultas iterativas el servidor DNS proporciona la mejor respuesta que tiene, que puede ser la solución o una referencia a otro servidor DNS de nivel inferior. Si se recibe una referencia a un servidor se vuelve a hacer una consulta iterativa con este servidor.</p>
+<p>Las consultas iterativas se suelen producir entre servidores DNS. Cuando un servidor no sabe resolver una consulta, inicia una consulta iterativa con los servidores DNS raíz, y así sucesivamente hasta encontrar la respuesta o agotar las posibilidades.</p>
+</div>
+<div class="style-list">
+<div class="admonition example">
+<p class="admonition-title">Ejemplo de resolución iterativa/recursiva:</p>
+<p>Supongamos que un DNS cliente quiere resolver el nombre <a href="http://example.microsoft.com">example.microsoft.com</a> y envía una consulta recursiva a su DNS local.<br>
+<img src="./assets/Ejemplo-Consultas.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<p>El proceso de resolución sería el siguiente:</p>
+<ol>
+<li>DNS cliente hace una consulta recursiva, para <a href="http://example.microsft.com">example.microsft.com</a>, al DNS local.</li>
+<li>DNS local no encuentra la respuesta e inicia el proceso de iteración haciendo una consulta iterativa a un servidor DNS raíz.</li>
+<li>El servidor DNS raíz contesta con la mejor de sus respuestas, que es el dominio .com y una lista de servidores para este dominio. EL servidor DNS local guarda en caché la respuesta.</li>
+<li>DNS local hace una consulta iterativa a un servidor DNS de dominio .com.</li>
+<li>El servidor DNS de dominio .com contesta con <a href="http://microsoft.com">microsoft.com</a> y una lista de servidores para este dominio. EL servidor DNS local guarda en caché la respuesta.</li>
+<li>DNS local hace una consulta iterativa a un servidor DNS de dominio <a href="http://microsoft.com">microsoft.com</a>.</li>
+<li>El servidor DNS de dominio <a href="http://microsoft.com">microsoft.com</a> contesta con el registro de <a href="http://exemple.microsoft.com">exemple.microsoft.com</a>. El DNS local guarda en caché la respuesta y termina las iteraciones.</li>
+<li>El servidor DNS local responde al DNS cliente con el registro que resuelve la consulta <a href="http://exemple.microsoft.com">exemple.microsoft.com</a>.</li>
+</ol>
+</div>
+</div>
+<h3 id="formato-de-mensajes-dns">FORMATO DE MENSAJES DNS </h3>
+<div class="style-normal">
+<p>Los mensajes DNS se utilizan para las consultas de resolución de nombres y el intercambio de información entre los servidores DNS. Su formato es el siguiente:</p>
+<p><img src="./assets/Packet.DNS.png" alt="img" style="width: 50%; display: block; margin: auto; align:center; "></p>
+<p>A continuación se describen los diferentes campos del mensaje DNS:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>HEADER</strong>: es la cabecera del mensaje. Se compone del ID, Flags y los campos que indican el número de registros en cada sección (QDCount, ANCount, NSCount, ARCount).<br>
+<img src="./assets/Header.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "></p>
+<ul>
+<li>
+<p><strong>ID</strong>: 2 bytes. Número de identificación de la consulta.</p>
+</li>
+<li>
+<p><strong>Flags</strong>: 2 bytes. Indican toda la información sobre la consulta. Contiene los subcampos descritos en la siguiente tabla:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Flag</th>
+<th style="text-align:center">Bit</th>
+<th>Descripción</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">QR</td>
+<td style="text-align:center">0</td>
+<td>Tipo de mensaje</td>
+<td>0-query, 1-response</td>
+</tr>
+<tr>
+<td style="text-align:center">OPCODE</td>
+<td style="text-align:center">1-4</td>
+<td>Tipo de consulta</td>
+<td>000 – standard query<br>001 – inverse query<br>010 – server status query<br>El resto de combinaciones no se utilizan</td>
+</tr>
+<tr>
+<td style="text-align:center">AA</td>
+<td style="text-align:center">5</td>
+<td>Bit autoridad</td>
+<td>0-non authoritative answer<br>1-authoritative answer</td>
+</tr>
+<tr>
+<td style="text-align:center">TC</td>
+<td style="text-align:center">6</td>
+<td>Bit truncamiento</td>
+<td>0-message not truncated<br>1-Message truncated</td>
+</tr>
+<tr>
+<td style="text-align:center">RD</td>
+<td style="text-align:center">7</td>
+<td>Bit recursividad</td>
+<td>0-non recursive query<br>1-recursive query</td>
+</tr>
+<tr>
+<td style="text-align:center">RA</td>
+<td style="text-align:center">8</td>
+<td>Bit recursividad al servidor</td>
+<td>0-recursion not available<br>1-recursion available</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">9-11</td>
+<td>Bit reservado</td>
+<td>0-reserved</td>
+</tr>
+<tr>
+<td style="text-align:center">AD</td>
+<td style="text-align:center">10</td>
+<td>Bit autenticaciones</td>
+<td>0-authority section was not authenticated<br>1-authority section was authenticated</td>
+</tr>
+<tr>
+<td style="text-align:center">CD</td>
+<td style="text-align:center">11</td>
+<td>Bit autenticación obligatoria</td>
+<td>0-no authenticated data is acceptable for query<br>1-only authenticated data is acceptable for query</td>
+</tr>
+<tr>
+<td style="text-align:center">RCODE</td>
+<td style="text-align:center">12-15</td>
+<td>Tipo respuesta</td>
+<td>0000-no error<br>0100-format error in query<br>0010-server failure<br>0001-name does not exits</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>QDCount</strong>: 2 bytes. Número de registros en la sección de preguntas.</p>
+</li>
+<li>
+<p><strong>ANCount</strong>: 2 bytes. Número de registros en la sección de respuestas.</p>
+</li>
+<li>
+<p><strong>NSCount</strong>: 2 bytes. Número de registros en la sección de autoridad.</p>
+</li>
+<li>
+<p><strong>ARCount</strong>: 2 bytes. Número de registros en la sección adicional.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>QUESTION</strong>: Pregunta que se hace al servidor DNS. Tiene el siguiente formato:<br>
+<img src="./assets/Question.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "><br>
+Contiene:</p>
+<ul>
+<li><strong>QNAME</strong>: Nombre de dominio por el que se pregunta. Consta de n bytes.</li>
+<li><strong>QTYPE</strong>: Tipo de registro, puede ser A, PTR, etc., o tipos especiales como AXFR (zona especial de transferencia) o * cualquier tipo. Consta de 2 bytes.</li>
+<li><strong>QCLASS</strong>: Tipo de clase del registro, como IN, CH o * (cualquier clase). Consta de 2 bytes.</li>
+</ul>
+</li>
+<li>
+<p><strong>ANSWER</strong>: Registro o registros de respuesta.</p>
+</li>
+<li>
+<p><strong>AUTHORITY</strong>: Registro de los servidores que tienen autoridad sobre la respuesta.</p>
+</li>
+<li>
+<p><strong>ADDITIONAL</strong>: Registros adicionales que pueden ser útiles para la resolución de la consulta.</p>
+</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Cada registro en las secciones ANSWER, AUTHORITY y ADDITIONAL tiene el siguiente formato:<br>
+<img src="./assets/Adicional.Packet.DNS.png" alt="img" style="width: 100%; display: block; margin: auto; align:center; "><br>
+donde el significado de cada campo es:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tamaño</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME</td>
+<td>n bytes</td>
+<td>Nombre del propietario del registro</td>
+</tr>
+<tr>
+<td>TYPE</td>
+<td>2 bytes</td>
+<td>Tipo de registro</td>
+</tr>
+<tr>
+<td>CLASS</td>
+<td>2 bytes</td>
+<td>Tipo de clase</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>4 bytes</td>
+<td>Tiempo de vida asignado al registro en segundos</td>
+</tr>
+<tr>
+<td>RDLENGTH</td>
+<td>2 bytes</td>
+<td>Número de bytes del campo RDATA</td>
+</tr>
+<tr>
+<td>RDATA</td>
+<td>n bytes</td>
+<td>Datos del registro</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo de consulta DNS</p>
+<p>A continuación se muestra un ejemplo de consulta DNS que resuelve el nombre <a href="http://uoc.es">uoc.es</a> utilizando la herramienta <em>host</em> en modo detallado.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>[root@portatil ~]# host -a uoc.es
+Trying "uoc.es"
+;; --&gt;HEADER&lt;-- opcode: QUERY, status: NOERROR, id: 14091
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 2, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;uoc.es.                IN ANY
+
+;; ANSWER SECTION:
+uoc.es.         82747 IN NS tibet.uoc.es.
+uoc.es.         82747 IN NS nepal.uoc.es.
+
+;; AUTHORITY SECTION:
+uoc.es.         82747 IN NS nepal.uoc.es.
+uoc.es.         82747 IN NS tibet.uoc.es.
+
+;; ADDITIONAL SECTION:
+nepal.uoc.es.   73649 IN A 213.73.40.47
+tibet.uoc.es.   76582 IN A 213.73.40.45
+
+Received 124 bytes from 127.0.0.1#53 in 2 ms
+</code></pre></div>
+<h3 id="evolución">EVOLUCIÓN </h3>
+<div class="style-normal">
+<p>Los protocolos DNS han evolucionado gracias al incremento exponencial de las redes. Dos vías principales de evolución son el <strong>DDNS o dinámico DNS</strong> y el <strong>DNSSEC o DNS seguro</strong>.</p>
+</div>
+<h4 id="ddns">DDNS </h4>
+<div class="style-normal">
+<p>El protocolo DDNS (dynamic DNS) permite que los datos del servidor DNS se actualicen en tiempo real. Su principal uso es permitir que clientes con direcciones IP dinámicas puedan disponer de un nombre de dominio a pesar de que su dirección IP varíe de una sesión a otra. Un mecanismo para lograr esto es permitir que los servidores DHCP se comuniquen con los servidores DNS y les notifiquen las actualizaciones necesarias en la base de datos de DNS.</p>
+</div>
+<h4 id="dnssec">DNSSEC </h4>
+<div class="style-normal">
+<p>El protocolo DNS data de la década de los 80, una época donde la funcionalidad estaba por encima de la seguridad. Las transferencias de zonas y las consultas se hacen en claro, sin cifrar. Las deficiencias de seguridad hacen al protocolo susceptible de falsificación de registros, con riesgos de redirección a sitios maliciosos y suplantación.</p>
+<p>DNSSEC (Domain Name System Security Extensions) se diseñó para solucionar estos problemas, añadiendo una capa de seguridad adicional que permite comprobar la integridad y autenticidad de los datos. DNSSEC se basa en el uso de claves asimétricas. Cada servidor DNS tiene una clave pública (transmitida al resto de servidores) y una clave privada (solo conocida por el servidor). DNSSEC no cifra; solo se utiliza para comprobar la identidad correcta del servidor que ha generado el mensaje DNS (autenticidad) y comprobar que no ha sido modificado durante el trayecto hasta el cliente (integridad).</p>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
