@@ -1,0 +1,1056 @@
+<!DOCTYPE html><html><head>
+      <title>SER</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  const configureMermaidIconPacks = () => {
+    window["mermaid"].registerIconPacks([
+      {
+        name: "logos",
+        loader: () =>
+          fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+            (res) => res.json()
+          ),
+      },
+    ]);
+  };
+
+  if (document.readyState !== 'loading') {
+    configureMermaidIconPacks();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      configureMermaidIconPacks();
+    });
+  }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="el-servicio-ftp">EL SERVICIO FTP </h1>
+</div>
+<p>📙<a href="./t01.protocolo.pdf">Descargar PDF</a></p>
+
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#el-servicio-ftp" class="md-toc-link"><p>EL SERVICIO FTP</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#protocolo-ftp" class="md-toc-link"><p>PROTOCOLO FTP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#contexto-histórico-y-estandarización" class="md-toc-link">
+            <p>CONTEXTO HISTÓRICO Y ESTANDARIZACIÓN</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#arquitectura-y-principios-de-funcionamiento" class="md-toc-link"><p>ARQUITECTURA Y PRINCIPIOS DE FUNCIONAMIENTO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sesión-ftp" class="md-toc-link">
+            <p>SESIÓN FTP</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#usuarios-ftp" class="md-toc-link"><p>USUARIOS FTP</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#usuarios-según-método-de-autenticación" class="md-toc-link"><p>USUARIOS SEGÚN MÉTODO DE AUTENTICACIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usuario-anónimo" class="md-toc-link">
+            <p>USUARIO ANÓNIMO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usuario-autenticado" class="md-toc-link">
+            <p>USUARIO AUTENTICADO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#usuarios-según-su-relación-con-el-sistema-subyacente" class="md-toc-link"><p>USUARIOS SEGÚN SU RELACIÓN CON EL SISTEMA SUBYACENTE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usuario-del-sistema" class="md-toc-link">
+            <p>USUARIO DEL SISTEMA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usuario-virtual" class="md-toc-link">
+            <p>USUARIO VIRTUAL</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#grupos-de-usuarios-ftp" class="md-toc-link">
+            <p>GRUPOS DE USUARIOS FTP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#autorización-y-permisos-en-ftp" class="md-toc-link">
+            <p>AUTORIZACIÓN Y PERMISOS EN FTP</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#modos-de-conexión-ftp" class="md-toc-link"><p>MODOS DE CONEXIÓN FTP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#modo-activo" class="md-toc-link">
+            <p>MODO ACTIVO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#modo-pasivo" class="md-toc-link">
+            <p>MODO PASIVO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#comandos-y-respuestas-del-protocolo-ftp" class="md-toc-link"><p>COMANDOS Y RESPUESTAS DEL PROTOCOLO FTP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#comandos-ftp-raw-commands" class="md-toc-link">
+            <p>COMANDOS FTP (RAW COMMANDS)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#respuestas-del-servidor-ftp" class="md-toc-link">
+            <p>RESPUESTAS DEL SERVIDOR FTP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#el-comando-port" class="md-toc-link">
+            <p>EL COMANDO PORT</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#el-comando-pasv" class="md-toc-link">
+            <p>EL COMANDO PASV</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#uso-de-los-comandos-ftp" class="md-toc-link">
+            <p>USO DE LOS COMANDOS FTP</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#seguridad-del-protocolo-ftp" class="md-toc-link"><p>SEGURIDAD DEL PROTOCOLO FTP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#principales-problemas-de-seguridad" class="md-toc-link">
+            <p>PRINCIPALES PROBLEMAS DE SEGURIDAD</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mejoras-de-seguridad" class="md-toc-link">
+            <p>MEJORAS DE SEGURIDAD</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="protocolo-ftp">PROTOCOLO FTP </h2>
+<h3 id="introducción">INTRODUCCIÓN </h3>
+<div class="style-normal">
+<p>El <strong>File Transfer Protocol (FTP)</strong> es un protocolo de la capa de aplicación diseñado para permitir la transferencia de archivos entre sistemas conectados a una red basada en TCP/IP. Su finalidad principal es proporcionar un mecanismo estándar que permita a un usuario acceder a archivos almacenados en un sistema remoto y realizar operaciones como listar directorios, descargar archivos o subir contenido.</p>
+<p>FTP fue durante muchos años uno de los protocolos más utilizados en Internet, especialmente para la publicación de páginas web, la distribución de software y el intercambio de información en redes académicas y empresariales. Aunque en la actualidad ha sido sustituido en muchos entornos por alternativas más seguras, sigue siendo un protocolo fundamental desde el punto de vista formativo, ya que permite comprender claramente el funcionamiento de los servicios de red clásicos.</p>
+<p>Desde una perspectiva didáctica, FTP resulta especialmente interesante porque hace explícitos muchos aspectos que en protocolos modernos quedan ocultos, como el uso de múltiples conexiones TCP, la negociación de puertos o el intercambio de comandos en texto plano.</p>
+</div>
+<h3 id="contexto-histórico-y-estandarización">CONTEXTO HISTÓRICO Y ESTANDARIZACIÓN </h3>
+<div class="style-normal">
+<p>El protocolo FTP se desarrolló en los primeros años de ARPANET, en una época en la que la seguridad no era una preocupación prioritaria y las redes estaban formadas por un número reducido de equipos de confianza. Su especificación principal está recogida en el <strong>RFC 959</strong>, publicado en 1985, que define el funcionamiento básico del protocolo tal y como sigue utilizándose hoy en día.</p>
+<p>A lo largo del tiempo se han publicado otros RFC que añaden extensiones o aclaran determinados comportamientos, pero el núcleo del protocolo apenas ha cambiado. Esto explica por qué FTP conserva decisiones de diseño que hoy pueden parecer poco adecuadas, como la ausencia de cifrado o el uso de múltiples conexiones.</p>
+<p>FTP pertenece a la <strong>capa de aplicación</strong> del modelo TCP/IP y utiliza <strong>TCP</strong> como protocolo de transporte, lo que garantiza una comunicación fiable y orientada a conexión.</p>
+</div>
+<h3 id="arquitectura-y-principios-de-funcionamiento">ARQUITECTURA Y PRINCIPIOS DE FUNCIONAMIENTO </h3>
+<div class="style-normal">
+<p>FTP utiliza una arquitectura <strong>cliente-servidor</strong>. El cliente inicia la conexión y solicita servicios, mientras el servidor espera y responde a esas peticiones.</p>
+<p>La clave de FTP es que emplea <strong>dos canales de comunicación independientes</strong>:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>Canal de control</strong>: Se usa para enviar comandos y recibir respuestas (por ejemplo, iniciar sesión, pedir un archivo, cambiar de carpeta, etc.). Este canal permanece abierto durante toda la sesión y normalmente utiliza el <strong>puerto TCP 21</strong> del servidor. La <strong>comunicación es en texto plano (ASCII)</strong>, lo que permite observar fácilmente el intercambio de comandos usando herramientas como <code>telnet</code>.</p>
+</li>
+<li>
+<p><strong>Canal de datos</strong>: Se utiliza exclusivamente para transferir archivos o listados de directorios. La <strong>comunicación puede ser en texto plano o binaria</strong>, dependiendo del modo de transferencia. A diferencia del canal de control, esta conexión se abre solo cuando es necesario transferir información y se cierra al terminar. El <strong>puerto</strong> usado para el canal de datos <strong>varía según el modo de conexión (activo o pasivo)</strong>, lo que puede complicar la configuración en redes con firewalls o NAT.</p>
+</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Esta separación entre canales permite que los comandos y las transferencias de archivos no se mezclen, facilitando la gestión y el control de la sesión FTP.</p>
+</div>
+<h4 id="sesión-ftp">SESIÓN FTP </h4>
+<div class="style-list">
+<p>El proceso típico de una sesión FTP incluye las siguientes fases:</p>
+<ol>
+<li>
+<p><strong>Conexión inicial</strong>: El cliente abre una conexión TCP al puerto 21 del servidor (canal de control) y recibe un mensaje de bienvenida.</p>
+</li>
+<li>
+<p><strong>Autenticación</strong>: El cliente envía su usuario (<code>USER</code>) y contraseña (<code>PASS</code>). El servidor valida las credenciales y permite el acceso.</p>
+</li>
+<li>
+<p><strong>Comandos y transferencias</strong>: El cliente envía comandos FTP por el canal de control (como <code>LIST</code>, <code>RETR</code>, <code>STOR</code>). Cuando se necesita transferir datos, se abre el canal de datos:</p>
+<ul>
+<li>
+<p><strong>Modo activo</strong>: el servidor se conecta al cliente para transferir datos.</p>
+</li>
+<li>
+<p><strong>Modo pasivo</strong>: el cliente se conecta al servidor para transferir datos.<br>
+Cuando la transferencia termina, se cierra el canal de datos.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Finalización</strong>: El cliente envía el comando <code>QUIT</code> y el servidor cierra la sesión y libera los recursos.</p>
+</li>
+</ol>
+</div>
+<h2 id="usuarios-ftp">USUARIOS FTP </h2>
+<div class="style-normal">
+<p>En el contexto del protocolo <strong>FTP (File Transfer Protocol)</strong>, un <em>usuario</em> representa una <strong>identidad lógica</strong> utilizada por el servidor para <strong>autenticar</strong>, <strong>autorizar</strong> y <strong>aplicar políticas de acceso</strong> sobre los recursos compartidos.</p>
+<p>Es importante destacar que <strong>FTP no define internamente cómo se gestionan los usuarios</strong>, sino que especifica:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>El mecanismo de autenticación (comandos <code>USER</code> y <code>PASS</code>)</li>
+<li>El control de acceso a las operaciones disponibles</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Por este motivo, los tipos de usuarios FTP se clasifican de forma <strong>conceptual</strong>, independientemente del sistema operativo o de la implementación concreta del servidor. La implementación concreta de los usuarios, sus credenciales y permisos depende del sistema operativo y del software del servidor FTP utilizado. Nos centraremos en las categorías más comunes de usuarios FTP, basándonos en dos criterios principales:</p>
+</div>
+<div class="style-list">
+<ol>
+<li>El <strong>método de autenticación</strong></li>
+<li>La <strong>relación del usuario con el sistema subyacente</strong></li>
+</ol>
+</div>
+<h3 id="usuarios-según-método-de-autenticación">USUARIOS SEGÚN MÉTODO DE AUTENTICACIÓN </h3>
+<div class="style-normal">
+<p>Esta clasificación describe <strong>cómo un usuario demuestra su identidad</strong> ante un servidor FTP. FTP permite dos métodos principales de autenticación de usuarios:</p>
+</div>
+<h4 id="usuario-anónimo">USUARIO ANÓNIMO </h4>
+<div class="style-normal">
+<p>El <strong>usuario anónimo</strong> permite el acceso al servicio FTP sin una identidad individual verificable.</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Utiliza credenciales genéricas, típicamente:
+<ul>
+<li>Usuario: <code>anonymous</code> o <code>ftp</code></li>
+<li>Contraseña: valor simbólico (por ejemplo, una dirección de correo electrónico)</li>
+</ul>
+</li>
+<li>No existe una validación real de la identidad del cliente.</li>
+<li>Todos los accesos anónimos son tratados como una misma entidad lógica.</li>
+</ul>
+<p><strong>Características</strong>:</p>
+<ul>
+<li>Acceso generalmente restringido a <strong>lectura</strong>.</li>
+<li>Escritura permitida únicamente en configuraciones muy controladas.</li>
+<li>Ausencia de trazabilidad individual de acciones.</li>
+</ul>
+<p><strong>Casos de uso</strong>:</p>
+<ul>
+<li>Distribución pública de software.</li>
+<li>Repositorios abiertos de documentación.</li>
+<li>Servicios académicos o históricos.</li>
+</ul>
+<p><strong>Limitaciones</strong>:</p>
+<ul>
+<li>Bajo nivel de seguridad.</li>
+<li>Difícil auditoría.</li>
+<li>Uso cada vez menos frecuente en entornos modernos.</li>
+</ul>
+</div>
+<h4 id="usuario-autenticado">USUARIO AUTENTICADO </h4>
+<div class="style-normal">
+<p>El <strong>usuario autenticado</strong> se identifica mediante un par <strong>usuario/contraseña</strong>, lo que permite establecer una identidad individual diferenciada.</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Requiere credenciales únicas.</li>
+<li>Permite aplicar políticas específicas por usuario.</li>
+<li>El backend de autenticación es transparente desde el punto de vista del protocolo FTP.</li>
+</ul>
+<p><strong>Características</strong>:</p>
+<ul>
+<li>Identidad individual bien definida.</li>
+<li>Posibilidad de auditoría y control detallado.</li>
+<li>Base de la mayoría de configuraciones FTP actuales.</li>
+</ul>
+<p><strong>Casos de uso</strong>:</p>
+<ul>
+<li>Acceso privado a servidores de archivos.</li>
+<li>Intercambio de información entre usuarios autenticados.</li>
+<li>Automatización de transferencias (especialmente con FTPS o SFTP).</li>
+</ul>
+<p><strong>Consideraciones de seguridad</strong>:</p>
+<ul>
+<li>Requiere protección del canal de comunicación.</li>
+<li>La seguridad depende de la robustez de las credenciales.</li>
+</ul>
+</div>
+<h3 id="usuarios-según-su-relación-con-el-sistema-subyacente">USUARIOS SEGÚN SU RELACIÓN CON EL SISTEMA SUBYACENTE </h3>
+<div class="style-normal">
+<p>Esta clasificación describe <strong>qué representa realmente un usuario FTP dentro del entorno donde se ejecuta el servicio</strong>, con independencia del sistema operativo o de la implementación concreta del servidor FTP.</p>
+<p>A diferencia del método de autenticación, que define <strong>cómo se verifica la identidad</strong>, este criterio se centra en <strong>la naturaleza de la identidad</strong> y en su grado de acoplamiento con el sistema anfitrión.</p>
+</div>
+<h4 id="usuario-del-sistema">USUARIO DEL SISTEMA </h4>
+<div class="style-normal">
+<p>Un <strong>usuario del sistema</strong> es una identidad FTP que corresponde directamente a una cuenta real existente en el sistema subyacente sobre el que se ejecuta el servicio FTP.</p>
+<p>En este modelo, el servidor FTP reutiliza las credenciales y mecanismos de autenticación del sistema anfitrión, estableciendo una correspondencia directa entre la identidad FTP y la identidad del sistema.</p>
+</div>
+<div class="style-list">
+<p><strong>Características principales</strong>:</p>
+<ul>
+<li>La identidad FTP coincide con una cuenta real del sistema.</li>
+<li>El control de acceso suele alinearse con los permisos del sistema de archivos.</li>
+<li>La gestión de usuarios depende del propio entorno anfitrión.</li>
+</ul>
+<p><strong>Casos de uso habituales</strong>:</p>
+<ul>
+<li>Entornos pequeños o tradicionales.</li>
+<li>Sistemas donde FTP actúa como servicio complementario.</li>
+<li>Accesos técnicos o administrativos.</li>
+</ul>
+<p><strong>Limitaciones y riesgos</strong>:</p>
+<ul>
+<li>Mayor superficie de ataque si la misma cuenta se reutiliza para otros servicios.</li>
+<li>Menor aislamiento entre servicios.</li>
+<li>Dependencia directa de la correcta gestión de cuentas del sistema.</li>
+</ul>
+</div>
+<h4 id="usuario-virtual">USUARIO VIRTUAL </h4>
+<div class="style-normal">
+<p>Un <strong>usuario virtual</strong> es una identidad que <strong>existe exclusivamente dentro del servicio FTP</strong> y no corresponde a ninguna cuenta real del sistema subyacente.</p>
+<p>El servidor FTP gestiona internamente estas identidades y aplica las políticas de acceso correspondientes sin que el sistema anfitrión tenga conocimiento explícito del usuario. El acceso a los recursos se realiza mediante un mapeo lógico interno.</p>
+</div>
+<div class="style-list">
+<p><strong>Características principales</strong>:</p>
+<ul>
+<li>Independencia total del sistema operativo.</li>
+<li>Mayor escalabilidad en entornos multiusuario.</li>
+<li>Aislamiento efectivo entre identidades.</li>
+</ul>
+<p><strong>Casos de uso habituales</strong>:</p>
+<ul>
+<li>Servicios de alojamiento (hosting).</li>
+<li>Plataformas multiusuario.</li>
+<li>Infraestructuras gestionadas o en la nube.</li>
+</ul>
+<p><strong>Ventajas principales</strong>:</p>
+<ul>
+<li>Menor impacto sobre la gestión del sistema anfitrión.</li>
+<li>Mejor control de seguridad y segmentación.</li>
+<li>Modelo preferido en arquitecturas modernas.</li>
+</ul>
+</div>
+<h2 id="grupos-de-usuarios-ftp">GRUPOS DE USUARIOS FTP </h2>
+<div class="style-normal">
+<p>Los <strong>grupos de usuarios</strong> constituyen un mecanismo de <strong>organización y autorización</strong> que permite aplicar políticas comunes a múltiples identidades dentro de un servicio FTP.</p>
+<p>A diferencia de los usuarios, los grupos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>No representan identidades individuales</li>
+<li>No participan en el proceso de autenticación</li>
+<li>No establecen sesiones FTP propias</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Su función principal es facilitar la <strong>gestión colectiva de permisos y restricciones</strong>, actuando como una <strong>capa intermedia entre el usuario y los recursos</strong>. Desde un punto de vista conceptual, los grupos permiten:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Agrupar usuarios con características o necesidades similares</li>
+<li>Simplificar la administración de permisos</li>
+<li>Aplicar políticas de acceso de forma homogénea</li>
+<li>Reducir la complejidad de la gestión individual de usuarios</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Los grupos influyen directamente en los mecanismos de <strong>autorización</strong>, pero no en los de autenticación.</p>
+</div>
+<h2 id="autorización-y-permisos-en-ftp">AUTORIZACIÓN Y PERMISOS EN FTP </h2>
+<div class="style-normal">
+<p>La <strong>autorización</strong> en FTP es el proceso por el cual el servidor decide qué puede hacer cada usuario una vez que ha iniciado sesión. No es lo mismo que la autenticación (identificarse), sino que se trata de los permisos y limitaciones que tiene cada usuario.</p>
+</div>
+<p>Los permisos en FTP, entre otros, determinan:</p>
+<ul>
+<li>A qué carpetas y archivos puede acceder cada usuario.</li>
+<li>Qué acciones puede realizar: ver (leer), subir (escribir), borrar o modificar archivos.</li>
+<li>Cuánto espacio puede usar (cuotas).</li>
+<li>Cuántas conexiones puede tener abiertas al mismo tiempo.</li>
+<li>Qué velocidad máxima de transferencia puede usar.</li>
+</ul>
+
+<div class="style-normal">
+<p>El administrador del servidor FTP puede establecer estos permisos para cada usuario o grupo, y también puede aplicar restricciones adicionales, como:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Limitar el acceso según la dirección IP del cliente.</li>
+<li>Permitir el acceso solo en ciertos horarios.</li>
+<li>Restringir el tipo de archivos que se pueden transferir.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Por último, los servidores FTP suelen guardar un registro (log) de todas las acciones realizadas, para poder revisar el uso del servicio y detectar problemas o usos indebidos.</p>
+</div>
+<h2 id="modos-de-conexión-ftp">MODOS DE CONEXIÓN FTP </h2>
+<div class="style-normal">
+<p>Existen dos modos de conexión que determinan <strong>cómo se establece la conexión</strong> y <strong>cómo se transfieren los datos</strong>.</p>
+</div>
+<div class="style-list">
+<p>Comprender estos modos es fundamental para:</p>
+<ul>
+<li>Configurar correctamente firewalls</li>
+<li>Evitar problemas de conectividad</li>
+<li>Garantizar la seguridad y el rendimiento del servicio</li>
+</ul>
+</div>
+<h3 id="modo-activo">MODO ACTIVO </h3>
+<div class="style-list">
+<p>En el <strong>modo activo</strong>, la conexión funciona así:</p>
+<ol>
+<li>El cliente abre una <strong>conexión TCP al puerto 21</strong> del servidor (canal de control) para enviar comandos.</li>
+<li>Cuando el cliente quiere realizar una transferencia de datos le indica al servidor el puerto local al que debe conectarse (comando <code>PORT</code>).</li>
+<li>El <strong>servidor abre la conexión TCP hacia ese puerto del cliente</strong> (canal de datos) para transferir la información.</li>
+</ol>
+<p><strong>Características</strong>:</p>
+<ul>
+<li>El cliente escucha un puerto para la conexión de datos.</li>
+<li>Puede causar problemas con firewalls o NAT, porque el servidor inicia la conexión de datos hacia el cliente.</li>
+<li>Tradicionalmente es el modo original del protocolo FTP.</li>
+</ul>
+</div>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="SEQUENCE" height="223px" preserveAspectRatio="none" style="width:280px;height:223px;background:#FFFFFF;" version="1.1" viewBox="0 0 280 223" width="280px" zoomAndPan="magnify"><defs></defs><g><g><title>Cliente</title><rect fill="#000000" fill-opacity="0.00000" height="146.8241" width="8" x="30.7849" y="39.0679"></rect><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="34" x2="34" y1="39.0679" y2="185.892"></line></g><g><title>Servidor</title><rect fill="#000000" fill-opacity="0.00000" height="146.8241" width="8" x="236.3951" y="39.0679"></rect><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="239.9202" x2="239.9202" y1="39.0679" y2="185.892"></line></g><g class="participant participant-head" data-participant="Cliente"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="59.5698" x="5" y="5"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.5698" x="12" y="26.9659">Cliente</text></g><g class="participant participant-tail" data-participant="Cliente"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="59.5698" x="5" y="184.892"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.5698" x="12" y="206.8579">Cliente</text></g><g class="participant participant-head" data-participant="Servidor"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="68.9498" x="205.9202" y="5"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54.9498" x="212.9202" y="26.9659">Servidor</text></g><g class="participant participant-tail" data-participant="Servidor"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="68.9498" x="205.9202" y="184.892"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54.9498" x="212.9202" y="206.8579">Servidor</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="228.3951,68.7739,238.3951,72.7739,228.3951,76.7739,232.3951,72.7739" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="34.7849" x2="234.3951" y1="72.7739" y2="72.7739"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98.1371" x="41.7849" y="66.9649">TCP 21 (Control)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="45.7849,100.4799,35.7849,104.4799,45.7849,108.4799,41.7849,104.4799" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="39.7849" x2="239.3951" y1="104.4799" y2="104.4799"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130.2731" x="51.7849" y="98.6709">Respuesta comandos</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="228.3951,132.186,238.3951,136.186,228.3951,140.186,232.3951,136.186" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="34.7849" x2="234.3951" y1="136.186" y2="136.186"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181.6102" x="41.7849" y="130.377">PORT (indica puerto de datos)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="45.7849,163.892,35.7849,167.892,45.7849,171.892,41.7849,167.892" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="39.7849" x2="239.3951" y1="167.892" y2="167.892"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.5971" x="51.7849" y="162.083">TCP &lt;puerto&gt; (Datos)</text></g><!--SRC=[TOux3i8m44Hxds9AKwI0Ca9fJ4yKSe6LlOMbuBNi9USd_28tj3DldYPJqUXZfgHmI-IaR7AJtRYiCKWnvjkY6_OGFMOtudI4TPAqo78mUzTju6_JO-AQ7roLuELEAKZz8nolqmmRKuYUi4sA2W8Za4fjxQtyTUByOGVOonjz0W00]--></g></svg></p><h3 id="modo-pasivo">MODO PASIVO </h3>
+<div class="style-normal">
+<p>En el <strong>modo pasivo</strong>, la conexión de datos funciona de manera diferente al modo activo y está diseñada para facilitar el acceso desde redes protegidas por <strong>firewalls o NAT</strong>.</p>
+</div>
+<div class="style-list">
+<p>Su funcionamiento es el siguiente:</p>
+<ol>
+<li>El cliente abre la <strong>conexión TCP al puerto 21</strong> del servidor (canal de control) para enviar comandos FTP.</li>
+<li>Cuando el cliente necesita realizar una transferencia de datos se lo comunica al servidor (comando <code>PASV</code>).</li>
+<li>El <strong>servidor responde indicando un puerto disponible</strong> para la transferencia de datos.</li>
+<li>El cliente <strong>abre la conexión TCP hacia ese puerto del servidor</strong> y se realiza la transferencia de archivos.</li>
+</ol>
+<p><strong>Características</strong>:</p>
+<ul>
+<li>El cliente inicia ambas conexiones, lo que evita problemas con firewalls que bloqueen conexiones entrantes hacia el cliente.</li>
+<li>Muy utilizado en entornos modernos y corporativos.</li>
+<li>Garantiza mayor compatibilidad cuando se usan NAT o redes privadas.</li>
+</ul>
+</div>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="SEQUENCE" height="255px" preserveAspectRatio="none" style="width:285px;height:255px;background:#FFFFFF;" version="1.1" viewBox="0 0 285 255" width="285px" zoomAndPan="magnify"><defs></defs><g><g><title>Cliente</title><rect fill="#000000" fill-opacity="0.00000" height="178.5301" width="8" x="30.7849" y="39.0679"></rect><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="34" x2="34" y1="39.0679" y2="217.598"></line></g><g><title>Servidor</title><rect fill="#000000" fill-opacity="0.00000" height="178.5301" width="8" x="241.1921" y="39.0679"></rect><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="244.7172" x2="244.7172" y1="39.0679" y2="217.598"></line></g><g class="participant participant-head" data-participant="Cliente"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="59.5698" x="5" y="5"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.5698" x="12" y="26.9659">Cliente</text></g><g class="participant participant-tail" data-participant="Cliente"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="59.5698" x="5" y="216.598"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.5698" x="12" y="238.5639">Cliente</text></g><g class="participant participant-head" data-participant="Servidor"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="68.9498" x="210.7172" y="5"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54.9498" x="217.7172" y="26.9659">Servidor</text></g><g class="participant participant-tail" data-participant="Servidor"><rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="68.9498" x="210.7172" y="216.598"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54.9498" x="217.7172" y="238.5639">Servidor</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="233.1921,68.7739,243.1921,72.7739,233.1921,76.7739,237.1921,72.7739" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="34.7849" x2="239.1921" y1="72.7739" y2="72.7739"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98.1371" x="41.7849" y="66.9649">TCP 21 (Control)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="45.7849,100.4799,35.7849,104.4799,45.7849,108.4799,41.7849,104.4799" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="39.7849" x2="244.1921" y1="104.4799" y2="104.4799"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130.2731" x="51.7849" y="98.6709">Respuesta comandos</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="233.1921,132.186,243.1921,136.186,233.1921,140.186,237.1921,136.186" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="34.7849" x2="239.1921" y1="136.186" y2="136.186"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186.4072" x="41.7849" y="130.377">PASV (Solicita puerto de datos)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="45.7849,163.892,35.7849,167.892,45.7849,171.892,41.7849,167.892" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="39.7849" x2="244.1921" y1="167.892" y2="167.892"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108.0431" x="51.7849" y="162.083">Puerto disponible</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="233.1921,195.598,243.1921,199.598,233.1921,203.598,237.1921,199.598" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="34.7849" x2="239.1921" y1="199.598" y2="199.598"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.5971" x="41.7849" y="193.789">TCP &lt;puerto&gt; (Datos)</text></g><!--SRC=[VOun3i8m40HxlsBBKAI0CaAHa7c0XH6zYQ-mP7oMVU7zM10Ycj3kpeusko9X2jabWOw1af3AFvcbyWoUYr9BYtvSGmouQeF37ftc98NZJgrTty3lPi25QfwfYiF43vSyrmsXETaREiknFMXq6nLXU89tmdNJRnOkrCmft2Fz-NlyI4TqvxVp1G00]--></g></svg></p><h2 id="comandos-y-respuestas-del-protocolo-ftp">COMANDOS Y RESPUESTAS DEL PROTOCOLO FTP </h2>
+<div class="style-normal">
+<p>Los comandos FTP son instrucciones enviadas por el cliente al servidor a través del canal de control para realizar diversas operaciones relacionadas con la gestión y transferencia de archivos. Estos comandos son en texto plano y siguen una sintaxis específica definida por el protocolo FTP. Se les conoce comúnmente como <strong>comandos en crudo</strong> (<em>raw commands</em>) para diferenciarlos de las órdenes que los usuarios pueden introducir en los clientes FTP.</p>
+<p>El servidor responde a cada comando con un código numérico y un mensaje que indica el resultado de la operación solicitada.</p>
+</div>
+<h3 id="comandos-ftp-raw-commands">COMANDOS FTP (RAW COMMANDS) </h3>
+<div class="style-normal">
+<p>La siguiente tabla recoge los principales comandos definidos por el protocolo FTP y su función real dentro de una sesión:</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>USER &lt;usuario&gt;</td>
+<td>Autenticación</td>
+<td>Indica el nombre de usuario con el que se desea iniciar sesión.</td>
+</tr>
+<tr>
+<td>PASS &lt;contraseña&gt;</td>
+<td>Autenticación</td>
+<td>Envía la contraseña asociada al usuario.</td>
+</tr>
+<tr>
+<td>QUIT</td>
+<td>Control</td>
+<td>Finaliza la sesión FTP y cierra la conexión de control.</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>Navegación</td>
+<td>Muestra el directorio de trabajo actual en el servidor.</td>
+</tr>
+<tr>
+<td>CWD</td>
+<td>Navegación</td>
+<td>Cambia el directorio de trabajo.</td>
+</tr>
+<tr>
+<td>LIST</td>
+<td>Transferencia</td>
+<td>Solicita un listado detallado de archivos y directorios.</td>
+</tr>
+<tr>
+<td>NLST</td>
+<td>Transferencia</td>
+<td>Solicita un listado simple de nombres de archivos.</td>
+</tr>
+<tr>
+<td>RETR &lt;archivo&gt;</td>
+<td>Transferencia</td>
+<td>Descarga un archivo desde el servidor al cliente.</td>
+</tr>
+<tr>
+<td>STOR &lt;archivo&gt;</td>
+<td>Transferencia</td>
+<td>Sube un archivo desde el cliente al servidor.</td>
+</tr>
+<tr>
+<td>DELE &lt;archivo&gt;</td>
+<td>Gestión</td>
+<td>Elimina un archivo del servidor.</td>
+</tr>
+<tr>
+<td>TYPE &lt;tipo&gt;</td>
+<td>Configuración</td>
+<td>Establece el tipo de transferencia (ASCII o binaria).</td>
+</tr>
+<tr>
+<td>PORT &lt;ip,puerto&gt;</td>
+<td>Modo activo</td>
+<td>Indica al servidor el puerto del cliente para la conexión de datos.</td>
+</tr>
+<tr>
+<td>PASV</td>
+<td>Modo pasivo</td>
+<td>Solicita al servidor que abra un puerto para la conexión de datos.</td>
+</tr>
+<tr>
+<td>SYST</td>
+<td>Información</td>
+<td>Solicita información sobre el sistema operativo del servidor.</td>
+</tr>
+<tr>
+<td>NOOP</td>
+<td>Control</td>
+<td>No realiza ninguna acción; se usa para mantener viva la conexión.</td>
+</tr>
+</tbody>
+</table>
+<p>Estos comandos son independientes del sistema operativo y forman parte del estándar FTP.</p>
+<h3 id="respuestas-del-servidor-ftp">RESPUESTAS DEL SERVIDOR FTP </h3>
+<div class="style-normal">
+<p>Las respuestas del servidor FTP son mensajes enviados al cliente en respuesta a los comandos recibidos. Cada respuesta consta de un <strong>código numérico de tres dígitos</strong> seguido de un mensaje descriptivo. El código indica el resultado de la operación solicitada y se clasifica en varias categorías según su valor:</p>
+<table>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1xx</td>
+<td>Respuesta preliminar (acción en curso)</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>Acción completada con éxito</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>Se necesita información adicional</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>Error temporal</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Error permanente</td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente tabla recoge algunos de los códigos de respuesta más habituales en una sesión FTP:</p>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>220</td>
+<td>Servicio FTP listo</td>
+</tr>
+<tr>
+<td>331</td>
+<td>Usuario correcto, se necesita contraseña</td>
+</tr>
+<tr>
+<td>230</td>
+<td>Autenticación completada</td>
+</tr>
+<tr>
+<td>150</td>
+<td>Se va a abrir la conexión de datos</td>
+</tr>
+<tr>
+<td>226</td>
+<td>Transferencia completada</td>
+</tr>
+<tr>
+<td>530</td>
+<td>Autenticación fallida</td>
+</tr>
+<tr>
+<td>550</td>
+<td>Archivo no disponible o acceso denegado</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="el-comando-port">EL COMANDO PORT </h3>
+<div class="style-normal">
+<p>El comando <code>PORT</code> es utilizado en el <strong>modo activo</strong> de FTP para indicar al servidor la dirección IP y el puerto TCP en el que el cliente está escuchando para la conexión de datos. La sintaxis del comando es la siguiente:</p>
+</div>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PORT h1,h2,h3,h4,p1,p2
+</code></pre><p>Donde:</p>
+<div class="style-list">
+<ul>
+<li><code>h1,h2,h3,h4</code>: representan los cuatro octetos de la dirección IP del cliente.</li>
+<li><code>p1,p2</code>: representan el puerto TCP en el que el cliente está escuchando, calculado como <code>p1*256 + p2</code>.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Comando PORT</p>
+<p>En el siguiente ejemplo se muestra un comando <code>PORT</code> típico:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PORT 192,168,1,50,8,69
+</code></pre><p>En este ejemplo, la dirección IP del cliente es <code>192.168.1.50</code> y el puerto es <code>2077</code> (8*256 + 69). Tras recibir este comando, el servidor FTP intentará establecer una conexión TCP al puerto <code>2077</code> de la dirección <code>192.168.1.50</code>.</p>
+</div>
+</div>
+<h3 id="el-comando-pasv">EL COMANDO PASV </h3>
+<div class="style-normal">
+<p>El comando <code>PASV</code> es utilizado en el <strong>modo pasivo</strong> de FTP para solicitar al servidor que abra un puerto TCP para la conexión de datos. Cuando el cliente envía el comando <code>PASV</code>, el servidor responde con un mensaje que incluye la dirección IP y el puerto que el cliente debe usar para establecer la conexión de datos. La respuesta del servidor tiene la siguiente estructura:</p>
+</div>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>227 Entering Passive Mode (h1,h2,h3,h4,p1,p2)
+</code></pre><p>Donde:</p>
+<div class="style-list">
+<ul>
+<li><code>h1,h2,h3,h4</code>: representan los cuatro octetos de la dirección IP del servidor.</li>
+<li><code>p1,p2</code>: representan el puerto TCP que el servidor ha abierto para la conexión de datos, calculado como <code>p1*256 + p2</code>.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Comando PASV</p>
+<p>En el siguiente ejemplo se muestra un comando <code>PASV</code> típico:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PASV
+</code></pre><p>En este ejemplo, el servidor responde con un mensaje como <code>227 Entering Passive Mode (192,168,1,50,8,69)</code>, indicando que el servidor está escuchando en la dirección <code>192.168.1.50</code> y el puerto <code>2077</code> (8*256 + 69). Tras recibir la respuesta del servidor, el cliente FTP intentará establecer una conexión TCP al puerto <code>2077</code> de la dirección <code>192.168.1.50</code>.</p>
+</div>
+</div>
+<h3 id="uso-de-los-comandos-ftp">USO DE LOS COMANDOS FTP </h3>
+<div class="style-normal">
+<p>Los comandos FTP se envían a través del canal de control utilizando una conexión TCP establecida entre el cliente y el servidor. Cada comando debe ser seguido por una secuencia de caracteres de nueva línea (CRLF) para indicar el final del comando. Herramientas como <code>telnet</code> y/o netcat (<code>nc</code>) pueden utilizarse para enviar comandos FTP manualmente y observar las respuestas del servidor.</p>
+</div>
+<div class="style-list">
+<div class="admonition example">
+<p class="admonition-title">Sesión FTP en modo activo</p>
+<p>El siguiente ejemplo ilustra una sesión FTP en modo activo utilizando <code>telnet</code> para la conexión de control y <code>netcat</code> para la conexión de datos. Nosuestra cómo un cliente FTP se conecta a un servidor (<code>192.168.10.251</code>), autentica al usuario (<code>jose</code> con contraseña <code>pepe</code>), solicita un listado de archivos (<code>LIST</code>) y cierra la sesión.</p>
+<div class="box_bg_lightgray">
+<p><strong>Conexión de control con Telnet</strong></p>
+<p>Cliente-LX:~# telnet 192.168.10.251 21<br>
+<em>Connected to 192.168.10.251<br>
+220-FileZilla Server 0.9.60 beta<br>
+220-written by Tim Kosse (<code>tim.kosse[at]filezilla-project.org</code>)<br>
+220 Please visit <code>filezilla-project.org</code></em><br>
+USER jose<br>
+<em>331 Password required for jose</em><br>
+PASS pepe<br>
+<em>230 Logged on</em><br>
+PORT 192,168,10,66,200,1<br>
+<em>200 Port command successful</em><br>
+LIST<br>
+<em>150 Opening data channel for directory listing of "/"<br>
+226 Successfully transferred "/"</em><br>
+QUIT<br>
+<em>221 Goodbye<br>
+Connection closed by foreign host</em><br>
+Cliente-LX:~#</p>
+</div> <!-- fin caso de estudio -->
+<p>Antes de ejecutar el comando <code>LIST</code>, es necesario abrir una conexión de datos utilizando <code>netcat</code> en el puerto especificado en el comando <code>PORT</code> (en este caso, puerto <code>51201</code>, que se calcula como <code>200*256 + 1</code>).</p>
+<div class="box_bg_lightgray">
+<p><strong>Conexión de datos con netcat</strong></p>
+<p>Cliente-LX:~# nc -l -p 51201<br>
+X1-L1:*# nc -l -p 51201<br>
+-rw-r-xr-x 1 ftp ftp 136774728 Jan 12 09:59 Autofirma_64_v1_9_installer.exe<br>
+-rw-r--r-- 1 ftp ftp        89 Jan 17 23:44 datos.txt<br>
+-rw-r-xr-x 1 ftp ftp   2241216 Jan 17 22:18 filezilla-server-0-9-60-2.exe</p>
+</div> <!-- fin caso de estudio -->
+</div>
+<div class="admonition example">
+<p class="admonition-title">Sesión FTP en modo pasivo</p>
+<p>El siguiente ejemplo ilustra una sesión FTP en modo pasivo utilizando <code>telnet</code> para la conexión de control y <code>telnet</code> nuevamente para la conexión de datos. Muestra cómo un cliente FTP se conecta a un servidor (<code>192.168.10.251</code>), autentica al usuario (<code>jose</code> con contraseña <code>pepe</code>), descarga un archivo (<code>RETR datos.txt</code>) y cierra la sesión.</p>
+<div class="box_bg_lightgray">
+<p><strong>Conexión de control con Telnet</strong></p>
+<p>Cliente-LX:~# telnet 192.168.10.251 21<br>
+<em>Connected to 192.168.10.251<br>
+220-FileZilla Server 0.9.60 beta<br>
+220-written by Tim Kosse (<code>tim.kosse@filezilla-project.org</code>)<br>
+220 Please visit <code>https://filezilla-project.org/</code></em><br>
+USER jose<br>
+<em>331 Password required for jose</em><br>
+PASS pepe<br>
+<em>230 Logged on</em><br>
+PASV<br>
+<em>227 Entering Passive Mode (192,168,10,251,230,126)</em><br>
+RETR datos.txt<br>
+<em>150 Opening data channel for file download from server of "/datos.txt"<br>
+226 Successfully transferred "/datos.txt"</em><br>
+QUIT<br>
+<em>221 Goodbye<br>
+Connection closed by foreign host</em><br>
+Cliente-LX:~#</p>
+</div> <!-- fin caso de estudio -->
+<p>Antes de ejecutar el comando <code>RETR</code>, es necesario abrir una conexión de datos utilizando <code>telnet</code> en la dirección IP y puerto especificados en la respuesta al comando <code>PASV</code> (en este caso, dirección <code>192.168.10.251</code> y puerto <code>58878</code>, que se calcula como <code>230*256 + 126</code>).</p>
+<div class="box_bg_lightgray">
+<p><strong>Conexión de datos con Telnet</strong></p>
+<p>Cliente-LX:~# telnet 192.168.10.251 59006<br>
+<em>Connected to 192.168.10.251</em><br>
+Fichero de texto contiene 3 líneas<br>
+Esta es la segunda línea<br>
+Esta es la tercera línea<br>
+<em>Connection closed by foreign host</em><br>
+Cliente-LX:~#</p>
+</div> <!-- fin caso de estudio -->
+</div>
+<h2 id="seguridad-del-protocolo-ftp">SEGURIDAD DEL PROTOCOLO FTP </h2>
+<div class="style-normal">
+<p>El protocolo FTP presenta varios <strong>problemas de seguridad</strong> debido a que fue diseñado sin tener en cuenta las amenazas actuales de las redes.</p>
+</div>
+<div class="style-list">
+<h3 id="principales-problemas-de-seguridad">PRINCIPALES PROBLEMAS DE SEGURIDAD </h3>
+<ul>
+<li>
+<p><strong>Credenciales en texto plano</strong>:<br>
+El usuario y la contraseña se envían sin cifrar, por lo que pueden ser capturados fácilmente.</p>
+</li>
+<li>
+<p><strong>Datos sin cifrar</strong>:<br>
+Los archivos transferidos pueden ser interceptados y leídos por terceros.</p>
+</li>
+<li>
+<p><strong>Vulnerabilidad a ataques de red</strong>:<br>
+FTP es susceptible a ataques como interceptación de tráfico o ataques de fuerza bruta.</p>
+</li>
+<li>
+<p><strong>Uso de múltiples puertos</strong>:<br>
+El uso de varios puertos dificulta la configuración segura de firewalls y aumenta la superficie de ataque.</p>
+</li>
+</ul>
+</div>
+<h3 id="mejoras-de-seguridad">MEJORAS DE SEGURIDAD </h3>
+<div class="style-normal">
+<p>Para solucionar o reducir estos problemas se pueden aplicar las siguientes mejoras:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>Uso de FTPS</strong>:<br>
+Añade cifrado mediante TLS a FTP, protegiendo credenciales y datos.</p>
+</li>
+<li>
+<p><strong>Uso de SFTP</strong>:<br>
+Protocolo alternativo basado en SSH, más seguro y recomendado.</p>
+</li>
+<li>
+<p><strong>Restricción de accesos</strong>:<br>
+Limitar permisos de usuarios y desactivar el acceso anónimo si no es necesario.</p>
+</li>
+<li>
+<p><strong>Contraseñas seguras y control de intentos</strong>:<br>
+Evitar ataques de fuerza bruta.</p>
+</li>
+<li>
+<p><strong>Monitoreo y auditoría</strong>:<br>
+Registrar actividades para detectar usos indebidos.</p>
+</li>
+<li>
+<p><strong>Configuración adecuada de firewalls</strong>:<br>
+Permitir solo el tráfico necesario y proteger los puertos utilizados por FTP.</p>
+</li>
+</ul>
+</div>
+</div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
