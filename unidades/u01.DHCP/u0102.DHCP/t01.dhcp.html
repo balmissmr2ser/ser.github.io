@@ -178,8 +178,13 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   text-align: justify;
 }
 .markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
   text-align: justify;
   font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
 }
 .markdown-preview.markdown-preview .style-title {
   text-indent: 0cm;
@@ -206,6 +211,12 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 }
 .markdown-preview.markdown-preview .md-toc {
   background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
 }
 
       </style>
