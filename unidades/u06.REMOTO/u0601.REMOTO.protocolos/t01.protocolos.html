@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - Unidad 06 Teoría Acceso Remoto</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,6 +167,57 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -190,96 +245,88 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;
-    text-size: small    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
-<p><img src="../../../assets/img-BalmisHeader.png" alt="ONU"></p>
 <div class="style-title">
-<h1 id="unidad-06-teoría-acceso-remoto">Unidad 06 Teoría Acceso Remoto </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="protocolos-de-acceso-remoto">PROTOCOLOS DE ACCESO REMOTO </h1>
 </div>
-<p>📙<a href="./teoria.AccesoRemoto.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
+<p>📙<a href="./t01.parametros.pdf">Descargar PDF</a></p>
 
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#introducción" class="md-toc-link">
-            <p>INTRODUCCIÓN</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#usos" class="md-toc-link">
-            <p>USOS</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#condiciones" class="md-toc-link">
-            <p>CONDICIONES</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+<details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#tipos" class="md-toc-link"><p>TIPOS</p>
+          <a href="#protocolos-de-acceso-remoto" class="md-toc-link"><p>PROTOCOLOS DE ACCESO REMOTO</p>
 </a>
           </summary>
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#interfaz-de-texto" class="md-toc-link"><p>Interfaz de Texto</p>
+          <a href="#introducción" class="md-toc-link"><p>INTRODUCCIÓN</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#telnet" class="md-toc-link">
-            <p>Telnet</p>
+          <a href="#aplicaciones" class="md-toc-link">
+            <p>APLICACIONES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#r-commands" class="md-toc-link">
-            <p>R-commands</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ssh" class="md-toc-link">
-            <p>SSH</p>
+          <a href="#condiciones" class="md-toc-link">
+            <p>CONDICIONES</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#interfaz-gráfica" class="md-toc-link"><p>Interfaz Gráfica</p>
+          <a href="#tipos-acceso-remoto" class="md-toc-link"><p>TIPOS ACCESO REMOTO</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#interfaz-texto" class="md-toc-link"><p>INTERFAZ TEXTO</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#rdp-remote-desktop-protocol" class="md-toc-link">
-            <p>RDP (Remote Desktop Protocol)</p>
+          <a href="#telnet" class="md-toc-link">
+            <p>TELNET</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#r-commands" class="md-toc-link">
+            <p>R-COMMANDS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ssh" class="md-toc-link">
+            <p>SSH</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#winrm" class="md-toc-link">
+            <p>WINRM</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#interfaz-gráfica" class="md-toc-link"><p>INTERFAZ GRÁFICA</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#rdp" class="md-toc-link">
+            <p>RDP</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#x-window" class="md-toc-link">
-            <p>X Window</p>
+            <p>X WINDOW</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#xdmcp" class="md-toc-link">
             <p>XDMCP</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#vnc-virtual-network-computing" class="md-toc-link">
-            <p>VNC (Virtual Network Computing)</p>
+          <a href="#vnc" class="md-toc-link">
+            <p>VNC</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#nx" class="md-toc-link">
@@ -288,79 +335,67 @@ table {
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#interfaz-específica" class="md-toc-link">
+            <p>INTERFAZ ESPECÍFICA</p>
+
+          </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#otros-tipos-de-acceso-remoto" class="md-toc-link"><p>OTROS TIPOS DE ACCESO REMOTO</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#aplicaciones-locales" class="md-toc-link">
-            <p>Aplicaciones Locales</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#administración-remota" class="md-toc-link"><p>Administración Remota</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#winrm" class="md-toc-link">
-            <p>WinRM</p>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tabla-resumen" class="md-toc-link">
+            <p>TABLA RESUMEN</p>
 
           </a></div>
         </div>
       </details>
     
-        </div>
-      </details>
-    
-</div>
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="introducción">INTRODUCCIÓN </h2>
+<div class="style-normal">
 <p>Los servicios de acceso y control remoto permiten, mediante la utilización de determinadas aplicaciones de software, establecer conexiones con equipos a distancia y administrarlos de manera centralizada sin necesidad de acceder directamente a ellos. Estos servicios siguen el <strong>modelo cliente-servidor</strong>. De esta manera la máquina a acceder y controlar remotamente deberá tener instalada una aplicación de tipo servidor y la máquina con la que nos conectamos una aplicación de tipo cliente.</p>
-<p><img src="./assets/services-consola.png" alt="Servicios Acceso Remoto" style="display: block; margin: auto; width: 80%; align:center;"></p>
-<h2 id="usos">USOS </h2>
-<p>Los usos más frecuentes del acceso remoto son:</p>
+<h3 id="aplicaciones">APLICACIONES </h3>
+<p>Las aplicaciones más frecuentes del acceso remoto son:</p>
+<div class="style-list">
 <ul>
-<li><strong>Administrar remotamente servidores</strong><br>
-Llamado en inglés RAS (Remote Access Server). Por ejemplo:
+<li><strong>Administración remota de servidores</strong><br>
+En inglés RAS (Remote Access Server).
 <ul>
-<li>Servidores apilados en un rack (armario de comunicaciones) y que no disponen de monitor, teclado o ratón.</li>
+<li>Servidores apilados en un rack (armario de comunicaciones) que no disponen de monitor, teclado o ratón.</li>
 <li>Servidores que no están físicamente presentes por encontrarse en una planta diferente del edificio a nuestra red local.</li>
 <li>Servidores que estén alojados en otras redes como una nube de Internet, etc.</li>
 </ul>
 </li>
-<li><strong>Acceder a datos en el servidor</strong><br>
-Por ejemplo, trabajadores de la empresa que tienen que acceder remotamente a datos desde su casa o desde la casa de un cliente.</li>
-<li><strong>Acceder a aplicaciones en el servidor</strong><br>
-Por ejemplo, trabajadores de la empresa que pueden ejecutar aplicaciones remotamente en el servidor para realizar su trabajo.</li>
+<li><strong>Acceso a datos de un servidor</strong><br>
+Por ejemplo, usuarios que acceden a datos de un servidor desde otras instalaciones.</li>
+<li><strong>Acceso a aplicaciones de un servidor</strong><br>
+Por ejemplo, usuarios que ejecutan aplicaciones en un servidor desde otras instalaciones.</li>
 <li><strong>Asistencia remota a usuarios</strong><br>
-Por ejemplo, controlar el ordenador de un cliente para modificar su configuración o resolver un problema.</li>
-<li><strong>Controlar dispositivos remotamente</strong><br>
+Por ejemplo, técnicos que controlan el ordenador de un usuario para modificar su configuración o resolver un problema.</li>
+<li><strong>Control de dispositivos</strong><br>
 Por ejemplo, obtener las imágenes de una cámara de vigilancia, apagar o encender un determinado dispositivo en una casa con domótica, etc.</li>
 </ul>
-<h2 id="condiciones">CONDICIONES </h2>
+</div>
+<h3 id="condiciones">CONDICIONES </h3>
 <p>Para poder utilizar un servicio de acceso remoto se debe tener en cuenta algunos aspectos:</p>
+<div class="style-list">
 <ul>
 <li><strong>Garantizar la conectividad entre servidor y cliente</strong><br>
-Es decir, el servidor debe ser accesible a nivel de red por parte del cliente, aunque el servidor se encuentre en una red diferente.</li>
+El servidor debe ser accesible a nivel de red por parte del cliente, aunque el servidor se encuentre en una red diferente.</li>
 <li><strong>Garantizar la seguridad del acceso al servidor</strong><br>
 La funcionalidad de los servicios de acceso remoto parece útil e inofensiva, pero puede tener consecuencias impredecibles si no se lleva a cabo con unas condiciones de seguridad bien definidas. Cualquier agujero de seguridad que presenten estos servicios puede permitir el acceso de terceros no deseados a informaciones confidenciales. Por ejemplo, se pueden establecer políticas de control de acceso al servidor mediante la configuración de usuarios y permisos de ejecución en el servidor o establecer condiciones de Firewall para que solamente determinados equipos puedan hacer uso del servicio de acceso remoto.</li>
 <li><strong>Garantizar la capacidad de la conexión</strong><br>
-Por ejemplo, se debe garantizar el ancho de banda suficiente para trabajar remotamente sin tener paradas o cortes en la conectividad. Es decir, se debe garantizar una latencia adecuada para el tipo de trabajo remoto que se quiere realizar.</li>
+Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin tener paradas o cortes en la conectividad. Por tanto, se debe garantizar una latencia adecuada para el tipo de trabajo remoto que se quiere realizar.</li>
 </ul>
-<h2 id="tipos">TIPOS </h2>
+</div>
+<h2 id="tipos-acceso-remoto">TIPOS ACCESO REMOTO </h2>
 <p>Básicamente existen dos tipos de acceso remoto, dependiendo de si se utiliza una interfaz de texto o una interfaz gráfica.</p>
-<h3 id="interfaz-de-texto">Interfaz de Texto </h3>
-<p>Los servicios de acceso remoto con interfaz de texto o consola normalmente utilizan protocolos de la pila TCP/IP como <em>telnet</em>, <em>r-commands</em> o <em>ssh</em>. No requieren un gran ancho de banda y, por tanto, funcionan adecuadamente con latencias altas.</p>
-<h4 id="telnet">Telnet </h4>
-<p>Es un protocolo muy antiguo que abre sesiones de terminal remotas enviando todos los datos sin encriptar, incluso los datos de autenticación, y por tanto son susceptibles de ser capturadas con un sniffer como <em>WireShark</em>. Esta herramienta se considera obsoleta y no se aconseja utilizarla. Sin embargo, la herramienta telnet es muy útil para entender el funcionamiento de los protocolos más importantes de la capa de aplicación de red como <em>http</em> y <em>https</em> (servicio web), <em>ftp</em> (servicio de transferencia de archivos) y <em>smtp</em>, <em>pop</em> e <em>imap</em> (servicio de correo electrónico).</p>
-<p>Telnet utiliza los siguientes puertos:</p>
+<h3 id="interfaz-texto">INTERFAZ TEXTO </h3>
+<p>Los servicios de acceso remoto con interfaz de texto o consola normalmente utilizan protocolos de la pila TCP/IP como <strong>telnet</strong>, <strong>r-commands</strong> o <strong>ssh</strong>. No requieren un gran ancho de banda y, por tanto, funcionan adecuadamente con latencias altas.</p>
+<h4 id="telnet">TELNET </h4>
+<p>Es un protocolo muy antiguo que abre sesiones de terminal remotas enviando todos los datos sin encriptar, incluso los datos de autenticación, y por tanto son susceptibles de ser capturadas con un sniffer de red como <em>WireShark</em>. Esta herramienta se considera obsoleta y no se aconseja utilizarla. Sin embargo, la herramienta telnet es muy útil para entender el funcionamiento de los protocolos más importantes de la capa de aplicación de red como <em>http</em> y <em>https</em> (servicio web), <em>ftp</em> (servicio de transferencia de archivos) y <em>smtp</em>, <em>pop</em> e <em>imap</em> (servicio de correo electrónico).</p>
+<p><strong>Telnet</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -371,17 +406,17 @@ Por ejemplo, se debe garantizar el ancho de banda suficiente para trabajar remot
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>23 TCP</td>
+<td>TCP 23</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td>TCP efímero</td>
 </tr>
 </tbody>
 </table>
-<h4 id="r-commands">R-commands </h4>
+<h4 id="r-commands">R-COMMANDS </h4>
 <p>Es una suite de herramientas diseñadas en la universidad de Berkeley para posibilitar a usuarios Unix acceder a sistemas Unix de forma remota y sencilla. Algunas de las herramientas de la suite son <em>rcp</em>, <em>rexec</em>, <em>rlogin</em>, <em>rsh</em>, ... Se trata también de conexiones sin encriptar por lo que también están en desuso.</p>
-<p><em>R-commands</em> utiliza los siguientes puertos:</p>
+<p><strong>R-commands</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -394,22 +429,22 @@ Por ejemplo, se debe garantizar el ancho de banda suficiente para trabajar remot
 <tr>
 <td>rcp</td>
 <td>rshd</td>
-<td>514 TCP</td>
+<td>TCP 514</td>
 </tr>
 <tr>
 <td>rexec</td>
 <td>rexecd</td>
-<td>512 TCP</td>
+<td>TCP 512</td>
 </tr>
 <tr>
 <td>rlogin</td>
 <td>rlogind</td>
-<td>513 TCP</td>
+<td>TCP 513</td>
 </tr>
 <tr>
 <td>rsh</td>
 <td>rshd</td>
-<td>514 TCP</td>
+<td>TCP 514</td>
 </tr>
 <tr>
 <td>rstat</td>
@@ -419,19 +454,18 @@ Por ejemplo, se debe garantizar el ancho de banda suficiente para trabajar remot
 <tr>
 <td>ruptime</td>
 <td>rwhod</td>
-<td>513 UDP</td>
+<td>UDP 513</td>
 </tr>
 <tr>
 <td>rwho</td>
 <td>rwhod</td>
-<td>513 UDP</td>
+<td>UDP 513</td>
 </tr>
 </tbody>
 </table>
 <h4 id="ssh">SSH </h4>
-<p>Es un protocolo de acceso remoto que se desarrolló como alternativa segura a <em>telnet</em> y <em>r-commands</em>. SSH (Secure Shell) es un protocolo de red que permite establecer una conexión segura entre dos equipos, normalmente entre un cliente y un servidor, para realizar tareas de administración remota o transferencia de archivos.<br>
-Actualmente, es el protocolo más utilizado para abrir sesiones de terminal remotas en modo texto. Con <em>ssh</em> se establece una sesión remota con un equipo de manera que toda la información se envía encriptada, incluida la información de autenticación. Este protocolo utiliza certificados digitales para controlar el acceso y asegurar que la información viaja encriptada. Además, <em>ssh</em> permite el uso de túneles para encriptar y transmitir la información de otras aplicaciones.</p>
-<p>SSH utiliza los siguientes puertos:</p>
+<p>Es un protocolo de acceso remoto que se desarrolló como alternativa segura a <em>telnet</em> y <em>r-commands</em>. <strong>SSH</strong> (Secure Shell) es un protocolo de red que permite establecer una conexión segura entre dos equipos, normalmente entre un cliente y un servidor, para realizar tareas de administración remota o transferencia de archivos. Actualmente, es el protocolo más utilizado para abrir sesiones de terminal remotas en modo texto. Con <em>ssh</em> se establece una sesión remota con un equipo de manera que toda la información se envía encriptada, incluida la información de autenticación. Este protocolo utiliza certificados digitales para controlar el acceso y asegurar que la información viaja encriptada. Además, <em>ssh</em> permite el uso de túneles para encriptar y transmitir la información de otras aplicaciones.</p>
+<p><strong>SSH</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -442,19 +476,48 @@ Actualmente, es el protocolo más utilizado para abrir sesiones de terminal remo
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>22 TCP</td>
+<td>TCP 2</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td>TCP efímero</td>
 </tr>
 </tbody>
 </table>
-<h3 id="interfaz-gráfica">Interfaz Gráfica </h3>
+<h4 id="winrm">WINRM </h4>
+<p>Es la implementación de Microsoft <strong>Windows</strong> del <strong>protocolo WS-Management</strong> (Web Service for Management), un protocolo estándar basado en el protocolo SOAP (Simple Object Access Protocol) que permite que interoperen el hardware y los sistemas operativos de diferentes proveedores.</p>
+<p>La implementación actual del protocolo WS-Management se basa en las siguientes especificaciones estándar: HTTPS, SOAP mediante HTTP (perfil WS-I), SOAP 1.2, WS-Addressing, WS-Transfer, WS-Enumeration y WS-Eventing. Para obtener más información sobre los estándares WS-Management y los esquemas XML puedes consultar la siguiente url <a href="https://dmtf.org/standards/wsman">https://dmtf.org/standards/wsman</a>.</p>
+<p>Se pueden ejecutar órdenes de administración remota en equipos Windows con la consola WinRS o estableciendo una conexión remota mediante PowerShell. Para establecer la conexión es evidente que tanto en el servidor como en el cliente el servicio WinRM debe estar en funcionamiento.</p>
+<p><strong>WinRM</strong> utiliza los siguientes <strong>puertos</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Aplicación</th>
+<th>Puerto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor</td>
+<td>HTTP  TCP 5985</td>
+</tr>
+<tr>
+<td>Servidor</td>
+<td>HTTPS TCP 5986</td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td>TCP efímero</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after:always;"></div>
+<h3 id="interfaz-gráfica">INTERFAZ GRÁFICA </h3>
 <p>Los servicios de acceso remoto con interfaz gráfica son aplicaciones para establecer sesiones gráficas. Normalmente son muy dependientes del sistema operativo, es decir, cliente y servidor deben tener el mismo tipo de sistema operativo. Requieren un gran ancho de banda y, por tanto, solo funcionan adecuadamente con latencias bajas.</p>
-<h4 id="rdp-remote-desktop-protocol">RDP (Remote Desktop Protocol) </h4>
-<p>Este protocolo es <strong>propietario de Microsoft</strong> y permite la transmisión de la información gráficamente entre un cliente y un servidor Windows. La información gráfica que genera el servidor es convertida a un formato propio del protocolo RDP y enviada al cliente. En el cliente, la información del protocolo RDP es interpretada y se reconstruye la imagen gráfica para mostrarla en su terminal. En el cliente, las pulsaciones de teclado, movimiento y pulsaciones del ratón son redirigidas al servidor también en formato RDP, para que el servidor las ejecute. La información transmitida entre cliente y servidor está cifrada y comprimida para mejorar la seguridad y la latencia de la conexión. Las aplicaciones más características de RDP son los servidores <strong>RDS</strong> (Remote Desktop Services) antes <strong>Terminal Server</strong> en el servidor Windows y los clientes <strong>RDC</strong> (Remote Desktop Connections) en los sistemas Windows de tipo desktop, como Windows 10 o Windows 11. En Linux existe también una versión open source de servidor RDP llamada <strong>XRPD</strong>, se puede utilizar cualquier cliente RDP como FreeRDP, rdesktop o incluso RDC de Windows para realizar la conexión.</p>
-<p>RDP utiliza los siguientes puertos:</p>
+<h4 id="rdp">RDP </h4>
+<p>El protocolo <strong>RDP</strong> (Remote Desktop Protocol) es <strong>propietario de Microsoft</strong> y permite la transmisión de la información gráficamente entre un cliente y un servidor Windows. La información gráfica que genera el servidor es convertida a un formato propio del protocolo RDP y enviada al cliente. En el cliente, la información del protocolo RDP es interpretada y se reconstruye la imagen gráfica para mostrarla en su terminal. En el cliente, las pulsaciones de teclado, movimiento y pulsaciones del ratón son redirigidas al servidor también en formato RDP, para que el servidor las ejecute. La información transmitida entre cliente y servidor está cifrada y comprimida para mejorar la seguridad y la latencia de la conexión.</p>
+<p>Las aplicaciones más características de RDP son los servidores <strong>RDS</strong> (Remote Desktop Services) antes <strong>Terminal Server</strong> en el servidor Windows y los clientes <strong>RDC</strong> (Remote Desktop Connections) en los sistemas Windows de tipo desktop, como Windows 10 o Windows 11. En Linux existe también una versión open source de servidor RDP llamada <strong>XRPD</strong>, se puede utilizar cualquier cliente RDP como <em>FreeRDP</em>, <em>rdesktop</em> o incluso <em>RDC de Windows</em> para realizar la conexión.</p>
+<p><strong>RDP</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -465,109 +528,104 @@ Actualmente, es el protocolo más utilizado para abrir sesiones de terminal remo
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>3389 TCP, UDP</td>
+<td>TCP,UDP 3389</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP, UDP</td>
+<td>TCP,UPD efímero</td>
 </tr>
 </tbody>
 </table>
-<h4 id="x-window">X Window </h4>
-<p>Este sistema implementa las funciones necesarias para controlar los gráficos como las ventanas, el ratón y el teclado en un ordenador. X Window se utiliza en la mayor parte de las versiones de Unix y sus derivados para implementar la interfaz gráfica. La versión actual es la 11, por lo que se dice X11. Entornos de escritorio tan conocidos en GNU/Linux como gnome, kde o xfce utilizan internamente X Window a pesar de que son escritorios con apariencia diferente y que cada uno tiene sus particularidades.<br>
-Una de las características de X Window es que es independiente del sistema operativo empleado, ya que se trata de una capa de aplicación que además se pensó para trabajar en red. Con el concepto de transparencia de red, X Window puede separar la estación donde se representa la interfaz gráfica de la estación donde se ejecuta la aplicación, evidentemente también puede tratarse de la misma estación.<br>
-En la terminología X Window, el software que permite dibujar las ventanas e interactuar con ellas se llama servidor X y los programas que envían las peticiones para dibujar las ventanas y reciben las interacciones con ellas se llaman cliente X.</p>
+<h4 id="x-window">X WINDOW </h4>
+<p>Este sistema implementa las funciones necesarias para controlar los gráficos como las ventanas, el ratón y el teclado en un ordenador. <strong>X Window</strong> se utiliza en la mayor parte de las versiones de Unix y sus derivados para implementar la interfaz gráfica. La <strong>versión actual</strong> es la 11, por lo que se dice <strong>X11</strong>. Entornos de escritorio tan conocidos en <strong>GNU/Linux</strong> como <em>gnome</em>, <em>kde</em> o <em>xfce</em> utilizan internamente X Window a pesar de que son escritorios con apariencia diferente y que cada uno tiene sus particularidades.</p>
+<p>Una de las características de X Window es que es independiente del sistema operativo empleado, ya que se trata de una capa de aplicación que además se pensó para trabajar en red. Con el concepto de transparencia de red, X Window puede separar la estación donde se representa la interfaz gráfica de la estación donde se ejecuta la aplicación, evidentemente también puede tratarse de la misma estación. En la terminología X Window, el software que permite dibujar las ventanas e interactuar con ellas se llama servidor X y los programas que envían las peticiones para dibujar las ventanas y reciben las interacciones con ellas se llaman cliente X.</p>
+<p>La comunicación entre las aplicaciones clientes X Window y el servidor X Window se realiza sin ningún tipo de encriptación, por lo que si se quiere dotar de seguridad a la transmisión será necesario emplear, por ejemplo, SSH para tunelizar el tráfico X Window o bien utilizar sistemas VPN.</p>
+<div style="style-example">
 <div class="admonition example">
 <p class="admonition-title">X Window</p>
 <p>En el ejemplo, el host cliente tiene instalado X Window en modo servidor. Una aplicación cliente 1 del propio host está utilizando el servidor X Window para mostrar información gráfica en la pantalla. Al mismo tiempo, el host cliente está ejecutando las aplicaciones cliente 2 y cliente 3 en el servidor, pero estas aplicaciones interactúan con el servidor X Window instalado en el host cliente, por tanto dibujan y muestran la información gráfica en el host cliente.</p>
-<p align="center" style="zoom:1" class="puml"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
-
-<!-- Generated by graphviz version 2.43.0 (0)
- -->
-<!-- Title: G Pages: 1 -->
-<svg width="424pt" height="162pt" viewBox="0.00 0.00 424.00 162.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 158)">
+<p align="center" style="zoom:1" class="puml"><svg width="421pt" height="170pt" viewBox="0.00 0.00 421.00 169.60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 165.6)">
 <title>G</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-158 420,-158 420,4 -4,4"></polygon>
-<g id="clust1" class="cluster">
-<title>cluster_C</title>
-<path fill="none" stroke="black" d="M20,-8C20,-8 152,-8 152,-8 158,-8 164,-14 164,-20 164,-20 164,-134 164,-134 164,-140 158,-146 152,-146 152,-146 20,-146 20,-146 14,-146 8,-140 8,-134 8,-134 8,-20 8,-20 8,-14 14,-8 20,-8"></path>
-<text text-anchor="middle" x="86" y="-130.8" font-family="Times,serif" font-size="14.00">CLIENTE</text>
-</g>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-165.6 417,-165.6 417,4 -4,4"></polygon>
 <g id="clust2" class="cluster">
 <title>cluster_S</title>
-<path fill="none" stroke="black" d="M184,-8C184,-8 396,-8 396,-8 402,-8 408,-14 408,-20 408,-20 408,-65 408,-65 408,-71 402,-77 396,-77 396,-77 184,-77 184,-77 178,-77 172,-71 172,-65 172,-65 172,-20 172,-20 172,-14 178,-8 184,-8"></path>
-<text text-anchor="middle" x="366" y="-61.8" font-family="Times,serif" font-size="14.00">SERVIDOR</text>
+<path fill="none" stroke="black" d="M183,-8C183,-8 393,-8 393,-8 399,-8 405,-14 405,-20 405,-20 405,-68.8 405,-68.8 405,-74.8 399,-80.8 393,-80.8 393,-80.8 183,-80.8 183,-80.8 177,-80.8 171,-74.8 171,-68.8 171,-68.8 171,-20 171,-20 171,-14 177,-8 183,-8"></path>
+<text text-anchor="middle" x="362.01" y="-64.2" font-family="Times New Roman,serif" font-size="14.00">SERVIDOR</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster_C</title>
+<path fill="none" stroke="black" d="M20,-8C20,-8 151,-8 151,-8 157,-8 163,-14 163,-20 163,-20 163,-141.6 163,-141.6 163,-147.6 157,-153.6 151,-153.6 151,-153.6 20,-153.6 20,-153.6 14,-153.6 8,-147.6 8,-141.6 8,-141.6 8,-20 8,-20 8,-14 14,-8 20,-8"></path>
+<text text-anchor="middle" x="85.5" y="-137" font-family="Times New Roman,serif" font-size="14.00">CLIENTE</text>
 </g>
 <!-- CX1 -->
 <g id="node1" class="node">
 <title>CX1</title>
-<path fill="none" stroke="black" d="M146,-46C146,-46 104,-46 104,-46 99,-46 94,-41 94,-36 94,-36 94,-26 94,-26 94,-21 99,-16 104,-16 104,-16 146,-16 146,-16 151,-16 156,-21 156,-26 156,-26 156,-36 156,-36 156,-41 151,-46 146,-46"></path>
-<text text-anchor="middle" x="125" y="-34" font-family="Arial" font-size="10.00">Cliente 1</text>
-<text text-anchor="middle" x="125" y="-23" font-family="Arial" font-size="10.00">X Window</text>
+<path fill="none" stroke="black" d="M143.84,-48C143.84,-48 104.16,-48 104.16,-48 98.83,-48 93.5,-42.67 93.5,-37.33 93.5,-37.33 93.5,-26.67 93.5,-26.67 93.5,-21.33 98.83,-16 104.16,-16 104.16,-16 143.84,-16 143.84,-16 149.17,-16 154.5,-21.33 154.5,-26.67 154.5,-26.67 154.5,-37.33 154.5,-37.33 154.5,-42.67 149.17,-48 143.84,-48"></path>
+<text text-anchor="middle" x="124" y="-35" font-family="Arial" font-size="10.00">Cliente 1</text>
+<text text-anchor="middle" x="124" y="-23" font-family="Arial" font-size="10.00">X Window</text>
 </g>
 <!-- SX -->
 <g id="node2" class="node">
 <title>SX</title>
-<path fill="none" stroke="black" d="M146,-115C146,-115 104,-115 104,-115 99,-115 94,-110 94,-105 94,-105 94,-95 94,-95 94,-90 99,-85 104,-85 104,-85 146,-85 146,-85 151,-85 156,-90 156,-95 156,-95 156,-105 156,-105 156,-110 151,-115 146,-115"></path>
-<text text-anchor="middle" x="125" y="-103" font-family="Arial" font-size="10.00">Servidor</text>
-<text text-anchor="middle" x="125" y="-92" font-family="Arial" font-size="10.00">X Window</text>
+<path fill="none" stroke="black" d="M143.84,-120.8C143.84,-120.8 104.16,-120.8 104.16,-120.8 98.83,-120.8 93.5,-115.47 93.5,-110.13 93.5,-110.13 93.5,-99.47 93.5,-99.47 93.5,-94.13 98.83,-88.8 104.16,-88.8 104.16,-88.8 143.84,-88.8 143.84,-88.8 149.17,-88.8 154.5,-94.13 154.5,-99.47 154.5,-99.47 154.5,-110.13 154.5,-110.13 154.5,-115.47 149.17,-120.8 143.84,-120.8"></path>
+<text text-anchor="middle" x="124" y="-107.8" font-family="Arial" font-size="10.00">Servidor</text>
+<text text-anchor="middle" x="124" y="-95.8" font-family="Arial" font-size="10.00">X Window</text>
 </g>
 <!-- SX&#45;&gt;CX1 -->
 <g id="edge1" class="edge">
 <title>SX-&gt;CX1</title>
-<path fill="none" stroke="black" d="M125,-74.69C125,-74.69 125,-56.27 125,-56.27"></path>
-<polygon fill="black" stroke="black" points="128.5,-56.27 125,-46.27 121.5,-56.27 128.5,-56.27"></polygon>
-<polygon fill="black" stroke="black" points="121.5,-74.69 125,-84.69 128.5,-74.69 121.5,-74.69"></polygon>
+<path fill="none" stroke="black" d="M124,-78.64C124,-78.64 124,-58.11 124,-58.11"></path>
+<polygon fill="black" stroke="black" points="127.5,-58.11 124,-48.11 120.5,-58.11 127.5,-58.11"></polygon>
+<polygon fill="black" stroke="black" points="120.5,-78.64 124,-88.64 127.5,-78.64 120.5,-78.64"></polygon>
 </g>
 <!-- CX2 -->
 <g id="node5" class="node">
 <title>CX2</title>
-<path fill="none" stroke="black" d="M312,-46C312,-46 270,-46 270,-46 265,-46 260,-41 260,-36 260,-36 260,-26 260,-26 260,-21 265,-16 270,-16 270,-16 312,-16 312,-16 317,-16 322,-21 322,-26 322,-26 322,-36 322,-36 322,-41 317,-46 312,-46"></path>
-<text text-anchor="middle" x="291" y="-34" font-family="Arial" font-size="10.00">Cliente 2</text>
-<text text-anchor="middle" x="291" y="-23" font-family="Arial" font-size="10.00">X Window</text>
+<path fill="none" stroke="black" d="M308.84,-48C308.84,-48 269.16,-48 269.16,-48 263.83,-48 258.5,-42.67 258.5,-37.33 258.5,-37.33 258.5,-26.67 258.5,-26.67 258.5,-21.33 263.83,-16 269.16,-16 269.16,-16 308.84,-16 308.84,-16 314.17,-16 319.5,-21.33 319.5,-26.67 319.5,-26.67 319.5,-37.33 319.5,-37.33 319.5,-42.67 314.17,-48 308.84,-48"></path>
+<text text-anchor="middle" x="289" y="-35" font-family="Arial" font-size="10.00">Cliente 2</text>
+<text text-anchor="middle" x="289" y="-23" font-family="Arial" font-size="10.00">X Window</text>
 </g>
 <!-- SX&#45;&gt;CX2 -->
 <g id="edge2" class="edge">
 <title>SX-&gt;CX2</title>
-<path fill="none" stroke="black" d="M166.22,-105C166.22,-105 291,-105 291,-105 291,-105 291,-56.33 291,-56.33"></path>
-<polygon fill="black" stroke="black" points="166.22,-101.5 156.22,-105 166.22,-108.5 166.22,-101.5"></polygon>
-<polygon fill="black" stroke="black" points="294.5,-56.33 291,-46.33 287.5,-56.33 294.5,-56.33"></polygon>
+<path fill="none" stroke="black" d="M164.65,-110C164.65,-110 289,-110 289,-110 289,-110 289,-58.16 289,-58.16"></path>
+<polygon fill="black" stroke="black" points="164.65,-106.5 154.65,-110 164.65,-113.5 164.65,-106.5"></polygon>
+<polygon fill="black" stroke="black" points="292.5,-58.16 289,-48.16 285.5,-58.16 292.5,-58.16"></polygon>
 </g>
 <!-- CX3 -->
 <g id="node6" class="node">
 <title>CX3</title>
-<path fill="none" stroke="black" d="M232,-46C232,-46 190,-46 190,-46 185,-46 180,-41 180,-36 180,-36 180,-26 180,-26 180,-21 185,-16 190,-16 190,-16 232,-16 232,-16 237,-16 242,-21 242,-26 242,-26 242,-36 242,-36 242,-41 237,-46 232,-46"></path>
-<text text-anchor="middle" x="211" y="-34" font-family="Arial" font-size="10.00">Cliente 3</text>
-<text text-anchor="middle" x="211" y="-23" font-family="Arial" font-size="10.00">X Window</text>
+<path fill="none" stroke="black" d="M229.84,-48C229.84,-48 190.16,-48 190.16,-48 184.83,-48 179.5,-42.67 179.5,-37.33 179.5,-37.33 179.5,-26.67 179.5,-26.67 179.5,-21.33 184.83,-16 190.16,-16 190.16,-16 229.84,-16 229.84,-16 235.17,-16 240.5,-21.33 240.5,-26.67 240.5,-26.67 240.5,-37.33 240.5,-37.33 240.5,-42.67 235.17,-48 229.84,-48"></path>
+<text text-anchor="middle" x="210" y="-35" font-family="Arial" font-size="10.00">Cliente 3</text>
+<text text-anchor="middle" x="210" y="-23" font-family="Arial" font-size="10.00">X Window</text>
 </g>
 <!-- SX&#45;&gt;CX3 -->
 <g id="edge3" class="edge">
 <title>SX-&gt;CX3</title>
-<path fill="none" stroke="black" d="M166.05,-95C166.05,-95 211,-95 211,-95 211,-95 211,-56.17 211,-56.17"></path>
-<polygon fill="black" stroke="black" points="166.05,-91.5 156.05,-95 166.05,-98.5 166.05,-91.5"></polygon>
-<polygon fill="black" stroke="black" points="214.5,-56.17 211,-46.17 207.5,-56.17 214.5,-56.17"></polygon>
-<text text-anchor="middle" x="242.44" y="-97.6" font-family="Times,serif" font-size="8.00">Protocolo X Window</text>
+<path fill="none" stroke="black" d="M164.56,-99C164.56,-99 210,-99 210,-99 210,-99 210,-58.22 210,-58.22"></path>
+<polygon fill="black" stroke="black" points="164.56,-95.5 154.56,-99 164.56,-102.5 164.56,-95.5"></polygon>
+<polygon fill="black" stroke="black" points="213.5,-58.22 210,-48.22 206.5,-58.22 213.5,-58.22"></polygon>
+<text text-anchor="middle" x="241.89" y="-101.4" font-family="Times New Roman,serif" font-size="8.00">Protocolo X Window</text>
 </g>
 <!-- SOC -->
 <g id="node3" class="node">
 <title>SOC</title>
-<path fill="none" stroke="black" d="M65.5,-115C65.5,-115 26.5,-115 26.5,-115 21.5,-115 16.5,-110 16.5,-105 16.5,-105 16.5,-95 16.5,-95 16.5,-90 21.5,-85 26.5,-85 26.5,-85 65.5,-85 65.5,-85 70.5,-85 75.5,-90 75.5,-95 75.5,-95 75.5,-105 75.5,-105 75.5,-110 70.5,-115 65.5,-115"></path>
-<text text-anchor="middle" x="46" y="-103" font-family="Arial" font-size="10.00">Sistema</text>
-<text text-anchor="middle" x="46" y="-92" font-family="Arial" font-size="10.00">Operativo</text>
+<path fill="none" stroke="black" d="M65.18,-120.8C65.18,-120.8 26.82,-120.8 26.82,-120.8 21.49,-120.8 16.16,-115.47 16.16,-110.13 16.16,-110.13 16.16,-99.47 16.16,-99.47 16.16,-94.13 21.49,-88.8 26.82,-88.8 26.82,-88.8 65.18,-88.8 65.18,-88.8 70.51,-88.8 75.84,-94.13 75.84,-99.47 75.84,-99.47 75.84,-110.13 75.84,-110.13 75.84,-115.47 70.51,-120.8 65.18,-120.8"></path>
+<text text-anchor="middle" x="46" y="-107.8" font-family="Arial" font-size="10.00">Sistema</text>
+<text text-anchor="middle" x="46" y="-95.8" font-family="Arial" font-size="10.00">Operativo</text>
 </g>
 <!-- SOS -->
 <g id="node4" class="node">
 <title>SOS</title>
-<path fill="none" stroke="black" d="M389.5,-46C389.5,-46 350.5,-46 350.5,-46 345.5,-46 340.5,-41 340.5,-36 340.5,-36 340.5,-26 340.5,-26 340.5,-21 345.5,-16 350.5,-16 350.5,-16 389.5,-16 389.5,-16 394.5,-16 399.5,-21 399.5,-26 399.5,-26 399.5,-36 399.5,-36 399.5,-41 394.5,-46 389.5,-46"></path>
-<text text-anchor="middle" x="370" y="-34" font-family="Arial" font-size="10.00">Sistema</text>
-<text text-anchor="middle" x="370" y="-23" font-family="Arial" font-size="10.00">Operativo</text>
+<path fill="none" stroke="black" d="M386.18,-48C386.18,-48 347.82,-48 347.82,-48 342.49,-48 337.16,-42.67 337.16,-37.33 337.16,-37.33 337.16,-26.67 337.16,-26.67 337.16,-21.33 342.49,-16 347.82,-16 347.82,-16 386.18,-16 386.18,-16 391.51,-16 396.84,-21.33 396.84,-26.67 396.84,-26.67 396.84,-37.33 396.84,-37.33 396.84,-42.67 391.51,-48 386.18,-48"></path>
+<text text-anchor="middle" x="367" y="-35" font-family="Arial" font-size="10.00">Sistema</text>
+<text text-anchor="middle" x="367" y="-23" font-family="Arial" font-size="10.00">Operativo</text>
 </g>
 </g>
-</svg>
-</p></div>
-<p>La comunicación entre las aplicaciones clientes X Window y el servidor X Window se realiza sin ningún tipo de encriptación, por lo que si se quiere dotar de seguridad a la transmisión será necesario emplear, por ejemplo, SSH para tunelizar el tráfico X Window o bien utilizar sistemas VPN.</p>
-<p>X Windows utiliza los siguientes puertos:</p>
+</svg></p></div>
+</div>
+<p><strong>X Windows</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -578,18 +636,18 @@ En la terminología X Window, el software que permite dibujar las ventanas e int
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>6000+N (número de pantalla) TCP</td>
+<td>TCP 6000+N (número de pantalla)</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td>TCP efímero</td>
 </tr>
 </tbody>
 </table>
 <h4 id="xdmcp">XDMCP </h4>
-<p>Normalmente al iniciar un ordenador GNU/Linux aparece una pantalla gráfica para realizar el login del sistema. Este programa, que en caso de autenticar correctamente al usuario carga todo el escritorio, es un administrador de pantalla. El protocolo que controla el administrador de pantalla se llama XDMCP (X display manager control protocol) y funciona sobre un servidor X Window. Hay diferentes implementaciones de este programa, las más usuales son: <em>gdm</em> (gnome), <em>kdm</em> (kde) y <em>xdm</em> (genérico).<br>
-En la mayor parte de los casos el administrador de pantallas solamente permite gestionar un servidor X Windows local, pero gracias al protocolo XDMCP también se puede gestionar servidor X11 remotos. En este caso, un equipo puede mostrar la pantalla de login y después mostrar el escritorio completo, no solo la ventana de una aplicación concreta. La configuración de XDMCP puede ser muy compleja.</p>
-<p>XDMCP utiliza los siguientes puertos:</p>
+<p>Normalmente al iniciar un ordenador <strong>GNU/Linux</strong> aparece una pantalla gráfica para realizar el login del sistema. Este programa, que en caso de autenticar correctamente al usuario carga todo el escritorio, es un administrador de pantalla. El <strong>protocolo</strong> que controla el administrador de pantalla se llama <strong>XDMCP</strong> (X display manager control protocol) y funciona sobre un servidor X Window. Hay diferentes implementaciones de este programa, las más usuales son: <em>gdm</em> (gnome), <em>kdm</em> (kde) y <em>xdm</em> (genérico).</p>
+<p>En la mayor parte de los casos el administrador de pantallas solamente permite gestionar un servidor X Windows local, pero gracias al protocolo XDMCP también se puede gestionar servidor X11 remotos. En este caso, un equipo puede mostrar la pantalla de login y después mostrar el escritorio completo, no solo la ventana de una aplicación concreta. La configuración de XDMCP puede ser muy compleja.</p>
+<p><strong>XDMCP</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -600,20 +658,20 @@ En la mayor parte de los casos el administrador de pantallas solamente permite g
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>177 TCP</td>
+<td>TCP 177</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td>TCP efímero</td>
 </tr>
 </tbody>
 </table>
-<h4 id="vnc-virtual-network-computing">VNC (Virtual Network Computing) </h4>
-<p>Este sistema permite mostrar y controlar gráficamente un escritorio remoto. Utiliza el protocolo RFB (Remote Frame Buffer Protocol) que se limita a transmitir cada uno de los píxeles del buffer gráfico de la memoria de vídeo del servidor al cliente y los eventos de teclado y ratón del cliente al servidor. Las últimas versiones de RFB han sido ampliadas para soportar nuevas funcionalidades como, por ejemplo, la transferencia de archivos entre el cliente y el servidor. Por defecto, RFB es un protocolo no seguro, lo que significa que las transmisiones se realizan sin cifrar. La única transmisión que se cifra es la contraseña, aunque tanto la clave de cifrado como la contraseña cifrada pueden ser conseguidas mediante un sniffer y, por tanto, pueden ser descubiertas.<br>
-VNC es independiente de la plataforma, hay cliente y servidor para muchos tipos de sistemas operativos y también para Java. Un servidor VNC puede atender a varios clientes al mismo tiempo. El uso del protocolo RFB hace que VNC necesite un ancho de banda grande, por lo que se han desarrollado varios métodos para codificar los píxeles de una manera más comprimida (encoders). VNC permite negociar al cliente y al servidor qué tipo de encoder utilizará en la conexión. El encoder por defecto transmite cada uno de los píxeles de la memoria de vídeo que forman la pantalla completa, después solamente envía los píxeles que cambian.<br>
-Una característica fundamental del sistema VNC es que el cliente no conserva ningún estado de la conexión. Así es posible cerrar un cliente y volverlo a abrir, incluso en otro equipo, como si se tratara de un monitor virtual.<br>
-Dado que RFB es un protocolo no seguro, si se utiliza VNC en una red que no es de confianza, será necesario combinar su uso con un túnel SSH o con una VPN.<br>
-Hay que recalcar que tanto VNC como RFB se distribuyen con licencia libre de tipo GPL, es decir, que su código se puede reutilizar y modificar, lo que ha hecho que haya numerosas versiones.</p>
+<h4 id="vnc">VNC </h4>
+<p>El sistema <strong>VNC</strong> (Virtual Network Computing) permite mostrar y controlar gráficamente un escritorio remoto. Utiliza el <strong>protocolo RFB</strong> (Remote Frame Buffer Protocol) que se limita a transmitir cada uno de los píxeles del buffer gráfico de la memoria de vídeo del servidor al cliente y los eventos de teclado y ratón del cliente al servidor. Las últimas versiones de RFB han sido ampliadas para soportar nuevas funcionalidades como, por ejemplo, la transferencia de archivos entre el cliente y el servidor.</p>
+<p>Por defecto, RFB es un protocolo no seguro, lo que significa que las transmisiones se realizan sin cifrar. La única transmisión que se cifra es la contraseña, aunque tanto la clave de cifrado como la contraseña cifrada pueden ser conseguidas mediante un sniffer y, por tanto, pueden ser descubiertas. Dado que RFB es un protocolo no seguro, si se utiliza VNC en una red que no es de confianza, será necesario combinar su uso con un túnel SSH o con una VPN.</p>
+<p>VNC es independiente de la plataforma, hay cliente y servidor para muchos tipos de sistemas operativos y también para Java. Un servidor VNC puede atender a varios clientes al mismo tiempo. El uso del protocolo RFB hace que VNC necesite un ancho de banda grande, por lo que se han desarrollado varios métodos para codificar los píxeles de una manera más comprimida (encoders). VNC permite negociar al cliente y al servidor qué tipo de encoder utilizará en la conexión. El encoder por defecto transmite cada uno de los píxeles de la memoria de vídeo que forman la pantalla completa, después solamente envía los píxeles que cambian.</p>
+<p>Una característica fundamental del sistema VNC es que el cliente no conserva ningún estado de la conexión. Así es posible cerrar un cliente y volverlo a abrir, incluso en otro equipo, como si se tratara de un monitor virtual.</p>
+<p>Hay que recalcar que tanto VNC como RFB se distribuyen con licencia libre de tipo GPL, es decir, que su código se puede reutilizar y modificar, lo que ha hecho que haya numerosas versiones.</p>
 <p>Versiones VNC:</p>
 <table>
 <thead>
@@ -645,7 +703,7 @@ Hay que recalcar que tanto VNC como RFB se distribuyen con licencia libre de tip
 </tr>
 </tbody>
 </table>
-<p>VNC utiliza los siguientes puertos:</p>
+<p><strong>VNC</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -656,25 +714,25 @@ Hay que recalcar que tanto VNC como RFB se distribuyen con licencia libre de tip
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>5900+N (número de pantalla) TCP</td>
+<td>TCP 5900+N (número de pantalla)</td>
 </tr>
 <tr>
 <td>Servidor WEB con applet Java</td>
-<td>5800+N (número de pantalla) TCP</td>
+<td>TCP 5800+N (número de pantalla)</td>
 </tr>
 <tr>
 <td>Cliente en modo listening</td>
-<td>5500 TCP <br> El servidor es el que inicia la conexión.</td>
+<td>TCP 5500 <br> El servidor es el que inicia la conexión.</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td>TCP efímero</td>
 </tr>
 </tbody>
 </table>
 <h4 id="nx">NX </h4>
-<p>Este sistema permite mostrar y controlar gráficamente un escritorio remoto. NX está basado en el protocolo DXPC (Differential X Protocol Compressor) para un sistema X Windows. Con NX se realiza una compresión del protocolo X Windows, lo que mejora notablemente la latencia. Además, se utiliza el protocolo SSH para encriptar las transmisiones, mejorando la seguridad. NX es una tecnología propietaria de la empresa NoMachine, aunque la empresa ha distribuido con licencia GPL el núcleo de compresión del protocolo, lo que ha permitido que se desarrollen algunas distribuciones freeware como <em>FreeNX</em> o <em>X2Go</em>.</p>
-<p>NX utiliza los siguientes puertos:</p>
+<p>Este sistema permite mostrar y controlar gráficamente un escritorio remoto. NX está basado en el <strong>protocolo DXPC</strong> (Differential X Protocol Compressor) <strong>para un sistema X Windows</strong>. Con NX se realiza una compresión del protocolo X Windows, lo que mejora notablemente la latencia. Además, se utiliza el protocolo SSH para encriptar las transmisiones, mejorando la seguridad. NX es una tecnología propietaria de la empresa NoMachine, aunque la empresa ha distribuido con licencia GPL el núcleo de compresión del protocolo, lo que ha permitido que se desarrollen algunas distribuciones freeware como <em>FreeNX</em> o <em>X2Go</em>.</p>
+<p><strong>NX</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -685,50 +743,173 @@ Hay que recalcar que tanto VNC como RFB se distribuyen con licencia libre de tip
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>4000 TCP</td>
+<td>TCP 4000</td>
 </tr>
 <tr>
 <td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td>TCP efímero</td>
 </tr>
 </tbody>
 </table>
-<h2 id="otros-tipos-de-acceso-remoto">OTROS TIPOS DE ACCESO REMOTO </h2>
-<p>Además de los accesos mediante interfaz de texto o gráfica, existen otros métodos de acceso remoto que se pueden clasificar en:</p>
-<h3 id="aplicaciones-locales">Aplicaciones Locales </h3>
-<p>Existen aplicaciones diseñadas específicamente para la administración remota de dispositivos o servicios concretos, como impresoras, cámaras de vigilancia, dispositivos de domótica o equipos de red (por ejemplo, puntos de acceso, switches o routers). Estas aplicaciones pueden ser programas instalados localmente en el ordenador del administrador o interfaces web proporcionadas por el propio dispositivo, a las que se accede mediante un navegador.</p>
-<p>En muchos casos, estas aplicaciones están hechas a medida para cada tipo de dispositivo, permitiendo su gestión remota de forma sencilla y adaptada a sus características.</p>
-<p>Además, también es posible administrar remotamente los servicios instalados en un servidor, como <em>Apache</em> (servidor web), <em>BIND</em> (servidor DNS) o <em>Samba</em> (servidor CIFS), utilizando gestores de administración de servicios como <em>Webmin</em>, que ofrece una interfaz web accesible habitualmente a través del puerto 10000 TCP.</p>
-<h3 id="administración-remota">Administración Remota </h3>
-<p>Sistemas y protocolos diseñados para la administración remota de equipos y servicios, generalmente orientados a la gestión y automatización de tareas administrativas. Incluyen tecnologías como WinRM, que permiten ejecutar comandos y gestionar sistemas de forma remota, habitualmente a través de protocolos estándar y seguros.</p>
-<h4 id="winrm">WinRM </h4>
-<p>Es la implementación de Microsoft del protocolo WS-Management (Web Service for Management), un protocolo estándar basado en el protocolo SOAP (Simple Object Access Protocol) que permite que interoperen el hardware y los sistemas operativos de diferentes proveedores.<br>
-La implementación actual del protocolo WS-Management se basa en las siguientes especificaciones estándar: HTTPS, SOAP mediante HTTP (perfil WS-I), SOAP 1.2, WS-Addressing, WS-Transfer, WS-Enumeration y WS-Eventing. Para obtener más información sobre los estándares WS-Management y los esquemas XML, consulte <a href="https://dmtf.org/standards/wsman">https://dmtf.org/standards/wsman</a>.</p>
-<p>Se pueden ejecutar órdenes de administración remota en equipos Windows con la consola WinRS o estableciendo una conexión remota mediante PowerShell. Para establecer la conexión es evidente que tanto en el servidor como en el cliente el servicio WinRM debe estar en funcionamiento.<br>
-WinRM utiliza los siguientes puertos:</p>
+<h3 id="interfaz-específica">INTERFAZ ESPECÍFICA </h3>
+<p>Además de los protocolos y aplicaciones de uso genérico para el acceso remoto basadas en interfaces de texto y/o gráficas existen aplicaciones diseñadas específicamente para la administración remota de dispositivos o servicios concretos. Por ejemplo, impresoras, cámaras de vigilancia, dispositivos de domótica, puntos de acceso, switches, routers, servicios de resolución de nombres, samba, etc..</p>
+<p>En el caso de los dispositivos se suelen implementar como  programas instalados localmente en el ordenador del administrador o interfaces web proporcionadas por el propio dispositivo a las que se accede mediante un navegador. Suelen estar diseñadas a medida para cada tipo de dispositivo permitiendo su gestión remota de forma sencilla.</p>
+<p>En el caso de los servicios es posible administrar remotamente los servicios instalados en un servidor. Por ejemplo,  <em>Apache</em> (servidor web), <em>BIND</em> (servidor DNS) o <em>Samba</em> (servidor CIFS). Algunos de los más utilizados son:</p>
 <table>
 <thead>
 <tr>
-<th>Aplicación</th>
-<th>Puerto</th>
+<th style="text-align:left">Herramienta</th>
+<th style="text-align:left">Descripción Básica</th>
+<th style="text-align:left">Protocolo</th>
+<th style="text-align:left">Puerto</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Servidor</td>
-<td>5985 TCP para HTTP</td>
+<td style="text-align:left"><strong><a href="https://cockpit-project.org">Cockpit</a></strong></td>
+<td style="text-align:left">Administración de sistema, hardware y contenedores. Ligero y moderno.</td>
+<td style="text-align:left">HTTPS</td>
+<td style="text-align:left"><strong>9090</strong></td>
 </tr>
 <tr>
-<td>Servidor</td>
-<td>5986 TCP para HTTPS</td>
+<td style="text-align:left"><strong><a href="https://webmin.com">Webmin</a></strong></td>
+<td style="text-align:left">Configuración profunda de archivos del sistema y servicios de red.</td>
+<td style="text-align:left">HTTPS</td>
+<td style="text-align:left"><strong>10000</strong></td>
 </tr>
 <tr>
-<td>Cliente</td>
-<td>Puerto efímero TCP</td>
+<td style="text-align:left"><strong><a href="https://www.ispconfig.org">ISPConfig</a></strong></td>
+<td style="text-align:left">Gestión multi-servidor de hosting, correo y DNS de código abierto.</td>
+<td style="text-align:left">HTTPS</td>
+<td style="text-align:left"><strong>8080</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><a href="https://www.aapanel.com">aaPanel</a></strong></td>
+<td style="text-align:left">Panel modular y visual para despliegue rápido de sitios y bases de datos.</td>
+<td style="text-align:left">HTTPS</td>
+<td style="text-align:left"><strong>8888</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><a href="https://www.virtualmin.com">Virtualmin</a></strong></td>
+<td style="text-align:left">Especializado en hosting virtual y dominios (basado en Webmin).</td>
+<td style="text-align:left">HTTPS</td>
+<td style="text-align:left"><strong>10000</strong></td>
 </tr>
 </tbody>
 </table>
-
+<h2 id="tabla-resumen">TABLA RESUMEN </h2>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>Protocolo</th>
+<th>Seguridad</th>
+<th>Puerto</th>
+<th>Características</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto</td>
+<td><strong>Telnet</strong></td>
+<td>No cifrado</td>
+<td>TCP 23</td>
+<td>Protocolo antiguo, no seguro. <br> Útil solo para pruebas básicas</td>
+</tr>
+<tr>
+<td>Texto</td>
+<td><strong>RCommands</strong></td>
+<td>No cifrado</td>
+<td>TCP 512–514</td>
+<td>Suite Unix clásica (rsh, rlogin…). <br> Obsoleta e insegura</td>
+</tr>
+<tr>
+<td>Texto</td>
+<td><strong>SSH</strong></td>
+<td>Cifrado y autenticado</td>
+<td>TCP 22</td>
+<td>Acceso remoto seguro. <br> Permite túneles y uso intensivo en servidores</td>
+</tr>
+<tr>
+<td>Texto</td>
+<td><strong>WinRM</strong></td>
+<td>HTTPS</td>
+<td>HTTP 5985 <br> HTTPS 5986</td>
+<td>Administración remota Windows mediante PowerShell/WS-Management.</td>
+</tr>
+<tr>
+<td>Gráfica</td>
+<td><strong>RDP</strong></td>
+<td>Cifrado y compresión</td>
+<td>TCP,UDP 3389</td>
+<td>Escritorio remoto Windows.<br>Eficiente y ampliamente utilizado</td>
+</tr>
+<tr>
+<td>Gráfica</td>
+<td><strong>XWindow (X11)</strong></td>
+<td>No cifrado</td>
+<td>TCP 6000+N</td>
+<td>Sistema gráfico de Linux. <br> Requiere túnel SSH para seguridad.</td>
+</tr>
+<tr>
+<td>Gráfica</td>
+<td><strong>XDMCP</strong></td>
+<td>No cifrado</td>
+<td>TCP 177</td>
+<td>Permite login remoto y sesiones gráficas completas. <br>Configuración compleja.</td>
+</tr>
+<tr>
+<td>Gráfica</td>
+<td><strong>VNC (RFB)</strong></td>
+<td>No cifrado</td>
+<td>TCP 5900+N <br> TCP 5800+N <br> TCP 5500</td>
+<td>Escritorio remoto multiplataforma.<br>Requiere cifrado adicional.</td>
+</tr>
+<tr>
+<td>Gráfica</td>
+<td><strong>NX</strong></td>
+<td>Cifrado (SSH) + compresión</td>
+<td>TCP 4000</td>
+<td>Escritorio remoto muy optimizado.<br>Ideal para conexiones lentas.</td>
+</tr>
+<tr>
+<td>Específica</td>
+<td><strong>Cockpit</strong></td>
+<td>HTTPS</td>
+<td>TCP 9090</td>
+<td>Administración ligera de sistema Linux.</td>
+</tr>
+<tr>
+<td>Específica</td>
+<td><strong>Webmin</strong></td>
+<td>HTTPS</td>
+<td>TCP 10000</td>
+<td>Admistración profunda de servicios y sistema Linux</td>
+</tr>
+<tr>
+<td>Específica</td>
+<td><strong>ISPConfig</strong></td>
+<td>HTTPS</td>
+<td>TCP 8080</td>
+<td>Gestión de hosting, correo y DNS en entornos multiservidor.</td>
+</tr>
+<tr>
+<td>Específica</td>
+<td><strong>aaPanel</strong></td>
+<td>HTTPS</td>
+<td>TCP 8888</td>
+<td>Panel visual para despliegue de sitios y bases de datos.</td>
+</tr>
+<tr>
+<td>Específica</td>
+<td><strong>Virtualmin</strong></td>
+<td>HTTPS</td>
+<td>TCP 10000</td>
+<td>Administración de hosting avanzada, basado en Webmin.</td>
+</tr>
+</tbody>
+</table>
+</div>
       </div>
       
       
