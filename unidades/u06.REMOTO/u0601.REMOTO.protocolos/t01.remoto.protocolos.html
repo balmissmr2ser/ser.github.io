@@ -325,14 +325,23 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             <p>XDMCP</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#vnc" class="md-toc-link">
-            <p>VNC</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#nx" class="md-toc-link">
             <p>NX</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#vnc" class="md-toc-link"><p>VNC</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#versiones" class="md-toc-link">
+            <p>VERSIONES</p>
+
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
@@ -356,7 +365,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div class="style-normal">
 <p>Los servicios de acceso y control remoto permiten, mediante la utilización de determinadas aplicaciones de software, establecer conexiones con equipos a distancia y administrarlos de manera centralizada sin necesidad de acceder directamente a ellos. Estos servicios siguen el <strong>modelo cliente-servidor</strong>. De esta manera la máquina a acceder y controlar remotamente deberá tener instalada una aplicación de tipo servidor y la máquina con la que nos conectamos una aplicación de tipo cliente.</p>
 <h3 id="aplicaciones">APLICACIONES </h3>
-<p>Las aplicaciones más frecuentes del acceso remoto son:</p>
+<p>Las aplicaciones o usos más frecuentes del acceso remoto son:</p>
 <div class="style-list">
 <ul>
 <li><strong>Administración remota de servidores</strong><br>
@@ -384,9 +393,9 @@ Por ejemplo, obtener las imágenes de una cámara de vigilancia, apagar o encend
 <li><strong>Garantizar la conectividad entre servidor y cliente</strong><br>
 El servidor debe ser accesible a nivel de red por parte del cliente, aunque el servidor se encuentre en una red diferente.</li>
 <li><strong>Garantizar la seguridad del acceso al servidor</strong><br>
-La funcionalidad de los servicios de acceso remoto parece útil e inofensiva, pero puede tener consecuencias impredecibles si no se lleva a cabo con unas condiciones de seguridad bien definidas. Cualquier agujero de seguridad que presenten estos servicios puede permitir el acceso de terceros no deseados a informaciones confidenciales. Por ejemplo, se pueden establecer políticas de control de acceso al servidor mediante la configuración de usuarios y permisos de ejecución en el servidor o establecer condiciones de Firewall para que solamente determinados equipos puedan hacer uso del servicio de acceso remoto.</li>
+La funcionalidad de los servicios de acceso remoto parece útil e inofensiva, pero puede tener consecuencias impredecibles si no se lleva a cabo con unas condiciones de seguridad bien definidas. Cualquier agujero de seguridad que presenten estos servicios puede permitir el acceso de terceros no deseados a informaciones confidenciales. Por ejemplo, para aumentar la seguridad del servicio de acceso remoto se pueden establecer políticas de control de acceso al servidor mediante la configuración de usuarios y permisos de ejecución en el servidor o establecer condiciones de firewall para que solamente determinados equipos puedan hacer uso de estos servicios.</li>
 <li><strong>Garantizar la capacidad de la conexión</strong><br>
-Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin tener paradas o cortes en la conectividad. Por tanto, se debe garantizar una latencia adecuada para el tipo de trabajo remoto que se quiere realizar.</li>
+Se debe garantizar ancho de banda suficiente para trabajar remotamente sin tener paradas o cortes en la conectividad con una latencia adecuada para el tipo de trabajo remoto que se quiere realizar.</li>
 </ul>
 </div>
 <h2 id="tipos-acceso-remoto">TIPOS ACCESO REMOTO </h2>
@@ -422,6 +431,7 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 <th>Aplicación</th>
 <th>Daemon</th>
 <th>Puerto</th>
+<th>Descripción</th>
 </tr>
 </thead>
 <tbody>
@@ -429,41 +439,48 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 <td>rcp</td>
 <td>rshd</td>
 <td>TCP 514</td>
+<td>Copia de archivos y/o directorios</td>
 </tr>
 <tr>
 <td>rexec</td>
 <td>rexecd</td>
 <td>TCP 512</td>
+<td>Ejecución de comando remoto</td>
 </tr>
 <tr>
 <td>rlogin</td>
 <td>rlogind</td>
 <td>TCP 513</td>
+<td>Inicio de sesión remota interactiva</td>
 </tr>
 <tr>
 <td>rsh</td>
 <td>rshd</td>
 <td>TCP 514</td>
+<td>Ejecución de comando remoto</td>
 </tr>
 <tr>
 <td>rstat</td>
 <td>rstatd</td>
-<td>UDP</td>
+<td>UDP efímero</td>
+<td>Estadísticas del equipo remoto</td>
 </tr>
 <tr>
 <td>ruptime</td>
 <td>rwhod</td>
 <td>UDP 513</td>
+<td>Estado de los equipos remotos</td>
 </tr>
 <tr>
 <td>rwho</td>
 <td>rwhod</td>
 <td>UDP 513</td>
+<td>Usuarios remotos conectados</td>
 </tr>
 </tbody>
 </table>
 <h4 id="ssh">SSH </h4>
-<p>Es un protocolo de acceso remoto que se desarrolló como alternativa segura a <em>telnet</em> y <em>r-commands</em>. <strong>SSH</strong> (Secure Shell) es un protocolo de red que permite establecer una conexión segura entre dos equipos, normalmente entre un cliente y un servidor, para realizar tareas de administración remota o transferencia de archivos. Actualmente, es el protocolo más utilizado para abrir sesiones de terminal remotas en modo texto. Con <em>ssh</em> se establece una sesión remota con un equipo de manera que toda la información se envía encriptada, incluida la información de autenticación. Este protocolo utiliza certificados digitales para controlar el acceso y asegurar que la información viaja encriptada. Además, <em>ssh</em> permite el uso de túneles para encriptar y transmitir la información de otras aplicaciones.</p>
+<p>Es un protocolo de acceso remoto que se desarrolló como alternativa segura a <em>telnet</em> y <em>r-commands</em>. <strong>SSH</strong> (Secure Shell) es un protocolo de red que permite establecer una conexión segura entre dos equipos, para realizar tareas de administración remota o transferencia de archivos. Actualmente, es el protocolo más utilizado para abrir sesiones de terminal remotas en modo texto. Con <em>ssh</em> se establece una sesión remota con un equipo de manera que toda la información se envía encriptada, incluida la información de autenticación. Este protocolo utiliza certificados digitales para controlar el acceso y asegurar que la información viaja encriptada. Además, <em>ssh</em> permite el uso de túneles para encriptar y transmitir la información de otras aplicaciones.</p>
 <p><strong>SSH</strong> utiliza los siguientes <strong>puertos</strong>:</p>
 <table>
 <thead>
@@ -475,7 +492,7 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 <tbody>
 <tr>
 <td>Servidor</td>
-<td>TCP 2</td>
+<td>TCP 22</td>
 </tr>
 <tr>
 <td>Cliente</td>
@@ -512,7 +529,7 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 </table>
 <div style="page-break-after:always;"></div>
 <h3 id="interfaz-gráfica">INTERFAZ GRÁFICA </h3>
-<p>Los servicios de acceso remoto con interfaz gráfica son aplicaciones para establecer sesiones gráficas. Normalmente son muy dependientes del sistema operativo, es decir, cliente y servidor deben tener el mismo tipo de sistema operativo. Requieren un gran ancho de banda y, por tanto, solo funcionan adecuadamente con latencias bajas.</p>
+<p>Los servicios de acceso remoto con interfaz gráfica son aplicaciones para establecer sesiones gráficas. Requieren un gran ancho de banda y, por tanto, solo funcionan adecuadamente con latencias bajas.</p>
 <h4 id="rdp">RDP </h4>
 <p>El protocolo <strong>RDP</strong> (Remote Desktop Protocol) es <strong>propietario de Microsoft</strong> y permite la transmisión de la información gráficamente entre un cliente y un servidor Windows. La información gráfica que genera el servidor es convertida a un formato propio del protocolo RDP y enviada al cliente. En el cliente, la información del protocolo RDP es interpretada y se reconstruye la imagen gráfica para mostrarla en su terminal. En el cliente, las pulsaciones de teclado, movimiento y pulsaciones del ratón son redirigidas al servidor también en formato RDP, para que el servidor las ejecute. La información transmitida entre cliente y servidor está cifrada y comprimida para mejorar la seguridad y la latencia de la conexión.</p>
 <p>Las aplicaciones más características de RDP son los servidores <strong>RDS</strong> (Remote Desktop Services) antes <strong>Terminal Server</strong> en el servidor Windows y los clientes <strong>RDC</strong> (Remote Desktop Connections) en los sistemas Windows de tipo desktop, como Windows 10 o Windows 11. En Linux existe también una versión open source de servidor RDP llamada <strong>XRPD</strong>, se puede utilizar cualquier cliente RDP como <em>FreeRDP</em>, <em>rdesktop</em> o incluso <em>RDC de Windows</em> para realizar la conexión.</p>
@@ -665,13 +682,59 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 </tr>
 </tbody>
 </table>
+<h4 id="nx">NX </h4>
+<p>Este sistema permite mostrar y controlar gráficamente un escritorio remoto. NX está basado en el <strong>protocolo DXPC</strong> (Differential X Protocol Compressor) <strong>para un sistema X Windows</strong>. Con NX se realiza una compresión del protocolo X Windows, lo que mejora notablemente la latencia. Además, se utiliza el protocolo SSH para encriptar las transmisiones, mejorando la seguridad. NX es una tecnología propietaria de la empresa NoMachine, aunque la empresa ha distribuido con licencia GPL el núcleo de compresión del protocolo, lo que ha permitido que se desarrollen algunas distribuciones freeware como <em>FreeNX</em> o <em>X2Go</em>.</p>
+<p><strong>NX</strong> utiliza los siguientes <strong>puertos</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Aplicación</th>
+<th>Puerto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor</td>
+<td>TCP 4000</td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td>TCP efímero</td>
+</tr>
+</tbody>
+</table>
 <h4 id="vnc">VNC </h4>
-<p>El sistema <strong>VNC</strong> (Virtual Network Computing) permite mostrar y controlar gráficamente un escritorio remoto. Utiliza el <strong>protocolo RFB</strong> (Remote Frame Buffer Protocol) que se limita a transmitir cada uno de los píxeles del buffer gráfico de la memoria de vídeo del servidor al cliente y los eventos de teclado y ratón del cliente al servidor. Las últimas versiones de RFB han sido ampliadas para soportar nuevas funcionalidades como, por ejemplo, la transferencia de archivos entre el cliente y el servidor.</p>
-<p>Por defecto, RFB es un protocolo no seguro, lo que significa que las transmisiones se realizan sin cifrar. La única transmisión que se cifra es la contraseña, aunque tanto la clave de cifrado como la contraseña cifrada pueden ser conseguidas mediante un sniffer y, por tanto, pueden ser descubiertas. Dado que RFB es un protocolo no seguro, si se utiliza VNC en una red que no es de confianza, será necesario combinar su uso con un túnel SSH o con una VPN.</p>
-<p>VNC es independiente de la plataforma, hay cliente y servidor para muchos tipos de sistemas operativos y también para Java. Un servidor VNC puede atender a varios clientes al mismo tiempo. El uso del protocolo RFB hace que VNC necesite un ancho de banda grande, por lo que se han desarrollado varios métodos para codificar los píxeles de una manera más comprimida (encoders). VNC permite negociar al cliente y al servidor qué tipo de encoder utilizará en la conexión. El encoder por defecto transmite cada uno de los píxeles de la memoria de vídeo que forman la pantalla completa, después solamente envía los píxeles que cambian.</p>
-<p>Una característica fundamental del sistema VNC es que el cliente no conserva ningún estado de la conexión. Así es posible cerrar un cliente y volverlo a abrir, incluso en otro equipo, como si se tratara de un monitor virtual.</p>
-<p>Hay que recalcar que tanto VNC como RFB se distribuyen con licencia libre de tipo GPL, es decir, que su código se puede reutilizar y modificar, lo que ha hecho que haya numerosas versiones.</p>
-<p>Versiones VNC:</p>
+<p>El sistema <strong>VNC</strong> (Virtual Network Computing) permite mostrar y controlar gráficamente un escritorio remoto. Utiliza el <strong>protocolo RFB</strong> (Remote Frame Buffer Protocol) que se limita a transmitir cada uno de los píxeles del buffer gráfico de la memoria de vídeo del servidor al cliente y los eventos de teclado y ratón del cliente al servidor. Las últimas versiones de RFB han sido ampliadas para soportar nuevas funcionalidades como, por ejemplo, la transferencia de archivos entre el cliente y el servidor. Por defecto, RFB es un protocolo no seguro, lo que significa que las transmisiones se realizan sin cifrar. La única transmisión que se cifra es la contraseña, aunque tanto la clave de cifrado como la contraseña cifrada pueden ser conseguidas mediante un sniffer y, por tanto, pueden ser descubiertas. Dado que RFB es un protocolo no seguro, si se utiliza VNC en una red que no es de confianza, será necesario combinar su uso con un túnel SSH o con una VPN.</p>
+<p>VNC es independiente de la plataforma, hay cliente y servidor para muchos tipos de sistemas operativos y también para Java. Un servidor VNC puede atender a varios clientes al mismo tiempo. El uso del protocolo RFB hace que VNC necesite un ancho de banda grande, por lo que se han desarrollado varios métodos para codificar los píxeles de una manera más comprimida (encoders). VNC permite negociar al cliente y al servidor qué tipo de encoder utilizará en la conexión. El encoder por defecto transmite cada uno de los píxeles de la memoria de vídeo que forman la pantalla completa, después solamente envía los píxeles que cambian. Otra característica fundamental del sistema VNC es que el cliente no conserva ningún estado de la conexió, por lo que, es posible cerrar un cliente y volverlo a abrir como si se tratara de un monitor virtual.</p>
+<p><strong>VNC</strong> utiliza los siguientes <strong>puertos</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Aplicación</th>
+<th>Puerto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor</td>
+<td>TCP 5900+N (nº pantalla)</td>
+</tr>
+<tr>
+<td>Servidor WEB <br> applet Java</td>
+<td>TCP 5800+N (nº pantalla)</td>
+</tr>
+<tr>
+<td>Cliente <br> modo listening</td>
+<td>TCP 5500 <br> Servidor inicia conexión.</td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td>TCP efímero</td>
+</tr>
+</tbody>
+</table>
+<h5 id="versiones">VERSIONES </h5>
+<p>Tanto VNC como RFB se distribuyen con licencia libre de tipo GPL, es decir, que su código se puede reutilizar y modificar, lo que ha hecho que haya numerosas versiones.</p>
 <table>
 <thead>
 <tr>
@@ -702,51 +765,43 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 </tr>
 </tbody>
 </table>
-<p><strong>VNC</strong> utiliza los siguientes <strong>puertos</strong>:</p>
+<p>Además, basándonse en los mismos conceptos que VNC, existen en el mercado algunas ofertas alternativas más potentes. Estas aplicaciones superan a las conexiones VNC tradicionales al eliminar la necesidad de configurar puertos en el router (port forwarding) y ofrecer mejor rendimiento en conexiones inestables.</p>
+<p>Entre ellas tenemos:</p>
 <table>
 <thead>
 <tr>
 <th>Aplicación</th>
-<th>Puerto</th>
+<th>Descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Servidor</td>
-<td>TCP 5900+N (número de pantalla)</td>
+<td>TeamViewer</td>
+<td>Es considerada una de las alternativas más robustas, ofreciendo acceso rápido, transferencia de archivos y soporte multiplataforma. Es gratuito para uso personal.</td>
 </tr>
 <tr>
-<td>Servidor WEB con applet Java</td>
-<td>TCP 5800+N (número de pantalla)</td>
+<td>AnyDesk</td>
+<td>Conocido por su alta velocidad y ligereza, utiliza un protocolo propio para escritorio remoto fluido.</td>
 </tr>
 <tr>
-<td>Cliente en modo listening</td>
-<td>TCP 5500 <br> El servidor es el que inicia la conexión.</td>
+<td>Splashtop</td>
+<td>Destaca por ofrecer alta definición y seguridad (cifrado AES de 256 bits), ideal para entornos corporativos y de teletrabajo</td>
 </tr>
 <tr>
-<td>Cliente</td>
-<td>TCP efímero</td>
-</tr>
-</tbody>
-</table>
-<h4 id="nx">NX </h4>
-<p>Este sistema permite mostrar y controlar gráficamente un escritorio remoto. NX está basado en el <strong>protocolo DXPC</strong> (Differential X Protocol Compressor) <strong>para un sistema X Windows</strong>. Con NX se realiza una compresión del protocolo X Windows, lo que mejora notablemente la latencia. Además, se utiliza el protocolo SSH para encriptar las transmisiones, mejorando la seguridad. NX es una tecnología propietaria de la empresa NoMachine, aunque la empresa ha distribuido con licencia GPL el núcleo de compresión del protocolo, lo que ha permitido que se desarrollen algunas distribuciones freeware como <em>FreeNX</em> o <em>X2Go</em>.</p>
-<p><strong>NX</strong> utiliza los siguientes <strong>puertos</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>Aplicación</th>
-<th>Puerto</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Servidor</td>
-<td>TCP 4000</td>
+<td>RustDesk</td>
+<td>Una alternativa gratuita y de código abierto (open-source) que permite el auto-alojamiento (self-hosting), siendo una opción segura sin depender de servidores de terceros.</td>
 </tr>
 <tr>
-<td>Cliente</td>
-<td>TCP efímero</td>
+<td>Chrome Remote Desktop</td>
+<td>Una opción gratuita basada en el navegador, fácil de configurar y utilizar para accesos rápidos.</td>
+</tr>
+<tr>
+<td>Zoho Assist</td>
+<td>Herramienta basada en la nube ideal para soporte técnico remoto que proporciona una interfaz directa.</td>
+</tr>
+<tr>
+<td>Supremo Remote Desktop</td>
+<td>Una solución fácil de usar y segura, muy popular para soporte técnico.</td>
 </tr>
 </tbody>
 </table>
@@ -819,7 +874,7 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 <td>Texto</td>
 <td><strong>RCommands</strong></td>
 <td>No cifrado</td>
-<td>TCP 512–514</td>
+<td>TCP 512 <br> TCP 513 <br> TCP 514</td>
 <td>Suite Unix clásica (rsh, rlogin…). <br> Obsoleta e insegura</td>
 </tr>
 <tr>
@@ -832,7 +887,7 @@ Se debe garantizar el ancho de banda suficiente para trabajar remotamente sin te
 <tr>
 <td>Texto</td>
 <td><strong>WinRM</strong></td>
-<td>HTTPS</td>
+<td>Cifrado HTTPS</td>
 <td>HTTP 5985 <br> HTTPS 5986</td>
 <td>Administración remota Windows mediante PowerShell/WS-Management.</td>
 </tr>
