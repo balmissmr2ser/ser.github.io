@@ -868,98 +868,98 @@ Se debe garantizar ancho de banda suficiente para trabajar remotamente sin tener
 <td><strong>Telnet</strong></td>
 <td>No cifrado</td>
 <td>TCP 23</td>
-<td>Protocolo antiguo, no seguro. <br> Útil solo para pruebas básicas</td>
+<td>Antiguo y no seguro. <br> Útil para pruebas básicas</td>
 </tr>
 <tr>
 <td>Texto</td>
 <td><strong>RCommands</strong></td>
 <td>No cifrado</td>
 <td>TCP 512 <br> TCP 513 <br> TCP 514</td>
-<td>Suite Unix clásica (rsh, rlogin…). <br> Obsoleta e insegura</td>
+<td>Suite Unix (rsh, rlogin…). <br> Obsoleta e insegura</td>
 </tr>
 <tr>
 <td>Texto</td>
 <td><strong>SSH</strong></td>
 <td>Cifrado y autenticado</td>
 <td>TCP 22</td>
-<td>Acceso remoto seguro. <br> Permite túneles y uso intensivo en servidores</td>
+<td>Acceso remoto seguro. <br> Permite túneles de otros protocolos</td>
 </tr>
 <tr>
 <td>Texto</td>
 <td><strong>WinRM</strong></td>
 <td>Cifrado HTTPS</td>
 <td>HTTP 5985 <br> HTTPS 5986</td>
-<td>Administración remota Windows mediante PowerShell/WS-Management.</td>
+<td>Acceso remoto Windows. <br> PowerShell/WS-Management.</td>
 </tr>
 <tr>
 <td>Gráfica</td>
 <td><strong>RDP</strong></td>
 <td>Cifrado y compresión</td>
 <td>TCP,UDP 3389</td>
-<td>Escritorio remoto Windows.<br>Eficiente y ampliamente utilizado</td>
+<td>Escritorio remoto Windows.<br>Eficiente y muy utilizado</td>
 </tr>
 <tr>
 <td>Gráfica</td>
 <td><strong>XWindow (X11)</strong></td>
 <td>No cifrado</td>
 <td>TCP 6000+N</td>
-<td>Sistema gráfico de Linux. <br> Requiere túnel SSH para seguridad.</td>
+<td>Sistema gráfico de Linux. <br> Túnel SSH para seguridad.</td>
 </tr>
 <tr>
 <td>Gráfica</td>
 <td><strong>XDMCP</strong></td>
 <td>No cifrado</td>
 <td>TCP 177</td>
-<td>Permite login remoto y sesiones gráficas completas. <br>Configuración compleja.</td>
+<td>Login remoto y sesiones gráficas. <br>Configuración compleja.</td>
 </tr>
 <tr>
 <td>Gráfica</td>
 <td><strong>VNC (RFB)</strong></td>
 <td>No cifrado</td>
 <td>TCP 5900+N <br> TCP 5800+N <br> TCP 5500</td>
-<td>Escritorio remoto multiplataforma.<br>Requiere cifrado adicional.</td>
+<td>Escritorio remoto.<br>Requiere cifrado adicional.</td>
 </tr>
 <tr>
 <td>Gráfica</td>
 <td><strong>NX</strong></td>
 <td>Cifrado (SSH) + compresión</td>
 <td>TCP 4000</td>
-<td>Escritorio remoto muy optimizado.<br>Ideal para conexiones lentas.</td>
+<td>Escritorio remoto.<br>Optimizado conexiones lentas.</td>
 </tr>
 <tr>
 <td>Específica</td>
 <td><strong>Cockpit</strong></td>
 <td>HTTPS</td>
 <td>TCP 9090</td>
-<td>Administración ligera de sistema Linux.</td>
+<td>Administración sistema Linux.</td>
 </tr>
 <tr>
 <td>Específica</td>
 <td><strong>Webmin</strong></td>
 <td>HTTPS</td>
 <td>TCP 10000</td>
-<td>Admistración profunda de servicios y sistema Linux</td>
+<td>Administración sistema Linux</td>
 </tr>
 <tr>
 <td>Específica</td>
 <td><strong>ISPConfig</strong></td>
 <td>HTTPS</td>
 <td>TCP 8080</td>
-<td>Gestión de hosting, correo y DNS en entornos multiservidor.</td>
+<td>Gestión hosting multiservidor</td>
 </tr>
 <tr>
 <td>Específica</td>
 <td><strong>aaPanel</strong></td>
 <td>HTTPS</td>
 <td>TCP 8888</td>
-<td>Panel visual para despliegue de sitios y bases de datos.</td>
+<td>Gestión hosting.</td>
 </tr>
 <tr>
 <td>Específica</td>
 <td><strong>Virtualmin</strong></td>
 <td>HTTPS</td>
 <td>TCP 10000</td>
-<td>Administración de hosting avanzada, basado en Webmin.</td>
+<td>Gestión hosting avanzada. <br> Basado en Webmin.</td>
 </tr>
 </tbody>
 </table>
