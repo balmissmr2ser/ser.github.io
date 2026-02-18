@@ -1,0 +1,765 @@
+<!DOCTYPE html><html><head>
+      <title>SER - U06 Linux SSH</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  const configureMermaidIconPacks = () => {
+    window["mermaid"].registerIconPacks([
+      {
+        name: "logos",
+        loader: () =>
+          fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+            (res) => res.json()
+          ),
+      },
+    ]);
+  };
+
+  if (document.readyState !== 'loading') {
+    configureMermaidIconPacks();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      configureMermaidIconPacks();
+    });
+  }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<style type="text/css">
+.style-normal {
+    text-indent: 0.5cm;
+    text-align: justify;
+}
+.style-example {
+    text-indent: 0.5cm;
+    text-align: justify;
+    text-size: small    
+}
+.style-title {
+    text-indent: 0cm;
+    text-align: center;    
+}
+table {
+    table-layout: auto !important;
+    width: fit-content !important;
+    max-width: none !important;
+    border-collapse: collapse;
+}
+</style>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="ONU"></p>
+<div class="style-title">
+<h1 id="u06-linux-ssh">U06 Linux SSH </h1>
+</div>
+<p>📙<a href="./linux.ssh.pdf">Descargar PDF</a></p>
+<h2 id="índice">ÍNDICE </h2>
+<div style="background-color: Lightgrey;">
+
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#servidor-ssh" class="md-toc-link"><p>SERVIDOR SSH</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#instalación" class="md-toc-link">
+            <p>INSTALACIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#programas-relacionados" class="md-toc-link">
+            <p>PROGRAMAS RELACIONADOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#archivos-de-configuración" class="md-toc-link">
+            <p>ARCHIVOS DE CONFIGURACIÓN</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#cliente-ssh" class="md-toc-link"><p>CLIENTE SSH</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#instalación-1" class="md-toc-link">
+            <p>INSTALACIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#programas-disponibles" class="md-toc-link">
+            <p>PROGRAMAS DISPONIBLES</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#archivos-de-configuración-del-cliente" class="md-toc-link">
+            <p>ARCHIVOS DE CONFIGURACIÓN DEL CLIENTE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#conexión-y-desconexión" class="md-toc-link">
+            <p>CONEXIÓN Y DESCONEXIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#generación-de-claves-públicas-y-privadas" class="md-toc-link">
+            <p>GENERACIÓN DE CLAVES PÚBLICAS Y PRIVADAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#uso-del-agente-de-claves" class="md-toc-link">
+            <p>USO DEL AGENTE DE CLAVES</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="servidor-ssh">SERVIDOR SSH </h2>
+<h3 id="instalación">INSTALACIÓN </h3>
+<p>Dependiendo de la distribución GNU/Linux que se utilice, el proceso de instalación del servidor puede variar.<br>
+Para los sistemas Debian y derivados (Ubuntu, Linux Mint, etc.) se utiliza el sistema de gestión de paquetes <code>apt</code>, mientras que en Alpine Linux se emplea <code>apk</code>.</p>
+<p>En Debian, el paquete que proporciona el servidor SSH se llama <code>openssh-server</code> y el que proporciona el cliente se llama <code>openssh-client</code>. El paquete <code>openssh-server</code> depende del paquete <code>openssh-client</code> y, por lo tanto, al instalar el servidor se instalará automáticamente el cliente. Existe un metapaquete llamado <code>ssh</code> que instala ambos paquetes. En este caso instalar ssh u openssh-server es equivalente, ya que ambos instalarán el servidor y el cliente.</p>
+<p>En Alpine Linux, el paquete que proporciona el servidor SSH se llama <code>openssh-server</code> y el que proporciona el cliente se llama <code>openssh-client</code>. También tenemos el metapaquete que instala ambos y que se llama <code>openssh</code>.</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<p><strong>Distribución Debian</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> update
+<span class="token function">apt</span> <span class="token function">install</span> openssh-server
+</code></pre></div>
+<div class="col-sm-6 my-auto">
+<p><strong>Distribución Alpine</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>apk update
+apk <span class="token function">add</span> openssh-server
+</code></pre></div>
+</div>
+<p>En Debian, tras la instalación se crea y activa el servicio <code>ssh</code> (o <code>sshd</code>) gestionado por <code>systemd</code>, y se generan las claves de host en <code>/etc/ssh/</code>. Sin embargo, en Alpine Linux el proceso es diferente: tras instalar el paquete <code>openssh-server</code> no se genera automáticamente el servicio ni las claves de host. Por lo tanto, en Alpine Linux es necesario generar manualmente las claves de host con el comando <code>ssh-keygen</code> y luego iniciar el servicio <code>sshd</code> utilizando <code>rc-service</code>. Para hacer que el servicio <code>sshd</code> se inicie automáticamente al arrancar el sistema en Alpine Linux, se debe habilitar con <code>rc-update</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Instalación SSH</p>
+<p>En Debian, el proceso de instalación del servidor SSH se realiza con el siguiente comando:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> <span class="token function">install</span> openssh-server
+</code></pre><p>En Alpine Linux, el proceso de instalación es el siguiente:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>apk <span class="token function">add</span> openssh-server
+ssh-keygen <span class="token parameter variable">-A</span>
+rc-service sshd start
+rc-update <span class="token function">add</span> sshd default
+</code></pre><p>La última línea asegura que el servicio <code>sshd</code> se inicie automáticamente al arrancar el sistema.</p>
+</div>
+<h3 id="programas-relacionados">PROGRAMAS RELACIONADOS </h3>
+<p>Cuando instalamos el servidor OpenSSH en un sistema Debian (o derivados) no solo se pone en marcha el servicio, sino que se añaden varias utilidades que cubren las tareas habituales relacionadas con SSH: ofrecer el servicio, conectarse a otros equipos, transferir ficheros y gestionar las claves de autenticación.</p>
+<ul>
+<li>
+<p><strong>sshd (servidor SSH).</strong> Es el servicio o demonio que queda en segundo plano escuchando normalmente en el puerto 22 a la espera de conexiones entrantes. Se administra como cualquier otro servicio del sistema (por ejemplo, con <code>systemctl start ssh</code>, <code>systemctl stop ssh</code>, etc.) y se configura principalmente a través del fichero <code>/etc/ssh/sshd_config</code>.</p>
+</li>
+<li>
+<p><strong>ssh (cliente SSH).</strong> Es el programa que se utiliza para conectarse de forma remota a otro equipo. Permite tanto abrir una sesión interactiva (tipo consola) como ejecutar un único comando en la máquina remota, recibiendo la salida en nuestra terminal local.</p>
+</li>
+<li>
+<p><strong>scp (copia de archivos sobre SSH).</strong> Proporciona una forma sencilla de copiar archivos y directorios entre el equipo local y el remoto utilizando SSH como canal cifrado. La sintaxis es similar a la de <code>cp</code>, pero indicando el equipo remoto con la forma <code>usuario@host:ruta</code>.</p>
+</li>
+<li>
+<p><strong>sftp (SFTP: "FTP sobre SSH").</strong> Ofrece un cliente interactivo de transferencia de archivos, similar a un cliente FTP tradicional, pero utilizando SSH como transporte seguro. Desde este entorno se pueden listar directorios, subir y descargar archivos, borrar, renombrar, etc., con comandos como <code>ls</code>, <code>cd</code>, <code>get</code> o <code>put</code>.</p>
+</li>
+<li>
+<p><strong>ssh-keygen (creación y gestión de claves).</strong> Se emplea para crear y administrar pares de claves pública/privada que permiten la autenticación sin contraseña. También genera las claves de host que identifican al propio servidor (las que se almacenan en <code>/etc/ssh/ssh_host_*</code>). Permite elegir el tipo de clave (<code>rsa</code>, <code>ed25519</code>, etc.), su tamaño, la ruta de almacenamiento y la frase secreta que protege la clave privada.</p>
+</li>
+<li>
+<p><strong>ssh-agent (agente de claves en memoria).</strong> Es un proceso auxiliar que guarda en memoria las claves privadas descifradas mientras dura la sesión de trabajo. De esta forma, el usuario introduce la frase secreta de la clave una sola vez y, a partir de ahí, las conexiones <code>ssh</code>, <code>scp</code> o <code>sftp</code> pueden utilizarla sin volver a pedirla.</p>
+</li>
+<li>
+<p><strong>ssh-add (gestión de claves del agente).</strong> Es la herramienta que se utiliza para añadir o eliminar claves privadas gestionadas por <code>ssh-agent</code>. Por ejemplo, <code>ssh-add ~/.ssh/id_ed25519</code> carga en el agente la clave privada indicada tras introducir su frase secreta.</p>
+</li>
+<li>
+<p><strong>ssh-keyscan (recogida de claves públicas de servidores).</strong> Permite obtener de forma rápida las claves públicas de host de uno o varios servidores remotos. Resulta útil para poblar o revisar el fichero <code>known_hosts</code> sin necesidad de establecer una conexión interactiva completa.</p>
+</li>
+</ul>
+<p>Además de estos programas principales, la instalación de OpenSSH incorpora otras utilidades auxiliares (como <code>ssh-askpass</code>, <code>ssh-keysign</code>, etc.) que normalmente no se ejecutan de manera directa, sino que son invocadas internamente por el propio sistema en escenarios de autenticación más avanzados.</p>
+<p>Para publicar claves en un servidor y poder usar autenticación basada en claves, lo más sencillo es utilizar <code>ssh-copy-id</code>. En caso de que no esté disponible, siempre se puede recurrir a <code>scp</code> y editar manualmente el fichero <code>authorized_keys</code> del usuario remoto.</p>
+<h3 id="archivos-de-configuración">ARCHIVOS DE CONFIGURACIÓN </h3>
+<p>La instalación del servidor crea y utiliza una serie de ficheros de configuración y claves que determinan cómo se comporta <code>sshd</code> y quién puede conectarse. En Debian 11, los más relevantes son:</p>
+<ul>
+<li><code>/etc/ssh/sshd_config</code><br>
+Archivo de configuración principal del servidor SSH (<code>sshd</code>), donde se definen aspectos como el puerto de escucha, los métodos de autenticación permitidos o las directivas de acceso de los usuarios.</li>
+<li><code>/etc/ssh/ssh_host_*_key</code><br>
+Conjunto de claves privadas de host utilizadas para identificar de forma única al servidor frente a los clientes.</li>
+<li><code>/home/&lt;usuario&gt;/.ssh/authorized_keys</code><br>
+Fichero que contiene las claves públicas autorizadas para la conexión sin contraseña de un usuario concreto.</li>
+</ul>
+<h2 id="cliente-ssh">CLIENTE SSH </h2>
+<h3 id="instalación-1">INSTALACIÓN </h3>
+<p>El cliente OpenSSH suele venir instalado por defecto en Debian 11. Si no estuviera disponible, se puede instalar el paquete <code>openssh-client</code>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> openssh-client
+</code></pre><h3 id="programas-disponibles">PROGRAMAS DISPONIBLES </h3>
+<p>Una vez instalado el cliente OpenSSH, el sistema dispone de un conjunto de herramientas orientadas al uso desde la máquina cliente. Muchas de ellas ya se han mencionado al describir el servidor, pero desde el punto de vista del usuario que se conecta conviene destacar las siguientes:</p>
+<ul>
+<li><code>ssh</code>: programa principal para establecer conexiones remotas interactivas o ejecutar comandos en otros equipos.</li>
+<li><code>scp</code>: utilidad para copiar archivos y directorios de forma segura entre el cliente y el servidor.</li>
+<li><code>sftp</code>: cliente interactivo de transferencia de archivos sobre SSH, pensado para subir, descargar y gestionar ficheros remotos.</li>
+<li><code>ssh-copy-id</code>: herramienta que copia la clave pública del usuario al servidor, facilitando la configuración de la autenticación sin contraseña.</li>
+<li>Herramientas de apoyo a la gestión de claves: <code>ssh-add</code>, <code>ssh-keyscan</code>, <code>ssh-keygen</code>, <code>ssh-agent</code>.</li>
+</ul>
+<h3 id="archivos-de-configuración-del-cliente">ARCHIVOS DE CONFIGURACIÓN DEL CLIENTE </h3>
+<p>El comportamiento del cliente SSH también se controla mediante distintos ficheros de configuración y claves que se encuentran repartidos entre la configuración global del sistema y el directorio personal de cada usuario. Los más habituales son:</p>
+<ul>
+<li><code>/etc/ssh/ssh_config</code><br>
+Fichero de configuración global del cliente SSH para todo el sistema, aplicable a todos los usuarios salvo que se sobreescriba con ajustes personales.</li>
+<li><code>/home/&lt;usuario&gt;/.ssh/known_hosts</code><br>
+Lista de servidores que el usuario ya ha autenticado y que se consideran seguros (almacena las claves públicas de host).</li>
+<li><code>/home/&lt;usuario&gt;/.ssh/config</code><br>
+Archivo de configuración específico del cliente SSH para un usuario concreto, en el que se pueden definir alias de hosts, puertos alternativos, usuarios por defecto, etc.</li>
+<li><code>/home/&lt;usuario&gt;/.ssh/id_[tipo_clave]</code><br>
+Clave privada del usuario. La palabra <em>tipo_clave</em> puede ser <code>rsa</code>, <code>ecdsa</code>, <code>ed25519</code>, etc.</li>
+<li><code>/home/&lt;usuario&gt;/.ssh/id_[tipo_clave].pub</code><br>
+Clave pública del usuario asociada a la clave privada anterior. Es la que se copia al servidor para la autenticación basada en claves.</li>
+</ul>
+<h3 id="conexión-y-desconexión">CONEXIÓN Y DESCONEXIÓN </h3>
+<p>El uso más habitual del cliente SSH consiste en abrir una sesión remota en otro equipo. Para ello, se ejecuta el comando <code>ssh</code> indicando el usuario y la máquina a la que se desea conectar. Si no se indica explícitamente el usuario remoto, se utilizará por defecto el mismo nombre de usuario con el que estamos conectados en el sistema local.</p>
+<p>Una vez establecida la conexión, trabajaremos en la consola del equipo remoto como si estuviéramos sentados delante de él. Cuando terminemos, la sesión se cierra utilizando comandos como <code>exit</code> o <code>logout</code>, o bien cerrando directamente la terminal.</p>
+<div class="admonition example">
+<p class="admonition-title">Conexión SSH</p>
+<p>En el siguiente ejemplo nos conectaremos, desde un cliente Alpine Linux, al servidor ssh (Debian) con el usuario <code>sshuser1</code>. La ip del servidor es la 192.168.1.5.<br>
+En las distribuciones Alpine Linux, el cliente SSH no viene instalado por defecto, por lo que el primer paso es instalarlo.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# apk add openssh-client
+(1/4) Installing openssh-keygen (10.2_p1-r0)
+(2/4) Installing libedit (20251016.3.1-r0)
+(3/4) Installing openssh-client-common (10.2_p1-r0)
+(4/4) Installing openssh-client-default (10.2_p1-r0)
+Executing busybox-1.37.0-r30.trigger
+OK: 176.4 MiB in 99 packages
+Alpine:~#
+</code></pre><p>A continuación, se establece la conexión con el servidor SSH con el usuario <code>sshuser1</code>. Se supone que el servidor está configurado para aceptar conexiones SSH y que existe el usuario <code>sshuser1</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh sshuser1@192.168.1.5
+The authenticity of host '192.168.1.5 (192.168.1.5)' can't be established.
+ED25519 key fingerprint is SHA256:GV0L9lTQT+DNDPqXQTZgITPBEIu+u0ix7wh9RC42j×jQ
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.1.5' (ED25519) to the list of known hosts.
+...
+...
+sshuser1@192.168.1.5's password:
+Linux SSHSERVER 5.10.0-38-amd64 #1 SMP Debian 5.10.249-1 (2026-02-10) x86_64
+...
+...
+sshuser1@SSHSERVER:~$
+</code></pre><p>En este intercambio de mensajes puede verse que es la primera vez que el cliente se conecta al servidor <code>192.168.1.5</code>. El servidor pide al cliente que acepte su clave pública y esta se añade al fichero ~/.ssh/known_hosts del cliente.<br>
+Fijémosnos que una vez conectados ha cambiado el prompt de la terminal.</p>
+</div>
+<p>El cliente SSH guarda en el fichero ~/.ssh/known_hosts las claves públicas de los servidores a los que se conecta. Para un mismo servidor puede haber varias líneas: una por cada tipo de clave de host que el servidor tenga configurado (por ejemplo, ED25519, ECDSA o RSA). En la primera conexión, como el cliente todavía no conoce ninguna clave, muestra un aviso indicando que la autenticidad del host no puede establecerse y enseña la huella (fingerprint) de una de esas claves. Si aceptamos (yes), esa clave se añade a known_hosts. En las versiones actuales de OpenSSH, una vez aceptada la primera clave, el servidor puede enviar por el canal cifrado el resto de claves de host que tiene, y el cliente también las guarda automáticamente; por eso, aun habiéndonos conectado solo una vez, es normal ver varias claves para la misma IP o nombre en known_hosts.</p>
+<p>Si queremos ver las claves de host de un servidor antes de conectarnos (o sin abrir una sesión interactiva), podemos usar el comando ssh-keyscan. Este comando pregunta al servidor qué claves de host tiene y las muestra todas, una por línea, sin modificar por sí mismo nuestro known_hosts. Es habitual que ssh-keyscan servidor muestre más claves de las que vemos en ~/.ssh/known_hosts: ssh-keyscan enseña todas las claves que el servidor anuncia, mientras que known_hosts solo contiene las que nuestro cliente ha ido aprendiendo y aceptando a lo largo de sus conexiones.</p>
+<div class="admonition example">
+<p class="admonition-title">Clave pública del servidor</p>
+<p>En este ejemplo comprobaremos que la clave pública del servidor que tengo en <code>~/.ssh/known_hosts</code> es la misma que se muestra al ejecutar <code>ssh-keyscan</code> para el servidor <code>192.168.1.5</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# cat ~/.ssh/known_hosts
+192.168.1.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSp0Ned52etjvIkefzCnk6p4AhWlu0uZzY4fmBCb0RC
+192.168.1.5 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmIzdhA6YNTYAAAAlbmIzdhA6YNTYAAABBB0EPAK85iPeMQSfsz22dGAW4532Bfcr1fjHdWgnYh3oRPKoPs5COi+fsFeDStNnWk7D+MxuQ1x9uSB6Zarwxs+s=
+Alpine:~#
+</code></pre><p>A continuación prguntamos al servidor por su clave pública con el comando <code>ssh-keyscan</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-keyscan 192.168.1.5
+# 192.168.1.5:22 SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u5
+# 192.168.1.5:22 SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u5
+192.168.1.5 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKDQcqvXhV+4JQ5UPGTi24y8jVGnM9cI1acBCC8s/L0bIrp7pvMAQm5EwXpjp3WXh0QOs/UadKrSKBcy46+p7to/ix7YZ4vowzMW8FC3Zjr7Ae0OZnfkkD4O++KjgxLzjtrmeuvpujkcKLfZ65oaEbLkrnBARWOOk/ZLmfJ0F84qIpE7jXk1zb6uC+lHlT2TeRd6Cx6qlxVp8JicPxwJ/WWTyLkbRavrvDm18HcOw1daW4KCnMAh5KbN0pe/m/ekRteObzRsIUlS04NsnAps82EcABtTLrr+Od3Rh50dtY6zp2eiN22Lcze4p/9DxG59eH7B2RznymeGYIMUqf9ZvkixdKyyyVWQGJ54nB1LuDiWJ5BynsU93c0xdZQ9FrfTmdHkny0BOT8RyKFIgjO2xgv2qjZ0YvXDRGz/NIEgXWQnBNAatCAZRhPlwKarPGQNIKW+Nb246c9JdC/Z/3ezIBYoxXjY85Krax4ljuryd9DQVKvE6ywrNfHZqLHr38r7M=
+# 192.168.1.5:22 SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u5
+192.168.1.5 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmIzdhAwNTYAAAAlbmIzdhAwNTYAAABBBDEPAK85iPeMQSfsz22dGAW4532Bfcr1fjHdWgnYh3oRPKoPs5COi+fsFeDStNnWk7D+MxuQ1x9uSB6Zarwxs+s=
+# 192.168.1.5:22 SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u5
+192.168.1.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSp0Ned52etjvIkefzCnk6p4AhWlu0uZzY4fmBCb0RC
+# 192.168.1.5:22 SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u5
+Alpine:~#
+</code></pre><p>Podemos ver que las dos claves públicas que se muestran al ejecutar <code>ssh-keyscan</code> coinciden con las que tenemos en el fichero <code>~/.ssh/known_hosts</code>, lo que confirma que el servidor es el mismo al que nos hemos conectado anteriormente y que no ha habido ningún cambio en sus claves de host.</p>
+</div>
+<p>Para cerrar una sesión SSH, se puede usar el comando <code>exit</code> o <code>logout</code>, o simplemente cerrar la terminal.</p>
+<div class="admonition example">
+<p class="admonition-title">Conexión SSH</p>
+<p>Tras cerrar la sesión, nos volveremos a encontrar en la terminal del cliente, con el prompt habitual.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>sshuser1@SSHSERVER:~$ exit
+logout
+Connection to 192.168.1.5 closed.
+Alpine:~# ssh sshuser1@192.168.1.5
+...
+...
+sshuser1@192.168.1.5's password:
+Linux LSSHSERVER 5.10.0-38-amd64 #1 SMP Debian 5.10.249-1 (2026-02-10) x86_64
+...
+...
+sshuser1@LSSHSERVER:~$
+</code></pre></div>
+<p>Ahora, al volver a conectarnos al servidor, el cliente SSH ya reconoce la clave pública del servidor (porque la guardó en <code>~/.ssh/known_hosts</code> en la conexión anterior) y no muestra el aviso de autenticidad del host. Sin embargo, como no hemos configurado aún la autenticación sin contraseña, el servidor nos pide la contraseña del usuario <code>sshuser1</code> para completar la conexión.</p>
+<h3 id="generación-de-claves-públicas-y-privadas">GENERACIÓN DE CLAVES PÚBLICAS Y PRIVADAS </h3>
+<p>Si queremos evitar el uso de contraseñas en cada conexión y aprovechar la autenticación basada en claves, en la máquina cliente se siguen tres pasos principales:</p>
+<ul>
+<li>generar un par de claves</li>
+<li>copiar la clave pública al servidor</li>
+<li>conectarse utilizando la clave privada</li>
+</ul>
+<p><strong>Generar un par de claves (pública y privada) con el comando <code>ssh-keygen</code></strong><br>
+El comando <code>ssh-keygen</code> se utiliza para crear un par de claves criptográficas (pública y privada) que permiten la autenticación sin contraseña en SSH. Su sintaxis básica es la siguiente:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>ssh-keygen <span class="token punctuation">[</span>opciones<span class="token punctuation">]</span>
+</code></pre><p>donde las opciones permiten configurar el tipo de clave, su tamaño, la frase secreta que la protege, el nombre del archivo donde se guardará la clave privada, etc. En las versiones actuales de OpenSSH, si se ejecuta sin opciones se generará por defecto una clave de tipo <code>ed25519</code> y se guardará en el directorio <code>~/.ssh/</code> con el nombre <code>id_ed25519</code> para la clave privada y <code>id_ed25519.pub</code> para la clave pública. Antiguamente se generaba por defecto una clave RSA de 2048 bits, pero en las versiones más recientes se ha cambiado a <code>ed25519</code> por ser un algoritmo más moderno y seguro.</p>
+<p>La siguiente tabla resume las opciones más comunes que se pueden usar con <code>ssh-keygen</code> para personalizar la generación de claves:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-t</code></td>
+<td>Define el tipo de clave a generar (por ejemplo, <code>rsa</code>, <code>ecdsa</code>, <code>ed25519</code>).</td>
+</tr>
+<tr>
+<td><code>-b</code></td>
+<td>Indica el tamaño de la clave en bits (por ejemplo, 2048 para RSA).</td>
+</tr>
+<tr>
+<td><code>-f</code></td>
+<td>Especifica el nombre del archivo donde se guardará la clave privada (la clave pública se guardará con el mismo nombre pero con la extensión <code>.pub</code>).</td>
+</tr>
+<tr>
+<td><code>-N</code></td>
+<td>Permite establecer una frase secreta para proteger la clave privada. Si se indica <code>-N ""</code>, la clave privada no tendrá frase secreta y podrá usarse sin necesidad de introducir una contraseña. Sin embargo, esta práctica no es recomendable en entornos de producción o con información sensible, ya que si alguien obtiene acceso a la clave privada podría usarla sin restricciones. En general, es aconsejable proteger la clave privada con una frase secreta y utilizar un agente de claves (<code>ssh-agent</code>) para gestionar su uso de forma segura.</td>
+</tr>
+<tr>
+<td><code>-q</code></td>
+<td>Activa el modo silencioso, evitando la salida de mensajes informativos durante la generación de claves.</td>
+</tr>
+<tr>
+<td><code>-Z</code></td>
+<td>Especifica el formato de la clave privada (por ejemplo, <code>PEM</code> o <code>RFC4716</code>).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Generación par de claves pública/privada</p>
+<p>En el siguiente ejemplo se ejecuta <code>ssh-keygen</code> en Alpine Linux sin opciones adicionales. El programa genera por defecto un par de claves de tipo <code>ed25519</code>, pregunta por la ruta donde guardarlas y solicita una frase secreta para proteger la clave privada:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-keygen
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/root/.ssh/id_ed25519):
+Enter passphrase for '/root/.ssh/id_ed25519' (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_ed25519
+Your public key has been saved in /root/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:PsBVJBCjD38gsMrRAM+XVJQaWuzMpnfIkj0zudlbc root@Alpine
+The key's randomart image is:
++--[ED25519 256]--+
+| .o      o.      |
+| o o     o o.    |
+| o  .   . o o .  |
+| .  o +  . ooo . |
+|  .  o S + . .   |
+|       + o  .    |
+|      + oo= o.   |
+|       +.ooo.E   |
+|         ..oo    |
++----[SHA256]-----+
+Alpine:~#
+</code></pre><p>Como se puede ver no hace falta indicar ninguna opción, ya que los valores por defecto son los que se desean en este caso.</p>
+</div>
+<p><strong>Copiar la clave pública al servidor</strong><br>
+Para que el servidor SSH pueda reconocer nuestra clave pública y permitir la autenticación sin contraseña, es necesario copiar esa clave al servidor y añadirla al fichero <code>authorized_keys</code> del usuario remoto. Para ello partimos de la clave pública generada en el paso anterior (por ejemplo, <code>~/.ssh/id_ed25519.pub</code>) y la transferimos al servidor. Existen dos formas habituales de hacerlo:</p>
+<ul>
+<li>mediante <code>ssh-copy-id</code>, que automatiza todo el proceso;</li>
+<li>o de forma manual, copiando la clave con <code>scp</code> y actualizando después el fichero <code>authorized_keys</code> en el servidor.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Copia de claves al servidor (método automático)</p>
+<p>En este ejemplo usamos <code>ssh-copy-id</code> desde Alpine Linux para copiar la clave pública <code>id_ed25519.pub</code> del usuario root al servidor <code>192.168.1.5</code>, de forma que el usuario remoto <code>sshuser1</code> pueda autenticarse mediante clave en lugar de contraseña.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-copy-id sshuser1@192.168.1.5
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_ed25519.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+expr: warning: '^ERROR: ' using ^^ as the first character
+of a basic regular expression is not portable; it is ignored
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+*** WARNING: connection is not using a post-quantum key exchange algorithm.
+*** This session may be vulnerable to "store now, decrypt later" attacks.
+*** The server may need to be upgraded. See https://openssh.com/pq.html
+sshuser1@192.168.1.5's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with: "ssh 'sshuser1@192.168.1.5'"
+and check to make sure that only the key(s) you wanted were added.
+
+Alpine:~#
+</code></pre><p>El propio <code>ssh-copy-id</code> indica cuántas claves se han añadido al servidor (<code>Number of key(s) added: 1</code>) y recuerda que, a partir de ese momento, deberíamos poder entrar con <code>ssh sshuser1@192.168.1.5</code> sin que se nos pida la contraseña, ya que la autenticación se hará con la clave pública instalada.</p>
+</div>
+<p>Si por algún motivo <code>ssh-copy-id</code> no estuviera disponible, podemos recurrir a <code>scp</code> y realizar el proceso de manera manual.</p>
+<div class="admonition example">
+<p class="admonition-title">Copia de claves al servidor (método manual)</p>
+<p>En este caso no usamos <code>ssh-copy-id</code>. Copiamos manualmente la clave pública desde el cliente Alpine (usuario root) hasta el servidor <code>192.168.1.5</code> y la añadimos al fichero <code>authorized_keys</code> del usuario <code>sshuser1</code>.<br>
+<strong>Solución</strong><br>
+Los siguientes pasos detallan el proceso:</p>
+<ul>
+<li>Copiar la clave pública generada en el cliente (por ejemplo <code>id_ed25519.pub</code>) al <code>home</code> del usuario remoto <code>sshuser1</code>:<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# scp ~/.ssh/id_ed25519.pub sshuser1@192.168.1.5:/home/sshuser1/id_ed25519.pub
+</code></pre></li>
+<li>Conectarse al servidor <code>192.168.1.5</code> con el usuario <code>sshuser1</code> usando contraseña:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>Alpine:~<span class="token comment"># ssh sshuser1@192.168.1.5</span>
+</code></pre></li>
+<li>Crear el directorio <code>.ssh</code> (si no existe) y añadir la clave pública al fichero <code>authorized_keys</code>:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>sshuser1@192.168.1.5:~$ <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> ~/.ssh
+sshuser1@192.168.1.5:~$ <span class="token function">cat</span> id_ed25519.pub <span class="token operator">&gt;&gt;</span> ~/.ssh/authorized_keys
+</code></pre></li>
+</ul>
+<ul>
+<li>Eliminar el fichero temporal con la clave pública y cerrar la sesión en el servidor:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>sshuser1@192.168.1.5:~$ <span class="token function">rm</span> id_ed25519.pub
+sshuser1@192.168.1.5:~$ <span class="token builtin class-name">exit</span>
+</code></pre></li>
+</ul>
+</div>
+<p><strong>Realizar la conexión utilizando la clave privada</strong><br>
+Una vez que el servidor conoce nuestra clave pública (porque la hemos instalado con <code>ssh-copy-id</code> o de forma manual), podemos conectarnos usando la clave privada en lugar de una contraseña. Si utilizamos la ruta y el nombre por defecto (<code>~/.ssh/id_ed25519</code>, <code>~/.ssh/id_rsa</code>, etc.), normalmente basta con ejecutar <code>ssh usuario@servidor</code> y el propio cliente SSH buscará la clave adecuada.</p>
+<p>En caso de que queramos utilizar un fichero de clave distinto al habitual, podemos indicarlo de forma explícita con la opción <code>-i</code> del comando <code>ssh</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Conexión con clave privada</p>
+<p>Conectarse desde el cliente Alpine al servidor <code>192.168.1.5</code> con el usuario <code>sshuser1</code>, utilizando la clave privada <code>id_ed25519</code> que el cliente encuentra en <code>~/.ssh</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh sshuser1@192.168.1.5
+*** WARNING: connection is not using a post-quantum key exchange algorithm.
+*** This session may be vulnerable to "store now, decrypt later" attacks.
+*** The server may need to be upgraded. See https://openssh.com/pq.html
+Linux L01S00-SSH-Linux 5.10.0-38-amd64 #1 SMP Debian 5.10.249-1 (2026-02-10) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Feb 18 00:10:30 2026 from 192.168.1.198
+sshuser1@L01S00-SSH-Linux:~$  
+</code></pre><p>En este ejemplo la clave privada <strong>no tiene frase de paso (passphrase)</strong>, por eso el cliente puede usarla directamente y no nos pide ninguna contraseña local.</p>
+</div>
+<h3 id="uso-del-agente-de-claves">USO DEL AGENTE DE CLAVES </h3>
+<p>Hasta ahora hemos utilizado una clave privada <strong>sin frase de paso</strong>. En este caso el agente de claves aporta poca ventaja: el cliente <code>ssh</code> puede leer la clave directamente del disco y conectarse sin pedir nada más.</p>
+<p>El agente de claves <code>ssh-agent</code> se vuelve realmente útil cuando <strong>protegemos la clave privada con una passphrase</strong>. Entonces la situación es:</p>
+<ul>
+<li>Sin agente: cada vez que hacemos <code>ssh</code>, <code>scp</code>, <code>git pull</code> sobre ese servidor, se nos pide la passphrase de la clave.</li>
+<li>Con agente: introducimos la passphrase <strong>una sola vez</strong>, el agente guarda la clave descifrada en memoria y las siguientes conexiones ya no la piden.</li>
+</ul>
+<p>Un flujo didáctico completo sería el siguiente.</p>
+<p><strong>1. Añadir una passphrase a una clave ya existente</strong><br>
+Suponemos que ya tenemos creada la clave <code>~/.ssh/id_ed25519</code> sin passphrase. Podemos añadirle una frase de paso a posteriori con <code>ssh-keygen -p</code>:</p>
+<div class="admonition example">
+<p class="admonition-title">Añadir passphrase a una clave existente</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:# ssh-keygen -p -f ~/.ssh/id_ed25519
+Key has comment 'root@Alpine'
+Enter new passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved with the new passphrase.
+Alpine:#
+</code></pre><p>En este ejemplo se ha añadido una passphrase a la clave <code>id_ed25519</code> que antes no tenía. A partir de ahora, cada vez que el cliente SSH intente usar esa clave para autenticarse, nos pedirá la passphrase para descifrarla.</p>
+</div>
+<p><strong>2. Ver el efecto: ahora cada conexión pide la passphrase</strong><br>
+Si intentamos conectarnos de nuevo <strong>sin agente</strong>, el cliente nos pide la passphrase local antes de abrir la sesión SSH:</p>
+<div class="admonition example">
+<p class="admonition-title">Conexión pidiendo la passphrase</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh sshuser1@192.168.1.5
+*** WARNING: connection is not using a post-quantum key exchange algorithm.
+*** This session may be vulnerable to "store now, decrypt later" attacks.
+*** The server may need to be upgraded. See https://openssh.com/pq.html
+Enter passphrase for key '/root/.ssh/id_ed25519':
+Linux L01S00-SSH-Linux 5.10.0-38-amd64 #1 SMP Debian 5.10.249-1 (2026-02-10) x86_64
+...
+...
+sshuser1@L01S00-SSH-Linux:~$
+</code></pre><p>Ahora, antes de establecer la conexión SSH, el cliente nos pide la passphrase de la clave privada <code>id_ed25519</code> para poder usarla en la autenticación.</p>
+</div>
+<p><strong>3. Utilizar el agente para no repetir la passphrase en cada conexión</strong><br>
+Para evitar tener que escribir la passphrase en cada comando, arrancamos un agente y le añadimos la clave una sola vez. A partir de ese momento, el agente se encargará de gestionar la clave en memoria y las conexiones SSH podrán usarla sin volver a pedir la passphrase. El agente de claves se puede iniciar con <code>ssh-agent</code> y luego se añaden las claves con <code>ssh-add</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Uso básico de ssh-agent</p>
+<p>En este ejemplo se muestra cómo iniciar el agente de claves <code>ssh-agent</code>, añadir la clave privada <code>id_ed25519</code> al agente y luego conectarse al servidor sin necesidad de introducir la passphrase en cada conexión.</p>
+<ol>
+<li>Iniciar el agente en la sesión actual del cliente Alpine:</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>Alpine:~<span class="token comment"># eval "$(ssh-agent -s)"</span>
+Agent pid <span class="token number">2711</span>
+</code></pre><p>El comando <code>eval "$(ssh-agent -s)"</code> arranca el agente de claves y configura las variables de entorno necesarias para que el cliente SSH pueda comunicarse con él. La salida muestra el PID del proceso del agente.<br>
+2. Añadir la clave privada <code>id_ed25519</code> al agente (ahora sí se pedirá la passphrase <strong>una sola vez</strong>):</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-add ~/.ssh/id_ed25519
+Enter passphrase for /root/.ssh/id_ed25519:
+Identity added: /root/.ssh/id_ed25519 (root@Alpine)
+</code></pre><ol start="3">
+<li>Conectarse al servidor <code>192.168.1.5</code> como <code>sshuser1</code> sin necesidad de indicar la clave privada ni volver a escribir la passphrase:</li>
+</ol>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh sshuser1@192.168.1.5
+*** WARNING: connection is not using a post-quantum key exchange algorithm.
+*** This session may be vulnerable to "store now, decrypt later" attacks.
+*** The server may need to be upgraded. See https://openssh.com/pq.html
+Linux L01S00-SSH-Linux 5.10.0-38-amd64 #1 SMP Debian 5.10.249-1 (2026-02-10) x86_64
+...
+...
+sshuser1@L01S00-SSH-Linux:~$
+</code></pre><p>Ahora el cliente SSH se conecta al servidor utilizando la clave privada gestionada por el agente, sin pedir la passphrase en esta ni en las siguientes conexiones mientras el agente siga activo.</p>
+</div>
+<p>Mientras el agente siga activo, cualquier conexión que use esa clave se podrá realizar sin volver a introducir la frase de paso.</p>
+<p>Además, el agente ofrece algunas utilidades adicionales:</p>
+<ul>
+<li>Para ver las claves públicas correspondientes a las claves cargadas en el agente se puede utilizar el comando <code>ssh-add -L</code>. Este comando muestra la lista de claves públicas que el agente tiene disponibles, una por línea, con su tipo, su huella y su comentario (normalmente el nombre del usuario y el host).</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Ver claves públicas cargadas en el agente</p>
+<p>En este ejemplo se muestra la salida del comando <code>ssh-add -L</code> después de haber añadido la clave privada <code>id_ed25519</code> al agente. La salida muestra la clave pública correspondiente a esa clave privada, con su tipo (ssh-ed25519), su huella (fingerprint) y su comentario (root@Alpine).</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-add -L
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKhSdAPH0EIIuydqa966YFaBCuRFoTo/mRWSD000Jgyt root@Alpine
+Alpine:~#
+</code></pre></div>
+<p>Si queremos ver solo las claves privadas cargadas en el agente, se emplea el comando <code>ssh-add -l</code>. Este comando muestra una lista de las claves privadas que el agente tiene en memoria, indicando su tipo, su huella y su comentario. La diferencia con <code>ssh-add -L</code> es que este último muestra las claves públicas, mientras que <code>ssh-add -l</code> muestra las claves privadas (aunque no revela su contenido, solo su huella).</p>
+<div class="admonition example">
+<p class="admonition-title">Ver claves privadas cargadas en el agente</p>
+<p>En este ejemplo se muestra la salida del comando <code>ssh-add -l</code> después de haber añadido la clave privada <code>id_ed25519</code> al agente. La salida indica que hay una clave privada de tipo ED25519 cargada, con su huella (SHA256:PsB/UBCjD3BgsMrARM+XV/3QalWuzMpnfIkjozudlbc) y su comentario (root@Alpine).<br>
+La salida de <code>ssh-add -l</code> no muestra el contenido de la clave privada, solo su huella y su comentario, para evitar revelar información sensible. Sin embargo, nos permite confirmar que la clave privada está cargada en el agente y lista para ser utilizada en las conexiones SSH.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-add -l
+256 SHA256:PsB/UBCjD3BgsMrARM+XV/3QalWuzMpnfIkjozudlbc root@Alpine (ED25519)
+Alpine:~#
+</code></pre></div>
+<ul>
+<li>Para detener el agente y borrar de memoria todas las claves cargadas se emplea el comando <code>ssh-agent -k</code>. Este comando envía una señal al proceso del agente para que se cierre y borre las claves de memoria. Además, muestra un mensaje indicando que el agente ha sido detenido y las variables de entorno relacionadas han sido desconfiguradas.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Detener el agente de claves</p>
+<p>En este ejemplo se muestra cómo detener el agente de claves <code>ssh-agent</code> con el comando <code>ssh-agent -k</code>. La salida indica que las variables de entorno <code>SSH_AUTH_SOCK</code> y <code>SSH_AGENT_PID</code> han sido desconfiguradas (unset) y que el proceso del agente con PID 2711 ha sido terminado (killed).<br>
+Después de ejecutar este comando, el agente ya no estará activo y las claves que tenía cargadas dejarán de estar disponibles para las conexiones SSH.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 2711 killed;
+Alpine:~#
+</code></pre><p>Al intentar conectarnos de nuevo al servidor después de haber detenido el agente, el cliente SSH ya no podrá usar la clave privada que teníamos cargada en el agente, por lo que volverá a pedir la passphrase para poder usar esa clave.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# ssh sshuser1@192.168.1.5
+*** WARNING: connection is not using a post-quantum key exchange algorithm.
+*** This session may be vulnerable to "store now, decrypt later" attacks.
+*** The server may need to be upgraded. See https://openssh.com/pq.html
+Enter passphrase for key '/root/.ssh/id_ed25519':
+
+
+</code></pre></div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
