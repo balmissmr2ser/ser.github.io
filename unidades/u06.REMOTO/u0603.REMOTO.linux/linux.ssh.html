@@ -308,21 +308,25 @@ table {
             <p>Parámetros básicos de seguridad</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#restricciones-por-usuario-grupo-ubicación-y-tiempo" class="md-toc-link">
-            <p>Restricciones por usuario, grupo, ubicación y tiempo</p>
+          <a href="#restricciones-de-acceso" class="md-toc-link">
+            <p>RESTRICCIONES DE ACCESO</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#otras-directivas-útiles-tiempos-cifrados-banners" class="md-toc-link">
-            <p>Otras directivas útiles (tiempos, cifrados, banners)</p>
+          <a href="#otras-directivas" class="md-toc-link">
+            <p>OTRAS DIRECTIVAS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#configuración-específica-para-sftp-y-jaulas-chroot" class="md-toc-link">
-            <p>Configuración específica para SFTP y jaulas chroot</p>
+          <a href="#directivas-de-sftp" class="md-toc-link">
+            <p>DIRECTIVAS DE SFTP</p>
 
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#logging-y-auditoría" class="md-toc-link">
+            <p>LOGGING Y AUDITORÍA</p>
+
+          </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
@@ -354,6 +358,10 @@ table {
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#uso-del-agente-de-claves" class="md-toc-link">
             <p>USO DEL AGENTE DE CLAVES</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#copiar-ficheros-con-scp-y-sftp" class="md-toc-link">
+            <p>COPIAR FICHEROS CON SCP y SFTP</p>
 
           </a></div>
         </div>
@@ -487,7 +495,7 @@ MaxAuthTries 3
 </code></pre><p>En este caso se permite la autenticación tanto por contraseña como por claves, pero se prohíbe el acceso directo al usuario <code>root</code> y se limita el número de intentos fallidos a 3.</p>
 </div>
 <p>En un servidor ya en producción se suele avanzar hacia configuraciones más estrictas (por ejemplo, <code>PasswordAuthentication no</code> para obligar al uso de claves).</p>
-<h4 id="restricciones-por-usuario-grupo-ubicación-y-tiempo">Restricciones por usuario, grupo, ubicación y tiempo </h4>
+<h4 id="restricciones-de-acceso">RESTRICCIONES DE ACCESO </h4>
 <p>Se pueden distinguir tres grandes tipos de restricciones: por usuario/grupo, por ubicación (dirección IP o red) y temporales (a través de PAM).</p>
 <ul>
 <li>
@@ -550,52 +558,97 @@ Para habilitar la integración con PAM, es necesario que en <code>sshd_config</c
 En el fichero <code>/etc/pam.d/sshd</code> se pueden configurar módulos como <code>pam_time</code> para restringir el acceso a ciertas horas o días, o <code>pam_tally2</code> para bloquear cuentas tras varios intentos fallidos. También es posible integrar PAM con sistemas de autenticación externos (LDAP, RADIUS, etc.) para centralizar la gestión de usuarios y políticas de acceso.</p>
 <p>Una vez activada la integración con PAM, tenemos que ajustar el fichero <code>/etc/pam.d/sshd</code> para incluir el modulo pam_time. Por ello, añadimos la siguiente línea al final del fichero:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>account required pam_time.so
-</code></pre><p>A continuación, se pueden definir las reglas de acceso temporal en el fichero <code>/etc/security/time.conf</code>. Por ejemplo, para permitir el acceso solo de lunes a viernes de 8:00 a 18:00, podríamos añadir la siguiente línea:</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code>sshd;*;*;Wk0800-1800
-</code></pre><p>En este caso, <code>sshd</code> indica que la regla se aplica al servicio SSH, <code>*</code> significa que se aplica a todos los usuarios y a todas las terminales, y <code>Wk0800-1800</code> especifica que el acceso solo está permitido de lunes a viernes (Wk) entre las 8:00 y las 18:00 horas.</p>
+</code></pre><p>A continuación, se pueden definir las reglas de acceso temporal en el fichero <code>/etc/security/time.conf</code>. Las reglas de este fichero tienen la siguiente sintaxis:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>servicio;ttys;usuarios;horarios
+</code></pre><p>Donde:</p>
+<ul>
+<li><code>servicio</code>: nombre del servicio al que se aplica la regla (en este caso, <code>sshd</code>).</li>
+<li><code>ttys</code>: terminales a las que se aplica la regla (por ejemplo, <code>*</code> para todas).</li>
+<li><code>usuarios</code>: usuarios o grupos a los que se aplica la regla (por ejemplo, <code>*</code> para todos).</li>
+<li><code>horarios</code>: especificación de los días y horas en los que se permite o deniega el acceso. El formato de los horarios es bastante flexible y permite definir rangos de horas, días de la semana, meses, etc.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Restricciones temporales</p>
+<p>Permitir el acceso al servicio SSH solo de lunes a viernes de 8:00 a 14:00 horas y de 17:00 a 19:00 horas.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>sshd;*;*;Wk0800-1400,Wk1700-1900
+</code></pre><p>En este caso, <code>sshd</code> indica que la regla se aplica al servicio SSH, <code>*</code> significa que se aplica a todos los usuarios y a todas las terminales, y <code>Wk0800-1400,Wk1700-1900</code> especifica que el acceso solo está permitido de lunes a viernes (Wk) entre las 8:00 y las 14:00 horas, y también entre las 17:00 y las 19:00 horas.</p>
+</div>
 <p>Para más información sobre la configuración de PAM y el módulo pam_time, se puede consultar la documentación anexa del framework PAM, así como las páginas del manual (<code>man pam_time</code> y <code>man time.conf</code>) o la documentación oficial de PAM.</p>
 </li>
 </ul>
-<p><span style="color: red;">Inicio bloque en construcción</span></p>
-<span style="color: blue;">
-<h4 id="otras-directivas-útiles-tiempos-cifrados-banners">Otras directivas útiles (tiempos, cifrados, banners) </h4>
+<h4 id="otras-directivas">OTRAS DIRECTIVAS </h4>
 <p>Además de las directivas anteriores, el manual de <code>sshd_config</code> recoge muchas otras opciones interesantes. Algunas de las más habituales son:</p>
 <ul>
 <li><code>LoginGraceTime</code><br>
-Tiempo máximo que tiene el cliente para autenticarse antes de que se cierre la conexión (por ejemplo, <code>30s</code>).</li>
+Tiempo máximo que tiene el cliente para autenticarse antes de que se cierre la conexión (por ejemplo, <code>30s</code>). El valor por defecto es <code>120</code> segundos y, si se pone a <code>0</code>, no habrá límite de tiempo.</li>
 <li><code>ClientAliveInterval</code> y <code>ClientAliveCountMax</code><br>
-Sirven para detectar clientes que se han quedado colgados y cerrar sesiones inactivas.</li>
+Sirven para detectar clientes que se han quedado colgados y cerrar sesiones inactivas: cada <code>ClientAliveInterval</code> segundos el servidor envía un mensaje y, si tras <code>ClientAliveCountMax</code> intentos no obtiene respuesta, cierra la sesión.</li>
 <li><code>AllowTcpForwarding</code>, <code>PermitOpen</code>, <code>X11Forwarding</code><br>
 Controlan si se permite crear túneles de puertos o reenvío de X11. Es frecuente desactivarlos para usuarios con permisos limitados.</li>
 <li><code>Banner</code> y <code>PrintMotd</code><br>
 Permiten mostrar mensajes al usuario (por ejemplo, avisos legales o normas de uso) antes o después de autenticarse.</li>
 </ul>
-<p>Un ejemplo simple de uso de banners sería:</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PrintMotd no
+<div class="admonition example">
+<p class="admonition-title">Otras directivas</p>
+</div>
+<p>El siguiente ejemplo muestra una configuración que limita el tiempo de autenticación a 30 segundos, cierra sesiones inactivas tras 5 minutos sin respuesta, prohíbe el reenvío de puertos y muestra un banner de bienvenida.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>LoginGraceTime 30s
+ClientAliveInterval 60
+ClientAliveCountMax 5
+AllowTcpForwarding no
+X11Forwarding no
 Banner /etc/issue.net
-</code></pre><p>El contenido de <code>/etc/issue.net</code> podría ser, por ejemplo:</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ACCESO RESTRINGIDO. Solo personal autorizado.
-El uso indebido puede ser sancionado.
+PrintMotd yes
+</code></pre><p>El contenido del fichero <code>/etc/issue.net</code> podría ser algo como:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>*********************************************************************
+*                                                                   *
+*   Bienvenido al servidor SSH del IES Doctor Balmis.               *
+*   El acceso a este sistema es restringido a usuarios autorizados. *
+*   Cualquier actividad será monitorizada y registrada.             *
+*   Si no eres un usuario autorizado, desconéctate inmediatamente.  *
+*                                                                   *
+*********************************************************************
 </code></pre><p>En cuanto a la parte criptográfica, OpenSSH soporta distintos algoritmos de cifrado, integridad y negociación de clave. Normalmente las versiones actuales ya traen una selección segura por defecto, pero se pueden ajustar mediante:</p>
-<p>OpenSSH soporta distintos algoritmos de cifrado, integridad y negociación de clave. Normalmente las versiones actuales ya traen una selección segura por defecto, pero se pueden ajustar mediante:</p>
 <ul>
 <li><code>Ciphers</code> → lista de algoritmos de cifrado permitidos.</li>
 <li><code>MACs</code> → algoritmos de integridad (Message Authentication Codes).</li>
 <li><code>KexAlgorithms</code> → algoritmos de intercambio de claves.</li>
 </ul>
 <p>En un entorno de aula no suele ser necesario modificar estos parámetros, pero es importante saber que existen para poder <strong>deshabilitar algoritmos antiguos</strong> si alguna guía de seguridad lo exige.</p>
-<h4 id="configuración-específica-para-sftp-y-jaulas-chroot">Configuración específica para SFTP y jaulas chroot </h4>
-<p>Además de las sesiones de consola (<code>ssh</code>), el mismo servicio <code>sshd</code> puede ofrecer SFTP. En <code>sshd_config</code> se ve mediante la directiva <code>Subsystem</code>:</p>
+<h4 id="directivas-de-sftp">DIRECTIVAS DE SFTP </h4>
+<p>SSH no solo sirve para abrir sesiones de consola remota, sino que también puede ofrecer un entorno de transferencia de archivos seguro a través de <strong>SFTP (SSH File Transfer Protocol)</strong>. SFTP es un protocolo que funciona sobre SSH y permite subir, descargar y gestionar archivos en el servidor remoto de forma segura.</p>
+<p>Para habilitar SFTP, el servidor <code>sshd</code> debe tener configurada la directiva <code>Subsystem</code> en su fichero <code>sshd_config</code> de la siguiente manera:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>Subsystem sftp internal-sftp
-</code></pre><p>Es posible crear usuarios que <strong>solo</strong> tengan acceso SFTP (sin consola interactiva) y, además, dejarlos encerrados en un directorio concreto (jaula <em>chroot</em>). Un ejemplo típico sería:</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Match Group sftpusers
-        ChrootDirectory /sftp/%u
-        ForceCommand internal-sftp
-        X11Forwarding no
-        AllowTcpForwarding no
-</code></pre><p>En este escenario, los usuarios del grupo <code>sftpusers</code> al conectarse por SSH no obtienen una shell, sino un entorno SFTP limitado al directorio <code>/sftp/&lt;usuario&gt;</code>, lo que resulta muy útil para servidores dedicados solo a intercambio de ficheros.</p>
-</span>
-<p><span style="color: red;">Fin bloque en construcción</span></p>
+</code></pre><p>SFTP funciona de forma análoga a FTP, pero con la ventaja de que todo el tráfico está cifrado gracias a SSH. Los usuarios pueden conectarse a través de un cliente SFTP (como <code>sftp</code> o clientes gráficos como FileZilla) y realizar operaciones de gestión de archivos (listar directorios, subir, descargar, borrar, etc.) en el servidor remoto. El repertorio de comandos disponibles en SFTP es prácticamente el mismo que el de un cliente FTP tradicional.</p>
+<div class="admonition example">
+<p class="admonition-title">Configuración de SFTP</p>
+<p>El siguiente ejemplo habilita el servicio SFTP en el servidor SSH y fuerza a los usuarios del grupo <code>sftpusers</code> a usar SFTP sin acceso a la consola, encerrados en una jaula <code>chroot</code> en el directorio <code>/sftp/&lt;usuario&gt;</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Subsystem sftp internal-sftp
+
+Match Group sftpusers
+    ChrootDirectory /sftp/%u
+    ForceCommand internal-sftp
+    X11Forwarding no
+    AllowTcpForwarding no
+</code></pre><p>En este caso, cualquier usuario que pertenezca al grupo <code>sftpusers</code> se verá restringido a un entorno SFTP sin acceso a la consola y quedará encerrado en una jaula <code>chroot</code> ubicada en <code>/sftp/&lt;usuario&gt;</code>. Además, se desactivan el reenvío de X11 y la creación de túneles para estos usuarios, aumentando así la seguridad del entorno SFTP. La variable <code>%u</code> en <code>ChrootDirectory</code> se reemplaza automáticamente por el nombre del usuario que se está autenticando.</p>
+</div>
+<h3 id="logging-y-auditoría">LOGGING Y AUDITORÍA </h3>
+<p>El servidor SSH registra en los ficheros de log del sistema (normalmente en <code>/var/log/auth.log</code> o <code>/var/log/secure</code>, dependiendo de la distribución) información sobre las conexiones entrantes, intentos de autenticación, errores, etc. Es importante revisar estos logs periódicamente para detectar posibles intentos de intrusión o problemas de configuración. Además, se pueden configurar opciones adicionales de logging en <code>sshd_config</code> para aumentar el nivel de detalle o enviar los logs a un servidor remoto.</p>
+<p>Las directivas relacionadas con el logging en <code>sshd_config</code> incluyen:</p>
+<ul>
+<li><code>LogLevel</code> → nivel de detalle de los logs (por ejemplo, <code>INFO</code>, <code>VERBOSE</code>, <code>DEBUG</code>).</li>
+<li><code>SyslogFacility</code> → categoría de syslog para los mensajes de SSH (por ejemplo, <code>AUTH</code>, <code>AUTHPRIV</code>, etc.).</li>
+<li><code>LogFacility</code> → destino de los logs (por ejemplo, <code>FILE:/var/log/ssh.log</code> para enviar los logs a un fichero específico).</li>
+<li><code>LogVerbose</code> → si se establece en <code>yes</code>, se incluirá información adicional en los logs, como la dirección IP del cliente, el nombre de usuario, etc.</li>
+</ul>
+<p>Además de los logs del sistema, OpenSSH también puede generar logs específicos de auditoría si se configura adecuadamente. Esto permite registrar eventos relacionados con la autenticación, comandos ejecutados, transferencias de archivos, etc., lo que resulta útil para cumplir con requisitos de seguridad o normativas de auditoría.<br>
+Los logs de auditoría se pueden configurar mediante la directiva <code>AuditLog</code> en <code>sshd_config</code>, indicando la ruta del fichero donde se almacenarán los eventos de auditoría. Por ejemplo:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>AuditLog /var/log/ssh_audit.log
+</code></pre><p>Con esta configuración, se generará un fichero de log específico para auditoría de SSH en <code>/var/log/ssh_audit.log</code>, donde se registrarán eventos detallados relacionados con las conexiones, autenticaciones y actividades realizadas a través de SSH.</p>
+<p><strong>Utilización de journald para logs de SSH</strong><br>
+En sistemas que utilizan <code>systemd</code>, como Debian, los logs de SSH se pueden gestionar a través de <code>journald</code>, el sistema de logging integrado en <code>systemd</code>. En este caso, los mensajes relacionados con SSH se pueden consultar utilizando el comando <code>journalctl</code> con el filtro adecuado. Por ejemplo:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>journalctl <span class="token parameter variable">-u</span> sshd
+</code></pre><p>Este comando mostrará los logs relacionados con el servicio <code>sshd</code>, permitiendo revisar las conexiones, intentos de autenticación y otros eventos relevantes. Además, <code>journald</code> ofrece opciones avanzadas de filtrado, búsqueda y rotación de logs, lo que facilita la gestión de los registros de SSH en sistemas modernos basados en <code>systemd</code>.</p>
 <h2 id="cliente-ssh">CLIENTE SSH </h2>
 <h3 id="instalación-1">INSTALACIÓN </h3>
 <p>El cliente OpenSSH suele venir instalado por defecto en muchas distribuciones GNU/Linux. Si no estuviera disponible, se puede instalar el paquete <code>openssh-client</code> (o similar) usando el gestor de paquetes correspondiente. En sistemas basados en Debian podría hacerse, por ejemplo, con:</p>
@@ -905,8 +958,8 @@ sshuser1@L01S00-SSH-Linux:~$
 <p>Mientras el agente siga activo, cualquier conexión que use esa clave se podrá realizar sin volver a introducir la frase de paso.</p>
 <p>Además, el agente ofrece algunas utilidades adicionales:</p>
 <ul>
-<li>Para ver las claves públicas correspondientes a las claves cargadas en el agente se puede utilizar el comando <code>ssh-add -L</code>. Este comando muestra la lista de claves públicas que el agente tiene disponibles, una por línea, con su tipo, su huella y su comentario (normalmente el nombre del usuario y el host).</li>
-</ul>
+<li>
+<p>Para ver las claves públicas correspondientes a las claves cargadas en el agente se puede utilizar el comando <code>ssh-add -L</code>. Este comando muestra la lista de claves públicas que el agente tiene disponibles, una por línea, con su tipo, su huella y su comentario (normalmente el nombre del usuario y el host).</p>
 <div class="admonition example">
 <p class="admonition-title">Ver claves públicas cargadas en el agente</p>
 <p>En este ejemplo se muestra la salida del comando <code>ssh-add -L</code> después de haber añadido la clave privada <code>id_ed25519</code> al agente. La salida muestra la clave pública correspondiente a esa clave privada, con su tipo (ssh-ed25519), su huella (fingerprint) y su comentario (root@Alpine).</p>
@@ -923,9 +976,9 @@ La salida de <code>ssh-add -l</code> no muestra el contenido de la clave privada
 256 SHA256:PsB/UBCjD3BgsMrARM+XV/3QalWuzMpnfIkjozudlbc root@Alpine (ED25519)
 Alpine:~#
 </code></pre></div>
-<ul>
-<li>Para detener el agente y borrar de memoria todas las claves cargadas se emplea el comando <code>ssh-agent -k</code>. Este comando envía una señal al proceso del agente para que se cierre y borre las claves de memoria. Además, muestra un mensaje indicando que el agente ha sido detenido y las variables de entorno relacionadas han sido desconfiguradas.</li>
-</ul>
+</li>
+<li>
+<p>Para detener el agente y borrar de memoria todas las claves cargadas se emplea el comando <code>ssh-agent -k</code>. Este comando envía una señal al proceso del agente para que se cierre y borre las claves de memoria. Además, muestra un mensaje indicando que el agente ha sido detenido y las variables de entorno relacionadas han sido desconfiguradas.</p>
 <div class="admonition example">
 <p class="admonition-title">Detener el agente de claves</p>
 <p>En este ejemplo se muestra cómo detener el agente de claves <code>ssh-agent</code> con el comando <code>ssh-agent -k</code>. La salida indica que las variables de entorno <code>SSH_AUTH_SOCK</code> y <code>SSH_AGENT_PID</code> han sido desconfiguradas (unset) y que el proceso del agente con PID 2711 ha sido terminado (killed).<br>
@@ -942,8 +995,32 @@ Alpine:~#
 *** The server may need to be upgraded. See https://openssh.com/pq.html
 Enter passphrase for key '/root/.ssh/id_ed25519':
 
-
 </code></pre></div>
+</li>
+</ul>
+<h3 id="copiar-ficheros-con-scp-y-sftp">COPIAR FICHEROS CON SCP y SFTP </h3>
+<p>La transferencia de archivos entre el cliente y el servidor SSH se puede realizar de forma segura utilizando las herramientas <code>scp</code> y <code>sftp</code>, que funcionan sobre el protocolo SSH para cifrar los datos durante la transferencia.</p>
+<p>El <strong>comando <code>scp</code> (secure copy)</strong> tiene una sintaxis similar a <code>cp</code>, pero permite copiar archivos entre el cliente y el servidor de forma remota.</p>
+<div class="admonition example">
+<p class="admonition-title">Copia de archivos con scp</p>
+<p>Copiar un archivo llamado <code>documento.txt</code> desde el cliente Alpine al servidor <code>192.168.1.5</code> usando el usuario <code>sshuser1</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# scp documento.txt sshuser1@192.168.1.5:/home/sshuser1/
+</code></pre><p>Copiar un directorio completo llamado <code>proyecto</code> desde el servidor <code>192.168.1.5</code> al cliente Alpine.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# scp -r sshuser1@192.168.1.5:/home/sshuser1/proyecto /home/alpine/
+</code></pre></div>
+<p>El <strong>comando <code>sftp</code> (SSH File Transfer Protocol)</strong> proporciona una interfaz interactiva prácticamente identica a la de un cliente FTP tradicional. Los comandos disponibles dentro de la sesión <code>sftp</code> son los mismos que los de un cliente FTP, como <code>ls</code>, <code>cd</code>, <code>get</code>, <code>put</code>, etc., pero la conexión se realiza de forma segura a través de SSH.</p>
+<div class="admonition example">
+<p class="admonition-title">Uso de sftp</p>
+<p>Conectarse al servidor <code>192.168.1.5</code> con el usuario <code>sshuser1</code> y descargar un archivo llamado <code>informe.pdf</code> al cliente Alpine.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# sftp sshuser1@192.168.1.5
+sftp&gt; get informe.pdf
+sftp&gt; quit
+</code></pre><p>Subir un archivo llamado <code>datos.csv</code> desde el cliente Alpine al servidor <code>192.168.1.5</code> con el usuario <code>sshuser1</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Alpine:~# sftp sshuser1@192.168.1.5
+sftp&gt; put datos.csv
+sftp&gt; quit
+</code></pre></div>
+<p>No nos extenderemos más en el uso de <code>sftp</code> por su analogía con FTP, que se trata en la unidad correspondiente a ese protocolo.</p>
 
       </div>
       
