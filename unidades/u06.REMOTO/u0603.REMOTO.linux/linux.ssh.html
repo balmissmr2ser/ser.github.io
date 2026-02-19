@@ -293,7 +293,36 @@ table {
           <a href="#archivos-de-configuración" class="md-toc-link">
             <p>ARCHIVOS DE CONFIGURACIÓN</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#configuración-del-servidor-ssh" class="md-toc-link"><p>CONFIGURACIÓN DEL SERVIDOR SSH</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#el-fichero-sshd_config" class="md-toc-link">
+            <p>EL FICHERO sshd_config</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#parámetros-básicos-de-seguridad" class="md-toc-link">
+            <p>Parámetros básicos de seguridad</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#restricciones-por-usuario-grupo-ubicación-y-tiempo" class="md-toc-link">
+            <p>Restricciones por usuario, grupo, ubicación y tiempo</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#otras-directivas-útiles-tiempos-cifrados-banners" class="md-toc-link">
+            <p>Otras directivas útiles (tiempos, cifrados, banners)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuración-específica-para-sftp-y-jaulas-chroot" class="md-toc-link">
+            <p>Configuración específica para SFTP y jaulas chroot</p>
+
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
@@ -394,7 +423,7 @@ rc-update <span class="token function">add</span> sshd default
 <p>Además de estos programas principales, la instalación de OpenSSH incorpora otras utilidades auxiliares (como <code>ssh-askpass</code>, <code>ssh-keysign</code>, etc.) que normalmente no se ejecutan de manera directa, sino que son invocadas internamente por el propio sistema en escenarios de autenticación más avanzados.</p>
 <p>Para publicar claves en un servidor y poder usar autenticación basada en claves, lo más sencillo es utilizar <code>ssh-copy-id</code>. En caso de que no esté disponible, siempre se puede recurrir a <code>scp</code> y editar manualmente el fichero <code>authorized_keys</code> del usuario remoto.</p>
 <h3 id="archivos-de-configuración">ARCHIVOS DE CONFIGURACIÓN </h3>
-<p>La instalación del servidor crea y utiliza una serie de ficheros de configuración y claves que determinan cómo se comporta <code>sshd</code> y quién puede conectarse. En Debian 11, los más relevantes son:</p>
+<p>La instalación del servidor crea y utiliza una serie de ficheros de configuración y claves que determinan cómo se comporta <code>sshd</code> y quién puede conectarse. En la mayoría de sistemas GNU/Linux, los más relevantes son:</p>
 <ul>
 <li><code>/etc/ssh/sshd_config</code><br>
 Archivo de configuración principal del servidor SSH (<code>sshd</code>), donde se definen aspectos como el puerto de escucha, los métodos de autenticación permitidos o las directivas de acceso de los usuarios.</li>
@@ -403,9 +432,173 @@ Conjunto de claves privadas de host utilizadas para identificar de forma única 
 <li><code>/home/&lt;usuario&gt;/.ssh/authorized_keys</code><br>
 Fichero que contiene las claves públicas autorizadas para la conexión sin contraseña de un usuario concreto.</li>
 </ul>
+<h3 id="configuración-del-servidor-ssh">CONFIGURACIÓN DEL SERVIDOR SSH </h3>
+<p>Una vez instalado el servidor y conocidos los ficheros principales, la mayor parte de la configuración se realiza en <code>/etc/ssh/sshd_config</code>. En este archivo se definen el puerto, los métodos de autenticación permitidos, qué usuarios pueden entrar, desde dónde, etc.</p>
+<h4 id="el-fichero-sshd_config">EL FICHERO sshd_config </h4>
+<ul>
+<li>El fichero por defecto suele encontrarse en <code>/etc/ssh/sshd_config</code>.</li>
+<li>Para editarlo se necesita ser administrador.</li>
+<li>Tras modificarlo, es importante <strong>comprobar la sintaxis</strong> antes de recargar el servicio:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>sshd <span class="token parameter variable">-t</span>
+</code></pre><p>Si no hay errores, se puede recargar el servicio para aplicar los cambios sin cortar las conexiones activas:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>systemctl reload sshd
+</code></pre><p>En algunas distribuciones se utiliza el nombre <code>ssh</code> en lugar de <code>sshd</code>, por lo que el comando sería <code>systemctl reload ssh</code> (alias de <code>sshd</code>).</p>
+<p>El fichero <code>sshd_config</code> es un archivo de texto con formato de clave-valor, donde cada línea define una directiva de configuración. Las líneas que comienzan con <code>#</code> son comentarios y no tienen efecto. Es importante tener cuidado al editar este fichero, ya que una configuración incorrecta podría impedir que el servicio SSH funcione correctamente o que los usuarios puedan conectarse. Las directivas se aplican de forma global, a no ser que se coloquen dentro de un bloque <code>Match</code>, en cuyo caso solo se aplicarán a las conexiones que cumplan los criterios indicados en ese bloque.</p>
+<p><strong>Bloques Match</strong><br>
+Los bloques <code>Match</code> permiten definir <em>excepciones controladas</em> sobre la configuración general: las directivas que se coloquen dentro de un bloque <code>Match</code> solo se aplican si se cumplen unas condiciones (por ejemplo, cierto usuario, grupo, dirección IP de origen, puerto de destino, etc.). Gracias a esto, es posible construir perfiles de seguridad distintos dentro del mismo servidor: forzar el uso de claves a los administradores pero permitir contraseña a determinados alumnos, impedir que algunos grupos creen túneles SSH, forzar un entorno SFTP sin shell para ciertos usuarios, aplicar políticas diferentes según la red desde la que se conectan, etc.</p>
+<p>La sintaxis de un bloque <code>Match</code> es la siguiente:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Match &lt;criterio1&gt; &lt;valor1&gt; &lt;criterio2&gt; &lt;valor2&gt; ...
+      &lt;directivaA&gt;
+      &lt;directivaB&gt;
+      ...
+</code></pre><p>En un bloque <code>Match</code> el significado de <code>&lt;criterio&gt;</code> puede ser <code>User</code>, <code>Group</code>, <code>Address</code>, <code>Host</code>, etc., y <code>&lt;valor&gt;</code> es cualquier valor válido para ese criterio (por ejemplo, un nombre de usuario, grupo o dirección IP). El significado de <code>&lt;directiva&gt;</code> es el mismo que en la configuración global, pero solo se aplicará a las conexiones que cumplan los criterios del bloque <code>Match</code>.</p>
+<p>Las directivas dentro de un bloque <code>Match</code> <strong>sobrescriben</strong> las directivas globales mientras se cumplan las condiciones indicadas. Por ejemplo, si a nivel global se permite la autenticación por contraseña, pero dentro de un bloque <code>Match User admin1</code> se pone <code>PasswordAuthentication no</code>, entonces el usuario <code>admin1</code> solo podrá autenticarse mediante claves, mientras que el resto de usuarios podrán usar contraseña. La manera adecuada de combinar directivas globales y bloques <code>Match</code> es colocar primero las directivas generales (que se aplican a todos) y luego los bloques <code>Match</code> con las excepciones o reglas específicas.</p>
+<h4 id="parámetros-básicos-de-seguridad">Parámetros básicos de seguridad </h4>
+<p>Algunas directivas mínimas que conviene revisar en cualquier servidor SSH son las siguientes:</p>
+<ul>
+<li><code>Port</code><br>
+Puerto en el que escucha el servicio. Por defecto es <code>22</code>.</li>
+<li><code>ListenAddress</code><br>
+Dirección IP en la que se escuchan conexiones (por ejemplo, <code>0.0.0.0</code> para todas las interfaces, o una IP concreta).</li>
+<li><code>Protocol</code><br>
+En versiones modernas debe ser <code>2</code>. El protocolo 1 está obsoleto.</li>
+<li><code>PermitRootLogin</code><br>
+Controla si el usuario <code>root</code> puede entrar directamente por SSH. Es recomendable ponerlo a <code>no</code>.</li>
+<li><code>PasswordAuthentication</code><br>
+Permite (yes) o prohíbe (no) la autenticación mediante contraseña. En entornos seguros se suele desactivar cuando ya se usan claves.</li>
+<li><code>PubkeyAuthentication</code><br>
+Activa/desactiva la autenticación mediante claves públicas. Lo normal es que esté en <code>yes</code>.</li>
+<li><code>PermitEmptyPasswords</code><br>
+Si está en <code>yes</code>, permitiría contraseñas vacías, algo totalmente desaconsejado. Debe estar en <code>no</code>.</li>
+<li><code>MaxAuthTries</code><br>
+Número máximo de intentos de autenticación antes de cerrar la conexión.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Configuración básica de sshd_config</p>
+<p>Este es un ejemplo de fragmento sencillo y razonable.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Port 22
+Protocol 2
+PermitRootLogin no
+PasswordAuthentication yes
+PubkeyAuthentication yes
+PermitEmptyPasswords no
+MaxAuthTries 3
+</code></pre><p>En este caso se permite la autenticación tanto por contraseña como por claves, pero se prohíbe el acceso directo al usuario <code>root</code> y se limita el número de intentos fallidos a 3.</p>
+</div>
+<p>En un servidor ya en producción se suele avanzar hacia configuraciones más estrictas (por ejemplo, <code>PasswordAuthentication no</code> para obligar al uso de claves).</p>
+<h4 id="restricciones-por-usuario-grupo-ubicación-y-tiempo">Restricciones por usuario, grupo, ubicación y tiempo </h4>
+<p>Se pueden distinguir tres grandes tipos de restricciones: por usuario/grupo, por ubicación (dirección IP o red) y temporales (a través de PAM).</p>
+<ul>
+<li>
+<p><strong>Restricciones por usuario y grupo</strong><br>
+Sirven para controlar quién puede autenticarse en el servidor o aplicar restricciones específicas (<code>Match</code>).</p>
+<ul>
+<li>
+<p><strong>Directivas de autenticación</strong></p>
+<ul>
+<li><code>AllowUsers</code> / <code>DenyUsers</code>:  permiten o deniegan explícitamente usuarios concretos. La sintaxis de estas directivas es una lista de usuarios o patrones de usuario (por ejemplo, <code>admin1</code>, <code>admin2</code> y <code>practicas</code>), separados por espacios. Si se indica un usuario con el formato <code>usuario@host</code>, solo se permitirá ese usuario desde el host especificado (por ejemplo, <code>practicas</code> permitiría al usuario <code>practicas</code> desde cualquier host, mientras que <code>practicas@192.168.1.100</code> solo lo permitiría desde esa IP específica). Es posible especificar una red completa con el formato <code>usuario@red</code> (por ejemplo, <code>practicas@192.168.1.0/24</code>).</li>
+<li><code>AllowGroups</code> / <code>DenyGroups</code>: permiten o deniegan el acceso a grupos completos. Su sintaxis es similar a la de <code>AllowUsers</code>, pero con nombres de grupos (por ejemplo, <code>sshusers</code>).</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Restricciones por usuario y grupo</p>
+<p>Permitir el acceso solo a los usuarios <code>admin1</code> y <code>admin2</code> desde cualquier host, o solo a los usuarios que pertenezcan al grupo <code>sshusers</code> desde la red <code>192.168.1.0/24</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>AllowUsers admin1 admin2
+AllowGroups sshusers@192.168.1.0/24
+</code></pre></div>
+<p>Estas directivas se aplican a nivel global, es decir, afectan a todas las conexiones. Si se especifican tanto <code>AllowUsers</code> como <code>DenyUsers</code>, se evalúan en orden: primero se comprueba si el usuario está en <code>DenyUsers</code> (y se le deniega el acceso si coincide), y luego se verifica si está en <code>AllowUsers</code> (y se le permite el acceso si coincide). Si un usuario no coincide con ninguna de las reglas, el acceso se deniega por defecto. Si solo se especifica <code>AllowUsers</code>, solo los usuarios listados podrán acceder, y el resto serán denegados. Si solo se especifica <code>DenyUsers</code>, todos los usuarios podrán acceder excepto los listados.</p>
+</li>
+<li>
+<p><strong>Directivas de aplicación de restricciones específicas</strong><br>
+Además de las directivas globales, también es posible usar bloques <code>Match</code> para aplicar restricciones específicas a ciertos usuarios o grupos.</p>
+<div class="admonition example">
+<p class="admonition-title">Restricciones por usuario y grupo con Match</p>
+<p>Permitir el acceso a <code>admin1</code> solo mediante claves, mientras que <code>admin2</code> puede usar contraseña.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Configuración global: ambos usuarios pueden usar contraseña o claves
+AllowUsers admin1 admin2
+
+# Para admin1 se prohíbe la autenticación por contraseña
+Match User admin1
+      PasswordAuthentication no
+</code></pre><p>Se puede ver que, aunque a nivel global se permite la autenticación por contraseña, el bloque <code>Match User admin1</code> sobrescribe esa directiva para el usuario <code>admin1</code>, obligándolo a usar claves. Por otro lado, <code>admin2</code> no tiene esa restricción y puede autenticarse con contraseña o con claves.</p>
+</div>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Restricciones por ubicación (dirección IP o red)</strong><br>
+En muchos escenarios interesa que ciertas reglas solo se apliquen si la conexión proviene de una red concreta (por ejemplo, la red interna del centro) o de una IP específica. Estas restricciones se suelen implementar mediante bloques <code>Match</code> con el criterio <code>Address</code>.</p>
+<p><code>Match Address</code> permite definir un bloque de configuración que solo se aplicará si la conexión llega desde una IP o red determinada. El valor puede ser una dirección IP concreta (por ejemplo, <code>192.168.1.100</code>), un rango en notación CIDR (por ejemplo, <code>192.168.0.0/24</code>) o incluso un nombre de host que se resolverá por DNS.</p>
+<div class="admonition example">
+<p class="admonition-title">Restricciones por ubicación (dirección IP o red)</p>
+<p>Permitir opciones más relajadas para conexiones desde la red interna <code>192.168.0.0/24</code> (por ejemplo, permitir un usuario invitado) y, al mismo tiempo, endurecer las opciones para conexiones que llegan desde fuera de esa red.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Regla global: solo usuarios admin1 y admin2
+AllowUsers admin1 admin2
+
+# Desde la red interna se permite además el usuario invitado
+Match Address 192.168.0.0/24
+      AllowUsers invitado
+</code></pre><p>En este ejemplo, cualquier conexión que no provenga de la red <code>192.168.0.0/24</code> solo aceptará a los usuarios <code>admin1</code> y <code>admin2</code>. Sin embargo, si la conexión llega desde una IP perteneciente a esa red interna, se añade la excepción de permitir también al usuario <code>invitado</code>. Como ya se ha comentado, las directivas dentro del bloque <code>Match</code> <strong>sobrescriben o amplían</strong> las directivas globales mientras se cumplan las condiciones indicadas.</p>
+</div>
+</li>
+<li>
+<p><strong>Restricciones temporales</strong><br>
+SSH no provee de forma nativa mecanismos para restringir el acceso en función de horarios, días de la semana o fechas concretas. Sin embargo, se puede <strong>integrar con PAM</strong> (Pluggable Authentication Modules) para aplicar este tipo de restricciones.<br>
+Para habilitar la integración con PAM, es necesario que en <code>sshd_config</code> esté presente la siguiente directiva:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>UsePAM yes
+</code></pre><p>La integración con PAM permite aplicar políticas de autenticación más complejas y flexibles, ya que PAM es un sistema modular que puede utilizar distintos módulos para controlar el acceso.<br>
+En el fichero <code>/etc/pam.d/sshd</code> se pueden configurar módulos como <code>pam_time</code> para restringir el acceso a ciertas horas o días, o <code>pam_tally2</code> para bloquear cuentas tras varios intentos fallidos. También es posible integrar PAM con sistemas de autenticación externos (LDAP, RADIUS, etc.) para centralizar la gestión de usuarios y políticas de acceso.</p>
+<p>Una vez activada la integración con PAM, tenemos que ajustar el fichero <code>/etc/pam.d/sshd</code> para incluir el modulo pam_time. Por ello, añadimos la siguiente línea al final del fichero:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>account required pam_time.so
+</code></pre><p>A continuación, se pueden definir las reglas de acceso temporal en el fichero <code>/etc/security/time.conf</code>. Por ejemplo, para permitir el acceso solo de lunes a viernes de 8:00 a 18:00, podríamos añadir la siguiente línea:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>sshd;*;*;Wk0800-1800
+</code></pre><p>En este caso, <code>sshd</code> indica que la regla se aplica al servicio SSH, <code>*</code> significa que se aplica a todos los usuarios y a todas las terminales, y <code>Wk0800-1800</code> especifica que el acceso solo está permitido de lunes a viernes (Wk) entre las 8:00 y las 18:00 horas.</p>
+<p>Para más información sobre la configuración de PAM y el módulo pam_time, se puede consultar la documentación anexa del framework PAM, así como las páginas del manual (<code>man pam_time</code> y <code>man time.conf</code>) o la documentación oficial de PAM.</p>
+</li>
+</ul>
+<p><span style="color: red;">Inicio bloque en construcción</span></p>
+<span style="color: blue;">
+<h4 id="otras-directivas-útiles-tiempos-cifrados-banners">Otras directivas útiles (tiempos, cifrados, banners) </h4>
+<p>Además de las directivas anteriores, el manual de <code>sshd_config</code> recoge muchas otras opciones interesantes. Algunas de las más habituales son:</p>
+<ul>
+<li><code>LoginGraceTime</code><br>
+Tiempo máximo que tiene el cliente para autenticarse antes de que se cierre la conexión (por ejemplo, <code>30s</code>).</li>
+<li><code>ClientAliveInterval</code> y <code>ClientAliveCountMax</code><br>
+Sirven para detectar clientes que se han quedado colgados y cerrar sesiones inactivas.</li>
+<li><code>AllowTcpForwarding</code>, <code>PermitOpen</code>, <code>X11Forwarding</code><br>
+Controlan si se permite crear túneles de puertos o reenvío de X11. Es frecuente desactivarlos para usuarios con permisos limitados.</li>
+<li><code>Banner</code> y <code>PrintMotd</code><br>
+Permiten mostrar mensajes al usuario (por ejemplo, avisos legales o normas de uso) antes o después de autenticarse.</li>
+</ul>
+<p>Un ejemplo simple de uso de banners sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>PrintMotd no
+Banner /etc/issue.net
+</code></pre><p>El contenido de <code>/etc/issue.net</code> podría ser, por ejemplo:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ACCESO RESTRINGIDO. Solo personal autorizado.
+El uso indebido puede ser sancionado.
+</code></pre><p>En cuanto a la parte criptográfica, OpenSSH soporta distintos algoritmos de cifrado, integridad y negociación de clave. Normalmente las versiones actuales ya traen una selección segura por defecto, pero se pueden ajustar mediante:</p>
+<p>OpenSSH soporta distintos algoritmos de cifrado, integridad y negociación de clave. Normalmente las versiones actuales ya traen una selección segura por defecto, pero se pueden ajustar mediante:</p>
+<ul>
+<li><code>Ciphers</code> → lista de algoritmos de cifrado permitidos.</li>
+<li><code>MACs</code> → algoritmos de integridad (Message Authentication Codes).</li>
+<li><code>KexAlgorithms</code> → algoritmos de intercambio de claves.</li>
+</ul>
+<p>En un entorno de aula no suele ser necesario modificar estos parámetros, pero es importante saber que existen para poder <strong>deshabilitar algoritmos antiguos</strong> si alguna guía de seguridad lo exige.</p>
+<h4 id="configuración-específica-para-sftp-y-jaulas-chroot">Configuración específica para SFTP y jaulas chroot </h4>
+<p>Además de las sesiones de consola (<code>ssh</code>), el mismo servicio <code>sshd</code> puede ofrecer SFTP. En <code>sshd_config</code> se ve mediante la directiva <code>Subsystem</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Subsystem sftp internal-sftp
+</code></pre><p>Es posible crear usuarios que <strong>solo</strong> tengan acceso SFTP (sin consola interactiva) y, además, dejarlos encerrados en un directorio concreto (jaula <em>chroot</em>). Un ejemplo típico sería:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Match Group sftpusers
+        ChrootDirectory /sftp/%u
+        ForceCommand internal-sftp
+        X11Forwarding no
+        AllowTcpForwarding no
+</code></pre><p>En este escenario, los usuarios del grupo <code>sftpusers</code> al conectarse por SSH no obtienen una shell, sino un entorno SFTP limitado al directorio <code>/sftp/&lt;usuario&gt;</code>, lo que resulta muy útil para servidores dedicados solo a intercambio de ficheros.</p>
+</span>
+<p><span style="color: red;">Fin bloque en construcción</span></p>
 <h2 id="cliente-ssh">CLIENTE SSH </h2>
 <h3 id="instalación-1">INSTALACIÓN </h3>
-<p>El cliente OpenSSH suele venir instalado por defecto en Debian 11. Si no estuviera disponible, se puede instalar el paquete <code>openssh-client</code>:</p>
+<p>El cliente OpenSSH suele venir instalado por defecto en muchas distribuciones GNU/Linux. Si no estuviera disponible, se puede instalar el paquete <code>openssh-client</code> (o similar) usando el gestor de paquetes correspondiente. En sistemas basados en Debian podría hacerse, por ejemplo, con:</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> update
 <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> openssh-client
 </code></pre><h3 id="programas-disponibles">PROGRAMAS DISPONIBLES </h3>
