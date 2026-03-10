@@ -172,6 +172,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   width: fit-content !important;
   max-width: none !important;
   border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
@@ -777,7 +779,7 @@ Entre las opciones más comunes tenemos:
 <td>Cierra la conexión y sale del cliente SFTP.</td>
 </tr>
 <tr>
-<td><strong>Ficheros y</strong> <br> <strong>Directorios</strong></td>
+<td><strong>Ficheros y <br> Directorios</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -936,7 +938,7 @@ bye
 <ul>
 <li>Sintaxis de comandos similar a la de un shell.</li>
 <li>Compatible con FTP, FTPS y SFTP, HTTP, HTTPs</li>
-<li>Utiliza el formato URL. Ejemplo <a href="ftp://10.100.0.1">ftp://10.100.0.1</a></li>
+<li>Utiliza el formato URL. Ejemplo <a href="ftp://ftp.ejemplo.com">ftp://ftp.ejemplo.com</a></li>
 <li>Soporta scripting.</li>
 <li>Implementa reconexión automática ante errores.</li>
 <li>Ejecución de comandos de cliente dentro de la sesión FTP.</li>
@@ -969,7 +971,8 @@ site url en la que iniciar sesión.
 -c   Similar a -e pero al terminar cierra la sesión.
 --version indica la versión de lftp.
 --help    ayuda.
-</code></pre><p>En un shell de <code>lftp</code> podemos ejecutar la mayor parte de los comandos del <code>ftp</code> tradicional de linux, pero además incluye <strong>comandos avanzados</strong>:</p>
+</code></pre></div>
+<p>En un shell de <code>lftp</code> podemos ejecutar la mayor parte de los comandos del <code>ftp</code> tradicional de linux, pero además incluye <strong>comandos avanzados</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -1172,18 +1175,18 @@ lftp <span class="token parameter variable">-f</span> lftp_in.txt <span class="t
 </code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># Ejecutar cliente ftp y redirigir la salida a un archivo.</span>
 lftp <span class="token parameter variable">-f</span> lftp_in.txt <span class="token operator">&gt;</span>lftp_out.txt <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
 </code></pre></div>
-</div>
+
 <div style="page-break-after:always;"></div>
 <h2 id="clientes-gráficos">CLIENTES GRÁFICOS </h2>
 <h3 id="exploradores-de-archivos">EXPLORADORES DE ARCHIVOS </h3>
 <p>Los exploradores de archivos de los sistemas Windows y Linux son también <strong>clientes ftp básicos</strong>. Basta con indicar en la barra de direcciones del explorador la URL del servidor FTP, por ejemplo, <a href="ftp://ftp.ejemplo.com">ftp://ftp.ejemplo.com</a>.</p>
-<p><img src="./assets/explorer_ftp_01.png" alt="Explorer_ftp_01" style="display: block; margin: auto; width: 70%; align:center;"></p>
+<p><img src="./assets/explorer_ftp_01.png" alt="Explorer_ftp_01" style="display: block; margin: auto; width: 50%; align:center;"></p>
 <p>Posteriormente nos preguntará el usuario y contraseña para conectar con el servidor.</p>
-<p><img src="./assets/explorer_ftp_02.png" alt="Explorer_ftp_02" style="display: block; margin: auto; width: 70%; align:center;"></p>
+<p><img src="./assets/explorer_ftp_02.png" alt="Explorer_ftp_02" style="display: block; margin: auto; width: 50%; align:center;"></p>
 <p>También podemos indicar directamente en la url del servidor el usuario y contraseña. Por ejemplo, si queremos acceder al servidor <a href="http://ftp.ejemplo.com">ftp.ejemplo.com</a> mediante el usuario alumno y contraseña p4bl1c0 usamos la url <a href="ftp://alumno:p4bl1c0@ftp.ejemplo.com">ftp://alumno:p4bl1c0@ftp.ejemplo.com</a></p>
-<p><img src="./assets/explorer_ftp_03.png" alt="Explorer_ftp_03" style="display: block; margin: auto; width: 70%; align:center;"></p>
+<p><img src="./assets/explorer_ftp_03.png" alt="Explorer_ftp_03" style="display: block; margin: auto; width: 50%; align:center;"></p>
 <p>Una vez accedido al servidor, las acciones de descargar archivos, subir archivos, crear carpetas,... se integran en las acciones básicas del explorador como son copiar, pegar, cortar,...</p>
-<p><img src="./assets/explorer_ftp_04.png" alt="Explorer_ftp_04" style="display: block; margin: auto; width: 70%; align:center;"></p>
+<p><img src="./assets/explorer_ftp_04.png" alt="Explorer_ftp_04" style="display: block; margin: auto; width: 50%; align:center;"></p>
 <h3 id="otros-clientes">OTROS CLIENTES </h3>
 <p>Como hemos comentado existen otros clientes gráficos más avanzados que permiten por ejemplo la gestión individualizada de sitios FTP.<br>
 Entre los más utilizados tenemos:</p>
