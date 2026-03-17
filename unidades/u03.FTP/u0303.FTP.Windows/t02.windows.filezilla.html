@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
       
       
       
@@ -222,7 +222,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 }
 
       </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+      <script type="text/javascript">
   const configureMermaidIconPacks = () => {
     window["mermaid"].registerIconPacks([
       {
@@ -242,9 +242,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       configureMermaidIconPacks();
     });
   }
-</script></head><body for="html-export">
-    
-    
+</script>
+    </head>
+    <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
 <p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
@@ -285,7 +285,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#opciones-globales" class="md-toc-link"><p>OPCIONES GLOBALES</p>
+          <a href="#globales" class="md-toc-link"><p>GLOBALES</p>
 </a>
           </summary>
         <div>
@@ -358,6 +358,39 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#shared-folder" class="md-toc-link">
             <p>Shared Folder</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#speed-limits-1" class="md-toc-link">
+            <p>Speed Limits</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ip-filter-1" class="md-toc-link">
+            <p>IP Filter</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#usuarios" class="md-toc-link"><p>USUARIOS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#general-1" class="md-toc-link">
+            <p>General</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#shared-folder-1" class="md-toc-link">
+            <p>Shared Folder</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#speed-limits-2" class="md-toc-link">
+            <p>Speed Limits</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ip-filter-2" class="md-toc-link">
+            <p>IP Filter</p>
+
           </a></div>
         </div>
       </details>
@@ -388,7 +421,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </tr>
 <tr>
 <td><strong>Usuarios</strong></td>
-<td>-Grupos de usuarios <br> - Usuarios personalizados</td>
+<td>-Grupos de usuarios <br> -Usuarios virtuales</td>
 </tr>
 <tr>
 <td><strong>Permisos</strong></td>
@@ -417,23 +450,20 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </tbody>
 </table>
 <p>En esta guía nos centraremos en la versión para MS-Windows.</p>
+<div style="page-break-after:always;"></div>
 <h2 id="instalación">INSTALACIÓN </h2>
-<p>Podemos descargar FileZilla Server desde el siguiente enlace <a href="https://filezilla-project.org/">download</a>. En nuestro caso descargaremos la version 0.9.46 aunque ya existen versiones más avanzadas como la 1.12.4 las diferencias entre ambas no son significativas.</p>
-<p>Ejecutaremos la instalación en modo Administrador.</p>
+<p>Podemos descargar FileZilla Server desde el siguiente enlace <a href="https://filezilla-project.org/">download</a>. En nuestro caso descargaremos la version 0.9.46 aunque ya existen versiones más avanzadas como la 1.12.4 las diferencias entre ambas no son significativas. Ejecutaremos la instalación en modo Administrador.</p>
 <p><strong>Licencia</strong></p>
-<p><img src="./assets/fzs01_install_agreements.png" alt="fzs01" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs01_install_agreements.png" alt="fzs01" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Podemos observar que se trata de software libre con licencia GNU.</p>
 <p><strong>Componentes de la instalación</strong></p>
-<p><img src="./assets/fzs02_install_components.png" alt="fzs02" style="display: block; margin: auto; width: 90%; align:center;"></p>
-<p>Eligiremos la opción por defecto, es decir, la instalación standard.</p>
-<p><strong>Componentes de la instalación</strong></p>
-<p><img src="./assets/fzs02_install_components.png" alt="fzs02" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs02_install_components.png" alt="fzs02" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Se suele elegir la opción por defecto, es decir, la instalación standard. Aunque existen otros tipos de instalaciones como por ejemplo, instalar solo la interfaz de administración, o solo el servicio.</p>
 <p><strong>Carpeta de instalación</strong></p>
-<p><img src="./assets/fzs03_install_folder.png" alt="fzs03" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs03_install_folder.png" alt="fzs03" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Para las versiones Windows lo habitual es instalar en la carpeta de Archivos de Programas.</p>
 <p><strong>Configuración Servicio</strong></p>
-<p><img src="./assets/fzs04_install_service.png" alt="fzs04" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs04_install_service.png" alt="fzs04" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Filezilla Server se ejecutará como un servicio dentro del sistema. Podemos elegir:</p>
 <div class="style-list">
 <ul>
@@ -442,24 +472,25 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <li>No instalar el servicio sino ejecutarlo como un programa.</li>
 </ul>
 </div>
-<p>La opción más habititual es la primera, instalarlo en el inicio de maquina.</p>
-<p>Es importante indicar que el puerto al que hace referencia esta pantalla es el <strong>puerto de administración</strong> del servicio, no se trata del puerto del protocolo FTP (puerto 21). Podemos cambiarlo y poner por ejemplo otro puerto que más significativo como 21021.</p>
+<p>La opción más habititual instalar el servicio en el inicio de maquina. Es importante indicar que el puerto al que hace referencia esta pantalla es el <strong>puerto de administración</strong> del servicio, no se trata del puerto del protocolo FTP (puerto 21). Podemos cambiarlo y poner por ejemplo otro puerto que más significativo como 21021.</p>
 <p><strong>Interfaz administración</strong></p>
-<p><img src="./assets/fzs05_install_interface.png" alt="fzs05" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs05_install_interface.png" alt="fzs05" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>En esta pantalla podemos elegir si la interfaz de administación, aquella a la que accedemos mediante el puerto anteriormente configurado, se inicia automáticamente o bajo demanda. La opción más habitual es bajo demanda (start manually).</p>
 <p><strong>Finalización</strong></p>
-<p><img src="./assets/fzs06_install_complete.png" alt="fzs06" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs06_install_complete.png" alt="fzs06" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Cuando finalice la instalación se debe pulsar el botón <code>Close</code>.</p>
+<div style="page-break-after:always;"></div>
 <h2 id="interfaz-administración">INTERFAZ ADMINISTRACIÓN </h2>
 <p>Una vez terminada la instalación nos conectaremos a la interfaz de administración del servidor para configurarlo.</p>
-<p><img src="./assets/fzs07_adm_connect.png" alt="fzs07" style="display: block; margin: auto; width: 70%; align:center;"></p>
+<p><img src="./assets/fzs07_adm_connect.png" alt="fzs07" style="display: block; margin: auto; width: 30%; align:center;"></p>
 <p>Por defecto nos ofrece conectarnos a la dirección de localhost (127.0.0.1) al puerto configurado para administración (14147 o el que hayamos configurado). La primera vez que nos conectamos no es necesario indicar password ya que no la hemos configurado todavía.</p>
 <p>Como vemos, desde la interfaz de administración se puede conectar a cualquier servidor accesible a través de la red.  Por ejemplo, podríamos instalar un servidor en una maquina con dirección 192.168.1.10 y posteriormente instalar solamente la interfaz de administración en otra máquina distinta para conectarnos remotamente y administar el servidor instalado en la 192.168.1.10.</p>
 <p>Una vez conectados, accedemos a la pantalla principal de la interfaz de configuración.</p>
-<p><img src="./assets/fzs08_adm_interface.png" alt="fzs08" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs08_adm_interface.png" alt="fzs08" style="display: block; margin: auto; width: 80%; align:center;"></p>
 <p>En este pantalla además de realizar la confiuración se puede monitorizar en tiempo real las conexiones que atiende el servidor (panel inferior).</p>
+<div style="page-break-after:always;"></div>
 <p>Tenemos 3 opciones de menú: File, Server, Edit.</p>
-<p><img src="./assets/fzs08_adm_file.png" alt="fzs08" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p><img src="./assets/fzs08_adm_file.png" alt="fzs08" style="display: block; margin: auto; width: 30%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Connect</code><br>
@@ -470,7 +501,7 @@ Desconecta del servidor actual, pero no sale de la interfaz de administración.<
 Sale de la interfaz de administración.</li>
 </ul>
 </div>
-<p><img src="./assets/fzs08_adm_server.png" alt="fzs08" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p><img src="./assets/fzs08_adm_server.png" alt="fzs08" style="display: block; margin: auto; width: 30%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Active</code><br>
@@ -479,7 +510,7 @@ Mantiene el servidor activo atendiendo peticiones FTP.</li>
 Bloque el servidor para atender peticiones FTP. El servicio FTP sigue activo pero no atiende peticiones. Es útil,  por ejemplo, si estamos haciendo cambios de configuración masivos en el servidor puede ser necesario inicialmente bloquearlo, para posteriormente activarlo al terminar las configuraciones.</li>
 </ul>
 </div>
-<p><img src="./assets/fzs08_adm_edit.png" alt="fzs08" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p><img src="./assets/fzs08_adm_edit.png" alt="fzs08" style="display: block; margin: auto; width: 30%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Settings</code><br>
@@ -490,10 +521,11 @@ Permite añadir o borrar usuarios, así como configurar sus permisos de acceso.<
 Permite añadir o borrar grupos, así como configurar sus permisos de acceso.</li>
 </ul>
 </div>
-<h3 id="opciones-globales">OPCIONES GLOBALES </h3>
-<p>En este apartado podemos configurar todas las opciones globales del servidor FTP.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="globales">GLOBALES </h3>
+<p>En esta sección podemos configurar todas las opciones globales del servidor FTP.</p>
 <h4 id="general-settings">General Settings </h4>
-<p><img src="./assets/fzs09_opt_general.png" alt="fzs09" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs09_opt_general.png" alt="fzs09" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Listen on these port</code><br>
@@ -511,7 +543,7 @@ Tiempo (sg) que un usuario tiene para autenticarse correctamente tras iniciar co
 </ul>
 </div>
 <h4 id="welcome-message">Welcome Message </h4>
-<p><img src="./assets/fzs10_opt_welcome.png" alt="fzs10" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs10_opt_welcome.png" alt="fzs10" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Custon welcome message</code><br>
@@ -521,7 +553,7 @@ Elimina el mensaje de bienvenida en los archivos de auditoria.</li>
 </ul>
 </div>
 <h4 id="ip-bindings">IP Bindings </h4>
-<p><img src="./assets/fzs11_opt_binding.png" alt="fzs11" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs11_opt_binding.png" alt="fzs11" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Bind the server ...</code><br>
@@ -529,7 +561,7 @@ Permite indicar en qué direcciones IP de las configuradas en el servidor debe e
 </ul>
 </div>
 <h4 id="ip-filter">IP Filter </h4>
-<p><img src="./assets/fzs12_opt_ipfilter.png" alt="fzs12" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs12_opt_ipfilter.png" alt="fzs12" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Este sección permite bloquear o aceptar direcciones IP o redes específicas para controlar desde dispositivos se pueden conectar al servidor FTP.</p>
 <div class="style-list">
 <ul>
@@ -540,9 +572,8 @@ Permite indicar direcciones IP que pueden conectarse al servidor a pesar de esta
 </ul>
 </div>
 <h4 id="passive">Passive </h4>
-<p><img src="./assets/fzs13_opt_passive.png" alt="fzs13" style="display: block; margin: auto; width: 90%; align:center;"></p>
-<p>En el modo pasivo el servidor indica al cliente que puerto debe usar para la conexión de transmisión de datos. Este es un modo fundamental para que los clientes FTP puedan realizar transferencias de datos cuando se encuentran en redes NAT (conexiones a INTERNET a través de ISP).</p>
-<p>Evidentemente al ser puertos del servidor, este debe tener dichos puertos accesibles a través de su firewall.</p>
+<p><img src="./assets/fzs13_opt_passive.png" alt="fzs13" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>En el modo pasivo el servidor indica al cliente que puerto debe usar para la conexión de transmisión de datos. Este es un modo fundamental para que los clientes FTP puedan realizar transferencias de datos cuando se encuentran en redes NAT (conexiones a INTERNET a través de ISP).Evidentemente al ser puertos del servidor, este debe tener dichos puertos accesibles a través de su firewall.</p>
 <div class="style-list">
 <ul>
 <li><code>Use custom port range</code><br>
@@ -563,7 +594,7 @@ Se utiliza para evitar usar las IPs publicas para las conexiones de datos pasiva
 </ul>
 </div>
 <h4 id="security-settings">Security Settings </h4>
-<p><img src="./assets/fzs14_opt_security.png" alt="fzs14" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs14_opt_security.png" alt="fzs14" style="display: block; margin: auto; width: 55%; align:center;"></p>
 <p>Esta sección permite proteger el servidor contra dos tipos de ataques relacionados con el uso indebido de las conexiones FTP:</p>
 <ul>
 <li>FXP (Server-to-Server transfers)</li>
@@ -589,7 +620,7 @@ Igual que la opción anterior pero para conexiones salientes.</li>
 </ul>
 </div>
 <h4 id="miscellaneous">Miscellaneous </h4>
-<p><img src="./assets/fzs15_opt_miscellaneous.png" alt="fzs15" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs15_opt_miscellaneous.png" alt="fzs15" style="display: block; margin: auto; width: 55%; align:center;"></p>
 <div class="style-list">
 <ul>
 <li><code>Don't show passwords in message log</code><br>
@@ -608,7 +639,7 @@ En el FTP activo, el cliente usa el comando PORT para indicarle al servidor a qu
 </ul>
 </div>
 <h4 id="admin-interface-setttings">Admin Interface Setttings </h4>
-<p><img src="./assets/fzs16_opt_admin.png" alt="fzs16" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs16_opt_admin.png" alt="fzs16" style="display: block; margin: auto; width: 50%; align:center;"></p>
 <p>Este apartado solo se permite configurar desde conexiones locales usando la IP 127.0.0.1</p>
 <div class="style-list">
 <ul>
@@ -623,7 +654,7 @@ Permite cambiar la contraseña del administrador para conectarse a la interfaz d
 </ul>
 </div>
 <h4 id="logging">Logging </h4>
-<p><img src="./assets/fzs17_opt_logging.png" alt="fzs17" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs17_opt_logging.png" alt="fzs17" style="display: block; margin: auto; width: 50%; align:center;"></p>
 <p>Este apartado configura el registro de actividad o auditoria del servidor. Estos archivos se guardan en el subdirectorio <code>Logs</code> de la carpeta de instalación del servidor.</p>
 <div class="style-list">
 <ul>
@@ -642,7 +673,7 @@ Genera un archivo de log diferente para cada día con nombre fzs-year-month-day.
 </ul>
 </div>
 <h4 id="speed-limits">Speed Limits </h4>
-<p><img src="./assets/fzs18_opt_speed.png" alt="fzs18" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs18_opt_speed.png" alt="fzs18" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Este apartado permite limitar la velocidad de descarga y subida para los clientes FTP conectados al servidor. Es útil para evitar saturar la red o repartir el ancho de banda entre varios usuarios.</p>
 <div class="style-list">
 <ul>
@@ -671,7 +702,7 @@ Permite crear reglas avanzadas. Por ejemplo, por horas, usuarios, IPs. Las regla
 </ul>
 </div>
 <h4 id="filetransfer-compression">FileTransfer Compression </h4>
-<p><img src="./assets/fzs19_opt_compression.png" alt="fzs19" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs19_opt_compression.png" alt="fzs19" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Este apartado permite configurar MODE Z una extensión del protocolo FTP que permite comprimir los datos durante las transferencias para mejorar la velocidad de las conexiones. Es importante indicar que no todos los clientes soportan MODE Z, si el cliente no soporta el modo se realiza la conexión sin compresión. La compresión ocupa tiempo de CPU por lo que se recomienda no activar para servidores sin muchos recursos.</p>
 <div class="style-list">
 <ul>
@@ -691,7 +722,7 @@ Permite excluir IPs individuales, rango de IPs, redes completas.</li>
 </ul>
 </div>
 <h4 id="ssltls-settings">SSL/TLS settings </h4>
-<p><img src="./assets/fzs20_opt_tls.png" alt="fzs20" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs20_opt_tls.png" alt="fzs20" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Este apartado permite configurar FTPS. FTPS se trata del protocolo FTP al que se le ha añadido una capa de presentación a través de SSL/TLS. El protocolo SSL/TLS permite el cifrado de la información.</p>
 <div class="style-list">
 <ul>
@@ -718,10 +749,8 @@ Si hemos desmarcado la opción <code>Allow explicit FTP over TLS</code> signific
 Sirve para generar los ficheros de clave publica y privada del servidor.</li>
 </ul>
 </div>
-<p>Aquí puedes ver el proceso de conexión con FTP over TLS.</p>
-<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="SEQUENCE" height="982px" preserveAspectRatio="none" style="width:351px;height:982px;background:#FFFFFF;" version="1.1" viewBox="0 0 351 982" width="351px" zoomAndPan="magnify"><title>Conexión Explicit FTP over TLS</title><defs></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="211.5859" x="69.2004" y="29.5332">Conexión Explicit FTP over TLS</text><g><title>Cliente</title><rect fill="#000000" fill-opacity="0.00000" height="869.25" width="8" x="40.7896" y="76.2188"></rect><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="44" x2="44" y1="76.2188" y2="945.4688"></line></g><g><title>Servidor FTP(S)</title><rect fill="#000000" fill-opacity="0.00000" height="869.25" width="8" x="284.4248" y="76.2188"></rect><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="287.8628" x2="287.8628" y1="76.2188" y2="945.4688"></line></g><g class="participant participant-head" data-participant="Cliente"><rect fill="#E2E2F0" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.5791" x="16" y="43.6094"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5791" x="23" y="65.1426">Cliente</text></g><g class="participant participant-tail" data-participant="Cliente"><rect fill="#E2E2F0" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.5791" x="16" y="944.4688"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5791" x="23" y="966.002">Cliente</text></g><g class="participant participant-head" data-participant="Servidor"><rect fill="#E2E2F0" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="115.124" x="230.8628" y="43.6094"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101.124" x="237.8628" y="65.1426">Servidor FTP(S)</text></g><g class="participant participant-tail" data-participant="Servidor"><rect fill="#E2E2F0" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="115.124" x="230.8628" y="944.4688"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101.124" x="237.8628" y="966.002">Servidor FTP(S)</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,104.5703,286.4248,108.5703,276.4248,112.5703,280.4248,108.5703" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="108.5703" y2="108.5703"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="193.6353" x="51.7896" y="103.7139">Conexión TCP al puerto 21 (FTP)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,134.9219,45.7896,138.9219,55.7896,142.9219,51.7896,138.9219" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="138.9219" y2="138.9219"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104.7808" x="61.7896" y="134.0654">220 Service ready</text></g><path d="M5,151.9219 L5,193.9219 L329,193.9219 L329,161.9219 L319,151.9219 L5,151.9219" fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"></path><path d="M319,151.9219 L319,161.9219 L329,161.9219 L319,151.9219" fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.5107" x="48.0913" y="170.417">El cliente inicia como FTP normal.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="229.8042" x="48.0913" y="186.7686">Luego solicita elevar la conexión a TLS.</text><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,217.9766,286.4248,221.9766,276.4248,225.9766,280.4248,221.9766" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="221.9766" y2="221.9766"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62.8418" x="51.7896" y="217.1201">AUTH TLS</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,248.3281,45.7896,252.3281,55.7896,256.3281,51.7896,252.3281" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="252.3281" y2="252.3281"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.6733" x="61.7896" y="247.4717">234 Proceed with negotiation</text></g><path d="M5,265.3281 L5,307.3281 L329,307.3281 L329,275.3281 L319,265.3281 L5,265.3281" fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"></path><path d="M319,265.3281 L319,275.3281 L329,275.3281 L319,265.3281" fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="148.1353" x="88.9258" y="283.8232">A partir de aquí comienza</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108.4053" x="88.9258" y="300.1748">el handshake TLS.</text><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,347.7344,286.4248,351.7344,276.4248,355.7344,280.4248,351.7344" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="351.7344" y2="351.7344"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62.8608" x="51.7896" y="330.5264">ClientHello</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="219.6353" x="51.7896" y="346.8779">(Ciphers, version TLS, ClientRandom)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,394.4375,45.7896,398.4375,55.7896,402.4375,51.7896,398.4375" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="398.4375" y2="398.4375"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67.9136" x="61.7896" y="377.2295">ServerHello</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="187.1416" x="61.7896" y="393.5811">(Cipher elegido, ServerRandom)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,424.7891,45.7896,428.7891,55.7896,432.7891,51.7896,428.7891" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="428.7891" y2="428.7891"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186.4116" x="61.7896" y="423.9326">Certificado del servidor (publica)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,455.1406,45.7896,459.1406,55.7896,463.1406,51.7896,459.1406" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="459.1406" y2="459.1406"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="177.7471" x="61.7896" y="454.2842">ServerKeyExchange (si aplica)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,485.4922,45.7896,489.4922,55.7896,493.4922,51.7896,489.4922" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="489.4922" y2="489.4922"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98.9917" x="61.7896" y="484.6357">ServerHelloDone</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,532.1953,286.4248,536.1953,276.4248,540.1953,280.4248,536.1953" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="536.1953" y2="536.1953"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106.209" x="51.7896" y="514.9873">Verifica certificado</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119.1963" x="51.7896" y="531.3389">(CA, CN, expiración)</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,578.8984,286.4248,582.8984,276.4248,586.8984,280.4248,582.8984" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="582.8984" y2="582.8984"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113.458" x="51.7896" y="561.6904">ClientKeyExchange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135.1099" x="51.7896" y="578.042">(Intercambio de claves)</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,609.25,286.4248,613.25,276.4248,617.25,280.4248,613.25" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="613.25" y2="613.25"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113.4644" x="51.7896" y="608.3936">ChangeCipherSpec</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,639.6016,286.4248,643.6016,276.4248,647.6016,280.4248,643.6016" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="643.6016" y2="643.6016"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="100.4263" x="51.7896" y="638.7451">Finished (cifrado)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,669.9531,45.7896,673.9531,55.7896,677.9531,51.7896,673.9531" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="673.9531" y2="673.9531"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113.4644" x="61.7896" y="669.0967">ChangeCipherSpec</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,700.3047,45.7896,704.3047,55.7896,708.3047,51.7896,704.3047" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="704.3047" y2="704.3047"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="100.4263" x="61.7896" y="699.4482">Finished (cifrado)</text></g><path d="M5,717.3047 L5,776.3047 L329,776.3047 L329,727.3047 L319,717.3047 L5,717.3047" fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"></path><path d="M319,717.3047 L319,727.3047 L329,727.3047 L319,717.3047" fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.6543" x="57.1526" y="735.7998">Handshake TLS completado.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="211.6816" x="57.1526" y="752.1514">Ambos comparten claves simétricas.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198.7197" x="57.1526" y="768.5029">El canal de control ya está cifrado.</text><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,816.0625,286.4248,820.0625,276.4248,824.0625,280.4248,820.0625" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="820.0625" y2="820.0625"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83.8081" x="51.7896" y="798.8545">USER nombre</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.6772" x="51.7896" y="815.2061">(cifrado)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,846.4141,45.7896,850.4141,55.7896,854.4141,51.7896,850.4141" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="850.4141" y2="850.4141"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="184.9771" x="61.7896" y="845.5576">331 Password required (cifrado)</text></g><g class="message" data-participant-1="Cliente" data-participant-2="Servidor"><polygon fill="#181818" points="276.4248,893.1172,286.4248,897.1172,276.4248,901.1172,280.4248,897.1172" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;" x1="44.7896" x2="282.4248" y1="897.1172" y2="897.1172"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102.6162" x="51.7896" y="875.9092">PASS contraseña</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.6772" x="51.7896" y="892.2607">(cifrado)</text></g><g class="message" data-participant-1="Servidor" data-participant-2="Cliente"><polygon fill="#181818" points="55.7896,923.4688,45.7896,927.4688,55.7896,931.4688,51.7896,927.4688" style="stroke:#181818;stroke-width:1;"></polygon><line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="49.7896" x2="287.4248" y1="927.4688" y2="927.4688"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="172.7007" x="61.7896" y="922.6123">230 Login successful (cifrado)</text></g><!--SRC=[ZLJDRXen4BxlKunoMYI24kWfXqehGaHLLA4iwQcNmJk05Q-ziRq4-ZOzzj13rKVWnJ9U5W9L5hYEPxu_Z-sbLmHzesabD_yq35Q5aa9wU9YCmIp9mcIKHWLQpzK2jOU-agGz7TMkKh9BcHaRnkAqTGNeO5UBwWcu_holmTq1vwG_1bHGb6IzWUujn8pIYlQzrpoumxY3RlTc2oC8B66sZhJXWqfhtTNUKmyKY7fIQbQB84nkAdFQs1nL9ngLD3VWJ6KRWHGjqO8AdJk164BeHAGp25mDXfAdoR1AgqbuxnEChH546RnAlm3Dn5wYbqQVyf105RM5Z01VoisVu85xVc942XQeCxV0Pxf8uxOw9ANC3nttPR4Wwzh0l8vL18XstVF8k2Pll8LG9diC5BARSs-xFZq3qUVhbZCfC3DiJO7RjSL5EUNRm3FaNsazM0dsFoU8dGGiBXYg5D_ppJO4z9rifGd4kxfWCE5SlhM1LeMqAC9Mj4v6V22EnxzmcnMOJsMmoYk9ItAD0DNKDjAq8D7Gzi0BxHQyIx6GCyiocuF-7x2XxmF44sivF5oyi9A58iz3dIZ9fyPL5TvRqhLTS3BV_FQM8tMTwc6YvbSVuZ3QMwDWpQ_F-SqlgEdFRlDJEdZaytngGyZdOkZrRc6CphqQc_7FyL9AU-JrOuvnagPRXUXeynSl8EhsRc1avbA3AuKWvsQbUkTv0m00]--></g></svg></p><p>En una conexión FTPS aunque el servidor utiliza un certificado de clave publica-privada este solo se utiliza para identificar al servidor y negociar las claves simetricas (client_write_key, server_write_key) durante el HandShake TLS. Estas claves simetricas son las que se utilizan posteriormente para el cifrado de la conexión.</p>
 <h4 id="autoban">Autoban </h4>
-<p><img src="./assets/fzs22_opt_autoban.png" alt="fzs22" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs22_opt_autoban.png" alt="fzs22" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>Esta sección sirve para bloquear automáticamente direcciones IP desde las que se realizan demasiados intentos fallidos de login. Esto protege al servidor frente a ataques de fuerza bruta, bots que intentan contraseñas al azar o intentos automatizados de intrusión.</p>
 <p>Por defecto, el servidor relentiza progresivamente a aquellos equipos que intentan hacer login y fallan repetidamente. No obstante, tambien se puede activar el autoban.</p>
 <div class="style-list">
@@ -734,10 +763,11 @@ Bloquea una IP después de n-intentos realizados en 1 hora.</li>
 Bloquea la IP durante n-horas. Durante este tiempo el equipo no podrá volver a conectar con el servidor.</li>
 </ul>
 </div>
+<div style="page-break-after:always;"></div>
 <h3 id="grupos">GRUPOS </h3>
-<p>En este apartado podemos configurar los grupos de usuarios del servidor.</p>
+<p>En esta sección podemos configurar los grupos de usuarios del servidor.</p>
 <h4 id="general">General </h4>
-<p><img src="./assets/fzs23_grp_general.png" alt="fzs23" style="display: block; margin: auto; width: 90%; align:center;"></p>
+<p><img src="./assets/fzs23_grp_general.png" alt="fzs23" style="display: block; margin: auto; width: 60%; align:center;"></p>
 <p>En este apartado podemos crear, borrar, renombrar o copiar grupos de usuarios. Una vez creado un grupo podemos seleccionarlo y configurar los siguientes aspectos generales.</p>
 <div class="style-list">
 <ul>
@@ -760,8 +790,8 @@ Descripción sobre el propósito del grupo</li>
 </ul>
 </div>
 <h4 id="shared-folder">Shared Folder </h4>
-<p><img src="./assets/fzs24_grp_folder.png" alt="fzs24" style="display: block; margin: auto; width: 90%; align:center;"></p>
-<p>En este apartado permite definir los puntos de montaje (<code>mount points</code>) que veran los usuarios al conectarse al FTP. Es decir:  que carpetas pueden ver y usar los usuarios del grupo, que permisos tienen los usuarios sobre dichas carpetas, cual es la carpeta principal para los usuarios del grupos, que rutas virtuales (alias) hay a otras carpetas,...</p>
+<p><img src="./assets/fzs24_grp_folder.png" alt="fzs24" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>Este apartado permite definir los puntos de montaje (<code>mount points</code>) que veran los usuarios al conectarse al FTP. Es decir:  que carpetas pueden ver y usar los usuarios del grupo, que permisos tienen los usuarios sobre dichas carpetas, cual es la carpeta principal para los usuarios del grupos, que rutas virtuales (alias) hay a otras carpetas,...</p>
 <div class="style-list">
 <ul>
 <li><code>Add</code><br>
@@ -779,7 +809,39 @@ Podemos marcar permisos de acceso tanto para los ficheros como para los director
 Los alias son puntos de montaje que nos permiten dar acceso a carpetas que físcamente estan fuera del punto de montaje principal o <code>Home</code>. Estos alias aparecerán dentro del <code>Home</code> de los usuarios del grupo aunque físcamente se encuentren en otro lugar. En realidad, el propio <code>Home</code> se trata del alias <code>/</code> que apunta al directorio físico elegido como inicio del sitio FTP para los usuarios del grupo.</li>
 </ul>
 </div>
+<h4 id="speed-limits-1">Speed Limits </h4>
+<p><img src="./assets/fzs27_grp_speed.png" alt="fzs27" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>Este apartado configura los limites de ancho de banda para los usuarios del grupo. Las opciones a definir son iguales a las de la sección global para este apartado. Si no se define ninguna opción se aplicarán las globales.</p>
+<h4 id="ip-filter-1">IP Filter </h4>
+<p><img src="./assets/fzs28_grp_ipfilter.png" alt="fzs28" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>Esta apartado configura el filtrado IP  para los usuarios del grupo. Las opciones a definir son iguales a las de la sección global para este apartado.  Si no se define ninguna opción se aplicarán las globales.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="usuarios">USUARIOS </h3>
+<p>En esta sección podemos configurar usuarios del servidor. <strong>Si configuramos una opción para un usuario tiene preferencia sobre la del grupo al que pertenece</strong>. Para definir la preferencia se utiliza en los campos check-box 3 posibles valores.</p>
+<p><img src="./assets/fzs32_usr_check.png" alt="fzs32" style="display: block; margin: auto; width: 20%; align:center;"></p>
+<div class="style-list">
+<ul>
+<li>◼ Prevalece la opción del grupo.</li>
+<li>☐ Prevalece la opción del usuario deshabilitada.</li>
+<li>✓ Prevalece la opción del usuario habilitada.</li>
+</ul>
+</div>  
+<h4 id="general-1">General </h4>
+<p><img src="./assets/fzs29_usr_general.png" alt="fzs29" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>En este apartado podemos crear, borrar, renombrar o copiar usuarios. Al crear un usuario podemos indicar el grupo al que pertenece o no asignalo a ningún grupo.</p>
+<p><img src="./assets/fzs30_usr_add.png" alt="fzs30" style="display: block; margin: auto; width: 30%; align:center;"></p>
+<p>Una vez creado el usuario podemos seleccionarlo y configurar sus opciones generales. Las opciones a definir son iguales a las de la sección grupos para este apartado.</p>
+<h4 id="shared-folder-1">Shared Folder </h4>
+<p><img src="./assets/fzs33_usr_folder.png" alt="fzs33" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>Este apartado permite definir los puntos de montaje (<code>mount points</code>) que vera el usuarios al conectarse al FTP. Las opciones a definir son iguales a las de la sección grupos para este apartado. Si no añadimos ninguno, el usuario verá los puntos de montaje del grupo al que pertenece, no obstante podemos añadir nuevos puntos de montaje o sobreescribir los existentes para el grupo.</p>
 </div>
+<h4 id="speed-limits-2">Speed Limits </h4>
+<p><img src="./assets/fzs34_usr_speed.png" alt="fzs34" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>Este apartado configura los limites de ancho de banda para el usuario. Las opciones a definir son iguales a las de la sección grupos para este apartado. Si no añadimos ninguna opción se aplicaran las que correspondan a su grupo o las globales.</p>
+<h4 id="ip-filter-2">IP Filter </h4>
+<p><img src="./assets/fzs35_usr_ipfilter.png" alt="fzs35" style="display: block; margin: auto; width: 60%; align:center;"></p>
+<p>Este apartado configura el filtrado IP para el usuario. Las opciones a definir son iguales a las de la sección grupos para este apartado. Si no añadimos ninguna opción se aplicaran las que correspondan a su grupo o las globales.</p>
+
 
       </div>
       
