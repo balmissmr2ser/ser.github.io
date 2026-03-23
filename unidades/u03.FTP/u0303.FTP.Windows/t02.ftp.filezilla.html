@@ -251,7 +251,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div class="style-title">
 <h1 id="filezilla-ftp-server">FILEZILLA FTP SERVER </h1>
 </div>
-<p>📙<a href="./t02.windows.filezilla.pdf">Descargar PDF</a></p>
+<p>📙<a href="./t02.ftp.filezilla.pdf">Descargar PDF</a></p>
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
@@ -743,8 +743,8 @@ Si esta activado y el cliente no soporta TLS no se realizará la conexión, ya q
 </li>
 <li><code>Force PROT P to encrypt file...</code><br>
 Obliga a cifrar también las transferencias de datos no solo los datos de control. Activarlo es mas seguro pero consume más tiempo de CPU.</li>
-<li><code>Listen forn implict SSL/TLS connections</code><br>
-Si hemos desmarcado la opción <code>Allow explicit FTP over TLS</code> significa que los clientes no usaran el puerto 21 para la conexión de control sino el puerto FTPS estándar 990 o el configurado a tal efecto. En este caso solo se permiten conexiones FTPS y no FTP sin cifrar.</li>
+<li><code>Listen for implict SSL/TLS connections</code><br>
+Si hemos desmarcado la opción <code>Allow explicit FTP over TLS</code> significa que los clientes no usaran el puerto 21 para la conexión de control sino el puerto FTPS estándar 990 o el configurado a tal efecto. En este caso solo se permiten conexiones FTPS y no FTP sin cifrar. Podemos deshabilitarlo si borramos el número de puerto.</li>
 <li><code>Generate new certicate</code><br>
 Sirve para generar los ficheros de clave publica y privada del servidor.</li>
 </ul>
