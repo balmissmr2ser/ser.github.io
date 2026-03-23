@@ -249,84 +249,252 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       
 <div class="style-title">
 <p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
-<h1 id="acceso-remoto-protocolos">ACCESO REMOTO PROTOCOLOS </h1>
+<h1 id="ssh">SSH </h1>
 </div>
-<p>📙<a href="./guia.pdf">Descargar PDF</a></p>
-<h2 id="contenidos">CONTENIDOS </h2>
-<div class="style-table-content">
+<p>📙<a href="./t03.remoto.ssh.pdf">Descargar PDF</a></p>
+
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ssh" class="md-toc-link"><p>SSH</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#introducción" class="md-toc-link"><p>INTRODUCCIÓN</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#aplicaciones" class="md-toc-link">
+            <p>APLICACIONES</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#protocolo" class="md-toc-link">
+            <p>PROTOCOLO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#características" class="md-toc-link">
+            <p>CARACTERÍSTICAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#utilidades" class="md-toc-link">
+            <p>UTILIDADES</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="introducción">INTRODUCCIÓN </h2>
+<div class="style-normal">
+<p>En 1995 el finlandés Tatu Ylönen desarrolló la primera versión del protocolo SSH (SSH 1) y el programa Secure Shell. En las primeras versiones la licencia era libre pero fue cambiando a licencias más restrictivas y acabó apareciendo la compañía SSH Communications Security. Esta empresa lo ofrecía gratuitamente para uso doméstico y académico, pero exigía el pago a otras empresas . En 1997 el IETF propuso el primer borrador del protocolo, actualmente definido en la <strong><a href="https://www.rfc-editor.org/info/rfc4251">RFC 4251</a></strong>. El protocolo SSH utiliza el <strong>puerto 22 TCP</strong>. A principios de 1999 el proyecto OpenBSD comenzó a escribir una versión que se convertiría en la implementación libre de SSH por excelencia llamada OpenSSH (Open Secure Shell). OpenSSH se puede instalar en las distribuciones de Linux y en Windows partir de las versiones Windows 10 y Windows Server 2019.</p>
+<h3 id="aplicaciones">APLICACIONES </h3>
+<p>SSH se puede utilizar, entre otros usos, para:</p>
+<div class="style-list">
+<ul>
+<li>Administrar máquinas remotas de forma segura a través de una terminal.</li>
+<li>Como base para otros protocolos seguros:
+<ul>
+<li>SFTP  FTP seguro</li>
+<li>SCP   Copia de fichero segura</li>
+<li>RSYNC 	   Copias de seguridad remotas y mirrores.</li>
+</ul>
+</li>
+<li>Crear túneles seguros para conexiones TCP/IP inseguras.</li>
+<li>Ejecutar scripts remotos (ssh exec)</li>
+<li>Navegar por internet de forma segura con socks o proxies.</li>
+</ul>
+</div>
+<h3 id="protocolo">PROTOCOLO </h3>
+<p>La arquitectura del protocolo SSH está formada por varios componentes báiscos.</p>
 <table>
 <thead>
 <tr>
-<th>Recurso</th>
+<th>Componente</th>
+<th>RFC</th>
 <th>Descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="./t01.remoto.protocolos.html">Teoria</a></strong></td>
-<td>Protocolos Acceso Remoto</td>
+<td>Protocolo</td>
+<td><strong><a href="https://www.rfc-editor.org/info/rfc4251">RFC 4251</a></strong></td>
+<td>Define los aspectos generales de funcionamiento del protocolo</td>
+</tr>
+<tr>
+<td>Número asignado</td>
+<td><strong><a href="https://www.rfc-editor.org/info/rfc4250">RFC 4250</a></strong></td>
+<td>Define los códigos para los mensajes SSH y para la comunicación con otros protocolos</td>
+</tr>
+<tr>
+<td>Autenticación</td>
+<td><strong><a href="https://www.rfc-editor.org/info/rfc4252">RFC 4252</a></strong></td>
+<td>Define mecanismos de autenticación de usuarios. Estos incluyen la autenticación de contraseña tradicional, así como los mecanismos de autenticación de clave pública/privada o los basados en el anfitrión.</td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td><strong><a href="https://www.rfc-editor.org/info/rfc4253">RFC 4253</a></strong></td>
+<td>Define la negociación de algoritmos e intercambio de claves. El intercambio de claves incluye la autenticación del servidor y da lugar a una conexión segura cifrada proporcionando integridad, confidencialidad y compresión opcional.</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td><strong><a href="https://www.rfc-editor.org/info/rfc4254">RFC 4254</a></strong></td>
+<td>Define la multiplexación de canales concurrentes a través de la conexión autenticada y permite el túnel de las sesiones de inicio de sesión y el reenvío TCP. Proporciona un servicio de control de flujo para estos canales. Además, se pueden negociar varias opciones específicas del canal.</td>
 </tr>
 </tbody>
 </table>
+<p>Podemos encontrar información adicional del protocolo SSH en la siguiente url:</p>
+<center>
+<p><strong><a href="https://www.ssh.com/academy/ssh">Academia SSH</a></strong></p>
+</center>
+<h3 id="características">CARACTERÍSTICAS </h3>
+<div class="style-list">
+<ul>
+<li>
+<p><strong>Código abierto</strong><br>
+Software con licencia libre para su distribución. Además el código esta disponible de manera libre.</p>
+</li>
+<li>
+<p><strong>Puerto</strong><br>
+Por defecto TCP 22.</p>
+</li>
+<li>
+<p><strong>Cifrado</strong><br>
+Puede utilizar varios algoritmos de cifrado: AES, ChaCha20, RSA, DSA, ECDSA, Ed25519.... El cifrado se inicia antes de la autenticación y no se transmite ninguna contraseña ni otra información en claro. El cifrado también se utiliza para protegerse contra paquetes falsificados. Hay disponibles una serie de algoritmos de cifrado (ciphers) y tipos de clave (key) diferentes. Las opciones heredadas normalmente se eliminan gradualmente en un periodo de tiempo razonable.</p>
+</li>
+<li>
+<p><strong>Autenticación</strong><br>
+Además de contraseñas se pueden utilizar claves públicas/privadas. Protege contra algunos problemas de seguridad como suplantación de IP (IP spoofing), de DNS (DNS spoofing) o encaminamiento falso (fake Routing). Hay 5 métodos de autenticación:</p>
+<ul>
+<li>Kerberos/GSSAPI</li>
+<li>Claves basado en la máquina de conexión (hostbased)</li>
+<li>Claves públicas de autenticación (public key)</li>
+<li>Interactiva por teclado (keyboard-interactive)</li>
+<li>Claves de acceso (password)</li>
+</ul>
+<p>El orden por defecto para intentar la autenticación es el indicado en la lista, es decir, primero se intenta kerberos, luego hostbase, etc.. Si todos los métodos erran, se termina intentando validar la clave de sistema del usuario.</p>
+</li>
+<li>
+<p><strong>SSH 1 y SSH 2</strong><br>
+SSH está disponible en dos versiones incompatibles: SSH 1 y SSH 2.El protocolo más antiguo SSH 1 tiene dos variantes 1.3 y 1.5. La versión 7.6 de OpenSSH ha eliminado el soporte para ambas. Las dos versiones utilizan el algoritmo de cifrado asimétrico RSA, para la negociación de las claves y la autenticación y 3DES y Blowfish para la privacidad. RSA es un algoritmo patentado, cuya patente ya ha expirado. El protocolo SSH 2 utiliza sólo los algoritmos asimétricos DSA y DH que no requieren patentes. Además, SSH 2 soporta muchas más opciones de cifrado tan simétrico como asimétrico y muchas nuevas características.</p>
+</li>
+<li>
+<p><strong>Reenvío X11</strong><br>
+El reenvío X11 permite cifrar el tráfico remoto de los sistemas gráficos  X Windows. De esta manera nadie pueda tachar los xterms remotos ni insertar órdenes maliciosas. El programa establece automáticamente DISPLAY en la máquina servidor y reenvía cualquier conexión X11 a través del canal seguro. La información falsa de Xauthority se genera automáticamente y se envía a la máquina remota; el cliente local examina automáticamente las conexiones X11 entrantes y sustituye los datos de autorización falsos por los datos reales (sin decir nunca a la máquina remota la información real).</p>
+</li>
+<li>
+<p><strong>Reenvío de puertos</strong><br>
+El reenvío de puertos (túneles cifrados) permite reenviar conexiones TCP/IP a una máquina remota a través de un canal cifrado. Con ello se pueden proteger aplicaciones de Internet inseguras como POP u otros protocolos.</p>
+</li>
+<li>
+<p><strong>Agente de claves</strong><br>
+Se puede utilizar un agente de autenticación, que se ejecuta en el host del usuario, para mantener sus claves de autenticación. OpenSSH reenvía automáticamente la conexión al agente de autenticación a través de cualquier conexión y no es necesario almacenar las claves de autenticación en ninguna otra máquina de la red (excepto la máquina local del usuario). Los protocolos de autenticación nunca revelan las claves sólo se pueden utilizar para verificar que el agente del usuario tiene una clave determinada.</p>
+</li>
+<li>
+<p><strong>SFTP</strong><br>
+Cliente y servidor soporte para Secure FTP (FTP sobre SSL/TLS).</p>
+</li>
+<li>
+<p><strong>Compresión</strong><br>
+Opcionalmente, se puede hacer una compresión de datos después del cifrado para mejorar el rendimiento en redes lentas.</p>
+</li>
+<li>
+<p><strong>Interoperabilidad</strong><br>
+Entre las diferentes implementaciones de OpenSSH</p>
+</li>
+</ul>
 </div>
-<h2 id="actividades">ACTIVIDADES </h2>
-<div class="style-table-content">
+<h3 id="utilidades">UTILIDADES </h3>
+<p>El conjunto de aplicaciones de SSH implementado mediante OPENSSH incluye las siguientes utilidades.</p>
+<p><strong>Servicios</strong></p>
 <table>
 <thead>
 <tr>
-<th>Recurso</th>
-<th>Descripción</th>
+<th>nombre</th>
+<th>descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="./a01.UltraVNC.doc">Actividad</a></strong></td>
-<td>Ultra VNC</td>
+<td><code>sshd</code></td>
+<td>Servidor SSH. Proporciona comunicaciones cifradas seguras entre dos host no fiables a través de una red insegura. El servicio se inicia en el arranque del sistema y se pone a la escucha de las conexiones de los clientes. El servicio bifurca un nuevo proceso para cada conexión entrante. Los procesos bifurcados gestionan el intercambio de claves, el cifrado, la autenticación, la ejecución de órdenes y el intercambio de datos.</td>
 </tr>
 <tr>
-<td><strong><a href="./a01.UltraVNC.guia.pdf">Guia solucion</a></strong></td>
-<td></td>
+<td><code>sftp-server</code></td>
+<td>Servidor para el subsistema FTPS. No se puede invocar directamente sino que es utilizado en el fichero de configuración <code>sshd_config</code> mediante el parámetro subsystem. Por defecto, no está habilitado. Ejemplo:<br><code>Subsystem sftp /usr/lib/openssh/sftp-server</code></td>
 </tr>
 <tr>
-<td><strong><a href="./a02.RDPWin.doc">Actividad</a></strong></td>
-<td>RDP Windows</td>
+<td><code>internal-sftp</code></td>
+<td>Servidor para el subsistema FTPS. No se puede invocar directamente sino que es utilizado en el fichero de configuración <code>sshd_config</code> mediante el parámetro subsystem. En este caso el propio servicio <code>sshd</code> se encarga de la gestión de FTPS, es la opción preferida. Por defecto, no está habilitado. Ejemplo:<br><code>Subsystem sftp internal-sftp</code></td>
 </tr>
 <tr>
-<td><strong><a href="./a02.RDPWin.guia.pdf">Guia solucion</a></strong></td>
-<td></td>
-</tr>
-<tr>
-<td><strong><a href="./a03.RDPLinux.doc">Actividad</a></strong></td>
-<td>RDP Linux</td>
-</tr>
-<tr>
-<td><strong><a href="./a03.RDPLinux.guia.pdf">Guia solucion</a></strong></td>
-<td></td>
+<td><code>ssh-agent</code></td>
+<td>Agente de claves. Servicio para mantener las claves privadas utilizadas para la autenticación. Mediante el uso de variables de entorno permite gestionar las copias de llaves y utilizarlas con el fin de evitar el uso de llaves en los retos de autenticación al inicio de sesiones ssh.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="recursos-adicionales">RECURSOS ADICIONALES </h2>
-<div class="style-table-content">
+<p><strong>Clientes Acceso Remoto</strong></p>
 <table>
 <thead>
 <tr>
-<th>Recurso</th>
-<th>Descripción</th>
+<th>nombre</th>
+<th>descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="./t02.remoto.telnet.html">Protocolo</a></strong></td>
-<td>Protocolo Telnet</td>
+<td><code>ssh</code></td>
+<td>Cliente seguro de sesiones remotas o login</td>
 </tr>
 <tr>
-<td><strong><a href="./t03.remoto.ssh.html">Protocolo</a></strong></td>
-<td>Protocolo SSH</td>
+<td><code>scp</code></td>
+<td>Copia segura remota de ficheros</td>
+</tr>
+<tr>
+<td><code>sftp</code></td>
+<td>Cliente seguro para sesiones FTPS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gestión de claves</strong></p>
+<table>
+<thead>
+<tr>
+<th>nombre</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh-add</code></td>
+<td>Herramienta para añadir identidades de clave privada al agente de claves. Se utiliza en los clientes ssh.</td>
+</tr>
+<tr>
+<td><code>ssh-keysing</code></td>
+<td>Herramienta para acceder a las claves del host loca y generar la firma digital necesaria durante la autenticación basada en host. Está deshabilitado por defecto y solo se puede habilitar en el fichero de configuración global del cliente (<code>ssh_config</code>) mediante el parámetro <code>EnableSSHKeysing="yes"</code></td>
+</tr>
+<tr>
+<td><code>ssh-keyscan</code></td>
+<td>Herramienta para recoger las claves publicas de los servidores SSH. Diseñado para ayudar a construir y verificar los ficheros de cliente <code>ssh_known_hosts</code></td>
+</tr>
+<tr>
+<td><code>ssh-keygen</code></td>
+<td>Herramienta para generar claves publico/privadas utilizadas en la autenticación de usuarios.</td>
+</tr>
+<tr>
+<td><code>ssh-copy-id</code></td>
+<td>Herramienta para publicar las claves publicas de los clientes en los servidores mediante los archivos <code>auhtorized_keys</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
+
       </div>
       
       
