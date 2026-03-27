@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U06 Windows SSH</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,9 +167,62 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
 
       </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+      <script type="text/javascript">
   const configureMermaidIconPacks = () => {
     window["mermaid"].registerIconPacks([
       {
@@ -185,39 +242,16 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       configureMermaidIconPacks();
     });
   }
-</script></head><body for="html-export">
-    
-    
+</script>
+    </head>
+    <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;
-    text-size: small    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
-<p><img src="../../../assets/img-BalmisHeader.png" alt="ONU"></p>
 <div class="style-title">
-<h1 id="u06-windows-ssh">U06 Windows SSH </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="windows-ssh">WINDOWS SSH </h1>
 </div>
 <p>📙<a href="./win.ssh.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
@@ -228,36 +262,23 @@ table {
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#instalación" class="md-toc-link">
-            <p>Instalación</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#habilitar-y-deshabilitar-el-servicio" class="md-toc-link"><p>Habilitar y deshabilitar el servicio</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#habilitar-servicio-openssh" class="md-toc-link">
-            <p>Habilitar servicio OpenSSH</p>
+            <p>INSTALACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#deshabilitar-servicio-openssh" class="md-toc-link">
-            <p>Deshabilitar servicio OpenSSH</p>
+          <a href="#habilitardeshabilitar-servicio" class="md-toc-link">
+            <p>HABILITAR/DESHABILITAR SERVICIO</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#abrir-el-puerto-ssh-en-el-firewall" class="md-toc-link">
-            <p>Abrir el puerto SSH en el firewall</p>
+          <a href="#firewall-abrir-puerto" class="md-toc-link">
+            <p>FIREWALL. ABRIR PUERTO.</p>
 
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#programas-relacionados" class="md-toc-link">
-            <p>Programas relacionados</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#utilidades" class="md-toc-link">
+            <p>UTILIDADES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#archivos-de-configuración" class="md-toc-link">
-            <p>Archivos de configuración</p>
+            <p>ARCHIVOS DE CONFIGURACIÓN</p>
 
           </a></div>
         </div>
@@ -269,63 +290,122 @@ table {
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instalación-8203" class="md-toc-link">
-            <p>Instalación ​</p>
+          <a href="#instalación-1" class="md-toc-link">
+            <p>INSTALACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#programas-disponibles" class="md-toc-link">
-            <p>Programas disponibles</p>
+          <a href="#utilidades-1" class="md-toc-link">
+            <p>UTILIDADES</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#archivos-de-configuración-del-cliente" class="md-toc-link">
-            <p>Archivos de configuración del cliente</p>
+          <a href="#archivos-de-configuración-1" class="md-toc-link">
+            <p>ARCHIVOS DE CONFIGURACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#conexión-y-desconexión" class="md-toc-link">
-            <p>Conexión y desconexión</p>
+          <a href="#conexión-al-servidor" class="md-toc-link">
+            <p>CONEXIÓN AL SERVIDOR</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#generación-de-claves-públicas-y-privadas" class="md-toc-link">
-            <p>Generación de claves públicas y privadas</p>
+          <a href="#desconexión-del-servidor" class="md-toc-link">
+            <p>DESCONEXIÓN DEL SERVIDOR</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#clave-publicaprivada" class="md-toc-link"><p>CLAVE PUBLICA/PRIVADA</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#generar-clave" class="md-toc-link">
+            <p>GENERAR CLAVE</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#uso-del-agente-de-claves" class="md-toc-link">
-            <p>Uso del agente de claves</p>
+          <a href="#copiar-clave" class="md-toc-link">
+            <p>COPIAR CLAVE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#conexión-clave-privada" class="md-toc-link">
+            <p>CONEXIÓN CLAVE PRIVADA</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#agente-de-claves" class="md-toc-link"><p>AGENTE DE CLAVES</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#iniciar-agente" class="md-toc-link">
+            <p>INICIAR AGENTE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-clave-al-agente" class="md-toc-link">
+            <p>AÑADIR CLAVE AL AGENTE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#conexión-con-agente" class="md-toc-link">
+            <p>CONEXIÓN CON AGENTE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ver-claves-almacenadas" class="md-toc-link">
+            <p>VER CLAVES ALMACENADAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#detener-agente" class="md-toc-link">
+            <p>DETENER AGENTE</p>
 
           </a></div>
         </div>
       </details>
     
-</div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="servidor-openssh">SERVIDOR OPENSSH </h2>
-<h3 id="instalación">Instalación </h3>
+<div class="style-normal">
+<h1 id="servidor-openssh">SERVIDOR OPENSSH </h1>
+<h2 id="instalación">INSTALACIÓN </h2>
 <p>Para instalar OpenSSH se deben cumplir al menos los siguientes requisitos:</p>
+<div class="style-list">
 <ul>
 <li>Windows Server 2019 o Windows 10 (1809)</li>
 <li>PowerShell 5.1</li>
 <li>Una cuenta del grupo de administradores</li>
 </ul>
+</div>
 <p>Si se dispone de conectividad con servidores Windows Update, se puede instalar agregando la siguiente capacidad de Windows:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Add-WindowsCapability</span> –Online –Name OpenSSH<span class="token punctuation">.</span>Server~~~~0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
-</code></pre><p>Si no se dispone de conectividad, es necesario descargar e instalar OpenSSH desde un repositorio de <em>GitHub</em>:</p>
+</code></pre></div>
+<p>Si no se dispone de conectividad, es necesario descargar e instalar OpenSSH desde un repositorio de <em>GitHub</em>:</p>
+<div class="style-list">
 <ul>
 <li><a href="https://github.com/PowerShell/Win32-OpenSSH/releases">OpenSSH releases</a></li>
 <li><a href="https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.9.1.0p1-Beta/OpenSSH-Win64.zip">OpenSSH v8.9.1.0</a></li>
 </ul>
+</div>
 <p>Ejecutar la instalación en el servidor:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\OpenSSH-Win64-v8<span class="token punctuation">.</span>9<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0\&gt; <span class="token punctuation">.</span>\<span class="token function">install-sshd</span><span class="token punctuation">.</span>ps1
-</code></pre><h3 id="habilitar-y-deshabilitar-el-servicio">Habilitar y deshabilitar el servicio </h3>
-<h4 id="habilitar-servicio-openssh">Habilitar servicio OpenSSH </h4>
+</code></pre></div>
+<h2 id="habilitardeshabilitar-servicio">HABILITAR/DESHABILITAR SERVICIO </h2>
+<p>Para <strong>habilitar</strong> el servicio ejecutaremos:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Start-Service</span> –name <span class="token string">"sshd"</span>
 <span class="token function">PS</span> C:\&gt; <span class="token function">Set-Service</span> –name <span class="token string">"sshd"</span> –StartupType Automatic
-</code></pre><p>Al iniciar el servicio se crea la carpeta <code>\ProgramData\ssh</code> donde se encuentra el archivo de configuración <code>sshd_config</code> del servidor y los archivos de claves que identifican al servidor.</p>
-<h4 id="deshabilitar-servicio-openssh">Deshabilitar servicio OpenSSH </h4>
+</code></pre></div>
+<p>Al iniciar el servicio se crea la carpeta <code>\ProgramData\ssh</code> donde se encuentra el archivo de configuración <code>sshd_config</code> del servidor y los archivos de claves que identifican al servidor.</p>
+<p>Para <strong>deshabilitar</strong> el servicio ejecutaremos:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Stop-Service</span> –name <span class="token string">"sshd"</span>
 <span class="token function">PS</span> C:\&gt; <span class="token function">Set-Service</span> –name <span class="token string">"sshd"</span> –StartupType Disabled
-</code></pre><h4 id="abrir-el-puerto-ssh-en-el-firewall">Abrir el puerto SSH en el firewall </h4>
-<p>Posteriormente tenemos que abrir el puerto 22 en el cortafuegos para acceder al servidor.</p>
+</code></pre></div>
+<h2 id="firewall-abrir-puerto">FIREWALL. ABRIR PUERTO. </h2>
+<p>Debemos abrir el <strong>puerto 22</strong> en el cortafuegos para acceder al servidor.</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">New-NetFirewallRule</span> `
 <span class="token operator">-</span>Name <span class="token string">"ByAdmin ssh"</span> <span class="token operator">-</span>DisplayName <span class="token string">"ByAdmin ssh"</span> `
 <span class="token operator">-</span>Description <span class="token string">"Allow ssh"</span> `
@@ -333,8 +413,9 @@ table {
 <span class="token operator">-</span>Protocol TCP <span class="token operator">-</span>Program Any `
 <span class="token operator">-</span>LocalAddress Any <span class="token operator">-</span>RemoteAddress Any <span class="token operator">-</span>LocalPort 22 `
 <span class="token operator">-</span>Enabled True
-</code></pre><h3 id="programas-relacionados">Programas relacionados </h3>
-<p>En contraposición con OpenSSH en las distribuciones Linux podemos encontrar los siguientes programas:</p>
+</code></pre></div>
+<h2 id="utilidades">UTILIDADES </h2>
+<p>Por comparativa con OpenSSH de las versiones Linux, podemos encontrar en la versión Windows las siguientes utilidades o programas:</p>
 <table>
 <thead>
 <tr>
@@ -357,7 +438,7 @@ table {
 </tr>
 <tr>
 <td><code>sftp</code></td>
-<td>Utilidad FTP entre cliente y servidor</td>
+<td>Servidor FTPS integrado</td>
 </tr>
 <tr>
 <td><code>ssh-keygen</code></td>
@@ -385,58 +466,117 @@ table {
 </tr>
 </tbody>
 </table>
-<p>Para publicar claves, al no estar disponible <code>ssh-copy-id</code>, se debe usar <code>scp</code>.</p>
-<h3 id="archivos-de-configuración">Archivos de configuración </h3>
-<p>En contraposición con OpenSSH en las distribuciones Linux podemos encontrar los siguientes ficheros:</p>
-<ul>
-<li><code>\ProgramData\ssh\sshd_config</code><br>
-Archivo de configuración del servidor SSH.</li>
-<li><code>\users\&lt;usuario&gt;\.ssh\authorized_keys</code><br>
-Claves públicas autorizadas para la conexión de un usuario.</li>
-</ul>
-<h2 id="cliente-openssh">CLIENTE OPENSSH </h2>
-<h3 id="instalación-8203">Instalación ​ </h3>
+<p>Para publicar claves desde el cliente al servidor, al no estar disponible <code>ssh-copy-id</code>, se debe usar <code>scp</code>.</p>
+<h2 id="archivos-de-configuración">ARCHIVOS DE CONFIGURACIÓN </h2>
+<p>Por comparativa con OpenSSH de las distribuciones Linux podemos encontrar los siguientes ficheros en una distribución Windows:</p>
+<table>
+<thead>
+<tr>
+<th>Fichero</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\ProgramData\ssh\sshd_config</code></td>
+<td>Archivo de configuración del servidor SSH</td>
+</tr>
+<tr>
+<td><code>\users\&lt;usuario&gt;\.ssh\authorized_keys</code></td>
+<td>Claves publicas autorizadas para la conexión del <code>&lt;usuario&gt;</code> en el servidor</td>
+</tr>
+</tbody>
+</table>
+<h1 id="cliente-openssh">CLIENTE OPENSSH </h1>
+<h2 id="instalación-1">INSTALACIÓN </h2>
 <p>Si se dispone de conectividad con servidores Windows Update:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Add-WindowsCapability</span> –Online –Name OpenSSH<span class="token punctuation">.</span>Client~~~~0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1<span class="token punctuation">.</span>0
-</code></pre><p>En caso contrario, descargar desde <em>GitHub</em> como se hizo con el servidor.</p>
-<h3 id="programas-disponibles">Programas disponibles </h3>
-<ul>
-<li><code>ssh</code>: cliente SSH</li>
-<li><code>scp</code>: copiar archivos entre cliente y servidor</li>
-<li><code>sftp</code>: utilidad FTP</li>
-<li>Herramientas para gestión de claves: <code>ssh-add</code>, <code>ssh-keyscan</code>, <code>ssh-keygen</code>, <code>ssh-agent</code></li>
-</ul>
-<h3 id="archivos-de-configuración-del-cliente">Archivos de configuración del cliente </h3>
-<p>En contraposición con OpenSSH en las distribuciones Linux podemos encontrar los siguientes ficheros:</p>
-<ul>
-<li><code>\users\&lt;usuario&gt;\.ssh\known_hosts</code><br>
-Lista de servidores autenticados y seguros para el usuario.</li>
-<li><code>\users\&lt;usuario&gt;\.ssh\ssh_config</code><br>
-Configuración del cliente SSH a nivel de usuario.</li>
-<li><code>\users\&lt;usuario&gt;\.ssh\id_[tipo_clave]</code><br>
-Clave privada del usuario.  La palabra <em>tipo_clave</em> puede ser RSA, DSA, ECDSA o EdDSA y se refiere al algoritmo de descifrado que se utiliza.</li>
-<li><code>\users\&lt;usuario&gt;\.ssh\id_[tipo_clave].pub</code><br>
-Clave pública del usuario. Es la clave utilizada para la autenticación y el cifrado.</li>
-</ul>
-<h3 id="conexión-y-desconexión">Conexión y desconexión </h3>
+</code></pre></div>
+<p>En caso contrario, descargar desde <em>GitHub</em> como se hizo con el servidor.</p>
+<h2 id="utilidades-1">UTILIDADES </h2>
+<table>
+<thead>
+<tr>
+<th>Programa</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh</code></td>
+<td>cliente SSH</td>
+</tr>
+<tr>
+<td><code>scp</code></td>
+<td>Copiar archivos entre cliente y servidor</td>
+</tr>
+<tr>
+<td><code>sftp</code></td>
+<td>FTPS</td>
+</tr>
+<tr>
+<td><code>ssh-add</code> <br> <code>ssh-keyscan</code> <br> <code>ssh-keygen</code> <br> <code>ssh-agent</code></td>
+<td>Herramientas para la gestión de claves tal y como se describieron en el servidor</td>
+</tr>
+</tbody>
+</table>
+<h2 id="archivos-de-configuración-1">ARCHIVOS DE CONFIGURACIÓN </h2>
+<p>Por comparativa con OpenSSH de las distribuciones Linux podemos encontrar los siguientes ficheros en una distribución Windows:</p>
+<table>
+<thead>
+<tr>
+<th>Fichero</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\users\&lt;usuario&gt;\.ssh\known_hosts</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Lista de servidores autenticados y seguros para el usuario. Claves públicas de los servidores.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>\users\&lt;usuario&gt;\.ssh\ssh_config</code></td>
+<td>Configuración del cliente SSH a nivel de usuario.</td>
+</tr>
+<tr>
+<td><code>\users\&lt;usuario&gt;\.ssh\id_[tipo_clave]</code></td>
+<td>Clave privada del usuario.  La palabra <em>tipo_clave</em> puede ser RSA, DSA, ECDSA o EdDSA y se refiere al algoritmo que se utiliza. Es la clave que se utiliza para descifrar.</td>
+</tr>
+<tr>
+<td><code>\users\&lt;usuario&gt;\.ssh\id_[tipo_clave].pub</code></td>
+<td>Clave pública del usuario. Es la clave utilizada para la autenticación y el cifrado.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conexión-al-servidor">CONEXIÓN AL SERVIDOR </h2>
 <p>Para conectarse a un servidor SSH, se utiliza el comando <code>ssh</code> seguido del usuario y la máquina a la que se desea conectar:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh usuario@maquina
-</code></pre><p>Si no se especifica el usuario, se utilizará el nombre de usuario actual del sistema.</p>
+</code></pre></div>
+<p>Si no se especifica el usuario, se utilizará el nombre de usuario actual del sistema.</p>
+<h2 id="desconexión-del-servidor">DESCONEXIÓN DEL SERVIDOR </h2>
 <p>Para desconectarse de una sesión SSH, se puede utilizar el comando <code>exit</code> o <code>logout</code>:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token keyword keyword-exit">exit</span>
-</code></pre><div class="admonition example">
-<p class="admonition-title">Conexión/desconexión ssh</p>
+</code></pre></div>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">CONEXION/DESCONEXION SSH</p>
 <p>Conectarse con el usuario <em>sshuser</em> al servidor SSH de nombre <em>sshsrv</em>:</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh sshuser@sshsrv
 </code></pre><p>Desconectarse del sevidor:</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token keyword keyword-exit">exit</span>
 </code></pre></div>
-<h3 id="generación-de-claves-públicas-y-privadas">Generación de claves públicas y privadas </h3>
-<p>En la máquina cliente se llevan a cabo las siguientes acciones:</p>
-<ul>
-<li>
-<p><strong>Generar una clave pública y privada con el comando <code>ssh-keygen</code></strong></p>
-<p>Los parámetros más comunes son:</p>
+</div>
+<h2 id="clave-publicaprivada">CLAVE PUBLICA/PRIVADA </h2>
+<p>En la máquina cliente se llevan a cabo las siguientes acciones para la generación de las claves públicas/privadas.</p>
+<h3 id="generar-clave">GENERAR CLAVE </h3>
+<p>Utilizamos el comando <code>ssh-keygen</code></p>
 <table>
 <thead>
 <tr>
@@ -451,7 +591,7 @@ Clave pública del usuario. Es la clave utilizada para la autenticación y el ci
 </tr>
 <tr>
 <td><code>-N</code></td>
-<td>Frase secreta utilizada para proteger la clave privada (dejar en blanco si no se desea usar una frase secreta)</td>
+<td>Frase secreta utilizada para proteger la clave privada</td>
 </tr>
 <tr>
 <td><code>-b</code></td>
@@ -467,76 +607,61 @@ Clave pública del usuario. Es la clave utilizada para la autenticación y el ci
 </tr>
 </tbody>
 </table>
+<div class="style-example">
 <div class="admonition example">
-<p class="admonition-title">Generación par de claves púbica/privada</p>
-<p>Generación de claves utilizando el algoritmo <em>RSA</em> con tamaño de clave de 2048 bits.</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh-keygen <span class="token operator">-</span>q <span class="token operator">-</span>N <span class="token string">""</span> <span class="token operator">-</span>b 2048 <span class="token operator">-</span>t rsa <span class="token operator">-</span>f C:\users\adm\<span class="token punctuation">.</span>ssh\clau_rsa
+<p class="admonition-title">Generación clave púbica/privada</p>
+<p>Generación de claves utilizando el algoritmo <em>RSA</em> con tamaño de clave de 2048 bits y sin protección de contraseña.</p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>  <span class="token function">PS</span> C:\&gt; ssh-keygen <span class="token operator">-</span>q <span class="token operator">-</span>N <span class="token string">''</span> <span class="token operator">-</span>b 2048 <span class="token operator">-</span>t rsa <span class="token operator">-</span>f C:\users\adm\<span class="token punctuation">.</span>ssh\clave_rsa
 </code></pre></div>
-</li>
-<li>
-<p><strong>Copiar la clave pública al servidor</strong></p>
-<p>Dado que <code>ssh-copy-id</code> no está disponible, usamos <code>scp</code> para copiar la clave pública al fichero authorized_keys del servidor.</p>
-<div class="admonition example">
-<p class="admonition-title">Copia de claves al sevidor</p>
-<p>Copiar la clave pública almacenada en el equipo del usuario adm al servidor sshsrv, para que el usuario sshuser pueda autenticarse.</p>
-<p><strong>Solución</strong><br>
-Los siguientes pasos detallan el proceso:</p>
-<ul>
-<li>Copiar la clave pública<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; scp c:\users\adm\<span class="token punctuation">.</span>ssh\clau_rsa<span class="token punctuation">.</span>pub `
-sshuser@sshsrv:c:\users\sshuser\clau_rsa<span class="token punctuation">.</span>pub
-</code></pre></li>
-<li>Conectarse al servidor <em>sshsrv</em> con el usuario <em>sshuser</em><pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh sshuser@sshsrv
-</code></pre></li>
-<li>Añadir la clave a <em>authorized_keys</em><pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\users\sshuser\&gt; xcopy clau_rsa.pub .ssh\authorized_keys
-</code></pre></li>
-<li>Eliminar la clave copiada<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\users\sshuser\&gt; del clau_rsa.pub
-</code></pre></li>
-<li>Cerrar la sesión<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>C:\users\sshuser\&gt; exit
-</code></pre></li>
-</ul>
 </div>
-</li>
-<li>
-<p><strong>Realizar la conexión indicando la clave privada</strong><br>
-Para conectarnos al servidor usando la clave privada en vez del usuario y la contraseña, debemos especificar el archivo que contiene la clave privada.</p>
+<h3 id="copiar-clave">COPIAR CLAVE </h3>
+<p>Dado que <code>ssh-copy-id</code> no está disponible, usamos <code>scp</code> para copiar la clave pública al fichero authorized_keys del servidor.</p>
+<div class="style-example">
+<div class="admonition example">
+<p class="admonition-title">Copiar claves al sevidor</p>
+<p>Copiar la clave pública rsa almacenada en el equipo cliente para el usuario adm al servidor sshsrv utilizando el usuario sshuser.</p>
+<p><strong>Crear carpeta .ssh si no existe</strong></p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>ssh sshuser@sshsrv <span class="token string">"cmd /c if not exist .ssh mkdir .ssh"</span>
+</code></pre><p><strong>Copiar clave publica</strong></p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>scp c:\users\adm\<span class="token punctuation">.</span>ssh\clave_rsa<span class="token punctuation">.</span>pub `
+sshuser@sshsrv:c:\users\sshuser\<span class="token punctuation">.</span>ssh\authorized_keys
+</code></pre></div>
+</div>
+<h3 id="conexión-clave-privada">CONEXIÓN CLAVE PRIVADA </h3>
+<p>Para conectarnos al servidor usando la clave privada en vez del usuario y la contraseña, debemos especificar el archivo que contiene la clave privada.</p>
+<div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Conexión con clave privada</p>
 <p>Conectarse al servidor <em>sshsrv</em> con el usuario <em>sshuser</em> utilizando su clave privada.</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh sshuser@sshsrv <span class="token operator">-</span>i c:\users\adm\<span class="token punctuation">.</span>ssh\clau_rsa
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh sshuser@sshsrv <span class="token operator">-</span>i c:\users\adm\<span class="token punctuation">.</span>ssh\clave_rsa
 </code></pre></div>
-</li>
-</ul>
-<h3 id="uso-del-agente-de-claves">Uso del agente de claves </h3>
+</div>
+<h3 id="agente-de-claves">AGENTE DE CLAVES </h3>
 <p>Como hemos visto antes al conectar con la clave pública/privada debemos indicar la clave privada que se utiliza en la conexión. Para evitar tener que introducir la clave privada cada vez que se conecta, se puede utilizar el agente de claves <code>ssh-agent</code> para gestionar las claves privadas.</p>
-<p>Para utilizar el agente de claves, se deben seguir los siguientes pasos:</p>
-<ul>
-<li>
-<p><strong>Iniciar el agente</strong></p>
+<h4 id="iniciar-agente">INICIAR AGENTE </h4>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Set-Service</span> –name <span class="token string">"ssh-agent"</span> –StartupType Automatic
 <span class="token function">PS</span> C:\&gt; <span class="token function">Start-Service</span> –name <span class="token string">"ssh-agent"</span>
-</code></pre></li>
-<li>
-<p><strong>Añadir la clave privada al agente</strong></p>
+</code></pre></div>
+<h4 id="añadir-clave-al-agente">AÑADIR CLAVE AL AGENTE </h4>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh-add C:\users\adm\<span class="token punctuation">.</span>ssh\clau_rsa
-</code></pre><p>Una vez que se ha añadido la clave privada al agente, ya no es necesario especificar la clave privada al conectarse al servidor SSH. El agente se encargará de proporcionar la clave privada necesaria para la autenticación.</p>
-</li>
-<li>
-<p><strong>Conectar usando el agente</strong></p>
+</code></pre></div>
+<p>Una vez que se ha añadido la clave privada al agente, ya no es necesario especificar la clave privada al conectarse al servidor SSH. El agente se encargará de proporcionar la clave privada necesaria para la autenticación.</p>
+<h4 id="conexión-con-agente">CONEXIÓN CON AGENTE </h4>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh sshuser@sshsrv
-</code></pre></li>
-</ul>
-<p>Además podemos realizar otras acciones como:</p>
-<ul>
-<li>
-<p>Ver las claves cargadas por el agente</p>
+</code></pre></div>
+<h4 id="ver-claves-almacenadas">VER CLAVES ALMACENADAS </h4>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; ssh-add <span class="token operator">-</span>L
-</code></pre></li>
-<li>
-<p>Detener el agente</p>
+</code></pre></div>
+<h4 id="detener-agente">DETENER AGENTE </h4>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Stop-Service</span> –name <span class="token string">"ssh-agent"</span>
 <span class="token function">PS</span> C:\&gt; <span class="token function">Set-Service</span> –name <span class="token string">"ssh-agent"</span> –StartupType Disabled
-</code></pre></li>
-</ul>
+</code></pre></div>
+</div>
 
       </div>
       

@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>SER - U06 Windows TELNET</title>
+      <title>SER</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
       
       
       
@@ -21,7 +21,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
 }
 .markdown-preview.markdown-preview .box_bg_lightgray {
   background-color: #f5f5f5;
@@ -48,7 +52,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   margin: 30px auto 30px auto;
 }
 .markdown-preview.markdown-preview .fondo {
-  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
   background-size: cover;
   width: 75%;
   height: 160px;
@@ -163,9 +167,62 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
 
       </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+      <script type="text/javascript">
   const configureMermaidIconPacks = () => {
     window["mermaid"].registerIconPacks([
       {
@@ -185,39 +242,16 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       configureMermaidIconPacks();
     });
   }
-</script></head><body for="html-export">
-    
-    
+</script>
+    </head>
+    <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
-<style type="text/css">
-.style-normal {
-    text-indent: 0.5cm;
-    text-align: justify;
-}
-.style-example {
-    text-indent: 0.5cm;
-    text-align: justify;
-    text-size: small    
-}
-.style-title {
-    text-indent: 0cm;
-    text-align: center;    
-}
-table {
-    table-layout: auto !important;
-    width: fit-content !important;
-    max-width: none !important;
-    border-collapse: collapse;
-}
-</style>
-<p><img src="../../../assets/img-BalmisHeader.png" alt="ONU"></p>
 <div class="style-title">
-<h1 id="u06-windows-telnet">U06 Windows TELNET </h1>
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="windows-telnet">WINDOWS TELNET </h1>
 </div>
 <p>📙<a href="./win.telnet.pdf">Descargar PDF</a></p>
-<h2 id="índice">ÍNDICE </h2>
-<div style="background-color: Lightgrey;">
 
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
@@ -226,30 +260,43 @@ table {
 </a>
           </summary>
         <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instalación" class="md-toc-link">
-            <p>Instalación</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
+          <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#habilitar-y-deshabilitar-el-servicio" class="md-toc-link"><p>Habilitar y deshabilitar el servicio</p>
+          <a href="#instalación" class="md-toc-link"><p>INSTALACIÓN</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#versiones-anteriores-a-windows-server-2012-y-windows-10" class="md-toc-link">
-            <p>Versiones anteriores a Windows Server 2012 y Windows 10</p>
+          <a href="#integrado-sop" class="md-toc-link">
+            <p>INTEGRADO S.OP.</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#versiones-posteriores-con-herramientas-de-terceros" class="md-toc-link">
-            <p>Versiones posteriores con herramientas de terceros**</p>
+          <a href="#no-integrado-sop" class="md-toc-link">
+            <p>NO INTEGRADO S.OP.</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#habilitardeshabilitar-servicio" class="md-toc-link"><p>HABILITAR/DESHABILITAR SERVICIO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#integrado-en-sop" class="md-toc-link">
+            <p>INTEGRADO EN S.OP.</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#no-integrado-en-sop" class="md-toc-link">
+            <p>NO INTEGRADO EN S.OP.</p>
 
           </a></div>
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#abrir-el-puerto-telnet-en-el-firewall" class="md-toc-link">
-            <p>Abrir el puerto Telnet en el firewall</p>
+          <a href="#firewall-abrir-puerto" class="md-toc-link">
+            <p>FIREWALL. ABRIR PUERTO</p>
 
           </a></div>
         </div>
@@ -261,96 +308,81 @@ table {
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#instalación-8203" class="md-toc-link">
-            <p>Instalación ​</p>
+          <a href="#instalación-1" class="md-toc-link">
+            <p>INSTALACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#opciones-de-telnet" class="md-toc-link">
-            <p>Opciones de Telnet</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#conexión-y-desconexión" class="md-toc-link"><p>Conexión y desconexión</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#conectarse-a-un-servidor-telnet" class="md-toc-link">
-            <p>Conectarse a un servidor Telnet</p>
+          <a href="#comando" class="md-toc-link">
+            <p>COMANDO</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#desconectarse-del-servidor-telnet" class="md-toc-link">
-            <p>Desconectarse del servidor Telnet</p>
+          <a href="#conexión" class="md-toc-link">
+            <p>CONEXIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#desconexión" class="md-toc-link">
+            <p>DESCONEXIÓN</p>
 
           </a></div>
         </div>
       </details>
     
-        </div>
-      </details>
-    
-</div>
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="servidor-telnet">SERVIDOR TELNET </h2>
-<h3 id="instalación">Instalación </h3>
-<p>En las versiones anteriores a Windows Server 2012 y Windows 10 es posible instalar la característica Telnet Server.</p>
+<div class="style-normal">
+<h1 id="servidor-telnet">SERVIDOR TELNET </h1>
+<h2 id="instalación">INSTALACIÓN </h2>
+<h3 id="integrado-sop">INTEGRADO S.OP. </h3>
+<p>En versiones anteriores a Windows Server 2012 y Windows 10 es posible instalar la característica Telnet Server, ya que está <strong>integrada</strong> en las utilidades del <strong>sistema operativo</strong>.</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Install-WindowsFeature</span> Telnet-Server
-</code></pre><p>Las versiones posteriores no permiten esta característica y, por lo tanto, se debe instalar una aplicación de terceros. Algunas opciones recomendadas son:</p>
+</code></pre></div>
+<h3 id="no-integrado-sop">NO INTEGRADO S.OP. </h3>
+<p>Las versiones posteriores <strong>no</strong> tienen <strong>integrada</strong> esta utilidad en el <strong>sistema operativo</strong>, por lo tanto, se debe instalar una aplicación de terceros. Algunas opciones recomendadas son:</p>
+<div class="style-example">
+<div class="admonition note">
+<p class="admonition-title">Telnet de terceros</p>
 <ul>
-<li><a href="https://sourceforge.net/projects/hk-telnet-server/">hk Telnet server</a></li>
-<li><a href="https://www.kpym.com/2/kpym/download.htm">kpyM Telnet Server</a></li>
+<li><a href="https://sourceforge.net/projects/hk-telnet-server/">HK Telnet server</a></li>
+<li><a href="https://www.kpym.com/2/kpym/download.htm">HKPYM Telnet Server</a></li>
 </ul>
-<h3 id="habilitar-y-deshabilitar-el-servicio">Habilitar y deshabilitar el servicio </h3>
-<h4 id="versiones-anteriores-a-windows-server-2012-y-windows-10">Versiones anteriores a Windows Server 2012 y Windows 10 </h4>
-<ul>
-<li>
-<p>Configurar usuarios de Telnet</p>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">New-LocalGroup</span> –Name <span class="token string">"TelnetClients"</span>
-<span class="token function">PS</span> C:\&gt; <span class="token function">Add-LocalGroupMember</span> –<span class="token function">Group</span> <span class="token string">"TelnetClients"</span> –Member <span class="token string">"&lt;usuario&gt;"</span>
-</code></pre></li>
-<li>
-<p>Habilitar el servicio Telnet</p>
+</div>
+</div>
+<h2 id="habilitardeshabilitar-servicio">HABILITAR/DESHABILITAR SERVICIO </h2>
+<h3 id="integrado-en-sop">INTEGRADO EN S.OP. </h3>
+<p>En las versiones anteriores a Windows Server 2012 y Windows 10.</p>
+<p><strong>Configurar usuarios</strong></p>
+<div class="style-example">
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>  <span class="token function">PS</span> C:\&gt; <span class="token function">New-LocalGroup</span> –Name <span class="token string">"TelnetClients"</span>
+  <span class="token function">PS</span> C:\&gt; <span class="token function">Add-LocalGroupMember</span> –<span class="token function">Group</span> <span class="token string">"TelnetClients"</span> –Member <span class="token string">"&lt;usuario&gt;"</span>
+</code></pre></div>  
+<p><strong>Habilitar servicio</strong></p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Start-Service</span> –name <span class="token string">"TlntSvr"</span>
 <span class="token function">PS</span> C:\&gt; <span class="token function">Set-Service</span> –name <span class="token string">"TlntSvr"</span> –StartupType Automatic
-</code></pre></li>
-<li>
-<p>Deshabilitar el servicio Telnet</p>
+</code></pre></div>  
+<p><strong>Deshabilitar servicio</strong></p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Stop-Service</span> –name <span class="token string">"TlntSvr"</span>
 <span class="token function">PS</span> C:\&gt; <span class="token function">Set-Service</span> –name <span class="token string">"TlntSvr"</span> –StartupType Disabled
-</code></pre></li>
-</ul>
-<h4 id="versiones-posteriores-con-herramientas-de-terceros">Versiones posteriores con herramientas de terceros** </h4>
-<p>Por ejemplo, si se ha instalado <code>hk-telnet-server</code>, se debe ejecutar el archivo <em>hk-telnet-server.exe</em></p>
+</code></pre></div>  
+<h3 id="no-integrado-en-sop">NO INTEGRADO EN S.OP. </h3>
+<p>En las versiones posteriores, por ejemplo, si se ha instalado <code>hk-telnet-server</code>, se debe ejecutar el archivo <code>hk-telnet-server.exe</code></p>
 <p><img src="./assets/img-hk-telnet-server.png" alt="hk-telnet-server" style="display: block; margin: auto; width: 20%;"></p>
-<ul>
-<li>
-<p>Configurar usuarios de Telnet</p>
-<ul>
-<li>Presiona <strong>"Create User"</strong> e introduce el nombre de usuario y la contraseña.</li>
-<li>Se pueden crear múltiples usuarios.</li>
-</ul>
-</li>
-<li>
-<p>Habilitar el servicio Telnet</p>
-<ul>
-<li>
-<p>Presiona <strong>"Start"</strong></p>
+<p><strong>Configurar usuarios</strong></p>
+<p>Presiona <code>Create User</code> e introduce el nombre de usuario y la contraseña. Se pueden crear múltiples usuarios.</p>
+<p><strong>Habilitar servicio</strong></p>
+<p>Presiona <code>Start</code></p>
+<div class="style-example">  
 <div class="admonition warning">
 <p class="admonition-title">No cierres la ventana, ya que esto detendría el servicio.</p>
 </div>
-</li>
-</ul>
-</li>
-<li>
-<p>Deshabilitar el servicio Telnet</p>
-<ul>
-<li>Presiona <strong>"Stop"</strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="abrir-el-puerto-telnet-en-el-firewall">Abrir el puerto Telnet en el firewall </h3>
+</div>
+<p><strong>Deshabilitar</strong></p>
+<p>Presiona <code>Stop</code></p>
+<h2 id="firewall-abrir-puerto">FIREWALL. ABRIR PUERTO </h2>
 <p>Tanto si se ha usado el <em>Telnet Server de Windows</em> como si se ha instalado una aplicación de terceros, es necesario abrir el puerto 23 en el firewall para poder acceder al servidor:</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">New-NetFirewallRule</span> `
 <span class="token operator">-</span>Name <span class="token string">"ByAdmin Telnet"</span> <span class="token operator">-</span>DisplayName <span class="token string">"ByAdmin Telnet"</span> `
 <span class="token operator">-</span>Description <span class="token string">"Allow Telnet"</span> `
@@ -358,54 +390,84 @@ table {
 <span class="token operator">-</span>Protocol TCP <span class="token operator">-</span>Program Any `
 <span class="token operator">-</span>LocalAddress Any <span class="token operator">-</span>RemoteAddress Any <span class="token operator">-</span>LocalPort 23 `
 <span class="token operator">-</span>Enabled True
-</code></pre><h2 id="cliente-telnet">CLIENTE TELNET </h2>
-<h3 id="instalación-8203">Instalación ​ </h3>
+</code></pre></div>
+<h1 id="cliente-telnet">CLIENTE TELNET </h1>
+<h2 id="instalación-1">INSTALACIÓN </h2>
 <p>Se puede instalar desde las características de Windows.</p>
 <p><strong>Windows Server (2016, 2019, …)</strong></p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Install-WindowsFeature</span> –name <span class="token string">"Telnet-Client"</span>
-</code></pre><p><strong>Windows Desktop (2010, 2011, …)</strong></p>
+</code></pre></div>
+<p><strong>Windows Desktop (2010, 2011, …)</strong></p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; <span class="token function">Enable-WindowsOptionalFeature</span> –Online –FeatureName <span class="token string">"TelnetClient"</span>
-</code></pre><h3 id="opciones-de-telnet">Opciones de Telnet </h3>
-<p>Se pueden consultar con <code>telnet -?</code></p>
-<p><strong>Sintaxis</strong></p>
+</code></pre></div>
+<h2 id="comando">COMANDO </h2>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>telnet [OPCIONES...] [HOST [PUERTO]]
-</code></pre><ul>
-<li><strong>HOST</strong>: IP o nombre del host</li>
-<li><strong>PUERTO</strong>: por defecto 53</li>
-</ul>
-<p><strong>Opciones disponibles</strong></p>
-<ul>
-<li><code>-a</code><br>
-Intento de login automático</li>
-<li><code>-e, CHAR</code><br>
-Usa CHAR como carácter de escape</li>
-<li><code>-f, ARCHIVE</code><br>
-Usa ARCHIVE en login al sistema remoto</li>
-<li><code>-l, USER</code><br>
-Intento de login automático como USER</li>
-<li><code>-t, TERM</code><br>
-Usa TERM={vt100, vt52, ansi, vtnt} como tipo de terminal</li>
-<li><code>-?, --help</code><br>
-Muestra la ayuda</li>
-</ul>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>host</code></td>
+<td>IP o nombre del host remoto</td>
+</tr>
+<tr>
+<td><code>puerto</code></td>
+<td>Por defecto, 23</td>
+</tr>
+<tr>
+<td><code>-a</code></td>
+<td>Intento de login automático</td>
+</tr>
+<tr>
+<td><code>-e &lt;CHAR&gt;</code></td>
+<td>Usa <code>&lt;CHAR&gt;</code> como caracter de escape</td>
+</tr>
+<tr>
+<td><code>-f &lt;ARCHIVE&gt;</code></td>
+<td>Usa <code>&lt;ARCHIVE&gt;</code> en login al sistema remoto</td>
+</tr>
+<tr>
+<td><code>-l, &lt;USER&gt;</code></td>
+<td>Intento de login automático como <code>&lt;USER&gt;</code></td>
+</tr>
+<tr>
+<td><code>-t, &lt;TERM&gt;</code></td>
+<td>Usa <code>&lt;TERM&gt;</code> como tipo de terminal. <br> Valores de TERM {vt100, vt52, ansi, vtnt}</td>
+</tr>
+<tr>
+<td><code>-?, --help</code></td>
+<td>Muestra la ayuda</td>
+</tr>
+</tbody>
+</table>
+<div class="style-example">
 <div class="admonition example">
 <p class="admonition-title">Mostrar la ayuda de Telnet</p>
 <p>Muestra la ayuda de <code>telnet</code>.</p>
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; telnet <span class="token operator">-</span>?
 telnet <span class="token namespace">[OPTION...]</span> <span class="token namespace">[HOST [PORT]]</span>
-HOST				ip or hostname 
-PORT				default 53
+HOST ip or hostname 
+PORT default 23
 OPTIONS
-<span class="token operator">-</span>a<span class="token punctuation">,</span>			attempt automatic login
-<span class="token operator">-</span>e<span class="token punctuation">,</span>	CHAR		use CHAR as an escape character
-<span class="token operator">-</span>f<span class="token punctuation">,</span>	ARCHIVE	        use ARCHIVE in login to remote system
-<span class="token operator">-</span>l<span class="token punctuation">,</span> 	USER		attempt automatic login as USER
-<span class="token operator">-</span>t<span class="token punctuation">,</span>	TERM		use TERM=<span class="token punctuation">{</span>vt100<span class="token punctuation">,</span>vt52<span class="token punctuation">,</span>ansi<span class="token punctuation">,</span>vtnt<span class="token punctuation">}</span> as terminal <span class="token function">type</span> 
-<span class="token operator">-</span>?<span class="token punctuation">,</span>     <span class="token operator">--</span>help		give this help list
+<span class="token operator">-</span>a<span class="token punctuation">,</span>         attempt automatic login
+<span class="token operator">-</span>e<span class="token punctuation">,</span> CHAR    use CHAR as an escape character
+<span class="token operator">-</span>f<span class="token punctuation">,</span> ARCHIVE use ARCHIVE in login to remote system
+<span class="token operator">-</span>l<span class="token punctuation">,</span> USER    attempt automatic login as USER
+<span class="token operator">-</span>t<span class="token punctuation">,</span> TERM    use TERM=<span class="token punctuation">{</span>vt100<span class="token punctuation">,</span>vt52<span class="token punctuation">,</span>ansi<span class="token punctuation">,</span>vtnt<span class="token punctuation">}</span> as terminal <span class="token function">type</span>
+<span class="token operator">-</span>?<span class="token punctuation">,</span><span class="token operator">--</span>help   give this help list
 </code></pre></div>
-<h3 id="conexión-y-desconexión">Conexión y desconexión </h3>
-<h4 id="conectarse-a-un-servidor-telnet">Conectarse a un servidor Telnet </h4>
+</div>
+<h2 id="conexión">CONEXIÓN </h2>
 <p>Debes indicar el nombre o IP del servidor y luego introducir un usuario y contraseña válidos.</p>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt; telnet 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>10<span class="token punctuation">.</span>252
 Trying 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>10<span class="token punctuation">.</span>252<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 Connected to 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>10<span class="token punctuation">.</span>252
@@ -413,10 +475,13 @@ Escape character is ‘^<span class="token punctuation">]</span>’
 Debian GNU/Linux 11
 Debian-11 login: &lt;username&gt;
 Password: &lt;userpassword&gt;
-</code></pre><h4 id="desconectarse-del-servidor-telnet">Desconectarse del servidor Telnet </h4>
-<p>Para desconectarse, escribe:</p>
+</code></pre></div>
+<h2 id="desconexión">DESCONEXIÓN </h2>
+<div class="style-example">
 <pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token function">PS</span> C:\&gt;  <span class="token keyword keyword-exit">exit</span>
-</code></pre>
+</code></pre></div>
+</div>
+
       </div>
       
       
