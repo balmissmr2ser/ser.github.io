@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
       
       
       
@@ -172,6 +172,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   width: fit-content !important;
   max-width: none !important;
   border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
@@ -220,7 +222,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 }
 
       </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+      <script type="text/javascript">
   const configureMermaidIconPacks = () => {
     window["mermaid"].registerIconPacks([
       {
@@ -240,9 +242,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       configureMermaidIconPacks();
     });
   }
-</script></head><body for="html-export">
-    
-    
+</script>
+    </head>
+    <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
 <style type="text/css">
@@ -656,7 +658,7 @@ Una vez activada la integración con PAM, tenemos que ajustar el fichero <code>/
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>sshd;*;*;Wk0800-1400,Wk1700-1900
 </code></pre><p>En este caso, <code>sshd</code> indica que la regla se aplica al servicio SSH, <code>*</code> significa que se aplica a todos los usuarios y a todas las terminales, y <code>Wk0800-1400,Wk1700-1900</code> especifica que el acceso solo está permitido de lunes a viernes (Wk) entre las 8:00 y las 14:00 horas, y también entre las 17:00 y las 19:00 horas.</p>
 </div>
-<p>Para más información sobre la configuración de PAM y el módulo <strong>pam_time</strong>, se puede consultar la documentación anexa del framework PAM, así como las páginas del manual (<code>man pam_time</code> y <code>man time.conf</code>) o la documentación oficial de PAM.</p>
+<p>Para más información sobre la configuración de PAM y el módulo <strong>pam_time</strong>, se puede consultar la documentación anexa <a href="./anexo.pam.html">ANEXO PAM</a>, así como las páginas del manual (<code>man pam_time</code> y <code>man time.conf</code>) o la documentación oficial de PAM.</p>
 <h4 id="otras-directivas">OTRAS DIRECTIVAS </h4>
 <p>Además de las directivas anteriores, el manual de <code>sshd_config</code> recoge muchas otras opciones interesantes. Algunas de las más habituales son:</p>
 <ul>
@@ -784,7 +786,7 @@ root@SSHSERVER:~#
 </code></pre><p>Vemos que el usuario <code>u1</code> verifica la condición del primer bloque <code>Match</code> y fija la directiva <code>PubKeyAuthentication yes</code>. Aunque entre en el siguiente bloque Match, la directiva ya no se sobreescribe, se queda con el valor asignado en el primer bloque <code>Match</code>. Podemos ver como la directiva <code>PasswordAuthentication no</code>, puesto que sobreescribe el valor global.</p>
 </div>
 <h4 id="validaciones-de-restricciones-temporales">VALIDACIONES DE RESTRICCIONES TEMPORALES </h4>
-<p>Es posible probar las restricciones temporales configuradas con PAM mediante la utilidad <strong>faketime</strong>, que permite simular la fecha y hora del sistema para ejecutar comandos como si se estuvieran ejecutando en un momento concreto. Para profundizar más en el uso de <code>faketime</code>, se puede consultar la documentación anexa o la documentación oficial y las páginas del manual (<code>man faketime</code>).</p>
+<p>Es posible probar las restricciones temporales configuradas con PAM mediante la utilidad <strong>faketime</strong>, que permite simular la fecha y hora del sistema para ejecutar comandos como si se estuvieran ejecutando en un momento concreto. Para profundizar más en el uso de <code>faketime</code>, se puede consultar la documentación anexa <a href="./anexo.faketime.html">ANEXO FAKETIME</a>, la documentación oficial y las páginas del manual (<code>man faketime</code>).</p>
 <p>En los sistemas Debian y derivados modernos, cuando utilizamos <code>faketime</code> para pasarle a <code>sshd</code> la fecha cambiada, se produce un error que literalmente dice: <em>"Missing privilege separation directory: /run/sshd"</em>. Esto se debe a que el servicio SSH utiliza la funcionalidad de <em>privilege separation</em> para mejorar la seguridad, y esta funcionalidad requiere que exista un directorio específico (<code>/run/sshd</code>) con permisos adecuados. Cuando se ejecuta <code>faketime</code> para simular una conexión, el servicio SSH intenta acceder a este directorio y, si no lo encuentra o no tiene los permisos correctos, se produce el error mencionado. Para solucionar este problema, es necesario crear el directorio <code>/run/sshd</code> y asegurarse de que tiene los permisos adecuados (normalmente, propietario <code>root</code> y permisos <code>755</code>). El problema es que cada vez que se para el servicio SSH, el directorio <code>/run/sshd</code> se borra. Se puede solucionar el problema haciendo que ese directorio no se borre al parar el servicio editando el fichero <code>/etc/tmpfiles.d/sshd.conf</code> y añadiendo la siguiente línea:</p>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>d /run/sshd 0755 root root -
 </code></pre><p>Esta línea crea una entrada de tipo <code>d</code> (directorio) con la ruta <code>/run/sshd</code>, con permisos <code>0755</code>, propietario <code>root</code> y grupo <code>root</code>. El guión indica que no se apliquen restricciones adicionales. Con esta configuración, <code>systemd</code> se encargará de mantener el directorio <code>/run/sshd</code> incluso después de parar el servicio SSH, y lo creará automáticamente si no existe cuando se inicie el servicio SSH, evitando así el error al usar <code>faketime</code> para probar las restricciones temporales.</p>

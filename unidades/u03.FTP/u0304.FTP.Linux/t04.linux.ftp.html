@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
       
       
       
@@ -172,6 +172,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   width: fit-content !important;
   max-width: none !important;
   border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
 }
 .markdown-preview.markdown-preview .style-normal {
   text-indent: 0.5cm;
@@ -220,7 +222,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 }
 
       </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+      <script type="text/javascript">
   const configureMermaidIconPacks = () => {
     window["mermaid"].registerIconPacks([
       {
@@ -240,9 +242,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
       configureMermaidIconPacks();
     });
   }
-</script></head><body for="html-export">
-    
-    
+</script>
+    </head>
+    <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
 <div class="style-title">
@@ -259,18 +261,25 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#servidores-ftp-en-linux" class="md-toc-link">
-            <p>SERVIDORES FTP EN LINUX</p>
+          <a href="#introducción" class="md-toc-link">
+            <p>INTRODUCCIÓN</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#el-servidor-vsftpd" class="md-toc-link"><p>EL SERVIDOR VSFTPD</p>
+          <a href="#vsftpd-en-gnulinux" class="md-toc-link"><p>VSFTPD EN GNU/LINUX</p>
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#características-principales" class="md-toc-link">
+            <p>CARACTERÍSTICAS PRINCIPALES</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#instalación-del-servidor" class="md-toc-link"><p>INSTALACIÓN DEL SERVIDOR</p>
+          <a href="#instalación-y-puesta-en-marcha" class="md-toc-link"><p>INSTALACIÓN Y PUESTA EN MARCHA</p>
 </a>
           </summary>
         <div>
@@ -279,56 +288,220 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             <p>INSTALACIÓN</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#estructura-de-directorios-y-archivos" class="md-toc-link">
-            <p>ESTRUCTURA DE DIRECTORIOS Y ARCHIVOS</p>
+          <a href="#archivos-y-rutas-habituales" class="md-toc-link">
+            <p>ARCHIVOS Y RUTAS HABITUALES</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#configuración" class="md-toc-link"><p>CONFIGURACIÓN</p>
+          <a href="#estructura-de-vsftpdconf" class="md-toc-link"><p>ESTRUCTURA DE VSFTPD.CONF</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#directivas-más-importantes" class="md-toc-link"><p>DIRECTIVAS MÁS IMPORTANTES</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#parámetros-principales" class="md-toc-link">
-            <p>PARÁMETROS PRINCIPALES</p>
+          <a href="#directivas-generales-y-de-autenticación" class="md-toc-link">
+            <p>DIRECTIVAS GENERALES Y DE AUTENTICACIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#directivas-de-acceso-anónimo" class="md-toc-link">
+            <p>DIRECTIVAS DE ACCESO ANÓNIMO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usuarios-locales-virtuales-y-directorios" class="md-toc-link">
+            <p>USUARIOS LOCALES, VIRTUALES Y DIRECTORIOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#control-de-usuarios-y-comandos" class="md-toc-link">
+            <p>CONTROL DE USUARIOS Y COMANDOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#red-puertos-y-transferencia" class="md-toc-link">
+            <p>RED, PUERTOS Y TRANSFERENCIA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#registro-límites-y-rendimiento" class="md-toc-link">
+            <p>REGISTRO, LÍMITES Y RENDIMIENTO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tls-y-endurecimiento" class="md-toc-link">
+            <p>TLS Y ENDURECIMIENTO</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#escenario-1-usuarios-del-sistema" class="md-toc-link"><p>ESCENARIO 1: USUARIOS DEL SISTEMA</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#creación-de-usuarios-ftp" class="md-toc-link">
+            <p>CREACIÓN DE USUARIOS FTP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuración-básica-para-usuarios-locales" class="md-toc-link">
+            <p>CONFIGURACIÓN BÁSICA PARA USUARIOS LOCALES</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#listas-de-control-de-acceso" class="md-toc-link">
+            <p>LISTAS DE CONTROL DE ACCESO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuración-específica-por-usuario" class="md-toc-link">
+            <p>CONFIGURACIÓN ESPECÍFICA POR USUARIO</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#gestión-de-usuarios" class="md-toc-link"><p>GESTIÓN DE USUARIOS</p>
+          <a href="#escenario-2-acceso-anónimo" class="md-toc-link"><p>ESCENARIO 2: ACCESO ANÓNIMO</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#usuarios-del-sistema" class="md-toc-link">
-            <p>USUARIOS DEL SISTEMA</p>
+          <a href="#configuración-anónima-de-solo-lectura" class="md-toc-link">
+            <p>CONFIGURACIÓN ANÓNIMA DE SOLO LECTURA</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#restricción-por-red-y-rendimiento" class="md-toc-link">
+            <p>RESTRICCIÓN POR RED Y RENDIMIENTO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#escenario-3-usuarios-virtuales" class="md-toc-link"><p>ESCENARIO 3: USUARIOS VIRTUALES</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usuario-real-de-mapeo" class="md-toc-link">
+            <p>USUARIO REAL DE MAPEO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#base-de-credenciales-con-pam_userdb" class="md-toc-link">
+            <p>BASE DE CREDENCIALES CON PAM_USERDB</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuración-pam" class="md-toc-link">
+            <p>CONFIGURACIÓN PAM</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#integración-en-vsftpd" class="md-toc-link">
+            <p>INTEGRACIÓN EN VSFTPD</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#preparación-de-directorios" class="md-toc-link">
+            <p>PREPARACIÓN DE DIRECTORIOS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuraciones-por-usuario-o-por-perfil" class="md-toc-link">
+            <p>CONFIGURACIONES POR USUARIO O POR PERFIL</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#carpetas-compartidas-y-bind-mount" class="md-toc-link"><p>CARPETAS COMPARTIDAS Y BIND MOUNT</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#apertura-de-sesión-pam" class="md-toc-link">
+            <p>APERTURA DE SESIÓN PAM</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#limitaciones-de-vsftpd-y-cómo-compensarlas" class="md-toc-link"><p>LIMITACIONES DE VSFTPD Y CÓMO COMPENSARLAS</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#grupos-funcionales-y-perfiles-de-acceso" class="md-toc-link">
+            <p>GRUPOS FUNCIONALES Y PERFILES DE ACCESO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#restricciones-por-horario-origen-o-contexto" class="md-toc-link">
+            <p>RESTRICCIONES POR HORARIO, ORIGEN O CONTEXTO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cuotas-y-control-de-espacio" class="md-toc-link">
+            <p>CUOTAS Y CONTROL DE ESPACIO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#criterio-práctico" class="md-toc-link">
+            <p>CRITERIO PRÁCTICO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#modo-activo-y-modo-pasivo" class="md-toc-link"><p>MODO ACTIVO Y MODO PASIVO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configuración-del-modo-pasivo" class="md-toc-link">
+            <p>CONFIGURACIÓN DEL MODO PASIVO</p>
 
           </a></div>
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#gestión-de-usuarios-del-sistema" class="md-toc-link">
-            <p>Gestión de usuarios del sistema</p>
+          <a href="#registro-y-auditoría" class="md-toc-link">
+            <p>REGISTRO Y AUDITORÍA</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#seguridad-en-vsftpd" class="md-toc-link"><p>SEGURIDAD EN VSFTPD</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#medidas-recomendadas" class="md-toc-link">
+            <p>MEDIDAS RECOMENDADAS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#usuarios-virtuales" class="md-toc-link">
-            <p>Usuarios virtuales</p>
+          <a href="#cifrado-con-ftps" class="md-toc-link">
+            <p>CIFRADO CON FTPS</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#seguridad-en-vsftpd" class="md-toc-link">
-            <p>Seguridad en VSFTPD</p>
+          <a href="#sobre-pam-y-los-scripts-de-sesión" class="md-toc-link">
+            <p>SOBRE PAM Y LOS SCRIPTS DE SESIÓN</p>
 
           </a></div>
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#el-servidor-pure-ftpd" class="md-toc-link">
-            <p>EL SERVIDOR PURE-FTPD</p>
+          <a href="#comprobaciones-básicas" class="md-toc-link">
+            <p>COMPROBACIONES BÁSICAS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#conclusión" class="md-toc-link">
+            <p>CONCLUSIÓN</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#referencias" class="md-toc-link">
+            <p>REFERENCIAS</p>
 
           </a></div>
         </div>
@@ -336,254 +509,956 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
 </div>
 <div style="page-break-after:always;"></div>
-<h2 id="servidores-ftp-en-linux">SERVIDORES FTP EN LINUX </h2>
+<h2 id="introducción">INTRODUCCIÓN </h2>
 <div class="style-normal">
-<p>En entornos GNU/Linux existen varias implementaciones del protocolo FTP, cada una con un enfoque distinto en cuanto a seguridad, flexibilidad, rendimiento y facilidad de administración. Las soluciones más consolidadas y mantenidas son:</p>
+<p>En sistemas GNU/Linux existen varios servidores FTP, pero el más habitual en entornos docentes y en muchas distribuciones generales es <strong>vsftpd</strong> (<em>Very Secure FTP Daemon</em>). Su popularidad se debe a tres ideas de diseño muy claras: <strong>seguridad</strong>, <strong>rendimiento</strong> y <strong>simplicidad</strong>. La propia documentación oficial lo presenta como un servidor pequeño, rápido y orientado a reducir la superficie de ataque.</p>
+<p>Aunque FTP sigue siendo útil para estudiar el funcionamiento de los servicios de transferencia de archivos, conviene recordar una limitación importante: <strong>FTP transmite credenciales y comandos en texto claro</strong> si no se protege con TLS. Por ese motivo, en entornos reales suele preferirse <strong>FTPS</strong> cuando se quiere mantener compatibilidad con FTP, o <strong>SFTP</strong> cuando se trabaja sobre SSH.</p>
+<p>Este documento se centra en la instalación y configuración de <code>vsftpd</code> en Linux, con especial atención a los aspectos de seguridad, autenticación y auditoría. Se presentan tres escenarios típicos: acceso de usuarios locales, acceso anónimo controlado y acceso mediante usuarios virtuales. Además, se incluyen recomendaciones para proteger el servicio y asegurar que las transferencias se registran adecuadamente.</p>
+</div>
+<h2 id="vsftpd-en-gnulinux">VSFTPD EN GNU/LINUX </h2>
+<div class="style-normal">
+<p>Entre las implementaciones más conocidas del servicio FTP en Linux destacan las siguientes:</p>
 </div>
 <div class="style-list">
 <ul>
-<li>
-<p><strong>vsftpd</strong> (<em>Very Secure FTP Daemon</em>)<br>
-Diseñado con un enfoque prioritario en la <strong>seguridad y la simplicidad</strong>. Es el servidor FTP predeterminado en distribuciones como RHEL, CentOS y Ubuntu para entornos que requieren estabilidad y una superficie de ataque mínima. Opera exclusivamente con usuarios del sistema y delega en el sistema operativo funciones avanzadas como cuotas de disco o control de acceso por red. Resulta especialmente adecuado para escenarios con pocos usuarios técnicos o accesos internos controlados.</p>
-</li>
-<li>
-<p><strong>Pure-FTPd</strong><br>
-Combina <strong>facilidad de uso con funcionalidades avanzadas</strong>, manteniendo un alto nivel de seguridad. Ofrece soporte nativo para <strong>usuarios virtuales</strong>, <strong>cuotas de disco por usuario</strong>, <strong>límites de ancho de banda individuales</strong> y una configuración modular basada en archivos independientes. Es ideal para entornos multiusuario —como hosting o servicios compartidos— donde no se desea crear cueVSFTPDntas reales en el sistema.</p>
-</li>
-<li>
-<p><strong>ProFTPD</strong><br>
-Inspirado en la arquitectura de Apache, proporciona una <strong>gran flexibilidad mediante módulos</strong> que permiten integración con SQL, LDAP, cuotas, logs personalizados, y reglas complejas de acceso (por IP, horario, clase de usuario, etc.). Aunque potente y altamente configurable, su curva de aprendizaje es más pronunciada. Se considera una opción sólida para entornos empresariales con requisitos específicos, aunque queda fuera del alcance de este documento.</p>
-</li>
+<li><strong>vsftpd</strong>. Prioriza la seguridad y el rendimiento. Ofrece soporte para usuarios locales, usuarios virtuales, restricciones por configuración, listas de acceso, límites de conexión y FTPS.</li>
+<li><strong>ProFTPD</strong>. Es muy flexible y modular, pero su configuración suele ser más extensa y compleja.</li>
+<li><strong>Pure-FTPd</strong>. También es una solución madura y segura, con buen soporte para usuarios virtuales y entornos compartidos.</li>
 </ul>
 </div>
 <div class="style-normal">
-<p>Este documento se centra en <strong>vsftpd</strong> y <strong>Pure-FTPd</strong> por representar dos enfoques contrastados pero ampliamente utilizados: uno minimalista y orientado a la seguridad del sistema, y otro orientado a la gestión práctica de múltiples usuarios sin comprometer la robustez del servicio.</p>
+<p>En esta unidad trabajaremos con <strong>vsftpd</strong> porque cubre con solvencia los escenarios más habituales en un aula o en una pequeña infraestructura: acceso autenticado, acceso anónimo controlado, usuarios virtuales, enjaulado de usuarios, modo pasivo, auditoría y cifrado mediante TLS.</p>
 </div>
-<h2 id="el-servidor-vsftpd">EL SERVIDOR VSFTPD </h2>
-<div class="style-normal">
-<p>El servidor <code>vsftpd</code> es una de las opciones más populares y seguras para implementar un servicio FTP en sistemas GNU/Linux. Su diseño se centra en minimizar la superficie de ataque, lo que lo convierte en una opción ideal para entornos donde la seguridad es una prioridad. La gestión de usuarios se puede llevar a cabo de dos maneras:</p>
-</div>
+<h3 id="características-principales">CARACTERÍSTICAS PRINCIPALES </h3>
 <div class="style-list">
 <ul>
-<li><strong>Mediante las cuentas del sistema</strong>, donde cada usuario FTP corresponde a una cuenta de usuario del sistema operativo. Esto simplifica la administración de permisos y la integración con otras herramientas del sistema, pero requiere una cuidadosa gestión de usuarios para evitar riesgos de seguridad.</li>
-<li><strong>Mediante usuarios virtuales</strong>, utilizando PAM para mapear sesiones FTP a un único usuario del sistema. Esta opción es más compleja de configurar pero permite una mayor flexibilidad y aislamiento entre usuarios.</li>
+<li>Funciona con <strong>usuarios locales del sistema</strong> y también con <strong>usuarios virtuales</strong> autenticados mediante PAM.</li>
+<li>Permite <strong>enjaular usuarios</strong> en su directorio de trabajo mediante <code>chroot</code>.</li>
+<li>Soporta <strong>modo activo y modo pasivo</strong>, algo esencial cuando hay firewalls o NAT.</li>
+<li>Puede registrar tanto <strong>transferencias</strong> como <strong>comandos y respuestas del protocolo</strong>.</li>
+<li>Admite <strong>configuración por usuario</strong> usando <code>user_config_dir</code>.</li>
+<li>Permite añadir <strong>FTPS</strong> para cifrar la sesión mediante TLS.</li>
 </ul>
 </div>
-<h3 id="instalación-del-servidor">INSTALACIÓN DEL SERVIDOR </h3>
-<h4 id="instalación">INSTALACIÓN </h4>
+<h2 id="instalación-y-puesta-en-marcha">INSTALACIÓN Y PUESTA EN MARCHA </h2>
+<h3 id="instalación">INSTALACIÓN </h3>
 <div class="style-normal">
-<p>El servidor <code>vsftpd</code> está disponible en los repositorios oficiales de la mayoría de las distribuciones GNU/Linux, lo que facilita su instalación. Nosotros nos centraremos en las <strong>distribuciones basadas en Debian</strong>, aunque el proceso es similar en otras distribuciones. Para instalar <code>vsftpd</code> utilizaremos el gestor de paquetes <code>apt</code> que es el más común en sistemas basados en Debian.</p>
+<p>En distribuciones basadas en Debian, <code>vsftpd</code> se instala desde los repositorios oficiales con <code>apt</code>:</p>
 </div>
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> <span class="token function">install</span> vsftpd
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> update
+<span class="token function">apt</span> <span class="token function">install</span> vsftpd
 </code></pre><div class="style-normal">
-<p>Este comando instala vsftpd como servidor autónomo, sin necesidad de instalar paquetes adicionales. El proceso de instalación también configura el servicio para que se inicie automáticamente al arrancar el sistema. Podemos verificar que el servicio se ha instalado correctamente y está activo utilizando el siguiente comando:</p>
+<p>Tras la instalación, el servicio queda registrado en <code>systemd</code> y normalmente se inicia automáticamente. Podemos comprobar su estado con:</p>
 </div>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>systemctl status vsftpd
-</code></pre><h4 id="estructura-de-directorios-y-archivos">ESTRUCTURA DE DIRECTORIOS Y ARCHIVOS </h4>
+systemctl is-active vsftpd
+</code></pre><h3 id="archivos-y-rutas-habituales">ARCHIVOS Y RUTAS HABITUALES </h3>
 <div class="style-normal">
-<p>Una vez instalado, <code>vsftpd</code> crea la siguiente estructura de directorios y archivos:</p>
+<p>Las rutas exactas pueden variar ligeramente entre distribuciones, pero en las distribuciones basadas en Debian es habitual trabajar con los siguientes elementos:</p>
 </div>
 <div class="style-list">
 <ul>
-<li><code>/etc/vsftpd.conf</code> — Archivo de configuración principal del servicio</li>
-<li><code>/etc/vsftpd/</code> — Directorio que contiene archivos de configuración adicionales (listas de usuarios, configuraciones específicas, etc.)</li>
-<li><code>/var/log/vsftpd.log</code> — Archivo de registro de actividades del servidor</li>
-<li><code>/srv/ftp/</code> — Directorio raíz por defecto para usuarios anónimos (puede variar según configuración)</li>
-<li><code>/etc/pam.d/vsftpd</code> — Configuración de PAM para autenticación de usuarios</li>
+<li><code>/etc/vsftpd.conf</code> - Archivo principal de configuración.</li>
+<li><code>/etc/pam.d/vsftpd</code> - Servicio PAM usado por <code>vsftpd</code>.</li>
+<li><code>/var/log/vsftpd.log</code> - Log propio de <code>vsftpd</code> si se usa el formato interno.</li>
+<li><code>/var/log/xferlog</code> - Log de transferencias en formato estándar <code>xferlog</code>.</li>
+<li><code>/srv/ftp</code> o <code>/var/ftp</code> - Ubicación habitual del contenido anónimo, según distribución o política local.</li>
+<li><code>/var/run/vsftpd/empty</code> - Directorio vacío usado como <code>secure_chroot_dir</code>.</li>
 </ul>
 </div>
-<p>Además, dependiendo de la configuración, pueden existir otros archivos y directorios relacionados con la gestión de usuarios virtuales, certificados SSL para FTPS, o scripts personalizados para eventos específicos.</p>
-<h3 id="configuración">CONFIGURACIÓN </h3>
+<h2 id="estructura-de-vsftpdconf">ESTRUCTURA DE VSFTPD.CONF </h2>
 <div class="style-normal">
-<p>La configuración de <code>vsftpd</code> se centraliza en un único archivo principal: <code>/etc/vsftpd.conf</code>. Este archivo es un archivo de texto plano que contiene <strong>directivas clave-valor</strong>. Cada línea define una opción específica del servidor, y el formato es simple e intuitivo. Los comentarios comienzan con el carácter <code>#</code> y se ignoran. Las líneas en blanco también se ignoran. He aquí un ejemplo de estructura básica:</p>
+<p>La configuración de <code>vsftpd</code> se basa en directivas con el formato:</p>
 </div>
-<div class="style-list">
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>opcion=valor
+</code></pre><div class="style-normal">
+<p>La sintaxis es estricta: <strong>no debe haber espacios alrededor del signo <code>=</code></strong>. Los valores booleanos se expresan normalmente como <code>YES</code> o <code>NO</code>.</p>
+</div>
 <div class="admonition example">
-<p class="admonition-title">Configuración básica</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code># Habilitar acceso anónimo
-anonymous_enable=YES
-
-# Habilitar usuarios locales
-local_enable=YES
-
-# Permitir comandos de escritura
+<p class="admonition-title">Configuración mínima orientativa</p>
+<p>El siguiente ejemplo muestra una configuración básica en la que se permite el acceso de usuarios autenticados, se habilita la escritura y se enjaula a cada usuario en su directorio de trabajo.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_enable=YES
 write_enable=YES
-
-# Directorio raíz para usuarios locales
-local_root=/home/ftp
+chroot_local_user=YES
+allow_writeable_chroot=YES
 </code></pre></div>
-</div>
-<h4 id="parámetros-principales">PARÁMETROS PRINCIPALES </h4>
+<h3 id="directivas-más-importantes">DIRECTIVAS MÁS IMPORTANTES </h3>
 <div class="style-normal">
-<p>Los parámetros en <code>vsftpd.conf</code> controlan diversos aspectos del comportamiento del servidor, desde la autenticación y el control de acceso hasta la configuración de puertos y la seguridad. A continuación se describen algunos de los parámetros más importantes agrupados por categorías. Para una descripción completa de cada parámetro, se recomienda consultar la documentación oficial de <code>vsftpd</code> o el manual (<code>man vsftpd.conf</code>).</p>
+<p>El fichero <code>vsftpd.conf</code> contiene muchas opciones, pero en la práctica la mayoría de configuraciones se apoyan siempre en un conjunto relativamente reducido. Para que la consulta sea más útil, se agrupan aquí por bloques funcionales.</p>
 </div>
-<p><strong>Control de acceso anónimo</strong></p>
+<h4 id="directivas-generales-y-de-autenticación">DIRECTIVAS GENERALES Y DE AUTENTICACIÓN </h4>
 <table>
 <thead>
 <tr>
 <th>Parámetro</th>
-<th>Descripción</th>
+<th>Función</th>
+<th>Observaciones</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>anonymous_enable</code></td>
 <td>Habilita o deshabilita el acceso anónimo.</td>
+<td>Si está en <code>YES</code>, se aceptan los usuarios <code>anonymous</code> y <code>ftp</code>.</td>
 </tr>
 <tr>
-<td><code>anon_root</code></td>
-<td>Especifica el directorio raíz para usuarios anónimos.</td>
+<td><code>local_enable</code></td>
+<td>Permite el acceso de usuarios autenticados.</td>
+<td>Necesaria para usuarios locales y también para usuarios virtuales.</td>
 </tr>
 <tr>
-<td><code>anon_upload_enable</code></td>
-<td>Permite o deniega la capacidad de los usuarios anónimos para subir archivos.</td>
+<td><code>guest_enable</code></td>
+<td>Trata los usuarios autenticados como invitados mapeados.</td>
+<td>Base del modelo de usuarios virtuales.</td>
 </tr>
 <tr>
-<td><code>anon_mkdir_write_enable</code></td>
-<td>Permite o deniega la capacidad de los usuarios anónimos para crear directorios.</td>
+<td><code>guest_username</code></td>
+<td>Usuario real del sistema al que se mapean los usuarios virtuales.</td>
+<td>Todas las sesiones virtuales se ejecutan con esa identidad.</td>
+</tr>
+<tr>
+<td><code>pam_service_name</code></td>
+<td>Nombre del servicio PAM que usará <code>vsftpd</code>.</td>
+<td>Por defecto suele ser <code>vsftpd</code>.</td>
+</tr>
+<tr>
+<td><code>check_shell</code></td>
+<td>Comprueba si la shell del usuario es válida.</td>
+<td>En compilaciones con PAM su efecto puede no ser relevante.</td>
+</tr>
+<tr>
+<td><code>session_support</code></td>
+<td>Abre y mantiene sesión PAM durante la conexión.</td>
+<td>Útil si se usan módulos PAM de tipo <code>session</code>, por ejemplo <code>pam_exec</code>.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Control de usuarios locales</strong></p>
+<h4 id="directivas-de-acceso-anónimo">DIRECTIVAS DE ACCESO ANÓNIMO </h4>
 <table>
 <thead>
 <tr>
 <th>Parámetro</th>
-<th>Descripción</th>
+<th>Función</th>
+<th>Observaciones</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>local_enable</code></td>
-<td>Habilita o deshabilita el acceso para usuarios locales.</td>
-</tr>
-<tr>
-<td><code>local_root</code></td>
-<td>Especifica el directorio raíz para usuarios locales.</td>
-</tr>
-<tr>
-<td><code>chroot_local_user</code></td>
-<td>Enjaula a los usuarios locales en su directorio raíz.</td>
-</tr>
-<tr>
-<td><code>allow_writeable_chroot</code></td>
-<td>Permite que los usuarios locales tengan permisos de escritura incluso cuando están enjaulados.</td>
+<td><code>anon_root</code></td>
+<td>Directorio raíz del acceso anónimo.</td>
+<td>Debe tener permisos coherentes con el nivel de acceso deseado.</td>
 </tr>
 <tr>
 <td><code>write_enable</code></td>
-<td>Permite o deniega la capacidad de los usuarios locales para subir archivos.</td>
+<td>Habilita o bloquea globalmente los comandos de escritura.</td>
+<td>También afecta al usuario anónimo.</td>
+</tr>
+<tr>
+<td><code>anon_upload_enable</code></td>
+<td>Permite subir archivos de forma anónima.</td>
+<td>Requiere además <code>write_enable=YES</code>.</td>
+</tr>
+<tr>
+<td><code>anon_mkdir_write_enable</code></td>
+<td>Permite crear directorios en acceso anónimo.</td>
+<td>También requiere <code>write_enable=YES</code>.</td>
+</tr>
+<tr>
+<td><code>anon_other_write_enable</code></td>
+<td>Permite otras operaciones de escritura anónima, como borrar o renombrar.</td>
+<td>Debe usarse con mucha cautela.</td>
+</tr>
+<tr>
+<td><code>anon_world_readable_only</code></td>
+<td>Limita las descargas anónimas a archivos legibles por todos.</td>
+<td>Suele ser una protección razonable.</td>
+</tr>
+<tr>
+<td><code>no_anon_password</code></td>
+<td>Evita pedir contraseña al usuario anónimo.</td>
+<td>Puede resultar cómodo en laboratorios, pero reduce trazabilidad.</td>
+</tr>
+<tr>
+<td><code>ftp_username</code></td>
+<td>Usuario del sistema asociado al acceso anónimo.</td>
+<td>Por defecto suele ser <code>ftp</code>.</td>
+</tr>
+<tr>
+<td><code>anon_max_rate</code></td>
+<td>Limita la velocidad de transferencia de usuarios anónimos.</td>
+<td>El valor se expresa en bytes por segundo.</td>
+</tr>
+<tr>
+<td><code>anon_umask</code></td>
+<td>Máscara usada en archivos creados por el usuario anónimo.</td>
+<td>Solo aplica si se permite escritura anónima.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Puertos y modos de conexión</strong></p>
+<h4 id="usuarios-locales-virtuales-y-directorios">USUARIOS LOCALES, VIRTUALES Y DIRECTORIOS </h4>
 <table>
 <thead>
 <tr>
 <th>Parámetro</th>
-<th>Descripción</th>
+<th>Función</th>
+<th>Observaciones</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><code>local_root</code></td>
+<td>Directorio inicial del usuario autenticado.</td>
+<td>Puede ser fijo o usar <code>user_sub_token</code>.</td>
+</tr>
+<tr>
+<td><code>user_sub_token</code></td>
+<td>Sustituye un token como <code>$USER</code> por el nombre del usuario.</td>
+<td>Muy útil con usuarios virtuales.</td>
+</tr>
+<tr>
+<td><code>user_config_dir</code></td>
+<td>Directorio de configuraciones específicas por usuario.</td>
+<td>Contiene directivas de <code>vsftpd</code>, no scripts.</td>
+</tr>
+<tr>
+<td><code>chroot_local_user</code></td>
+<td>Enjaula usuarios locales o invitados en su raíz.</td>
+<td>Medida habitual de aislamiento.</td>
+</tr>
+<tr>
+<td><code>allow_writeable_chroot</code></td>
+<td>Permite escritura en la raíz del <code>chroot</code>.</td>
+<td>Cómodo, pero menos estricto desde el punto de vista de seguridad.</td>
+</tr>
+<tr>
+<td><code>chroot_list_enable</code></td>
+<td>Activa una lista de usuarios afectados por <code>chroot</code>.</td>
+<td>Su comportamiento depende de <code>chroot_local_user</code>.</td>
+</tr>
+<tr>
+<td><code>chroot_list_file</code></td>
+<td>Ruta del fichero asociado a la lista <code>chroot</code>.</td>
+<td>Por defecto hay una ruta predefinida.</td>
+</tr>
+<tr>
+<td><code>passwd_chroot_enable</code></td>
+<td>Deriva el <code>chroot</code> desde el directorio del usuario en <code>/etc/passwd</code>.</td>
+<td>Útil en diseños muy concretos.</td>
+</tr>
+<tr>
+<td><code>virtual_use_local_privs</code></td>
+<td>Hace que los usuarios virtuales usen privilegios de usuarios locales.</td>
+<td>Muy importante si los usuarios virtuales deben escribir.</td>
+</tr>
+<tr>
+<td><code>local_umask</code></td>
+<td>Máscara por defecto para usuarios autenticados.</td>
+<td><code>022</code> es un valor habitual en prácticas.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="control-de-usuarios-y-comandos">CONTROL DE USUARIOS Y COMANDOS </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>userlist_enable</code></td>
+<td>Activa una lista de control de usuarios.</td>
+<td>Sirve para permitir o denegar según <code>userlist_deny</code>.</td>
+</tr>
+<tr>
+<td><code>userlist_file</code></td>
+<td>Ruta del fichero de lista de usuarios.</td>
+<td>Puede usarse para limitar qué cuentas acceden por FTP.</td>
+</tr>
+<tr>
+<td><code>userlist_deny</code></td>
+<td>Define si la lista es de bloqueo o de permiso.</td>
+<td><code>NO</code> significa que solo se permiten los usuarios listados.</td>
+</tr>
+<tr>
+<td><code>cmds_allowed</code></td>
+<td>Lista de comandos FTP permitidos.</td>
+<td>Permite endurecer mucho el servicio.</td>
+</tr>
+<tr>
+<td><code>cmds_denied</code></td>
+<td>Lista de comandos FTP denegados.</td>
+<td>Si un comando aparece en ambas listas, prevalece la denegación.</td>
+</tr>
+<tr>
+<td><code>download_enable</code></td>
+<td>Habilita o deshabilita las descargas.</td>
+<td>Permite construir un servicio solo de subida.</td>
+</tr>
+<tr>
+<td><code>dirlist_enable</code></td>
+<td>Controla si se pueden listar directorios.</td>
+<td>Puede utilizarse para ocultar la estructura remota.</td>
+</tr>
+<tr>
+<td><code>chmod_enable</code></td>
+<td>Permite usar <code>SITE CHMOD</code>.</td>
+<td>Solo aplica a usuarios locales.</td>
+</tr>
+<tr>
+<td><code>dirmessage_enable</code></td>
+<td>Muestra mensajes al entrar en un directorio.</td>
+<td>Busca por defecto un fichero <code>.message</code>.</td>
+</tr>
+<tr>
+<td><code>message_file</code></td>
+<td>Nombre del fichero de mensaje de directorio.</td>
+<td>Solo tiene efecto si <code>dirmessage_enable=YES</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="red-puertos-y-transferencia">RED, PUERTOS Y TRANSFERENCIA </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listen</code></td>
+<td>Hace que <code>vsftpd</code> funcione en modo autónomo IPv4.</td>
+<td>No debe combinarse con <code>listen_ipv6</code>.</td>
+</tr>
+<tr>
+<td><code>listen_ipv6</code></td>
+<td>Hace que <code>vsftpd</code> escuche en socket IPv6.</td>
+<td>En muchos sistemas también acepta IPv4.</td>
+</tr>
+<tr>
 <td><code>listen_port</code></td>
-<td>Especifica el puerto en el que el servidor escucha las conexiones FTP.</td>
+<td>Puerto TCP del servicio FTP.</td>
+<td>Por defecto es el 21.</td>
 </tr>
 <tr>
 <td><code>pasv_enable</code></td>
-<td>Habilita o deshabilita el modo pasivo para transferencias de datos.</td>
+<td>Activa el modo pasivo.</td>
+<td>Normalmente imprescindible tras NAT o firewall.</td>
 </tr>
 <tr>
 <td><code>pasv_min_port</code></td>
-<td>Especifica el puerto mínimo para conexiones pasivas.</td>
+<td>Puerto mínimo del rango pasivo.</td>
+<td>Conviene abrirlo también en el firewall.</td>
 </tr>
 <tr>
 <td><code>pasv_max_port</code></td>
-<td>Especifica el puerto máximo para conexiones pasivas.</td>
+<td>Puerto máximo del rango pasivo.</td>
+<td>Debe formar un rango cerrado con el anterior.</td>
+</tr>
+<tr>
+<td><code>pasv_address</code></td>
+<td>Dirección anunciada por el servidor en modo pasivo.</td>
+<td>Necesaria si el servidor está detrás de NAT.</td>
+</tr>
+<tr>
+<td><code>pasv_addr_resolve</code></td>
+<td>Permite resolver por DNS el valor de <code>pasv_address</code>.</td>
+<td>Útil si se usa nombre en lugar de IP.</td>
 </tr>
 <tr>
 <td><code>port_enable</code></td>
-<td>Habilita o deshabilita el modo activo para transferencias de datos.</td>
+<td>Permite el modo activo.</td>
+<td>En muchas redes modernas se usa menos que PASV.</td>
 </tr>
-</tbody>
-</table>
-<p><strong>Transferencia de datos</strong></p>
-<table>
-<thead>
 <tr>
-<th>Parámetro</th>
-<th>Descripción</th>
+<td><code>connect_from_port_20</code></td>
+<td>Hace que las conexiones de datos activas salgan desde el puerto 20.</td>
+<td>Algunos clientes antiguos lo esperan.</td>
 </tr>
-</thead>
-<tbody>
+<tr>
+<td><code>idle_session_timeout</code></td>
+<td>Tiempo máximo de inactividad en la sesión de control.</td>
+<td>Se expresa en segundos.</td>
+</tr>
+<tr>
+<td><code>data_connection_timeout</code></td>
+<td>Tiempo máximo permitido sin progreso en una transferencia.</td>
+<td>También en segundos.</td>
+</tr>
 <tr>
 <td><code>ascii_upload_enable</code></td>
-<td>Permite o deniega la capacidad de subir archivos en modo ASCII.</td>
+<td>Permite subidas en modo ASCII.</td>
+<td>En la práctica moderna suele dejarse desactivado.</td>
 </tr>
 <tr>
 <td><code>ascii_download_enable</code></td>
-<td>Permite o deniega la capacidad de descargar archivos en modo ASCII.</td>
+<td>Permite descargas en modo ASCII.</td>
+<td>Igual que el anterior, rara vez hace falta.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Registro y auditoría</strong></p>
+<h4 id="registro-límites-y-rendimiento">REGISTRO, LÍMITES Y RENDIMIENTO </h4>
 <table>
 <thead>
 <tr>
 <th>Parámetro</th>
-<th>Descripción</th>
+<th>Función</th>
+<th>Observaciones</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>xferlog_enable</code></td>
-<td>Habilita o deshabilita el registro de transferencias de archivos.</td>
+<td>Registra transferencias.</td>
+<td>Es la base del registro de actividad.</td>
+</tr>
+<tr>
+<td><code>xferlog_std_format</code></td>
+<td>Usa formato estándar <code>xferlog</code>.</td>
+<td>Útil si se van a reutilizar herramientas externas de análisis.</td>
 </tr>
 <tr>
 <td><code>xferlog_file</code></td>
-<td>Especifica la ubicación del archivo de registro de transferencias.</td>
+<td>Ruta del log en formato <code>xferlog</code>.</td>
+<td>Solo aplica con <code>xferlog_std_format=YES</code>.</td>
+</tr>
+<tr>
+<td><code>dual_log_enable</code></td>
+<td>Mantiene simultáneamente log estándar y log propio.</td>
+<td>Muy útil en laboratorios.</td>
+</tr>
+<tr>
+<td><code>vsftpd_log_file</code></td>
+<td>Ruta del log propio de <code>vsftpd</code>.</td>
+<td>Si <code>syslog_enable=YES</code>, puede dejar de usarse.</td>
 </tr>
 <tr>
 <td><code>log_ftp_protocol</code></td>
-<td>Habilita o deshabilita el registro detallado de comandos FTP.</td>
+<td>Registra comandos y respuestas FTP.</td>
+<td>Muy útil para depuración.</td>
 </tr>
 <tr>
 <td><code>syslog_enable</code></td>
-<td>Habilita o deshabilita el registro de eventos en el sistema syslog.</td>
+<td>Envía el log al sistema <code>syslog</code>.</td>
+<td>Alternativa al log en archivo propio.</td>
+</tr>
+<tr>
+<td><code>max_clients</code></td>
+<td>Limita el número total de clientes conectados.</td>
+<td>Solo relevante en modo autónomo.</td>
+</tr>
+<tr>
+<td><code>max_per_ip</code></td>
+<td>Limita el número de clientes por dirección IP.</td>
+<td>Útil para evitar abusos.</td>
+</tr>
+<tr>
+<td><code>max_login_fails</code></td>
+<td>Número máximo de fallos antes de cerrar la sesión.</td>
+<td>Reduce intentos repetidos.</td>
+</tr>
+<tr>
+<td><code>local_max_rate</code></td>
+<td>Limita velocidad de usuarios autenticados.</td>
+<td>Valor en bytes por segundo.</td>
+</tr>
+<tr>
+<td><code>trans_chunk_size</code></td>
+<td>Ajusta el tamaño de bloque en la transferencia.</td>
+<td>Suele dejarse por defecto.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Seguridad</strong></p>
+<h4 id="tls-y-endurecimiento">TLS Y ENDURECIMIENTO </h4>
 <table>
 <thead>
 <tr>
 <th>Parámetro</th>
-<th>Descripción</th>
+<th>Función</th>
+<th>Observaciones</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ssl_enable</code></td>
-<td>Habilita o deshabilita el soporte para conexiones seguras mediante SSL/TLS.</td>
+<td>Activa FTPS mediante SSL/TLS.</td>
+<td>Requiere certificados y cliente compatible.</td>
+</tr>
+<tr>
+<td><code>rsa_cert_file</code></td>
+<td>Ruta del certificado RSA del servidor.</td>
+<td>En algunos sistemas certificado y clave pueden ir juntos.</td>
+</tr>
+<tr>
+<td><code>rsa_private_key_file</code></td>
+<td>Ruta de la clave privada RSA.</td>
+<td>Debe protegerse con permisos correctos.</td>
+</tr>
+<tr>
+<td><code>allow_anon_ssl</code></td>
+<td>Permite FTPS para usuarios anónimos.</td>
+<td>Solo aplica si <code>ssl_enable=YES</code>.</td>
+</tr>
+<tr>
+<td><code>force_local_logins_ssl</code></td>
+<td>Obliga a cifrar el login de usuarios autenticados.</td>
+<td>Muy recomendable si se usa FTPS.</td>
+</tr>
+<tr>
+<td><code>force_local_data_ssl</code></td>
+<td>Obliga a cifrar el canal de datos de usuarios autenticados.</td>
+<td>Complementa la protección del login.</td>
+</tr>
+<tr>
+<td><code>force_anon_logins_ssl</code></td>
+<td>Obliga a cifrar el login anónimo.</td>
+<td>Poco habitual.</td>
+</tr>
+<tr>
+<td><code>force_anon_data_ssl</code></td>
+<td>Obliga a cifrar el canal de datos anónimo.</td>
+<td>Poco habitual.</td>
+</tr>
+<tr>
+<td><code>require_ssl_reuse</code></td>
+<td>Exige reutilización de sesión SSL en el canal de datos.</td>
+<td>Más seguro, pero puede romper algunos clientes.</td>
+</tr>
+<tr>
+<td><code>ssl_ciphers</code></td>
+<td>Restringe los cifrados permitidos.</td>
+<td>Útil para endurecer la configuración.</td>
+</tr>
+<tr>
+<td><code>debug_ssl</code></td>
+<td>Registra información de depuración SSL.</td>
+<td>Solo recomendable para diagnóstico.</td>
 </tr>
 </tbody>
 </table>
 <div class="style-normal">
-<p>Esta tabla proporciona una visión general de los parámetros más comunes, pero <code>vsftpd</code> ofrece una amplia gama de opciones adicionales para personalizar el comportamiento del servidor según las necesidades específicas de cada entorno.</p>
+<p>No todas estas directivas serán necesarias en una misma instalación. Lo normal es combinar un subconjunto de ellas según el escenario: acceso anónimo controlado, usuarios locales, usuarios virtuales, integración con PAM o FTPS.</p>
 </div>
-<h3 id="gestión-de-usuarios">GESTIÓN DE USUARIOS </h3>
-<p>Como anteriormente hemos comentado, tenemos dos opciones para gestionar los usuarios en <code>vsftpd</code>: mediante las <strong>cuentas del sistema</strong> o mediante <strong>usuarios virtuales</strong>. A continuación se describen ambas opciones y sus implicaciones en términos de seguridad y administración.</p>
-<h4 id="usuarios-del-sistema">USUARIOS DEL SISTEMA </h4>
-<p>En este enfoque, cada usuario FTP corresponde a una cuenta de usuario del sistema operativo. Esto significa que para cada usuario que necesite acceso FTP, se debe crear una cuenta de usuario en el sistema utilizando comandos como <code>useradd</code> o <code>adduser</code>. Es importante configurar estas cuentas de manera segura, asignándoles un shell de inicio que no permita acceso interactivo (como <code>/usr/sbin/nologin</code>) y un directorio raíz adecuado, y asegurándose de que los permisos de los directorios sean adecuados para evitar accesos no autorizados.</p>
+<h2 id="escenario-1-usuarios-del-sistema">ESCENARIO 1: USUARIOS DEL SISTEMA </h2>
+<div class="style-normal">
+<p>La forma más directa de trabajar con <code>vsftpd</code> es permitir el acceso a <strong>usuarios locales del sistema</strong>. Es un enfoque sencillo y suficiente para entornos pequeños o prácticas iniciales, ya que reutiliza la autenticación y los permisos del propio sistema operativo.</p>
+</div>
+<h3 id="creación-de-usuarios-ftp">CREACIÓN DE USUARIOS FTP </h3>
+<div class="style-normal">
+<p>Si queremos que una cuenta sirva solo para FTP y no permita abrir una shell interactiva, conviene asignarle como intérprete <code>/usr/sbin/nologin</code>.</p>
+</div>
 <div class="admonition example">
-<p class="admonition-title">Usuario del sistema para FTP</p>
+<p class="admonition-title">Alta de un usuario FTP local</p>
+<p>El siguiente ejemplo crea una cuenta pensada para uso exclusivo por FTP, con directorio propio y sin shell interactiva.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">useradd</span> <span class="token parameter variable">-m</span> <span class="token parameter variable">-d</span> /home/ftp/usuario1 <span class="token parameter variable">-s</span> /usr/sbin/nologin usuario1
 <span class="token function">passwd</span> usuario1
-</code></pre><p>En este ejemplo, se crea un usuario llamado <code>usuario1</code> con un directorio raíz en <code>/home/ftp/usuario1</code> y se le asigna un shell que no permite acceso interactivo. Luego se establece una contraseña para el usuario.</p>
+</code></pre></div>
+<div class="style-normal">
+<p>En este ejemplo, el usuario <code>usuario1</code> tendrá como directorio personal <code>/home/ftp/usuario1</code>. A partir de aquí, el acceso FTP dependerá tanto de la configuración de <code>vsftpd</code> como de los permisos del sistema de archivos.</p>
 </div>
-<h3 id="gestión-de-usuarios-del-sistema">Gestión de usuarios del sistema </h3>
-<h3 id="usuarios-virtuales">Usuarios virtuales </h3>
-<h3 id="seguridad-en-vsftpd">Seguridad en VSFTPD </h3>
-<h2 id="el-servidor-pure-ftpd">EL SERVIDOR PURE-FTPD </h2>
+<h3 id="configuración-básica-para-usuarios-locales">CONFIGURACIÓN BÁSICA PARA USUARIOS LOCALES </h3>
+<div class="admonition example">
+<p class="admonition-title">Configuración básica para usuarios locales</p>
+<p>El siguiente ejemplo activa el acceso de usuarios locales, permite escritura y aplica un enjaulado sencillo sobre su directorio de trabajo.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_enable=YES
+write_enable=YES
+local_umask=022
+chroot_local_user=YES
+allow_writeable_chroot=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Esta configuración activa el acceso autenticado, permite escritura y enjaula a cada usuario en su directorio raíz. Es una solución cómoda para prácticas, aunque desde un punto de vista más conservador resulta preferible que la raíz del <code>chroot</code> no sea escribible y que exista un subdirectorio específico para escritura.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Diseño más estricto del directorio</p>
+<p>El siguiente ejemplo separa la raíz del entorno enjaulado del subdirectorio escribible para ajustar mejor la seguridad.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/ftp/usuario1/privada
+<span class="token function">chown</span> root:root /home/ftp/usuario1
+<span class="token function">chmod</span> <span class="token number">555</span> /home/ftp/usuario1
+<span class="token function">chown</span> usuario1:usuario1 /home/ftp/usuario1/privada
+<span class="token function">chmod</span> <span class="token number">755</span> /home/ftp/usuario1/privada
+</code></pre></div>
+<div class="style-normal">
+<p>Con este diseño, el usuario queda enjaulado en <code>/home/ftp/usuario1</code>, pero escribe realmente en <code>/home/ftp/usuario1/privada</code>.</p>
+</div>
+<h3 id="listas-de-control-de-acceso">LISTAS DE CONTROL DE ACCESO </h3>
+<div class="style-normal">
+<p><code>vsftpd</code> puede permitir o denegar usuarios mediante listas. Es una medida útil cuando queremos reducir explícitamente qué cuentas pueden autenticarse por FTP.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Lista de usuarios permitidos</p>
+<p>El siguiente ejemplo convierte el fichero de usuarios en una lista de permiso, de modo que solo podrán acceder las cuentas incluidas en él.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO
+</code></pre></div>
+<div class="style-normal">
+<p>Con <code>userlist_deny=NO</code>, solo se permiten los usuarios que aparecen en el fichero indicado. Si se cambiara a <code>YES</code>, ocurriría lo contrario: los usuarios listados quedarían bloqueados.</p>
+</div>
+<h3 id="configuración-específica-por-usuario">CONFIGURACIÓN ESPECÍFICA POR USUARIO </h3>
+<div class="style-normal">
+<p>La directiva <code>user_config_dir</code> permite crear <strong>archivos de configuración por usuario</strong>. Cada archivo contiene directivas de <code>vsftpd</code>, no scripts. Su utilidad principal es ajustar rutas, permisos o límites de forma individual.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración individual</p>
+<p>El siguiente ejemplo indica el directorio desde el que <code>vsftpd</code> leerá las configuraciones particulares de cada usuario.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>user_config_dir=/etc/vsftpd/user_conf
+</code></pre></div>
+<div class="style-normal">
+<p>Si existe el archivo <code>/etc/vsftpd/user_conf/usuario1</code>, sus directivas complementarán o sustituirán a las globales durante la sesión de <code>usuario1</code>.</p>
+</div>
+<h2 id="escenario-2-acceso-anónimo">ESCENARIO 2: ACCESO ANÓNIMO </h2>
+<div class="style-normal">
+<p>El acceso anónimo permite conectarse con los usuarios <code>anonymous</code> o <code>ftp</code> sin usar una cuenta personal del sistema. Históricamente se ha utilizado para distribuir documentación o software de lectura pública.</p>
+<p>Hoy en día debe habilitarse con mucha prudencia, porque reduce la trazabilidad y amplía la superficie de exposición del servicio.</p>
+</div>
+<h3 id="configuración-anónima-de-solo-lectura">CONFIGURACIÓN ANÓNIMA DE SOLO LECTURA </h3>
+<div class="admonition example">
+<p class="admonition-title">Acceso anónimo de solo lectura</p>
+<p>El siguiente ejemplo habilita el acceso anónimo, fija un directorio público y bloquea cualquier operación de escritura.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>anonymous_enable=YES
+anon_root=/var/ftp/publica
+write_enable=NO
+anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+anon_other_write_enable=NO
+</code></pre></div>
+<div class="style-normal">
+<p>Esta es la configuración más razonable para un acceso anónimo: lectura sí, escritura no. Aquí conviene precisar el papel de <code>write_enable</code>: <strong>no es una directiva exclusiva de usuarios autenticados</strong>, sino un interruptor general que permite o bloquea los comandos FTP que modifican el sistema de archivos. Por tanto, si <code>write_enable=NO</code>, tampoco habrá subidas, borrados o creación de directorios para usuarios anónimos.</p>
+<p>Las directivas <code>anon_upload_enable</code>, <code>anon_mkdir_write_enable</code> y <code>anon_other_write_enable</code> actúan como permisos adicionales específicos del acceso anónimo, pero solo tienen efecto si antes se ha activado <code>write_enable=YES</code>. Dicho de otro modo: para que un usuario anónimo pueda escribir, deben cumplirse <strong>las dos condiciones</strong> siguientes:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>write_enable=YES</code> para permitir operaciones de escritura a nivel global.</li>
+<li>La directiva anónima correspondiente en <code>YES</code>, junto con permisos adecuados en el sistema de archivos.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Por eso, en una configuración de solo lectura puede dejarse <code>write_enable=NO</code> sin problema. Si se necesitara permitir subidas anónimas, además de habilitar <code>anon_upload_enable=YES</code>, sería obligatorio activar <code>write_enable=YES</code> y ajustar cuidadosamente los permisos del directorio destino. En entornos docentes o productivos no suele ser recomendable salvo que exista una necesidad muy concreta.</p>
+</div>
+<h3 id="restricción-por-red-y-rendimiento">RESTRICCIÓN POR RED Y RENDIMIENTO </h3>
+<div class="style-normal">
+<p>En las prácticas de la unidad, el acceso anónimo se usa de forma restringida: solo desde una red concreta y con límite de velocidad. Ese planteamiento es razonable cuando el objetivo es exponer material público pero controlando el consumo de recursos.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Límite de velocidad para anónimo</p>
+<p>El siguiente ejemplo impone un límite de transferencia a las sesiones anónimas para evitar consumos excesivos de ancho de banda.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>anon_max_rate=625000
+</code></pre></div>
+<div class="style-normal">
+<p>Ese valor limita la transferencia aproximada a 5 Mbit/s. Las restricciones por dirección IP suelen aplicarse con herramientas externas como <code>tcp_wrappers</code>, firewall o políticas de red.</p>
+</div>
+<h2 id="escenario-3-usuarios-virtuales">ESCENARIO 3: USUARIOS VIRTUALES </h2>
+<div class="style-normal">
+<p>Los <strong>usuarios virtuales</strong> son identidades que existen solo dentro del servicio FTP. No corresponden necesariamente a cuentas reales del sistema, lo que permite administrar un número grande de usuarios sin crear cuentas locales para cada uno.</p>
+<p>En <code>vsftpd</code>, este modelo suele construirse combinando tres piezas:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Una base de usuarios autenticados gestionada por <strong>PAM</strong>.</li>
+<li>Un <strong>usuario real de mapeo</strong> del sistema, que ejecuta las sesiones.</li>
+<li>Una estructura de directorios y permisos que aísla a cada usuario virtual.</li>
+</ul>
+</div>
+<h3 id="usuario-real-de-mapeo">USUARIO REAL DE MAPEO </h3>
+<div class="style-normal">
+<p>El primer paso es crear una cuenta real sin shell interactiva. Esa cuenta no representa a un usuario humano; actúa como contenedor de las sesiones FTP virtuales.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Usuario de mapeo</p>
+<p>El siguiente ejemplo crea el usuario real bajo el que se ejecutarán todas las sesiones de los usuarios virtuales.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">useradd</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">-m</span> <span class="token parameter variable">-d</span> /home/ftp <span class="token parameter variable">-s</span> /usr/sbin/nologin ftpvirtual
+</code></pre></div>
+<h3 id="base-de-credenciales-con-pam_userdb">BASE DE CREDENCIALES CON PAM_USERDB </h3>
+<div class="style-normal">
+<p>Una opción clásica consiste en usar el módulo <code>pam_userdb</code>. Para ello se prepara un fichero de texto y se transforma a una base de datos tipo hash con <code>db_load</code>.</p>
+<p>Es importante respetar el formato correcto del fichero: <strong>usuario y contraseña en líneas alternas</strong>, no en la misma línea.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Fichero de usuarios virtuales</p>
+<p>El siguiente ejemplo muestra el formato correcto del fichero de credenciales antes de convertirlo en la base de datos usada por PAM.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>pedro
+pwd1
+luis
+pwd2
+lucia
+pwd3
+</code></pre></div>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>db_load <span class="token parameter variable">-T</span> <span class="token parameter variable">-t</span> <span class="token builtin class-name">hash</span> <span class="token parameter variable">-f</span> usuarios_virtuales.txt /etc/vsftpd/usuarios_virtuales.db
+<span class="token function">chmod</span> <span class="token number">600</span> /etc/vsftpd/usuarios_virtuales.db
+</code></pre><h3 id="configuración-pam">CONFIGURACIÓN PAM </h3>
+<div class="style-normal">
+<p>Después se crea un servicio PAM específico, por ejemplo <code>/etc/pam.d/vsftpd_virtual</code>:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Servicio PAM para usuarios virtuales</p>
+<p>El siguiente ejemplo define un servicio PAM específico que autentica y valida cuentas contra la base de datos generada previamente.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>auth    required pam_userdb.so db=/etc/vsftpd/usuarios_virtuales
+account required pam_userdb.so db=/etc/vsftpd/usuarios_virtuales
+</code></pre></div>
+<div class="style-normal">
+<p>Obsérvese que en PAM se indica la ruta <strong>sin</strong> la extensión <code>.db</code>.</p>
+</div>
+<h3 id="integración-en-vsftpd">INTEGRACIÓN EN VSFTPD </h3>
+<div class="admonition example">
+<p class="admonition-title">Configuración de <code>vsftpd</code> para usuarios virtuales</p>
+<p>El siguiente ejemplo integra PAM, el usuario de mapeo y el directorio dinámico de cada cuenta virtual dentro de la configuración principal.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_enable=YES
+write_enable=YES
+guest_enable=YES
+guest_username=ftpvirtual
+virtual_use_local_privs=YES
+pam_service_name=vsftpd_virtual
+user_sub_token=$USER
+local_root=/home/ftp/$USER
+chroot_local_user=YES
+allow_writeable_chroot=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Estas directivas hacen que:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>local_enable=YES</code> permita autenticación no anónima.</li>
+<li><code>guest_enable=YES</code> haga que los usuarios autenticados se traten como invitados mapeados.</li>
+<li><code>guest_username=ftpvirtual</code> ejecute todas las sesiones bajo la cuenta real <code>ftpvirtual</code>.</li>
+<li><code>virtual_use_local_privs=YES</code> otorgue a los usuarios virtuales privilegios equivalentes a los locales. Sin esta directiva, suelen comportarse con permisos de tipo anónimo, más restrictivos.</li>
+<li><code>user_sub_token=$USER</code> y <code>local_root=/home/ftp/$USER</code> asignen automáticamente el directorio de cada usuario.</li>
+</ul>
+</div>
+<h3 id="preparación-de-directorios">PREPARACIÓN DE DIRECTORIOS </h3>
+<div class="admonition example">
+<p class="admonition-title">Preparación de directorios base</p>
+<p>El siguiente ejemplo crea la estructura inicial de trabajo de varios usuarios virtuales y la asigna al usuario de mapeo.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/ftp/pedro /home/ftp/luis /home/ftp/lucia
+<span class="token function">chown</span> <span class="token parameter variable">-R</span> ftpvirtual:ftpvirtual /home/ftp
+<span class="token function">chmod</span> <span class="token number">755</span> /home/ftp
+</code></pre></div>
+<div class="style-normal">
+<p>Si se desea un diseño más seguro, puede repetirse la misma idea vista con usuarios locales: raíz no escribible y subdirectorio de trabajo dentro de ella.</p>
+</div>
+<h3 id="configuraciones-por-usuario-o-por-perfil">CONFIGURACIONES POR USUARIO O POR PERFIL </h3>
+<div class="style-normal">
+<p><code>user_config_dir</code> resulta especialmente útil con usuarios virtuales, ya que permite aplicar ajustes diferentes a cada cuenta o reutilizar perfiles mediante enlaces simbólicos a archivos de configuración comunes.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Ajuste por usuario virtual</p>
+<p>El siguiente ejemplo activa el directorio desde el que se aplicarán ajustes particulares para cada cuenta virtual.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>user_config_dir=/etc/vsftpd/user_conf
+</code></pre></div>
+<div class="style-normal">
+<p>Dentro de <code>/etc/vsftpd/user_conf/pedro</code> podríamos definir, por ejemplo, un <code>local_root</code> distinto o límites de ancho de banda específicos.</p>
+</div>
+<h2 id="carpetas-compartidas-y-bind-mount">CARPETAS COMPARTIDAS Y BIND MOUNT </h2>
+<div class="style-normal">
+<p>Cuando un usuario está enjaulado, los enlaces simbólicos hacia rutas externas no suelen resolver el problema de compartir contenido fuera del árbol del <code>chroot</code>. La técnica más sólida consiste en utilizar <strong>montajes bind</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Carpeta compartida dentro del espacio del usuario</p>
+<p>El siguiente ejemplo monta una carpeta externa dentro del árbol visible por el usuario enjaulado mediante un <code>bind mount</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/ftp/pedro/publica
+<span class="token function">mount</span> <span class="token parameter variable">--bind</span> /var/ftp/usuarios/publica /home/ftp/pedro/publica
+</code></pre></div>
+<div class="style-normal">
+<p>Si hay muchos usuarios, no conviene llenar <code>/etc/fstab</code> con decenas de montajes permanentes. En ese caso, una estrategia más flexible es abrir una <strong>sesión PAM</strong> y ejecutar scripts mediante <code>pam_exec</code> en el momento de inicio o cierre de sesión.</p>
+</div>
+<h3 id="apertura-de-sesión-pam">APERTURA DE SESIÓN PAM </h3>
+<div class="style-normal">
+<p>Para que <code>vsftpd</code> invoque módulos de tipo sesión, debe habilitarse:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Apertura de sesión PAM en <code>vsftpd</code></p>
+<p>El siguiente ejemplo activa el soporte de sesión PAM para que puedan ejecutarse módulos de tipo <code>session</code> durante la conexión FTP.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>session_support=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Y en el fichero PAM correspondiente podrían añadirse líneas como estas:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Ejecución de script con <code>pam_exec</code></p>
+<p>El siguiente ejemplo muestra cómo invocar un script del sistema al abrir la sesión mediante un módulo PAM de tipo <code>session</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>session optional pam_exec.so /usr/local/sbin/ftp-session-mount.sh
+</code></pre></div>
+<div class="style-normal">
+<p>En este punto conviene distinguir bien dos mecanismos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>user_config_dir</code> sirve para <strong>directivas de configuración de <code>vsftpd</code></strong>.</li>
+<li><code>pam_exec</code> sirve para <strong>ejecutar scripts del sistema</strong> al abrir o cerrar la sesión.</li>
+</ul>
+</div>
+<h2 id="limitaciones-de-vsftpd-y-cómo-compensarlas">LIMITACIONES DE VSFTPD Y CÓMO COMPENSARLAS </h2>
+<div class="style-normal">
+<p>Frente a otros servidores FTP más grandes o más orientados a hosting compartido, <code>vsftpd</code> adopta una filosofía más austera. Esto tiene ventajas claras en simplicidad y seguridad, pero también implica que algunas funciones no aparecen como opciones nativas directas. En lugar de incorporar todas esas políticas dentro del propio demonio, muchas veces se delegan en <strong>PAM</strong>, en los <strong>permisos del sistema de archivos</strong> o en herramientas propias del sistema operativo.</p>
+</div>
+<h3 id="grupos-funcionales-y-perfiles-de-acceso">GRUPOS FUNCIONALES Y PERFILES DE ACCESO </h3>
+<div class="style-normal">
+<p><code>vsftpd</code> no ofrece un sistema interno de grupos o perfiles equivalente al de otros servidores. Aun así, en la práctica se puede trabajar de forma muy parecida si se combinan varias técnicas:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Configuraciones por usuario con <code>user_config_dir</code>, reutilizando perfiles comunes mediante enlaces simbólicos o archivos generados a partir de plantillas.</li>
+<li>Permisos Unix, grupos del sistema y ACL para decidir qué directorios puede leer o escribir cada usuario real o de mapeo.</li>
+<li><code>bind mount</code> o <code>pam_mount</code> para presentar carpetas compartidas dentro del <code>chroot</code> solo a determinados usuarios o conjuntos de usuarios.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Con suficiente orden en la estructura de directorios, este enfoque permite simular bastante bien la idea de "grupo FTP" aunque <code>vsftpd</code> no la implemente como una entidad propia.</p>
+</div>
+<h3 id="restricciones-por-horario-origen-o-contexto">RESTRICCIONES POR HORARIO, ORIGEN O CONTEXTO </h3>
+<div class="style-normal">
+<p>Otra diferencia habitual respecto a otros servidores FTP es que muchas restricciones de acceso avanzadas no se expresan en <code>vsftpd.conf</code>, sino en la pila PAM. Esto no es una debilidad en sí misma, pero desplaza la lógica de control a otro nivel de configuración.</p>
+<p>En particular, los módulos PAM de tipo <code>account</code> permiten aplicar políticas que en otros productos aparecen integradas de serie:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>pam_time</code> para limitar el acceso por franjas horarias.</li>
+<li><code>pam_access</code> para permitir o denegar conexiones según origen, servicio o usuario.</li>
+<li><code>pam_listfile</code> para reforzar listas blancas o negras de cuentas.</li>
+<li><code>pam_mount</code> para preparar dinámicamente el entorno visible por el usuario durante la sesión.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Restricciones complementarias mediante PAM</p>
+<p>El siguiente ejemplo muestra una pila PAM en la que se añaden controles de horario y de origen además de la autenticación habitual.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>auth    required pam_listfile.so item=user sense=deny file=/etc/ftpusers onerr=succeed
+account required pam_time.so
+account required pam_access.so accessfile=/etc/security/access-ftp.conf
+session optional pam_mount.so
+</code></pre></div>
+<div class="style-normal">
+<p>La idea importante no es memorizar estos módulos, sino entender que <code>vsftpd</code> puede apoyarse en PAM para cubrir necesidades de control de acceso que el servidor no resuelve por sí solo. En entornos docentes y pequeños laboratorios esto ofrece mucha flexibilidad, pero exige documentar bien la solución para que siga siendo mantenible.</p>
+</div>
+<h3 id="cuotas-y-control-de-espacio">CUOTAS Y CONTROL DE ESPACIO </h3>
+<div class="style-normal">
+<p><code>vsftpd</code> tampoco incorpora un sistema propio de cuotas de disco por usuario o por grupo, algo que sí aparece de forma más visible en otros servidores FTP. En Linux, esa función suele resolverse en el nivel correcto: el <strong>sistema de archivos</strong>.</p>
+<p>Por eso, si se quiere limitar el espacio consumido por usuarios FTP, lo habitual es recurrir a cuotas del propio sistema, por ejemplo con las herramientas clásicas de <code>quota</code>, <code>setquota</code> o <code>edquota</code>, o con cuotas de proyecto en sistemas de archivos que las soporten. De este modo, la restricción no depende solo del servicio FTP, sino de cualquier proceso que escriba en esa ruta.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Gestión externa de cuotas</p>
+<p>El siguiente ejemplo ilustra una activación típica de cuotas a nivel de sistema, independiente de <code>vsftpd</code>, para limitar el espacio disponible a un usuario concreto.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> <span class="token function">install</span> <span class="token function">quota</span>
+edquota usuario1
+<span class="token function">quota</span> <span class="token parameter variable">-u</span> usuario1
+</code></pre></div>
+<div class="style-normal">
+<p>Este enfoque encaja bien con la filosofía de <code>vsftpd</code>: el servidor se ocupa de autenticar, aislar y registrar sesiones, mientras que el sistema operativo asume el control fino de recursos y políticas globales.</p>
+</div>
+<h3 id="criterio-práctico">CRITERIO PRÁCTICO </h3>
+<div class="style-normal">
+<p>En resumen, <code>vsftpd</code> no destaca por acumular funciones administrativas "todo en uno", sino por integrarse bien con los mecanismos estándar de GNU/Linux. Esa es precisamente la clave para solventar sus carencias aparentes: combinar el demonio FTP con <strong>PAM</strong>, <strong>permisos y ACL</strong>, <strong>montajes bind o <code>pam_mount</code></strong> y <strong>cuotas del sistema de archivos</strong>.</p>
+</div>
+<h2 id="modo-activo-y-modo-pasivo">MODO ACTIVO Y MODO PASIVO </h2>
+<div class="style-normal">
+<p>FTP utiliza una conexión de control y otra de datos. Por eso la configuración de red es especialmente importante. En redes sencillas suelen funcionar ambos modos, pero en presencia de NAT o firewalls el <strong>modo pasivo</strong> suele ser el más fiable.</p>
+</div>
+<h3 id="configuración-del-modo-pasivo">CONFIGURACIÓN DEL MODO PASIVO </h3>
+<div class="admonition example">
+<p class="admonition-title">Rango de puertos pasivos</p>
+<p>El siguiente ejemplo habilita el modo pasivo y reserva un rango concreto de puertos de datos para facilitar la apertura en el firewall.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>pasv_enable=YES
+pasv_min_port=55000
+pasv_max_port=56999
+port_enable=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Con esta configuración, <code>vsftpd</code> seguirá aceptando modo activo y además reservará un rango concreto para conexiones pasivas. Ese rango debe abrirse también en el firewall.</p>
+<p>Si el servidor está detrás de NAT, normalmente será necesario indicar la IP pública o el nombre resoluble que el servidor debe anunciar:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Dirección anunciada en modo pasivo</p>
+<p>El siguiente ejemplo fija la dirección pública que el servidor anunciará a los clientes cuando trabaje en modo pasivo.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>pasv_address=203.0.113.10
+</code></pre></div>
+<div class="style-normal">
+<p>Si se utiliza un nombre DNS en lugar de una IP, habrá que acompañarlo de <code>pasv_addr_resolve=YES</code>.</p>
+</div>
+<h2 id="registro-y-auditoría">REGISTRO Y AUDITORÍA </h2>
+<div class="style-normal">
+<p>Una buena configuración de FTP no termina en la autenticación. También debe permitir saber <strong>quién se conecta</strong>, <strong>qué transfiere</strong> y <strong>qué comandos ejecuta</strong>. Para ello, <code>vsftpd</code> ofrece varios mecanismos de log.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Registro detallado de actividad</p>
+<p>El siguiente ejemplo combina registro de transferencias, trazas del protocolo y un fichero de log propio para facilitar la auditoría.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>xferlog_enable=YES
+dual_log_enable=YES
+log_ftp_protocol=YES
+vsftpd_log_file=/var/log/vsftpd/ftp-server.log
+</code></pre></div>
+<div class="style-normal">
+<p>Esta combinación resulta útil en entornos de laboratorio porque conserva información detallada de transferencias y de la conversación FTP. Si se prefiere integrar el registro con el sistema, puede utilizarse <code>syslog_enable=YES</code>.</p>
+</div>
+<h2 id="seguridad-en-vsftpd">SEGURIDAD EN VSFTPD </h2>
+<h3 id="medidas-recomendadas">MEDIDAS RECOMENDADAS </h3>
+<div class="style-list">
+<ul>
+<li>Deshabilitar el acceso anónimo salvo que exista una necesidad real.</li>
+<li>Enjaular a los usuarios en su directorio de trabajo.</li>
+<li>Usar cuentas sin shell interactiva para accesos exclusivamente FTP.</li>
+<li>Limitar explícitamente los usuarios permitidos cuando el servicio no deba estar abierto a todas las cuentas del sistema.</li>
+<li>Restringir el rango de puertos pasivos y abrir solo los necesarios en el firewall.</li>
+<li>Revisar periódicamente los logs del servicio.</li>
+</ul>
+</div>
+<h3 id="cifrado-con-ftps">CIFRADO CON FTPS </h3>
+<div class="style-normal">
+<p>Si se quiere evitar que las credenciales viajen en texto claro, debe activarse FTPS. Una configuración básica podría incluir lo siguiente:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración básica de FTPS</p>
+<p>El siguiente ejemplo activa TLS y obliga a cifrar tanto la autenticación como el canal de datos de los usuarios autenticados.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ssl_enable=YES
+rsa_cert_file=/etc/ssl/certs/vsftpd.pem
+rsa_private_key_file=/etc/ssl/private/vsftpd.key
+force_local_logins_ssl=YES
+force_local_data_ssl=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Con ello se obliga a cifrar tanto la autenticación como el canal de datos para usuarios autenticados. La documentación oficial advierte además de que algunos ajustes de TLS pueden afectar a la compatibilidad con determinados clientes, por lo que siempre conviene probar desde el cliente real que vaya a usarse.</p>
+</div>
+<h3 id="sobre-pam-y-los-scripts-de-sesión">SOBRE PAM Y LOS SCRIPTS DE SESIÓN </h3>
+<div class="style-normal">
+<p>Cuando se integran scripts mediante PAM para montar carpetas, aplicar cuotas o registrar eventos, es importante que la pila PAM esté pensada para un servicio no interactivo como FTP. No todos los módulos de sesión que funcionan bien en un login de consola son apropiados para <code>vsftpd</code>.</p>
+</div>
+<h2 id="comprobaciones-básicas">COMPROBACIONES BÁSICAS </h2>
+<div class="style-normal">
+<p>Una vez aplicada la configuración, conviene verificar siempre el servicio con un pequeño guion de comprobación:</p>
+</div>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>systemctl restart vsftpd
+systemctl is-active vsftpd
+ss <span class="token parameter variable">-ltnp</span> <span class="token operator">|</span> <span class="token function">grep</span> :21
+<span class="token function">tail</span> <span class="token parameter variable">-f</span> /var/log/vsftpd/ftp-server.log
+</code></pre><div class="style-normal">
+<p>Después se deben probar, como mínimo, los siguientes casos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Inicio de sesión con un usuario autenticado.</li>
+<li>Subida y descarga de ficheros en su zona privada.</li>
+<li>Acceso a carpetas compartidas montadas dentro del <code>chroot</code>.</li>
+<li>Funcionamiento del modo pasivo desde un cliente situado tras otra red.</li>
+<li>Acceso anónimo, si está habilitado.</li>
+<li>Conexión FTPS, si se ha activado TLS.</li>
+</ul>
+</div>
+<h2 id="conclusión">CONCLUSIÓN </h2>
+<div class="style-normal">
+<p><code>vsftpd</code> es una solución muy adecuada para aprender y desplegar un servicio FTP en Linux con un nivel razonable de seguridad. Su configuración es compacta, pero suficientemente potente como para cubrir escenarios muy distintos: usuarios locales, acceso anónimo controlado, usuarios virtuales, directorios enjaulados, carpetas compartidas y sesiones cifradas.</p>
+<p>La clave para administrarlo bien no está en memorizar directivas sueltas, sino en entender la relación entre cuatro elementos: <strong>autenticación</strong>, <strong>permisos del sistema de archivos</strong>, <strong>topología de red</strong> y <strong>auditoría</strong>. Cuando esos cuatro aspectos están alineados, el servicio resulta predecible, seguro y mucho más fácil de mantener.</p>
+</div>
+<h2 id="referencias">REFERENCIAS </h2>
+<div class="style-list">
+<ul>
+<li>Sitio oficial de <code>vsftpd</code>: <a href="https://security.appspot.com/vsftpd.html">https://security.appspot.com/vsftpd.html</a></li>
+<li>Manual oficial de configuración de <code>vsftpd.conf</code>: <a href="https://security.appspot.com/vsftpd/vsftpd_conf.html">https://security.appspot.com/vsftpd/vsftpd_conf.html</a></li>
+<li>Página de manual de Debian para <code>vsftpd.conf</code>: <a href="https://manpages.debian.org/bookworm/vsftpd/vsftpd.conf.5.en.html">https://manpages.debian.org/bookworm/vsftpd/vsftpd.conf.5.en.html</a></li>
+</ul>
+</div>
 
       </div>
       
