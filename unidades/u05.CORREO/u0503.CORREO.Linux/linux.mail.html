@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>SER</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  body { font-family: Verdana, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #333; max-width: 980px; margin: 0 auto; padding: 2rem; }
+  h1, h2, h3, h4, h5 { color: #000; font-weight: 600; }
+  img { max-width: 100%; height: auto; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem 0; }
+  th, td { border: 1px solid #d6d6d6; padding: 0.5rem 0.8rem; vertical-align: top; }
+  pre, code { font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+  pre { background: #f5f5f5; padding: 1rem; overflow: auto; border-radius: 4px; }
+  code { background: #f5f5f5; padding: 0.1rem 0.25rem; border-radius: 3px; }
+  pre code { background: transparent; padding: 0; }
+  blockquote { border-left: 4px solid #d6d6d6; background: #f0f0f0; padding: 0.8rem 1rem; margin: 1rem 0; }
+  .style-title { text-align: center; }
+  .style-normal { text-align: justify; }
+  .style-list { text-align: justify; }
+  .style-table-content table { background: #f0f9ff; }
+  #TOC { background: rgba(173, 216, 230, 0.25); padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 6px; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">SER</h1>
+<p class="date">18/04/2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introducción">INTRODUCCIÓN</a></li>
+<li><a href="#arquitectura-del-servicio-de-correo">ARQUITECTURA DEL
+SERVICIO DE CORREO</a>
+<ul>
+<li><a href="#componentes-principales">COMPONENTES PRINCIPALES</a></li>
+<li><a href="#protocolos-y-puertos-habituales">PROTOCOLOS Y PUERTOS
+HABITUALES</a></li>
+</ul></li>
+<li><a href="#requisitos-previos">REQUISITOS PREVIOS</a>
+<ul>
+<li><a href="#identidad-del-servidor">IDENTIDAD DEL SERVIDOR</a></li>
+<li><a href="#dns-necesario">DNS NECESARIO</a></li>
+</ul></li>
+<li><a href="#instalación-de-postfix-y-dovecot">INSTALACIÓN DE POSTFIX Y
+DOVECOT</a>
+<ul>
+<li><a href="#paquetes-básicos">PAQUETES BÁSICOS</a></li>
+<li><a href="#comprobación-de-servicios">COMPROBACIÓN DE
+SERVICIOS</a></li>
+</ul></li>
+<li><a href="#postfix">POSTFIX</a>
+<ul>
+<li><a href="#ficheros-relevantes">FICHEROS RELEVANTES</a></li>
+<li><a href="#configuración-básica-en-main.cf">CONFIGURACIÓN BÁSICA EN
+MAIN.CF</a></li>
+<li><a href="#aplicar-cambios">APLICAR CAMBIOS</a></li>
+<li><a href="#alias-locales">ALIAS LOCALES</a></li>
+</ul></li>
+<li><a href="#dovecot">DOVECOT</a>
+<ul>
+<li><a href="#objetivo-de-dovecot">OBJETIVO DE DOVECOT</a></li>
+<li><a href="#configuración-mínima">CONFIGURACIÓN MÍNIMA</a></li>
+<li><a
+href="#integración-de-dovecot-con-postfix-para-auth-smtp">INTEGRACIÓN DE
+DOVECOT CON POSTFIX PARA AUTH SMTP</a></li>
+<li><a href="#servicio-submission-en-master.cf">SERVICIO SUBMISSION EN
+MASTER.CF</a></li>
+</ul></li>
+<li><a
+href="#escenario-práctico-servidor-con-usuarios-locales">ESCENARIO
+PRÁCTICO: SERVIDOR CON USUARIOS LOCALES</a>
+<ul>
+<li><a href="#creación-de-usuarios">CREACIÓN DE USUARIOS</a></li>
+<li><a href="#creación-de-buzones-maildir">CREACIÓN DE BUZONES
+MAILDIR</a></li>
+<li><a href="#envío-de-prueba-local">ENVÍO DE PRUEBA LOCAL</a></li>
+<li><a href="#revisión-de-registros">REVISIÓN DE REGISTROS</a></li>
+<li><a href="#comprobación-de-cola">COMPROBACIÓN DE COLA</a></li>
+</ul></li>
+<li><a href="#pruebas-de-funcionamiento">PRUEBAS DE FUNCIONAMIENTO</a>
+<ul>
+<li><a href="#prueba-smtp-en-bruto">PRUEBA SMTP EN BRUTO</a></li>
+<li><a href="#prueba-del-puerto-submission-con-tls">PRUEBA DEL PUERTO
+SUBMISSION CON TLS</a></li>
+<li><a href="#prueba-imap">PRUEBA IMAP</a></li>
+<li><a href="#prueba-pop3">PRUEBA POP3</a></li>
+<li><a href="#prueba-dns">PRUEBA DNS</a></li>
+</ul></li>
+<li><a href="#seguridad-y-endurecimiento">SEGURIDAD Y
+ENDURECIMIENTO</a></li>
+<li><a href="#resumen-operativo">RESUMEN OPERATIVO</a></li>
+</ul>
+</nav>
+<!-- markdownlint-disable MD025 MD033 -->
+<div class="style-title">
+<figure>
+<img src="../../../assets/img-BalmisHeader.png" alt="BALMIS" />
+<figcaption aria-hidden="true">BALMIS</figcaption>
+</figure>
+<h1 id="servicios-de-correo-en-linux">SERVICIOS DE CORREO EN LINUX</h1>
+</div>
+<h2 id="introducción">INTRODUCCIÓN</h2>
+<div class="style-normal">
+<p>Un sistema de correo electrónico no es un único servicio, sino un
+conjunto de procesos que colaboran para aceptar mensajes, encaminarlos,
+almacenarlos y ponerlos a disposición del usuario final. En un
+despliegue clásico de Linux, lo habitual es separar al menos dos
+piezas:</p>
+<ul>
+<li>Un servicio <strong>SMTP</strong> para el transporte y entrega entre
+servidores o clientes.</li>
+<li>Un servicio <strong>IMAP/POP3</strong> para que el usuario pueda
+consultar su buzón.</li>
+</ul>
+<p>En esta unidad se trabajará con <strong>Postfix</strong> como
+servidor SMTP y con <strong>Dovecot</strong> como servidor de acceso a
+buzones. Es una combinación habitual en entornos Debian y Ubuntu porque
+ofrece una configuración razonablemente clara, buen rendimiento y una
+superficie de ataque moderada si se endurece de forma correcta.</p>
+</div>
+<h2 id="arquitectura-del-servicio-de-correo">ARQUITECTURA DEL SERVICIO
+DE CORREO</h2>
+<h3 id="componentes-principales">COMPONENTES PRINCIPALES</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 21%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Componente</th>
+<th>Función</th>
+<th>Ejemplo en Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MTA</td>
+<td>Transfiere mensajes entre servidores y acepta correo entrante o
+saliente.</td>
+<td>Postfix</td>
+</tr>
+<tr class="even">
+<td>MDA</td>
+<td>Deposita el mensaje en el buzón del usuario.</td>
+<td>Dovecot LDA o entrega local de Postfix</td>
+</tr>
+<tr class="odd">
+<td>MUA</td>
+<td>Cliente de correo usado por la persona usuaria.</td>
+<td>Thunderbird, Outlook, mutt</td>
+</tr>
+<tr class="even">
+<td>DNS</td>
+<td>Publica los registros necesarios para localizar el servidor de
+correo.</td>
+<td>Registros MX, A y PTR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="protocolos-y-puertos-habituales">PROTOCOLOS Y PUERTOS
+HABITUALES</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Servicio</th>
+<th>Protocolo</th>
+<th>Puerto TCP</th>
+<th>Uso habitual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SMTP</td>
+<td>SMTP</td>
+<td>25</td>
+<td>Transporte entre servidores y recepción en el MTA</td>
+</tr>
+<tr class="even">
+<td>Submission</td>
+<td>SMTP autenticado</td>
+<td>587</td>
+<td>Envío de correo por clientes autenticados</td>
+</tr>
+<tr class="odd">
+<td>SMTPS</td>
+<td>SMTP sobre TLS implícito</td>
+<td>465</td>
+<td>Compatibilidad con algunos clientes</td>
+</tr>
+<tr class="even">
+<td>POP3</td>
+<td>POP3</td>
+<td>110</td>
+<td>Descarga de mensajes al cliente</td>
+</tr>
+<tr class="odd">
+<td>POP3S</td>
+<td>POP3 sobre TLS</td>
+<td>995</td>
+<td>POP3 cifrado</td>
+</tr>
+<tr class="even">
+<td>IMAP</td>
+<td>IMAP</td>
+<td>143</td>
+<td>Acceso remoto sincronizado al buzón</td>
+</tr>
+<tr class="odd">
+<td>IMAPS</td>
+<td>IMAP sobre TLS implícito</td>
+<td>993</td>
+<td>IMAP cifrado</td>
+</tr>
+</tbody>
+</table>
+<div class="style-normal">
+<p>En la práctica moderna, el acceso de clientes suele hacerse mediante
+<strong>submission 587</strong> para el envío y <strong>IMAP
+143/993</strong> o <strong>POP3 110/995</strong> para la lectura. El
+puerto 25 se reserva principalmente para comunicaciones entre MTAs.</p>
+</div>
+<h2 id="requisitos-previos">REQUISITOS PREVIOS</h2>
+<h3 id="identidad-del-servidor">IDENTIDAD DEL SERVIDOR</h3>
+<div class="style-normal">
+<p>Antes de instalar los servicios conviene fijar correctamente el
+nombre del sistema. Un servidor de correo debe tener un nombre coherente
+y resoluble, por ejemplo <code>mail.ser.smr</code>.</p>
+</div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hostnamectl</span> set-hostname mail.ser.smr</span></code></pre></div>
+<div class="style-normal">
+<p>Además, <code>/etc/hosts</code> debe incluir al menos una resolución
+local coherente para el propio servidor:</p>
+</div>
+<pre class="text"><code>127.0.0.1       localhost
+192.168.1.201   mail.ser.smr mail</code></pre>
+<h3 id="dns-necesario">DNS NECESARIO</h3>
+<div class="style-normal">
+<p>Para que otros sistemas localicen el servidor de correo del dominio
+hacen falta, como mínimo, estos registros:</p>
+</div>
+<pre class="text"><code>ser.smr.        IN MX 10 mail.ser.smr.
+mail.ser.smr.   IN A  192.168.1.201
+201.1.168.192.in-addr.arpa. IN PTR mail.ser.smr.</code></pre>
+<div class="style-normal">
+<p>Sin un registro <strong>MX</strong> correcto, los MTAs remotos no
+sabrán a qué servidor deben entregar el correo del dominio. Sin
+resolución <strong>A</strong> y <strong>PTR</strong> coherente es
+frecuente que aparezcan rechazos o puntuaciones negativas por filtros
+antispam.</p>
+</div>
+<h2 id="instalación-de-postfix-y-dovecot">INSTALACIÓN DE POSTFIX Y
+DOVECOT</h2>
+<h3 id="paquetes-básicos">PAQUETES BÁSICOS</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> update</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install postfix dovecot-core dovecot-imapd dovecot-pop3d mailutils</span></code></pre></div>
+<div class="style-normal">
+<p>Durante la instalación de Postfix en Debian suele aparecer un
+asistente. Para un laboratorio sencillo se puede elegir <strong>Internet
+Site</strong> e indicar como nombre del sistema
+<code>mail.ser.smr</code>.</p>
+</div>
+<h3 id="comprobación-de-servicios">COMPROBACIÓN DE SERVICIOS</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status postfix</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status dovecot</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(25|110|143|587|993|995) &#39;</span></span></code></pre></div>
+<h2 id="postfix">POSTFIX</h2>
+<h3 id="ficheros-relevantes">FICHEROS RELEVANTES</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/etc/postfix/main.cf</code></td>
+<td>Configuración principal del servicio</td>
+</tr>
+<tr class="even">
+<td><code>/etc/postfix/master.cf</code></td>
+<td>Definición de demonios y servicios secundarios</td>
+</tr>
+<tr class="odd">
+<td><code>/etc/aliases</code></td>
+<td>Alias locales del sistema</td>
+</tr>
+<tr class="even">
+<td><code>/var/log/mail.log</code></td>
+<td>Registro principal del correo en Debian y Ubuntu</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuración-básica-en-main.cf">CONFIGURACIÓN BÁSICA EN
+MAIN.CF</h3>
+<div class="style-normal">
+<p>Una configuración inicial razonable para un servidor del dominio
+<code>ser.smr</code> con buzones locales en formato Maildir puede ser la
+siguiente:</p>
+</div>
+<pre class="text"><code>myhostname = mail.ser.smr
+mydomain = ser.smr
+myorigin = $mydomain
+inet_interfaces = all
+inet_protocols = ipv4
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+mynetworks = 127.0.0.0/8, 192.168.1.0/24
+home_mailbox = Maildir/
+smtpd_banner = $myhostname ESMTP
+append_dot_mydomain = no
+recipient_delimiter = +
+relayhost =
+smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases</code></pre>
+<div class="style-normal">
+<p>Los puntos más importantes de esta configuración son los
+siguientes:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>myhostname</code> identifica al servidor SMTP.</li>
+<li><code>mydestination</code> define para qué dominios el servidor es
+destino final, es decir, dónde reparte el correo localmente.</li>
+<li><code>mynetworks</code> indica qué redes pueden usar el servidor
+como relay sin autenticación. Debe ser muy restrictivo.</li>
+<li><code>home_mailbox = Maildir/</code> hace que cada usuario guarde
+sus mensajes en <code>~/Maildir</code>.</li>
+<li><code>reject_unauth_destination</code> evita convertir el servidor
+en un <strong>open relay</strong>.</li>
+</ul>
+</div>
+<h3 id="aplicar-cambios">APLICAR CAMBIOS</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">postfix</span> check</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart postfix</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">postconf</span> <span class="at">-n</span></span></code></pre></div>
+<h3 id="alias-locales">ALIAS LOCALES</h3>
+<div class="style-normal">
+<p>Es habitual redirigir el correo del usuario <code>root</code> hacia
+una cuenta administrativa real.</p>
+</div>
+<pre class="text"><code>root: admin
+postmaster: admin</code></pre>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">newaliases</span></span></code></pre></div>
+<h2 id="dovecot">DOVECOT</h2>
+<h3 id="objetivo-de-dovecot">OBJETIVO DE DOVECOT</h3>
+<div class="style-normal">
+<p>Dovecot se encarga de que los clientes puedan leer y gestionar sus
+buzones mediante IMAP o POP3. También puede participar en la
+autenticación SMTP y en la entrega local, aunque para un escenario
+básico es suficiente con usarlo como servidor de acceso a buzones.</p>
+</div>
+<h3 id="configuración-mínima">CONFIGURACIÓN MÍNIMA</h3>
+<div class="style-normal">
+<p>En Debian y Ubuntu la configuración se reparte entre varios ficheros
+dentro de <code>/etc/dovecot/conf.d/</code>. Los cambios básicos suelen
+concentrarse en <code>10-mail.conf</code>, <code>10-auth.conf</code> y
+<code>10-master.conf</code>.</p>
+</div>
+<h4 id="maildir">MAILDIR</h4>
+<pre class="text"><code># /etc/dovecot/conf.d/10-mail.conf
+mail_location = maildir:~/Maildir</code></pre>
+<h4 id="protocolos-habilitados">PROTOCOLOS HABILITADOS</h4>
+<pre class="text"><code># /etc/dovecot/dovecot.conf
+protocols = imap pop3</code></pre>
+<h4 id="autenticación-con-usuarios-del-sistema">AUTENTICACIÓN CON
+USUARIOS DEL SISTEMA</h4>
+<pre class="text"><code># /etc/dovecot/conf.d/10-auth.conf
+disable_plaintext_auth = yes
+auth_mechanisms = plain login</code></pre>
+<div class="style-normal">
+<p>La directiva <code>disable_plaintext_auth = yes</code> obliga a
+proteger la autenticación con TLS cuando se usan mecanismos simples como
+<code>PLAIN</code> o <code>LOGIN</code>.</p>
+</div>
+<h3 id="integración-de-dovecot-con-postfix-para-auth-smtp">INTEGRACIÓN
+DE DOVECOT CON POSTFIX PARA AUTH SMTP</h3>
+<div class="style-normal">
+<p>Si se quiere permitir el envío autenticado por el puerto 587, Postfix
+puede delegar la autenticación SASL en Dovecot. Para ello hay que crear
+un socket accesible desde el entorno chroot de Postfix.</p>
+</div>
+<pre class="text"><code># /etc/dovecot/conf.d/10-master.conf
+service auth {
+  unix_listener /var/spool/postfix/private/auth {
+    mode = 0660
+    user = postfix
+    group = postfix
+  }
+}</code></pre>
+<pre class="text"><code># /etc/postfix/main.cf
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_auth_enable = yes
+broken_sasl_auth_clients = yes</code></pre>
+<h3 id="servicio-submission-en-master.cf">SERVICIO SUBMISSION EN
+MASTER.CF</h3>
+<pre class="text"><code>submission inet n       -       y       -       -       smtpd
+  -o syslog_name=postfix/submission
+  -o smtpd_tls_security_level=encrypt
+  -o smtpd_sasl_auth_enable=yes
+  -o smtpd_recipient_restrictions=permit_sasl_authenticated,reject</code></pre>
+<div class="style-normal">
+<p>De esta forma, los clientes no usarán el puerto 25 para enviar correo
+saliente, sino el 587 con autenticación y cifrado.</p>
+</div>
+<h2 id="escenario-práctico-servidor-con-usuarios-locales">ESCENARIO
+PRÁCTICO: SERVIDOR CON USUARIOS LOCALES</h2>
+<h3 id="creación-de-usuarios">CREACIÓN DE USUARIOS</h3>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> admin</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> alumno1</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> alumno2</span></code></pre></div>
+<h3 id="creación-de-buzones-maildir">CREACIÓN DE BUZONES MAILDIR</h3>
+<div class="style-normal">
+<p>Si el buzón aún no existe, se puede crear el árbol Maildir desde cada
+cuenta o con la utilidad de Dovecot.</p>
+</div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> admin INBOX</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> alumno1 INBOX</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> alumno2 INBOX</span></code></pre></div>
+<div class="style-normal">
+<p>Otra posibilidad es generar <code>~/Maildir</code> enviando el primer
+mensaje local una vez configurado
+<code>home_mailbox = Maildir/</code>.</p>
+</div>
+<h3 id="envío-de-prueba-local">ENVÍO DE PRUEBA LOCAL</h3>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Prueba de correo local&quot;</span> <span class="kw">|</span> <span class="ex">mail</span> <span class="at">-s</span> <span class="st">&quot;mensaje 01&quot;</span> alumno1</span></code></pre></div>
+<h3 id="revisión-de-registros">REVISIÓN DE REGISTROS</h3>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/mail.log</span></code></pre></div>
+<h3 id="comprobación-de-cola">COMPROBACIÓN DE COLA</h3>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mailq</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">postqueue</span> <span class="at">-p</span></span></code></pre></div>
+<h2 id="pruebas-de-funcionamiento">PRUEBAS DE FUNCIONAMIENTO</h2>
+<h3 id="prueba-smtp-en-bruto">PRUEBA SMTP EN BRUTO</h3>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">telnet</span> mail.ser.smr 25</span></code></pre></div>
+<pre class="text"><code>EHLO cliente.ser.smr
+MAIL FROM:&lt;admin@ser.smr&gt;
+RCPT TO:&lt;alumno1@ser.smr&gt;
+DATA
+Subject: prueba smtp
+
+Mensaje enviado manualmente.
+.
+QUIT</code></pre>
+<h3 id="prueba-del-puerto-submission-con-tls">PRUEBA DEL PUERTO
+SUBMISSION CON TLS</h3>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> mail.ser.smr:587 <span class="at">-starttls</span> smtp</span></code></pre></div>
+<h3 id="prueba-imap">PRUEBA IMAP</h3>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> mail.ser.smr:993</span></code></pre></div>
+<h3 id="prueba-pop3">PRUEBA POP3</h3>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> mail.ser.smr:995</span></code></pre></div>
+<h3 id="prueba-dns">PRUEBA DNS</h3>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> mx ser.smr</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> a mail.ser.smr</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> <span class="at">-x</span> 192.168.1.201</span></code></pre></div>
+<h2 id="seguridad-y-endurecimiento">SEGURIDAD Y ENDURECIMIENTO</h2>
+<div class="style-list">
+<ul>
+<li>No permitir relay abierto. La directiva crítica es
+<code>reject_unauth_destination</code>.</li>
+<li>Publicar <strong>submission 587</strong> para clientes y reservar el
+<strong>25</strong> para tráfico entre servidores.</li>
+<li>Usar TLS en SMTP, IMAP y POP3. En prácticas se puede empezar con
+certificados locales; en producción conviene usar una CA pública o
+corporativa.</li>
+<li>Limitar con firewall los puertos realmente necesarios.</li>
+<li>Revisar de forma periódica <code>/var/log/mail.log</code> para
+detectar errores de autenticación, colas bloqueadas o rechazos por
+DNS.</li>
+<li>Asegurar coherencia entre <code>hostname</code>, registros
+<code>A</code>, <code>MX</code> y <code>PTR</code>.</li>
+<li>Evitar cuentas sin contraseña y deshabilitar accesos
+innecesarios.</li>
+</ul>
+</div>
+<h2 id="resumen-operativo">RESUMEN OPERATIVO</h2>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install postfix dovecot-core dovecot-imapd dovecot-pop3d mailutils</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">postfix</span> check</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart postfix dovecot</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">postconf</span> <span class="at">-n</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ex">doveconf</span> <span class="at">-n</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(25|110|143|587|993|995) &#39;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/mail.log</span></code></pre></div>
+<div class="style-normal">
+<p>Con esta base ya se dispone de un servidor de correo funcional para
+un entorno de laboratorio: <strong>Postfix</strong> recibe y entrega
+mensajes del dominio, <strong>Dovecot</strong> ofrece acceso a los
+buzones y el sistema puede validarse mediante pruebas SMTP, IMAP, POP3 y
+consultas DNS. A partir de aquí se puede evolucionar hacia escenarios
+más avanzados con dominios virtuales, antispam, antivirus, webmail o
+integración con LDAP.</p>
+</div>
+</body>
+</html>
