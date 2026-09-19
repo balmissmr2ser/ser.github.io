@@ -274,11 +274,6 @@ MAIN.CF</a></li>
 <ul>
 <li><a href="#objetivo-de-dovecot">OBJETIVO DE DOVECOT</a></li>
 <li><a href="#configuración-mínima">CONFIGURACIÓN MÍNIMA</a></li>
-<li><a
-href="#integración-de-dovecot-con-postfix-para-auth-smtp">INTEGRACIÓN DE
-DOVECOT CON POSTFIX PARA AUTH SMTP</a></li>
-<li><a href="#servicio-submission-en-master.cf">SERVICIO SUBMISSION EN
-MASTER.CF</a></li>
 </ul></li>
 <li><a
 href="#escenario-práctico-servidor-con-usuarios-locales">ESCENARIO
@@ -294,10 +289,27 @@ MAILDIR</a></li>
 <li><a href="#pruebas-de-funcionamiento">PRUEBAS DE FUNCIONAMIENTO</a>
 <ul>
 <li><a href="#prueba-smtp-en-bruto">PRUEBA SMTP EN BRUTO</a></li>
-<li><a href="#prueba-del-puerto-submission-con-tls">PRUEBA DEL PUERTO
-SUBMISSION CON TLS</a></li>
-<li><a href="#prueba-imap">PRUEBA IMAP</a></li>
-<li><a href="#prueba-pop3">PRUEBA POP3</a></li>
+<li><a href="#prueba-imap-en-texto-claro">PRUEBA IMAP EN TEXTO
+CLARO</a></li>
+<li><a href="#comprobación-directa-del-maildir">COMPROBACIÓN DIRECTA DEL
+MAILDIR</a></li>
+</ul></li>
+<li><a href="#continuación-de-la-práctica-probar-dovecot">CONTINUACIÓN
+DE LA PRÁCTICA: PROBAR DOVECOT</a>
+<ul>
+<li><a href="#instalación-de-dovecot">INSTALACIÓN DE DOVECOT</a></li>
+<li><a href="#configuración-de-dovecot-para-maildir">CONFIGURACIÓN DE
+DOVECOT PARA MAILDIR</a></li>
+<li><a href="#comprobar-que-u1-tiene-mensajes-en-maildir">COMPROBAR QUE
+U1 TIENE MENSAJES EN MAILDIR</a></li>
+<li><a href="#lectura-más-cómoda-con-s-nail">LECTURA MÁS CÓMODA CON
+S-NAIL</a></li>
+<li><a href="#comprobación-técnica-del-protocolo-imap">COMPROBACIÓN
+TÉCNICA DEL PROTOCOLO IMAP</a></li>
+<li><a href="#comprobación-en-el-log-del-servidor">COMPROBACIÓN EN EL
+LOG DEL SERVIDOR</a></li>
+<li><a href="#interpretación-del-resultado">INTERPRETACIÓN DEL
+RESULTADO</a></li>
 <li><a href="#prueba-dns">PRUEBA DNS</a></li>
 </ul></li>
 <li><a href="#seguridad-y-endurecimiento">SEGURIDAD Y
@@ -476,7 +488,7 @@ DOVECOT</h2>
 <h3 id="paquetes-básicos">PAQUETES BÁSICOS</h3>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> update</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install postfix dovecot-core dovecot-imapd dovecot-pop3d mailutils</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install postfix dovecot-core dovecot-imapd mailutils</span></code></pre></div>
 <div class="style-normal">
 <p>Durante la instalación de Postfix en Debian suele aparecer un
 asistente. Para un laboratorio sencillo se puede elegir <strong>Internet
@@ -487,7 +499,7 @@ Site</strong> e indicar como nombre del sistema
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status postfix</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status dovecot</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(25|110|143|587|993|995) &#39;</span></span></code></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(25|143) &#39;</span></span></code></pre></div>
 <h2 id="postfix">POSTFIX</h2>
 <h3 id="ficheros-relevantes">FICHEROS RELEVANTES</h3>
 <table>
@@ -539,7 +551,7 @@ smtpd_banner = $myhostname ESMTP
 append_dot_mydomain = no
 recipient_delimiter = +
 relayhost =
-smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+smtpd_relay_restrictions = permit_mynetworks, reject_unauth_destination
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases</code></pre>
 <div class="style-normal">
@@ -577,99 +589,82 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="
 <h3 id="objetivo-de-dovecot">OBJETIVO DE DOVECOT</h3>
 <div class="style-normal">
 <p>Dovecot se encarga de que los clientes puedan leer y gestionar sus
-buzones mediante IMAP o POP3. También puede participar en la
-autenticación SMTP y en la entrega local, aunque para un escenario
-básico es suficiente con usarlo como servidor de acceso a buzones.</p>
+buzones mediante IMAP. También puede participar en la autenticación SMTP
+y en la entrega local, aunque para un escenario básico es suficiente con
+usarlo como servidor de acceso a buzones.</p>
 </div>
 <h3 id="configuración-mínima">CONFIGURACIÓN MÍNIMA</h3>
 <div class="style-normal">
 <p>En Debian y Ubuntu la configuración se reparte entre varios ficheros
-dentro de <code>/etc/dovecot/conf.d/</code>. Los cambios básicos suelen
-concentrarse en <code>10-mail.conf</code>, <code>10-auth.conf</code> y
-<code>10-master.conf</code>.</p>
+dentro de <code>/etc/dovecot/conf.d/</code>. Para esta fase solo
+interesa que Dovecot encuentre los buzones <code>Maildir</code> y
+escuche en IMAP sin añadir todavía ni TLS ni autenticación SASL para
+Postfix.</p>
 </div>
 <h4 id="maildir">MAILDIR</h4>
 <pre class="text"><code># /etc/dovecot/conf.d/10-mail.conf
 mail_location = maildir:~/Maildir</code></pre>
 <h4 id="protocolos-habilitados">PROTOCOLOS HABILITADOS</h4>
 <pre class="text"><code># /etc/dovecot/dovecot.conf
-protocols = imap pop3</code></pre>
-<h4 id="autenticación-con-usuarios-del-sistema">AUTENTICACIÓN CON
-USUARIOS DEL SISTEMA</h4>
+protocols = imap</code></pre>
+<h4 id="autenticación-en-esta-fase">AUTENTICACIÓN EN ESTA FASE</h4>
 <pre class="text"><code># /etc/dovecot/conf.d/10-auth.conf
-disable_plaintext_auth = yes
+disable_plaintext_auth = no
 auth_mechanisms = plain login</code></pre>
 <div class="style-normal">
-<p>La directiva <code>disable_plaintext_auth = yes</code> obliga a
-proteger la autenticación con TLS cuando se usan mecanismos simples como
-<code>PLAIN</code> o <code>LOGIN</code>.</p>
+<p>Como todavía no se ha configurado TLS, la directiva
+<code>disable_plaintext_auth = no</code> permite hacer pruebas de
+laboratorio con autenticación en claro sobre IMAP. Esto solo es
+aceptable en un entorno aislado de prácticas.</p>
 </div>
-<h3 id="integración-de-dovecot-con-postfix-para-auth-smtp">INTEGRACIÓN
-DE DOVECOT CON POSTFIX PARA AUTH SMTP</h3>
+<h4 id="comprobar-la-configuración-activa">COMPROBAR LA CONFIGURACIÓN
+ACTIVA</h4>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">doveconf</span> <span class="at">-n</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart dovecot</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status dovecot</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(143) &#39;</span></span></code></pre></div>
 <div class="style-normal">
-<p>Si se quiere permitir el envío autenticado por el puerto 587, Postfix
-puede delegar la autenticación SASL en Dovecot. Para ello hay que crear
-un socket accesible desde el entorno chroot de Postfix.</p>
-</div>
-<pre class="text"><code># /etc/dovecot/conf.d/10-master.conf
-service auth {
-  unix_listener /var/spool/postfix/private/auth {
-    mode = 0660
-    user = postfix
-    group = postfix
-  }
-}</code></pre>
-<pre class="text"><code># /etc/postfix/main.cf
-smtpd_sasl_type = dovecot
-smtpd_sasl_path = private/auth
-smtpd_sasl_auth_enable = yes
-broken_sasl_auth_clients = yes</code></pre>
-<h3 id="servicio-submission-en-master.cf">SERVICIO SUBMISSION EN
-MASTER.CF</h3>
-<pre class="text"><code>submission inet n       -       y       -       -       smtpd
-  -o syslog_name=postfix/submission
-  -o smtpd_tls_security_level=encrypt
-  -o smtpd_sasl_auth_enable=yes
-  -o smtpd_recipient_restrictions=permit_sasl_authenticated,reject</code></pre>
-<div class="style-normal">
-<p>De esta forma, los clientes no usarán el puerto 25 para enviar correo
-saliente, sino el 587 con autenticación y cifrado.</p>
+<p>Si todo es correcto, Dovecot debería quedar escuchando en el puerto
+<code>143</code> para IMAP. Los puertos <code>993</code> y
+<code>587</code> no son necesarios todavía en esta fase.</p>
 </div>
 <h2 id="escenario-práctico-servidor-con-usuarios-locales">ESCENARIO
 PRÁCTICO: SERVIDOR CON USUARIOS LOCALES</h2>
 <h3 id="creación-de-usuarios">CREACIÓN DE USUARIOS</h3>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> admin</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> alumno1</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> alumno2</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> admin</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> alumno1</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> alumno2</span></code></pre></div>
 <h3 id="creación-de-buzones-maildir">CREACIÓN DE BUZONES MAILDIR</h3>
 <div class="style-normal">
 <p>Si el buzón aún no existe, se puede crear el árbol Maildir desde cada
 cuenta o con la utilidad de Dovecot.</p>
 </div>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> admin INBOX</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> alumno1 INBOX</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> alumno2 INBOX</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> admin INBOX</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> alumno1 INBOX</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">doveadm</span> mailbox create <span class="at">-u</span> alumno2 INBOX</span></code></pre></div>
 <div class="style-normal">
 <p>Otra posibilidad es generar <code>~/Maildir</code> enviando el primer
 mensaje local una vez configurado
 <code>home_mailbox = Maildir/</code>.</p>
 </div>
 <h3 id="envío-de-prueba-local">ENVÍO DE PRUEBA LOCAL</h3>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Prueba de correo local&quot;</span> <span class="kw">|</span> <span class="ex">mail</span> <span class="at">-s</span> <span class="st">&quot;mensaje 01&quot;</span> alumno1</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Prueba de correo local&quot;</span> <span class="kw">|</span> <span class="ex">mail</span> <span class="at">-s</span> <span class="st">&quot;mensaje 01&quot;</span> alumno1</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Segundo mensaje para comprobar lectura por IMAP&quot;</span> <span class="kw">|</span> <span class="ex">mail</span> <span class="at">-s</span> <span class="st">&quot;mensaje 02&quot;</span> alumno1</span></code></pre></div>
 <h3 id="revisión-de-registros">REVISIÓN DE REGISTROS</h3>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/mail.log</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/mail.log</span></code></pre></div>
 <h3 id="comprobación-de-cola">COMPROBACIÓN DE COLA</h3>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mailq</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">postqueue</span> <span class="at">-p</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mailq</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">postqueue</span> <span class="at">-p</span></span></code></pre></div>
 <h2 id="pruebas-de-funcionamiento">PRUEBAS DE FUNCIONAMIENTO</h2>
 <h3 id="prueba-smtp-en-bruto">PRUEBA SMTP EN BRUTO</h3>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">telnet</span> mail.ser.smr 25</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">telnet</span> mail.ser.smr 25</span></code></pre></div>
 <pre class="text"><code>EHLO cliente.ser.smr
 MAIL FROM:&lt;admin@ser.smr&gt;
 RCPT TO:&lt;alumno1@ser.smr&gt;
@@ -679,31 +674,209 @@ Subject: prueba smtp
 Mensaje enviado manualmente.
 .
 QUIT</code></pre>
-<h3 id="prueba-del-puerto-submission-con-tls">PRUEBA DEL PUERTO
-SUBMISSION CON TLS</h3>
+<h3 id="prueba-imap-en-texto-claro">PRUEBA IMAP EN TEXTO CLARO</h3>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">telnet</span> mail.ser.smr 143</span></code></pre></div>
+<pre class="text"><code>a login alumno1 su_clave
+a select inbox
+a fetch 1 body[header.fields (subject from to date)]
+a fetch 1 body[text]
+a logout</code></pre>
+<div class="style-normal">
+<p>Si la autenticación es correcta, el servidor responderá con líneas
+<code>OK</code> y mostrará el contenido del mensaje almacenado en
+<code>INBOX</code>. Con <code>select inbox</code> se abre el buzón y con
+<code>fetch</code> se recuperan cabeceras o cuerpo.</p>
+</div>
+<h3 id="comprobación-directa-del-maildir">COMPROBACIÓN DIRECTA DEL
+MAILDIR</h3>
 <div class="sourceCode" id="cb23"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> mail.ser.smr:587 <span class="at">-starttls</span> smtp</span></code></pre></div>
-<h3 id="prueba-imap">PRUEBA IMAP</h3>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-R</span> /home/alumno1/Maildir</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /home/alumno1/Maildir/new /home/alumno1/Maildir/cur <span class="at">-type</span> f</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-u</span> alumno1 mail</span></code></pre></div>
+<div class="style-normal">
+<p>Además de IMAP, se puede confirmar que Postfix ha depositado los
+mensajes en el buzón local inspeccionando <code>Maildir</code> o leyendo
+el correo con la utilidad de consola <code>mail</code> desde la cuenta
+del usuario.</p>
+</div>
+<h2 id="continuación-de-la-práctica-probar-dovecot">CONTINUACIÓN DE LA
+PRÁCTICA: PROBAR DOVECOT</h2>
+<div class="style-normal">
+<p>Partiendo de una práctica como la descrita, en la que
+<strong>Postfix</strong> ya entrega el correo localmente en formato
+<code>Maildir/</code>, el siguiente paso consiste en activar
+<strong>Dovecot</strong> para que los usuarios puedan leer sus mensajes
+mediante <strong>IMAP</strong>. En este escenario se sigue trabajando
+sin cifrado TLS y sin autenticación SASL en Postfix.</p>
+</div>
+<h3 id="instalación-de-dovecot">INSTALACIÓN DE DOVECOT</h3>
 <div class="sourceCode" id="cb24"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> mail.ser.smr:993</span></code></pre></div>
-<h3 id="prueba-pop3">PRUEBA POP3</h3>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> update</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install dovecot-core dovecot-imapd</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> enable dovecot.service</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart dovecot.service</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status dovecot.service</span></code></pre></div>
+<h3 id="configuración-de-dovecot-para-maildir">CONFIGURACIÓN DE DOVECOT
+PARA MAILDIR</h3>
+<div class="style-normal">
+<p>Como en la práctica previa ya se ha cambiado Postfix a
+<code>home_mailbox = Maildir/</code>, Dovecot debe apuntar a ese mismo
+formato de buzón. Para esta fase interesa únicamente permitir acceso a
+buzones locales por IMAP en texto claro dentro de la red de
+laboratorio.</p>
+</div>
 <div class="sourceCode" id="cb25"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> mail.ser.smr:995</span></code></pre></div>
-<h3 id="prueba-dns">PRUEBA DNS</h3>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s|^mail_location =.*|mail_location = maildir:~/Maildir|&#39;</span> /etc/dovecot/conf.d/10-mail.conf</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s|^#\?disable_plaintext_auth =.*|disable_plaintext_auth = no|&#39;</span> /etc/dovecot/conf.d/10-auth.conf</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s|^#\?auth_mechanisms =.*|auth_mechanisms = plain login|&#39;</span> /etc/dovecot/conf.d/10-auth.conf</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s|^#\?protocols =.*|protocols = imap|&#39;</span> /etc/dovecot/dovecot.conf</span></code></pre></div>
+<div class="style-normal">
+<p>Una vez ajustados estos parámetros se puede revisar la configuración
+efectiva y reiniciar el servicio.</p>
+</div>
 <div class="sourceCode" id="cb26"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> mx ser.smr</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> a mail.ser.smr</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> <span class="at">-x</span> 192.168.1.201</span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">doveconf</span> <span class="at">-n</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart dovecot.service</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> status dovecot.service</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(143) &#39;</span></span></code></pre></div>
+<div class="style-normal">
+<p>Si la configuración es correcta, Dovecot quedará escuchando en
+<code>0.0.0.0:143</code> para <strong>IMAP</strong>. En esta fase no
+debe aparecer todavía <code>993</code> porque no se ha activado TLS.</p>
+</div>
+<h3 id="comprobar-que-u1-tiene-mensajes-en-maildir">COMPROBAR QUE U1
+TIENE MENSAJES EN MAILDIR</h3>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span> /home/correo/u1/Maildir</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> /home/correo/u1/Maildir/new</span></code></pre></div>
+<div class="style-normal">
+<p>Antes de probar IMAP conviene verificar que el buzón de
+<code>u1</code> ya contiene mensajes depositados por Postfix. Si en
+<code>Maildir/new</code> aparecen ficheros, Dovecot debería poder
+listarlos y entregarlos al cliente.</p>
+</div>
+<h3 id="lectura-más-cómoda-con-s-nail">LECTURA MÁS CÓMODA CON
+S-NAIL</h3>
+<div class="style-normal">
+<p>Para esta práctica, la forma recomendada de comprobar la lectura del
+correo será <code>s-nail</code>, la misma utilidad que ya se empleó para
+enviar mensajes. Como <code>s-nail</code> puede abrir un buzón remoto
+IMAP, resulta una manera mucho más cómoda de verificar que Dovecot
+entrega correctamente los correos.</p>
+</div>
+<h4 id="leer-el-buzón-por-imap">LEER EL BUZÓN POR IMAP</h4>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mail</span> <span class="at">-f</span> <span class="st">&#39;imap://u1@172.16.1.6/INBOX&#39;</span></span></code></pre></div>
+<div class="style-normal">
+<p>Con IMAP se accede al buzón <code>INBOX</code> manteniendo una visión
+más cercana a la estructura real del servidor. Las órdenes interactivas
+más útiles siguen siendo las mismas:</p>
+</div>
+<pre class="text"><code>headers
+type 1
+Type 2
+z
+quit</code></pre>
+<div class="style-normal">
+<p>El comando <code>Type</code> muestra el mensaje con más cabeceras y
+partes MIME visibles, algo útil cuando se quiere comprobar que un
+adjunto como <code>mailserver.png</code> ha llegado y aparece codificado
+en base64.</p>
+</div>
+<h4 id="observación-práctica">OBSERVACIÓN PRÁCTICA</h4>
+<div class="style-list">
+<ul>
+<li>Para no dejar la contraseña escrita en el historial, es mejor usar
+<code>imap://u1@172.16.1.6/INBOX</code> sin incluir la clave en la
+propia URL.</li>
+<li>Para no dejar la contraseña escrita en el historial, es mejor usar
+<code>imap://u1@172.16.1.6/INBOX</code> sin incluir la clave en la
+propia URL.</li>
+<li>Aunque el acceso sea más cómodo que con <code>telnet</code>, en esta
+fase sigue siendo tráfico sin cifrar, por lo que solo debe usarse dentro
+de la red de prácticas.</li>
+<li>Si <code>s-nail</code> muestra el listado de mensajes y permite
+abrirlos, queda validado que Dovecot está sirviendo correctamente el
+buzón remoto.</li>
+<li>Las pruebas con <code>telnet</code> pueden dejarse como comprobación
+técnica adicional para ver directamente el diálogo IMAP, pero ya no son
+la vía principal de validación.</li>
+</ul>
+</div>
+<h3 id="comprobación-técnica-del-protocolo-imap">COMPROBACIÓN TÉCNICA
+DEL PROTOCOLO IMAP</h3>
+<div class="style-normal">
+<p>Si se quiere ver el intercambio de órdenes y respuestas a bajo nivel,
+desde <code>L02C00-Alpine</code> puede hacerse una comprobación simple
+conectando al puerto <code>143</code> del servidor. Si no se dispone de
+<code>telnet</code>, se puede usar <code>nc</code>.</p>
+</div>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">telnet</span> 172.16.1.6 143</span></code></pre></div>
+<pre class="text"><code>* OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+] Dovecot ready.
+a login u1 clave_de_u1
+a select inbox
+a fetch 1 body[header.fields (from to subject date)]
+a fetch 1 body[text]
+a logout</code></pre>
+<div class="style-normal">
+<p>La respuesta esperada incluye líneas <code>OK</code> tras
+<code>login</code> y <code>select</code>, además del contenido del
+mensaje al ejecutar <code>fetch</code>. Si el mensaje tenía adjuntos,
+con esta comprobación se visualizan al menos sus cabeceras MIME y el
+texto del mensaje.</p>
+</div>
+<h3 id="comprobación-en-el-log-del-servidor">COMPROBACIÓN EN EL LOG DEL
+SERVIDOR</h3>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> 50 /var/log/mail.log</span></code></pre></div>
+<pre class="text"><code>... dovecot: imap-login: Login: user=&lt;u1&gt;, method=PLAIN, rip=172.16.2.236, lip=172.16.1.6, mpid=...
+... dovecot: imap(u1): Disconnected: Logged out bytes=.../...</code></pre>
+<div class="style-normal">
+<p>Estas líneas confirman que el acceso al buzón ya no lo hace Postfix,
+sino Dovecot. Postfix sigue encargándose de recibir y entregar el
+mensaje en <code>Maildir/</code>, mientras que Dovecot se ocupa de
+presentarlo al cliente mediante IMAP.</p>
+</div>
+<h3 id="interpretación-del-resultado">INTERPRETACIÓN DEL RESULTADO</h3>
+<div class="style-list">
+<ul>
+<li>Si <code>login</code> funciona pero <code>select inbox</code> no
+muestra mensajes, el problema suele estar en la ubicación del buzón o en
+permisos sobre <code>Maildir/</code>.</li>
+<li>Si Dovecot no escucha en <code>143</code>, conviene revisar
+<code>doveconf -n</code> y el estado del servicio.</li>
+<li>Si <code>s-nail</code> abre el buzón y permite leer mensajes, la
+validación funcional de Dovecot puede darse por correcta.</li>
+<li>Si aparece el texto del mensaje y también los bloques
+<code>Content-Type</code> o
+<code>Content-Transfer-Encoding: base64</code>, queda demostrado que el
+cliente está accediendo al mismo mensaje ya depositado previamente por
+Postfix.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Más adelante podrá montarse un segundo servidor dedicado a
+<strong>POP3</strong>, pero en esta práctica conviene dejar claro que
+este servidor queda orientado solo a <strong>IMAP</strong>.</p>
+</div>
+<h3 id="prueba-dns">PRUEBA DNS</h3>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> mx ser.smr</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> a mail.ser.smr</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> <span class="at">-x</span> 192.168.1.201</span></code></pre></div>
 <h2 id="seguridad-y-endurecimiento">SEGURIDAD Y ENDURECIMIENTO</h2>
 <div class="style-list">
 <ul>
 <li>No permitir relay abierto. La directiva crítica es
 <code>reject_unauth_destination</code>.</li>
-<li>Publicar <strong>submission 587</strong> para clientes y reservar el
-<strong>25</strong> para tráfico entre servidores.</li>
-<li>Usar TLS en SMTP, IMAP y POP3. En prácticas se puede empezar con
-certificados locales; en producción conviene usar una CA pública o
-corporativa.</li>
+<li>Mientras no exista TLS, no exponer IMAP fuera de la red de
+prácticas.</li>
+<li>Posponer <strong>submission 587</strong> y la autenticación SASL
+hasta la siguiente fase de endurecimiento.</li>
+<li>Usar TLS en SMTP e IMAP en cuanto la práctica avance a la fase
+segura.</li>
 <li>Limitar con firewall los puertos realmente necesarios.</li>
 <li>Revisar de forma periódica <code>/var/log/mail.log</code> para
 detectar errores de autenticación, colas bloqueadas o rechazos por
@@ -715,22 +888,22 @@ innecesarios.</li>
 </ul>
 </div>
 <h2 id="resumen-operativo">RESUMEN OPERATIVO</h2>
-<div class="sourceCode" id="cb27"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install postfix dovecot-core dovecot-imapd dovecot-pop3d mailutils</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">postfix</span> check</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart postfix dovecot</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">postconf</span> <span class="at">-n</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ex">doveconf</span> <span class="at">-n</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(25|110|143|587|993|995) &#39;</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/mail.log</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install postfix dovecot-core dovecot-imapd mailutils</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">postfix</span> check</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart postfix dovecot</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ex">postconf</span> <span class="at">-n</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">doveconf</span> <span class="at">-n</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="st">&#39;:(25|143) &#39;</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/mail.log</span></code></pre></div>
 <div class="style-normal">
 <p>Con esta base ya se dispone de un servidor de correo funcional para
 un entorno de laboratorio: <strong>Postfix</strong> recibe y entrega
 mensajes del dominio, <strong>Dovecot</strong> ofrece acceso a los
-buzones y el sistema puede validarse mediante pruebas SMTP, IMAP, POP3 y
-consultas DNS. A partir de aquí se puede evolucionar hacia escenarios
-más avanzados con dominios virtuales, antispam, antivirus, webmail o
-integración con LDAP.</p>
+buzones en texto claro mediante <strong>IMAP</strong> y el sistema puede
+validarse mediante pruebas SMTP, IMAP y consultas DNS. El siguiente paso
+natural será endurecer el servicio activando TLS y, si hace falta envío
+autenticado para clientes, integrar también SASL.</p>
 </div>
 </body>
 </html>
