@@ -1,0 +1,1725 @@
+<!DOCTYPE html><html><head>
+      <title>SER</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview pre[data-line]{position:relative;padding:1em 0 1em 3em!important}.markdown-preview pre[data-line]>code{position:relative;z-index:1}.markdown-preview pre[data-line] .line-numbers-rows{z-index:1}.markdown-preview pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;pointer-events:none;display:block;width:100%}.markdown-preview pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:var(--line-highlight-background,linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0)));line-height:inherit;white-space:pre}.markdown-preview pre[data-line] .line-highlight:before,.markdown-preview pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none}.markdown-preview pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc ol.md-toc-ol{margin:0;padding-left:1.6em}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.markdown-preview a.tag,.markdown-preview a.tag:active,.markdown-preview a.tag:link,.markdown-preview a.tag:visited,.markdown-preview span.tag:not(.token){display:inline-block;background-color:var(--vscode-badge-background,rgba(127,127,127,.18));color:var(--vscode-badge-foreground,currentColor);border-radius:2em;font-size:.85em;font-weight:500;padding:.05em .55em;line-height:1.5;white-space:nowrap;text-decoration:none;text-shadow:none;box-shadow:none;transition:background-color .12s ease,opacity .12s ease}.markdown-preview a.tag{cursor:pointer}.markdown-preview a.tag:focus,.markdown-preview a.tag:hover{background-color:var(--vscode-badge-background,rgba(127,127,127,.32));color:var(--vscode-badge-foreground,currentColor);opacity:.85;text-decoration:none;outline:0}.markdown-preview .wikilink-embed-content{border-left:3px solid var(--vscode-textBlockQuote-border,rgba(128,128,128,.3));background:var(--vscode-textBlockQuote-background,rgba(128,128,128,.05));margin:.5em 0;padding:.5em .75em;border-radius:0 3px 3px 0}.markdown-preview .wikilink-embed-content.wikilink-embed-error{border-left-color:var(--vscode-errorForeground,#cf222e);color:var(--vscode-errorForeground,#cf222e);font-style:italic;opacity:.8}.markdown-preview .wikilink-embed-content h1:first-child,.markdown-preview .wikilink-embed-content h2:first-child,.markdown-preview .wikilink-embed-content h3:first-child,.markdown-preview .wikilink-embed-content h4:first-child,.markdown-preview .wikilink-embed-content h5:first-child,.markdown-preview .wikilink-embed-content h6:first-child{margin-top:.25em}.markdown-preview .wikilink-embed-content .wikilink-embed-content{margin:.25em 0;padding:.25em .5em}.markdown-preview .block-id{display:none}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}.scrollbar-style::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc ol.md-toc-ol{margin:0;padding-left:1.6em}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
+
+      </style>
+      
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="ftp-server-linux">FTP SERVER LINUX </h1>
+</div>
+<p>📙<a href="./t04.linux.ftp.pdf">Descargar PDF</a></p>
+<div class="md-toc">
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="0">
+  <a href="#ftp-server-linux" class="md-toc-link">FTP SERVER LINUX</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#introducción" class="md-toc-link">INTRODUCCIÓN</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#vsftpd-en-gnulinux" class="md-toc-link">VSFTPD EN GNU/LINUX</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#instalación-y-puesta-en-marcha" class="md-toc-link">INSTALACIÓN Y PUESTA EN MARCHA</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#instalación" class="md-toc-link">INSTALACIÓN</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="2">
+  <a href="#archivos-y-rutas-de-los-ficheros-principales" class="md-toc-link">ARCHIVOS Y RUTAS DE LOS FICHEROS PRINCIPALES</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#fichero-de-configuración-principal-vsftpdconf" class="md-toc-link">FICHERO DE CONFIGURACIÓN PRINCIPAL: VSFTPD.CONF</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#archivos-de-log" class="md-toc-link">ARCHIVOS DE LOG</a>
+</div>
+</details>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#modos-de-acceso" class="md-toc-link">MODOS DE ACCESO</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#tipos-de-acceso" class="md-toc-link">TIPOS DE ACCESO</a>
+</summary>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="2">
+  <a href="#acceso-anónimo" class="md-toc-link">ACCESO ANÓNIMO</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#configuración" class="md-toc-link">CONFIGURACIÓN</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#prueba" class="md-toc-link">PRUEBA</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="2">
+  <a href="#acceso-autenticado" class="md-toc-link">ACCESO AUTENTICADO</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#configuración-básica" class="md-toc-link">CONFIGURACIÓN BÁSICA</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#configuración-de-usuarios-virtuales" class="md-toc-link">CONFIGURACIÓN DE USUARIOS VIRTUALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#integración-con-otras-herramientas-de-autenticación-y-control-de-acceso" class="md-toc-link">INTEGRACIÓN CON OTRAS HERRAMIENTAS DE AUTENTICACIÓN Y CONTROL DE ACCESO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#grupos-de-usuarios" class="md-toc-link">GRUPOS DE USUARIOS</a>
+</div>
+</details>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#control-de-acceso-por-usuario" class="md-toc-link">CONTROL DE ACCESO POR USUARIO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#compartición-de-directorios" class="md-toc-link">COMPARTICIÓN DE DIRECTORIOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#control-de-acceso-por-ubicación" class="md-toc-link">CONTROL DE ACCESO POR UBICACIÓN</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#restricciones-temporales" class="md-toc-link">RESTRICCIONES TEMPORALES</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#cuotas-de-disco" class="md-toc-link">CUOTAS DE DISCO</a>
+</summary>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="2">
+  <a href="#directivas-más-importantes" class="md-toc-link">DIRECTIVAS MÁS IMPORTANTES</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#directivas-generales-y-de-autenticación" class="md-toc-link">DIRECTIVAS GENERALES Y DE AUTENTICACIÓN</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#directivas-de-acceso-anónimo" class="md-toc-link">DIRECTIVAS DE ACCESO ANÓNIMO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#usuarios-locales-virtuales-y-directorios" class="md-toc-link">USUARIOS LOCALES, VIRTUALES Y DIRECTORIOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#control-de-usuarios-y-comandos" class="md-toc-link">CONTROL DE USUARIOS Y COMANDOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#red-puertos-y-transferencia" class="md-toc-link">RED, PUERTOS Y TRANSFERENCIA</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#registro-límites-y-rendimiento" class="md-toc-link">REGISTRO, LÍMITES Y RENDIMIENTO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#tls-y-endurecimiento" class="md-toc-link">TLS Y ENDURECIMIENTO</a>
+</div>
+</details>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#escenario-1-usuarios-del-sistema" class="md-toc-link">ESCENARIO 1: USUARIOS DEL SISTEMA</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#creación-de-usuarios-ftp" class="md-toc-link">CREACIÓN DE USUARIOS FTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-básica-para-usuarios-locales" class="md-toc-link">CONFIGURACIÓN BÁSICA PARA USUARIOS LOCALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#listas-de-control-de-acceso" class="md-toc-link">LISTAS DE CONTROL DE ACCESO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-específica-por-usuario" class="md-toc-link">CONFIGURACIÓN ESPECÍFICA POR USUARIO</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#escenario-2-acceso-anónimo" class="md-toc-link">ESCENARIO 2: ACCESO ANÓNIMO</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-anónima-de-solo-lectura" class="md-toc-link">CONFIGURACIÓN ANÓNIMA DE SOLO LECTURA</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#restricción-por-red-y-rendimiento" class="md-toc-link">RESTRICCIÓN POR RED Y RENDIMIENTO</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#escenario-3-usuarios-virtuales" class="md-toc-link">ESCENARIO 3: USUARIOS VIRTUALES</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#usuario-real-de-mapeo" class="md-toc-link">USUARIO REAL DE MAPEO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#base-de-credenciales-con-pam_userdb" class="md-toc-link">BASE DE CREDENCIALES CON PAM_USERDB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-pam" class="md-toc-link">CONFIGURACIÓN PAM</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#integración-en-vsftpd" class="md-toc-link">INTEGRACIÓN EN VSFTPD</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#preparación-de-directorios" class="md-toc-link">PREPARACIÓN DE DIRECTORIOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuraciones-por-usuario-o-por-perfil" class="md-toc-link">CONFIGURACIONES POR USUARIO O POR PERFIL</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#carpetas-compartidas-y-bind-mount" class="md-toc-link">CARPETAS COMPARTIDAS Y BIND MOUNT</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#apertura-de-sesión-pam" class="md-toc-link">APERTURA DE SESIÓN PAM</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#limitaciones-de-vsftpd-y-cómo-compensarlas" class="md-toc-link">LIMITACIONES DE VSFTPD Y CÓMO COMPENSARLAS</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#grupos-funcionales-y-perfiles-de-acceso" class="md-toc-link">GRUPOS FUNCIONALES Y PERFILES DE ACCESO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#restricciones-por-horario-origen-o-contexto" class="md-toc-link">RESTRICCIONES POR HORARIO, ORIGEN O CONTEXTO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#cuotas-y-control-de-espacio" class="md-toc-link">CUOTAS Y CONTROL DE ESPACIO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#criterio-práctico" class="md-toc-link">CRITERIO PRÁCTICO</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#modo-activo-y-modo-pasivo" class="md-toc-link">MODO ACTIVO Y MODO PASIVO</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-del-modo-pasivo" class="md-toc-link">CONFIGURACIÓN DEL MODO PASIVO</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#registro-y-auditoría" class="md-toc-link">REGISTRO Y AUDITORÍA</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#seguridad-en-vsftpd" class="md-toc-link">SEGURIDAD EN VSFTPD</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#medidas-recomendadas" class="md-toc-link">MEDIDAS RECOMENDADAS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#cifrado-con-ftps" class="md-toc-link">CIFRADO CON FTPS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#sobre-pam-y-los-scripts-de-sesión" class="md-toc-link">SOBRE PAM Y LOS SCRIPTS DE SESIÓN</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#comprobaciones-básicas" class="md-toc-link">COMPROBACIONES BÁSICAS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#conclusión" class="md-toc-link">CONCLUSIÓN</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#referencias" class="md-toc-link">REFERENCIAS</a>
+</div>
+</details>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="introducción">INTRODUCCIÓN </h2>
+<p>En sistemas GNU/Linux existen varios servidores FTP, pero el más habitual en entornos docentes y en muchas distribuciones generales es <strong>vsftpd</strong> (<em>Very Secure FTP Daemon</em>). Su popularidad se debe a tres ideas de diseño muy claras: <strong>seguridad</strong>, <strong>rendimiento</strong> y <strong>simplicidad</strong>. La propia documentación oficial lo presenta como un servidor pequeño, rápido y orientado a reducir la superficie de ataque.</p>
+<p>Aunque FTP sigue siendo útil para estudiar el funcionamiento de los servicios de transferencia de archivos, conviene recordar una limitación importante: <strong>FTP transmite credenciales y comandos en texto claro</strong> si no se protege con TLS. Por ese motivo, en entornos reales suele preferirse <strong>FTPS</strong> cuando se quiere mantener compatibilidad con FTP, o <strong>SFTP</strong> cuando se trabaja sobre SSH.</p>
+<p>Este documento se centra en la instalación y configuración de <code>vsftpd</code> en Linux, con especial atención a los aspectos de seguridad, autenticación y auditoría. Se presentan tres escenarios típicos: acceso de usuarios locales, acceso anónimo controlado y acceso mediante usuarios virtuales. Además, se incluyen recomendaciones para proteger el servicio y asegurar que las transferencias se registran adecuadamente.</p>
+<h2 id="vsftpd-en-gnulinux">VSFTPD EN GNU/LINUX </h2>
+<p>Entre las implementaciones más conocidas del servicio FTP en Linux destacan las siguientes:</p>
+<ul>
+<li><strong>vsftpd</strong>. Prioriza la seguridad y el rendimiento. Ofrece soporte para usuarios locales, usuarios virtuales, restricciones por configuración, listas de acceso, límites de conexión y FTPS.</li>
+<li><strong>ProFTPD</strong>. Es muy flexible y modular, pero su configuración suele ser más extensa y compleja.</li>
+<li><strong>Pure-FTPd</strong>. También es una solución madura y segura, con buen soporte para usuarios virtuales y entornos compartidos.</li>
+</ul>
+<p>En esta unidad trabajaremos con <strong>vsftpd</strong> porque cubre con solvencia los escenarios más habituales en un aula o en una pequeña infraestructura: acceso autenticado, acceso anónimo controlado, usuarios virtuales, enjaulado de usuarios, modo pasivo, auditoría y cifrado mediante TLS (FTPS). No obstante, no incluye la definición de grupos de usuarios, ni un sistema de cuotas entre otras limitaciones. Estas limitaciones se pueden compensar mediante su facilidad de integración con herramientas del sistema como los módulos PAM y otreas aplicaciones de control de acceso.</p>
+<h2 id="instalación-y-puesta-en-marcha">INSTALACIÓN Y PUESTA EN MARCHA </h2>
+<h3 id="instalación">INSTALACIÓN </h3>
+<p>En distribuciones basadas en Debian, <code>vsftpd</code> se instala desde los repositorios oficiales con <code>apt</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>apt update
+apt install vsftpd
+</code></pre><p>Tras la instalación, el servicio queda registrado en <code>systemd</code> y normalmente se inicia automáticamente. En cualquer caso, podemos iniciar, detener o reiniciar el servicio con los comandos de <code>systemctl</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>systemctl start vsftpd    (iniciar el servicio)
+systemctl stop vsftpd     (detener el servicio)
+systemctl restart vsftpd  (reiniciar el servicio)
+</code></pre><p>Podemos comprobar su estado con ciualquiera de los siguientes comandos:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>systemctl status vsftpd
+systemctl is-active vsftpd
+</code></pre><h3 id="archivos-y-rutas-de-los-ficheros-principales">ARCHIVOS Y RUTAS DE LOS FICHEROS PRINCIPALES </h3>
+<p>Las rutas exactas pueden variar ligeramente entre distribuciones, pero en las distribuciones basadas en Debian es habitual trabajar con los siguientes elementos:</p>
+<ul>
+<li><code>/etc/vsftpd.conf</code> - Archivo principal de configuración.</li>
+<li><code>/etc/pam.d/vsftpd</code> - Servicio PAM usado por <code>vsftpd</code>.</li>
+<li><code>/var/log/vsftpd.log</code> - Log propio de <code>vsftpd</code> si se usa el formato interno.</li>
+<li><code>/var/log/xferlog</code> - Log de transferencias en formato estándar <code>xferlog</code>.</li>
+<li><code>/srv/ftp</code> o <code>/var/ftp</code> - Ubicación habitual del contenido anónimo, según distribución o política local.</li>
+<li><code>/var/run/vsftpd/empty</code> - Directorio vacío usado como <code>secure_chroot_dir</code>.</li>
+</ul>
+<h4 id="fichero-de-configuración-principal-vsftpdconf">FICHERO DE CONFIGURACIÓN PRINCIPAL: VSFTPD.CONF </h4>
+<p>La configuración del servicio <code>vsftpd</code> se lleva a cabo fundamentalmente en el archivo <code>/etc/vsftpd.conf</code>, basándose en directivas con el formato:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>opcion=valor
+</code></pre><p>La sintaxis es estricta: <strong>no debe haber espacios alrededor del signo <code>=</code></strong>. Los valores booleanos se expresan normalmente como <code>YES</code> o <code>NO</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Configuración mínima orientativa</p>
+<p>El siguiente ejemplo muestra una configuración básica en la que se permite el acceso de usuarios autenticados, se habilita la escritura y se enjaula a cada usuario en su directorio de trabajo.<br>
+Extracto del fichero de configuración <code>/etc/vsftpd.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_enable=YES
+write_enable=YES
+chroot_local_user=YES
+allow_writeable_chroot=YES
+</code></pre></div>
+<p>Las directivas de <code>vsftpd.conf</code> regulan aspectos muy diversos: autenticación, permisos, enjaulado, límites de velocidad, registro de actividad, cifrado y más. En la práctica, la mayoría de instalaciones se apoyan en un subconjunto relativamente reducido de estas opciones.<br>
+Todas estas directivas tienen un valor por defecto, que se puede consultar en la documentación oficial. En el fichero de configuración aparecen comentadas muchas de ellas, con su valor por defecto y una breve descripción.<br>
+A lo largo de esta unidad se irán presentando las más relevantes según el escenario de uso.</p>
+<h4 id="archivos-de-log">ARCHIVOS DE LOG </h4>
+<p>El servidor FTP vsftpd gestiona sus registros (logs) a través de tres directivas principales que determinan qué se registra, en qué formato y en qué archivos específicos se almacena la información.</p>
+<p><strong>Directivas principales y su comportamiento</strong></p>
+<ul>
+<li>
+<p><code>xferlog_enable</code> (YES/NO)</p>
+<ul>
+<li>Propósito: Habilita o deshabilita el registro de las transferencias de archivos (subidas y bajadas).</li>
+<li>Nota: Su activación es el punto de partida, pero el destino y el formato del log dependerán de la directiva <code>xferlog_std_format</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>xferlog_std_format</code> (YES/NO)</p>
+<ul>
+<li>Propósito: Define el formato y el archivo de destino del registro.</li>
+<li>Comportamiento según su valor:
+<ul>
+<li>Si es YES: Utiliza el formato estándar clásico de <em>wu-ftpd</em> (codificado). Los eventos de transferencia se guardan en el archivo configurado por la directiva <code>xferlog_file</code> (por defecto: <code>/var/log/xferlog</code>).</li>
+<li>Si es NO: Utiliza el formato <em>nativo</em> y detallado de <em>vsftpd</em>. Los eventos de transferencia se guardan en el archivo configurado por la directiva <code>vsftpd_log_file</code>(por defecto: <code>/var/log/vsftpd.log</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>dual_log_enable</code> (YES/NO)</p>
+<ul>
+<li>Propósito: Permite generar ambos registros de manera simultánea.</li>
+<li>Comportamiento: Si se activa (YES) junto con <code>xferlog_std_format=YES</code>, el servidor escribirá en paralelo en:
+<ul>
+<li>El log de transferencias estilo wu-ftpd (en <code>xferlog_file</code>).</li>
+<li>El log detallado de accesos y conexiones estilo vsftpd (en <code>vsftpd_log_file</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Directivas de archivos de log y permisos de ruta</strong></p>
+<ul>
+<li><code>xferlog_file</code> (Por defecto: <code>/var/log/xferlog</code>): Almacena exclusivamente el registro de transferencias en formato wu-ftpd.</li>
+<li><code>vsftpd_log_file</code> (Por defecto: <code>/var/log/vsftpd.log</code>): Almacena el registro nativo de vsftpd (conexiones, logins y transferencias).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Si decides cambiar la ruta por defecto de cualquiera de estos archivos dentro de un subdirectorio personalizado (ej. <code>/var/log/vsftpd/servidor.log</code>), es estrictamente obligatorio crear la carpeta contenedora previamente en el sistema:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>mkdir -p /var/log/vsftpd
+</code></pre><p>vsftpd creará el archivo automáticamente, pero el servicio fallará si la carpeta no existe o no tiene los permisos de escritura adecuados para el servidor.</p>
+</div>
+<p><strong>Diferencias de contenido entre formatos</strong></p>
+<p>La siguiente tabla resume las diferencias clave entre el formato estándar de <em>wu-ftpd</em> y el formato nativo de <em>vsftpd</em>:</p>
+<table>
+<thead>
+<tr>
+<th>Formato Estándar (wu-ftpd)</th>
+<th>Formato Nativo (vsftpd)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solo registra transferencias: subidas y descargas.</td>
+<td>Registra transferencias, accesos e inicios de sesión correctos o fallidos.</td>
+</tr>
+<tr>
+<td>Usa un formato codificado en una sola línea.</td>
+<td>Usa texto claro y más legible para administración.</td>
+</tr>
+<tr>
+<td>Útil para estadísticas de tráfico.</td>
+<td>Útil para auditoría y soporte técnico.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Depuración avanzada: Configuración de protocolo</strong></p>
+<p>Se utiliza la directiva <code>log_ftp_protocol</code> para dicho propósito:</p>
+<ul>
+<li><code>log_ftp_protocol</code> (YES/NO)
+<ul>
+<li>Propósito: Registra textualmente de forma literal todos los comandos FTP enviados por el cliente y las respuestas emitidas por el servidor.</li>
+<li>Utilidad: Permite diagnosticar fallos en conexiones, auditar qué comandos ejecutan los usuarios y verificar si la conexión se negocia en modo Activo (comando PORT) o Pasivo (comando PASV). También ayuda a validar si el rango de puertos pasivos (<code>pasv_min_port</code> y <code>pasv_max_port</code>) funciona bien.</li>
+<li>Requisito: Requiere obligatoriamente que <code>xferlog_std_format</code> esté en NO, ya que los comandos se vuelcan dentro de <code>vsftpd_log_file</code>.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Configuración de logs y depuración</p>
+<p>El siguiente ejemplo habilita el registro de transferencias en formato nativo, activa la depuración de comandos FTP y define rutas personalizadas para los archivos de log.<br>
+Extracto del fichero de configuración <code>/etc/vsftpd.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+vsftpd_log_file=/var/log/vsftpd/ftp-server.log
+dual_log_enable=NO
+xferlog_enable=YES
+xferlog_std_format=NO
+log_ftp_protocol=YES
+...
+</code></pre></div>
+<h2 id="modos-de-acceso">MODOS DE ACCESO </h2>
+<p>Como sabemos hay dos modos de acceso al servidorFTP: <strong>activo</strong> y <strong>pasivo</strong>. En el modo activo es el servidor el que inicia la conexión de datos hacia el cliente, mientras que en el modo pasivo es el cliente el que inicia la conexión de datos hacia el servidor.</p>
+<p>Con la directica <code>pasv_enable=YES</code> se activa el modo pasivo. Si por el contrario se desea usar el modo activo, su valor debe ser <code>NO</code>. El modo pasivo es el más recomendable en la mayoría de escenarios modernos, especialmente cuando el servidor está detrás de un NAT o un firewall. En ese caso, se tiene que definir un rango de puertos para las conexiones pasivas mediante <code>pasv_min_port</code> y <code>pasv_max_port</code>, ya que el servidor le tiene que indicar al cliente qué puerto usar para la conexión de datos.<br>
+En el modo activo, no es necesario definir ningún rango de puertos ya que el servidor siempre usará el puerto 20 para iniciar la conexión de datos hacia el cliente. En este caso, conviene asegurarse de que el puerto 20 está abierto en el firewall.</p>
+<div class="admonition example">
+<p class="admonition-title">Configuración de modo pasivo con rango de puertos</p>
+<p>El siguiente ejemplo activa el modo pasivo y define un rango de puertos para las conexiones de datos.<br>
+Extracto del fichero de configuración <code>/etc/vsftpd.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+# Activar FTP pasivo y rango de puertos
+pasv_enable=YES
+pasv_min_port=55000
+pasv_max_port=56999
+...
+</code></pre><p>En este ejemplo, los clientes FTP que se conecten al servidor recibirán un puerto aleatorio entre 55000 y 56999 para realizar transferencias de datos.</p>
+</div>
+<h2 id="tipos-de-acceso">TIPOS DE ACCESO </h2>
+<p>Tenemos dos tipos de acceso al servidor FTP: <strong>acceso anónimo</strong> y <strong>acceso autenticado</strong>.</p>
+<h3 id="acceso-anónimo">ACCESO ANÓNIMO </h3>
+<p>El acceso anónimo permite conectarse con los usuarios <code>anonymous</code> (o <code>ftp</code>) sin usar una cuenta personal del sistema. Históricamente se ha utilizado para distribuir documentación o software de lectura pública. Hoy en día debe habilitarse con mucha prudencia, porque reduce la trazabilidad y amplía la superficie de exposición del servicio.</p>
+<h4 id="configuración">CONFIGURACIÓN </h4>
+<p>La configuración de acceso anónimo se basa en la directiva <code>anonymous_enable=YES</code> y en la definición de un directorio raíz específico para este tipo de usuarios mediante <code>anon_root</code>. Además, conviene controlar cuidadosamente los permisos de escritura y las operaciones permitidas para evitar abusos. A continuación se muestra un resumen de las directivas más relevantes para el acceso anónimo:</p>
+<ul>
+<li><code>write_enable</code> es un interruptor global que permite o bloquea los comandos FTP que modifican el sistema de archivos. Por tanto, si <code>write_enable=NO</code>, tampoco habrá subidas, borrados o creación de directorios para usuarios anónimos (ni siquiera para otros usuarios).</li>
+<li><code>anon_upload_enable</code> Si su valor es <code>YES</code>, permite subir archivos de forma anónima. En caso contrario, no se podrán subir archivos al servidor, aunque el usuario anónimo tenga permisos de escritura en el sistema de archivos.<br>
+Es necesario que <code>write_enable=YES</code> para que esta directiva tenga efecto. Si <code>write_enable=NO</code>, no se podrán subir archivos al servidor, aunque <code>anon_upload_enable=YES</code>.</li>
+<li><code>anon_root</code> define el directorio raíz del acceso anónimo. Debe tener permisos coherentes con el nivel de acceso deseado. Por ejemplo, si se permite escritura anónima, el directorio debe ser escribible por el usuario anónimo; es decir que el usuario anónimo sea el propietario o tener los permisos 755.<br>
+Con esta directiva el usuario anónimo no podrá salir de ese directorio (usuario enjaulado), aunque tenga permisos de lectura y escritura en otros directorios del sistema de archivos. A todos los efectos, este directorio será el directorio raíz del usuario anónimo.<br>
+Un aspecto importante es que el directorio raíz no es escribible por el usuario anónimo, aunque tenga permisos de escritura en otros directorios del sistema de archivos. Esto es una medida de seguridad para evitar que el usuario anónimo pueda modificar archivos importantes del sistema. Por lo tanto, si se desea permitir escritura anónima, conviene crear un subdirectorio dentro del directorio raíz que sea escribible por el usuario anónimo o bien sea este el propietario.</li>
+<li><code>anon_mkdir_write_enable</code> Si su valor es <code>YES</code>, permite crear directorios en el acceso anónimo. En caso contrario, no se podrán crear directorios para usuarios anónimos, aunque el usuario anónimo tenga permisos de escritura en el sistema de archivos.</li>
+<li><code>anon_other_write_enable</code> Si su valor es <code>YES</code>, permite realizar otras operaciones de escritura anónima, como borrar, modificar o renombrar archivos. En caso contrario, no se podrán realizar estas operaciones para usuarios anónimos, aunque el usuario anónimo tenga permisos de escritura en el sistema de archivos.</li>
+<li><code>no_anon_password</code> evita pedir contraseña al usuario anónimo.</li>
+<li><code>anon_umask</code> define la máscara usada en archivos y carpetas creadas por el usuario anónimo. Solo aplica si se permite escritura anónima. El valor por defecto suele ser <code>077</code>, lo que significa que los archivos creados por el usuario anónimo no serán legibles ni escribibles por otros usuarios del sistema. El valor <code>077</code> es equivalente al permiso linux <code>rwx------</code> para directorios y <code>rw-------</code> para archivos. Si se desea que los archivos creados por el usuario anónimo sean legibles por otros usuarios del sistema, se puede usar un valor como <code>022</code>, que es equivalente al permiso linux <code>rwxr-xr-x</code> para directorios y <code>rw-r--r--</code> para archivos.</li>
+<li><code>anon_max_rate</code> limita la velocidad de transferencia de usuarios anónimos. El valor se expresa en bytes por segundo. Por ejemplo, <code>anon_max_rate=625000</code> limita la velocidad de transferencia a 625 KB/s.<br>
+No es posible limitar la velocidad de descarga y subida de usuarios anónimos por separado. Si se desea limitar la velocidad de descarga y subida de usuarios anónimos por separado, se puede usar un firewall o un proxy inverso que permita controlar el tráfico de red.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo 1: Configuración del acceso anónimo de solo lectura</p>
+<p>El siguiente ejemplo habilita el acceso anónimo, fija un directorio público (<code>/var/ftp/publica</code>) y bloquea cualquier operación de escritura. Además, se permite acceder sin contraseña.<br>
+Extracto del fichero de configuración <code>/etc/vsftpd.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+anonymous_enable=YES
+anon_root=/var/ftp/publica
+no_anon_password=YES
+anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+anon_other_write_enable=NO
+...
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo 2: Configuración de acceso anónimo de escritura controlada</p>
+<p>El siguiente ejemplo habilita el acceso anónimo, fija un directorio público (<code>/var/ftp/publica</code>), permite subir archivos y crear directorios en el subdirectorio <code>/var/ftp/publica/uploads</code>; no permite borrar ni modificar archivos. Los permisos se establecen para que los archivos creados por el usuario anónimo sean legibles por otros usuarios del sistema. Además, se limita la velocidad de transferencia a 5Mbps.<br>
+Extracto del fichero de configuración <code>/etc/vsftpd.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+write_enable=YES
+anonymous_enable=YES
+anon_root=/var/ftp/publica
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=NO
+anon_umask=022
+anon_max_rate=625000
+...
+</code></pre><p>Es necesario crear el subdirectorio <code>/var/ftp/publica/uploads</code> y asignarle los permisos adecuados para que el usuario anónimo pueda escribir en él:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>mkdir -p /var/ftp/publica/uploads
+chown ftp:ftp /var/ftp/publica/uploads
+chmod 755 /var/ftp/publica/uploads
+</code></pre><p>La velocidad de transferencia se tiene que expresar en bytes por segundo. Como 5 Mbps son 5.000.000 bits por segundo, y 1 byte son 8 bits, la velocidad de transferencia es: 5.000.000 / 8 = 625.000 bytes por segundo.</p>
+</div>
+<h4 id="prueba">PRUEBA </h4>
+<p>Cuando se modifica la configuración de <code>vsftpd</code>, es necesario reiniciar el servicio para que los cambios tengan efecto:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>systemctl restart vsftpd
+</code></pre><p>El siguiente paso es comprobar que lo que se ha configurado funciona correctamente. Para ello, se puede usar un cliente FTP desde otra máquina o desde la misma máquina usando <code>ftp</code> o <code>lftp</code>. El análisis de los archivos de log también es útil para detectar y corregir problemas de configuración.</p>
+<div class="admonition example">
+<p class="admonition-title">Prueba de acceso anónimo</p>
+<p>El siguiente ejemplo muestra cómo probar la configuración del acceso anónimo del Ejemplo 1 visto anteriormente.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>L02C00-Alpine:# lftp
+lftp :~&gt; open 172.16.1.4
+lftp 172.16.1.4:~&gt; user anonymous
+Password: (presionar Enter)
+lftp anonymous@172.16.1.4:~&gt; cd software
+cd ok, cwd=/software
+lftp anonymous@172.16.1.4/software&gt; put listado.txt
+put: Access failed: 550 Permission denied. (listado.txt)
+lftp anonymous@172.16.1.4:/software&gt; ls
+-rw-r--r--    1 0       0       58041000 Oct 09 18:07 mongodb-mongosh_2.6.0_amd64.deb
+lftp anonymous@172.16.1.4/software&gt; get mongodb-mongosh_2.6.0_amd64.deb
+58041000 bytes transferred
+lftp anonymous@172.16.1.4/software&gt; quit
+L02C00-Alpine:#
+</code></pre><p>No podemos subir el archivo <code>listado.txt</code> porque el acceso anónimo está configurado como de solo lectura. Sin embargo, sí podemos listar los archivos de la carpeta software y descargar el archivo <code>mongodb-mongosh_2.6.0_amd64.deb</code> porque ambas operaciones son de solo lectura y están permitidas.</p>
+</div>
+<p>Para obtener una información más precisa de lo que ocurre durante la conexión y entender el comportamiento del servidor, podemos analizar los archivos de log.</p>
+<div class="admonition note">
+<p class="admonition-title">Análisis de los archivos de log</p>
+<p>Vamos a analizar los fragmentos más relevantes del archivo de log (<code>/var/log/vsftpd/ftp-server.log</code>) tras la prueba de acceso anónimo si la configuración es la de del Ejemplo 1.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 18:11:51 2026 [pid 637] CONNECT: Client "::ffff:172.16.2.195"
+Fri Oct  9 18:11:51 2026 [pid 637] FTP response: Client "::ffff:172.16.2.195", "220 (vsFTPd 3.0.3)"
+...
+Fri Oct  9 18:11:51 2026 [pid 637] FTP response: Client "::ffff:172.16.2.195", "530 Please login with USER and PASS."
+Fri Oct  9 18:11:51 2026 [pid 637] FTP command: Client "::ffff:172.16.2.195", "USER anonymous"
+Fri Oct  9 18:11:51 2026 [pid 636] [ftp] OK LOGIN: Client "::ffff:172.16.2.195", anon password "\&lt;no_password\&gt;"
+Fri Oct  9 18:11:51 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "230 Login successful."
+...
+</code></pre><p>En este primer estracto del archivo de log (<code>/var/log/vsftpd/ftp-server.log</code>) se puede ver la conexión del cliente, el inicio de sesión anónimo, la no necesidad de contraseña y la respuesta del servidor indicando que el login fue exitoso.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 18:13:22 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "CWD /software"
+Fri Oct  9 18:13:22 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "250 Directory successfully changed."
+...
+</code></pre><p>Este otro extracto del archivo de log muestra como el comando en crudo de cambio de directorio (CWD) fue recibido y procesado correctamente por el servidor, con la respuesta 250 indicando que el cambio de directorio fue exitoso.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 18:13:22 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "PASV"
+Fri Oct  9 18:13:22 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "227 Entering Passive Mode (172,16,1,4,215,98)."
+Fri Oct  9 18:13:22 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "STOR listado.txt"
+Fri Oct  9 18:13:22 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "550 Permission denied."
+...
+</code></pre><p>El siguiente muestra que tenemos configurado el modo pasivo y que el intento de subir un archivo (<code>STOR listado.txt</code>) fue denegado con el código 550, indicando que no tenemos permisos para realizar esa operación.<br>
+Fijarse que el número de puerto pasivo asignado por el servidor es 215*256 + 98 = 55238, que está dentro del rango definido en la configuración.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "TYPE A"
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "200 Switching to ASCII mode."
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "PASV"
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "227 Entering Passive Mode (172,16,1,4,215,165)."
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "LIST"
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "150 Here comes the directory listing."
+Fri Oct  9 18:13:49 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "226 Directory send OK."
+...
+</code></pre><p>En este otro extracto se puede ver que el cliente solicita la lista de archivos (<code>LIST</code>) y el servidor responde con el código 150 indicando que va a enviar la lista, seguido del código 226 indicando que la operación fue exitosa. Previamente se ha cambiado el modo de transferencia a ASCII (<code>TYPE A</code>) y se ha establecido una nueva conexión pasiva para la transferencia de datos (puerto 55238).</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 18:14:22 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "TYPE I"
+Fri Oct  9 18:14:22 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "200 Switching to Binary mode."
+...
+Fri Oct  9 18:14:54 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "PASV"
+Fri Oct  9 18:14:54 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "227 Entering Passive Mode (172,16,1,4,221,147)."
+Fri Oct  9 18:14:54 2026 [pid 638] [ftp] FTP command: Client "::ffff:172.16.2.195", "RETR mongodb-mongosh_2.6.0_amd64.deb"
+Fri Oct  9 18:14:54 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "150 Opening BINARY mode data connection for mongodb-mongosh_2.6.0_amd64.deb (58041000 bytes)."
+Fri Oct  9 18:14:54 2026 [pid 638] [ftp] OK DOWNLOAD: Client "::ffff:172.16.2.195", "/software/mongodb-mongosh_2.6.0_amd64.deb", 58041000 bytes, 114273.69Kbyte/sec
+Fri Oct  9 18:14:54 2026 [pid 638] [ftp] FTP response: Client "::ffff:172.16.2.195", "226 Transfer complete."
+...
+</code></pre><p>El último fragmento muestra la descarga del archivo <code>mongodb-mongosh_2.6.0_amd64.deb</code>. El cliente cambia a modo binario (<code>TYPE I</code>), establece una nueva conexión pasiva y solicita la transferencia del archivo (<code>RETR</code>). El servidor responde con el código 150 indicando que va a abrir la conexión de datos, seguido de un mensaje de éxito de descarga y finalmente el código 226 indicando que la transferencia se completó correctamente. La velocidad de transferencia fue de 114273.69 Kbyte/sec, lo que indica que la operación fue eficiente y sin errores.</p>
+</div>
+<p>A continuación veamos como probaríamos el acceso anónimo con la configuración del Ejemplo 2.</p>
+<div class="admonition example">
+<p class="admonition-title">Prueba de acceso anónimo</p>
+<p>El siguiente ejemplo muestra cómo probar la configuración del acceso anónimo del Ejemplo 2 visto anteriormente.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>L02C00-Alpine:# lftp
+lftp :~&gt; open 172.16.1.4
+lftp 172.16.1.4:~&gt; user anonymous
+lftp anonymous@172.16.1.4:~&gt; cd uploads
+cd ok, cwd=/uploads
+lftp anonymous@172.16.1.4/uploads&gt; put plantuml-gplv2-1.2025.2.jar
+12077536 bytes transferred in 19 seconds (609.6 KiB/s)
+lftp anonymous@172.16.1.4/uploads&gt; rm plantuml-gplv2-1.2025.2.jar
+rm: Access failed: 550 Permission denied. (plantuml-gplv2-1.2025.2.jar)
+lftp anonymous@172.16.1.4/uploads&gt; mkdir web
+mkdir ok, `web' created
+lftp anonymous@172.16.1.4/uploads&gt; ls
+-rw-r--r--    1 101       110       12077536 Oct 09 19:59 plantuml-gplv2-1.2025.2.jar
+drwxr-xr-x    2 101       110           4096 Oct 09 20:02 web
+lftp anonymous@172.16.1.4/uploads&gt; quit
+L02C00-Alpine:#
+</code></pre><p>Vemos que ahora sí podemos subir el archivo <code>plantuml-gplv2-1.2025.2.jar</code> y crear un directorio <code>web</code>, pero no podemos borrar el archivo subido porque nuestra configuración no permite borrar archivos. Listamos los archivos y directorios dentro de <code>uploads</code>, confirmando que la subida y la creación del directorio fueron exitosas.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Análisis de los archivos de log</p>
+<p>Vamos a analizar los fragmentos más relevantes del archivo de log (<code>/var/log/vsftpd/ftp-server.log</code>) tras la prueba de acceso anónimo si la configuración es la de del Ejemplo 2.<br>
+En el archivo de log podemos comprobar los detalles de la subida del archivo y la creación del directorio, así como el intento fallido de borrado.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 19:58:58 2026 [pid 806] [ftp] FTP command: Client "::ffff:172.16.2.195", "TYPE I"
+Fri Oct  9 19:58:58 2026 [pid 806] [ftp] FTP response: Client "::ffff:172.16.2.195", "200 Switching to Binary mode."
+Fri Oct  9 19:58:58 2026 [pid 806] [ftp] FTP command: Client "::ffff:172.16.2.195", "PASV"
+Fri Oct  9 19:58:58 2026 [pid 806] [ftp] FTP response: Client "::ffff:172.16.2.195", "227 Entering Passive Mode (172,16,1,4,217,251)."
+Fri Oct  9 19:58:58 2026 [pid 806] [ftp] FTP command: Client "::ffff:172.16.2.195", "STOR plantuml-gplv2-1.2025.2.jar"
+Fri Oct  9 19:58:58 2026 [pid 806] [ftp] FTP response: Client "::ffff:172.16.2.195", "150 Ok to send data."
+Fri Oct  9 19:59:17 2026 [pid 806] [ftp] OK UPLOAD: Client "::ffff:172.16.2.195", "/uploads/plantuml-gplv2-1.2025.2.jar", 12077536 bytes, 609.84Kbyte/sec
+Fri Oct  9 19:59:17 2026 [pid 806] [ftp] FTP response: Client "::ffff:172.16.2.195", "226 Transfer complete."
+...
+</code></pre><p>En este fragmento del archivo de log se puede ver la subida del archivo <code>plantuml-gplv2-1.2025.2.jar</code>. El cliente cambia a modo binario (<code>TYPE I</code>), establece una nueva conexión pasiva y solicita la transferencia del archivo (<code>STOR</code>). El servidor responde con el código 150 indicando que va a abrir la conexión de datos, seguido de un mensaje de éxito de subida y finalmente el código 226 indicando que la transferencia se completó correctamente. La velocidad de transferencia fue de 609.84 Kbyte/sec (aproximadamente 5Mbps) lo que confirma que se aplicó correctamente la limitación de velocidad configurada en <code>anon_max_rate=625000</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>...
+Fri Oct  9 20:02:10 2026 [pid 806] [ftp] FTP command: Client "::ffff:172.16.2.195", "DELE plantuml-gplv2-1.2025.2.jar"
+Fri Oct  9 20:02:10 2026 [pid 806] [ftp] FTP response: Client "::ffff:172.16.2.195", "550 Permission denied."
+Fri Oct  9 20:02:28 2026 [pid 806] [ftp] FTP command: Client "::ffff:172.16.2.195", "MKD web"
+Fri Oct  9 20:02:28 2026 [pid 806] [ftp] OK MKDIR: Client "::ffff:172.16.2.195", "/uploads/web"
+Fri Oct  9 20:02:28 2026 [pid 806] [ftp] FTP response: Client "::ffff:172.16.2.195", "257 "/uploads/web" created"
+...
+</code></pre><p>Este otro fragmento confirma que el intento de borrar el archivo subido fue denegado con el código 550, mientras que la creación del directorio <code>web</code> fue exitosa, con el código 257 indicando que el directorio fue creado correctamente.</p>
+</div>
+<h3 id="acceso-autenticado">ACCESO AUTENTICADO </h3>
+<p>Los usuarios autenticados son aquellos que se identifican con un nombre de usuario y una contraseña válidos. Estos usuarios pueden acceder a sus directorios personales o a directorios compartidos según las configuraciones establecidas. La directiva que habilita el acceso autenticado es <code>local_enable=YES</code>, que permite a los <strong>usuarios locales del sistema</strong> iniciar sesión en el servidor FTP. Además, se pueden configurar <strong>usuarios virtuales</strong> que no existen en el sistema operativo pero que son gestionados por <code>vsftpd</code> mediante un mapeo a un usuario real del sistema.<br>
+El servidor vsftp permite definir configuraciones específicas para cada usuario autenticado, ya sea local o virtual, mediante la directiva <code>user_config_dir</code>. Esto permite personalizar el comportamiento del servidor para cada usuario, como establecer límites de velocidad, permisos de escritura, directorios raíz y otras opciones.</p>
+<h4 id="configuración-básica">CONFIGURACIÓN BÁSICA </h4>
+<p>Entre las directivas más relevantes para el acceso autenticado se encuentran:</p>
+<ul>
+<li><code>local_enable</code>: Permite el acceso de usuarios autenticados. Si su valor es <code>NO</code>, no se permitirá el acceso a ningún usuario local o virtual.</li>
+<li><code>write_enable</code>: Como se comentó para el acceso anónimo, permite a los usuarios autenticados realizar operaciones de escritura en el sistema de archivos. Si su valor es <code>NO</code>, los usuarios autenticados solo podrán leer archivos y directorios, pero no podrán subir, borrar o modificar archivos.</li>
+<li><code>local_root</code>: Define el directorio raíz para los usuarios locales. Si no se especifica, se usará el directorio home del usuario. Se puede usar la variable <code>$USER</code> para personalizar el directorio según el nombre del usuario o bien usar <code>user_sub_token</code> para definir un token que se sustituya por el nombre del usuario.</li>
+<li><code>chroot_local_user</code>: Si se establece en <code>YES</code>, los usuarios locales estarán enjaulados en su directorio raíz. Esto significa que no podrán navegar fuera de su directorio home o del directorio definido por <code>local_root</code>. Es una medida de seguridad para evitar que los usuarios accedan a otras partes del sistema de archivos.</li>
+<li><code>allow_writeable_chroot</code>: Si se establece en <code>YES</code>, permite que los usuarios locales puedan escribir en su directorio raíz incluso si están enjaulados. Esto es útil si se desea permitir que los usuarios suban archivos a su directorio home, pero puede ser un riesgo de seguridad si no se controla adecuadamente.</li>
+<li><code>user_sub_token</code>: Permite definir un token que se sustituya por el nombre del usuario en las rutas de los directorios. Por ejemplo, si se define <code>user_sub_token=$USER</code> y <code>local_root=/home/$USER/ftp</code>, cada usuario tendrá su propio directorio raíz en <code>/home/&lt;nombre_usuario&gt;/ftp</code>.</li>
+<li><code>user_config_dir</code>: Define un directorio donde se pueden colocar archivos de configuración específicos para cada usuario. Cada archivo debe tener el nombre del usuario y contener directivas de <code>vsftpd</code> que se aplicarán solo a ese usuario. Esto permite personalizar la configuración para usuarios individuales sin afectar a otros.</li>
+<li><code>chroot_list_enable</code>: Si se establece en <code>YES</code>, permite definir una lista de usuarios que estarán enjaulados o no, según el valor de <code>chroot_local_user</code>. La lista se define en el archivo especificado por <code>chroot_list_file</code>. Si no se habilita esta opción, todos los usuarios locales estarán enjaulados si <code>chroot_local_user=YES</code>, o no estarán enjaulados si <code>chroot_local_user=NO</code>.</li>
+<li><code>chroot_list_file</code>: Define la ruta del archivo que contiene la lista de usuarios para el <code>chroot</code>. Cada línea del archivo debe contener un nombre de usuario. Dependiendo del valor de <code>chroot_local_user</code>, los usuarios en la lista estarán enjaulados o no.</li>
+<li><code>local_umask</code>: Define la máscara de permisos para los archivos y directorios creados por los usuarios locales. Por ejemplo, un valor de <code>022</code> significa que los archivos creados tendrán permisos <code>rw-r--r--</code> y los directorios tendrán permisos <code>rwxr-xr-x</code>. Esto asegura que otros usuarios del sistema puedan leer los archivos, pero no modificarlos.</li>
+</ul>
+<p>Es habitual que a los usuarios de FTP solo se les permita el acceso por FTP y no se les permita iniciar sesión en el sistema operativo. Para ello, se puede asignar a estos usuarios una shell inválida, como <code>/sbin/nologin</code> o <code>/bin/false</code>. Esto evita que puedan acceder al sistema mediante SSH u otros métodos de inicio de sesión. La directiva <code>check_shell</code> permite controlar si se comprueba la validez de la shell del usuario al iniciar sesión. Si se establece en <code>YES</code>, <code>vsftpd</code> verificará que la shell del usuario sea válida; es decir que esté definida en el archivo <code>/etc/shells</code>. Si se establece en <code>NO</code>, no se realizará esta verificación, lo que puede ser útil para usuarios virtuales o configuraciones especiales.</p>
+<h4 id="configuración-de-usuarios-virtuales">CONFIGURACIÓN DE USUARIOS VIRTUALES </h4>
+<p>Los usuarios virtuales son aquellos que no existen en el sistema operativo, pero que <code>vsftpd</code> puede autenticar mediante un mapeo a un usuario real del sistema. Esto permite crear cuentas de FTP sin necesidad de crear usuarios del sistema, lo que puede ser más seguro y flexible.<br>
+Para configurar usuarios virtuales, se debe habilitar la directiva <code>guest_enable=YES</code>, que indica que los usuarios autenticados serán tratados como invitados mapeados a un usuario real del sistema. El usuario real al que se mapean los usuarios virtuales se define mediante la directiva <code>guest_username</code>. Este usuario real debe tener permisos adecuados para acceder a los directorios y archivos que se deseen compartir con los usuarios virtuales. Además, se puede usar la directiva <code>virtual_use_local_privs=YES</code> para que los usuarios virtuales hereden los privilegios del usuario real al que están mapeados, lo que les permite realizar operaciones de escritura si el usuario real tiene permisos de escritura en los directorios correspondientes.</p>
+<h4 id="integración-con-otras-herramientas-de-autenticación-y-control-de-acceso">INTEGRACIÓN CON OTRAS HERRAMIENTAS DE AUTENTICACIÓN Y CONTROL DE ACCESO </h4>
+<p>vsftpd ofrece una arquitectura flexible que permite delegar la autenticación y el control de acceso en <strong>el framework PAM</strong> (Pluggable Authentication Modules). Gracias a esta integración, el servidor FTP no se limita a validar usuarios locales del sistema operativo (almacenados en /etc/passwd), sino que puede implementar un control de acceso centralizado, escalable y mucho más granular.<br>
+Al intermediar a través de PAM, vsftpd puede validar la identidad de los usuarios contra una amplia variedad de backends y métodos alternativos, entre los que destacan:</p>
+<ul>
+<li><strong>Directorios Activos y Centralizados</strong>: Autenticación mediante LDAP o Microsoft Active Directory (comúnmente gestionados a través del demonio SSSD), ideal para entornos corporativos donde las credenciales están unificadas.</li>
+<li><strong>Bases de Datos Relacionales</strong>: Validación de usuarios virtuales consultando tablas en MySQL, MariaDB o PostgreSQL (mediante módulos como pam_mysql), una solución muy extendida en servicios de hosting web.</li>
+<li><strong>Bases de Datos Locales Clave-Valor</strong>: Uso de archivos binarios indexados (como GDBM o las clásicas estructuras de Berkeley DB a través de pam_userdb), que aceleran la lectura cuando se gestionan miles de usuarios sin necesidad de levantar un motor de base de datos relacional.</li>
+<li><strong>Mecanismos Criptográficos Avanzados</strong>: Autenticación robusta basada en certificados digitales SSL/TLS (FTPS explícito/implícito) y la posibilidad de robustecer el acceso mediante Doble Factor de Autenticación (2FA/MFA) utilizando contraseñas de un solo uso (TOTP).</li>
+</ul>
+<p>Mediante la integración con PAM, vsftpd puede ofrecer un control de acceso más sofisticado, incluyendo políticas de bloqueo tras múltiples intentos fallidos, restricciones por horario o ubicación, y auditoría centralizada de accesos. Esto permite a los administradores de sistemas implementar medidas de seguridad avanzadas sin necesidad de modificar el propio servidor FTP.</p>
+<p>Para habilitar el uso de PAM en vsftpd, se debe configurar la directiva <code>pam_service_name</code> en el archivo de configuración <code>vsftpd.conf</code>, indicando el nombre del servicio PAM que se utilizará. Por defecto, suele ser <code>vsftpd</code>, y se espera que exista un archivo de configuración correspondiente en <code>/etc/pam.d/vsftpd</code>. Este archivo define los módulos PAM que se emplearán para autenticar a los usuarios y aplicar las políticas de control de acceso.</p>
+<p>Otra herramienta con la que vsftpd puede integrarse es <strong>TCP Wrappers</strong>, que permite filtrar conexiones entrantes basándose en la dirección IP del cliente. Esto se logra mediante los archivos <code>/etc/hosts.allow</code> y <code>/etc/hosts.deny</code>, donde se pueden definir reglas para permitir o denegar el acceso a servicios específicos, incluido el servidor FTP. Esta integración proporciona una capa adicional de seguridad al controlar qué clientes pueden establecer conexiones con el servidor.<br>
+TCP Wrapper se habilita en vsftpd mediante la directiva <code>tcp_wrappers=YES</code> en el archivo de configuración. Cuando está habilitado, vsftpd consultará los archivos de hosts para determinar si se permite o deniega la conexión de un cliente antes de proceder con la autenticación.</p>
+<h4 id="grupos-de-usuarios">GRUPOS DE USUARIOS </h4>
+<p>El servidor vsftpd carece por diseño de directivas nativas para declarar, gestionar o interpretar grupos de usuarios de forma interna. Para implementar políticas grupales en un entorno de producción, se debe bifurcar la estrategia distinguiendo entre la <strong>Capa de Configuración</strong> y la <strong>Capa de Autenticación</strong>.</p>
+<ul>
+<li>
+<p><strong>Capa de configuración: emulación de grupos</strong><br>
+Independientemente de si el usuario es real (del sistema operativo) o virtual (alojado en una base de datos o archivo indexado), vsftpd permite homogeneizar sus directivas de comportamiento (límites de ancho de banda, permisos de escritura, umask, etc.) emulando una estructura de grupos a través de la directiva <code>user_config_dir</code>.<br>
+<strong>Mecanismo de implementación</strong></p>
+<ul>
+<li><em>Definición de Perfiles Base</em>: Se crean archivos de configuración individuales para cada agrupación lógica del negocio dentro del directorio centralizado (por ejemplo, en /var/vsftp/confs/). Estos archivos actúan como la "plantilla de grupo" (ej. grupo_ventas, grupo_ingenieria).</li>
+<li><em>Asociación mediante Enlaces Simbólicos</em>: Para cada usuario que deba pertenecer a una agrupación, se genera un enlace simbólico (ln -s) cuyo nombre coincida exactamente con su identificador de inicio de sesión, apuntando al archivo base de su respectivo grupo.</li>
+</ul>
+<p><strong>Ventajas de este enfoque</strong></p>
+<ul>
+<li><em>Mantenimiento Centralizado</em> (Principio DRY): Cualquier cambio en las políticas de un departamento (por ejemplo, alterar el ancho de banda con local_max_rate) se edita una única vez en el archivo del grupo, impactando inmediatamente en todos los usuarios enlazados.</li>
+<li><em>Escalabilidad</em>: El aprovisionamiento de un nuevo usuario se reduce a la creación de un único puntero simbólico.</li>
+</ul>
+</li>
+<li>
+<p><strong>Capa de Autenticación: Restricción por Pertenencia Grupal</strong><br>
+A nivel de autenticación (permitir o denegar el acceso al servidor FTP basándose en un grupo), la infraestructura presenta una limitación crítica dependiente de la naturaleza del usuario:</p>
+<ul>
+<li><em>Usuarios Reales del Sistema</em>: Es completamente viable controlar el acceso por grupos. Al estar registrados en el sistema operativo, el framework PAM (a través del módulo pam_listfile.so con el parámetro item=group) puede interceptar la sesión, verificar si el usuario pertenece a un grupo válido en /etc/group y autorizar o rechazar la conexión de forma masiva.</li>
+<li><em>Usuarios Virtuales</em>: Es técnicamente inviable utilizar información grupal en esta capa. Debido a que los usuarios virtuales son abstracciones de texto que no existen para el sistema operativo, los módulos de autenticación de PAM carecen de un identificador de grupo (GID) real que poder validar contra el sistema de archivos o las tablas de mapeo tradicionales. Para los usuarios virtuales, el control de acceso en la fase de autenticación debe seguir gestionándose estrictamente de manera nominal e individualizada (por ejemplo, mediante listas explícitas de usuarios con <code>userlist_file</code>).</li>
+</ul>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Perfiles de grupo mediante user_config_dir</p>
+<p>Supongamos que tenemos dos grupos gA y gB y los usuarios u1a, u2a pertenecientes a gA y los usuarios u1b y u2b pertenecientes a gB. Vamos a crear dos archivos de configuración base para cada grupo en <code>/var/vsftp/confs/gA.conf</code> y <code>/var/vsftp/confs/gB.conf</code> con las directivas que queramos aplicar a todos los usuarios de cada grupo. Los usuarios de gA tendrán limitada la velocidad de transferencia a 5Mbps y los del grupo gB a 1Mbps.</p>
+<p>Paso 1: Crear los archivos de configuración base para cada grupo:</p>
+<p>Archivo <code>/var/vsftp/confs/gA.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_max_rate=625000
+</code></pre><p>Archivo <code>/var/vsftp/confs/gB.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_max_rate=125000
+</code></pre><p>Paso 2: Habilitar los perfiles de usuario en el archivo de configuración principal <code>vsftpd.conf</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>user_config_dir=/etc/vsftpd/confs
+</code></pre><p>Paso 3: Crear los enlaces simbólicos para cada usuario en el directorio de configuraciones específicas por usuario:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>cd /etc/vsftpd/confs
+ln -s ./gA.conf u1a
+ln -s ./gA.conf u2a
+ln -s ./gB.conf u1b
+ln -s ./gB.conf u2b
+</code></pre><p>Paso 4: Reiniciar el servicio vsftpd para aplicar los cambios:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>systemctl restart vsftpd
+</code></pre><p>Paso 5: Verificar que los usuarios u1a y u2a tienen la velocidad limitada a 5Mbps y los usuarios u1b y u2b a 1Mbps mediante pruebas de transferencia de archivos.</p>
+<p>Como se puede ver en el siguiente ejemplo, el usuario u1a puede subir un archivo a 5Mbps aproximadamente.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>L02C00-Alpine@u1a:~$ lftp
+lftp :~&gt; open 172.16.1.4
+lftp 172.16.1.4:~&gt; user u1a
+Password:
+lftp u1a@172.16.1.4:~&gt; put plantuml-gplv2-1.2025.2.jar
+12072536 bytes transferred in 19 seconds (606.3 KiB/s)
+lftp u1a@172.16.1.4:/&gt; quit
+L02C00-Alpine@u1a:~$
+</code></pre><p>Sin embargo , el usuario u1b solo puede subir un archivo a 1Mbps aproximadamente (5 veces más lento que u1a).</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>L02C00-Alpine@u1b:~$ lftp
+lftp :~&gt; open 172.16.1.4
+lftp 172.16.1.4:~&gt; user u1b
+Password:
+lftp u1b@172.16.1.4:~&gt; put plantuml-gplv2-1.2025.2.jar
+12027536 bytes transferred in 97 seconds (122.0 KiB/s)
+lftp u1b@172.16.1.4:/&gt; quit
+L02C00-Alpine@u1b:~$
+</code></pre></div>
+<h2 id="control-de-acceso-por-usuario">CONTROL DE ACCESO POR USUARIO </h2>
+<h2 id="compartición-de-directorios">COMPARTICIÓN DE DIRECTORIOS </h2>
+<h2 id="control-de-acceso-por-ubicación">CONTROL DE ACCESO POR UBICACIÓN </h2>
+<h2 id="restricciones-temporales">RESTRICCIONES TEMPORALES </h2>
+<h2 id="cuotas-de-disco">CUOTAS DE DISCO </h2>
+<ul>
+<li><code>session_support</code>: Abre y mantiene sesión PAM durante la conexión.</li>
+</ul>
+<h3 id="directivas-más-importantes">DIRECTIVAS MÁS IMPORTANTES </h3>
+<div class="style-normal">
+<p>El fichero <code>vsftpd.conf</code> contiene muchas opciones, pero en la práctica la mayoría de configuraciones se apoyan siempre en un conjunto relativamente reducido. Para que la consulta sea más útil, se agrupan aquí por bloques funcionales.</p>
+</div>
+<h4 id="directivas-generales-y-de-autenticación">DIRECTIVAS GENERALES Y DE AUTENTICACIÓN </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anonymous_enable</code></td>
+<td>Habilita o deshabilita el acceso anónimo.</td>
+<td>Si está en <code>YES</code>, se aceptan los usuarios <code>anonymous</code> y <code>ftp</code>.</td>
+</tr>
+<tr>
+<td><code>local_enable</code></td>
+<td>Permite el acceso de usuarios autenticados.</td>
+<td>Necesaria para usuarios locales y también para usuarios virtuales.</td>
+</tr>
+<tr>
+<td><code>guest_enable</code></td>
+<td>Trata los usuarios autenticados como invitados mapeados.</td>
+<td>Base del modelo de usuarios virtuales.</td>
+</tr>
+<tr>
+<td><code>guest_username</code></td>
+<td>Usuario real del sistema al que se mapean los usuarios virtuales.</td>
+<td>Todas las sesiones virtuales se ejecutan con esa identidad.</td>
+</tr>
+<tr>
+<td><code>pam_service_name</code></td>
+<td>Nombre del servicio PAM que usará <code>vsftpd</code>.</td>
+<td>Por defecto suele ser <code>vsftpd</code>.</td>
+</tr>
+<tr>
+<td><code>check_shell</code></td>
+<td>Comprueba si la shell del usuario es válida.</td>
+<td>En compilaciones con PAM su efecto puede no ser relevante.</td>
+</tr>
+<tr>
+<td><code>session_support</code></td>
+<td>Abre y mantiene sesión PAM durante la conexión.</td>
+<td>Útil si se usan módulos PAM de tipo <code>session</code>, por ejemplo <code>pam_exec</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="directivas-de-acceso-anónimo">DIRECTIVAS DE ACCESO ANÓNIMO </h4>
+<h4 id="usuarios-locales-virtuales-y-directorios">USUARIOS LOCALES, VIRTUALES Y DIRECTORIOS </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>local_root</code></td>
+<td>Directorio inicial del usuario autenticado.</td>
+<td>Puede ser fijo o usar <code>user_sub_token</code>.</td>
+</tr>
+<tr>
+<td><code>user_sub_token</code></td>
+<td>Sustituye un token como <code>$USER</code> por el nombre del usuario.</td>
+<td>Muy útil con usuarios virtuales.</td>
+</tr>
+<tr>
+<td><code>user_config_dir</code></td>
+<td>Directorio de configuraciones específicas por usuario.</td>
+<td>Contiene directivas de <code>vsftpd</code>, no scripts.</td>
+</tr>
+<tr>
+<td><code>chroot_local_user</code></td>
+<td>Enjaula usuarios locales o invitados en su raíz.</td>
+<td>Medida habitual de aislamiento.</td>
+</tr>
+<tr>
+<td><code>allow_writeable_chroot</code></td>
+<td>Permite escritura en la raíz del <code>chroot</code>.</td>
+<td>Cómodo, pero menos estricto desde el punto de vista de seguridad.</td>
+</tr>
+<tr>
+<td><code>chroot_list_enable</code></td>
+<td>Activa una lista de usuarios afectados por <code>chroot</code>.</td>
+<td>Su comportamiento depende de <code>chroot_local_user</code>.</td>
+</tr>
+<tr>
+<td><code>chroot_list_file</code></td>
+<td>Ruta del fichero asociado a la lista <code>chroot</code>.</td>
+<td>Por defecto hay una ruta predefinida.</td>
+</tr>
+<tr>
+<td><code>passwd_chroot_enable</code></td>
+<td>Deriva el <code>chroot</code> desde el directorio del usuario en <code>/etc/passwd</code>.</td>
+<td>Útil en diseños muy concretos.</td>
+</tr>
+<tr>
+<td><code>virtual_use_local_privs</code></td>
+<td>Hace que los usuarios virtuales usen privilegios de usuarios locales.</td>
+<td>Muy importante si los usuarios virtuales deben escribir.</td>
+</tr>
+<tr>
+<td><code>local_umask</code></td>
+<td>Máscara por defecto para usuarios autenticados.</td>
+<td><code>022</code> es un valor habitual en prácticas.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="control-de-usuarios-y-comandos">CONTROL DE USUARIOS Y COMANDOS </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>userlist_enable</code></td>
+<td>Activa una lista de control de usuarios.</td>
+<td>Sirve para permitir o denegar según <code>userlist_deny</code>.</td>
+</tr>
+<tr>
+<td><code>userlist_file</code></td>
+<td>Ruta del fichero de lista de usuarios.</td>
+<td>Puede usarse para limitar qué cuentas acceden por FTP.</td>
+</tr>
+<tr>
+<td><code>userlist_deny</code></td>
+<td>Define si la lista es de bloqueo o de permiso.</td>
+<td><code>NO</code> significa que solo se permiten los usuarios listados.</td>
+</tr>
+<tr>
+<td><code>cmds_allowed</code></td>
+<td>Lista de comandos FTP permitidos.</td>
+<td>Permite endurecer mucho el servicio.</td>
+</tr>
+<tr>
+<td><code>cmds_denied</code></td>
+<td>Lista de comandos FTP denegados.</td>
+<td>Si un comando aparece en ambas listas, prevalece la denegación.</td>
+</tr>
+<tr>
+<td><code>download_enable</code></td>
+<td>Habilita o deshabilita las descargas.</td>
+<td>Permite construir un servicio solo de subida.</td>
+</tr>
+<tr>
+<td><code>dirlist_enable</code></td>
+<td>Controla si se pueden listar directorios.</td>
+<td>Puede utilizarse para ocultar la estructura remota.</td>
+</tr>
+<tr>
+<td><code>chmod_enable</code></td>
+<td>Permite usar <code>SITE CHMOD</code>.</td>
+<td>Solo aplica a usuarios locales.</td>
+</tr>
+<tr>
+<td><code>dirmessage_enable</code></td>
+<td>Muestra mensajes al entrar en un directorio.</td>
+<td>Busca por defecto un fichero <code>.message</code>.</td>
+</tr>
+<tr>
+<td><code>message_file</code></td>
+<td>Nombre del fichero de mensaje de directorio.</td>
+<td>Solo tiene efecto si <code>dirmessage_enable=YES</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="red-puertos-y-transferencia">RED, PUERTOS Y TRANSFERENCIA </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listen</code></td>
+<td>Hace que <code>vsftpd</code> funcione en modo autónomo IPv4.</td>
+<td>No debe combinarse con <code>listen_ipv6</code>.</td>
+</tr>
+<tr>
+<td><code>listen_ipv6</code></td>
+<td>Hace que <code>vsftpd</code> escuche en socket IPv6.</td>
+<td>En muchos sistemas también acepta IPv4.</td>
+</tr>
+<tr>
+<td><code>listen_port</code></td>
+<td>Puerto TCP del servicio FTP.</td>
+<td>Por defecto es el 21.</td>
+</tr>
+<tr>
+<td><code>pasv_enable</code></td>
+<td>Activa el modo pasivo.</td>
+<td>Normalmente imprescindible tras NAT o firewall.</td>
+</tr>
+<tr>
+<td><code>pasv_min_port</code></td>
+<td>Puerto mínimo del rango pasivo.</td>
+<td>Conviene abrirlo también en el firewall.</td>
+</tr>
+<tr>
+<td><code>pasv_max_port</code></td>
+<td>Puerto máximo del rango pasivo.</td>
+<td>Debe formar un rango cerrado con el anterior.</td>
+</tr>
+<tr>
+<td><code>pasv_address</code></td>
+<td>Dirección anunciada por el servidor en modo pasivo.</td>
+<td>Necesaria si el servidor está detrás de NAT.</td>
+</tr>
+<tr>
+<td><code>pasv_addr_resolve</code></td>
+<td>Permite resolver por DNS el valor de <code>pasv_address</code>.</td>
+<td>Útil si se usa nombre en lugar de IP.</td>
+</tr>
+<tr>
+<td><code>port_enable</code></td>
+<td>Permite el modo activo.</td>
+<td>En muchas redes modernas se usa menos que PASV.</td>
+</tr>
+<tr>
+<td><code>connect_from_port_20</code></td>
+<td>Hace que las conexiones de datos activas salgan desde el puerto 20.</td>
+<td>Algunos clientes antiguos lo esperan.</td>
+</tr>
+<tr>
+<td><code>idle_session_timeout</code></td>
+<td>Tiempo máximo de inactividad en la sesión de control.</td>
+<td>Se expresa en segundos.</td>
+</tr>
+<tr>
+<td><code>data_connection_timeout</code></td>
+<td>Tiempo máximo permitido sin progreso en una transferencia.</td>
+<td>También en segundos.</td>
+</tr>
+<tr>
+<td><code>ascii_upload_enable</code></td>
+<td>Permite subidas en modo ASCII.</td>
+<td>En la práctica moderna suele dejarse desactivado.</td>
+</tr>
+<tr>
+<td><code>ascii_download_enable</code></td>
+<td>Permite descargas en modo ASCII.</td>
+<td>Igual que el anterior, rara vez hace falta.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="registro-límites-y-rendimiento">REGISTRO, LÍMITES Y RENDIMIENTO </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xferlog_enable</code></td>
+<td>Registra transferencias.</td>
+<td>Es la base del registro de actividad.</td>
+</tr>
+<tr>
+<td><code>xferlog_std_format</code></td>
+<td>Usa formato estándar <code>xferlog</code>.</td>
+<td>Útil si se van a reutilizar herramientas externas de análisis.</td>
+</tr>
+<tr>
+<td><code>xferlog_file</code></td>
+<td>Ruta del log en formato <code>xferlog</code>.</td>
+<td>Solo aplica con <code>xferlog_std_format=YES</code>.</td>
+</tr>
+<tr>
+<td><code>dual_log_enable</code></td>
+<td>Mantiene simultáneamente log estándar y log propio.</td>
+<td>Muy útil en laboratorios.</td>
+</tr>
+<tr>
+<td><code>vsftpd_log_file</code></td>
+<td>Ruta del log propio de <code>vsftpd</code>.</td>
+<td>Si <code>syslog_enable=YES</code>, puede dejar de usarse.</td>
+</tr>
+<tr>
+<td><code>log_ftp_protocol</code></td>
+<td>Registra comandos y respuestas FTP.</td>
+<td>Muy útil para depuración.</td>
+</tr>
+<tr>
+<td><code>syslog_enable</code></td>
+<td>Envía el log al sistema <code>syslog</code>.</td>
+<td>Alternativa al log en archivo propio.</td>
+</tr>
+<tr>
+<td><code>max_clients</code></td>
+<td>Limita el número total de clientes conectados.</td>
+<td>Solo relevante en modo autónomo.</td>
+</tr>
+<tr>
+<td><code>max_per_ip</code></td>
+<td>Limita el número de clientes por dirección IP.</td>
+<td>Útil para evitar abusos.</td>
+</tr>
+<tr>
+<td><code>max_login_fails</code></td>
+<td>Número máximo de fallos antes de cerrar la sesión.</td>
+<td>Reduce intentos repetidos.</td>
+</tr>
+<tr>
+<td><code>local_max_rate</code></td>
+<td>Limita velocidad de usuarios autenticados.</td>
+<td>Valor en bytes por segundo.</td>
+</tr>
+<tr>
+<td><code>trans_chunk_size</code></td>
+<td>Ajusta el tamaño de bloque en la transferencia.</td>
+<td>Suele dejarse por defecto.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="tls-y-endurecimiento">TLS Y ENDURECIMIENTO </h4>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssl_enable</code></td>
+<td>Activa FTPS mediante SSL/TLS.</td>
+<td>Requiere certificados y cliente compatible.</td>
+</tr>
+<tr>
+<td><code>rsa_cert_file</code></td>
+<td>Ruta del certificado RSA del servidor.</td>
+<td>En algunos sistemas certificado y clave pueden ir juntos.</td>
+</tr>
+<tr>
+<td><code>rsa_private_key_file</code></td>
+<td>Ruta de la clave privada RSA.</td>
+<td>Debe protegerse con permisos correctos.</td>
+</tr>
+<tr>
+<td><code>allow_anon_ssl</code></td>
+<td>Permite FTPS para usuarios anónimos.</td>
+<td>Solo aplica si <code>ssl_enable=YES</code>.</td>
+</tr>
+<tr>
+<td><code>force_local_logins_ssl</code></td>
+<td>Obliga a cifrar el login de usuarios autenticados.</td>
+<td>Muy recomendable si se usa FTPS.</td>
+</tr>
+<tr>
+<td><code>force_local_data_ssl</code></td>
+<td>Obliga a cifrar el canal de datos de usuarios autenticados.</td>
+<td>Complementa la protección del login.</td>
+</tr>
+<tr>
+<td><code>force_anon_logins_ssl</code></td>
+<td>Obliga a cifrar el login anónimo.</td>
+<td>Poco habitual.</td>
+</tr>
+<tr>
+<td><code>force_anon_data_ssl</code></td>
+<td>Obliga a cifrar el canal de datos anónimo.</td>
+<td>Poco habitual.</td>
+</tr>
+<tr>
+<td><code>require_ssl_reuse</code></td>
+<td>Exige reutilización de sesión SSL en el canal de datos.</td>
+<td>Más seguro, pero puede romper algunos clientes.</td>
+</tr>
+<tr>
+<td><code>ssl_ciphers</code></td>
+<td>Restringe los cifrados permitidos.</td>
+<td>Útil para endurecer la configuración.</td>
+</tr>
+<tr>
+<td><code>debug_ssl</code></td>
+<td>Registra información de depuración SSL.</td>
+<td>Solo recomendable para diagnóstico.</td>
+</tr>
+</tbody>
+</table>
+<div class="style-normal">
+<p>No todas estas directivas serán necesarias en una misma instalación. Lo normal es combinar un subconjunto de ellas según el escenario: acceso anónimo controlado, usuarios locales, usuarios virtuales, integración con PAM o FTPS.</p>
+</div>
+<h2 id="escenario-1-usuarios-del-sistema">ESCENARIO 1: USUARIOS DEL SISTEMA </h2>
+<div class="style-normal">
+<p>La forma más directa de trabajar con <code>vsftpd</code> es permitir el acceso a <strong>usuarios locales del sistema</strong>. Es un enfoque sencillo y suficiente para entornos pequeños o prácticas iniciales, ya que reutiliza la autenticación y los permisos del propio sistema operativo.</p>
+</div>
+<h3 id="creación-de-usuarios-ftp">CREACIÓN DE USUARIOS FTP </h3>
+<div class="style-normal">
+<p>Si queremos que una cuenta sirva solo para FTP y no permita abrir una shell interactiva, conviene asignarle como intérprete <code>/usr/sbin/nologin</code>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Alta de un usuario FTP local</p>
+<p>El siguiente ejemplo crea una cuenta pensada para uso exclusivo por FTP, con directorio propio y sin shell interactiva.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">useradd</span> <span class="token parameter variable">-m</span> <span class="token parameter variable">-d</span> /home/ftp/usuario1 <span class="token parameter variable">-s</span> /usr/sbin/nologin usuario1
+<span class="token function">passwd</span> usuario1
+</code></pre></div>
+<div class="style-normal">
+<p>En este ejemplo, el usuario <code>usuario1</code> tendrá como directorio personal <code>/home/ftp/usuario1</code>. A partir de aquí, el acceso FTP dependerá tanto de la configuración de <code>vsftpd</code> como de los permisos del sistema de archivos.</p>
+</div>
+<h3 id="configuración-básica-para-usuarios-locales">CONFIGURACIÓN BÁSICA PARA USUARIOS LOCALES </h3>
+<div class="admonition example">
+<p class="admonition-title">Configuración básica para usuarios locales</p>
+<p>El siguiente ejemplo activa el acceso de usuarios locales, permite escritura y aplica un enjaulado sencillo sobre su directorio de trabajo.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_enable=YES
+write_enable=YES
+local_umask=022
+chroot_local_user=YES
+allow_writeable_chroot=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Esta configuración activa el acceso autenticado, permite escritura y enjaula a cada usuario en su directorio raíz. Es una solución cómoda para prácticas, aunque desde un punto de vista más conservador resulta preferible que la raíz del <code>chroot</code> no sea escribible y que exista un subdirectorio específico para escritura.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Diseño más estricto del directorio</p>
+<p>El siguiente ejemplo separa la raíz del entorno enjaulado del subdirectorio escribible para ajustar mejor la seguridad.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/ftp/usuario1/privada
+<span class="token function">chown</span> root:root /home/ftp/usuario1
+<span class="token function">chmod</span> <span class="token number">555</span> /home/ftp/usuario1
+<span class="token function">chown</span> usuario1:usuario1 /home/ftp/usuario1/privada
+<span class="token function">chmod</span> <span class="token number">755</span> /home/ftp/usuario1/privada
+</code></pre></div>
+<div class="style-normal">
+<p>Con este diseño, el usuario queda enjaulado en <code>/home/ftp/usuario1</code>, pero escribe realmente en <code>/home/ftp/usuario1/privada</code>.</p>
+</div>
+<h3 id="listas-de-control-de-acceso">LISTAS DE CONTROL DE ACCESO </h3>
+<div class="style-normal">
+<p><code>vsftpd</code> puede permitir o denegar usuarios mediante listas. Es una medida útil cuando queremos reducir explícitamente qué cuentas pueden autenticarse por FTP.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Lista de usuarios permitidos</p>
+<p>El siguiente ejemplo convierte el fichero de usuarios en una lista de permiso, de modo que solo podrán acceder las cuentas incluidas en él.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO
+</code></pre></div>
+<div class="style-normal">
+<p>Con <code>userlist_deny=NO</code>, solo se permiten los usuarios que aparecen en el fichero indicado. Si se cambiara a <code>YES</code>, ocurriría lo contrario: los usuarios listados quedarían bloqueados.</p>
+</div>
+<h3 id="configuración-específica-por-usuario">CONFIGURACIÓN ESPECÍFICA POR USUARIO </h3>
+<div class="style-normal">
+<p>La directiva <code>user_config_dir</code> permite crear <strong>archivos de configuración por usuario</strong>. Cada archivo contiene directivas de <code>vsftpd</code>, no scripts. Su utilidad principal es ajustar rutas, permisos o límites de forma individual.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración individual</p>
+<p>El siguiente ejemplo indica el directorio desde el que <code>vsftpd</code> leerá las configuraciones particulares de cada usuario.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>user_config_dir=/etc/vsftpd/user_conf
+</code></pre></div>
+<div class="style-normal">
+<p>Si existe el archivo <code>/etc/vsftpd/user_conf/usuario1</code>, sus directivas complementarán o sustituirán a las globales durante la sesión de <code>usuario1</code>.</p>
+</div>
+<h2 id="escenario-2-acceso-anónimo">ESCENARIO 2: ACCESO ANÓNIMO </h2>
+<div class="style-normal">
+<p>El acceso anónimo permite conectarse con los usuarios <code>anonymous</code> o <code>ftp</code> sin usar una cuenta personal del sistema. Históricamente se ha utilizado para distribuir documentación o software de lectura pública.</p>
+<p>Hoy en día debe habilitarse con mucha prudencia, porque reduce la trazabilidad y amplía la superficie de exposición del servicio.</p>
+</div>
+<h3 id="configuración-anónima-de-solo-lectura">CONFIGURACIÓN ANÓNIMA DE SOLO LECTURA </h3>
+<div class="admonition example">
+<p class="admonition-title">Acceso anónimo de solo lectura</p>
+<p>El siguiente ejemplo habilita el acceso anónimo, fija un directorio público y bloquea cualquier operación de escritura.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>anonymous_enable=YES
+anon_root=/var/ftp/publica
+write_enable=NO
+anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+anon_other_write_enable=NO
+</code></pre></div>
+<div class="style-normal">
+<p>Esta es la configuración más razonable para un acceso anónimo: lectura sí, escritura no. Aquí conviene precisar el papel de <code>write_enable</code>: <strong>no es una directiva exclusiva de usuarios autenticados</strong>, sino un interruptor general que permite o bloquea los comandos FTP que modifican el sistema de archivos. Por tanto, si <code>write_enable=NO</code>, tampoco habrá subidas, borrados o creación de directorios para usuarios anónimos.</p>
+<p>Las directivas <code>anon_upload_enable</code>, <code>anon_mkdir_write_enable</code> y <code>anon_other_write_enable</code> actúan como permisos adicionales específicos del acceso anónimo, pero solo tienen efecto si antes se ha activado <code>write_enable=YES</code>. Dicho de otro modo: para que un usuario anónimo pueda escribir, deben cumplirse <strong>las dos condiciones</strong> siguientes:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>write_enable=YES</code> para permitir operaciones de escritura a nivel global.</li>
+<li>La directiva anónima correspondiente en <code>YES</code>, junto con permisos adecuados en el sistema de archivos.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Por eso, en una configuración de solo lectura puede dejarse <code>write_enable=NO</code> sin problema. Si se necesitara permitir subidas anónimas, además de habilitar <code>anon_upload_enable=YES</code>, sería obligatorio activar <code>write_enable=YES</code> y ajustar cuidadosamente los permisos del directorio destino. En entornos docentes o productivos no suele ser recomendable salvo que exista una necesidad muy concreta.</p>
+</div>
+<h3 id="restricción-por-red-y-rendimiento">RESTRICCIÓN POR RED Y RENDIMIENTO </h3>
+<div class="style-normal">
+<p>En las prácticas de la unidad, el acceso anónimo se usa de forma restringida: solo desde una red concreta y con límite de velocidad. Ese planteamiento es razonable cuando el objetivo es exponer material público pero controlando el consumo de recursos.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Límite de velocidad para anónimo</p>
+<p>El siguiente ejemplo impone un límite de transferencia a las sesiones anónimas para evitar consumos excesivos de ancho de banda.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>anon_max_rate=625000
+</code></pre></div>
+<div class="style-normal">
+<p>Ese valor limita la transferencia aproximada a 5 Mbit/s. Las restricciones por dirección IP suelen aplicarse con herramientas externas como <code>tcp_wrappers</code>, firewall o políticas de red.</p>
+</div>
+<h2 id="escenario-3-usuarios-virtuales">ESCENARIO 3: USUARIOS VIRTUALES </h2>
+<div class="style-normal">
+<p>Los <strong>usuarios virtuales</strong> son identidades que existen solo dentro del servicio FTP. No corresponden necesariamente a cuentas reales del sistema, lo que permite administrar un número grande de usuarios sin crear cuentas locales para cada uno.</p>
+<p>En <code>vsftpd</code>, este modelo suele construirse combinando tres piezas:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Una base de usuarios autenticados gestionada por <strong>PAM</strong>.</li>
+<li>Un <strong>usuario real de mapeo</strong> del sistema, que ejecuta las sesiones.</li>
+<li>Una estructura de directorios y permisos que aísla a cada usuario virtual.</li>
+</ul>
+</div>
+<h3 id="usuario-real-de-mapeo">USUARIO REAL DE MAPEO </h3>
+<div class="style-normal">
+<p>El primer paso es crear una cuenta real sin shell interactiva. Esa cuenta no representa a un usuario humano; actúa como contenedor de las sesiones FTP virtuales.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Usuario de mapeo</p>
+<p>El siguiente ejemplo crea el usuario real bajo el que se ejecutarán todas las sesiones de los usuarios virtuales.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">useradd</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">-m</span> <span class="token parameter variable">-d</span> /home/ftp <span class="token parameter variable">-s</span> /usr/sbin/nologin ftpvirtual
+</code></pre></div>
+<h3 id="base-de-credenciales-con-pam_userdb">BASE DE CREDENCIALES CON PAM_USERDB </h3>
+<div class="style-normal">
+<p>Una opción clásica consiste en usar el módulo <code>pam_userdb</code>. Para ello se prepara un fichero de texto y se transforma a una base de datos tipo hash con <code>db_load</code>.</p>
+<p>Es importante respetar el formato correcto del fichero: <strong>usuario y contraseña en líneas alternas</strong>, no en la misma línea.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Fichero de usuarios virtuales</p>
+<p>El siguiente ejemplo muestra el formato correcto del fichero de credenciales antes de convertirlo en la base de datos usada por PAM.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>pedro
+pwd1
+luis
+pwd2
+lucia
+pwd3
+</code></pre></div>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>db_load <span class="token parameter variable">-T</span> <span class="token parameter variable">-t</span> <span class="token builtin class-name">hash</span> <span class="token parameter variable">-f</span> usuarios_virtuales.txt /etc/vsftpd/usuarios_virtuales.db
+<span class="token function">chmod</span> <span class="token number">600</span> /etc/vsftpd/usuarios_virtuales.db
+</code></pre><h3 id="configuración-pam">CONFIGURACIÓN PAM </h3>
+<div class="style-normal">
+<p>Después se crea un servicio PAM específico, por ejemplo <code>/etc/pam.d/vsftpd_virtual</code>:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Servicio PAM para usuarios virtuales</p>
+<p>El siguiente ejemplo define un servicio PAM específico que autentica y valida cuentas contra la base de datos generada previamente.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>auth    required pam_userdb.so db=/etc/vsftpd/usuarios_virtuales
+account required pam_userdb.so db=/etc/vsftpd/usuarios_virtuales
+</code></pre></div>
+<div class="style-normal">
+<p>Obsérvese que en PAM se indica la ruta <strong>sin</strong> la extensión <code>.db</code>.</p>
+</div>
+<h3 id="integración-en-vsftpd">INTEGRACIÓN EN VSFTPD </h3>
+<div class="admonition example">
+<p class="admonition-title">Configuración de <code>vsftpd</code> para usuarios virtuales</p>
+<p>El siguiente ejemplo integra PAM, el usuario de mapeo y el directorio dinámico de cada cuenta virtual dentro de la configuración principal.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>local_enable=YES
+write_enable=YES
+guest_enable=YES
+guest_username=ftpvirtual
+virtual_use_local_privs=YES
+pam_service_name=vsftpd_virtual
+user_sub_token=$USER
+local_root=/home/ftp/$USER
+chroot_local_user=YES
+allow_writeable_chroot=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Estas directivas hacen que:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>local_enable=YES</code> permita autenticación no anónima.</li>
+<li><code>guest_enable=YES</code> haga que los usuarios autenticados se traten como invitados mapeados.</li>
+<li><code>guest_username=ftpvirtual</code> ejecute todas las sesiones bajo la cuenta real <code>ftpvirtual</code>.</li>
+<li><code>virtual_use_local_privs=YES</code> otorgue a los usuarios virtuales privilegios equivalentes a los locales. Sin esta directiva, suelen comportarse con permisos de tipo anónimo, más restrictivos.</li>
+<li><code>user_sub_token=$USER</code> y <code>local_root=/home/ftp/$USER</code> asignen automáticamente el directorio de cada usuario.</li>
+</ul>
+</div>
+<h3 id="preparación-de-directorios">PREPARACIÓN DE DIRECTORIOS </h3>
+<div class="admonition example">
+<p class="admonition-title">Preparación de directorios base</p>
+<p>El siguiente ejemplo crea la estructura inicial de trabajo de varios usuarios virtuales y la asigna al usuario de mapeo.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/ftp/pedro /home/ftp/luis /home/ftp/lucia
+<span class="token function">chown</span> <span class="token parameter variable">-R</span> ftpvirtual:ftpvirtual /home/ftp
+<span class="token function">chmod</span> <span class="token number">755</span> /home/ftp
+</code></pre></div>
+<div class="style-normal">
+<p>Si se desea un diseño más seguro, puede repetirse la misma idea vista con usuarios locales: raíz no escribible y subdirectorio de trabajo dentro de ella.</p>
+</div>
+<h3 id="configuraciones-por-usuario-o-por-perfil">CONFIGURACIONES POR USUARIO O POR PERFIL </h3>
+<div class="style-normal">
+<p><code>user_config_dir</code> resulta especialmente útil con usuarios virtuales, ya que permite aplicar ajustes diferentes a cada cuenta o reutilizar perfiles mediante enlaces simbólicos a archivos de configuración comunes.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Ajuste por usuario virtual</p>
+<p>El siguiente ejemplo activa el directorio desde el que se aplicarán ajustes particulares para cada cuenta virtual.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>user_config_dir=/etc/vsftpd/user_conf
+</code></pre></div>
+<div class="style-normal">
+<p>Dentro de <code>/etc/vsftpd/user_conf/pedro</code> podríamos definir, por ejemplo, un <code>local_root</code> distinto o límites de ancho de banda específicos.</p>
+</div>
+<h2 id="carpetas-compartidas-y-bind-mount">CARPETAS COMPARTIDAS Y BIND MOUNT </h2>
+<div class="style-normal">
+<p>Cuando un usuario está enjaulado, los enlaces simbólicos hacia rutas externas no suelen resolver el problema de compartir contenido fuera del árbol del <code>chroot</code>. La técnica más sólida consiste en utilizar <strong>montajes bind</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Carpeta compartida dentro del espacio del usuario</p>
+<p>El siguiente ejemplo monta una carpeta externa dentro del árbol visible por el usuario enjaulado mediante un <code>bind mount</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/ftp/pedro/publica
+<span class="token function">mount</span> <span class="token parameter variable">--bind</span> /var/ftp/usuarios/publica /home/ftp/pedro/publica
+</code></pre></div>
+<div class="style-normal">
+<p>Si hay muchos usuarios, no conviene llenar <code>/etc/fstab</code> con decenas de montajes permanentes. En ese caso, una estrategia más flexible es abrir una <strong>sesión PAM</strong> y ejecutar scripts mediante <code>pam_exec</code> en el momento de inicio o cierre de sesión.</p>
+</div>
+<h3 id="apertura-de-sesión-pam">APERTURA DE SESIÓN PAM </h3>
+<div class="style-normal">
+<p>Para que <code>vsftpd</code> invoque módulos de tipo sesión, debe habilitarse:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Apertura de sesión PAM en <code>vsftpd</code></p>
+<p>El siguiente ejemplo activa el soporte de sesión PAM para que puedan ejecutarse módulos de tipo <code>session</code> durante la conexión FTP.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>session_support=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Y en el fichero PAM correspondiente podrían añadirse líneas como estas:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Ejecución de script con <code>pam_exec</code></p>
+<p>El siguiente ejemplo muestra cómo invocar un script del sistema al abrir la sesión mediante un módulo PAM de tipo <code>session</code>.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>session optional pam_exec.so /usr/local/sbin/ftp-session-mount.sh
+</code></pre></div>
+<div class="style-normal">
+<p>En este punto conviene distinguir bien dos mecanismos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>user_config_dir</code> sirve para <strong>directivas de configuración de <code>vsftpd</code></strong>.</li>
+<li><code>pam_exec</code> sirve para <strong>ejecutar scripts del sistema</strong> al abrir o cerrar la sesión.</li>
+</ul>
+</div>
+<h2 id="limitaciones-de-vsftpd-y-cómo-compensarlas">LIMITACIONES DE VSFTPD Y CÓMO COMPENSARLAS </h2>
+<div class="style-normal">
+<p>Frente a otros servidores FTP más grandes o más orientados a hosting compartido, <code>vsftpd</code> adopta una filosofía más austera. Esto tiene ventajas claras en simplicidad y seguridad, pero también implica que algunas funciones no aparecen como opciones nativas directas. En lugar de incorporar todas esas políticas dentro del propio demonio, muchas veces se delegan en <strong>PAM</strong>, en los <strong>permisos del sistema de archivos</strong> o en herramientas propias del sistema operativo.</p>
+</div>
+<h3 id="grupos-funcionales-y-perfiles-de-acceso">GRUPOS FUNCIONALES Y PERFILES DE ACCESO </h3>
+<div class="style-normal">
+<p><code>vsftpd</code> no ofrece un sistema interno de grupos o perfiles equivalente al de otros servidores. Aun así, en la práctica se puede trabajar de forma muy parecida si se combinan varias técnicas:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Configuraciones por usuario con <code>user_config_dir</code>, reutilizando perfiles comunes mediante enlaces simbólicos o archivos generados a partir de plantillas.</li>
+<li>Permisos Unix, grupos del sistema y ACL para decidir qué directorios puede leer o escribir cada usuario real o de mapeo.</li>
+<li><code>bind mount</code> o <code>pam_mount</code> para presentar carpetas compartidas dentro del <code>chroot</code> solo a determinados usuarios o conjuntos de usuarios.</li>
+</ul>
+</div>
+<div class="style-normal">
+<p>Con suficiente orden en la estructura de directorios, este enfoque permite simular bastante bien la idea de "grupo FTP" aunque <code>vsftpd</code> no la implemente como una entidad propia.</p>
+</div>
+<h3 id="restricciones-por-horario-origen-o-contexto">RESTRICCIONES POR HORARIO, ORIGEN O CONTEXTO </h3>
+<div class="style-normal">
+<p>Otra diferencia habitual respecto a otros servidores FTP es que muchas restricciones de acceso avanzadas no se expresan en <code>vsftpd.conf</code>, sino en la pila PAM. Esto no es una debilidad en sí misma, pero desplaza la lógica de control a otro nivel de configuración.</p>
+<p>En particular, los módulos PAM de tipo <code>account</code> permiten aplicar políticas que en otros productos aparecen integradas de serie:</p>
+</div>
+<div class="style-list">
+<ul>
+<li><code>pam_time</code> para limitar el acceso por franjas horarias.</li>
+<li><code>pam_access</code> para permitir o denegar conexiones según origen, servicio o usuario.</li>
+<li><code>pam_listfile</code> para reforzar listas blancas o negras de cuentas.</li>
+<li><code>pam_mount</code> para preparar dinámicamente el entorno visible por el usuario durante la sesión.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Restricciones complementarias mediante PAM</p>
+<p>El siguiente ejemplo muestra una pila PAM en la que se añaden controles de horario y de origen además de la autenticación habitual.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>auth    required pam_listfile.so item=user sense=deny file=/etc/ftpusers onerr=succeed
+account required pam_time.so
+account required pam_access.so accessfile=/etc/security/access-ftp.conf
+session optional pam_mount.so
+</code></pre></div>
+<div class="style-normal">
+<p>La idea importante no es memorizar estos módulos, sino entender que <code>vsftpd</code> puede apoyarse en PAM para cubrir necesidades de control de acceso que el servidor no resuelve por sí solo. En entornos docentes y pequeños laboratorios esto ofrece mucha flexibilidad, pero exige documentar bien la solución para que siga siendo mantenible.</p>
+</div>
+<h3 id="cuotas-y-control-de-espacio">CUOTAS Y CONTROL DE ESPACIO </h3>
+<div class="style-normal">
+<p><code>vsftpd</code> tampoco incorpora un sistema propio de cuotas de disco por usuario o por grupo, algo que sí aparece de forma más visible en otros servidores FTP. En Linux, esa función suele resolverse en el nivel correcto: el <strong>sistema de archivos</strong>.</p>
+<p>Por eso, si se quiere limitar el espacio consumido por usuarios FTP, lo habitual es recurrir a cuotas del propio sistema, por ejemplo con las herramientas clásicas de <code>quota</code>, <code>setquota</code> o <code>edquota</code>, o con cuotas de proyecto en sistemas de archivos que las soporten. De este modo, la restricción no depende solo del servicio FTP, sino de cualquier proceso que escriba en esa ruta.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Gestión externa de cuotas</p>
+<p>El siguiente ejemplo ilustra una activación típica de cuotas a nivel de sistema, independiente de <code>vsftpd</code>, para limitar el espacio disponible a un usuario concreto.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> <span class="token function">install</span> <span class="token function">quota</span>
+edquota usuario1
+<span class="token function">quota</span> <span class="token parameter variable">-u</span> usuario1
+</code></pre></div>
+<div class="style-normal">
+<p>Este enfoque encaja bien con la filosofía de <code>vsftpd</code>: el servidor se ocupa de autenticar, aislar y registrar sesiones, mientras que el sistema operativo asume el control fino de recursos y políticas globales.</p>
+</div>
+<h3 id="criterio-práctico">CRITERIO PRÁCTICO </h3>
+<div class="style-normal">
+<p>En resumen, <code>vsftpd</code> no destaca por acumular funciones administrativas "todo en uno", sino por integrarse bien con los mecanismos estándar de GNU/Linux. Esa es precisamente la clave para solventar sus carencias aparentes: combinar el demonio FTP con <strong>PAM</strong>, <strong>permisos y ACL</strong>, <strong>montajes bind o <code>pam_mount</code></strong> y <strong>cuotas del sistema de archivos</strong>.</p>
+</div>
+<h2 id="modo-activo-y-modo-pasivo">MODO ACTIVO Y MODO PASIVO </h2>
+<div class="style-normal">
+<p>FTP utiliza una conexión de control y otra de datos. Por eso la configuración de red es especialmente importante. En redes sencillas suelen funcionar ambos modos, pero en presencia de NAT o firewalls el <strong>modo pasivo</strong> suele ser el más fiable.</p>
+</div>
+<h3 id="configuración-del-modo-pasivo">CONFIGURACIÓN DEL MODO PASIVO </h3>
+<div class="admonition example">
+<p class="admonition-title">Rango de puertos pasivos</p>
+<p>El siguiente ejemplo habilita el modo pasivo y reserva un rango concreto de puertos de datos para facilitar la apertura en el firewall.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>pasv_enable=YES
+pasv_min_port=55000
+pasv_max_port=56999
+port_enable=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Con esta configuración, <code>vsftpd</code> seguirá aceptando modo activo y además reservará un rango concreto para conexiones pasivas. Ese rango debe abrirse también en el firewall.</p>
+<p>Si el servidor está detrás de NAT, normalmente será necesario indicar la IP pública o el nombre resoluble que el servidor debe anunciar:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Dirección anunciada en modo pasivo</p>
+<p>El siguiente ejemplo fija la dirección pública que el servidor anunciará a los clientes cuando trabaje en modo pasivo.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>pasv_address=203.0.113.10
+</code></pre></div>
+<div class="style-normal">
+<p>Si se utiliza un nombre DNS en lugar de una IP, habrá que acompañarlo de <code>pasv_addr_resolve=YES</code>.</p>
+</div>
+<h2 id="registro-y-auditoría">REGISTRO Y AUDITORÍA </h2>
+<div class="style-normal">
+<p>Una buena configuración de FTP no termina en la autenticación. También debe permitir saber <strong>quién se conecta</strong>, <strong>qué transfiere</strong> y <strong>qué comandos ejecuta</strong>. Para ello, <code>vsftpd</code> ofrece varios mecanismos de log.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Registro detallado de actividad</p>
+<p>El siguiente ejemplo combina registro de transferencias, trazas del protocolo y un fichero de log propio para facilitar la auditoría.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>xferlog_enable=YES
+dual_log_enable=YES
+log_ftp_protocol=YES
+vsftpd_log_file=/var/log/vsftpd/ftp-server.log
+</code></pre></div>
+<div class="style-normal">
+<p>Esta combinación resulta útil en entornos de laboratorio porque conserva información detallada de transferencias y de la conversación FTP. Si se prefiere integrar el registro con el sistema, puede utilizarse <code>syslog_enable=YES</code>.</p>
+</div>
+<h2 id="seguridad-en-vsftpd">SEGURIDAD EN VSFTPD </h2>
+<h3 id="medidas-recomendadas">MEDIDAS RECOMENDADAS </h3>
+<div class="style-list">
+<ul>
+<li>Deshabilitar el acceso anónimo salvo que exista una necesidad real.</li>
+<li>Enjaular a los usuarios en su directorio de trabajo.</li>
+<li>Usar cuentas sin shell interactiva para accesos exclusivamente FTP.</li>
+<li>Limitar explícitamente los usuarios permitidos cuando el servicio no deba estar abierto a todas las cuentas del sistema.</li>
+<li>Restringir el rango de puertos pasivos y abrir solo los necesarios en el firewall.</li>
+<li>Revisar periódicamente los logs del servicio.</li>
+</ul>
+</div>
+<h3 id="cifrado-con-ftps">CIFRADO CON FTPS </h3>
+<div class="style-normal">
+<p>Si se quiere evitar que las credenciales viajen en texto claro, debe activarse FTPS. Una configuración básica podría incluir lo siguiente:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Configuración básica de FTPS</p>
+<p>El siguiente ejemplo activa TLS y obliga a cifrar tanto la autenticación como el canal de datos de los usuarios autenticados.</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>ssl_enable=YES
+rsa_cert_file=/etc/ssl/certs/vsftpd.pem
+rsa_private_key_file=/etc/ssl/private/vsftpd.key
+force_local_logins_ssl=YES
+force_local_data_ssl=YES
+</code></pre></div>
+<div class="style-normal">
+<p>Con ello se obliga a cifrar tanto la autenticación como el canal de datos para usuarios autenticados. La documentación oficial advierte además de que algunos ajustes de TLS pueden afectar a la compatibilidad con determinados clientes, por lo que siempre conviene probar desde el cliente real que vaya a usarse.</p>
+</div>
+<h3 id="sobre-pam-y-los-scripts-de-sesión">SOBRE PAM Y LOS SCRIPTS DE SESIÓN </h3>
+<div class="style-normal">
+<p>Cuando se integran scripts mediante PAM para montar carpetas, aplicar cuotas o registrar eventos, es importante que la pila PAM esté pensada para un servicio no interactivo como FTP. No todos los módulos de sesión que funcionan bien en un login de consola son apropiados para <code>vsftpd</code>.</p>
+</div>
+<h2 id="comprobaciones-básicas">COMPROBACIONES BÁSICAS </h2>
+<div class="style-normal">
+<p>Una vez aplicada la configuración, conviene verificar siempre el servicio con un pequeño guion de comprobación:</p>
+</div>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>systemctl restart vsftpd
+systemctl is-active vsftpd
+ss <span class="token parameter variable">-ltnp</span> <span class="token operator">|</span> <span class="token function">grep</span> :21
+<span class="token function">tail</span> <span class="token parameter variable">-f</span> /var/log/vsftpd/ftp-server.log
+</code></pre><div class="style-normal">
+<p>Después se deben probar, como mínimo, los siguientes casos:</p>
+</div>
+<div class="style-list">
+<ul>
+<li>Inicio de sesión con un usuario autenticado.</li>
+<li>Subida y descarga de ficheros en su zona privada.</li>
+<li>Acceso a carpetas compartidas montadas dentro del <code>chroot</code>.</li>
+<li>Funcionamiento del modo pasivo desde un cliente situado tras otra red.</li>
+<li>Acceso anónimo, si está habilitado.</li>
+<li>Conexión FTPS, si se ha activado TLS.</li>
+</ul>
+</div>
+<h2 id="conclusión">CONCLUSIÓN </h2>
+<div class="style-normal">
+<p><code>vsftpd</code> es una solución muy adecuada para aprender y desplegar un servicio FTP en Linux con un nivel razonable de seguridad. Su configuración es compacta, pero suficientemente potente como para cubrir escenarios muy distintos: usuarios locales, acceso anónimo controlado, usuarios virtuales, directorios enjaulados, carpetas compartidas y sesiones cifradas.</p>
+<p>La clave para administrarlo bien no está en memorizar directivas sueltas, sino en entender la relación entre cuatro elementos: <strong>autenticación</strong>, <strong>permisos del sistema de archivos</strong>, <strong>topología de red</strong> y <strong>auditoría</strong>. Cuando esos cuatro aspectos están alineados, el servicio resulta predecible, seguro y mucho más fácil de mantener.</p>
+</div>
+<h2 id="referencias">REFERENCIAS </h2>
+<div class="style-list">
+<ul>
+<li>Sitio oficial de <code>vsftpd</code>: <a href="https://security.appspot.com/vsftpd.html">https://security.appspot.com/vsftpd.html</a></li>
+<li>Manual oficial de configuración de <code>vsftpd.conf</code>: <a href="https://security.appspot.com/vsftpd/vsftpd_conf.html">https://security.appspot.com/vsftpd/vsftpd_conf.html</a></li>
+<li>Página de manual de Debian para <code>vsftpd.conf</code>: <a href="https://manpages.debian.org/bookworm/vsftpd/vsftpd.conf.5.en.html">https://manpages.debian.org/bookworm/vsftpd/vsftpd.conf.5.en.html</a></li>
+</ul>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
