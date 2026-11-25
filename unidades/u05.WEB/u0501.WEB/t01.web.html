@@ -1,0 +1,2569 @@
+<!DOCTYPE html><html><head>
+      <title>SER</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+      
+      
+      
+      <script>if(!Object.groupBy){Object.groupBy=function(e,t){var r=Object.create(null);for(var i=0;i<e.length;i++){var k=t(e[i],i);if(typeof k!=="symbol"){k=String(k)}if(!(k in r)){r[k]=[]}r[k].push(e[i])}return r}}</script><script src="https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.min.js"></script>
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview pre[data-line]{position:relative;padding:1em 0 1em 3em!important}.markdown-preview pre[data-line]>code{position:relative;z-index:1}.markdown-preview pre[data-line] .line-numbers-rows{z-index:1}.markdown-preview pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;pointer-events:none;display:block;width:100%}.markdown-preview pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:var(--line-highlight-background,linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0)));line-height:inherit;white-space:pre}.markdown-preview pre[data-line] .line-highlight:before,.markdown-preview pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none}.markdown-preview pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc ol.md-toc-ol{margin:0;padding-left:1.6em}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.markdown-preview a.tag,.markdown-preview a.tag:active,.markdown-preview a.tag:link,.markdown-preview a.tag:visited,.markdown-preview span.tag:not(.token){display:inline-block;background-color:var(--vscode-badge-background,rgba(127,127,127,.18));color:var(--vscode-badge-foreground,currentColor);border-radius:2em;font-size:.85em;font-weight:500;padding:.05em .55em;line-height:1.5;white-space:nowrap;text-decoration:none;text-shadow:none;box-shadow:none;transition:background-color .12s ease,opacity .12s ease}.markdown-preview a.tag{cursor:pointer}.markdown-preview a.tag:focus,.markdown-preview a.tag:hover{background-color:var(--vscode-badge-background,rgba(127,127,127,.32));color:var(--vscode-badge-foreground,currentColor);opacity:.85;text-decoration:none;outline:0}.markdown-preview .wikilink-embed-content{border-left:3px solid var(--vscode-textBlockQuote-border,rgba(128,128,128,.3));background:var(--vscode-textBlockQuote-background,rgba(128,128,128,.05));margin:.5em 0;padding:.5em .75em;border-radius:0 3px 3px 0}.markdown-preview .wikilink-embed-content.wikilink-embed-error{border-left-color:var(--vscode-errorForeground,#cf222e);color:var(--vscode-errorForeground,#cf222e);font-style:italic;opacity:.8}.markdown-preview .wikilink-embed-content h1:first-child,.markdown-preview .wikilink-embed-content h2:first-child,.markdown-preview .wikilink-embed-content h3:first-child,.markdown-preview .wikilink-embed-content h4:first-child,.markdown-preview .wikilink-embed-content h5:first-child,.markdown-preview .wikilink-embed-content h6:first-child{margin-top:.25em}.markdown-preview .wikilink-embed-content .wikilink-embed-content{margin:.25em 0;padding:.25em .5em}.markdown-preview .block-id{display:none}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}.scrollbar-style::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc ol.md-toc-ol{margin:0;padding-left:1.6em}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview {
+  font-family: Verdana, Arial, "Times New Roman", sans-serif;
+  font-size: 14px;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://ser.smr2.iesdoctorbalmis.info/assets/fondo.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview table {
+  table-layout: auto !important;
+  width: fit-content !important;
+  max-width: none !important;
+  border-collapse: collapse !important;
+  text-indent: 0cm !important;
+  text-align: left !important;
+}
+.markdown-preview.markdown-preview .style-normal {
+  text-indent: 0.5cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-example {
+  text-indent: 0cm;
+  text-align: justify;
+  font-size: small;
+}
+.markdown-preview.markdown-preview .style-note {
+  text-align: justify;
+  font-size: x-small;
+}
+.markdown-preview.markdown-preview .style-title {
+  text-indent: 0cm;
+  text-align: center;
+}
+.markdown-preview.markdown-preview .style-list {
+  text-indent: 0cm;
+  text-align: justify;
+}
+.markdown-preview.markdown-preview .style-table-content table {
+  background-color: #f0f9ff !important;
+  border-style: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.markdown-preview.markdown-preview .style-table-content th,
+.markdown-preview.markdown-preview .style-table-content td {
+  border-style: none !important;
+  vertical-align: top !important;
+}
+.markdown-preview.markdown-preview .style-table-content th:first-child,
+.markdown-preview.markdown-preview .style-table-content td:first-child {
+  width: 200px !important;
+}
+.markdown-preview.markdown-preview .md-toc {
+  background-color: rgba(173, 216, 230, 0.4) !important;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  page-break-inside: auto !important;
+  break-inside: auto !important;
+  white-space: pre-wrap;
+}
+
+      </style>
+      
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<div class="style-title">
+<p><img src="../../../assets/img-BalmisHeader.png" alt="BALMIS"></p>
+<h1 id="servicio-web">SERVICIO WEB </h1>
+</div>
+<p>📙<a href="./t01.web.pdf">Descargar PDF</a><br>
+</p><div class="md-toc">
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="0">
+  <a href="#servicio-web" class="md-toc-link">SERVICIO WEB</a>
+</summary>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#introducción-a-los-servicios-web" class="md-toc-link">INTRODUCCIÓN A LOS SERVICIOS WEB</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#concepto-de-servicio-web-y-servidor-web" class="md-toc-link">CONCEPTO DE SERVICIO WEB Y SERVIDOR WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#evolución-de-los-servicios-web" class="md-toc-link">EVOLUCIÓN DE LOS SERVICIOS WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#arquitectura-cliente-servidor" class="md-toc-link">ARQUITECTURA CLIENTE-SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#componentes-de-un-servicio-web" class="md-toc-link">COMPONENTES DE UN SERVICIO WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#tipos-de-servidores-web-y-principales-soluciones" class="md-toc-link">TIPOS DE SERVIDORES WEB Y PRINCIPALES SOLUCIONES</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#fundamentos-de-los-protocolos-web" class="md-toc-link">FUNDAMENTOS DE LOS PROTOCOLOS WEB</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#modelo-de-comunicación-cliente-servidor" class="md-toc-link">MODELO DE COMUNICACIÓN CLIENTE-SERVIDOR</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="2">
+  <a href="#protocolo-http" class="md-toc-link">PROTOCOLO HTTP</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#características-y-funcionamiento" class="md-toc-link">CARACTERÍSTICAS Y FUNCIONAMIENTO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#estructura-de-una-petición-http" class="md-toc-link">ESTRUCTURA DE UNA PETICIÓN HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#estructura-de-una-respuesta-http" class="md-toc-link">ESTRUCTURA DE UNA RESPUESTA HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#metodos-http" class="md-toc-link">METODOS HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#codigo-de-estado-http" class="md-toc-link">CODIGO DE ESTADO HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#cabeceras-http" class="md-toc-link">CABECERAS HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#versiones-de-http" class="md-toc-link">VERSIONES DE HTTP</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#https-y-su-relación-con-http" class="md-toc-link">HTTPS Y SU RELACIÓN CON HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#tcpip-y-puertos-utilizados-por-los-servicios-web" class="md-toc-link">TCP/IP Y PUERTOS UTILIZADOS POR LOS SERVICIOS WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#dns-y-resolución-de-nombres-de-dominio" class="md-toc-link">DNS Y RESOLUCIÓN DE NOMBRES DE DOMINIO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#url-y-uri-estructura-y-componentes" class="md-toc-link">URL Y URI: ESTRUCTURA Y COMPONENTES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#flujo-general-de-una-petición-web" class="md-toc-link">FLUJO GENERAL DE UNA PETICIÓN WEB</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#instalación-y-funcionamiento-de-un-servidor-web" class="md-toc-link">INSTALACIÓN Y FUNCIONAMIENTO DE UN SERVIDOR WEB</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#requisitos-previos-para-instalar-un-servidor-web" class="md-toc-link">REQUISITOS PREVIOS PARA INSTALAR UN SERVIDOR WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#consideraciones-para-la-selección-de-un-servidor-web" class="md-toc-link">CONSIDERACIONES PARA LA SELECCIÓN DE UN SERVIDOR WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#instalación-del-software-servidor" class="md-toc-link">INSTALACIÓN DEL SOFTWARE SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-inicial-del-servidor" class="md-toc-link">CONFIGURACIÓN INICIAL DEL SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#estructura-de-archivos-y-directorios-del-servidor" class="md-toc-link">ESTRUCTURA DE ARCHIVOS Y DIRECTORIOS DEL SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#inicio-parada-reinicio-y-supervisión-del-servicio" class="md-toc-link">INICIO, PARADA, REINICIO Y SUPERVISIÓN DEL SERVICIO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#publicación-de-contenidos-web" class="md-toc-link">PUBLICACIÓN DE CONTENIDOS WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#comprobación-del-funcionamiento-del-servidor" class="md-toc-link">COMPROBACIÓN DEL FUNCIONAMIENTO DEL SERVIDOR</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#sitios-web-virtuales" class="md-toc-link">SITIOS WEB VIRTUALES</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#concepto-y-finalidad-de-los-sitios-virtuales" class="md-toc-link">CONCEPTO Y FINALIDAD DE LOS SITIOS VIRTUALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#ventajas-de-utilizar-sitios-virtuales" class="md-toc-link">VENTAJAS DE UTILIZAR SITIOS VIRTUALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#tipos-de-sitios-virtuales" class="md-toc-link">TIPOS DE SITIOS VIRTUALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#elementos-de-configuración-de-un-sitio-virtual" class="md-toc-link">ELEMENTOS DE CONFIGURACIÓN DE UN SITIO VIRTUAL</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-de-varios-sitios-web-en-un-mismo-servidor" class="md-toc-link">CONFIGURACIÓN DE VARIOS SITIOS WEB EN UN MISMO SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#sitio-web-predeterminado" class="md-toc-link">SITIO WEB PREDETERMINADO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#organización-de-los-sitios-y-aislamiento-de-contenidos" class="md-toc-link">ORGANIZACIÓN DE LOS SITIOS Y AISLAMIENTO DE CONTENIDOS</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#selección-del-sitio-web-de-destino" class="md-toc-link">SELECCIÓN DEL SITIO WEB DE DESTINO</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#selección-del-sitio-mediante-la-dirección-ip-de-destino" class="md-toc-link">SELECCIÓN DEL SITIO MEDIANTE LA DIRECCIÓN IP DE DESTINO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#selección-del-sitio-mediante-el-puerto-de-destino" class="md-toc-link">SELECCIÓN DEL SITIO MEDIANTE EL PUERTO DE DESTINO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#selección-del-sitio-mediante-el-nombre" class="md-toc-link">SELECCIÓN DEL SITIO MEDIANTE EL NOMBRE</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#identificación-del-sitio-en-conexiones-https" class="md-toc-link">IDENTIFICACIÓN DEL SITIO EN CONEXIONES HTTPS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#comparación-de-los-mecanismos-de-discriminación" class="md-toc-link">COMPARACIÓN DE LOS MECANISMOS DE DISCRIMINACIÓN</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#proxy-inverso-y-balanceo-de-carga" class="md-toc-link">PROXY INVERSO Y BALANCEO DE CARGA</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#seguridad-y-control-de-acceso" class="md-toc-link">SEGURIDAD Y CONTROL DE ACCESO</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#objetivos-y-principios-de-seguridad" class="md-toc-link">OBJETIVOS Y PRINCIPIOS DE SEGURIDAD</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#securidad-del-sistema-operativo-y-del-software-servidor" class="md-toc-link">SECURIDAD DEL SISTEMA OPERATIVO Y DEL SOFTWARE SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#gestión-de-permisos-sobre-los-recursos-publicados" class="md-toc-link">GESTIÓN DE PERMISOS SOBRE LOS RECURSOS PUBLICADOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#control-de-acceso-a-directorios-y-archivos" class="md-toc-link">CONTROL DE ACCESO A DIRECTORIOS Y ARCHIVOS</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="2">
+  <a href="#autenticación-de-usuarios" class="md-toc-link">AUTENTICACIÓN DE USUARIOS</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#autenticación-básica-http" class="md-toc-link">AUTENTICACIÓN BÁSICA HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#autenticación-mediante-formularios" class="md-toc-link">AUTENTICACIÓN MEDIANTE FORMULARIOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#autenticación-mediante-certificados-de-cliente" class="md-toc-link">AUTENTICACIÓN MEDIANTE CERTIFICADOS DE CLIENTE</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="3">
+  <a href="#otros-mecanismos-de-autenticación" class="md-toc-link">OTROS MECANISMOS DE AUTENTICACIÓN</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#autorización-y-gestión-de-permisos" class="md-toc-link">AUTORIZACIÓN Y GESTIÓN DE PERMISOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#protección-frente-a-ataques-y-amenazas" class="md-toc-link">PROTECCIÓN FRENTE A ATAQUES Y AMENAZAS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#medidas-de-protección-y-buenas-prácticas-de-seguridad" class="md-toc-link">MEDIDAS DE PROTECCIÓN Y BUENAS PRÁCTICAS DE SEGURIDAD</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#registro-y-auditoría-de-accesos" class="md-toc-link">REGISTRO Y AUDITORÍA DE ACCESOS</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#ejecución-de-código-en-el-cliente-y-en-el-servidor" class="md-toc-link">EJECUCIÓN DE CÓDIGO EN EL CLIENTE Y EN EL SERVIDOR</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#contenido-estático-y-dinámico" class="md-toc-link">CONTENIDO ESTÁTICO Y DINÁMICO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#ejecición-de-código-en-el-cliente" class="md-toc-link">EJECICIÓN DE CÓDIGO EN EL CLIENTE</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#ejecición-de-código-en-el-servidor" class="md-toc-link">EJECICIÓN DE CÓDIGO EN EL SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#diferencias-entre-la-ejecución-en-el-cliente-y-en-el-servidor" class="md-toc-link">DIFERENCIAS ENTRE LA EJECUCIÓN EN EL CLIENTE Y EN EL SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#comunicación-e-interacción-entre-el-cliente-y-el-servidor" class="md-toc-link">COMUNICACIÓN E INTERACCIÓN ENTRE EL CLIENTE Y EL SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#aplicaciones-web-y-acceso-a-bases-de-datos" class="md-toc-link">APLICACIONES WEB Y ACCESO A BASES DE DATOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#validación-de-datos-y-seguridad-en-la-ejecución-de-código" class="md-toc-link">VALIDACIÓN DE DATOS Y SEGURIDAD EN LA EJECUCIÓN DE CÓDIGO</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#módulos-y-componentes" class="md-toc-link">MÓDULOS Y COMPONENTES</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#concepto-de-módulo" class="md-toc-link">CONCEPTO DE MÓDULO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#arquitectura-modular" class="md-toc-link">ARQUITECTURA MODULAR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#tipos-de-módulos-y-funcionalidades" class="md-toc-link">TIPOS DE MÓDULOS Y FUNCIONALIDADES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#instalación-y-habilitación-de-módulos" class="md-toc-link">INSTALACIÓN Y HABILITACIÓN DE MÓDULOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-y-compatibilidad-entre-módulos" class="md-toc-link">CONFIGURACIÓN Y COMPATIBILIDAD ENTRE MÓDULOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#seguridad-y-rendimiento-en-la-selección-de-módulos" class="md-toc-link">SEGURIDAD Y RENDIMIENTO EN LA SELECCIÓN DE MÓDULOS</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#comunicaciones-seguras-https-y-certificados-digitales" class="md-toc-link">COMUNICACIONES SEGURAS: HTTPS Y CERTIFICADOS DIGITALES</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#riesgos-de-las-comunicaciones-http-sin-cifrar" class="md-toc-link">RIESGOS DE LAS COMUNICACIONES HTTP SIN CIFRAR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#fundamentos-de-la-criptografía-aplicada-a-la-web" class="md-toc-link">FUNDAMENTOS DE LA CRIPTOGRAFÍA APLICADA A LA WEB</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#el-protocolo-tls" class="md-toc-link">EL PROTOCOLO TLS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#https-y-diferencias-respecto-a-http" class="md-toc-link">HTTPS Y DIFERENCIAS RESPECTO A HTTP</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#certificados-digitales" class="md-toc-link">CERTIFICADOS DIGITALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#autoridades-de-certificación-y-cadena-de-confianza" class="md-toc-link">AUTORIDADES DE CERTIFICACIÓN Y CADENA DE CONFIANZA</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#obtención-instalación-renovación-y-revocación-de-certificados" class="md-toc-link">OBTENCIÓN, INSTALACIÓN, RENOVACIÓN Y REVOCACIÓN DE CERTIFICADOS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#configuración-de-conexiones-https" class="md-toc-link">CONFIGURACIÓN DE CONEXIONES HTTPS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#redirección-de-peticiones-http-a-https" class="md-toc-link">REDIRECCIÓN DE PETICIONES HTTP A HTTPS</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#hsts-http-strict-transport-security" class="md-toc-link">HSTS (HTTP Strict Transport Security)</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#verificación-de-la-seguridad-de-las-conexiones-https" class="md-toc-link">VERIFICACIÓN DE LA SEGURIDAD DE LAS CONEXIONES HTTPS</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#monitorización-mantenimiento-y-diagnóstico-del-servicio-web" class="md-toc-link">MONITORIZACIÓN, MANTENIMIENTO Y DIAGNÓSTICO DEL SERVICIO WEB</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#monitorización-del-estado-del-servidor" class="md-toc-link">MONITORIZACIÓN DEL ESTADO DEL SERVIDOR</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#registros-de-acceso-y-registros-de-errores" class="md-toc-link">REGISTROS DE ACCESO Y REGISTROS DE ERRORES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#codigo-de-estado-y-diagnóstico" class="md-toc-link">CODIGO DE ESTADO Y DIAGNÓSTICO</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#comprobación-de-la-conectividad-y-disponibilidad" class="md-toc-link">COMPROBACIÓN DE LA CONECTIVIDAD Y DISPONIBILIDAD</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#diagnóstico-de-problemas-habituales" class="md-toc-link">DIAGNÓSTICO DE PROBLEMAS HABITUALES</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#copias-de-seguridad" class="md-toc-link">COPIAS DE SEGURIDAD</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#mantenimiento-preventivo" class="md-toc-link">MANTENIMIENTO PREVENTIVO</a>
+</div>
+</details>
+</details>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="introducción-a-los-servicios-web">INTRODUCCIÓN A LOS SERVICIOS WEB </h2>
+<p>En este capítulo se introduce el concepto de servicio web y se explican sus características principales.</p>
+<h3 id="concepto-de-servicio-web-y-servidor-web">CONCEPTO DE SERVICIO WEB Y SERVIDOR WEB </h3>
+<p>Un <strong>servicio web</strong>, en el contexto de este tema, es un servicio de red que permite acceder a recursos y aplicaciones mediante tecnologías y protocolos web. Normalmente, el usuario utiliza un navegador para solicitar una página, una imagen, un documento o una funcionalidad; un sistema remoto recibe la petición y devuelve una respuesta que el navegador interpreta.</p>
+<p>Conviene distinguir tres conceptos relacionados:</p>
+<ul>
+<li>La <strong>web</strong> es el conjunto de recursos y aplicaciones interconectados que utilizan tecnologías como HTTP, HTML y las URL.</li>
+<li>Un <strong>servidor web</strong> es el programa que acepta peticiones HTTP o HTTPS y entrega los recursos solicitados o deriva la petición a otros componentes.</li>
+<li>El <strong>equipo servidor</strong> es el ordenador físico o virtual donde se ejecuta ese programa. Por tanto, servidor web no significa necesariamente un ordenador dedicado: puede ser un proceso que se ejecuta en una máquina que también ofrece otros servicios.</li>
+</ul>
+<p>El servidor web puede entregar contenido estático, como archivos HTML, imágenes, hojas de estilo o documentos, o participar en la generación de contenido dinámico. En este último caso, la petición puede ser procesada por una aplicación que consulta datos, aplica reglas de negocio y genera una respuesta personalizada. El servidor web actúa entonces como punto de entrada y coordinador de la comunicación, aunque no necesariamente ejecuta por sí mismo toda la lógica de la aplicación.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En sentido estricto, la expresión <em>servicio web</em> también se utiliza en otros ámbitos para describir interfaces de software entre aplicaciones (por ejemplo, API REST o servicios SOAP).<br>
+En este material se empleará principalmente en el sentido de servicio de publicación y acceso a sitios y aplicaciones web, indicando expresamente cuándo se hable de una API.</p>
+</div>
+<h3 id="evolución-de-los-servicios-web">EVOLUCIÓN DE LOS SERVICIOS WEB </h3>
+<p>Los primeros servidores web se diseñaron para publicar documentos y permitir que otros equipos los consultaran a través de una red. La interacción era sencilla: el cliente solicitaba un recurso identificado mediante una URL y el servidor devolvía el contenido. Las páginas estaban formadas principalmente por documentos estáticos.</p>
+<p>Con la evolución de HTML, los navegadores y las conexiones a Internet, las páginas incorporaron imágenes, hojas de estilo, scripts y otros recursos. Una sola página pasó a requerir varias peticiones al servidor. Más adelante se generalizaron las aplicaciones dinámicas, que generan contenidos según el usuario, la sesión, los datos disponibles o las acciones realizadas.</p>
+<p>La web actual integra aplicaciones complejas, servicios distribuidos, almacenamiento remoto, bases de datos, autenticación, interfaces para dispositivos móviles y comunicación entre sistemas. También se ha reforzado la seguridad mediante HTTPS y TLS. En consecuencia, un servidor web moderno suele formar parte de una arquitectura más amplia, con servidores de aplicaciones, bases de datos, sistemas de caché, proxies y mecanismos de supervisión.</p>
+<p>Esta evolución no significa que los contenidos estáticos hayan desaparecido. Siguen siendo habituales y, cuando se sirven directamente desde el servidor o desde una red de distribución de contenidos (CDN), pueden ofrecer un rendimiento elevado y una infraestructura relativamente sencilla.</p>
+<h3 id="arquitectura-cliente-servidor">ARQUITECTURA CLIENTE-SERVIDOR </h3>
+<p>La arquitectura cliente-servidor distribuye las responsabilidades entre dos partes. El <strong>cliente</strong> inicia la comunicación y solicita un recurso o una operación. El <strong>servidor</strong> permanece preparado para recibir solicitudes, procesa cada petición y devuelve una respuesta. En la navegación web, el cliente suele ser un navegador y el protocolo de aplicación habitual es HTTP o HTTPS.</p>
+<p><img src="./assets/esquema-comunicacion.png" alt="Esquema de comunicación cliente-servidor"></p>
+<p>De forma simplificada, el intercambio sigue estos pasos:</p>
+<ol>
+<li>El usuario introduce una URL o pulsa un enlace.</li>
+<li>El navegador determina a qué servidor debe conectarse; para ello puede necesitar resolver el nombre mediante DNS.</li>
+<li>Se establece una conexión de transporte con el servidor. En HTTPS se negocia además una conexión protegida mediante TLS.</li>
+<li>El navegador envía una petición HTTP que identifica el recurso y puede incluir cabeceras, cookies o datos.</li>
+<li>El servidor interpreta la petición, comprueba si puede atenderla y obtiene o genera el contenido.</li>
+<li>El servidor devuelve una respuesta HTTP con un código de estado, cabeceras y, normalmente, un cuerpo.</li>
+<li>El navegador interpreta la respuesta y presenta el contenido. Si necesita otros recursos, puede realizar nuevas peticiones.</li>
+</ol>
+<p>El modelo es lógico, no necesariamente físico. Un único equipo puede desempeñar varios papeles y un servicio puede estar repartido entre muchas máquinas. Por ejemplo, el navegador se comunica con un servidor frontal, que consulta un servidor de aplicaciones y este accede a una base de datos. Para el usuario, el conjunto puede presentarse como un único sitio web.</p>
+<h3 id="componentes-de-un-servicio-web">COMPONENTES DE UN SERVICIO WEB </h3>
+<p>Un servicio web funcional depende de varios componentes que colaboran. La separación ayuda a comprender dónde puede encontrarse un problema y qué elementos deben configurarse y protegerse.</p>
+<ul>
+<li>
+<p><strong>Cliente web o navegador</strong><br>
+Es el programa que utiliza el usuario para acceder a los recursos. Envía peticiones, recibe respuestas, interpreta HTML y CSS, ejecuta JavaScript y presenta el resultado. También gestiona elementos como cookies, caché, certificados y sesiones.</p>
+</li>
+<li>
+<p><strong>Servidor web</strong><br>
+Es el software que escucha en uno o varios puertos, acepta conexiones y procesa peticiones HTTP/HTTPS. Puede entregar archivos directamente, aplicar reglas de acceso, registrar actividad y reenviar solicitudes a otros servicios. Su configuración determina, entre otras cosas, qué sitios publica y cómo responde a cada petición.</p>
+</li>
+<li>
+<p><strong>Sistema operativo</strong><br>
+Proporciona los recursos y servicios básicos para ejecutar el servidor web: procesos, memoria, sistema de archivos, usuarios, permisos, red y registros. La seguridad del servicio depende en buena medida de la configuración y actualización del sistema operativo.</p>
+</li>
+<li>
+<p><strong>Sistema de almacenamiento</strong><br>
+Contiene los archivos publicados, la configuración del servidor, los registros y, en algunos casos, datos de la aplicación. Puede ser almacenamiento local, un volumen remoto o un servicio de almacenamiento externo. Es importante organizarlo y establecer permisos y copias de seguridad.</p>
+</li>
+<li>
+<p><strong>Red de comunicaciones</strong><br>
+Permite que clientes y servidores intercambien información. Incluye interfaces de red, direccionamiento IP, encaminamiento, cortafuegos, puertos y, habitualmente, servicios DNS. Una configuración incorrecta puede impedir el acceso aunque el servidor web esté correctamente instalado.</p>
+</li>
+<li>
+<p><strong>Aplicaciones y bases de datos</strong><br>
+Las aplicaciones implementan la lógica que produce respuestas dinámicas. Pueden consultar bases de datos, validar información, gestionar usuarios o comunicarse con otros servicios. La base de datos almacena información persistente, pero no suele ser el servidor web quien la presenta directamente al navegador: normalmente interviene una aplicación.</p>
+</li>
+</ul>
+<p><strong>Organización de los componentes por capas</strong><br>
+La figura representa una posible organización por capas, no una obligación de diseño. En instalaciones pequeñas, varias capas pueden estar en el mismo equipo. En sistemas de mayor tamaño, cada función puede distribuirse entre servidores distintos para mejorar la escalabilidad, la disponibilidad o la seguridad.</p>
+<p><img src="./assets/organizacion-componentes.png" alt="Organización de los componentes por capas"></p>
+<h3 id="tipos-de-servidores-web-y-principales-soluciones">TIPOS DE SERVIDORES WEB Y PRINCIPALES SOLUCIONES </h3>
+<p>Existen distintas implementaciones de software servidor web. Todas permiten atender peticiones web, pero difieren en arquitectura, integración con el sistema operativo, modelo de configuración, extensibilidad y escenarios de uso. La elección depende de los requisitos del servicio, la experiencia del equipo administrador, la infraestructura disponible y las necesidades de rendimiento y mantenimiento.</p>
+<ul>
+<li>
+<p><strong>Apache HTTP Server</strong><br>
+Es un servidor web de propósito general, de código abierto y con una arquitectura extensible mediante módulos. Se utiliza en numerosos entornos y dispone de una amplia documentación y ecosistema. Su configuración permite adaptar el comportamiento del servidor a distintos escenarios de alojamiento.</p>
+</li>
+<li>
+<p><strong>Nginx</strong><br>
+Es un servidor web de código abierto conocido por su arquitectura orientada a gestionar muchas conexiones concurrentes con un consumo eficiente de recursos. Además de servir contenido estático, se utiliza con frecuencia como proxy inverso, equilibrador de carga y componente frontal de aplicaciones.</p>
+</li>
+<li>
+<p><strong>Microsoft Internet Information Services (IIS)</strong><br>
+Es el servidor web de Microsoft integrado en determinadas ediciones de Windows Server. Se administra mediante herramientas propias del entorno Windows y ofrece integración con tecnologías y servicios de la plataforma Microsoft, como ASP.NET.</p>
+</li>
+<li>
+<p><strong>Otras soluciones</strong><br>
+Existen servidores y plataformas especializadas, así como servidores integrados en entornos de desarrollo o aplicaciones. También es habitual que una aplicación incorpore su propio servidor HTTP para pruebas o para determinados despliegues. En producción, la arquitectura puede situar delante un servidor web o proxy inverso dedicado.</p>
+</li>
+</ul>
+<p>No debe confundirse el servidor web con el servidor de aplicaciones. El primero gestiona principalmente la comunicación HTTP y la entrega de recursos; el segundo ejecuta la lógica de una aplicación. En algunos productos ambas funciones están integradas, mientras que en otros se separan y se comunican entre sí.</p>
+<p><strong>Tabla comparativa orientativa</strong><br>
+La siguiente tabla es una comparación introductoria, no una clasificación de calidad. Ninguna solución es la mejor en todos los escenarios. La selección debe considerar los requisitos técnicos, la compatibilidad con las aplicaciones, la seguridad, el soporte, la facilidad de administración y los conocimientos disponibles.</p>
+<table>
+<thead>
+<tr>
+<th>Solución</th>
+<th>Características generales</th>
+<th>Entornos habituales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apache HTTP Server</strong></td>
+<td>Extensible mediante módulos; muy configurable; amplia implantación.</td>
+<td>Servidores Linux y Windows; alojamiento web general.</td>
+</tr>
+<tr>
+<td><strong>Nginx</strong></td>
+<td>Gestión eficiente de conexiones; frecuente como proxy inverso y balanceador.</td>
+<td>Sitios con muchas conexiones; arquitectura distribuida.</td>
+</tr>
+<tr>
+<td><strong>Microsoft IIS</strong></td>
+<td>Integración con Windows Server y tecnologías Microsoft.</td>
+<td>Infraestructuras basadas en Windows y aplicaciones ASP.NET.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fundamentos-de-los-protocolos-web">FUNDAMENTOS DE LOS PROTOCOLOS WEB </h2>
+<h3 id="modelo-de-comunicación-cliente-servidor">MODELO DE COMUNICACIÓN CLIENTE-SERVIDOR </h3>
+<p>La navegación web se basa principalmente en un modelo de comunicación <strong>cliente-servidor</strong>. El cliente, normalmente un navegador, inicia una comunicación para solicitar un recurso o realizar una operación. El servidor recibe la petición, la interpreta y devuelve una respuesta. En la web, el protocolo de aplicación que organiza este intercambio es <strong>HTTP</strong> (<em>Hypertext Transfer Protocol</em>). Cuando la comunicación está protegida mediante TLS, se utiliza <strong>HTTPS</strong>.</p>
+<p>HTTP funciona siguiendo un modelo de petición y respuesta. El cliente envía una petición que identifica el recurso y la operación que desea realizar. El servidor devuelve una respuesta con información sobre el resultado y, cuando corresponde, el contenido solicitado. Una misma página puede requerir numerosas peticiones: una para el documento HTML, otras para imágenes, hojas de estilo, scripts, fuentes y datos adicionales.</p>
+<p>Es importante distinguir los niveles que intervienen en la comunicación:</p>
+<ul>
+<li><strong>Aplicación:</strong> HTTP define el formato y el significado de las peticiones y respuestas.</li>
+<li><strong>Transporte:</strong> tradicionalmente TCP proporciona un canal de comunicación fiable para HTTP/1.1 y HTTP/2. HTTP/3 utiliza QUIC, que funciona sobre UDP e integra mecanismos de transporte seguro.</li>
+<li><strong>Red:</strong> IP permite direccionar los paquetes y encaminarlos entre redes.</li>
+<li><strong>Acceso a la red:</strong> las tecnologías cableadas o inalámbricas permiten transmitir los datos por el medio físico o radioeléctrico.</li>
+</ul>
+<p>El navegador no necesita conocer cómo está organizada internamente la aplicación del servidor. Solo necesita comunicarse utilizando los protocolos y formatos acordados. Detrás del servidor que recibe la petición pueden existir otros servidores, aplicaciones y bases de datos.</p>
+<p><img src="./assets/comunicacion-cliente-servidor.png" alt="Esquema general de la comunicación cliente-servidor"></p>
+<h3 id="protocolo-http">PROTOCOLO HTTP </h3>
+<h4 id="características-y-funcionamiento">CARACTERÍSTICAS Y FUNCIONAMIENTO </h4>
+<p>HTTP es un protocolo de aplicación diseñado para transferir recursos web. Es un protocolo de carácter general: aunque su nombre histórico hace referencia a documentos de hipertexto, actualmente transporta muchos tipos de contenido, como imágenes, vídeo, audio, documentos, datos estructurados y respuestas de aplicaciones.</p>
+<p>Entre sus características principales se encuentran:</p>
+<ul>
+<li><strong>Modelo petición-respuesta:</strong> el cliente formula una petición y el servidor devuelve una respuesta.</li>
+<li><strong>Independencia del contenido:</strong> HTTP puede transportar distintos formatos de datos. El tipo de contenido se indica normalmente mediante la cabecera <code>Content-Type</code>.</li>
+<li><strong>Identificación de recursos:</strong> los recursos se identifican mediante URI, habitualmente URL.</li>
+<li><strong>Uso de métodos:</strong> el método indica la intención de la petición, por ejemplo, obtener un recurso o enviar datos.</li>
+<li><strong>Uso de cabeceras:</strong> permiten transmitir metadatos sobre la petición, la respuesta, el cliente y el contenido.</li>
+<li><strong>Sin estado a nivel de protocolo:</strong> cada petición se interpreta, en principio, de forma independiente. Las aplicaciones pueden mantener sesiones mediante cookies, tokens u otros mecanismos.</li>
+<li><strong>Extensibilidad:</strong> se pueden incorporar nuevas cabeceras y métodos, respetando las reglas del protocolo.</li>
+</ul>
+<p>Decir que HTTP es un protocolo sin estado no significa que una aplicación web no pueda recordar al usuario. Significa que el protocolo no mantiene automáticamente el contexto de una petición anterior para interpretar la siguiente. Para conservar una sesión, la aplicación suele utilizar identificadores de sesión, cookies o mecanismos equivalentes.</p>
+<h4 id="estructura-de-una-petición-http">ESTRUCTURA DE UNA PETICIÓN HTTP </h4>
+<p>Una petición HTTP contiene información que permite al servidor saber qué se solicita y cómo debe interpretarlo. Conceptualmente incluye:</p>
+<ol>
+<li><strong>Línea inicial:</strong> método, recurso solicitado y, en HTTP/1.1, versión del protocolo.</li>
+<li><strong>Cabeceras:</strong> información adicional sobre la petición.</li>
+<li><strong>Línea en blanco:</strong> separa las cabeceras del cuerpo.</li>
+<li><strong>Cuerpo opcional:</strong> datos enviados por el cliente, por ejemplo, los campos de un formulario o información en formato JSON.</li>
+</ol>
+<p>Ejemplo ilustrativo de una petición HTTP/1.1:</p>
+<pre data-role="codeBlock" data-info="http" class="language-http http"><code><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/catalogo/productos.html</span> <span class="token http-version property">HTTP/1.1</span></span>
+<span class="token header"><span class="token header-name keyword">Host</span><span class="token punctuation">:</span> <span class="token header-value">www.ejemplo.net</span></span>
+<span class="token header"><span class="token header-name keyword">User-Agent</span><span class="token punctuation">:</span> <span class="token header-value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3</span></span>
+<span class="token header"><span class="token header-name keyword">Accept</span><span class="token punctuation">:</span> <span class="token header-value">text/html</span></span>
+<span class="token header"><span class="token header-name keyword">Accept-Language</span><span class="token punctuation">:</span> <span class="token header-value">es</span></span>
+<span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive</span></span>
+</code></pre><p>En este ejemplo:</p>
+<ul>
+<li><code>GET</code> es el método utilizado.</li>
+<li><code>/catalogo/productos.html</code> identifica el recurso solicitado.</li>
+<li><code>HTTP/1.1</code> indica la versión del protocolo utilizada en esta representación.</li>
+<li><code>Host</code> identifica el nombre de dominio al que se dirige la petición.</li>
+<li><code>User-Agent</code> aporta información sobre el cliente.</li>
+<li><code>Accept</code> indica qué tipo de contenido puede aceptar el cliente.</li>
+<li><code>Accept-Language</code> expresa una preferencia de idioma.</li>
+<li><code>Connection</code> es una cabecera propia del contexto de HTTP/1.x; no se utiliza de la misma forma en HTTP/2 o HTTP/3.</li>
+</ul>
+<p>El ejemplo utiliza el formato textual de HTTP/1.1. HTTP/2 y HTTP/3 transmiten la información mediante estructuras binarias y no mediante este formato de líneas legibles, aunque conservan los conceptos de método, ruta, autoridad y cabeceras.</p>
+<h4 id="estructura-de-una-respuesta-http">ESTRUCTURA DE UNA RESPUESTA HTTP </h4>
+<p>La respuesta del servidor informa del resultado de la petición y puede incluir el recurso solicitado. En HTTP/1.1 presenta esta estructura conceptual:</p>
+<ol>
+<li><strong>Línea de estado:</strong> versión del protocolo, código numérico de estado y descripción textual.</li>
+<li><strong>Cabeceras:</strong> metadatos sobre el servidor, el contenido y la respuesta.</li>
+<li><strong>Línea en blanco:</strong> separa las cabeceras del cuerpo.</li>
+<li><strong>Cuerpo opcional:</strong> contenido devuelto al cliente.</li>
+</ol>
+<p>Ejemplo ilustrativo:</p>
+<pre data-role="codeBlock" data-info="http" class="language-http http"><code><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">200</span> <span class="token reason-phrase string">OK</span></span>
+<span class="token header"><span class="token header-name keyword">Date</span><span class="token punctuation">:</span> <span class="token header-value">Tue, 10 Nov 2026 10:30:00 GMT</span></span>
+<span class="token header"><span class="token header-name keyword">Content-Type</span><span class="token punctuation">:</span> <span class="token header-value">text/html; charset=UTF-8</span></span>
+<span class="token header"><span class="token header-name keyword">Content-Length</span><span class="token punctuation">:</span> <span class="token header-value">125</span></span>
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">max-age=300</span></span>
+
+&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;&lt;title&gt;Catálogo&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;&lt;h1&gt;Productos&lt;/h1&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>El código <code>200</code> indica que la petición se ha atendido correctamente. <code>Content-Type</code> informa de que el cuerpo contiene HTML codificado en UTF-8. <code>Content-Length</code> indica el tamaño del cuerpo en bytes cuando se utiliza esa forma de delimitación. <code>Cache-Control</code> proporciona instrucciones relacionadas con el almacenamiento en caché.</p>
+<p>Los ejemplos de fecha, tamaño y contenido son ilustrativos. En HTTP/2 y HTTP/3 la respuesta se transmite mediante tramas y campos de cabecera codificados, no como una línea de estado textual idéntica a la mostrada.</p>
+<h4 id="metodos-http">METODOS HTTP </h4>
+<p>El método de una petición indica la acción que el cliente pretende realizar sobre el recurso. Los métodos más habituales son:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Finalidad general</th>
+<th>Ejemplo de uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td>Solicitar la representación de un recurso.</td>
+<td>Consultar una página o descargar una imagen.</td>
+</tr>
+<tr>
+<td><code>HEAD</code></td>
+<td>Solicitar las cabeceras que devolvería <code>GET</code>, sin el contenido del cuerpo.</td>
+<td>Comprobar metadatos o disponibilidad de un recurso.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td>Enviar datos para que el recurso los procese.</td>
+<td>Enviar un formulario o crear un elemento mediante una API.</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td>Crear o sustituir el estado del recurso identificado por la URI, según la aplicación.</td>
+<td>Actualizar completamente un recurso.</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td>Aplicar una modificación parcial a un recurso.</td>
+<td>Cambiar solo el correo electrónico de un usuario.</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Solicitar la eliminación del recurso.</td>
+<td>Eliminar un elemento.</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td>Consultar las opciones de comunicación disponibles.</td>
+<td>Conocer métodos admitidos o realizar comprobaciones CORS.</td>
+</tr>
+<tr>
+<td><code>CONNECT</code></td>
+<td>Establecer un túnel hacia el destino indicado.</td>
+<td>Crear un túnel a través de un proxy, por ejemplo para HTTPS.</td>
+</tr>
+<tr>
+<td><code>TRACE</code></td>
+<td>Solicitar una operación de diagnóstico que devuelve la petición recibida.</td>
+<td>Diagnóstico; suele deshabilitarse por motivos de seguridad.</td>
+</tr>
+</tbody>
+</table>
+<p>Dos propiedades importantes de los métodos son la <strong>seguridad</strong> y la <strong>idempotencia</strong>:</p>
+<ul>
+<li>Un método es <em>seguro</em> cuando, según la semántica del protocolo, está destinado a recuperar información y no a provocar cambios solicitados en el estado del servidor. <code>GET</code> y <code>HEAD</code> son métodos seguros.</li>
+<li>Un método es <em>idempotente</em> cuando realizar la misma petición una o varias veces produce el mismo efecto previsto sobre el estado del servidor. <code>GET</code>, <code>HEAD</code>, <code>PUT</code> y <code>DELETE</code> se consideran idempotentes según su semántica; <code>POST</code> no tiene por qué serlo.</li>
+</ul>
+<p>Estas propiedades son importantes para el diseño de aplicaciones, la caché y los reintentos de peticiones. No debe suponerse que un método es seguro solo porque una aplicación concreta lo utilice de esa manera: el comportamiento debe respetar la semántica del método.</p>
+<h4 id="codigo-de-estado-http">CODIGO DE ESTADO HTTP </h4>
+<p>El código de estado es un número de tres cifras que informa del resultado de la petición. Se agrupa en cinco familias:</p>
+<table>
+<thead>
+<tr>
+<th>Familia</th>
+<th>Significado</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1xx</code></td>
+<td>Respuestas informativas: la petición sigue en curso o se necesita continuar.</td>
+<td><code>100 Continue</code>, <code>101 Switching Protocols</code>.</td>
+</tr>
+<tr>
+<td><code>2xx</code></td>
+<td>La petición se ha recibido, entendido y atendido correctamente.</td>
+<td><code>200 OK</code>, <code>201 Created</code>, <code>204 No Content</code>.</td>
+</tr>
+<tr>
+<td><code>3xx</code></td>
+<td>Se necesita una acción adicional, habitualmente seguir una redirección o utilizar una respuesta almacenada.</td>
+<td><code>301 Moved Permanently</code>, <code>302 Found</code>, <code>304 Not Modified</code>.</td>
+</tr>
+<tr>
+<td><code>4xx</code></td>
+<td>Error que se atribuye a la petición o al contexto del cliente.</td>
+<td><code>400 Bad Request</code>, <code>401 Unauthorized</code>, <code>403 Forbidden</code>, <code>404 Not Found</code>.</td>
+</tr>
+<tr>
+<td><code>5xx</code></td>
+<td>El servidor no ha podido completar una petición aparentemente válida.</td>
+<td><code>500 Internal Server Error</code>, <code>502 Bad Gateway</code>, <code>503 Service Unavailable</code>, <code>504 Gateway Timeout</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Algunos códigos que conviene diferenciar:</p>
+<ul>
+<li><strong>200 OK:</strong> la petición se ha atendido correctamente.</li>
+<li><strong>201 Created:</strong> se ha creado un recurso como resultado de la petición.</li>
+<li><strong>301 Moved Permanently:</strong> el recurso tiene una nueva ubicación permanente.</li>
+<li><strong>302 Found:</strong> redirección temporal.</li>
+<li><strong>304 Not Modified:</strong> permite reutilizar una copia almacenada en caché cuando sigue siendo válida.</li>
+<li><strong>400 Bad Request:</strong> la petición no puede interpretarse correctamente.</li>
+<li><strong>401 Unauthorized:</strong> falta una autenticación válida o esta no ha sido aceptada. Aunque el nombre histórico pueda inducir a confusión, se refiere a autenticación.</li>
+<li><strong>403 Forbidden:</strong> el servidor entiende la petición, pero deniega el acceso.</li>
+<li><strong>404 Not Found:</strong> no se encuentra el recurso solicitado o el servidor no desea revelar su existencia.</li>
+<li><strong>500 Internal Server Error:</strong> error interno no especificado con mayor precisión.</li>
+<li><strong>502 Bad Gateway:</strong> un servidor que actúa como intermediario recibe una respuesta no válida del servidor al que consulta.</li>
+<li><strong>503 Service Unavailable:</strong> el servicio no está disponible temporalmente, por ejemplo por mantenimiento o sobrecarga.</li>
+<li><strong>504 Gateway Timeout:</strong> un intermediario no recibe a tiempo la respuesta del servidor ascendente.</li>
+</ul>
+<p>Un código de estado no explica necesariamente la causa exacta del problema. Para diagnosticarlo suele ser necesario consultar los registros del servidor y de la aplicación.</p>
+<h4 id="cabeceras-http">CABECERAS HTTP </h4>
+<p>Las cabeceras son campos que acompañan a las peticiones y respuestas y aportan metadatos. Se organizan en líneas de la forma <code>nombre: valor</code> en HTTP/1.1. En HTTP/2 y HTTP/3 se codifican de otra manera, pero mantienen su significado general.</p>
+<p>Algunas cabeceras habituales son:</p>
+<table>
+<thead>
+<tr>
+<th>Cabecera</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Host</code></td>
+<td>Identifica la autoridad o nombre de host solicitado en HTTP/1.1.</td>
+</tr>
+<tr>
+<td><code>User-Agent</code></td>
+<td>Describe el agente cliente que realiza la petición.</td>
+</tr>
+<tr>
+<td><code>Accept</code></td>
+<td>Indica los tipos de contenido que acepta el cliente.</td>
+</tr>
+<tr>
+<td><code>Accept-Language</code></td>
+<td>Expresa preferencias de idioma.</td>
+</tr>
+<tr>
+<td><code>Content-Type</code></td>
+<td>Indica el tipo de contenido del cuerpo del mensaje.</td>
+</tr>
+<tr>
+<td><code>Content-Length</code></td>
+<td>Indica la longitud del cuerpo en bytes cuando se utiliza.</td>
+</tr>
+<tr>
+<td><code>Authorization</code></td>
+<td>Transporta credenciales o información de autorización según el esquema utilizado.</td>
+</tr>
+<tr>
+<td><code>Cookie</code></td>
+<td>Envía cookies almacenadas para el sitio.</td>
+</tr>
+<tr>
+<td><code>Set-Cookie</code></td>
+<td>Solicita al navegador almacenar o actualizar una cookie.</td>
+</tr>
+<tr>
+<td><code>Cache-Control</code></td>
+<td>Define directivas de almacenamiento en caché.</td>
+</tr>
+<tr>
+<td><code>Location</code></td>
+<td>Indica una URI de destino, por ejemplo en una redirección.</td>
+</tr>
+<tr>
+<td><code>Server</code></td>
+<td>Puede identificar el software servidor; su valor depende de la configuración.</td>
+</tr>
+</tbody>
+</table>
+<p>Las cabeceras pueden influir en la negociación del contenido, la autenticación, la caché, la seguridad y el comportamiento del navegador. No deben considerarse datos siempre fiables: el servidor debe validar cualquier información proporcionada por el cliente.</p>
+<h4 id="versiones-de-http">VERSIONES DE HTTP </h4>
+<p>HTTP ha evolucionado para mejorar el rendimiento, la eficiencia y el funcionamiento de las comunicaciones web:</p>
+<ul>
+<li><strong>HTTP/1.0:</strong> primera versión ampliamente utilizada en la web. En su uso inicial, las conexiones se cerraban habitualmente después de cada intercambio, aunque posteriormente se introdujeron mecanismos de conexión persistente.</li>
+<li><strong>HTTP/1.1:</strong> incorporó de forma general las conexiones persistentes y otras mejoras. Utiliza mensajes con formato textual y permite varias peticiones sobre una misma conexión, aunque el bloqueo de una respuesta puede afectar al aprovechamiento de esa conexión.</li>
+<li><strong>HTTP/2:</strong> mantiene la semántica básica de HTTP, pero cambia el formato de transporte. Utiliza tramas binarias, multiplexación de flujos y compresión de cabeceras. Esto permite intercambiar varias solicitudes y respuestas concurrentes sobre una misma conexión TCP. En los navegadores, su uso habitual se realiza sobre TLS.</li>
+<li><strong>HTTP/3:</strong> también conserva la semántica general de HTTP, pero utiliza QUIC en lugar de TCP. QUIC funciona sobre UDP e integra el establecimiento seguro mediante TLS 1.3. La multiplexación de flujos reduce ciertos efectos de bloqueo entre flujos que pueden producirse con TCP.</li>
+</ul>
+<p>HTTP/1.1, HTTP/2 y HTTP/3 no son protocolos con semánticas de aplicación completamente distintas: comparten los conceptos esenciales de métodos, recursos, cabeceras y códigos de estado. Sus diferencias principales se encuentran en cómo se codifican y transportan los mensajes y en la gestión de las conexiones.</p>
+<h3 id="https-y-su-relación-con-http">HTTPS Y SU RELACIÓN CON HTTP </h3>
+<p><strong>HTTPS</strong> es HTTP protegido mediante TLS (<em>Transport Layer Security</em>). No es un protocolo de aplicación distinto que sustituya a HTTP: utiliza HTTP y añade una capa de seguridad que protege la comunicación entre el cliente y el servidor.</p>
+<p>TLS proporciona principalmente:</p>
+<ul>
+<li><strong>Confidencialidad:</strong> dificulta que terceros puedan leer los datos intercambiados.</li>
+<li><strong>Integridad:</strong> permite detectar modificaciones de los datos durante el transporte.</li>
+<li><strong>Autenticación del servidor:</strong> el cliente puede comprobar la identidad del servidor mediante un certificado digital válido y una cadena de confianza.</li>
+</ul>
+<p>En una conexión HTTPS, el navegador establece primero una comunicación segura con el servidor mediante TLS y, a continuación, intercambia los mensajes HTTP protegidos por esa conexión. El usuario suele reconocer HTTPS por el esquema <code>https://</code> de la URL y por la información de seguridad que muestra el navegador.</p>
+<p>HTTPS no garantiza que el sitio sea honesto, que su contenido sea correcto o que la aplicación esté libre de vulnerabilidades. Protege la comunicación con el servidor identificado por el certificado, pero no convierte automáticamente en segura la aplicación.</p>
+<p>Los detalles de TLS, certificados, autoridades de certificación y configuración de HTTPS se desarrollan con mayor profundidad posteriormente.</p>
+<h3 id="tcpip-y-puertos-utilizados-por-los-servicios-web">TCP/IP Y PUERTOS UTILIZADOS POR LOS SERVICIOS WEB </h3>
+<p>Los protocolos web necesitan los servicios de la pila TCP/IP para que los datos lleguen desde el cliente hasta el servidor.</p>
+<p><strong>Direccionamiento IP</strong><br>
+Cada interfaz de red que participa en una comunicación IP utiliza una dirección IP. Esta dirección permite identificar el destino a nivel de red y encaminar los paquetes. En Internet se utilizan IPv4 e IPv6.</p>
+<p>La dirección IP identifica un punto de conexión de red, pero no identifica por sí sola una aplicación concreta. En un mismo equipo pueden ejecutarse muchos servicios diferentes.</p>
+<p><strong>Puertos TCP y UDP</strong><br>
+Los puertos permiten identificar los procesos o servicios de transporte asociados a una comunicación. En términos generales, la combinación de dirección IP, protocolo de transporte y puerto permite dirigir los datos al servicio adecuado.</p>
+<p>Los puertos web más conocidos son:</p>
+<table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Transporte habitual</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>80</code></td>
+<td>TCP</td>
+<td>HTTP tradicional sobre TCP.</td>
+</tr>
+<tr>
+<td><code>443</code></td>
+<td>TCP</td>
+<td>HTTPS sobre TCP, utilizado habitualmente por HTTP/1.1 y HTTP/2.</td>
+</tr>
+<tr>
+<td><code>443</code></td>
+<td>UDP</td>
+<td>HTTP/3 mediante QUIC.</td>
+</tr>
+</tbody>
+</table>
+<p>El puerto 80 se asocia normalmente a HTTP y el 443 a HTTPS. No obstante, los servicios pueden configurarse para escuchar en otros puertos. Por ejemplo, durante pruebas o en servicios internos puede utilizarse un puerto alternativo.</p>
+<p>Es importante no confundir el puerto con la dirección IP. Una dirección IP identifica el destino dentro de la red; el puerto permite seleccionar el servicio o proceso de transporte en ese destino. Tampoco debe afirmarse que HTTPS utiliza siempre TCP: HTTP/3 funciona sobre QUIC, que utiliza UDP.</p>
+<p><strong>Ejemplo de comunicación</strong><br>
+Si un navegador accede a <code>https://www.ejemplo.net/</code>, puede establecer una conexión con la dirección IP obtenida para ese nombre y utilizar el puerto 443. Si negocia HTTP/2, la comunicación se realiza sobre TCP con TLS. Si negocia HTTP/3, utiliza QUIC sobre UDP. El usuario accede al mismo sitio, aunque el transporte sea diferente.</p>
+<h3 id="dns-y-resolución-de-nombres-de-dominio">DNS Y RESOLUCIÓN DE NOMBRES DE DOMINIO </h3>
+<p>Los usuarios suelen utilizar nombres de dominio, como <code>www.ejemplo.net</code>, en lugar de memorizar direcciones IP. El <strong>Sistema de Nombres de Dominio (DNS)</strong> permite traducir nombres de dominio a información asociada, entre ella las direcciones IP de los servidores.</p>
+<p>DNS es un sistema distribuido y jerárquico. La resolución suele realizarse mediante un resolvedor DNS, que puede estar configurado en el sistema del usuario, en el router o proporcionado por un operador o servicio externo. El resolvedor consulta la infraestructura DNS cuando no dispone de una respuesta válida en su caché. De manera simplificada, el proceso de resolución de un nombre de dominio sigue estos pasos:</p>
+<ul>
+<li>El usuario introduce un nombre de dominio en el navegador.</li>
+<li>El equipo comprueba si dispone de una respuesta reciente en su caché.</li>
+<li>Si no la tiene, consulta a un resolvedor DNS.</li>
+<li>El resolvedor obtiene la información necesaria a través de la jerarquía DNS, si no está ya almacenada.</li>
+<li>El navegador recibe una o varias direcciones IP y puede intentar establecer la conexión con el servidor.</li>
+</ul>
+<p>DNS no transmite la página web ni sustituye a HTTP. Su función es proporcionar información necesaria para localizar los servicios. Una vez obtenida la dirección IP, el navegador utiliza los protocolos de transporte y aplicación correspondientes para comunicarse con el servidor.</p>
+<p>Las respuestas DNS pueden almacenarse en caché durante un periodo determinado, indicado normalmente mediante el valor TTL (<em>Time To Live</em>). Por ello, un cambio en los registros DNS puede no observarse inmediatamente en todos los equipos.</p>
+<h3 id="url-y-uri-estructura-y-componentes">URL Y URI: ESTRUCTURA Y COMPONENTES </h3>
+<p>Los recursos web se identifican mediante <strong>URI</strong> (<em>Uniform Resource Identifier</em>). Una <strong>URL</strong> (<em>Uniform Resource Locator</em>) es un tipo de URI que, además de identificar un recurso, proporciona información para localizarlo mediante un mecanismo o esquema.</p>
+<p>En el uso cotidiano se suele hablar de URL para referirse a las direcciones web. Una URL HTTP o HTTPS puede presentar esta estructura:</p>
+<p><img src="./assets/componentes-url.png" alt="Esquema de una URL HTTP/HTTPS"></p>
+<p>Sus componentes son:</p>
+<ul>
+<li><strong>Esquema:</strong> indica el mecanismo de acceso. En páginas web suele ser <code>http</code> o <code>https</code>.</li>
+<li><strong>Host:</strong> identifica el servidor mediante un nombre de dominio o una dirección IP.</li>
+<li><strong>Puerto:</strong> indica el puerto de destino. Si se omite, se utiliza el puerto predeterminado del esquema: normalmente 80 para HTTP y 443 para HTTPS.</li>
+<li><strong>Ruta:</strong> identifica el recurso dentro del servidor, por ejemplo <code>/catalogo/productos.html</code>.</li>
+<li><strong>Consulta (<em>query string</em>):</strong> comienza por <code>?</code> y permite enviar parámetros, como <code>id=25</code>. Los parámetros se separan habitualmente mediante <code>&amp;</code>.</li>
+<li><strong>Fragmento:</strong> comienza por <code>#</code> y permite señalar una parte del recurso. Normalmente lo interpreta el cliente y no se envía al servidor como parte de la petición HTTP.</li>
+</ul>
+<p>Por ejemplo, en:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>https://www.ejemplo.net/catalogo/productos.html?id=25#detalles
+</code></pre><p>el navegador se conecta al host <code>www.ejemplo.net</code> utilizando HTTPS. La ruta identifica el recurso solicitado, la consulta contiene el parámetro <code>id=25</code> y el fragmento <code>detalles</code> puede indicar una sección concreta del documento.</p>
+<p>La URL puede contener también información de usuario y contraseña, pero incluir credenciales en una URL no es una práctica recomendable: pueden quedar expuestas en historiales, registros o sistemas intermedios.</p>
+<h3 id="flujo-general-de-una-petición-web">FLUJO GENERAL DE UNA PETICIÓN WEB </h3>
+<p>Cuando un usuario introduce una dirección en el navegador, se realizan varias operaciones antes de que aparezca la página. El proceso puede variar según la versión de HTTP, el uso de cachés, las conexiones ya abiertas y la configuración de la red, pero el flujo general es el siguiente:</p>
+<ol>
+<li><strong>Interpretación de la URL.</strong> El navegador identifica el esquema (<code>http</code> o <code>https</code>), el host, el puerto, la ruta, los parámetros y el fragmento.</li>
+<li><strong>Comprobaciones locales.</strong> Puede consultar su propia caché, las conexiones existentes y otros datos almacenados. Si el recurso ya está disponible y sigue siendo válido, quizá no sea necesario descargarlo de nuevo.</li>
+<li><strong>Resolución DNS.</strong> Si necesita localizar el host y no dispone de una respuesta válida, consulta al resolvedor DNS para obtener una dirección IP.</li>
+<li><strong>Establecimiento del transporte.</strong> Para HTTP/1.1 y HTTP/2 se establece normalmente una conexión TCP. Para HTTP/3 se establece una conexión QUIC sobre UDP.</li>
+<li><strong>Protección TLS, si corresponde.</strong> En HTTPS se negocia la protección criptográfica y se valida el certificado del servidor. HTTP/3 integra TLS 1.3 en el establecimiento de QUIC.</li>
+<li><strong>Negociación y envío de la petición.</strong> El cliente y el servidor determinan la versión de HTTP que utilizarán cuando corresponda. El navegador envía la petición con el método, la ruta y las cabeceras necesarias.</li>
+<li><strong>Procesamiento en el servidor.</strong> El servidor identifica el sitio y el recurso solicitado, comprueba las reglas de acceso y entrega el archivo o deriva la petición a una aplicación.</li>
+<li><strong>Generación de la respuesta.</strong> El servidor devuelve un código de estado, cabeceras y, normalmente, un cuerpo con el contenido o los datos resultantes.</li>
+<li><strong>Recepción e interpretación.</strong> El navegador recibe la respuesta, interpreta el tipo de contenido y procesa el documento. Si se trata de HTML, puede descubrir referencias a imágenes, hojas de estilo, scripts y otros recursos.</li>
+<li><strong>Peticiones adicionales y presentación.</strong> El navegador puede realizar nuevas peticiones para obtener esos recursos, ejecutar código del lado del cliente y construir la representación visual e interactiva de la página.</li>
+</ol>
+<p><img src="./assets/flujo-peticion-web.png" alt="Flujo completo de una petición web"></p>
+<p>Este esquema representa el flujo habitual de forma simplificada. Algunas fases pueden reutilizar resultados anteriores: por ejemplo, una conexión ya abierta puede evitar repetir el establecimiento TCP o QUIC, y una respuesta almacenada en caché puede reducir o evitar la transferencia de contenido.</p>
+<h2 id="instalación-y-funcionamiento-de-un-servidor-web">INSTALACIÓN Y FUNCIONAMIENTO DE UN SERVIDOR WEB </h2>
+<h3 id="requisitos-previos-para-instalar-un-servidor-web">REQUISITOS PREVIOS PARA INSTALAR UN SERVIDOR WEB </h3>
+<p>Antes de instalar un servidor web conviene comprobar que el equipo y la red cumplen los requisitos mínimos. La instalación puede fallar si no se dispone de permisos, espacio en disco o conectividad. Además, la configuración inicial del servicio depende de la dirección IP, el puerto y la ubicación de los archivos que se van a publicar.</p>
+<p><strong>Hardware, software y sistema operativo</strong><br>
+El tamaño del servidor depende del número de clientes simultáneos, del volumen de datos que entrega y del trabajo que realiza para atender cada petición. Una página estática de aula y una aplicación que consulta una base de datos tienen necesidades diferentes.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Qué se debe comprobar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Procesador y memoria</td>
+<td>Recursos disponibles para el sistema operativo, el servidor y las aplicaciones que compartan el equipo.</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>Espacio para el software, los contenidos y los registros. Prever el crecimiento de estos últimos.</td>
+</tr>
+<tr>
+<td>Conectividad</td>
+<td>Interfaz de red operativa y capacidad de transferencia adecuada al volumen de tráfico.</td>
+</tr>
+<tr>
+<td>Sistema operativo</td>
+<td>Compatibilidad con el software elegido, arquitectura admitida, mantenimiento y actualizaciones disponibles.</td>
+</tr>
+<tr>
+<td>Software y permisos</td>
+<td>Dependencias del servidor, origen del instalador y cuenta con autorización para instalar y administrar el servicio.</td>
+</tr>
+</tbody>
+</table>
+<p>El servidor puede ejecutarse en un equipo físico o en una máquina virtual. En una práctica con máquinas virtuales, hay que comprobar que el cliente y el servidor comparten una red virtual o disponen de una ruta entre sus redes.</p>
+<p><strong>Direccionamiento, conectividad y DNS</strong><br>
+El servidor necesita una dirección IP conocida por los clientes. En una red local puede obtenerla mediante una reserva DHCP o tenerla configurada de forma estática (lo más habitual). Se debe comprobar la máscara de subred y, si el tráfico debe alcanzar otras redes, el encaminamiento correspondiente. El cortafuegos debe permitir el acceso al puerto elegido desde las redes previstas.</p>
+<p>Para acceder mediante un nombre, los clientes deben poder resolverlo a la dirección del servidor. Se puede usar el DNS de la red o, para una prueba acotada, añadir una entrada al archivo de resolución local del cliente. Una entrada local sirve para el equipo donde se configura.</p>
+<div class="admonition example">
+<p class="admonition-title">Configuración de red de ejemplo</p>
+<p>Una máquina virtual tiene la IP <code>192.168.56.20/24</code> y el equipo cliente usa <code>192.168.56.10/24</code>. Ambos están en la misma red virtual. El servidor publicará un sitio estático mediante HTTP en el puerto TCP 8080. En el DNS del aula, o en el archivo de resolución local del cliente, se asociará <code>web-aula.test</code> con <code>192.168.56.20</code>. Para acceder al sitio desde el cliente, se utiliza la URL <code>http://web-aula.test:8080/</code>.</p>
+</div>
+<h3 id="consideraciones-para-la-selección-de-un-servidor-web">CONSIDERACIONES PARA LA SELECCIÓN DE UN SERVIDOR WEB </h3>
+<p>La elección comienza por determinar qué se va a publicar y quién mantendrá el servicio. Para un sitio estático basta con que el servidor pueda entregar archivos y registrar las peticiones. Si se alojará una aplicación, también hay que comprobar cómo se integra con su entorno de ejecución.</p>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Pregunta para decidir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compatibilidad</td>
+<td>¿Está disponible y mantenido para el sistema operativo elegido?</td>
+</tr>
+<tr>
+<td>Funcionalidades</td>
+<td>¿Admite los tipos de contenido, los protocolos y la integración que necesita el proyecto?</td>
+</tr>
+<tr>
+<td>Administración</td>
+<td>¿El equipo dispone de documentación y sabe instalar, actualizar y diagnosticar el servicio?</td>
+</tr>
+<tr>
+<td>Rendimiento</td>
+<td>¿Puede atender el tráfico esperado con los recursos disponibles?</td>
+</tr>
+<tr>
+<td>Mantenimiento y licencia</td>
+<td>¿Cómo se distribuyen las actualizaciones y qué condiciones de uso se aplican?</td>
+</tr>
+</tbody>
+</table>
+<p>En el ejemplo de aula se necesita un servidor capaz de escuchar en el puerto elegido, entregar HTML y CSS y facilitar la consulta de registros. Estas condiciones permiten realizar la práctica con diferentes productos.</p>
+<h3 id="instalación-del-software-servidor">INSTALACIÓN DEL SOFTWARE SERVIDOR </h3>
+<ol>
+<li><strong>Elegir el método de instalación.</strong> Usar el gestor de paquetes del sistema, la herramienta de activación de componentes o el instalador oficial, según la plataforma.</li>
+<li><strong>Instalar el servidor y sus dependencias.</strong> Registrar el nombre y la versión del software, el método utilizado y la ubicación de su configuración. Esta información permite repetir la instalación y localizar los archivos que se modificarán.</li>
+<li><strong>Identificar el servicio o proceso.</strong> Comprobar cómo lo registra el sistema y si el instalador lo ha iniciado o ha habilitado su arranque automático.</li>
+<li><strong>Comprobar el estado inicial.</strong> Consultar el estado del servicio y sus registros. Si ya está escuchando, revisar qué dirección y puerto utiliza antes de permitir el acceso desde otros equipos.</li>
+</ol>
+<p>Algunos instaladores dejan una página de bienvenida disponible. Si aparece en una prueba inicial, confirma que se ha obtenido una respuesta del servidor. La comprobación del sitio del aula se hará después de publicar sus propios archivos.</p>
+<h3 id="configuración-inicial-del-servidor">CONFIGURACIÓN INICIAL DEL SERVIDOR </h3>
+<p>La configuración inicial del servidor web determina cómo se atienden las peticiones y qué recursos se entregan. Los parámetros más importantes son:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Función y valor en el ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre del sitio</td>
+<td>Identifica el sitio publicado. El cliente utilizará <code>web-aula.test</code>.</td>
+</tr>
+<tr>
+<td>Dirección y puerto de escucha</td>
+<td>Determinan dónde acepta conexiones el servicio. En el ejemplo anterior se utilizó el puerto 8080, de modo que para acceder al sitio se usará <code>192.168.56.20:8080</code>.</td>
+</tr>
+<tr>
+<td>Raíz de documentos</td>
+<td>Directorio del sistema de archivos desde el que se servirán los recursos del sitio. En el ejemplo se llama <code>sitio-aula</code>.</td>
+</tr>
+<tr>
+<td>Documento predeterminado</td>
+<td>Archivo que el servidor intenta entregar al solicitar un directorio. En el ejemplo se configura <code>index.html</code>.</td>
+</tr>
+<tr>
+<td>Cuenta y permisos de ejecución</td>
+<td>La cuenta que atiende las peticiones necesita leer los recursos y acceder a sus directorios. La escritura sobre el contenido estático se reserva a la cuenta que publica.</td>
+</tr>
+<tr>
+<td>Registros</td>
+<td>Permiten consultar las peticiones atendidas y los errores que detecta el servidor. Su ubicación depende de la instalación.</td>
+</tr>
+</tbody>
+</table>
+<p>El <strong>puerto de escucha</strong> debe estar libre en la dirección y el protocolo elegidos. Una escucha limitada a <code>127.0.0.1</code> solo permite conexiones IPv4 desde el propio servidor. En el laboratorio, si se configura la escucha exclusivamente en <code>192.168.56.20</code>, la prueba desde el servidor también debe usar esa IP. El puerto 8080 debe aparecer en la URL porque el puerto predeterminado de HTTP es el 80.</p>
+<p>La <strong>raíz de documentos</strong> permite explicar cómo se relacionan las URL con los archivos. En un sitio estático con asignación directa y sin reglas especiales, la ruta <code>/css/estilo.css</code> apunta al archivo <code>css/estilo.css</code> dentro de <code>sitio-aula</code>. Al solicitar <code>/</code>, el servidor emplea el documento predeterminado configurado.</p>
+<p>La siguiente imagen muestra la correspondencia entre dos peticiones y los archivos del sitio de aula.</p>
+<div class="mermaid">flowchart LR
+    A["Petición GET /"] --&gt; B["Raíz sitio-aula"]
+    B --&gt; C["Documento index.html"]
+    D["Petición GET /css/estilo.css"] --&gt; E["Ruta css/estilo.css dentro de sitio-aula"]
+</div><p>Antes de aplicar cambios, guardar una copia de la configuración y validarla con la herramienta del producto, cuando exista. Después, aplicar los cambios y consultar los registros para comprobar si se han cargado correctamente.</p>
+<h3 id="estructura-de-archivos-y-directorios-del-servidor">ESTRUCTURA DE ARCHIVOS Y DIRECTORIOS DEL SERVIDOR </h3>
+<p>Una instalación suele distribuir sus archivos en varias ubicaciones. Conviene identificarlas antes de editar la configuración o sustituir contenidos.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Contenido habitual</th>
+<th>Quién lo modifica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Archivos del programa</td>
+<td>Ejecutables, bibliotecas y otros componentes instalados.</td>
+<td>El instalador o el sistema de actualización.</td>
+</tr>
+<tr>
+<td>Configuración</td>
+<td>Parámetros generales y, cuando corresponda, archivos incluidos con ajustes adicionales.</td>
+<td>La cuenta de administración.</td>
+</tr>
+<tr>
+<td>Raíz de documentos</td>
+<td>HTML, CSS, imágenes y otros recursos que deben poder solicitar los clientes.</td>
+<td>La cuenta o el proceso de publicación.</td>
+</tr>
+<tr>
+<td>Registros</td>
+<td>Historial de peticiones y mensajes de error. También pueden integrarse en el registro del sistema operativo.</td>
+<td>El servicio o el sistema de registro.</td>
+</tr>
+<tr>
+<td>Archivos de ejecución</td>
+<td>Datos temporales del servicio, según la plataforma y el producto.</td>
+<td>El servicio o su gestor de procesos.</td>
+</tr>
+</tbody>
+</table>
+<p>En el proyecto de aula, <code>index.html</code> se coloca directamente en <code>sitio-aula</code>, la hoja de estilos en <code>sitio-aula/css/</code> y las imágenes en <code>sitio-aula/img/</code>. Las copias de seguridad y los archivos de configuración se guardan fuera de la raíz publicada.</p>
+<h3 id="inicio-parada-reinicio-y-supervisión-del-servicio">INICIO, PARADA, REINICIO Y SUPERVISIÓN DEL SERVICIO </h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Qué hace</th>
+<th>Cuándo se utiliza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iniciar</td>
+<td>Pone en marcha el servicio.</td>
+<td>Después de instalarlo o tras una parada.</td>
+</tr>
+<tr>
+<td>Detener</td>
+<td>Interrumpe la atención de nuevas peticiones. Puede afectar a conexiones existentes según cómo se realice la parada.</td>
+<td>En tareas de mantenimiento que requieren dejar el servicio fuera de uso.</td>
+</tr>
+<tr>
+<td>Reiniciar</td>
+<td>Detiene y vuelve a iniciar el servicio.</td>
+<td>Para aplicar cambios que requieren un nuevo inicio. Puede causar una interrupción breve.</td>
+</tr>
+<tr>
+<td>Recargar</td>
+<td>Aplica cambios de configuración en un servicio en ejecución, si el producto lo admite.</td>
+<td>Para ajustes compatibles con esta operación.</td>
+</tr>
+<tr>
+<td>Consultar el estado</td>
+<td>Permite comprobar si el servicio está activo y ver mensajes recientes.</td>
+<td>Tras la instalación, al aplicar cambios o al investigar un fallo.</td>
+</tr>
+<tr>
+<td>Habilitar el inicio automático</td>
+<td>Configura el arranque del servicio con el sistema.</td>
+<td>Cuando debe recuperarse automáticamente después de un reinicio del equipo.</td>
+</tr>
+</tbody>
+</table>
+<p>El estado <strong>activo</strong> indica que el gestor del sistema tiene el servicio en ejecución. La comprobación se completa verificando la escucha en la interfaz y el puerto previstos y solicitando una página desde el cliente.</p>
+<h3 id="publicación-de-contenidos-web">PUBLICACIÓN DE CONTENIDOS WEB </h3>
+<p>Para publicar el sitio estático de aula, preparar <code>index.html</code> y una hoja <code>css/estilo.css</code>. Añadir al HTML un título visible, por ejemplo <strong>Servidor web del aula</strong>, y enlazar la hoja de estilos mediante la ruta relativa <code>css/estilo.css</code>.</p>
+<ol>
+<li>Copiar los archivos a la raíz de documentos conservando las carpetas y los nombres del proyecto.</li>
+<li>Comprobar que la cuenta del servidor puede leer los archivos y recorrer los directorios necesarios. Verificar que las rutas del HTML coinciden con los nombres reales, incluidas las mayúsculas y minúsculas cuando el sistema las distingue.</li>
+<li>Abrir <code>http://web-aula.test/</code> (o <code>http://web-aula.test:&lt;puerto&gt;/</code> si <code>&lt;puerto&gt;</code> es diferente de 80) desde el cliente y verificar que se muestra el título y que se aplica la hoja de estilos. La pestaña <strong>Red</strong> de las herramientas del navegador permite observar la petición del HTML y la del CSS por separado.</li>
+<li>Tras modificar un archivo estático, repetir la prueba. Si se sigue viendo la versión anterior, comprobar si el navegador está usando una copia en caché.</li>
+</ol>
+<p>La sustitución de un archivo estático normalmente se refleja en la siguiente petición que llega al servidor. Los cambios en los parámetros del servicio se aplican mediante la operación que admita el producto, como una recarga o un reinicio.</p>
+<h3 id="comprobación-del-funcionamiento-del-servidor">COMPROBACIÓN DEL FUNCIONAMIENTO DEL SERVIDOR </h3>
+<p>La puesta en servicio se comprueba primero desde el servidor y después desde un equipo de la red prevista. La prueba por IP permite aislar la resolución de nombres cuando el sitio está configurado para responder también a esa IP, como se presupone en este laboratorio de sitio único.</p>
+<div class="mermaid">flowchart LR
+    A["Servicio activo y puerto en escucha"] --&gt; B["Petición por IP desde el servidor"]
+    B --&gt; C["Petición por IP desde el cliente"]
+    C --&gt; D["Petición por nombre y comprobación del contenido"]
+</div><p>La siguiente tabla resume las pruebas y los resultados esperados. Si alguna falla, conviene revisar los elementos indicados.</p>
+<table>
+<thead>
+<tr>
+<th>Prueba</th>
+<th>Resultado esperado</th>
+<th>Qué revisar si falla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estado y escucha en el servidor</td>
+<td>Servicio activo y escucha TCP en <code>192.168.56.20</code>.</td>
+<td>Registros de inicio, configuración y ocupación del puerto.</td>
+</tr>
+<tr>
+<td>Navegador en el servidor</td>
+<td><code>http://192.168.56.20</code> devuelve la página publicada.</td>
+<td>Directorio raíz, documento predeterminado y permisos.</td>
+</tr>
+<tr>
+<td>Navegador en otro equipo</td>
+<td>La misma URL por IP devuelve la página desde el cliente.</td>
+<td>Red virtual, dirección, rutas cuando proceda y reglas del cortafuegos.</td>
+</tr>
+<tr>
+<td>Navegador usando el nombre</td>
+<td><code>web-aula.test</code> resuelve a la IP esperada y la página carga en el puerto 80.</td>
+<td>Resolución de nombres del cliente, URL y puerto.</td>
+</tr>
+<tr>
+<td>Contenido y registro</td>
+<td>Se muestra el título esperado, carga el CSS y, si está habilitado el registro de acceso, quedan anotadas las peticiones que llegan al servidor.</td>
+<td>Rutas de recursos, caché del navegador y ubicación de los registros.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación de resultados</strong></p>
+<ul>
+<li><strong>Conexión rechazada o agotamiento del tiempo de espera.</strong> Comprobar que el servicio escucha en el destino solicitado y revisar el trayecto entre ambos equipos. El mensaje por sí solo no identifica la causa.</li>
+<li><strong>HTTP 403.</strong> El servidor ha respondido y se niega a atender la petición. Revisar las restricciones de acceso, los permisos y el tratamiento de las peticiones a directorios.</li>
+<li><strong>HTTP 404.</strong> El servidor ha respondido, pero el recurso solicitado no está disponible con esa ruta. Revisar la URL, la raíz de documentos y el nombre del archivo.</li>
+<li><strong>HTTP 200 con una página inesperada.</strong> Comparar el título y los recursos con el sitio publicado. Revisar si se está entregando la página inicial del instalador o si la petición ha llegado a otro servidor.</li>
+</ul>
+<p><strong>Evidencia de puesta en funcionamiento</strong><br>
+Registrar la dirección y el puerto de escucha, la raíz de documentos, la URL utilizada desde el cliente, el código de respuesta observado para el HTML y el resultado de la petición de la hoja de estilos. De este modo, se puede comprobar tanto la instalación del servicio como la publicación efectiva del sitio.</p>
+<h2 id="sitios-web-virtuales">SITIOS WEB VIRTUALES </h2>
+<p>Los sitios web virtuales son una técnica que permite alojar múltiples sitios web en un único servidor físico o virtual, cada uno con su propia identidad y configuración.</p>
+<h3 id="concepto-y-finalidad-de-los-sitios-virtuales">CONCEPTO Y FINALIDAD DE LOS SITIOS VIRTUALES </h3>
+<p>Un <strong>sitio web virtual</strong> es una configuración lógica que permite a un servidor web alojar un sitio con identidad y ajustes propios. Una misma instancia del servidor puede gestionar varios sitios virtuales y aplicar a cada uno su configuración de contenidos, acceso y registro.</p>
+<p>En el laboratorio, <code>web-aula.test</code> y <code>proyectos-aula.test</code> apuntan a la misma dirección IP y utilizan el mismo puerto. Al visitar la ruta <code>/</code> de cada nombre, el navegador obtiene una página de inicio diferente. Cada sitio tiene su propio archivo <code>index.html</code>, ubicado en su raíz de documentos.</p>
+<p>En el siguiente diagrama se representa la relación entre los nombres de los sitios, el servidor y sus raíces de documentos.</p>
+<div class="mermaid">flowchart LR
+    A["web-aula.test"] --&gt; C["Servidor web"]
+    B["proyectos-aula.test"] --&gt; C
+    C --&gt; D["Raíz sitio-aula"]
+    C --&gt; E["Raíz sitio-proyectos"]
+</div><p>La denominación <em>virtual</em> se refiere a la organización de los sitios dentro del servicio. En este ejemplo, ambos sitios pueden ejecutarse en la misma máquina física o virtual.</p>
+<h3 id="ventajas-de-utilizar-sitios-virtuales">VENTAJAS DE UTILIZAR SITIOS VIRTUALES </h3>
+<ul>
+<li><strong>Aprovechamiento de recursos.</strong> Varios sitios pueden compartir el equipo, el sistema operativo y el software servidor.</li>
+<li><strong>Configuración por sitio.</strong> Cada sitio puede tener sus nombres, contenidos, página de inicio y reglas de acceso.</li>
+<li><strong>Administración centralizada.</strong> Las operaciones comunes, como actualizar el software servidor, se realizan sobre una sola instalación.</li>
+<li><strong>Mantenimiento por separado.</strong> Una actualización de los archivos de un sitio puede publicarse sin sustituir los archivos del otro.</li>
+<li><strong>Seguimiento de la actividad.</strong> Los registros separados o identificados por sitio facilitan localizar qué peticiones se atendieron y dónde se produjeron errores.</li>
+</ul>
+<p>El alojamiento compartido crea dependencias. Un fallo del servicio o la saturación del equipo puede afectar a todos los sitios. El grado de aislamiento depende también de los permisos y de cómo se ejecuten las aplicaciones, como se explicará posteriormente.</p>
+<h3 id="tipos-de-sitios-virtuales">TIPOS DE SITIOS VIRTUALES </h3>
+<p>Los sitios se pueden distinguir por el <strong>nombre solicitado</strong>, la <strong>dirección IP de destino</strong> o el <strong>puerto de destino</strong>. La tabla muestra tres configuraciones alternativas para los mismos dos sitios.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>URL del primer sitio</th>
+<th>URL del segundo sitio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Por nombre</td>
+<td><code>http://web-aula.test/</code></td>
+<td><code>http://proyectos-aula.test/</code></td>
+</tr>
+<tr>
+<td>Por IP</td>
+<td><code>http://192.168.56.20/</code></td>
+<td><code>http://192.168.56.21/</code></td>
+</tr>
+<tr>
+<td>Por puerto</td>
+<td><code>http://192.168.56.20/</code></td>
+<td><code>http://192.168.56.20:8080/</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Por nombre.</strong> Los nombres resuelven a la misma IP y comparten el puerto. El servidor distingue el nombre que indica la petición HTTP.</li>
+<li><strong>Por IP.</strong> El servidor dispone de dos direcciones y cada sitio se asocia a una de ellas. Ambas direcciones deben estar configuradas y ser accesibles desde el cliente.</li>
+<li><strong>Por puerto.</strong> Los sitios comparten dirección IP y escuchan en puertos distintos. El cliente debe indicar el puerto en la URL cuando se usa uno distinto del predeterminado para el esquema.</li>
+</ul>
+<p>Los tres criterios se pueden combinar. Por ejemplo, dos sitios pueden compartir el puerto 80 y distinguirse por nombre, mientras que un tercer sitio usa el puerto 8080 en la misma IP.</p>
+<h3 id="elementos-de-configuración-de-un-sitio-virtual">ELEMENTOS DE CONFIGURACIÓN DE UN SITIO VIRTUAL </h3>
+<p>En la siguiente tabla se resumen los parámetros más habituales de un sitio virtual y su función. La configuración concreta depende del producto y de la versión del servidor.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre principal</td>
+<td>Nombre con el que se identifica y se accede habitualmente al sitio.</td>
+</tr>
+<tr>
+<td>Alias o nombre alternativo</td>
+<td>Nombre adicional que el servidor reconoce para el mismo sitio. El cliente también debe poder resolver ese nombre a la IP correspondiente.</td>
+</tr>
+<tr>
+<td>Dirección IP y puerto</td>
+<td>Punto de escucha que recibe las conexiones destinadas al sitio. Varios sitios por nombre pueden compartirlo.</td>
+</tr>
+<tr>
+<td>Raíz de documentos</td>
+<td>Directorio del sistema de archivos que contiene los recursos publicados por el sitio.</td>
+</tr>
+<tr>
+<td>Documento predeterminado</td>
+<td>Archivo que se intenta entregar al solicitar un directorio. Un valor habitual es <code>index.html</code>.</td>
+</tr>
+<tr>
+<td>Registros de acceso y errores</td>
+<td>Permiten consultar las peticiones atendidas y los fallos detectados. Se pueden separar por sitio o centralizar identificando el sitio en las entradas, si el producto lo permite.</td>
+</tr>
+</tbody>
+</table>
+<p>Un alias permite acceder al mismo sitio con otro nombre. Si se quiere que el navegador cambie la URL al nombre principal, se debe configurar además una <strong>redirección HTTP</strong>. La asignación del nombre alternativo al sitio y la resolución de ese nombre son ajustes distintos.</p>
+<h3 id="configuración-de-varios-sitios-web-en-un-mismo-servidor">CONFIGURACIÓN DE VARIOS SITIOS WEB EN UN MISMO SERVIDOR </h3>
+<p>Se mantiene el servidor en secciones anteriores ( <strong>192.168.56.20</strong>), con HTTP en el puerto por defecto (80). Se conserva el sitio del aula y se incorpora un sitio para los proyectos. Los nombres con terminación <code>.test</code> están reservados para pruebas y se resolverán en el entorno del laboratorio.</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Sitio del aula</th>
+<th>Sitio de proyectos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre principal</td>
+<td><code>web-aula.test</code></td>
+<td><code>proyectos-aula.test</code></td>
+</tr>
+<tr>
+<td>Alias de prueba</td>
+<td><code>inicio-aula.test</code></td>
+<td>Sin alias</td>
+</tr>
+<tr>
+<td>Dirección y puerto</td>
+<td><code>192.168.56.20:80</code></td>
+<td><code>192.168.56.20:80</code></td>
+</tr>
+<tr>
+<td>Raíz de documentos</td>
+<td><code>sitio-aula</code></td>
+<td><code>sitio-proyectos</code></td>
+</tr>
+<tr>
+<td>Documento predeterminado</td>
+<td><code>index.html</code></td>
+<td><code>index.html</code></td>
+</tr>
+<tr>
+<td>Título visible</td>
+<td>"Servidor web del aula"</td>
+<td>"Proyectos del aula"</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Preparar los contenidos.</strong> Crear las dos raíces como directorios hermanos. Colocar en cada una su <code>index.html</code> con el título indicado y comprobar que la cuenta del servicio puede leerlo.</li>
+<li><strong>Definir los sitios.</strong> Asociar en la configuración del servidor cada nombre a su raíz de documentos y al punto de escucha común. Añadir el alias al sitio del aula. Mantener el puerto 8080 accesible desde la red de prácticas.</li>
+<li><strong>Configurar la resolución de nombres.</strong> Crear los registros locales de DNS o las entradas equivalentes en el archivo de resolución del cliente. Los tres nombres de la tabla deben apuntar a <code>192.168.56.20</code>.</li>
+<li><strong>Aplicar los cambios.</strong> Validar la configuración con el mecanismo disponible y recargar o reiniciar el servicio según corresponda. Revisar los mensajes generados al aplicar los cambios.</li>
+<li><strong>Comprobar desde el cliente.</strong> Acceder por HTTP y puerto 80 a cada nombre principal y al alias. Registrar la URL, el código HTTP y el título obtenido. Si los registros de acceso están habilitados, comprobar la identificación del sitio en cada petición.</li>
+</ol>
+<p><strong>Resultados esperados</strong></p>
+<table>
+<thead>
+<tr>
+<th>URL solicitada desde el cliente</th>
+<th>Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://web-aula.test/</code></td>
+<td>HTTP 200 y título "Servidor web del aula".</td>
+</tr>
+<tr>
+<td><code>http://proyectos-aula.test/</code></td>
+<td>HTTP 200 y título "Proyectos del aula".</td>
+</tr>
+<tr>
+<td><code>http://inicio-aula.test/</code></td>
+<td>HTTP 200 y el mismo contenido que en <code>web-aula.test</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Si solo falla un nombre, comprobar primero su resolución en el cliente y después su asociación al sitio. Si los dos nombres funcionan pero muestran el mismo título, revisar las asociaciones de nombre y raíz y comprobar si se está aplicando el sitio predeterminado. El código 200 indica que se ha atendido la petición. El título permite verificar qué sitio la ha atendido en este laboratorio.</p>
+<h3 id="sitio-web-predeterminado">SITIO WEB PREDETERMINADO </h3>
+<p>El <strong>sitio predeterminado</strong> es la configuración que puede aplicarse cuando una petición válida llega a un punto de escucha y no coincide con ningún sitio definido para ella. El comportamiento depende del producto y de la configuración. El servidor puede atender la petición con un sitio designado como predeterminado o rechazarla. Algunos servidores determinan el sitio predeterminado a partir del orden de sus definiciones si no se ha indicado expresamente.</p>
+<div class="mermaid">flowchart TD
+    A["Petición válida recibida"] --&gt; B["¿Coincide con un sitio configurado?"]
+    B --&gt; C["Sí. Aplicar la configuración del sitio"]
+    B --&gt; D["No. Aplicar la política predeterminada o rechazar"]
+</div><p>Para comprobar este caso, hacer que <code>desconocido-aula.test</code> resuelva en el cliente a <code>192.168.56.20</code> y solicitar <code>http://desconocido-aula.test/</code>. Dejar ese nombre sin asociar a los sitios. Así se puede observar si el servidor devuelve una página neutra prevista para el laboratorio o rechaza la petición. Si el nombre no resuelve, el navegador no llega al servidor y la prueba no permite observar su política. El <strong>documento predeterminado</strong> se elige dentro de un sitio, una vez seleccionado ese sitio.</p>
+<h3 id="organización-de-los-sitios-y-aislamiento-de-contenidos">ORGANIZACIÓN DE LOS SITIOS Y AISLAMIENTO DE CONTENIDOS </h3>
+<p>La separación empieza por organizar las raíces publicadas como directorios hermanos. En el ejemplo, <code>sitio-proyectos</code> queda fuera de <code>sitio-aula</code>. Si se guardara dentro de ella, una asignación directa de rutas podría permitir solicitar sus archivos desde el sitio del aula.</p>
+<p>La siguiente tabla resume algunas medidas de aislamiento y su aplicación práctica. La separación de contenidos y la limitación de permisos son las más importantes para evitar que un sitio pueda acceder a los archivos de otro.</p>
+<table>
+<thead>
+<tr>
+<th>Medida</th>
+<th>Aplicación práctica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Separar los contenidos</td>
+<td>Mantener una raíz por sitio y revisar las rutas adicionales de publicación. Guardar las copias de seguridad y la configuración fuera de las raíces públicas.</td>
+</tr>
+<tr>
+<td>Limitar los permisos de publicación</td>
+<td>Conceder permisos de escritura sobre cada raíz solo a las cuentas encargadas de actualizar ese sitio. Dar al proceso que sirve los archivos estáticos los permisos de lectura y acceso necesarios.</td>
+</tr>
+<tr>
+<td>Separar registros</td>
+<td>Usar archivos por sitio o un registro común que permita atribuir las entradas a cada sitio.</td>
+</tr>
+<tr>
+<td>Aislar la ejecución cuando sea necesario</td>
+<td>Si los sitios ejecutan aplicaciones y requieren límites de acceso distintos, utilizar identidades de ejecución separadas o instancias independientes según la plataforma y el grado de aislamiento requerido.</td>
+</tr>
+</tbody>
+</table>
+<p>Con una misma cuenta de ejecución, las aplicaciones pueden tener acceso a todos los archivos que esa cuenta puede leer, aunque las raíces sean distintas. Para comprobar la separación de contenidos del laboratorio, añadir un archivo de prueba a un solo sitio y solicitar la misma ruta en ambos nombres. El archivo debe aparecer únicamente en el sitio al que pertenece.</p>
+<h2 id="selección-del-sitio-web-de-destino">SELECCIÓN DEL SITIO WEB DE DESTINO </h2>
+<p>La selección del sitio web de destino depende de la configuración del servidor y de los datos que recibe en la petición. El servidor puede distinguir varios sitios alojados en la misma máquina física o virtual y entregar el contenido adecuado según el nombre, la IP o el puerto indicados por el cliente.</p>
+<p>Dos sitios alojados en un mismo servidor pueden ofrecer la misma ruta, por ejemplo <code>/</code> o <code>/index.html</code>. Para saber qué documento entregar, el servidor identifica primero el sitio al que corresponde la petición y aplica después las reglas de ese sitio para localizar el recurso.</p>
+<p>En el laboratorio, <code>http://web-aula.test/</code> y <code>http://proyectos-aula.test/</code> tienen la misma ruta, la misma IP de destino y el mismo puerto. Las páginas de inicio son distintas porque el servidor selecciona el sitio mediante el <strong>nombre solicitado</strong>.</p>
+<p>En una conexión directa conviene distinguir dos datos. El <strong>destino de red</strong> indica a qué IP y puerto llega el tráfico. El <strong>destino HTTP</strong> indica qué sitio y recurso solicita el cliente. La configuración del servidor determina cómo se combinan estos datos.</p>
+<h3 id="selección-del-sitio-mediante-la-dirección-ip-de-destino">SELECCIÓN DEL SITIO MEDIANTE LA DIRECCIÓN IP DE DESTINO </h3>
+<p>Un equipo puede tener varias direcciones IP en una o varias interfaces de red. Cada sitio puede asociarse a una dirección de destino distinta aunque los dos utilicen el mismo puerto. Por ejemplo, el sitio del aula se puede asociar a <code>192.168.56.20</code> y el de proyectos a <code>192.168.56.21</code>.</p>
+<p>Para que esta configuración funcione, ambas IP deben estar asignadas al servidor y ser alcanzables desde el cliente. El servidor debe recibir conexiones en esas direcciones y asociarlas al sitio correspondiente. Si se publican nombres, cada uno debe resolver a la IP que le corresponde. La <strong>IP de destino</strong> es la del servidor. La <strong>IP de origen</strong> identifica al cliente en una conexión directa y puede utilizarse para otras funciones, como registrar el acceso o aplicar restricciones.</p>
+<h3 id="selección-del-sitio-mediante-el-puerto-de-destino">SELECCIÓN DEL SITIO MEDIANTE EL PUERTO DE DESTINO </h3>
+<p>Varios sitios pueden compartir una IP y distinguirse mediante el puerto en el que reciben las conexiones. El sitio del aula puede usar <code>192.168.56.20</code> (equivalente a <code>192.168.56.20:80</code>), y el de proyectos <code>192.168.56.20:8080</code>. El servidor debe escuchar en ambos puertos y la red debe permitir el acceso a cada uno.</p>
+<p>El navegador usa el puerto indicado en la URL. Cuando se omite, normalmente usa el predeterminado del esquema, <strong>80 para HTTP y 443 para HTTPS</strong>. Por ejemplo, <code>http://web-aula.test/</code> intenta acceder al puerto 80, mientras que <code>http://web-aula.test:8080/</code> indica el 8080. Cambiar el puerto tampoco cambia el esquema de la URL. Una URL que comienza por <code>http://</code> sigue solicitando HTTP aunque indique el puerto 443.</p>
+<h3 id="selección-del-sitio-mediante-el-nombre">SELECCIÓN DEL SITIO MEDIANTE EL NOMBRE </h3>
+<p>Para alojar varios dominios en la misma IP, se configuran sus nombres para que resuelvan a la dirección del servidor y se asocia cada nombre a su sitio en el servicio web. En el laboratorio, <code>web-aula.test</code> y <code>proyectos-aula.test</code> resuelven a <code>192.168.56.20</code> y comparten el puerto 80.</p>
+<p>En una petición <strong>HTTP/1.1</strong>, la cabecera <strong>Host</strong> transmite el nombre solicitado y, en este ejemplo, el puerto explícito. En <strong>HTTP/2 y HTTP/3</strong> se utiliza normalmente el campo <strong>:authority</strong> para comunicar ese dato. La ruta indica qué recurso se solicita dentro del sitio.</p>
+<table>
+<thead>
+<tr>
+<th>URL introducida</th>
+<th>Destino de la conexión</th>
+<th>Valor de Host en HTTP/1.1</th>
+<th>Raíz seleccionada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://web-aula.test/</code></td>
+<td><code>192.168.56.20:80</code></td>
+<td><code>web-aula.test:80</code></td>
+<td><code>sitio-aula</code></td>
+</tr>
+<tr>
+<td><code>http://proyectos-aula.test/</code></td>
+<td><code>192.168.56.20:80</code></td>
+<td><code>proyectos-aula.test:80</code></td>
+<td><code>sitio-proyectos</code></td>
+</tr>
+</tbody>
+</table>
+<p>En la segunda petición, la línea inicial de HTTP/1.1 sería <code>GET / HTTP/1.1</code> y la cabecera sería <code>Host: proyectos-aula.test:80</code>. El servidor puede así distinguir la petición de otra con la misma ruta y con <code>Host: web-aula.test:80</code>.</p>
+<p>La resolución de nombres permite al <strong>cliente</strong> encontrar la IP. La configuración del servidor permite seleccionar el <strong>sitio</strong> a partir del nombre que recibe en la petición. Por eso, dos nombres que resuelven correctamente pueden mostrar la misma página si uno de ellos carece de una asociación y el servidor le aplica el sitio predeterminado. Al escribir la IP directamente en la URL, el cliente indica esa IP como destino HTTP y el resultado depende de la configuración aplicable a ese destino.</p>
+<h3 id="identificación-del-sitio-en-conexiones-https">IDENTIFICACIÓN DEL SITIO EN CONEXIONES HTTPS </h3>
+<p>Cuando dos sitios HTTPS comparten IP y puerto, el servidor necesita presentar un certificado adecuado durante el establecimiento de <strong>TLS</strong>. En una conexión nueva que usa certificados, esta elección ocurre antes de que el servidor procese la petición HTTP. La extensión <strong>SNI</strong> (<em>Server Name Indication</em>) permite al cliente indicar el nombre DNS en el mensaje inicial de TLS, denominado <em>ClientHello</em>.</p>
+<p>Para ampliar el ejemplo, se supone que ambos sitios tienen un punto de escucha HTTPS en <code>192.168.56.20:443</code> y que el cliente confía en la autoridad que emite los certificados del laboratorio. Al abrir <code>https://proyectos-aula.test/</code>, la secuencia habitual es la siguiente.</p>
+<ol>
+<li>El cliente resuelve el nombre y establece una conexión con el destino correspondiente.</li>
+<li>En el <em>ClientHello</em>, el cliente indica mediante SNI el nombre <code>proyectos-aula.test</code>, sin añadir el puerto.</li>
+<li>El servidor puede usar ese nombre para seleccionar los parámetros TLS y presentar un certificado válido para el sitio. El cliente comprueba, entre otros aspectos, la confianza del certificado y que cubre el nombre solicitado.</li>
+<li>Establecida la conexión, el cliente envía la petición HTTP protegida por TLS. El destino HTTP se indica mediante <code>Host</code> o <code>:authority</code>, según la versión y el formato de la petición.</li>
+</ol>
+<div class="mermaid">flowchart TD
+    A["ClientHello con SNI"] --&gt; B["Selección y validación del certificado"]
+    B --&gt; C["Petición HTTP protegida"]
+    C --&gt; D["Selección del sitio y del recurso"]
+</div><p>Un mismo certificado puede cubrir varios nombres. Si el SNI falta o el servidor no reconoce el nombre, según su configuración puede rechazar la conexión TLS o continuar con una configuración predeterminada. Si el certificado presentado no cubre el nombre solicitado, el navegador puede detener la conexión con un aviso de certificado antes de mostrar una página. El capítulo 9 amplía la validación y gestión de certificados.</p>
+<h3 id="comparación-de-los-mecanismos-de-discriminación">COMPARACIÓN DE LOS MECANISMOS DE DISCRIMINACIÓN </h3>
+<p>La siguiente tabla resume los datos que permiten al servidor seleccionar el sitio de destino y el momento en que están disponibles.</p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Momento en que está disponible</th>
+<th>Función en la selección</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP de destino</td>
+<td>Cuando el tráfico llega al servidor.</td>
+<td>Distingue destinos asociados a direcciones diferentes.</td>
+</tr>
+<tr>
+<td>Puerto de destino</td>
+<td>Cuando el tráfico llega al punto de escucha.</td>
+<td>Distingue conexiones dirigidas a puertos diferentes en una misma IP.</td>
+</tr>
+<tr>
+<td>SNI</td>
+<td>Durante el establecimiento inicial de TLS.</td>
+<td>Permite seleccionar la configuración TLS y el certificado según el nombre indicado.</td>
+</tr>
+<tr>
+<td>Nombre HTTP</td>
+<td>Al procesar la petición HTTP.</td>
+<td>Distingue sitios que comparten IP y puerto.</td>
+</tr>
+</tbody>
+</table>
+<p>En una comprobación, conviene seguir ese orden. Si el nombre resuelve a una IP incorrecta, revisar la resolución. Si el cliente no logra conectar con la IP y el puerto esperados, revisar la escucha y el acceso de red. En HTTPS, un aviso de certificado orienta la revisión al nombre y a la configuración TLS. Si el navegador llega a mostrar el sitio equivocado, comprobar la asociación del nombre HTTP y la política de sitio predeterminado.</p>
+<h3 id="proxy-inverso-y-balanceo-de-carga">PROXY INVERSO Y BALANCEO DE CARGA </h3>
+<p>Un <strong>proxy inverso</strong> recibe peticiones de clientes y las encamina a servidores internos. Para el cliente, el punto de acceso es el proxy. Este puede usar el nombre solicitado o la ruta HTTP para elegir el destino interno, siempre que pueda interpretar la petición. Si el proxy termina TLS, puede seleccionar el certificado, procesar HTTP y abrir una conexión propia hacia el servidor interno.</p>
+<p>El <strong>balanceo de carga</strong> distribuye peticiones o conexiones entre varias instancias que prestan el mismo servicio. Un proxy inverso puede realizar las dos funciones. Primero identifica el sitio solicitado y su grupo de servidores. Después selecciona una instancia de ese grupo conforme a una política de reparto, como la rotación entre las instancias disponibles.</p>
+<div class="mermaid">flowchart LR
+    A["Cliente web"] --&gt; B["Proxy inverso"]
+    B --&gt; C["Servidor del aula"]
+    B --&gt; D["Instancia 1 de proyectos"]
+    B --&gt; E["Instancia 2 de proyectos"]
+</div><p>Por ejemplo, una petición para <code>web-aula.test</code> se envía al servidor del aula. Una petición para <code>proyectos-aula.test</code> se dirige a una de las dos instancias de proyectos. Para comprobar ambas decisiones, se puede revisar el sitio que devuelve la página y correlacionar la petición con los registros del proxy y del servidor interno, si están disponibles.</p>
+<h2 id="seguridad-y-control-de-acceso">SEGURIDAD Y CONTROL DE ACCESO </h2>
+<p>El servidor web debe proteger los contenidos y los servicios que ofrece. La seguridad se aplica a varios niveles, desde la infraestructura hasta la aplicación. La siguiente sección se centra en la seguridad de un sitio estático y en la protección de los recursos publicados.</p>
+<h3 id="objetivos-y-principios-de-seguridad">OBJETIVOS Y PRINCIPIOS DE SEGURIDAD </h3>
+<p>La siguiente tabla resume los principios de seguridad y su aplicación al sitio del aula. La confidencialidad, la integridad y la disponibilidad son objetivos generales. La autenticación y la autorización son mecanismos que permiten alcanzarlos.</p>
+<table>
+<thead>
+<tr>
+<th>Principio</th>
+<th>Aplicación al sitio del aula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confidencialidad</td>
+<td>Las actas internas solo se entregan a los usuarios autorizados.</td>
+</tr>
+<tr>
+<td>Integridad</td>
+<td>Solo el personal encargado de publicar puede modificar los archivos del sitio.</td>
+</tr>
+<tr>
+<td>Disponibilidad</td>
+<td>El servicio debe seguir atendiendo las peticiones previstas y poder recuperarse si falla.</td>
+</tr>
+<tr>
+<td>Autenticación</td>
+<td>El servidor o la aplicación comprueba la identidad de quien solicita un recurso protegido.</td>
+</tr>
+<tr>
+<td>Autorización</td>
+<td>La política de acceso determina qué recursos y operaciones están permitidos para esa identidad.</td>
+</tr>
+</tbody>
+</table>
+<p>Una cuenta de alumnado puede identificarse correctamente y acceder a los materiales del curso. La autorización se comprueba de nuevo si esa misma cuenta solicita un acta reservada al profesorado.</p>
+<h3 id="securidad-del-sistema-operativo-y-del-software-servidor">SECURIDAD DEL SISTEMA OPERATIVO Y DEL SOFTWARE SERVIDOR </h3>
+<p>La seguridad del sistema operativo y del software servidor es la base de la protección de los contenidos publicados. La siguiente lista resume algunas medidas habituales.</p>
+<ul>
+<li><strong>Actualizar el sistema y sus componentes.</strong> Mantener al día el sistema operativo, el servidor web y las dependencias de las aplicaciones. Identificar qué versiones están instaladas y verificar el servicio tras aplicar cambios.</li>
+<li><strong>Reducir los componentes expuestos.</strong> Deshabilitar servicios, módulos y funciones que la instalación no utilice. Limitar el acceso de red a los puertos necesarios. Reservar las interfaces de administración para las redes o los equipos autorizados.</li>
+<li><strong>Proteger archivos y directorios.</strong> Guardar configuraciones, credenciales y copias de seguridad fuera de las raíces de publicación. Conceder acceso a estos archivos a las cuentas que lo necesitan.</li>
+<li><strong>Aplicar el mínimo privilegio.</strong> Ejecutar la atención de peticiones con los permisos necesarios para su función. Separar las cuentas de administración, publicación y ejecución cuando la plataforma lo permita.</li>
+</ul>
+<p>En un sitio estático, la cuenta que atiende peticiones suele necesitar lectura de los recursos y acceso a sus directorios. La cuenta encargada de publicar necesita también escribir en la raíz correspondiente. Si ambos usan una cuenta con escritura, un fallo del servicio podría afectar a la integridad de los contenidos publicados.</p>
+<h3 id="gestión-de-permisos-sobre-los-recursos-publicados">GESTIÓN DE PERMISOS SOBRE LOS RECURSOS PUBLICADOS </h3>
+<p>En una publicación estática intervienen dos controles. El <strong>sistema de archivos</strong> determina qué puede leer o modificar la cuenta con la que se ejecuta el servicio. El <strong>servidor web o la aplicación</strong> determina qué peticiones de los clientes están permitidas.</p>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Consecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El recurso es público y la cuenta del servicio puede leer el archivo.</td>
+<td>El servidor puede entregarlo a cualquier cliente si se cumplen las demás reglas del sitio.</td>
+</tr>
+<tr>
+<td>La cuenta del servicio puede leer el archivo y la URL está restringida a un grupo.</td>
+<td>El servidor puede entregarlo a los miembros autorizados del grupo.</td>
+</tr>
+<tr>
+<td>El usuario web está autorizado, pero la cuenta del servicio carece de acceso al archivo.</td>
+<td>El servidor no puede entregar el contenido. Se deben revisar los permisos y los registros.</td>
+</tr>
+</tbody>
+</table>
+<p>Las <strong>cuentas del sistema operativo</strong> y las <strong>cuentas de acceso web</strong> pueden administrarse por separado. En ese caso, pertenecer a un grupo web autoriza determinadas peticiones, mientras que el proceso del servidor sigue utilizando su propia identidad para abrir los archivos.</p>
+<h3 id="control-de-acceso-a-directorios-y-archivos">CONTROL DE ACCESO A DIRECTORIOS Y ARCHIVOS </h3>
+<p>En la publicación de un sitio web, se pueden aplicar reglas de acceso a directorios y archivos. La siguiente tabla resume algunas modalidades habituales y qué se comprueba en cada caso.</p>
+<table>
+<thead>
+<tr>
+<th>Modalidad</th>
+<th>Uso habitual</th>
+<th>Qué se comprueba</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso público</td>
+<td>Portada y avisos del centro.</td>
+<td>Un cliente puede solicitar el recurso sin iniciar sesión.</td>
+</tr>
+<tr>
+<td>Restricción por IP</td>
+<td>Área de gestión accesible desde un equipo concreto.</td>
+<td>La dirección de origen corresponde al equipo autorizado.</td>
+</tr>
+<tr>
+<td>Restricción por red</td>
+<td>Servicio interno limitado a una subred del centro.</td>
+<td>La dirección de origen pertenece al rango permitido.</td>
+</tr>
+<tr>
+<td>Restricción por usuario o grupo</td>
+<td>Material del alumnado y documentos del profesorado.</td>
+<td>La identidad autenticada cumple la regla del recurso.</td>
+</tr>
+</tbody>
+</table>
+<p>Las reglas pueden combinarse. Por ejemplo, un área de administración puede exigir pertenecer al grupo de administradores y acceder desde la red de gestión. Los filtros de red restringen desde dónde se puede acceder. La identidad individual requiere un mecanismo de autenticación. Si hay un proxy inverso, la conexión al servidor interno llega desde el proxy. Para aplicar filtros por IP del cliente, se debe usar información que proporcione un intermediario de confianza mediante una configuración explícita.</p>
+<p>Al restringir un directorio, se deben comprobar tanto la página de entrada como las URLs directas de los archivos. Ocultar un enlace en el menú solo cambia la navegación. La autorización debe aplicarse también cuando el cliente solicita el recurso directamente.</p>
+<h3 id="autenticación-de-usuarios">AUTENTICACIÓN DE USUARIOS </h3>
+<p>La autenticación comprueba una identidad mediante una credencial, como una contraseña, un certificado de cliente o una llave de seguridad.</p>
+<h4 id="autenticación-básica-http">AUTENTICACIÓN BÁSICA HTTP </h4>
+<p>Ante una petición a un recurso protegido sin credenciales válidas, el servidor puede responder con <strong>401 Unauthorized</strong> e incluir el desafío <code>WWW-Authenticate</code> para el esquema Basic. El navegador puede pedir usuario y contraseña y volver a enviar la petición con la cabecera <code>Authorization</code>. En Basic, las credenciales se codifican en Base64. Para protegerlas durante el transporte se utiliza <strong>HTTPS</strong>.</p>
+<h4 id="autenticación-mediante-formularios">AUTENTICACIÓN MEDIANTE FORMULARIOS </h4>
+<p>El usuario introduce las credenciales en una página de inicio de sesión. Si la aplicación las valida, normalmente crea una sesión y entrega al navegador un identificador mediante una cookie. En peticiones posteriores, la aplicación usa la sesión para reconocer al usuario. La caducidad y el cierre de sesión limitan el periodo de validez. El formulario y toda la sesión deben viajar por HTTPS.</p>
+<h4 id="autenticación-mediante-certificados-de-cliente">AUTENTICACIÓN MEDIANTE CERTIFICADOS DE CLIENTE </h4>
+<p>El servidor solicita un certificado de cliente durante el establecimiento de TLS. El navegador envía un certificado válido y el servidor lo valida. La identidad se extrae del certificado y se puede usar para autorizar la petición. La gestión de certificados requiere una infraestructura de confianza y la configuración del servidor para reconocer los certificados emitidos por esa autoridad.</p>
+<h4 id="otros-mecanismos-de-autenticación">OTROS MECANISMOS DE AUTENTICACIÓN </h4>
+<p>Otros mecanismos de autenticación incluyen <strong>OAuth</strong>, <strong>OpenID Connect</strong> y <strong>SAML</strong>, que permiten delegar la autenticación a un proveedor de identidad externo. Estos protocolos facilitan el inicio de sesión único y la integración con servicios de terceros. Se pueden combinar con autenticación multifactor para aumentar la seguridad, exigiendo más de un factor de verificación, como una contraseña y un código enviado al teléfono del usuario.</p>
+<h3 id="autorización-y-gestión-de-permisos">AUTORIZACIÓN Y GESTIÓN DE PERMISOS </h3>
+<p>Para definir una política, se enumeran los recursos, las operaciones y los grupos autorizados. En nuestro ejemplo del sitio del aula se aplicará la siguiente política de <strong>lectura</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Sin iniciar sesión</th>
+<th>Grupo alumnado</th>
+<th>Grupo profesorado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/avisos/</code></td>
+<td>Permitido</td>
+<td>Permitido</td>
+<td>Permitido</td>
+</tr>
+<tr>
+<td><code>/materiales/</code></td>
+<td>Requiere autenticación</td>
+<td>Permitido</td>
+<td>Permitido</td>
+</tr>
+<tr>
+<td><code>/actas/</code></td>
+<td>Requiere autenticación</td>
+<td>Denegado</td>
+<td>Permitido</td>
+</tr>
+</tbody>
+</table>
+<p>Los recursos protegidos deben denegarse por defecto y concederse mediante reglas explícitas. El servidor o la aplicación verifica el permiso en cada petición. Si en el futuro se añade una operación de edición, su autorización debe definirse de forma independiente de la lectura.</p>
+<div class="mermaid">flowchart TD
+    A["Petición de un acta"] --&gt; B["Comprobar la identidad"]
+    B --&gt; C["Sin identidad válida. Pedir autenticación"]
+    B --&gt; D["Identidad válida. Comprobar el grupo"]
+    D --&gt; E["Profesorado. Entregar el acta"]
+    D --&gt; F["Otro grupo. Denegar el acceso"]
+</div><p><em>Comprobaciones de identidad y permisos al solicitar un acta.</em></p>
+<h3 id="protección-frente-a-ataques-y-amenazas">PROTECCIÓN FRENTE A ATAQUES Y AMENAZAS </h3>
+<p>La protección se reparte entre la red, el servidor y la aplicación. La medida depende de dónde se origina el problema. La siguiente tabla resume algunas amenazas habituales, qué puede ocurrir y cómo protegerse frente a ellas.</p>
+<table>
+<thead>
+<tr>
+<th>Amenaza</th>
+<th>Qué puede ocurrir</th>
+<th>Medidas de protección</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso no autorizado</td>
+<td>Un usuario obtiene datos o realiza operaciones reservadas a otro grupo.</td>
+<td>Verificar permisos en cada petición. Denegar por defecto. Revisar los grupos y probar URLs directas.</td>
+</tr>
+<tr>
+<td>Fuerza bruta</td>
+<td>Se acumulan intentos de adivinar credenciales.</td>
+<td>Limitar la frecuencia de intentos, activar autenticación multifactor cuando se admita y supervisar los fallos repetidos.</td>
+</tr>
+<tr>
+<td>DoS y DDoS</td>
+<td>Una carga excesiva agota los recursos del servicio. En DDoS el tráfico procede de fuentes distribuidas.</td>
+<td>Aplicar límites adecuados y monitorizar la carga. Si se satura el enlace, recurrir a mitigación aguas arriba.</td>
+</tr>
+<tr>
+<td>Recorrido de directorios (<em>directory traversal</em>)</td>
+<td>Una ruta manipulada hace que se intente acceder a un archivo fuera del directorio previsto.</td>
+<td>Resolver archivos mediante referencias controladas y comprobar que la ruta resuelta pertenece a la ubicación autorizada. Limitar permisos.</td>
+</tr>
+<tr>
+<td>Inyección SQL</td>
+<td>Una aplicación interpreta datos del usuario como parte de una consulta SQL.</td>
+<td>Utilizar consultas parametrizadas y limitar los privilegios de la cuenta de base de datos.</td>
+</tr>
+<tr>
+<td>XSS (<em>cross-site scripting</em>)</td>
+<td>El navegador interpreta contenido introducido por un tercero como código del sitio.</td>
+<td>Codificar la salida según su contexto. Si se admite HTML aportado por usuarios, aplicar un saneamiento apropiado.</td>
+</tr>
+<tr>
+<td>Explotación de vulnerabilidades</td>
+<td>Un defecto del servidor, un módulo o una dependencia permite acciones indebidas.</td>
+<td>Aplicar parches, retirar componentes sin mantenimiento y limitar el alcance de los procesos.</td>
+</tr>
+</tbody>
+</table>
+<p>Por ejemplo, un cortafuegos puede impedir el acceso desde una red externa. Las consultas parametrizadas protegen otro punto del sistema: la interacción de la aplicación con la base de datos.</p>
+<h3 id="medidas-de-protección-y-buenas-prácticas-de-seguridad">MEDIDAS DE PROTECCIÓN Y BUENAS PRÁCTICAS DE SEGURIDAD </h3>
+<p>Antes de publicar, revisar qué rutas son públicas y qué cuentas pueden leer, escribir o administrar. Comprobar que el servidor entrega únicamente los archivos previstos y deshabilitar el listado de directorios si el sitio no lo necesita. Evitar que las páginas de error expongan rutas internas o detalles de depuración.</p>
+<p>Por ejemplo, para verificar la política del aula, abrir los recursos en sesiones independientes de navegador. Probar primero sin sesión, después con la cuenta de alumnado y, por último, con la de profesorado. Incluir una URL directa a un archivo real dentro de <code>/actas/</code> e intentar abrirla con las tres sesiones.</p>
+<table>
+<thead>
+<tr>
+<th>Prueba sobre un recurso existente</th>
+<th>Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cliente sin sesión solicita <code>/avisos/</code>.</td>
+<td>Se entrega la página pública.</td>
+</tr>
+<tr>
+<td>Cliente sin sesión solicita un acta.</td>
+<td>Se exige autenticación. Basic puede devolver 401. Un formulario puede mostrar el inicio de sesión o redirigir a él.</td>
+</tr>
+<tr>
+<td>Cuenta de alumnado solicita un acta.</td>
+<td>Se deniega el acceso. Una respuesta habitual es 403 Forbidden.</td>
+</tr>
+<tr>
+<td>Cuenta de profesorado solicita la misma acta.</td>
+<td>Se entrega el documento. Una respuesta habitual es 200 OK.</td>
+</tr>
+</tbody>
+</table>
+<p>Algunos servicios responden con <strong>404 Not Found</strong> para ocultar la existencia de un recurso restringido. Para validar la política, observar el contenido que recibe el cliente además del código HTTP y contrastarlo con los registros. Un formulario puede devolver 200 para su propia página tras una redirección.</p>
+<h3 id="registro-y-auditoría-de-accesos">REGISTRO Y AUDITORÍA DE ACCESOS </h3>
+<p>El <strong>registro de acceso</strong> permite comprobar cuándo llegó una petición, qué recurso solicitó y qué respuesta obtuvo. Según la configuración, también puede incluir el sitio, el origen y un identificador del usuario autenticado. El <strong>registro de errores</strong> recoge incidencias como problemas de permisos o fallos del servicio. Si la autenticación la gestiona una aplicación, parte de la información puede quedar en su propio registro.</p>
+<p>Para auditar las pruebas, anotar la hora, la cuenta o grupo de prueba, la ruta y el resultado. Buscar la petición correspondiente y comprobar si el acceso permitido o denegado coincide con la política. Proteger los registros mediante permisos y rotación, ajustar su conservación a la política aplicable y evitar registrar contraseñas, cabeceras de autenticación, cookies de sesión y otros secretos.</p>
+<h2 id="ejecución-de-código-en-el-cliente-y-en-el-servidor">EJECUCIÓN DE CÓDIGO EN EL CLIENTE Y EN EL SERVIDOR </h2>
+<p>En un sitio web, el navegador del cliente y el servidor web pueden ejecutar código. La ejecución en el cliente permite responder a interacciones locales y actualizar la página sin recargarla. La ejecución en el servidor permite comprobar permisos, acceder a datos internos y generar contenido según la petición.</p>
+<h3 id="contenido-estático-y-dinámico">CONTENIDO ESTÁTICO Y DINÁMICO </h3>
+<p>Un recurso <strong>estático</strong> está preparado antes de que llegue la petición. Por ejemplo, el servidor de <code>proyectos-aula.test</code> puede entregar un archivo <code>index.html</code> tal como está guardado. Para publicar una versión nueva, se actualiza el archivo o se vuelve a generar y desplegar el sitio.</p>
+<p>Un recurso <strong>generado dinámicamente</strong> se construye al atender una petición. Una aplicación puede consultar los proyectos publicados, incorporar los resultados a una plantilla y devolver el HTML resultante. La respuesta puede variar según el filtro, los datos disponibles o los permisos del usuario.</p>
+<p>La generación del contenido y la interacción en el navegador son dos aspectos diferentes. Una página servida como archivo estático puede incluir JavaScript y actualizar un listado tras obtener datos. Una página generada en el servidor puede mostrarse y permitir enviar formularios incluso con JavaScript desactivado, si se ha diseñado para ello.</p>
+<table>
+<thead>
+<tr>
+<th>Ejemplo del aula</th>
+<th>Qué hace el servidor</th>
+<th>Qué hace el navegador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Avisos guardados en un archivo HTML</td>
+<td>Entrega el archivo publicado.</td>
+<td>Interpreta el HTML y muestra los avisos.</td>
+</tr>
+<tr>
+<td>Catálogo generado a partir de una consulta</td>
+<td>Construye el HTML y lo envía al cliente.</td>
+<td>Interpreta el HTML y muestra el catálogo.</td>
+</tr>
+<tr>
+<td>Catálogo con filtro interactivo</td>
+<td>Entrega la página inicial y responde a las peticiones de datos.</td>
+<td>Ejecuta JavaScript para solicitar datos y actualizar el listado.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejecición-de-código-en-el-cliente">EJECICIÓN DE CÓDIGO EN EL CLIENTE </h3>
+<p>El navegador solicita los recursos de la página y los procesa en el equipo del usuario. En un sitio web suelen intervenir tres tecnologías.</p>
+<table>
+<thead>
+<tr>
+<th>Tecnología</th>
+<th>Función en el navegador</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>Describe la estructura y el significado del contenido.</td>
+<td>Define el título, el formulario y la lista de proyectos.</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Define la presentación de los elementos.</td>
+<td>Adapta el tamaño y la disposición de la lista a la pantalla.</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Ejecuta instrucciones y puede responder a eventos, modificar la página o realizar peticiones.</td>
+<td>Solicita los proyectos al cambiar un filtro y actualiza la lista.</td>
+</tr>
+</tbody>
+</table>
+<p>Al interpretar el HTML, el navegador construye el <strong>DOM</strong>, una representación de los elementos de la página. Aplica las reglas CSS para calcular su presentación. El código JavaScript puede leer el valor de un campo, reaccionar a una pulsación y actualizar elementos del DOM.</p>
+<p>Ejecutar parte de la lógica en el navegador permite responder de inmediato a acciones locales, como abrir un menú o filtrar datos ya descargados. El resultado depende de las capacidades del navegador y del dispositivo. Además, el usuario puede inspeccionar y modificar el comportamiento de lo que recibe. Por ello, los permisos y las validaciones que protegen datos deben comprobarse en el servidor.</p>
+<h3 id="ejecición-de-código-en-el-servidor">EJECICIÓN DE CÓDIGO EN EL SERVIDOR </h3>
+<p>Cuando una petición corresponde a una función de la aplicación, el servidor web puede pasarla al entorno de ejecución o al proceso que la atiende. La aplicación lee los datos de la petición, comprueba los permisos, ejecuta la lógica necesaria y devuelve una respuesta. Puede generar HTML para mostrar una página o JSON para que el cliente procese los datos.</p>
+<table>
+<thead>
+<tr>
+<th>Lenguaje o tecnología</th>
+<th>Cómo se utiliza en el servidor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PHP</td>
+<td>Ejecuta aplicaciones que pueden generar páginas o responder con datos.</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Ejecuta la lógica de una aplicación mediante un entorno y, habitualmente, un framework web.</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>Permite desarrollar aplicaciones que se ejecutan en la máquina virtual de Java y atienden peticiones HTTP.</td>
+</tr>
+<tr>
+<td>ASP.NET Core</td>
+<td>Plataforma web de .NET que permite desarrollar aplicaciones y API, habitualmente con C#.</td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>Entorno que permite ejecutar JavaScript en el servidor y atender peticiones HTTP.</td>
+</tr>
+</tbody>
+</table>
+<p>Por ejemplo, al recibir una petición para filtrar proyectos por módulo, la aplicación puede comprobar el filtro, consultar los proyectos visibles para el usuario y devolver una lista. El navegador recibe la respuesta generada. Las credenciales de la base de datos y la lógica interna permanecen en el servidor cuando la aplicación está configurada correctamente.</p>
+<h3 id="diferencias-entre-la-ejecución-en-el-cliente-y-en-el-servidor">DIFERENCIAS ENTRE LA EJECUCIÓN EN EL CLIENTE Y EN EL SERVIDOR </h3>
+<p>La siguiente tabla resume algunas diferencias entre la ejecución en el cliente y en el servidor. La distinción no depende del lenguaje, sino del proceso que ejecuta el código y de los datos a los que accede.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Cliente</th>
+<th>Servidor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entorno</td>
+<td>Navegador en el dispositivo del usuario.</td>
+<td>Proceso de aplicación en la infraestructura del servicio.</td>
+</tr>
+<tr>
+<td>Tareas habituales</td>
+<td>Mostrar la interfaz y responder a interacciones.</td>
+<td>Comprobar permisos, ejecutar reglas de negocio y acceder a datos persistentes.</td>
+</tr>
+<tr>
+<td>Datos disponibles</td>
+<td>Recursos y respuestas que recibe, más datos introducidos localmente.</td>
+<td>Datos y servicios internos a los que su cuenta tiene acceso.</td>
+</tr>
+<tr>
+<td>Observación</td>
+<td>Herramientas del navegador, como Red y Consola.</td>
+<td>Registros del servidor y de la aplicación, herramientas de diagnóstico y código alojado.</td>
+</tr>
+<tr>
+<td>Ejemplo con JavaScript</td>
+<td>Controlar un filtro y actualizar el DOM.</td>
+<td>Procesar peticiones en un entorno como Node.js.</td>
+</tr>
+</tbody>
+</table>
+<p>El lenguaje por sí solo no determina dónde se ejecuta un programa. JavaScript puede ejecutarse tanto en el navegador como en el servidor. Para distinguirlos, hay que identificar el proceso que ejecuta el código y los datos a los que accede.</p>
+<h3 id="comunicación-e-interacción-entre-el-cliente-y-el-servidor">COMUNICACIÓN E INTERACCIÓN ENTRE EL CLIENTE Y EL SERVIDOR </h3>
+<p>Un formulario puede provocar una navegación completa, tras la cual el servidor devuelve una nueva página HTML. También se puede usar JavaScript para solicitar datos en segundo plano y actualizar solo una parte de la interfaz. En ambos casos se intercambian peticiones y respuestas HTTP.</p>
+<p>En el ejemplo, el filtro <em>Servicios en Red</em> solicita el listado al recurso <code>/api/proyectos?modulo=redes</code>. Se usa <strong>GET</strong> porque la operación consulta datos. La aplicación devuelve una respuesta JSON con los proyectos visibles y el navegador actualiza la lista. Si la petición falla, la interfaz puede mostrar un aviso conservando la página abierta.</p>
+<div class="mermaid">flowchart LR
+    A["Selección del filtro"] --&gt; B["Petición HTTP GET"]
+    B --&gt; C["Consulta del servidor"]
+    C --&gt; D["Respuesta JSON"]
+    D --&gt; E["Lista actualizada"]
+</div><p><em>Secuencia de una consulta iniciada desde el navegador.</em></p>
+<p>En la pestaña <strong>Red</strong> del inspector de la web del navegador se pueden comprobar la URL, el método, el código de estado y el contenido de la respuesta. En el laboratorio, el documento inicial se recibe como HTML y el recurso del filtro como JSON. Ver la respuesta permite saber qué datos llegaron al navegador, incluso si solo se muestra una parte en pantalla.</p>
+<h3 id="aplicaciones-web-y-acceso-a-bases-de-datos">APLICACIONES WEB Y ACCESO A BASES DE DATOS </h3>
+<p>En una arquitectura web habitual, el <strong>navegador</strong> envía la petición HTTP, la <strong>aplicación</strong> decide qué operación debe realizar y la <strong>base de datos</strong> ejecuta las consultas o actualizaciones que le pide la aplicación. El navegador se comunica con el servicio web mediante una API o una página. La aplicación utiliza sus propias credenciales para conectarse a la base de datos.</p>
+<p>En el ejemplo, la aplicación consulta los proyectos del módulo indicado. Si existe una restricción de visibilidad, se aplica teniendo en cuenta la identidad del usuario. A continuación, la aplicación construye el JSON con los campos que la interfaz necesita, como el título y el módulo. Los campos de uso interno se excluyen de la respuesta.</p>
+<p>Si el usuario guarda una modificación, la aplicación valida los datos, comprueba que esa identidad puede modificar el proyecto y solicita a la base de datos que aplique el cambio. La respuesta informa al navegador del resultado.</p>
+<h3 id="validación-de-datos-y-seguridad-en-la-ejecución-de-código">VALIDACIÓN DE DATOS Y SEGURIDAD EN LA EJECUCIÓN DE CÓDIGO </h3>
+<p>Validar un dato consiste en comprobar que cumple las reglas de la operación. Para el filtro del catálogo, el servidor verifica que el módulo indicado pertenece al conjunto admitido. En un formulario de alta también puede comprobar que el título es obligatorio y que su longitud se encuentra dentro del límite establecido.</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Dónde se aplica</th>
+<th>Qué aporta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Validación de interfaz</td>
+<td>En el navegador.</td>
+<td>Avisa pronto de errores y facilita su corrección.</td>
+</tr>
+<tr>
+<td>Validación de la operación</td>
+<td>En el servidor, antes de procesar la petición.</td>
+<td>Aplica las reglas incluso si la petición procede de otro cliente o no pasó por el formulario.</td>
+</tr>
+<tr>
+<td>Autorización</td>
+<td>En el servidor, en cada operación protegida.</td>
+<td>Comprueba si la identidad puede leer o modificar el recurso.</td>
+</tr>
+<tr>
+<td>Consultas parametrizadas</td>
+<td>En la aplicación, al comunicarse con la base de datos.</td>
+<td>Mantienen separados los valores aportados de la estructura de la consulta.</td>
+</tr>
+<tr>
+<td>Presentación segura de texto</td>
+<td>Al generar HTML o al actualizar el DOM.</td>
+<td>Hace que los valores de texto se muestren como texto mediante el tratamiento apropiado para cada contexto.</td>
+</tr>
+</tbody>
+</table>
+<p>Como comprobación de aula, se puede observar la respuesta para un módulo válido, un campo vacío y un módulo fuera del conjunto admitido. El alumnado debe identificar qué avisos se generan en el navegador y qué comprobaciones realiza el servidor. Si el filtro es inválido, la aplicación puede responder con <strong>400 Bad Request</strong> y un mensaje comprensible. Una respuesta correcta solo incluye los datos que el usuario está autorizado a consultar.</p>
+<h2 id="módulos-y-componentes">MÓDULOS Y COMPONENTES </h2>
+<h3 id="concepto-de-módulo">CONCEPTO DE MÓDULO </h3>
+<p>Un <strong>módulo</strong> es un componente de software que amplía o modifica el comportamiento del servidor web. Puede añadir una función, como comprimir una respuesta, o intervenir en una operación existente, como comprobar permisos antes de entregar un archivo.</p>
+<p>Conviene distinguir tres estados:</p>
+<ul>
+<li>Un módulo <strong>disponible</strong> forma parte de la instalación o se ha añadido como componente compatible.</li>
+<li>Un módulo <strong>habilitado</strong> puede intervenir en el funcionamiento del servidor.</li>
+<li>Un módulo <strong>configurado</strong> tiene definido cómo actúa y en qué ámbito. Un componente de compresión puede estar habilitado y aplicarse únicamente a los tipos de respuesta especificados.</li>
+</ul>
+<p>Algunas funcionalidades vienen integradas en el servidor. Otras se añaden mediante módulos o se prestan mediante un proceso externo. Por ejemplo, un módulo de integración puede enviar una petición a una aplicación que se ejecuta en su propio proceso. En ese caso, el módulo se encarga de comunicar ambos componentes y la aplicación ejecuta la lógica descrita en capítulos anteriores.</p>
+<h3 id="arquitectura-modular">ARQUITECTURA MODULAR </h3>
+<p>El núcleo del servidor coordina el tratamiento de las peticiones y la generación o entrega de respuestas. Los módulos intervienen en los puntos que admite cada arquitectura. Una comprobación de acceso puede actuar antes de entregar un recurso. Un componente de compresión puede transformar el cuerpo de la respuesta antes de enviarlo.</p>
+<table>
+<thead>
+<tr>
+<th>Forma de incorporar una función</th>
+<th>Implicación para la administración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Componente incluido en la compilación</td>
+<td>La función está disponible en ese ejecutable. Su uso puede depender de la configuración.</td>
+</tr>
+<tr>
+<td>Módulo cargable</td>
+<td>Se incorpora como componente compatible y se carga mediante el mecanismo del servidor. Puede requerir una recarga o un reinicio.</td>
+</tr>
+<tr>
+<td>Componente externo</td>
+<td>Se ejecuta aparte. Hay que configurar la comunicación con él y supervisar tanto el servidor web como el proceso externo.</td>
+</tr>
+</tbody>
+</table>
+<p>Una petición puede pasar por varios componentes. El diagrama representa una secuencia posible para un recurso protegido. El orden y los puntos de intervención dependen de la plataforma.</p>
+<div class="mermaid">flowchart TD
+    A["Petición del cliente"] --&gt; B["Control de acceso"]
+    B --&gt; C["Acceso denegado. Respuesta de error"]
+    B --&gt; D["Acceso permitido. Obtener el recurso"]
+    D --&gt; E["Comprimir si procede"]
+    E --&gt; F["Enviar la respuesta"]
+</div><p><em>Intervención del control de acceso y la compresión en una misma petición.</em></p>
+<h3 id="tipos-de-módulos-y-funcionalidades">TIPOS DE MÓDULOS Y FUNCIONALIDADES </h3>
+<p>La siguiente tabla resume algunas funcionalidades habituales y su aplicación en el sitio del aula. La lista no es exhaustiva y la disponibilidad depende de la plataforma.</p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidad</th>
+<th>Para qué sirve</th>
+<th>Ejemplo de aplicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autenticación y autorización</td>
+<td>Comprobar la identidad y aplicar reglas de acceso.</td>
+<td>Restringir <code>/actas/</code> al profesorado.</td>
+</tr>
+<tr>
+<td>Seguridad</td>
+<td>Aplicar controles adicionales al tráfico o limitar su frecuencia.</td>
+<td>Reducir la frecuencia de intentos de acceso a un formulario.</td>
+</tr>
+<tr>
+<td>Reescritura y redirección de URL</td>
+<td>Cambiar internamente la ruta que se procesa o indicar al cliente que solicite otra URL.</td>
+<td>Resolver una ruta mediante la aplicación o redirigir una dirección antigua a la vigente.</td>
+</tr>
+<tr>
+<td>Compresión de contenidos</td>
+<td>Reducir el tamaño de determinadas respuestas si el cliente admite la codificación.</td>
+<td>Comprimir HTML, CSS o JSON cuando tenga sentido.</td>
+</tr>
+<tr>
+<td>Gestión de cabeceras HTTP</td>
+<td>Añadir, modificar o retirar cabeceras según el contexto.</td>
+<td>Definir una política de caché para los recursos estáticos.</td>
+</tr>
+<tr>
+<td>Proxy inverso</td>
+<td>Encauzar peticiones hacia otro servidor o proceso.</td>
+<td>Enviar las peticiones de <code>/api/</code> a la aplicación de proyectos.</td>
+</tr>
+<tr>
+<td>Integración con lenguajes de programación</td>
+<td>Comunicar el servidor web con un entorno que ejecuta la aplicación.</td>
+<td>Obtener de un proceso de aplicación el HTML o JSON de una respuesta.</td>
+</tr>
+<tr>
+<td>Monitorización y estadísticas</td>
+<td>Recoger información sobre el uso y el estado del servicio.</td>
+<td>Consultar el volumen de peticiones y la frecuencia de errores.</td>
+</tr>
+</tbody>
+</table>
+<p>La <strong>reescritura interna</strong> cambia cómo se resuelve una petición dentro del servicio, de modo que el navegador puede conservar la URL original. En una <strong>redirección HTTP</strong>, el servidor devuelve una respuesta que indica una nueva ubicación y el cliente puede efectuar otra petición. Para comprobar una redirección se puede observar el código de estado y la cabecera <code>Location</code> en la pestaña <strong>Red</strong> del navegador.</p>
+<h3 id="instalación-y-habilitación-de-módulos">INSTALACIÓN Y HABILITACIÓN DE MÓDULOS </h3>
+<p>La instalación y habilitación de un módulo requiere comprobar la compatibilidad, definir su ámbito y validar su efecto. La siguiente lista resume los pasos habituales.</p>
+<ol>
+<li><strong>Identificar la función requerida.</strong> Comprobar si la instalación actual la proporciona y qué componente la implementa.</li>
+<li><strong>Verificar la compatibilidad.</strong> Revisar la versión del servidor, las dependencias y el origen del componente. Si hay que instalarlo, utilizar el mecanismo de distribución del producto o del sistema.</li>
+<li><strong>Preparar y habilitar el componente.</strong> Guardar una copia de la configuración y habilitar el módulo mediante el mecanismo del servidor, si es necesario. Definir el ámbito en el que debe actuar.</li>
+<li><strong>Validar y aplicar los cambios.</strong> Comprobar la configuración antes de activarla cuando exista una herramienta para ello. Aplicar los cambios con una recarga o un reinicio según corresponda y revisar los registros.</li>
+<li><strong>Verificar la función.</strong> Repetir una petición de referencia y comprobar el efecto esperado. Verificar también una petición que deba conservar su comportamiento anterior.</li>
+</ol>
+<p>Para <strong>deshabilitar</strong> un módulo, primero hay que identificar configuraciones y componentes que dependan de él. Si alguna regla hace referencia al módulo, puede ser necesario modificarla antes de retirarlo. Después de aplicar el cambio, se comprueba que la función dejó de actuar y que los sitios dependientes siguen respondiendo. La desinstalación del componente es una operación posterior, cuando el producto la admite.</p>
+<h3 id="configuración-y-compatibilidad-entre-módulos">CONFIGURACIÓN Y COMPATIBILIDAD ENTRE MÓDULOS </h3>
+<p>La <strong>compatibilidad</strong> tiene una parte técnica y otra de funcionamiento. Un módulo debe poder cargarse en la versión instalada y disponer de las dependencias necesarias. También debe poder convivir con los componentes que intervienen en la misma petición.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Comprobación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ámbito</td>
+<td>Determinar si el ajuste se aplica al servicio completo, a un sitio virtual o a un conjunto de rutas, según lo que admita el producto.</td>
+</tr>
+<tr>
+<td>Dependencias</td>
+<td>Comprobar qué componentes deben estar disponibles y cuáles cargan antes.</td>
+</tr>
+<tr>
+<td>Orden de actuación</td>
+<td>Confirmar qué ruta o respuesta recibe cada módulo. Si se reescribe una ruta, verificar que se aplican los permisos previstos al recurso resultante.</td>
+</tr>
+<tr>
+<td>Interacción entre componentes</td>
+<td>Si una aplicación interna o un proxy ya comprime la respuesta, comprobar qué componente debe hacerlo y evitar una segunda compresión innecesaria.</td>
+</tr>
+<tr>
+<td>Verificación tras un cambio</td>
+<td>Revisar errores de carga, cabeceras y contenido. Comprobar también otro sitio que comparta la instalación.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="seguridad-y-rendimiento-en-la-selección-de-módulos">SEGURIDAD Y RENDIMIENTO EN LA SELECCIÓN DE MÓDULOS </h3>
+<p>Cada módulo añade código y configuración que deben mantenerse. Conviene justificar su uso, elegir componentes con mantenimiento y limitar su ámbito a los sitios que los necesitan. Si un módulo publica métricas o una interfaz de administración, el acceso a esa información debe restringirse según la política del centro.</p>
+<p>El rendimiento se comprueba con datos. La compresión puede reducir los bytes transferidos, aunque requiere trabajo adicional del procesador. Su efecto depende del tamaño y tipo de contenido. En un catálogo público puede ser útil para HTML y JSON. En imágenes ya comprimidas el ahorro suele ser menor.</p>
+<h2 id="comunicaciones-seguras-https-y-certificados-digitales">COMUNICACIONES SEGURAS: HTTPS Y CERTIFICADOS DIGITALES </h2>
+<p>El protocolo HTTP se diseñó para intercambiar mensajes de texto sin cifrar. Para proteger la confidencialidad e integridad de los datos, se utiliza <strong>HTTPS</strong>, que transporta HTTP mediante <strong>TLS</strong> (<em>Transport Layer Security</em>). TLS cifra los mensajes y permite comprobar la identidad del servidor mediante un certificado digital.</p>
+<h3 id="riesgos-de-las-comunicaciones-http-sin-cifrar">RIESGOS DE LAS COMUNICACIONES HTTP SIN CIFRAR </h3>
+<p>Con HTTP sin TLS, quien pueda observar el tráfico puede leer el contenido de las peticiones y las respuestas, incluidas las credenciales y las cookies que viajen en ellas. Quien pueda intervenir en el trayecto también puede intentar modificar los mensajes o suplantar al servidor. En el sitio del aula, estos riesgos afectan tanto al acceso a las actas como al inicio de sesión.</p>
+<p>HTTPS protege los datos durante el transporte y permite comprobar la identidad del servidor al que se conecta el navegador. Los permisos de los usuarios y la protección de los datos almacenados se administran en el servidor y en la aplicación, como se explicó en el capítulo 6.</p>
+<h3 id="fundamentos-de-la-criptografía-aplicada-a-la-web">FUNDAMENTOS DE LA CRIPTOGRAFÍA APLICADA A LA WEB </h3>
+<p>La <strong>criptografía</strong> protege la información mediante funciones matemáticas que dependen de claves secretas. TLS combina varios mecanismos criptográficos para proteger la conexión y autenticar al servidor. La siguiente tabla resume los mecanismos más habituales y su función en TLS.</p>
+<table>
+<thead>
+<tr>
+<th>Mecanismo</th>
+<th>Idea básica</th>
+<th>Función en TLS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cifrado simétrico</td>
+<td>Las partes usan claves secretas compartidas.</td>
+<td>Protege los datos de la conexión. TLS moderno usa cifrado autenticado para proteger la confidencialidad y detectar modificaciones.</td>
+</tr>
+<tr>
+<td>Criptografía asimétrica</td>
+<td>Se utilizan claves públicas y privadas, con funciones que dependen del algoritmo.</td>
+<td>Permite autenticar al servidor mediante firmas y, con mecanismos como ECDHE, acordar material para derivar claves compartidas.</td>
+</tr>
+<tr>
+<td>Función hash</td>
+<td>Calcula un resumen de unos datos.</td>
+<td>Se emplea, entre otros usos, para resumir los mensajes del establecimiento de la conexión y derivar claves. Un hash por sí solo no autentica al emisor.</td>
+</tr>
+<tr>
+<td>Firma digital</td>
+<td>Se crea con una clave privada y se verifica con la clave pública correspondiente.</td>
+<td>Permite verificar la firma de la autoridad emisora y comprobar que el servidor posee la clave privada asociada a su certificado durante el intercambio habitual.</td>
+</tr>
+</tbody>
+</table>
+<p>En una conexión TLS moderna, el cliente y el servidor suelen acordar material criptográfico mediante un intercambio de claves efímeras. De ese material se derivan las claves simétricas que protegen el tráfico. La clave privada asociada al certificado permanece bajo control del servidor o del componente que termina TLS.</p>
+<h3 id="el-protocolo-tls">EL PROTOCOLO TLS </h3>
+<p><strong>TLS</strong> (<em>Transport Layer Security</em>) protege el intercambio mediante tres funciones: confidencialidad, integridad y autenticación. En la web se autentica habitualmente al servidor. La autenticación del cliente mediante un certificado es posible si se configura expresamente.</p>
+<p>En el primer acceso del navegador, el cliente propone parámetros de conexión y puede indicar mediante <strong>SNI</strong> el nombre solicitado. El servidor selecciona parámetros compatibles y presenta el certificado apropiado. El cliente comprueba su identidad y la cadena de confianza. Si se completa el establecimiento de la conexión, ambas partes disponen de claves para proteger los mensajes HTTP que se intercambien.</p>
+<div class="mermaid">flowchart TD
+    A["Establecimiento de TLS"] --&gt; B["Certificado e identidad del sitio"]
+    B --&gt; C["Validación correcta. Continuar"]
+    B --&gt; D["Error de validación. Interrumpir"]
+    C --&gt; E["Intercambio HTTP protegido"]
+</div><p><em>Validación del servidor antes del intercambio HTTP en un primer acceso típico.</em></p>
+<p>Para una instalación actual, se prefiere <strong>TLS 1.3</strong> y se mantiene <strong>TLS 1.2</strong> si se necesita compatibilidad, con parámetros adecuados. TLS 1.0 y 1.1 están obsoletos y deben permanecer deshabilitados. SSL es el nombre de una familia de protocolos anterior a TLS.</p>
+<h3 id="https-y-diferencias-respecto-a-http">HTTPS Y DIFERENCIAS RESPECTO A HTTP </h3>
+<p>HTTPS transporta los mensajes HTTP mediante una conexión protegida. Los métodos como GET y POST y los códigos de estado conservan su significado. Cambian el esquema de la URL y la forma de establecer y proteger el intercambio.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>HTTP sin TLS</th>
+<th>HTTPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Esquema y puerto habitual</td>
+<td><code>http://</code>, puerto 80.</td>
+<td><code>https://</code>, puerto 443.</td>
+</tr>
+<tr>
+<td>Protección de los mensajes</td>
+<td>Peticiones y respuestas sin protección de TLS.</td>
+<td>Mensajes cifrados y protegidos frente a modificaciones en el trayecto.</td>
+</tr>
+<tr>
+<td>Identidad del servidor</td>
+<td>Sin comprobación mediante certificado TLS.</td>
+<td>El navegador comprueba el certificado presentado para el nombre solicitado.</td>
+</tr>
+</tbody>
+</table>
+<p>Con HTTP/1.1 y HTTP/2, HTTPS se establece habitualmente mediante TLS sobre TCP. HTTP/3 utiliza QUIC sobre UDP e integra TLS 1.3. Si se usa un puerto distinto del habitual, se indica explícitamente en la URL.</p>
+<h3 id="certificados-digitales">CERTIFICADOS DIGITALES </h3>
+<p>Un certificado de servidor X.509 vincula una <strong>clave pública</strong> con una o varias identidades. En la web, el navegador comprueba que el nombre de la URL está cubierto por los nombres del certificado, normalmente especificados en la extensión <strong>SAN</strong> (<em>Subject Alternative Name</em>).</p>
+<table>
+<thead>
+<tr>
+<th>Campo o elemento</th>
+<th>Qué indica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Titular y nombres alternativos</td>
+<td>El certificado recoge información del titular y los nombres o identidades que cubre.</td>
+</tr>
+<tr>
+<td>Emisor</td>
+<td>Identifica a la entidad que firma el certificado.</td>
+</tr>
+<tr>
+<td>Periodo de validez</td>
+<td>Indica desde cuándo y hasta cuándo es válido.</td>
+</tr>
+<tr>
+<td>Clave pública y firma del emisor</td>
+<td>Permiten comprobar la autenticidad del certificado y utilizar la clave pública en la validación del servidor.</td>
+</tr>
+</tbody>
+</table>
+<p>La <strong>clave privada</strong> correspondiente se conserva por separado y se protege mediante permisos de acceso. Si se pierde o se compromete, se debe generar una nueva clave y sustituir el certificado. Un certificado de servidor autofirmado se firma con su propia clave. Puede servir en un laboratorio con confianza configurada expresamente. En un sitio público se suele utilizar un certificado emitido por una CA reconocida por los clientes.</p>
+<h3 id="autoridades-de-certificación-y-cadena-de-confianza">AUTORIDADES DE CERTIFICACIÓN Y CADENA DE CONFIANZA </h3>
+<p>Una <strong>autoridad de certificación</strong> (CA) emite certificados conforme a su política. Una cadena habitual contiene el certificado del sitio, uno o varios certificados intermedios y una raíz de confianza que el cliente ya tiene instalada. El servidor suele enviar el certificado del sitio y los intermedios necesarios. El cliente valida las firmas de la cadena, las fechas y el nombre del sitio, entre otras comprobaciones.</p>
+<div class="mermaid">flowchart LR
+    A["Raíz de confianza"] --&gt; B["CA intermedia"]
+    B --&gt; C["Certificado del sitio"]
+    C --&gt; D["Identidad web verificada"]
+</div><p><em>Relación entre la raíz de confianza, la autoridad intermedia y el certificado del sitio.</em></p>
+<p>En el laboratorio se puede usar una <strong>CA interna</strong> cuya raíz se distribuya a los equipos de prueba. Los nombres terminados en <code>.test</code> se mantienen en la red del aula. Para la emisión pública se emplea un dominio apto para ello y se acredita su control ante la CA.</p>
+<h3 id="obtención-instalación-renovación-y-revocación-de-certificados">OBTENCIÓN, INSTALACIÓN, RENOVACIÓN Y REVOCACIÓN DE CERTIFICADOS </h3>
+<p>La siguiente tabla resume las fases habituales de un certificado de servidor y qué se hace en cada una. La emisión y la renovación pueden automatizarse mediante ACME, que permite generar la clave, crear la solicitud de firma y superar la verificación de control del dominio.</p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Qué se hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Obtención</td>
+<td>Definir los nombres que debe cubrir el certificado. Generar o provisionar la clave y tramitar la emisión. Si procede, crear una solicitud de firma (CSR) y superar la verificación de control del dominio.</td>
+</tr>
+<tr>
+<td>Instalación</td>
+<td>Asociar la clave, el certificado y los intermedios necesarios al punto HTTPS del sitio. Aplicar la configuración y verificar lo que recibe el cliente.</td>
+</tr>
+<tr>
+<td>Renovación</td>
+<td>Solicitar la nueva emisión antes del vencimiento y desplegar el certificado. Comprobar que el servicio presenta la nueva versión. ACME permite automatizar etapas de la emisión y la renovación.</td>
+</tr>
+<tr>
+<td>Revocación</td>
+<td>Solicitar a la CA que invalide un certificado antes de que caduque cuando proceda, por ejemplo tras un compromiso de la clave. Si la clave está comprometida, sustituirla junto con el certificado.</td>
+</tr>
+</tbody>
+</table>
+<p>La revocación y el despliegue son operaciones distintas. Tras renovar o sustituir un certificado se debe comprobar su fecha de validez en el punto que recibe el cliente, incluido el proxy inverso si termina TLS.</p>
+<h3 id="configuración-de-conexiones-https">CONFIGURACIÓN DE CONEXIONES HTTPS </h3>
+<p>La configuración de HTTPS depende del servidor y de los módulos que intervengan. La siguiente lista resume los pasos habituales.</p>
+<ol>
+<li>Habilitar la escucha HTTPS, habitualmente en el puerto 443, y permitir el acceso desde la red prevista.</li>
+<li>Asociar cada sitio a su certificado y clave. Para los dos nombres del aula se pueden usar certificados individuales seleccionados mediante SNI o un certificado que incluya ambos nombres.</li>
+<li>Configurar la cadena que se entrega al cliente y las versiones de TLS previstas. Proteger los archivos de clave.</li>
+<li>Validar y aplicar los cambios. Probar cada nombre desde el cliente antes de activar redirecciones o HSTS.</li>
+</ol>
+<p>Si un proxy inverso termina TLS, el certificado que ve el navegador es el del proxy. La conexión entre el proxy y el servidor interno tiene su propia configuración de transporte.</p>
+<h3 id="redirección-de-peticiones-http-a-https">REDIRECCIÓN DE PETICIONES HTTP A HTTPS </h3>
+<p>Una vez que HTTPS funciona, el puerto HTTP puede responder con una redirección a la URL segura. El cliente recibe una respuesta de la familia 3xx con la cabecera <code>Location</code> y realiza una petición nueva. Por ejemplo, <code>http://web-aula.test/avisos/</code> puede redirigirse a <code>https://web-aula.test/avisos/</code>.</p>
+<p>La prueba debe comprobar que se conservan la ruta y los parámetros previstos y que la redirección termina en el sitio correcto. Los códigos 307 y 308 conservan el método de la petición al seguir la redirección. Los formularios con credenciales y las peticiones que transporten datos sensibles deben enviarse directamente a HTTPS, pues la petición HTTP inicial de una redirección ya ha viajado por la red.</p>
+<h3 id="hsts-http-strict-transport-security">HSTS (HTTP Strict Transport Security) </h3>
+<p><strong>HSTS</strong> es una política que el sitio anuncia en una respuesta HTTPS mediante la cabecera <code>Strict-Transport-Security</code>. Un navegador que registra la política convierte los accesos posteriores por HTTP a ese nombre en accesos por HTTPS antes de contactar con el servidor. La directiva <code>max-age</code> indica cuánto tiempo conserva la política. <code>includeSubDomains</code> amplía su alcance a los subdominios.</p>
+<p>La primera visita puede llegar por HTTP si el navegador aún desconoce la política. Algunos navegadores incluyen listas de precarga para dominios que cumplen sus requisitos. Antes de ampliar la duración o el alcance de HSTS, verificar que HTTPS funciona de forma estable en los nombres afectados.</p>
+<h3 id="verificación-de-la-seguridad-de-las-conexiones-https">VERIFICACIÓN DE LA SEGURIDAD DE LAS CONEXIONES HTTPS </h3>
+<p>La verificación de la seguridad de HTTPS consiste en comprobar que el navegador recibe un certificado válido y que la conexión se establece mediante TLS. La pestaña <strong>Red</strong> del inspector permite observar la URL, el código de estado, las cabeceras y el contenido de la respuesta. La pestaña <strong>Seguridad</strong> muestra información sobre el certificado y la conexión. La siguiente tabla resume algunas pruebas que se pueden realizar desde el cliente y el resultado esperado.</p>
+<table>
+<thead>
+<tr>
+<th>Prueba desde el cliente</th>
+<th>Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abrir los dos nombres HTTPS del aula.</td>
+<td>Cada uno muestra el sitio previsto y el navegador no presenta avisos de certificado.</td>
+</tr>
+<tr>
+<td>Inspeccionar el certificado y la conexión.</td>
+<td>El nombre figura entre los admitidos, la cadena es de confianza, las fechas son válidas y se negocia una versión TLS prevista.</td>
+</tr>
+<tr>
+<td>Abrir una URL HTTP de prueba.</td>
+<td>Si se configuró una redirección, lleva a la URL HTTPS prevista. Una política HSTS ya conocida puede provocar la actualización sin petición HTTP al servidor.</td>
+</tr>
+<tr>
+<td>Observar la pestaña Red del navegador.</td>
+<td>Los recursos y formularios del sitio usan HTTPS. Revisar referencias a HTTP y los avisos de contenido mixto.</td>
+</tr>
+<tr>
+<td>Revisar HSTS si está habilitado.</td>
+<td>La respuesta HTTPS anuncia la política y su duración coincide con lo previsto.</td>
+</tr>
+</tbody>
+</table>
+<p>Registrar la URL, el certificado que se recibe, su vencimiento y el resultado de cada prueba. Si aparece un aviso, comprobar primero el nombre, la hora del equipo, la cadena y el punto que termina TLS.</p>
+<h2 id="monitorización-mantenimiento-y-diagnóstico-del-servicio-web">MONITORIZACIÓN, MANTENIMIENTO Y DIAGNÓSTICO DEL SERVICIO WEB </h2>
+<p>A continuación se describe cómo comprobar el estado del servicio, localizar fallos y recuperar una instalación.</p>
+<h3 id="monitorización-del-estado-del-servidor">MONITORIZACIÓN DEL ESTADO DEL SERVIDOR </h3>
+<p>La <strong>monitorización</strong> consiste en observar periódicamente el servicio y registrar datos que permitan detectar cambios. Una comprobación útil reproduce una operación que un usuario debe poder completar. Por ejemplo, una petición a la portada debe devolver el título esperado del sitio, además de un código de éxito.</p>
+<table>
+<thead>
+<tr>
+<th>Qué observar</th>
+<th>Qué permite detectar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estado del servicio y puertos de escucha</td>
+<td>Un proceso detenido o una escucha distinta de la prevista.</td>
+</tr>
+<tr>
+<td>Tiempo de respuesta y errores HTTP</td>
+<td>Degradación o aumento de peticiones fallidas.</td>
+</tr>
+<tr>
+<td>CPU, memoria y espacio en disco</td>
+<td>Saturación, crecimiento de registros o falta de recursos.</td>
+</tr>
+<tr>
+<td>Fecha de caducidad del certificado</td>
+<td>Necesidad de renovar y verificar el certificado con antelación.</td>
+</tr>
+</tbody>
+</table>
+<p>Registrar primero los valores habituales. Una alerta debe indicar qué sitio se comprobó, desde dónde y en qué momento. Si se mide el tiempo de respuesta, mantener constantes la URL y el tipo de operación para poder comparar.</p>
+<h3 id="registros-de-acceso-y-registros-de-errores">REGISTROS DE ACCESO Y REGISTROS DE ERRORES </h3>
+<p>El <strong>registro de acceso</strong> recoge las peticiones atendidas y puede incluir fecha y hora, método, ruta, código HTTP, sitio virtual y duración.<br>
+El <strong>registro de errores</strong> aporta información sobre incidencias como un archivo inaccesible, un fallo de arranque o un error al contactar con una aplicación interna. Su contenido y ubicación dependen de cada producto.</p>
+<p>Para investigar un fallo, repetir una petición conocida y anotar hora, URL, sitio y resultado. Buscar la entrada correspondiente y consultar los errores cercanos en el tiempo. Si existe un identificador de petición compartido, utilizarlo para relacionar las entradas de distintos componentes. Proteger los registros, limitar el acceso y evitar que se almacenen contraseñas, cookies de sesión o cabeceras de autenticación.</p>
+<h3 id="codigo-de-estado-y-diagnóstico">CODIGO DE ESTADO Y DIAGNÓSTICO </h3>
+<p>La siguiente tabla resume la interpretación habitual de los códigos de estado HTTP más frecuentes. Un código 200 indica que la petición se atendió correctamente, mientras que los códigos de la familia 4xx y 5xx indican errores que conviene investigar.</p>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Interpretación en el diagnóstico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>La petición obtuvo una respuesta de éxito. Confirmar que el contenido pertenece al sitio esperado.</td>
+</tr>
+<tr>
+<td>301, 302, 307 o 308</td>
+<td>Revisar la cabecera <code>Location</code> y comprobar el destino y los posibles bucles.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Faltan credenciales válidas para el recurso. Revisar el mecanismo de autenticación.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>El servidor rehúsa atender la petición. Revisar la política de acceso y los permisos.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>El servidor no encuentra o no revela el recurso solicitado. Comprobar sitio, ruta y raíz de documentos.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Un error interno impidió atender la petición. Consultar los registros de la aplicación o del servidor.</td>
+</tr>
+<tr>
+<td>502, 503 o 504</td>
+<td>Revisar el servicio que responde, la disponibilidad y, si hay un intermediario, la comunicación con el servidor interno.</td>
+</tr>
+</tbody>
+</table>
+<p>Un aviso de certificado, un error DNS o una conexión rechazada pueden impedir que se llegue a obtener un código HTTP. En tal caso, anotar el mensaje del cliente y comprobar en qué fase se produce.</p>
+<h3 id="comprobación-de-la-conectividad-y-disponibilidad">COMPROBACIÓN DE LA CONECTIVIDAD Y DISPONIBILIDAD </h3>
+<p>Empezar con una URL conocida desde un cliente de la red afectada. Confirmar que el nombre resuelve a la IP prevista. Después, comprobar que el puerto es accesible y que el servicio escucha en la dirección correcta. Si se usa HTTPS, verificar el certificado con el nombre real del sitio. Por último, revisar la respuesta HTTP y su contenido. Probar desde el servidor puede ayudar a localizar un problema de red, aunque la prueba final debe hacerse desde el cliente.</p>
+<div class="mermaid">flowchart TD
+    A["Resolver el nombre"] --&gt; B["Comprobar IP y puerto"]
+    B --&gt; C["Validar TLS si procede"]
+    C --&gt; D["Revisar respuesta HTTP"]
+    D --&gt; E["Confirmar sitio y contenido"]
+</div><p><em>Orden de comprobación desde el cliente.</em></p>
+<p>En un alojamiento por nombre, acceder únicamente por IP puede mostrar el sitio predeterminado y, con HTTPS, producir un aviso de identidad. La comprobación del sitio virtual debe conservar su nombre.</p>
+<h3 id="diagnóstico-de-problemas-habituales">DIAGNÓSTICO DE PROBLEMAS HABITUALES </h3>
+<p>Para localizar un fallo, conviene identificar primero el síntoma y luego comprobar los elementos que intervienen en la petición. La siguiente tabla resume algunos síntomas habituales y qué se puede comprobar para localizar la causa.</p>
+<table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Comprobación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El navegador no resuelve el nombre.</td>
+<td>Consultar el DNS del cliente y las entradas locales. Comparar la IP obtenida con la esperada.</td>
+</tr>
+<tr>
+<td>El nombre resuelve, pero la conexión falla.</td>
+<td>Verificar dirección, ruta, red virtual, cortafuegos y puerto de escucha.</td>
+</tr>
+<tr>
+<td>El servicio falla tras aplicar un cambio.</td>
+<td>Revisar mensajes de validación y arranque. Comparar con la última configuración operativa.</td>
+</tr>
+<tr>
+<td>La portada abre, pero un archivo falla.</td>
+<td>Revisar la URL exacta, la raíz, los nombres y los permisos de lectura de la cuenta del servicio.</td>
+</tr>
+<tr>
+<td>Un usuario se identifica y sigue sin acceder.</td>
+<td>Comprobar la pertenencia al grupo y la política aplicada a la ruta solicitada.</td>
+</tr>
+<tr>
+<td>El navegador presenta un aviso de certificado.</td>
+<td>Revisar el nombre, la fecha del equipo, la cadena de confianza y el punto que termina TLS.</td>
+</tr>
+<tr>
+<td>Aparece la página de otro sitio.</td>
+<td>Revisar la asociación entre el nombre solicitado, el sitio virtual y su raíz.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Caso de aula.</strong> El nombre de proyectos resuelve correctamente y la portada devuelve 200. El fichero <code>/css/estilo.css</code> devuelve 404. En la pestaña Red se comprueba la ruta solicitada. El registro permite confirmar qué sitio atendió la petición. Si el archivo se publicó en otro directorio, se corrige la referencia o la ubicación y se repite la prueba desde el cliente.</p>
+<h3 id="copias-de-seguridad">COPIAS DE SEGURIDAD </h3>
+<p>Una copia recuperable incluye la configuración de los sitios, los contenidos y, si hay aplicaciones dinámicas, sus datos persistentes. Documentar también dependencias, ubicaciones, cuentas de ejecución y permisos. Las claves y otros secretos que deban recuperarse requieren protección específica. Si se usa una base de datos, crear la copia con un procedimiento que preserve la coherencia de los datos.</p>
+<p>Guardar las copias fuera de las raíces públicas y conservar versiones conforme a la política del centro. En una prueba de restauración, recuperar una versión en un entorno separado, comprobar permisos y verificar las URL previstas desde un cliente. Registrar qué se recuperó y cuánto tiempo llevó.</p>
+<h3 id="mantenimiento-preventivo">MANTENIMIENTO PREVENTIVO </h3>
+<p>La siguiente tabla resume tareas habituales de mantenimiento preventivo y cuándo conviene realizarlas. La frecuencia depende del uso, la criticidad y la política del centro. Algunas tareas se pueden automatizar mediante herramientas de supervisión y alertas.</p>
+<table>
+<thead>
+<tr>
+<th>Momento</th>
+<th>Tarea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antes del cambio</td>
+<td>Revisar el alcance, comprobar la copia y documentar cómo recuperar el estado anterior.</td>
+</tr>
+<tr>
+<td>Durante el cambio</td>
+<td>Aplicar el ajuste o actualización según la plataforma y revisar los mensajes del servicio.</td>
+</tr>
+<tr>
+<td>Después del cambio</td>
+<td>Comprobar escucha, sitios, recursos, accesos y HTTPS. Comparar los resultados con los obtenidos antes.</td>
+</tr>
+<tr>
+<td>Periódicamente</td>
+<td>Revisar alertas, espacio, rotación de registros, certificados, dependencias y pruebas de restauración.</td>
+</tr>
+</tbody>
+</table>
+<p>Una intervención queda verificada cuando las operaciones previstas funcionan desde el cliente y se han registrado los cambios y sus resultados.</p>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// Page load and data-processed do not imply that Mermaid's layout is complete.
+window.__crossnoteMermaidExport = { status: 'pending' }
+try {
+// Disable the load listener before an external module can yield control.
+mermaid.startOnLoad = false
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = MERMAID_CONFIG.theme || "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+// Complete the initial pass before Reveal can start separate renders.
+await mermaid.run({
+  nodes: document.querySelectorAll('div.mermaid')
+})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('div.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+}
+window.__crossnoteMermaidExport = { status: 'complete' }
+} catch (error) {
+  window.__crossnoteMermaidExport = {
+    status: 'error',
+    message: String(error && error.message || error)
+  }
+  console.error(error)
+}
+</script>
+    
+    
+    
+  
+    </body></html>
